@@ -1,5 +1,4 @@
-import UAParser from 'ua-parser-js'
-
+import UAParser from './ua-parser-js'
 export const __SPEC__ = 'undefined' === typeof window
 export const __BROWSER__ = !__SPEC__
 
@@ -30,7 +29,7 @@ export function getBodyStyle(): CSSStyleDeclaration {
       } as any)
 }
 
-const { device, browser, engine, os } = ((UAParser as unknown) as () => UAParser.IResult)()
+const { device, browser, engine, os }: UAParser.IResult = (UAParser as any)()
 
 let isLegacy = false
 let isRadius = false
