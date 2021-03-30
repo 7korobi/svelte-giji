@@ -1,0 +1,185 @@
+
+@each $weight in 300 400 500 700
+  @font-face
+    font-family: 'Fira Code WEB'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: url('https://giji.f5.si/font/FiraCode-#{ $weight }.woff2') format('woff2')
+
+@each $weight in 200 300 400 500 600 700 900
+  @font-face
+    font-family: 'Noto Serif JP'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: url('https://giji.f5.si/font/NotoSerifJP-#{ $weight }.woff2') format('woff2')
+
+@each $weight in 100 300 350 400 500 700 900
+  @font-face
+    font-family: 'Noto Sans JP'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: url('https://giji.f5.si/font/NotoSansJP-#{ $weight }.woff2') format('woff2')
+
+@font-face
+  font-family: "mplus-1m"
+  font-style: normal
+  font-display: swap
+  font-weight: 400
+  src: url("https://giji.f5.si/font/circle-mplus-1m-regular.woff2") format("woff2")
+
+
+rt,
+select,
+[cite]
+  font-weight: 400
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+.goth-S,
+.goth-M,
+.goth-L
+  body,
+  b,
+  th,
+  input,
+  button,
+  textarea,
+  [title]:after,
+  [data-tooltip]:after
+    font-weight: 400
+    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+.press,
+.novel,
+.large
+  body,
+  b,
+  th,
+  input,
+  button,
+  textarea,
+  [title]:after,
+  [data-tooltip]:after
+    font-weight: 600
+    font-family: 'Noto Serif CJK JP', 'Noto Serif JP', serif
+
+tt,
+code,
+kbd,
+samp,
+pre,
+.text.mono
+  font-weight: 400
+  font-family: 'Fira Code', 'Fira Code WEB', 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
+  font-variant-numeric: tabular-nums slashed-zero
+  font-feature-settings: "halt"
+
+.btn,
+[href]
+  sup, sub, .badge
+    font-weight: 700
+    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+h1, h2, h3, h4, h5, h6,
+[data-ruby]:before,
+button,
+strong,
+.bold,
+.text.head:first-line
+  font-weight: 700
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+
+@mixin font($small_px, $base, $zoom)
+  $small: ($small_px / $base) * 1rem
+
+  $gap:   $zoom *  24px
+  $sideC: $zoom * 132px
+  $side2: $zoom *  80px
+  $side3: $zoom * 150px
+
+  $center: 28 * $base + $sideC
+  $half: ( $center + $gap ) / 2
+
+  $limit1: $center / 0.9
+  $limit2: $center + 2 * ( $gap + $side2 )
+  $limit3: $center + 2 * ( $gap + $side3 )
+
+
+  font-size: $base
+  .fine,
+  .date
+    font-size: $small
+    .links,
+    textarea,
+    button,
+    dfn,
+    p
+      font-size: $small
+
+  .summaryframe
+    .stable
+      width: $side3
+
+  //  .impose:hover
+  //    width: "calc( 50vw + %s )" % $half
+  @media screen and (min-width: $limit3)
+    &
+      .summaryframe
+        width: calc( 50vw - #{ $half })
+
+      .limit3-ng
+        display: none
+
+  @media screen and (max-width: $limit3)
+    &
+      .summaryframe
+        width: $side3
+
+      .limit3-ok
+        display: none
+
+  @media screen and (min-width: $limit2)
+    &
+      .banner
+        margin-left:  $center + 15px
+        width: calc( 50vw - #{ $half + 6px })
+      .toastframe,
+      .sideframe
+        width: calc( 50vw - #{ $half })
+
+      .limit2-ng
+        display: none
+
+  @media screen and (max-width: $limit2)
+    &
+      .banner
+        display: none
+      .toastframe,
+      .sideframe
+        width: $side2
+
+      .limit2-ok
+        display: none
+
+  @media screen and (min-width: $limit1)
+    &
+      .writeframe,
+      .outframe
+        .contentframe
+          width: $center
+
+      .limit1-ng
+        display: none
+
+  @media screen and (max-width: $limit1)
+    &
+      .writeframe,
+      .outframe
+        .contentframe
+          width: 90vw
+
+      .limit1-ok
+        display: none

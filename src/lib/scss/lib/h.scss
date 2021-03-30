@@ -1,0 +1,124 @@
+@mixin Glowing($a, $blur, $col) {
+  $b: 0 - $a;
+
+  text-shadow: 0 0 0.5px $col, $a $a $blur $col, 0 $a $blur $col, $b $a $blur $col, $a 0 $blur $col,
+    $b 0 $blur $col, $a $b $blur $col, 0 $b $blur $col, $b $b $blur $col;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  box-sizing: border-box;
+  display: block;
+  column-span: all;
+  transform: scale(1, 0.8);
+  transform-origin: center center;
+  margin: 0;
+}
+
+h6 {
+  @include Glowing(1px, 0.5px, var(--shade));
+}
+
+h5 {
+  color: var(--bold_);
+  @include Glowing(1.5px, 1px, var(--shade));
+}
+
+h4 {
+  color: var(--bold__);
+  @include Glowing(1.5px, 1px, var(--shade));
+}
+
+h3 {
+  color: var(--bold___);
+  @include Glowing(1.5px, 1px, var(--shade));
+}
+
+h2 {
+  color: var(--bold____);
+  @include Glowing(2px, 1.5px, var(--shade));
+}
+
+h1 {
+  color: var(--bold_____);
+  @include Glowing(2px, 1.5px, var(--shade));
+}
+
+hr {
+  clear: both;
+  display: block;
+  border: none;
+  margin: 0;
+  margin-before: 0;
+  margin-after: 0;
+  padding: 0.1em 0 0 0;
+  height: 0.4em;
+  border-color: var(--emboss);
+}
+
+hr:before,
+hr:after {
+  content: '';
+  clear: both;
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 0.12em;
+  border-color: var(--emboss);
+}
+hr:before {
+  border-style: solid none none none;
+  border-width: 0.08em 0 0 0;
+}
+hr:after {
+  border-style: none none dashed none;
+  border-width: 0 0 0.08em 0;
+}
+
+hr.footnote:before {
+  border-style: dashed none none none;
+}
+hr.footnote:after {
+  border-style: none none solid none;
+}
+
+hr.blank,
+hr.stripe {
+  border: none;
+  &::before,
+  &::after {
+    border: none;
+  }
+}
+hr.stripe {
+  background-size: 0.4em 0.6em;
+  background-image: linear-gradient(
+    -70deg,
+    transparent 35%,
+    var(--emboss) 45%,
+    var(--emboss) 55%,
+    transparent 65%
+  );
+}
+
+hr.section {
+  border-style: solid none solid none;
+  &::before {
+    border: none;
+  }
+  &::after {
+    content: '§';
+    padding: 0 1ex;
+    top: -2ex;
+    position: relative;
+    border: none;
+  }
+}
+
+hr.invisible_hr {
+  display: none;
+}

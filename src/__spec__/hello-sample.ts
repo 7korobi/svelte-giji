@@ -1,3 +1,4 @@
+import '../lib/test-env.js'
 import { render } from '@testing-library/svelte'
 
 /*

@@ -1,0 +1,1093 @@
+@import "./lib/_color"
+@import "./lib/_zoom"
+
+@import "./lib/font"
+@import "./lib/anime"
+
++Theme(title-bar, title-bar-BROAD)
+
++Theme(BRONZE,       ash-ELSE)
++Theme(footer,       ash-ELSE)
++Theme(header,       ash-ELSE)
++Theme(btns,         ash-BROAD)
++Theme(chrblank,     ash-BROAD)
++Theme(welcome-btns, ash-FOAM)
+
++Theme(DEL_M,        ash-VGRAVE)
++Theme(DEL_S,        ash-BROAD)
++Theme(suddendead,   ash-MUPET)
++Theme(leave,        ash-MUPET)
+
++Theme(LONEWOLF,  stat-LONE)
++Theme(LOVER,     stat-LOVE)
++Theme(executed,  stat-GRAVE)
++Theme(HATER,     stat-FOAM)
++Theme(PIXI,      stat-ELSE)
++Theme(GURU,      stat-ELSE)
++Theme(EVIL,      stat-MUPET)
++Theme(HUMAN,     stat-BROAD)
++Theme(live,      stat-BROAD)
++Theme(juror,     stat-BROAD)
+
++Theme(NONE,      stat-MOB)
++Theme(DISH,      stat-MOB)
++Theme(MOB,       stat-MOB)
++Theme(WOLF,      stat-WOLF)
++Theme(mob,       stat-MOB)
++Theme(visiter,   stat-MOB)
++Theme(grave,     stat-MOB)
++Theme(alive,     stat-MOB)
++Theme(suicide,   stat-WOLF)
++Theme(victim,    stat-WOLF)
++Theme(cursed,    stat-WOLF)
++Theme(feared,    stat-WOLF)
++Theme(droop,     stat-WOLF)
+
++Theme(welcome-links, prog-ELSE)
++Theme(progress,      prog-MUPET)
++Theme(prologue,      prog-MOB)
+
+.potofs
+  +Theme(GAIM,    ash-VGRAVE)
+  +Theme(ELSE,    ash-ELSE)
+  +Theme(AIM,     ash-BROAD)
+  +Theme(PSAY,    ash-MOB)
+  +Theme(HSAY,    ash-FOAM)
+  +Theme(hide,    ash-MUPET)
+  +Theme(TSAY,    ash-MOB)
+  +Theme(private, ash-MOB)
+
+  +Theme(GSAY,   stat-GRAVE)
+  +Theme(VGSAY,  stat-VGRAVE)
+  +Theme(SSAY,   stat-BROAD)
+  +Theme(MSAY,   stat-BROAD)
+  +Theme(VSSAY,  stat-MOB)
+
+  +Theme(FSAY,   stat-FOAM)
+  +Theme(XSAY,   stat-MUPET)
+  +Theme(LSAY,   stat-MOB)
+  +Theme(WSAY,   stat-WOLF)
+
+// font & zoom section
+$bgs: ( BG: 1.0 , BG75: 0.75, BG50: 0.50 )
+
+@each $bg, $zoom in $bgs
+  .#{$bg}
+    +zoom($zoom)
+
+    &.goth-S
+      +font(9px,  12px, $zoom)
+    &.goth-M
+      +font(12px, 16px, $zoom)
+    &.goth-L
+      +font(16px, 22px, $zoom)
+
+    &.press
+      +font( 9px, 12px, $zoom)
+    &.novel
+      +font(12px, 16px, $zoom)
+    &.large
+      +font(16px, 22px, $zoom)
+
+
+@import "./lib/index"
+@import "./lib/contentframe"
+@import "./lib/h"
+
+html,
+body
+  margin: 0
+  tab-size: 6
+  -moz-tab-size: 6
+
+body
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-overflow-scrolling: touch
+  -webkit-touch-callout: none
+  text-size-adjust: 100%
+  user-select: none
+
+  font-variant-numeric: tabular-nums
+  font-feature-settings: "palt"
+  font-smooth: antialiased
+  font-kerning: normal
+  text-align: left
+  overflow-x: hidden
+
+  word-break: normal
+  word-wrap: break-word
+  overflow-wrap: break-word
+  vertical-align: baseline
+
+fieldset
+  border-width: 0.2em 0 0 0
+  margin-inline-start: 0
+  margin-inline-end: 0
+  margin-block-start: 0.3em
+  margin-block-end: 0
+  padding-inline-start: 0
+  padding-inline-end: 0
+  padding-block-start: 0
+  padding-block-end: 0
+
+
+[hidden]
+  display: none !important
+
+[disabled]
+  cursor: not-allowed
+
+article,
+.text
+  cursor: text
+  user-select: text
+  overflow: visible
+  width: 100%
+
+label,
+abbr,
+[href],
+[cite],
+.btn,
+.label
+  white-space: nowrap
+  cursor: pointer
+  user-select: auto
+
+.tap
+  i
+    font-size: 20px
+
+.filmline
+  margin: 0
+  background-repeat: repeat-x
+  .contentframe
+    background-image: none
+    height: 0
+  .inframe
+    padding: 0
+
+.filmend
+  display: inline-block
+  margin: 0 0 0 -1px
+
+.portrate
+  IMG
+    height: auto
+  IMG + .chrblank
+    padding: 0
+
+form, .form
+  a, .btn
+    display: inline-block
+
+.chat
+  box-sizing: border-box
+
+  IMG,
+  table
+    max-width: 100%
+    margin-left: auto
+    margin-right: auto
+
+// img baseline make needless margin at bottom.
+IMG
+  vertical-align: bottom
+
+IMG.hide
+  filter: sepia(60%) hue-rotate(180deg)
+
+.page_active,
+.page_active-bg
+  min-height: 100vh
+
+
+.impose:hover
+  width: calc( 100vw - 30px ) !important
+
+.fullframe
+  margin-left: calc( 50% - 45vw )
+  width: 90vw
+
+
+.writeframe,
+.outframe
+  width: 100vw
+
+.writeframe
+  top: 0
+  box-sizing: content-box
+  .contentframe
+    background-attachment: scroll
+
+.contentframe
+  .inframe
+    padding: 10px 0
+
+
+.summaryframe
+  left:   0
+  bottom: 0
+
+.sideframe
+  right:  0
+  bottom: 0
+
+.toastframe
+  right: 0
+  top:  0
+
+
+.summaryframe,
+.toastframe,
+.sideframe
+  .talk > .baloon,
+  .talk > .portrate
+    display: none
+
+  .chat
+    z-index:  8
+
+  .icons
+    width: 20px
+    margin: 0 0 10px auto
+
+    display: flex
+    flex-direction: column
+    flex-wrap:      nowrap
+    align-items:     center
+    align-content:   space-around
+    justify-content: space-around
+
+    .item-half,
+    .item
+      box-sizing: content-box
+      flex-basis: auto
+      text-align: center
+      border-radius: 5px
+      font-weight: 400
+      font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+    .item-half
+      width:        20px
+      height:       25px
+      font-size:     7px
+      i
+        font-size:  20px
+    .item
+      width:        20px
+      height:       45px
+      font-size:     7px
+      i
+        font-size:  20px
+    .mdi::before
+      margin: 6px auto 2px auto
+
+.summaryframe:not(:hover),
+.toastframe:not(:hover),
+.sideframe:not(:hover)
+  .detail
+    display: none
+
+.summaryframe,
+.inframe,
+.outframe,
+.fullframe,
+.contentframe
+  box-sizing: content-box
+
+.summaryframe,
+.toastframe,
+.sideframe,
+.editframe,
+.writeframe
+  position: fixed
+  z-index: 10
+  &:hover
+    z-index: 30
+  td, th
+    border-style: none
+    border-width: 0
+
+.summaryframe,
+.toastframe,
+.sideframe,
+.writeframe,
+.center-left,
+.center-right
+  pointer-events: none
+
+.editframe,
+.inframe
+  pointer-events: auto
+
+
+.center-left,
+.center-right
+  position: fixed
+  top:  50vh
+  width: 4vw
+  border-bottom-width: 3px
+  border-bottom-style: solid
+
+.center-left
+  left:   0
+
+.center-right
+  right:   0
+
+.mermaid,
+.swipe
+  overflow-y: hidden
+  overflow-x: auto
+  // -ms-overflow-style: none
+  // &::-webkit-scrollbar
+  //  display:none;
+  table
+    border-collapse: collapse
+  td, th
+    margin:  0
+    white-space: nowrap
+
+.chrblank
+  margin: 0 auto
+  p
+    text-align:  center
+    white-space: nowrap
+  a
+    display: block
+    text-align: center
+    white-space: pre
+
+.report, .post, .talk
+  display: flex
+  flex-flow: row-reverse nowrap
+  justify-content: space-between
+
+  position: relative
+
+.chat
+  align-self: center
+  flex-grow:   1
+  flex-shrink: 1
+  .date
+    text-align: right
+  .name, .text, .date
+    padding: 0
+    margin: 0
+
+  .text
+    fieldset
+      max-width: 99%
+      overflow: none
+
+    fieldset input[type=text],
+    fieldset select,
+    textarea
+      width: 99%
+      min-width: 99%
+      max-width: 99%
+      resize: vertical
+      overflow-y: auto
+      overflow-x: scroll
+      -ms-overflow-style: none
+      &::-webkit-scrollbar
+        display: none
+
+
+.summaryframe
+  .post > .chat
+    border-style: solid solid solid none
+  .report > .chat
+    border-style: double none
+  .swipe
+    td, th
+      padding: 0
+
+.contentframe, .toastframe, .sideframe
+  .post > .chat
+    border-style: solid none solid solid
+  .report > .chat
+    border-style: double none
+
+.filmline
+  margin: 0
+.portrate
+  .chrblank
+    .bar
+      font-size:     1rem
+      line-height: 1.1rem
+
+sup
+  font-variant-position: super
+  font-feature-settings: "sups"
+
+sub
+  font-variant-position: sub
+  font-feature-settings: "subs"
+
+body,
+input,
+button,
+select,
+textarea
+  line-height: 1.5em
+  font-size: 1.0rem
+
+input,
+button,
+select
+  vertical-align: middle
+  height: 1.6em
+
+.text
+  img.mark
+    max-height: 1.5em
+
+.fine,
+.date
+  line-height: 1.2em
+  img.mark
+    max-height: 1.2em
+
+sup,
+sub,
+.potofs.fine,
+.chrblank,
+.chrblank a,
+.chrblank p,
+.chrblank time
+  line-height: 1.1em
+  img.mark
+    max-height: 1.1em
+
+[title]:after,
+[data-tooltip]:after
+  font-size: 1.0rem
+
+[data-ruby]
+  line-height: 2.0em
+  &:before
+    top: -4.0ex
+    font-size:  0.5em
+
+sup
+  vertical-align:   0.5em
+sub
+  vertical-align:  -0.5em
+
+table
+  border-spacing: 0.15em
+
+input[type=number],
+.w1
+  max-width: 3em
+  width: 99%
+
+input[type=time],
+.w2
+  max-width: 6em
+  width: 99%
+
+.w3
+  max-width: 9em
+  width: 99%
+
+.w4
+  max-width: 12em
+  width: 99%
+
+.w5
+  max-width: 15em
+  width: 99%
+
+.w6
+  max-width: 18em
+  width: 99%
+
+.w7
+  max-width: 21em
+  width: 99%
+
+.w8
+  max-width: 24em
+  width: 99%
+
+.w9
+  max-width: 27em
+  width: 99%
+
+input[type=checkbox],
+input[type=radio],
+input[type=button],
+input[type=image],
+input[type=reset],
+input[type=submit],
+[href],
+[cite],
+button,
+a
+  border-radius: 0.3em
+
+  form &,
+  .form &
+    padding: 0 0.1em
+
+  .toastframe .icons &,
+  .sideframe .icons &
+    padding: 0.1em 0
+
+input[type=time],
+input[type=number],
+input[type=color],
+textarea,
+select,
+pre,
+kbd,
+code,
+time,
+th,
+td,
+.note,
+.btn,
+.banner div,
+.copyright p
+  border-radius: 0.3em
+
+  form &,
+  .form &
+    padding: 0 0.1em
+
+  .toastframe .icons &,
+  .sideframe .icons &
+    padding: 0.1em 0
+
+.banner
+  top: 1.8em
+
+// multi-column
+.contentframe
+  .col2,
+  .col3,
+  .colX,
+  .col_wide,
+  .col_narrow,
+  .column
+    column-rule-width: 0.1em
+    column-gap:  0.5em
+
+  .talk > .chat,
+  .post > .chat
+    .column,
+    .col2
+      columns: 2 12em
+
+    .col3
+      columns: 3  8em
+
+  .report > .chat
+    .col2
+      columns: 2 17em
+
+    .column,
+    .col3
+      columns: 3 11em
+
+.fullframe
+  .col_wide
+    column-width: 17em
+  .col_narrow,
+  .column,
+  .colX
+    column-width: 11em
+
+.contentframe,
+.fullframe
+  .chat
+    padding: 0 0.2em 0 0.3em
+    .mono
+      background-size: auto 2em
+
+.chat
+  .point
+    border: 0.1em dotted var(--focus)
+
+  thead,
+  tfoot
+    th,
+    td
+      border: 0.1em dashed var(--focus)
+  th
+    border: 0.1em dashed var(--focus)
+
+input,
+select,
+button,
+[href],
+[cite],
+.btn
+  line-height: 1.7em
+
+abbr,
+fieldset,
+legend,
+label,
+abbr,
+q,
+.label
+  border-radius: 0.75em
+  padding: 0 0.3em
+
+.banner
+  height:         1.5em 
+  margin-bottom: -1.5em
+
+
+.name,
+.label,
+.btn,
+a,
+[href]
+  sup,
+  sub,
+  .badge
+    border-radius: 0.75em
+    padding: 0     0.2em
+    margin: -0.05em 0.05em
+
+h1, h2, h3, h4, h5, h6
+  line-height: 1.0em
+  img.mark
+    max-height: 1.0em
+
+h1
+  font-size: 2.50rem
+h2
+  font-size: 1.88rem
+h3
+  font-size: 1.50rem
+h4
+  font-size: 1.25rem
+h5
+  font-size: 1.00rem
+h6
+  font-size: 0.83rem
+
+[data-ruby]
+  position: relative
+  white-space: nowrap
+
+[data-ruby]:before
+  content: attr(data-ruby)
+  position: absolute
+  left:  0
+  right: 0
+  margin: auto
+  text-align: center
+  -webkit-text-emphasis: none
+  text-emphasis: none
+
+[data-ruby]:before, rt
+  text-shadow: none
+  font-variant-east-asian: ruby full-width simplified
+
+abbr[title],
+del
+  text-decoration: none
+
+em
+  -webkit-text-emphasis: sesame
+  text-emphasis: sesame
+  font-style: normal
+
+s
+  text-decoration-style: double
+u,
+ins
+  text-decoration-style: wavy
+
+[cite]
+  white-space: nowrap
+  b
+    font-size: 0.5em
+    display: inline-block
+    transform: scale( 1, 2.5)
+    padding: 0 0 0.5em 0
+
+b, p
+  margin:  0
+  padding: 0
+
+blockquote
+  margin: 0
+  padding: 0  0.5ex 0  0.5ex
+  border-style: none solid none solid
+  border-width: 0 0.5ex 0 0.5ex
+
+ol, ul
+  margin:  0
+  padding: 0
+  padding-left: 1em
+  margin-left: 1em
+
+strong
+  display: inline
+
+pre
+  max-width: 100%
+  margin: 0 -2px
+  white-space: pre-wrap
+  column-span: all
+  justify-content: center
+  display: block
+
+a,
+b,
+em,
+abbr,
+strong,
+kbd,
+code,
+time,
+select,
+button,
+time
+  border-width: 0
+
+q:not([title]):before,
+q:not([title]):after
+  content: ''
+
+.btns
+  text-align: center
+  span
+    margin: 0 6px
+
+.tb-btn
+  a,
+  button,
+  .btn
+    writing-mode: tb-rl
+    sup,
+    sub,
+    .badge
+      writing-mode: lr-tb
+      float: inline-end
+
+a
+  text-decoration: none
+
+input[type=time],
+input[type=number],
+input[type=checkbox],
+input[type=radio],
+input[type=color],
+input[type=submit],
+input[type=button],
+input[type=image],
+input[type=reset],
+[href],
+[cite],
+a,
+b,
+abbr,
+kbd,
+code,
+time,
+select,
+button,
+textarea,
+fieldset,
+.btn
+  box-sizing: border-box
+  text-rendering: auto
+  align-items: flex-start
+
+input[type=time],
+input[type=number],
+input[type=checkbox],
+input[type=radio],
+input[type=color],
+input[type=submit],
+input[type=button],
+input[type=image],
+input[type=reset],
+[href],
+a,
+abbr,
+kbd,
+code,
+time,
+select,
+button,
+textarea,
+.note,
+.btn
+  border-style: solid
+
+fieldset
+  border-style: double
+
+input,
+select,
+button,
+[href],
+.btn
+  border: 0.5px solid var(--btnOff)
+  .date &
+    border: none
+
+  &:hover
+    animation: border-hover .4s ease-in-out infinite normal
+
+  &:focus-within
+    animation: border-hover  1s ease-in-out infinite normal
+
+input,
+select,
+button,
+textarea
+  user-select: auto
+
+p,
+.left,
+.l
+  text-align: justify
+
+center,
+.center,
+.c
+  text-align: center
+
+nav,
+.right,
+.r
+  text-align: right
+
+.pull-left
+  float: left
+.pull-right
+  float: right
+
+.banner
+  position: sticky
+  white-space: pre
+  div
+    article
+      overflow: hidden
+
+legend
+  text-shadow: none
+
+.label,
+label,
+abbr
+  text-align: center
+  text-shadow: none
+
+.name,
+.btn,
+[href]
+  sup,
+  sub,
+  .badge
+    text-align: center
+    text-shadow: none
+
+sup,
+sub
+  text-align: center
+
+// multi-column
+.col2,
+.col3,
+.colX,
+.col_wide,
+.col_narrow,
+.column
+  column-rule-style: dashed
+  table
+    width: 100%
+    tbody
+      width: 100%
+      tr
+        td
+          padding: 0
+
+// SVG section
+rect.box,
+.box > rect
+  cursor: pointer
+  fill: black
+  stroke: black
+
+rect.chr,
+.chr > rect
+  stroke-width: 1px
+  fill: #444844   // paper('I',0, BROAD)
+  stroke: black
+
+text.chr,
+text.chr > tspan,
+.chr > text
+  fill: pen(ash-BROAD)
+
+rect.pen,
+.pen > rect
+  stroke-width: 1px
+
+rect.cluster,
+.cluster > rect
+  cursor: pointer
+  stroke-width: 9px
+  fill: transparent
+
+rect.move,
+.move > rect
+  cursor: pointer
+  stroke-width: 1px
+  fill: none
+
+rect.icon,
+.icon > rect,
+rect.point,
+.point > rect
+  cursor: pointer
+  fill: none
+  stroke: none
+
+rect.hide,
+.hide > rect
+  cursor: pointer
+  fill:   transparent
+  stroke: transparent
+
+.edgePath
+  > path.path
+    fill: none
+    stroke-linecap: round
+    stroke-linejoin: round
+    &.hide
+      stroke: none
+      stroke-width: 0
+    &.wide
+      stroke-width: 6px
+    &.solid
+      stroke-width: 3px
+    &.dotted
+      stroke-width: 6px
+      stroke-dasharray: 0, 12px
+
+#svg-marker-arrow-end > path,
+#svg-marker-arrow-start > path
+  stroke-width: 1px
+  stroke-dasharray: 1px, 0
+#svg-marker-cross > path
+  stroke-width: 2px
+  stroke-dasharray: 1px, 0
+
+body :not(button)[title]:after
+  content: attr(title)
+
+[data-tooltip]:after
+  content: attr(data-tooltip)
+
+body :not(button)[title],
+[data-tooltip]
+  position: relative
+
+  &:after
+    z-index: 99998
+
+  &:before
+    z-index: 99999
+
+  &:after,
+  &:before
+    // Position
+    position: absolute
+
+    // Hide it by default
+    display: none
+    opacity: 0
+    height: 0
+    overflow: visible
+
+  &:after
+    // Content
+    height: auto
+    text-align: left
+    white-space: pre
+    font-style: normal
+    font-weight: normal
+    border-radius: 8px
+    padding: 5px
+
+  &:before
+    content: ''
+    width: 0
+    height: 0
+    border-radius: 6px
+
+body :not(button)[title],
+.tooltip-bottom,
+.tooltip-right,
+.tooltip-left,
+.tooltip-top
+  &.tap,
+  &:hover,
+  &:focus-within
+    &:after
+      display: block
+      opacity: 1
+      border: 0.5px solid var(--btnOff)
+    &:before
+      display: block
+      opacity: 1
+      width:  12px
+      height: 12px
+
+// Bottom
+.tooltip-bottom
+  &:after
+    top: calc( 85% + 12px )
+    left: 0
+  &:before
+    top: calc( 85% +  6px )
+    left: 15px
+    border-top: 0.5px solid var(--btnOff)
+
+// Top
+body :not(button)[title],
+.tooltip-top
+  &:after
+    top: auto
+    bottom: calc( 85% + 12px )
+    left: 0
+  &:before
+    top: auto
+    bottom: calc( 85% +  6px )
+    left: 15px
+    border-bottom: 0.5px solid var(--btnOff)
+
+// Right
+.tooltip-right
+  &:after
+    left: calc( 100% + 6px )
+    top: 0
+  &:before
+    left: calc( 100% )
+    top: 7px
+    border-left: 0.5px solid var(--btnOff)
+
+// Left
+.tooltip-left
+  &:after
+    left: auto
+    right: calc( 100% + 6px )
+    top: 0
+  &:before
+    left: auto
+    right: calc( 100% )
+    top: 7px
+    border-right: 0.5px solid var(--btnOff)

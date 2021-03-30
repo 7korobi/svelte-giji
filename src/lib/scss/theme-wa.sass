@@ -1,0 +1,26 @@
+@import "./lib/_color"
+@import "./lib/wood"
+
++Theme(icons, think-N-MUPET)
+
+.talk > .chat
+  border-style: solid
+  border-width: 1px 0 1px 0
+
+.center-left, .center-right
+  border-color: hsla(35,99%,66%,1)
+
+.page-active-bg
+  background: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/nagatanienn.png")
+
+.page-active
+  // animation: bg-pulse-fire 5s ease-in-out infinite alternate
+  background-repeat: repeat-y
+  background-position: center top
+  background-image: linear-gradient(90deg, hsla(35,99%,50%,0), hsla(35,99%,66%,.4), hsla(35,99%,50%,0))
+
+.contentframe
+  background-repeat: repeat
+  background-position: right
+  background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/karakusa.png")
+  background-attachment: fixed

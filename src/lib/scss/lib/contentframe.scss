@@ -1,0 +1,62 @@
+.popup {
+  .contentframe {
+    .report {
+      margin: 0;
+    }
+  }
+}
+
+.contentframe {
+  margin: 0 auto;
+
+  .talk > .baloon {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .talk > .portrate {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .banner {
+    z-index: 6;
+  }
+
+  .chat {
+    z-index: 4;
+  }
+
+  .baloon {
+    border-color: var(--bg) !important;
+    position: absolute;
+    content: '';
+    z-index: 2;
+    width: 0;
+    height: 0;
+  }
+
+  .report > .chat {
+    position: relative;
+    border-style: double dotted;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-top-color: transparent;
+      background-color: transparent;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+}

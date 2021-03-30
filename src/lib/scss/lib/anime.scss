@@ -1,0 +1,79 @@
+@keyframes border-hover {
+  0% {
+    border-radius: 1em;
+  }
+  80% {
+    border-radius: 0;
+  }
+  100% {
+    border-radius: 1em;
+  }
+}
+@keyframes border-shake {
+  0% {
+    border-radius: 1em 3px 3px 3px / 3px 3px 1em 3px;
+  }
+  25% {
+    border-radius: 3px 3px 1em 3px / 1em 3px 3px 3px;
+  }
+  50% {
+    border-radius: 3px 1em 3px 3px / 3px 3px 3px 1em;
+  }
+  75% {
+    border-radius: 3px 3px 3px 1em / 3px 1em 3px 3px;
+  }
+}
+
+.contentframe,
+.summaryframe,
+.chat,
+.portrate,
+.portrate > IMG {
+  transition-property: border-color, width;
+  transition-duration: 0.3s;
+}
+
+.filmline,
+.filmline > .contentframe,
+.filmend,
+.contentframe .inframe {
+  transition-property: width, height, background-size;
+  transition-duration: 0.3s;
+}
+
+.editframe {
+  transition-property: height, width;
+  transition-duration: 0.2s, 0.2s;
+  transition-delay: 0.1s, 0s;
+  transition-timing-function: ease;
+}
+
+.timeline,
+.icons,
+.list {
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+  &-leave-active {
+    position: absolute;
+  }
+  &-enter-active,
+  &-leave-active,
+  &-move {
+    transition: opacity 0.1s, transform 0.3s;
+  }
+}
+
+.portrates {
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: space-around;
+  justify-content: space-around;
+  .portrate {
+    flex-basis: auto;
+  }
+}

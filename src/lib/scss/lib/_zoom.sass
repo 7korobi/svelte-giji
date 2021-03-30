@@ -1,0 +1,118 @@
+@mixin portrate($zoom)
+  .portrate
+    max-width:   $zoom * 90px
+    width:       $zoom * 90px
+
+    IMG
+      max-width: $zoom * 90px
+      width:     $zoom * 90px
+    IMG + .chrblank
+      margin: $zoom * 1px $zoom * 1px $zoom * 4px $zoom * 1px
+
+    .chrblank
+      max-width:     $zoom * 88px
+      width:         $zoom * 88px
+      border-radius: $zoom *  9px
+      font-size:     $zoom * 13px
+      ::not(.bar)
+        font-size:   $zoom * 13px
+      .bar
+        border-radius: $zoom * 9px
+
+@mixin zoom($zoom)
+  .filmline
+    height: $zoom * 10px
+    background-size: auto $zoom * 11px
+    .contentframe
+      .filmend
+        height:  $zoom * 36px
+        width:   $zoom * 124px
+        background-size: auto $zoom * 36px
+
+  .fullframe
+    margin-bottom: $zoom * 6px
+
+  .summaryframe,
+  .toastframe,
+  .sideframe,
+  .swipe
+    +portrate($zoom * 0.5)
+
+  .post > .chat
+    border-width: 0.1em $zoom * 18px
+
+  .report > .chat
+    border-width: 0.2em $zoom *  1px
+
+  .fullframe,
+  .contentframe
+    +portrate($zoom * 1.0)
+
+    .post > .chat
+      padding-right: $zoom * 12px
+
+  .summaryframe
+    .talk > .chat,
+    .report > .chat
+      margin: 0 $zoom * 18px 0 0
+
+  .toastframe,
+  .sideframe
+    .talk > .chat,
+    .report > .chat
+      margin: 0 0 0 $zoom * 18px
+
+  .contentframe
+    .inframe
+      background-size: $zoom * 130px auto
+
+    .talk,
+    .post,
+    .report
+      margin-bottom: $zoom * 6px
+
+
+    .baloon
+      border-width:  $zoom * 6px
+      border-radius: $zoom * 6px 0 0 $zoom * 6px
+      border-right-width: 1px
+    .talk > .baloon
+      top:  $zoom *  60px
+      left: $zoom * 118px
+
+    .talk > .chat
+      width: calc(100% - #{ $zoom * 132px })
+      margin:  0 $zoom * 7px 0 $zoom * 19px
+      min-height: $zoom * 70px
+
+    .post > .chat
+      width: calc(100% - #{ $zoom * 107px})
+      margin: 0 0 0 $zoom * 107px
+      // box-shadow: inset -30px 0px 45px -38px #222
+      // 罫線にshadowが乗らない。
+      .name, .date
+        margin-right: $zoom * 7px
+
+    .report > .chat
+      width: calc(100% + #{ $zoom * 20px })
+      margin: 0 $zoom * -10px 0 $zoom * -10px
+      padding: 1px $zoom * 8px 1px $zoom * 10px
+
+      &::before, &::after
+        top: calc( #{ $zoom * -3px } - 0.25em )
+        border-width: 1px
+
+      &::before
+        border-width: $zoom * 4px $zoom * 8px 0 0
+        left: 0
+
+      &::after
+        border-width: $zoom * 4px 0 0 $zoom * 8px
+        right: 0
+
+      .name,
+      .date
+        margin-right: $zoom * 13px
+
+    .talk > .portrate
+      margin:  0 0 0 $zoom * 16px

@@ -1,4 +1,5 @@
 import UAParser from './ua-parser-js'
+
 export const __SPEC__ = 'undefined' === typeof window
 export const __BROWSER__ = !__SPEC__
 
@@ -11,6 +12,40 @@ const default_vp = {
 } as any
 
 const default_inner = { innerWidth: 1, innerHeight: 1 }
+
+export function intersectionObserverFactory(cb: IntersectionObserverCallback, init: IntersectionObserverInit): IntersectionObserver {
+  if (__BROWSER__) {
+    return new IntersectionObserver(cb, init)
+  } else {
+    return {
+      observe() {},
+      unobserve() {},
+    } as any
+  }
+}
+
+export function resizeObserverFactory(cb: ResizeObserverCallback): ResizeObserver {
+  if (__BROWSER__) {
+    return new ResizeObserver(cb)
+  } else {
+    return {
+      observe() {},
+      unobserve() {},
+    } as any
+  }
+}
+
+export function addEventListener(type: string, listener: (this: Window, ev: Event) => any, options?: boolean | AddEventListenerOptions): void {
+  if (__BROWSER__) {
+    window.addEventListener(type, listener, options)
+  }
+}
+
+export function removeEventListener(type: string, listener: (this: Window, ev: Event) => any, options?: boolean | AddEventListenerOptions): void {
+  if (__BROWSER__) {
+    window.removeEventListener(type, listener, options)
+  }
+}
 
 export function getInner(): { innerWidth: number; innerHeight: number } {
   return __BROWSER__ ? window : default_inner
@@ -29,7 +64,7 @@ export function getBodyStyle(): CSSStyleDeclaration {
       } as any)
 }
 
-const { device, browser, engine, os }: UAParser.IResult = (UAParser as any)()
+const { device, browser, engine, os } = UAParser()
 
 let isLegacy = false
 let isRadius = false

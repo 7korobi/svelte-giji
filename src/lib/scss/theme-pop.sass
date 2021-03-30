@@ -1,0 +1,38 @@
+@import "./lib/_color"
+@import "./lib/film"
+
++Theme(icons, shout-N-MOB)
+
+.talk > .chat
+  border-radius: 0.5rem
+  border-style: none
+  border-width: 0
+
+.contentframe
+  .baloon
+    border-style: solid
+
+.center-left, .center-right
+  border-color: hsla(40,66%,30%,1)
+
+.page-active-bg
+  // animation: bg-pulse-fire 5s ease-in-out infinite alternate
+  background-repeat: repeat-y
+  background-position: center top
+  background-image: linear-gradient(90deg, hsla(35,21%,47%,1), hsla(40,66%,0%,1), hsla(35,21%,47%,1))
+
+.contentframe
+  background-repeat: repeat
+  background-position: right
+  background-attachment: fixed
+  background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/renga.png")
+
+.contentframe
+  .inframe
+    animation: film .5s linear infinite
+
+@keyframes film
+  from
+    background-position: 0  18px
+  to
+    background-position: 0 -18px

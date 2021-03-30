@@ -1,0 +1,28 @@
+@import "./lib/_color"
+@import "./lib/film"
+
++Theme(icons, think-N-MUPET)
+
+.talk > .chat
+  border-radius: 0.5rem
+  border-style: none
+  border-width: 0
+
+.contentframe
+  .baloon
+    border-style: solid
+
+.center-left, .center-right
+  border-color: hsla(35,99%,66%,1)
+
+.page-active-bg
+  background-color: #000
+
+.page-active
+  // animation: bg-pulse-fire 15s ease-in-out infinite alternate
+  background-repeat: repeat-y
+  background-position: center top
+  background-image: linear-gradient(90deg, hsla(35,99%,66%,0), hsla(35,99%,66%,.4), hsla(35,99%,50%,0))
+
+.contentframe
+  background-color: hsla(70deg,15%,20%,1)
