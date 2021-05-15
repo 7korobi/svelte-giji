@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Calendar } from 'fancy-date/lib/sample'
-import { isOnline } from '$lib/browser'
+import { active } from '$lib/browser'
 import { Bits } from '$lib/bits'
 
 import Poll from '$lib/data/Poll.svelte'
@@ -205,7 +205,7 @@ function intersection(e) {
   <Scroll name={color} on:change={intersection}>
     <FullScreen bind:toggle={fs}>
       <Chat show="report" handle={color}>
-        <h1 class="c">Hello {name}! {$isOnline ? 'online' : 'offline'}</h1>
+        <h1 class="c">Hello {name}! {$active.isOnline ? 'online' : 'offline'}</h1>
         <p>on : +@ ~@</p>
         <p>
           {#each GameBits.labels as game (game)}
@@ -347,4 +347,4 @@ function intersection(e) {
   </Scroll>
 {/each}
 <KeyBoard on:key={keyDown} on:combo={keyCombo} />
-<Poll timer="6h" api={reqPlan} />
+<Poll timer="6h" api={reqPlan} isActive={$active.isActive} />

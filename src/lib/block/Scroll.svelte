@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-import { addEventListener, intersectionObserverFactory } from "../device"
+import { addEventListener, intersectionObserverFactory } from '../device'
 
 const COMPRESS = 'compress'
 const HIDDEN = 'hidden'
@@ -43,10 +43,13 @@ function cbFocus(eventType: string, entries: IntersectionObserverEntry[]) {
   })
 }
 
-const deployObserver = intersectionObserverFactory(cbRange.bind(null, '--range', HIDDEN, COMPRESS), {
-  rootMargin: '25%',
-  threshold: 0
-})
+const deployObserver = intersectionObserverFactory(
+  cbRange.bind(null, '--range', HIDDEN, COMPRESS),
+  {
+    rootMargin: '25%',
+    threshold: 0
+  }
+)
 
 const peepObserver = intersectionObserverFactory(cbRange.bind(null, '--range', PEEP, HIDDEN), {
   rootMargin: '0%',

@@ -13,13 +13,16 @@ const default_vp = {
 
 const default_inner = { innerWidth: 1, innerHeight: 1 }
 
-export function intersectionObserverFactory(cb: IntersectionObserverCallback, init: IntersectionObserverInit): IntersectionObserver {
+export function intersectionObserverFactory(
+  cb: IntersectionObserverCallback,
+  init: IntersectionObserverInit
+): IntersectionObserver {
   if (__BROWSER__) {
     return new IntersectionObserver(cb, init)
   } else {
     return {
       observe() {},
-      unobserve() {},
+      unobserve() {}
     } as any
   }
 }
@@ -30,18 +33,26 @@ export function resizeObserverFactory(cb: ResizeObserverCallback): ResizeObserve
   } else {
     return {
       observe() {},
-      unobserve() {},
+      unobserve() {}
     } as any
   }
 }
 
-export function addEventListener(type: string, listener: (this: Window, ev: Event) => any, options?: boolean | AddEventListenerOptions): void {
+export function addEventListener(
+  type: string,
+  listener: (this: Window, ev: Event) => any,
+  options?: boolean | AddEventListenerOptions
+): void {
   if (__BROWSER__) {
     window.addEventListener(type, listener, options)
   }
 }
 
-export function removeEventListener(type: string, listener: (this: Window, ev: Event) => any, options?: boolean | AddEventListenerOptions): void {
+export function removeEventListener(
+  type: string,
+  listener: (this: Window, ev: Event) => any,
+  options?: boolean | AddEventListenerOptions
+): void {
   if (__BROWSER__) {
     window.removeEventListener(type, listener, options)
   }

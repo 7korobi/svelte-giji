@@ -4,7 +4,6 @@ import { onDestroy } from 'svelte'
 import { to_tempo, Tempo } from '$lib/time'
 import { __BROWSER__ } from '$lib/device'
 import { dexie } from '$lib/poll-cache'
-import { isActive } from '$lib/browser'
 
 type DATA = {
   idx: string
@@ -17,6 +16,7 @@ export let version = '1.0.0'
 export let timer = '1d'
 export let args = []
 export let pack: any = undefined
+export let isActive = false
 
 let idx = [api.name, args.join('/')].join('&')
 
@@ -25,11 +25,14 @@ let tempo = to_tempo(timer)
 let next_at = -Infinity
 let timerId = 0 as any
 
-let byeActive = isActive.subscribe(chkActive)
+$: if (isActive) {
+  roop()
+} else {
+  clearTimeout(timerId)
+}
 
 onDestroy(() => {
   clearTimeout(timerId)
-  byeActive()
 })
 
 async function apiNop(...args: any[]): Promise<DATA> {
@@ -41,14 +44,6 @@ async function apiNop(...args: any[]): Promise<DATA> {
 
 function storeNop(data: DATA['pack']) {
   data
-}
-
-function chkActive(active: boolean) {
-  if (active) {
-    roop()
-  } else {
-    clearTimeout(timerId)
-  }
 }
 
 function logger(write_at: number, mode: string = '') {

@@ -19,7 +19,7 @@ const { rx, ry, border_width } = style
 
 const observer = resizeObserverFactory((e) => {
   e.forEach(({ target, contentRect }) => {
-    (target as any).__resize(contentRect)
+    ;(target as any).__resize(contentRect)
   })
 })
 

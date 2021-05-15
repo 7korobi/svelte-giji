@@ -1,3 +1,5 @@
-.svelte/**
+.svelte-kit/**
 static/**
+build/**
 node_modules/**
+src/lib/scss/lib/_color.scss

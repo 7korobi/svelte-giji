@@ -1,6 +1,6 @@
 <script lang="ts">
-import { getDocumentElement } from '../device'
-import { url } from '../config'
+import { __BROWSER__ } from '$lib/device'
+
 import Btn from './Btn.svelte'
 
 let zoom = 'BG'
@@ -8,7 +8,10 @@ let font = 'novel'
 let theme = 'cinema'
 let day = 'day'
 
-$: getDocumentElement().className = [zoom, font, day, theme].join(' ')
+$: if (__BROWSER__) {
+  document.documentElement.className = [zoom, font, day, theme].join(' ')
+}
+
 $: switch (theme) {
   case 'cinema':
   case 'pop':
