@@ -2,123 +2,10 @@
 @use "sass:string";
 @use "sass:math";
 
+@use "../../common/_color" as *;
+
 @function pen($type) {
   @return map-get($pals, 'pen-#{$type}');
-}
-
-@function lum_exc($val) {
-  $val: ($val / 255);
-  @if $val <= 0.03928 {
-    @return $val / 12.92;
-  } @else {
-    @return math.pow(($val + 0.055) / 1.055, 2.4);
-  }
-}
-
-@function luminance($val) {
-  @return (lum_exc(red($val)) * 0.2126) + (lum_exc(green($val)) * 0.7152) +
-    (lum_exc(blue($val)) * 0.0722);
-}
-
-@function contrastRatio($v1, $v2) {
-  $v1: luminance($v1) + 0.05;
-  $v2: luminance($v2) + 0.05;
-  @if $v1 - $v2 > 0 {
-    @return $v1 / $v2;
-  } @else {
-    @return $v2 / $v1;
-  }
-}
-
-@function contrastRank($v1, $v2, $label) {
-  $contrast: contrastRatio($v1, $v2);
-  $prefix: '#{string.slice('#{$label}                ', 0, 28)}';
-  @if 10 < $contrast {
-    @debug '#{$prefix} AAA #{$contrast}';
-    @return 'AAA';
-  }
-  @if 7 < $contrast {
-    @debug '#{$prefix} AAA  #{$contrast}';
-    @return 'AAA';
-  }
-  @if 4.5 < $contrast {
-    @debug '#{$prefix} AA-  #{$contrast}';
-    @return 'AA';
-  }
-  @if 3 < $contrast {
-    @debug '#{$prefix} A--  #{$contrast}';
-    @return 'A';
-  }
-  @if 2 < $contrast {
-    @debug '#{$prefix} B--  #{$contrast}';
-    @return 'B';
-  }
-  @if 1.1 < $contrast {
-    @debug '#{$prefix} B--  #{$contrast}';
-    @return 'Z';
-  }
-  @debug '#{$prefix} ---  #{$contrast}';
-  @return '';
-}
-
-// https://qiita.com/lookman/items/d518f16c897c94bc4e78
-@function Y2L($HH, $SS, $YY) {
-  $hueblock: floor($HH / 60deg);
-  $Yp: 0;
-  $a: ($HH % 60) / 60deg;
-  @if 0 == $hueblock {
-    $Yp: $Pr + $Pg * $a;
-  }
-  @if 1 == $hueblock {
-    $a: 1 - $a;
-    $Yp: $Pg + $Pr * $a;
-  }
-  @if 2 == $hueblock {
-    $Yp: $Pg + $Pb * $a;
-  }
-  @if 3 == $hueblock {
-    $a: 1 - $a;
-    $Yp: $Pb + $Pg * $a;
-  }
-  @if 4 == $hueblock {
-    $Yp: $Pb + $Pr * $a;
-  }
-  @if 5 == $hueblock {
-    $a: 1 - $a;
-    $Yp: $Pr + $Pb * $a;
-  }
-
-  $Y: 0.01 * $YY;
-  $S: 0.01 * $SS;
-  $C: 2 * $S * (0.5 - $Yp);
-  $L: 0;
-  @if $Y > (1 - $C) / 2 {
-    $L: ($Y + $C) / (1 + $C);
-  } @else {
-    $L: $Y / (1 - $C);
-  }
-  @return 100% * $L;
-}
-
-@function HSYA($HH, $SS, $YY, $AA: 1) {
-  $HH: $HH % 360;
-  $LL: Y2L($HH, $SS, $YY);
-  @return hsla($HH, $SS, $LL, $AA);
-}
-
-@function fixByContrast($fixS, $fixY, $contrast, $HD, $col) {
-  $newCol: $col;
-  @for $step from 0 to 500 {
-    $saturation: math.clamp(-100%, $step * $fixS, 100%);
-    $lightness: math.clamp(-100%, $step * $fixY, 100%);
-    $newCol: color.adjust($col, $hue: $HD, $saturation: $saturation, $lightness: $lightness);
-    $cRatio: contrastRatio($col, $newCol);
-    @if black == $newCol or white == $newCol or $contrast < $cRatio {
-      // @debug "(#{$step} #{$cRatio}) #{$col} => #{$newCol}";
-      @return $newCol;
-    }
-  }
-  @return $newCol;
 }
 
 @function fix($col, $SS, $LL) {
@@ -328,10 +215,6 @@ $hues_d: (
   MOB: 20deg,    // 橙
   WOLF: 15deg,   // 赤
 );
-
-$Pr: 0.298912;
-$Pg: 0.586611;
-$Pb: 0.114478;
 
 $pals: ();
 

@@ -17,7 +17,7 @@ import {
 import { isAndroid, isIOS, __BROWSER__ } from './device'
 
 export default function areaBoxInit() {
-  if (!__BROWSER__) return
+  if (!__BROWSER__) return () => {}
 
   const bodyObserve = new ResizeObserver(onScroll)
   bodyObserve.observe(document.body)
