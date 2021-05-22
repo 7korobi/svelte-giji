@@ -1,6 +1,25 @@
 <script context="module" lang="ts">
-import { resizeObserverFactory } from '../device'
-import { url, style } from '../config'
+import { __BROWSER__ } from '../browser/device'
+
+const url = {
+  portrate: 'https://giji.f5.si/images/portrate/',
+  css: 'https://giji.f5.si/css/'
+}
+
+const style = {
+  icon: {
+    width: 90,
+    height: 130
+  },
+  gap_size: 50,
+  line_slide: 25,
+  border_width: 5,
+  rx: 10,
+  ry: 10
+} as const
+
+const { rx, ry, border_width } = style
+
 const marker = {
   ' ': '',
   '<': 'url(#svg-marker-arrow-start)',
@@ -15,13 +34,6 @@ const border = {
   '-': 'solid',
   '=': 'wide'
 }
-const { rx, ry, border_width } = style
-
-const observer = resizeObserverFactory((e) => {
-  e.forEach(({ target, contentRect }) => {
-    ;(target as any).__resize(contentRect)
-  })
-})
 
 type Marker = keyof typeof marker
 type Border = keyof typeof border
@@ -209,6 +221,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
 
 <script lang="ts">
 import { tick } from 'svelte'
+
+const zoomer = zoomerFactory()
 
 export let pin: string
 
@@ -476,7 +490,7 @@ function setOrder(...args) {
   order = [...clusters.map(keyCluster), ...icons.map(keyIcon), ...lines.map(keyLine)]
 }
 
-function moveXY(o: { x: number; y: number }, dx: number, dy: number) {
+function moveXY<T>(o: T, dx: number, dy: number) {
   const { x, y } = move
   o.x = Math.floor(x + dx)
   o.y = Math.floor(y + dy)
@@ -524,14 +538,24 @@ function parseMove({ pageX, pageY }: { pageX: number; pageY: number }): [string,
   return [key, dx, dy]
 }
 
-function zoomer(el: HTMLDivElement) {
-  Object.assign(el, {
-    __resize({ width }) {
-      rootWidth = width
-    }
+function zoomerFactory() {
+  if (!__BROWSER__) return () => {}
+  const observer = new ResizeObserver((e) => {
+    e.forEach(({ target, contentRect }) => {
+      ;(target as any).__resize(contentRect)
+    })
   })
-  observer.observe(el)
-  return { destroy }
+
+  return (el: HTMLElement) => {
+    Object.assign(el, {
+      __resize({ width }) {
+        rootWidth = width
+      }
+    })
+    observer.observe(el)
+    return { destroy }
+  }
+
   function destroy() {
     observer.unobserve(el)
   }

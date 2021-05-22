@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-import { addEventListener, intersectionObserverFactory } from '../device'
+import { __BROWSER__ } from '../browser/device'
 
 const COMPRESS = 'compress'
 const HIDDEN = 'hidden'
@@ -43,34 +43,14 @@ function cbFocus(eventType: string, entries: IntersectionObserverEntry[]) {
   })
 }
 
-const deployObserver = intersectionObserverFactory(
-  cbRange.bind(null, '--range', HIDDEN, COMPRESS),
-  {
-    rootMargin: '25%',
-    threshold: 0
-  }
-)
-
-const peepObserver = intersectionObserverFactory(cbRange.bind(null, '--range', PEEP, HIDDEN), {
-  rootMargin: '0%',
-  threshold: 0
-})
-
-const showObserver = intersectionObserverFactory(cbRange.bind(null, '--range', SHOW, PEEP), {
-  rootMargin: '0%',
-  threshold: 1
-})
-
-const coreObserver = intersectionObserverFactory(cbFocus.bind(null, '--focus'), {
-  rootMargin: '-50%',
-  threshold: 0
-})
-
 const scrollEls = new Set<Element>()
 </script>
 
 <script lang="ts">
 import { createEventDispatcher } from 'svelte'
+
+const dispatch = createEventDispatcher()
+const observe = observeFactory()
 
 export let range = [COMPRESS, HIDDEN, PEEP, SHOW]
 export let focus = true
@@ -84,7 +64,6 @@ let e = {
   scroll: null as DOMRect
 }
 
-const dispatch = createEventDispatcher()
 let onRange
 let onScroll
 
@@ -126,19 +105,42 @@ function fireRangeWithScroll({ target, detail }) {
   dispatch('change', e)
 }
 
-function observe(el: any) {
-  if (range.includes(HIDDEN) && range.includes(COMPRESS)) deployObserver.observe(el)
-  if (range.includes(PEEP) && range.includes(HIDDEN)) peepObserver.observe(el)
-  if (range.includes(SHOW) && range.includes(PEEP)) showObserver.observe(el)
+function observeFactory() {
+  if (!__BROWSER__) return () => {}
+  const deployObserver = new IntersectionObserver(cbRange.bind(null, '--range', HIDDEN, COMPRESS), {
+    rootMargin: '25%',
+    threshold: 0
+  })
 
-  if (focus) coreObserver.observe(el)
+  const peepObserver = new IntersectionObserver(cbRange.bind(null, '--range', PEEP, HIDDEN), {
+    rootMargin: '0%',
+    threshold: 0
+  })
 
-  return { destroy }
-  function destroy() {
-    deployObserver.unobserve(el)
-    peepObserver.unobserve(el)
-    showObserver.unobserve(el)
-    coreObserver.unobserve(el)
+  const showObserver = new IntersectionObserver(cbRange.bind(null, '--range', SHOW, PEEP), {
+    rootMargin: '0%',
+    threshold: 1
+  })
+
+  const coreObserver = new IntersectionObserver(cbFocus.bind(null, '--focus'), {
+    rootMargin: '-50%',
+    threshold: 0
+  })
+
+  return (el: any) => {
+    if (range.includes(HIDDEN) && range.includes(COMPRESS)) deployObserver.observe(el)
+    if (range.includes(PEEP) && range.includes(HIDDEN)) peepObserver.observe(el)
+    if (range.includes(SHOW) && range.includes(PEEP)) showObserver.observe(el)
+
+    if (focus) coreObserver.observe(el)
+
+    return { destroy }
+    function destroy() {
+      deployObserver.unobserve(el)
+      peepObserver.unobserve(el)
+      showObserver.unobserve(el)
+      coreObserver.unobserve(el)
+    }
   }
 }
 </script>
