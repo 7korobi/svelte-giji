@@ -1,5 +1,5 @@
 import { readable } from 'svelte/store'
-import { tempo_zero, to_msec } from './distance'
+import { tempo_zero, to_msec } from './msec'
 
 const modulo = (a: number, b: number) => ((+a % (b = +b)) + b) % b
 
@@ -282,10 +282,7 @@ export function to_tempo_by(table: number[], zero: number, write_at: number) {
   return new Tempo(zero, now_idx, write_at, last_at, next_at, table)
 }
 
-export function tempo(
-  size_str: string,
-  zero_str: string = '0s',
-) {
+export function tempo(size_str: string, zero_str: string = '0s') {
   const size = to_msec(size_str)
   const zero = to_msec(zero_str) + tempo_zero
   let timerID = null
@@ -305,8 +302,8 @@ export function tempo(
 }
 
 export function tempo_by(
-  fns: [(now: number)=>number, (now: number)=> number],
-  zero_str: string = '0s',
+  fns: [(now: number) => number, (now: number) => number],
+  zero_str: string = '0s'
 ) {
   const zero = to_msec(zero_str) + tempo_zero
   let now_idx = 1
@@ -322,7 +319,10 @@ export function tempo_by(
       const now = Date.now()
       const last_at = fns[0](now)
       const next_at = fns[1](now)
-      const tempo = new Tempo(zero, ++now_idx, now, zero + last_at, zero + next_at, [last_at, next_at])
+      const tempo = new Tempo(zero, ++now_idx, now, zero + last_at, zero + next_at, [
+        last_at,
+        next_at
+      ])
       timerID = setTimeout(tick, tempo.timeout)
       set(tempo)
     }

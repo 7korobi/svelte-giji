@@ -1,3 +1,4 @@
+@use "sass:math"
 
 @each $weight in 300 400 500 700
   @font-face
@@ -93,7 +94,7 @@ strong,
 
 
 @mixin font($small_px, $base, $zoom)
-  $small: ($small_px / $base) * 1rem
+  $small: math.div($small_px, $base) * 1rem
 
   $gap:   $zoom *  24px
   $sideC: $zoom * 132px
@@ -101,9 +102,9 @@ strong,
   $side3: $zoom * 150px
 
   $center: 28 * $base + $sideC
-  $half: ( $center + $gap ) / 2
+  $half: math.div(( $center + $gap ), 2)
 
-  $limit1: $center / 0.9
+  $limit1: math.div( $center, 0.9)
   $limit2: $center + 2 * ( $gap + $side2 )
   $limit3: $center + 2 * ( $gap + $side3 )
 
