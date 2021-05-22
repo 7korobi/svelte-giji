@@ -1,61 +1,10 @@
-type DISTANCE = [number, number, number, string]
+import { readable } from 'svelte/store'
+import { tempo_zero, to_msec } from './distance'
 
-const SECOND = to_msec('1s')
-const MINUTE = to_msec('1m')
-const HOUR = to_msec('1h')
-const DAY = to_msec('1d')
-const WEEK = to_msec('1w')
-const MONTH = to_msec('30d')
-const YEAR = to_msec('1y')
-const INTERVAL = 0x7fffffff // 31bits.
-const VALID = 0xfffffffffffff // 52bits.
-
-const timezone =
-  typeof window !== 'undefined' ? MINUTE * new Date().getTimezoneOffset() : to_msec('-9h')
-const tempo_zero = -new Date(0).getDay() * DAY + timezone
-
-const RANGE_SCALES = [
-  [MINUTE, SECOND, ' %s 秒間'],
-  [HOUR, MINUTE, ' %s 分間'],
-  [DAY, HOUR, ' %s 時間'],
-  [WEEK, DAY, ' %s 日間'],
-  [MONTH, WEEK, ' %s 週間'],
-  [YEAR, MONTH, ' %s ヶ月間'],
-  [Infinity, YEAR, ' %s 年間']
-] as const
-
-const TIMERS = [
-  ['年', 'y', YEAR],
-  ['週', 'w', WEEK],
-  ['日', 'd', DAY],
-  ['時', 'h', HOUR],
-  ['分', 'm', MINUTE],
-  ['秒', 's', SECOND]
-] as const
-
-const DISTANCE_NAN: DISTANCE = [-VALID, INTERVAL, YEAR, '？？？']
-const DISTANCE_LONG_AGO: DISTANCE = [Infinity, INTERVAL, VALID, '昔']
-const DISTANCES: DISTANCE[] = [
-  DISTANCE_NAN,
-  [-YEAR, INTERVAL, YEAR, '%s年後'],
-  [-MONTH, INTERVAL, MONTH, '%sヶ月後'],
-  [-WEEK, WEEK, WEEK, '%s週間後'],
-  [-DAY, DAY, DAY, '%s日後'],
-  [-HOUR, HOUR, HOUR, '%s時間後'],
-  [-MINUTE, MINUTE, MINUTE, '%s分後'],
-  [-25000, SECOND, SECOND, '%s秒後'],
-  [25000, 25000, 25000, '今'],
-  [MINUTE, SECOND, SECOND, '%s秒前'],
-  [HOUR, MINUTE, MINUTE, '%s分前'],
-  [DAY, HOUR, HOUR, '%s時間前'],
-  [WEEK, DAY, DAY, '%s日前'],
-  [MONTH, WEEK, WEEK, '%s週間前'],
-  [YEAR, INTERVAL, MONTH, '%sヶ月前'],
-  [VALID, INTERVAL, YEAR, '%s年前'],
-  DISTANCE_LONG_AGO
-]
+const modulo = (a: number, b: number) => ((+a % (b = +b)) + b) % b
 
 export class Tempo {
+  label?: string
   table?: number[]
   zero: number
   write_at: number
@@ -243,7 +192,7 @@ export class Tempo {
     write_at: number,
     last_at: number,
     next_at: number,
-    table: number[] | null = null
+    table: number[] = null as any
   ) {
     if (table) {
       this.table = table
@@ -284,7 +233,13 @@ export class Tempo {
   }
 }
 
-const modulo = (a: number, b: number) => ((+a % (b = +b)) + b) % b
+export function to_tempo_bare(size: number, zero: number, write_at_src: number | Date) {
+  const write_at = Number(write_at_src)
+  const now_idx = Math.floor((write_at - zero) / size)
+  const last_at = (now_idx + 0) * size + zero
+  const next_at = (now_idx + 1) * size + zero
+  return new Tempo(zero, now_idx, write_at, last_at, next_at)
+}
 
 export function to_tempo(
   size_str: string,
@@ -293,14 +248,7 @@ export function to_tempo(
 ) {
   const size = to_msec(size_str)
   const zero = to_msec(zero_str) + tempo_zero
-  return to_tempo_bare(size, zero, Number(write_at))
-}
-
-export function to_tempo_bare(size: number, zero: number, write_at: number) {
-  const now_idx = Math.floor((write_at - zero) / size)
-  const last_at = (now_idx + 0) * size + zero
-  const next_at = (now_idx + 1) * size + zero
-  return new Tempo(zero, now_idx, write_at, last_at, next_at)
+  return to_tempo_bare(size, zero, write_at)
 }
 
 // バイナリサーチ 高速化はするが、微差なので複雑さのせいで逆に遅いかも？
@@ -334,103 +282,49 @@ export function to_tempo_by(table: number[], zero: number, write_at: number) {
   return new Tempo(zero, now_idx, write_at, last_at, next_at, table)
 }
 
-export function to_msec(str: string): number {
-  return 1000 * to_sec(str)
-}
+export function tempo(
+  size_str: string,
+  zero_str: string = '0s',
+) {
+  const size = to_msec(size_str)
+  const zero = to_msec(zero_str) + tempo_zero
+  let timerID = null
 
-export function to_sec(str: string): number {
-  let timeout = 0
-  str.replace(
-    /(\d+)([ヵ]?([smhdwy秒分時日週月年])[間]?(半$)?)|0/g,
-    (_full, num_str: string, _fullunit, unit: string, appendix: string): string => {
-      let num = Number(num_str)
-      if (!num) {
-        return ''
-      }
-      if ('半' === appendix) {
-        num += 0.5
-      }
-
-      timeout +=
-        num *
-        (() => {
-          switch (unit) {
-            case 's':
-            case '秒':
-              return 1
-
-            case 'm':
-            case '分':
-              return 60
-
-            case 'h':
-            case '時':
-              return 3600
-
-            case 'd':
-            case '日':
-              return 3600 * 24
-
-            case 'w':
-            case '週':
-              return 3600 * 24 * 7
-
-            case 'y':
-            case '年':
-              return 31556925.147
-            // 2019 average.
-
-            default:
-              throw new Error(`${str} at ${num}${unit}`)
-          }
-        })()
-      return ''
+  return readable<Tempo>(null, (set) => {
+    tick()
+    return () => {
+      clearTimeout(timerID)
     }
-  )
-  return timeout
-}
 
-export function to_timer(msec: number, unit_mode: number = 1) {
-  let str = ''
-  const _limit = TIMERS.length
-  for (let at = 0; at < _limit; ++at) {
-    const unit = TIMERS[at][unit_mode]
-    const base = TIMERS[at][2]
-    const idx = Math.floor(msec / base)
-    if (idx) {
-      msec = msec % base
-      str += `${idx}${unit}`
+    function tick() {
+      const tempo = to_tempo_bare(size, zero, Date.now())
+      timerID = setTimeout(tick, tempo.timeout)
+      set(tempo)
     }
-  }
-  return str
+  })
 }
 
-export function to_relative_time_distance(msec: number) {
-  if (msec < -VALID || VALID < msec || isNaN(msec - 0)) {
-    return DISTANCE_NAN
-  }
-  const _limit = DISTANCES.length
-  for (let at = 0; at < _limit; ++at) {
-    const o = DISTANCES[at]
-    const limit = o[0]
-    if (msec < limit) {
-      return o
+export function tempo_by(
+  fns: [(now: number)=>number, (now: number)=> number],
+  zero_str: string = '0s',
+) {
+  const zero = to_msec(zero_str) + tempo_zero
+  let now_idx = 1
+  let timerID = null
+
+  return readable<Tempo>(null, (set) => {
+    tick()
+    return () => {
+      clearTimeout(timerID)
     }
-  }
-  return DISTANCE_LONG_AGO
-}
 
-export function to_range(range: number) {
-  const [, base, label] = rangeScale(range)
-  const count = Math.floor(range / base) // 切り捨て
-  return label.replace('%s', count.toString(10))
-}
-
-function rangeScale(range: number) {
-  for (const a of RANGE_SCALES) {
-    if (range < a[0]) {
-      return a
+    function tick() {
+      const now = Date.now()
+      const last_at = fns[0](now)
+      const next_at = fns[1](now)
+      const tempo = new Tempo(zero, ++now_idx, now, zero + last_at, zero + next_at, [last_at, next_at])
+      timerID = setTimeout(tick, tempo.timeout)
+      set(tempo)
     }
-  }
-  return RANGE_SCALES[RANGE_SCALES.length - 1]
+  })
 }
