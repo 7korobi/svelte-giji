@@ -1,7 +1,14 @@
 <script lang="ts">
+/*
+import { Radio } from '../menu'
+import * as store from '../menu/store'
+import { Intro } from '../menu'
+  */
+
 import type { POINT } from '../common/config'
-import type { MoveTracker, StartTracker, InputEvent, EndTracker } from './tracker'
-import { tracker } from './tracker'
+
+import type { InputEvent } from './tracker'
+import { Operations } from './tracker'
 
 type Operation = {
   type: 'line'
@@ -10,60 +17,65 @@ type Operation = {
   points: POINT[]
 }
 
+const tracker = new Operations({ end, move })
+
 export let style = 'red'
 export let weight = 3
-let canvasEl: HTMLCanvasElement
+export let operations: Operation[] = defaultOperations()
 let tail_at = 0
-let tail_op = defaultOperation()
+let tail_op = operations[0]
 let tail_pt = tail_op.points[0]
-export let operations: Operation[] = [tail_op]
 
-function defaultOperation(): Operation {
-  return { type: 'line', weight, size: [0, 0], points: [] }
+function defaultOperations(): Operation[] {
+  return [{ type: 'line', weight, size: [0, 0], points: [] }]
 }
 
-function start(tracker: StartTracker, e: InputEvent) {
+function end(ops: Operations<HTMLCanvasElement>) {
   tail_at = operations.length - 1
   tail_op = operations[tail_at]
-  if (1 < tracker.current.length) return false
-  return true
-}
-
-function end(tracker: EndTracker, e: InputEvent) {
+  tail_op.size = ops.size
   if (tail_op.points.length) {
-    operations = [...operations, defaultOperation()]
+    // tail_op.points = points.current[0].points
+    operations.push(defaultOperations()[0])
+    operations = operations
   }
 }
 
-function move(tracker: MoveTracker, e: InputEvent) {
+function move(ops: Operations<HTMLCanvasElement>, e: InputEvent) {
+  tail_at = operations.length - 1
+  tail_op = operations[tail_at]
   tail_pt = tail_op.points[tail_op.points.length - 1]
 
-  const { size, point } = tracker.current[0]
-  const [width, height] = size
-  const ctx = canvasEl.getContext('2d')
+  const { size } = ops
+  ops.tracked.forEach(({ point, points }) => {
+    const [width, height] = size
+    const [left, top] = point
+    const ctx = ops.handlerEl.getContext('2d')
+    if (ctx.canvas.width !== width) {
+      ctx.canvas.width = width
+      ctx.canvas.height = height
+    }
+    tail_op.weight = weight
+    tail_op.size = size
+    tail_op.points.push(point)
 
-  if (ctx.canvas.width !== width) ctx.canvas.width = width
-  if (ctx.canvas.height !== height) ctx.canvas.height = height
+    if (!tail_pt) return
 
-  tail_op.weight = weight
-  tail_op.size = size
-  tail_op.points.push(point)
+    const cleft = (tail_pt[0] + left) / 2
+    const ctop = (tail_pt[1] + top) / 2
 
-  if (!tail_pt) return
-
-  const mid = [(tail_pt[0] + point[0]) / 2, (tail_pt[1] + point[1]) / 2]
-
-  ctx.lineWidth = weight
-  ctx.strokeStyle = style
-  ctx.lineJoin = 'round'
-  ctx.lineCap = 'round'
-  ctx.globalCompositeOperation = 'source-over'
-  ctx.beginPath()
-  ctx.moveTo(...tail_pt)
-  ctx.quadraticCurveTo(mid[0], mid[1], point[0], point[1])
-  ctx.closePath()
-  ctx.stroke()
+    ctx.lineWidth = weight
+    ctx.strokeStyle = style
+    ctx.lineJoin = 'round'
+    ctx.lineCap = 'round'
+    ctx.globalCompositeOperation = 'source-over'
+    ctx.beginPath()
+    ctx.moveTo(...tail_pt)
+    ctx.quadraticCurveTo(cleft, ctop, left, top)
+    ctx.closePath()
+    ctx.stroke()
+  })
 }
 </script>
 
-<canvas bind:this={canvasEl} use:tracker={{ start, move, end }} />
+<canvas use:tracker.listener />
