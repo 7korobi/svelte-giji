@@ -7,13 +7,13 @@ const tracker = new Operations({ start, end })
 
 export let value: any
 export let as: any
-
 export let type: TYPE = 'as'
+export let disabled = false
 
 let isPress = false
 
 function start() {
-  isPress = true
+  isPress = !disabled
   return true
 }
 
@@ -30,6 +30,7 @@ function animeEnd() {
 </script>
 
 <button
+  class:disabled
   class={className(type, as, value, isPress)}
   use:tracker.listener
   on:transitionend={animeEnd}>
@@ -39,8 +40,10 @@ function animeEnd() {
 
 <style lang="scss">
 button {
+  --speed: 0.3s;
+  --duration: 1.5s;
   transition-timing-function: ease-in-out;
-  transition-duration: 0.3s;
+  transition-duration: var(--speed);
   transition-property: background-color;
 
   background-color: silver;
@@ -48,7 +51,7 @@ button {
   span {
     transition-property: transform;
     transition-timing-function: ease-in-out;
-    transition-duration: 0.3s;
+    transition-duration: var(--speed);
 
     transform-origin: center;
     transform: rotateZ(90deg);
@@ -63,21 +66,28 @@ button {
     }
   }
 
+  &.disabled {
+    background-color: silver;
+    span {
+      transition-duration: var(--speed);
+      transform: rotateZ(100deg);
+    }
+  }
   &.press {
-    transition-duration: 1.5s;
+    transition-duration: var(--duration);
     background-color: white;
 
     span {
-      transition-duration: 1.5s;
+      transition-duration: var(--duration);
       transform: rotateZ(0deg);
     }
   }
   &.active {
-    transition-duration: 0.3s;
+    transition-duration: var(--speed);
     background-color: white;
 
     span {
-      transition-duration: 0.3s;
+      transition-duration: var(--speed);
       transform: rotateZ(0deg);
     }
   }

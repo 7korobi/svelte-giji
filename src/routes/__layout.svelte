@@ -1,11 +1,14 @@
 <script lang="ts">
+import { page } from '$app/stores'
+import Browser, { PageTransition } from '$lib/browser'
+
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
-import HeadViewport from '$lib/head/HeadViewport.svelte'
-import SafeArea from '$lib/head/SafeArea.svelte'
 import Report from '$lib/chat/Report.svelte'
 
-export let max = 1.0
-export let min = 1.0
+/**
+ * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
+ */
+const SAFEAREA_RATIO = 1.0
 
 function resize() {}
 
@@ -211,5 +214,5 @@ function scroll() {}
     </div>
   </div>
 </div>
-<SafeArea {resize} {scroll} />
-<HeadViewport {min} {max} />
+
+<Browser ratio={SAFEAREA_RATIO} isDefaultSafeArea={true} />

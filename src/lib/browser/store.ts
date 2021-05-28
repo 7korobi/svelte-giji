@@ -45,6 +45,8 @@ export const state = {
   isLandscape: false,
   isZoom: false,
 
+  keys: [],
+
   scale: vp.scale,
   keypad: {
     size: [0, 0] as SIZE
@@ -62,6 +64,8 @@ export const isKeypad = writable(state.isKeypad)
 export const isPortrait = writable(state.isPortrait)
 export const isLandscape = writable(state.isLandscape)
 export const isZoom = writable(state.isZoom)
+
+export const keys = writable(state.keys)
 
 export const zoomScale = writable(state.scale)
 
