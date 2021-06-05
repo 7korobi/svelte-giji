@@ -8,30 +8,30 @@ import {
   startOfQuarter,
   startOfYear
 } from 'date-fns'
-import { tempo, tempo_by } from './tempo'
+import { tickTempo, tickTempoBy } from './tempo'
 
-export const secondly = tempo('1秒', '0')
-export const minutely = tempo('1分', '0')
-export const hourly = tempo('1時間', '0')
-export const daily = tempo('1日', '0')
-export const weekly = tempo('1週', '0')
+export const tickSecondly = tickTempo('1秒')
+export const tickMinutely = tickTempo('1分')
+export const tickHourly = tickTempo('1時間')
+export const tickDaily = tickTempo('1日')
+export const tickWeekly = tickTempo('1週')
 
-export const monthly = tempo_by(
-  [(now) => startOfMonth(now).getTime(), (now) => endOfMonth(now).getTime() + 1],
-  '0'
-)
+export const tickMonthly = tickTempoBy([
+  (now) => startOfMonth(now).getTime(),
+  (now) => endOfMonth(now).getTime() + 1
+])
 
-export const quarterly = tempo_by(
-  [(now) => startOfQuarter(now).getTime(), (now) => endOfQuarter(now).getTime() + 1],
-  '0'
-)
+export const tickQuarterly = tickTempoBy([
+  (now) => startOfQuarter(now).getTime(),
+  (now) => endOfQuarter(now).getTime() + 1
+])
 
-export const yearly = tempo_by(
-  [(now) => startOfYear(now).getTime(), (now) => endOfYear(now).getTime() + 1],
-  '0'
-)
+export const tickYearly = tickTempoBy([
+  (now) => startOfYear(now).getTime(),
+  (now) => endOfYear(now).getTime() + 1
+])
 
-export const decadely = tempo_by(
-  [(now) => startOfDecade(now).getTime(), (now) => endOfDecade(now).getTime() + 1],
-  '0'
-)
+export const tickDecadely = tickTempoBy([
+  (now) => startOfDecade(now).getTime(),
+  (now) => endOfDecade(now).getTime() + 1
+])

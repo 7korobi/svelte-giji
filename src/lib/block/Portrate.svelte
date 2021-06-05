@@ -1,11 +1,11 @@
 <script lang="ts">
-import { url } from '../config'
+import { url } from '../site/store'
 
 export let img_src: string = ''
 export let face_id: string = ''
 export let mode: 'hide' | 'external'
 
-$: src = img_src || `${url.portrate}${face_id}.jpg`
+$: src = img_src || `${$url.portrate}${face_id}.jpg`
 $: if (img_src) mode = 'external'
 </script>
 

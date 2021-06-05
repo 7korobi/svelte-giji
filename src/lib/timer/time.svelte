@@ -1,8 +1,8 @@
 <script lang="ts">
-import { distance } from './distance'
+import { tickDistance } from './distance'
 export let at: number | Date = new Date()
 
-$: timer = distance(at)
+$: timer = tickDistance(at)
 $: iso = new Date(at).toISOString()
 </script>
 

@@ -1,9 +1,12 @@
-export const url = {
-  portrate: 'https://giji.f5.si/images/portrate/',
-  css: 'https://giji.f5.si/css/'
-}
+import { url, style } from '$lib/site/store'
 
-export const style = {
+url.set({
+  portrate: 'https://giji.f5.si/images/portrate/',
+  css: 'https://giji.f5.si/css/',
+  api: 'https://giji-api.duckdns.org/api/'
+})
+
+style.set({
   icon: {
     width: 90,
     height: 130
@@ -13,4 +16,4 @@ export const style = {
   border_width: 5,
   rx: 10,
   ry: 10
-}
+})

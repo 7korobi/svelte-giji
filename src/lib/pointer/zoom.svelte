@@ -1,9 +1,11 @@
 <script lang="ts">
 import type { POINT, POINT_WITH_SCALE, SIZE_WITH_SCALE } from '../common/config'
+import { __BROWSER__ } from '../browser/device'
+
 import type { InputEvent } from './tracker'
 import { Operations } from './tracker'
 
-const SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+const SVG = __BROWSER__ ? document.createElementNS('http://www.w3.org/2000/svg', 'svg') : null
 const matrix = createMatrix()
 const tracker = new Operations({ start, move, wheel })
 
@@ -46,6 +48,7 @@ function calc([ox, oy, scaleDiff]: POINT_WITH_SCALE, [panX, panY]: POINT) {
 }
 
 function setTransform([x, y, scale]: SIZE_WITH_SCALE) {
+  if (!matrix) return
   // Get current layout
   // Not displayed. May be disconnected or display:none.
   // Just take the values, and we'll check bounds later.
@@ -103,11 +106,11 @@ function toPinch(matrix: SVGMatrix): SIZE_WITH_SCALE {
 }
 
 function createMatrix(): SVGMatrix {
-  return SVG.createSVGMatrix()
+  return SVG?.createSVGMatrix()
 }
 
 function createPoint(): SVGPoint {
-  return SVG.createSVGPoint()
+  return SVG?.createSVGPoint()
 }
 </script>
 

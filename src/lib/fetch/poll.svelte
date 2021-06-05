@@ -1,0 +1,87 @@
+<script lang="ts">
+import type { WebPollData } from './dexie'
+
+import { onDestroy } from 'svelte'
+
+import { to_tempo, Tempo } from '../timer/tempo'
+import { __BROWSER__ } from '../browser/device'
+import { webPoll } from './dexie'
+import { isActive } from '../browser/store'
+
+export let version = '1.0.0'
+export let timer = '1d'
+export let shift = '0s'
+export let pack: any = undefined
+export let next_at = -Infinity
+export let api = {
+  name: '',
+  async call(): Promise<WebPollData<any>> {
+    return { version, idx: api.name, next_at, pack: {} }
+  }
+}
+
+let timerId = 0 as any
+
+$: tempo = to_tempo(timer, shift)
+$: restart($isActive)
+
+function restart(is_active: boolean) {
+  if (is_active) {
+    tick()
+  } else {
+    clearTimeout(timerId)
+  }
+}
+
+onDestroy(() => {
+  clearTimeout(timerId)
+})
+
+function logger(tempo: Tempo, mode: string = '') {
+  const idx = api.name
+  const wait = new Date().getTime() - tempo.write_at
+  console.log({ wait, idx, mode })
+}
+
+async function tick() {
+  if (!webPoll) return
+  tempo = tempo.reset()
+  try {
+    if (tempo.write_at < next_at) {
+      logger(tempo)
+    } else {
+      // IndexedDB metadata not use if memory has past data,
+      const data = await webPoll.data.get(api.name)
+      if (data && data.version === version) {
+        get_by_cache(tempo, data)
+        if (data.next_at <= tempo.write_at) {
+          await get_by_api(tempo, await api.call())
+        }
+      } else {
+        await get_by_api(tempo, await api.call())
+      }
+    }
+    next_at = tempo.next_at
+  } catch (e) {
+    console.error(e)
+  }
+  if (tempo.timeout < 0x7fffffff) {
+    // 25days
+    timerId = setTimeout(tick, tempo.timeout)
+  }
+}
+
+function get_by_cache(tempo: Tempo, cache: WebPollData<any>) {
+  pack = cache.pack
+  logger(tempo, '(cache)')
+}
+
+async function get_by_api(tempo: Tempo, api: WebPollData<any>) {
+  pack = api.pack
+
+  api.next_at = tempo.next_at
+  api.next_time = new Date(tempo.next_at).toLocaleString()
+  await webPoll.data.put(api)
+  logger(tempo, '(api)')
+}
+</script>

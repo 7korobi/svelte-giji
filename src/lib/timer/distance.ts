@@ -89,12 +89,17 @@ function to_distance(msec: number): DISTANCE {
   return DISTANCE_LONG_AGO
 }
 
-export function distance(at: number | string | Date, { limit, format } = distanceDefaultOption) {
+export function tickDistance(
+  at: number | string | Date | undefined,
+  { limit, format } = distanceDefaultOption
+) {
   const timestamp = new Date(at)
   const timelimit = to_msec(limit)
   let timerID = null
 
   return readable<Tempo>(null, (set) => {
+    if (undefined === at) return
+
     tick()
     return () => {
       clearTimeout(timerID)

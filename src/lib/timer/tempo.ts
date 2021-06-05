@@ -282,9 +282,13 @@ export function to_tempo_by(table: number[], zero: number, write_at: number) {
   return new Tempo(zero, now_idx, write_at, last_at, next_at, table)
 }
 
-export function tempo(size_str: string, zero_str: string = '0s') {
+export function tickTempo(size_str: string, zero_str: string = '0s') {
   const size = to_msec(size_str)
   const zero = to_msec(zero_str) + tempo_zero
+  return tickTempoBare(size, zero)
+}
+
+export function tickTempoBare(size: number, zero: number) {
   let timerID = null
 
   return readable<Tempo>(null, (set) => {
@@ -301,7 +305,7 @@ export function tempo(size_str: string, zero_str: string = '0s') {
   })
 }
 
-export function tempo_by(
+export function tickTempoBy(
   fns: [(now: number) => number, (now: number) => number],
   zero_str: string = '0s'
 ) {
