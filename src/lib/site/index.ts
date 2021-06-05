@@ -1,2 +1,3 @@
 import Export from './export.svelte'
-export { Export }
+import Footer from './footer.svelte'
+export { Export, Footer }

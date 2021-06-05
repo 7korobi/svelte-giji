@@ -1,6 +1,12 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@iconify-icons/bi': ^1.1.5
+  '@iconify-icons/bx': ^1.1.0
+  '@iconify-icons/fluent': ^1.1.17
+  '@iconify-icons/mdi': ^1.1.15
+  '@iconify-icons/websymbol': ^1.1.0
+  '@iconify/svelte': ^1.0.4
   '@sveltejs/adapter-static': ^1.0.0-next.13
   '@sveltejs/kit': next
   date-fns: ^2.22.1
@@ -19,6 +25,12 @@ specifiers:
   ua-parser-js: ^0.7.28
 
 dependencies:
+  '@iconify-icons/bi': 1.1.5
+  '@iconify-icons/bx': 1.1.0
+  '@iconify-icons/fluent': 1.1.17
+  '@iconify-icons/mdi': 1.1.15
+  '@iconify-icons/websymbol': 1.1.0
+  '@iconify/svelte': 1.0.4
   date-fns: 2.22.1
   dexie: 3.0.3
   js-yaml: 4.1.0
@@ -39,6 +51,30 @@ devDependencies:
   typescript: 4.3.2
 
 packages:
+
+  /@iconify-icons/bi/1.1.5:
+    resolution: {integrity: sha512-K/g++iPY0oizeLqtBKUwGGfBcx1Byba2EpXXQOCknxX7eR2pyn08wwCu050k9q7I2dcvMxA/eTW3VMCimJ1lSQ==}
+    dev: false
+
+  /@iconify-icons/bx/1.1.0:
+    resolution: {integrity: sha512-JlCsrgpp4vujb7tDaZtJ/OfeTnsSFyDFSauNO+2ilsHviCb/u3VXbLjdIoDIR5ISGMr0a+W/f0YNOHn3zUqChA==}
+    dev: false
+
+  /@iconify-icons/fluent/1.1.17:
+    resolution: {integrity: sha512-8ajkDGpQNKYfJudDhPvKSDBdKrT3cDWacFMXWBeDiJQBp6iov+qTKZ3zDPpNL8ohd054vlut9t9KCGl/1RSiyw==}
+    dev: false
+
+  /@iconify-icons/mdi/1.1.15:
+    resolution: {integrity: sha512-NozPlEOMiXwYheHet3u5ktu0o/GP+pCtta8kb2jGf0jSgOePirK73wj2u8QniZUot/xtT0KprvwXaBg/IFX2Og==}
+    dev: false
+
+  /@iconify-icons/websymbol/1.1.0:
+    resolution: {integrity: sha512-kLO262uwNf1O0gCerkarw4zrwT8uirc5Vuy9cYzGGHlxRxiIH73phvfm+/OBoiVkrMhouNv7IMk+I1b7xcXvIg==}
+    dev: false
+
+  /@iconify/svelte/1.0.4:
+    resolution: {integrity: sha512-Bjr4UMJUsMCra1lpMYIijLZJustalA7FuBldV9B7IsaeKGZ06rcmgeVUYJqrKJ/0bhRg/chcKasLjUlFqWIoMQ==}
+    dev: false
 
   /@rollup/pluginutils/4.1.0:
     resolution: {integrity: sha512-TrBhfJkFxA+ER+ew2U2/fHbebhLT/l/2pRk0hfj9KusXUuRXd2v0R58AfaZK9VXDQ4TogOSEmICVrQAA3zFnHQ==}

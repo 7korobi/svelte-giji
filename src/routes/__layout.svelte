@@ -1,10 +1,12 @@
 <script lang="ts">
+import IconifyIcon from '@iconify/svelte'
+import * as icon from '$lib/site/icon'
 import { page } from '$app/stores'
 import Browser, { PageTransition } from '$lib/browser'
 
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Report from '$lib/chat/Report.svelte'
-import { Export } from '$lib/site'
+import { Export, Footer } from '$lib/site'
 
 /**
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
@@ -34,6 +36,7 @@ function scroll() {}
       <div class="contentframe">
         <div class="inframe">
           <slot>ここにコンテンツを書きます。</slot>
+          <Footer />
         </div>
       </div>
       <div class="toastframe">
@@ -59,12 +62,12 @@ function scroll() {}
             <button
               class="btn item-half tooltip-left"
               data-tooltip="詳細情報を拡げる操作の ON / OFF">
-              <i class="mdi mdi-arrow-expand-right" />
+              <IconifyIcon width="20px" height="20px" icon={icon.expand} />
             </button>
             <button
               class="btn item-half tooltip-left active"
               data-tooltip="ページ一覧を一列にする / 折り返す">
-              <i class="mdi mdi-gesture-swipe" />
+              <IconifyIcon width="20px" height="20px" icon={icon.swipe} />
             </button>
           </div>
         </div>
@@ -72,15 +75,25 @@ function scroll() {}
       <div class="sideframe">
         <div class="inframe">
           <div class="icons form">
-            <button
-              class="btn item-half tooltip-left"
-              data-tooltip="詳細情報を拡げる操作の ON / OFF">
-              <i class="mdi mdi-arrow-expand-right" />
+            <button data-tooltip="一番上までスクロール" class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.top} />
+            </button>
+            <button data-tooltip="マークする" class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.marker} />
+            </button>
+            <button data-tooltip="今見ている投稿に関する情報" class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.pin} />
+            </button>
+            <button data-tooltip="今見ている投稿と繋がる投稿" class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.link} />
+            </button>
+            <button data-tooltip="他の日付へ移動、検索など" class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.toc} />
             </button>
             <button
-              class="btn item-half tooltip-left active"
-              data-tooltip="ページ一覧を一列にする / 折り返す">
-              <i class="mdi mdi-gesture-swipe" />
+              data-tooltip="キャラクターの一覧、ステータス等を確認"
+              class="btn item tooltip-left">
+              <IconifyIcon width="20px" height="20px" icon={icon.users} />
             </button>
           </div>
         </div>
@@ -89,6 +102,7 @@ function scroll() {}
         <div class="swipe">
           <table>
             <tfoot class="TITLE form tb-btn">
+              <!-- svelte-ignore a11y-missing-attribute -->
               <tr>
                 <th colspan="3"><sup>(スクロールします)</sup></th>
                 <th><a class="btn active">日程</a></th>
@@ -270,9 +284,17 @@ function scroll() {}
   background-position: left 50% top var(--view-bottom);
 }
 
+.title-bar {
+  height: 140px;
+  text-align: center;
+  transform-origin: center bottom;
+  line-height: 140px;
+}
+
 .filmline {
   margin: 0;
   background-repeat: repeat-x;
+  background-position: var(--view-top) 0;
   .contentframe {
     background-image: none;
     height: 0;
@@ -285,6 +307,43 @@ function scroll() {}
 .filmend {
   display: inline-block;
   margin: 0 0 0 -1px;
+}
+
+.icons {
+  width: 20px;
+  margin: 0 0 10px auto;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+
+  p {
+    font-size: 7px;
+
+    line-height: 7px;
+  }
+
+  .item-half,
+  .item {
+    box-sizing: content-box;
+    flex-basis: auto;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 400;
+    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif;
+  }
+
+  .item-half {
+    width: 20px;
+    height: 25px;
+  }
+  .item {
+    width: 20px;
+    height: 45px;
+  }
 }
 
 .writeframe,
@@ -334,48 +393,6 @@ function scroll() {}
 
   .chat {
     z-index: 8;
-  }
-
-  .icons {
-    width: 20px;
-    margin: 0 0 10px auto;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: space-around;
-    justify-content: space-around;
-
-    .item-half,
-    .item {
-      box-sizing: content-box;
-      flex-basis: auto;
-      text-align: center;
-      border-radius: 5px;
-      font-weight: 400;
-      font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif;
-    }
-
-    .item-half {
-      width: 20px;
-      height: 25px;
-      font-size: 7px;
-      i {
-        font-size: 20px;
-      }
-    }
-    .item {
-      width: 20px;
-      height: 45px;
-      font-size: 7px;
-      i {
-        font-size: 20px;
-      }
-    }
-    .mdi::before {
-      margin: 6px auto 2px auto;
-    }
   }
 }
 .summaryframe:not(:hover),
