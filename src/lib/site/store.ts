@@ -3,7 +3,8 @@ import { writable } from 'svelte/store'
 export const url = writable({
   portrate: '/images/portrate/',
   css: '/css/',
-  api: '/api/'
+  api: '/api/',
+  top: '/'
 })
 export const style = writable({
   icon: {
@@ -16,3 +17,8 @@ export const style = writable({
   rx: 10,
   ry: 10
 })
+
+export const zoom = writable('BG')
+export const font = writable('novel')
+export const theme = writable('cinema')
+export const day = writable('day')

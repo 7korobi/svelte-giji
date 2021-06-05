@@ -1,0 +1,109 @@
+<script lang="ts">
+import Btn from '../inline/Btn.svelte'
+import { Poll } from '../fetch'
+
+import { url } from './store'
+import { reqApi } from './fetch'
+
+export let mode = 'finish'
+</script>
+
+<!-- svelte-ignore a11y-missing-attribute -->
+<div class="export form">
+  <div class="welcome-btns cap">ロビー</div>
+  <div class="welcome-btns cap">夢の形、陰謀</div>
+  <div class="welcome-btns cap">ＲＰ</div>
+  {#if mode === 'progress'}
+    <div class="welcome-links form tap">
+      <p><a>lobby</a></p>
+      <p><a>offparty</a></p>
+    </div>
+    <div class="welcome-links form">
+      <p><a>wolf</a></p>
+      <p><a>ultimate</a></p>
+      <p><a>allstar</a></p>
+      <p><a>morphe</a></p>
+      <p><a>cafe</a></p>
+    </div>
+    <div class="welcome-links form">
+      <p><a>role-play</a></p>
+      <p><a>RP-advance</a></p>
+      <p><a>crazy</a></p>
+      <p>
+        <a href="http://perjury.rulez.jp/sow.cgi" class="EVIL">2村:perjury<sup>1</sup></a>
+      </p>
+      <p>
+        <a href="http://xebec.x0.to/xebec/sow.cgi">3村:xebec</a>
+      </p>
+      <p>
+        <a href="http://ciel.moo.jp/cheat/sow.cgi">2村:ciel</a>
+      </p>
+      <p>
+        <a href="http://dais.kokage.cc/dais/sow.cgi" class="EVIL">3村:dais<sup>1</sup></a>
+      </p>
+    </div>
+  {/if}
+  {#if mode === 'finish'}
+    <div class="welcome-links form tap">
+      <p><a href="/sow/village?folder_id=LOBBY" class="">lobby</a></p>
+      <p><a href="/sow/village?folder_id=OFFPARTY" class="">offparty</a></p>
+    </div>
+    <div class="welcome-links form">
+      <p><a href="/sow/village?folder_id=WOLF" class="">wolf</a></p>
+      <p><a href="/sow/village?folder_id=ULTIMATE" class="">ultimate</a></p>
+      <p><a href="/sow/village?folder_id=ALLSTAR" class="">allstar</a></p>
+      <p><a href="/sow/village?folder_id=MORPHE" class="">morphe</a></p>
+      <p><a href="/sow/village?folder_id=CABALA" class="">cafe</a></p>
+    </div>
+    <div class="welcome-links form">
+      <p><a href="/sow/village?folder_id=RP" class="">role-play</a></p>
+      <p><a href="/sow/village?folder_id=PRETENSE" class="">RP-advance</a></p>
+      <p><a href="/sow/village?folder_id=CRAZY" class="">crazy</a></p>
+      <p><a href="/sow/village?folder_id=PERJURY" class="EVIL">perjury<sup>1</sup></a></p>
+      <p><a href="/sow/village?folder_id=XEBEC" class="">xebec</a></p>
+      <p><a href="/sow/village?folder_id=CIEL" class="">ciel</a></p>
+      <p><a href="/sow/village?folder_id=DAIS" class="EVIL">dais<sup>1</sup></a></p>
+    </div>
+  {/if}
+  <div class="welcome-btns col4">
+    <Btn bind:value={mode} as="finish">終了した村</Btn>
+    <Btn bind:value={mode} as="progress">進行中の村</Btn>
+  </div>
+  <div class="welcome-btns col4 shoe">
+    <a href={$url.top}>総合トップ</a>
+  </div>
+</div>
+<Poll timer="20m" shift="10m" api={reqApi.story.progress()} />
+
+<style lang="scss">
+.export {
+  border-collapse: separate;
+  border-spacing: 3px;
+  padding: 40px 0;
+  display: -ms-grid;
+  display: grid;
+  justify-content: center;
+  grid-template-areas: '. . .';
+  grid-gap: 0 4px;
+}
+
+.col4 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+}
+
+.cap {
+  border-radius: 9px 9px 0 0;
+}
+
+.welcome-btns {
+  text-align: center;
+  background-color: rgba(64, 82, 80, 0.8);
+}
+
+.welcome-links {
+  padding: 0.5ex;
+  background-color: rgba(23, 47, 31, 0.4);
+}
+</style>

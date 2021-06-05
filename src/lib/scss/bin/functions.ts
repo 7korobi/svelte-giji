@@ -1,14 +1,41 @@
-import sass, { types } from 'sass'
+import fs from 'fs'
+import sass from 'sass'
+import YAML from 'js-yaml'
 
-type FunctionsType = { [key: string]: (...args: types.SassType[]) => types.SassType | void }
+type FunctionsType = {
+  [key: string]: (...args: sass.types.SassType[]) => sass.types.SassType | void
+}
 const functions: FunctionsType = {
   'contrastRank($v1, $v2, $label)': contrastRank,
   'contrastRatio($v1, $v2)': contrastRatio,
-  'Y2L($HH, $SS, $YY)': Y2L
+  'Y2L($HH, $SS, $YY)': Y2L,
+  'stepByCache($label)': stepByCache,
+  'stepToCache($label, $step)': stepToCache
+}
+
+const YAML_PATH = './src/lib/scss/bin/steps.yml'
+const steps = YAML.load(fs.readFileSync(YAML_PATH, 'utf8')) || {}
+export function save() {
+  fs.writeFileSync(YAML_PATH, YAML.dump(steps))
 }
 
 export const results = []
 export default functions
+
+function stepByCache($label) {
+  if (!($label instanceof sass.types.String)) throw '$label: Expected a string.'
+  const label = $label.getValue()
+  return new sass.types.Number(steps[label] || 0)
+}
+
+function stepToCache($label, $step) {
+  if (!($label instanceof sass.types.String)) throw '$label: Expected a string.'
+  if (!($step instanceof sass.types.Number)) throw '$step: Expected a number.'
+  const label = $label.getValue()
+  const step = $step.getValue()
+  steps[label] = step
+  return $step
+}
 
 function contrastRatio($v1, $v2) {
   if (!($v1 instanceof sass.types.Color)) throw '$v1: Expected a color.'

@@ -29,12 +29,8 @@ function animeEnd() {
 }
 </script>
 
-<button
-  class:disabled
-  class={className(type, as, value, isPress)}
-  use:tracker.listener
-  on:transitionend={animeEnd}>
-  <span>①</span>
+<button class:disabled class={className(type, as, value, isPress)} use:tracker.listener>
+  <span on:transitionend={animeEnd}>①</span>
   <slot />
 </button>
 
@@ -46,7 +42,7 @@ button {
   transition-duration: var(--speed);
   transition-property: background-color;
 
-  background-color: silver;
+  height: 2.1em;
 
   span {
     transition-property: transform;
@@ -67,7 +63,6 @@ button {
   }
 
   &.disabled {
-    background-color: silver;
     span {
       transition-duration: var(--speed);
       transform: rotateZ(100deg);
@@ -75,7 +70,6 @@ button {
   }
   &.press {
     transition-duration: var(--duration);
-    background-color: white;
 
     span {
       transition-duration: var(--duration);
@@ -84,7 +78,6 @@ button {
   }
   &.active {
     transition-duration: var(--speed);
-    background-color: white;
 
     span {
       transition-duration: var(--speed);

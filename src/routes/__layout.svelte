@@ -4,6 +4,7 @@ import Browser, { PageTransition } from '$lib/browser'
 
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Report from '$lib/chat/Report.svelte'
+import { Export } from '$lib/site'
 
 /**
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
@@ -16,9 +17,20 @@ function scroll() {}
 </script>
 
 <div class="page-active-bg">
+  <div class="welcome">
+    <Export />
+    <h1 class="title-bar">人狼議事</h1>
+    <div class="btns form">
+      <ThemeBtns />
+    </div>
+    <div class="outframe filmline">
+      <div class="contentframe">
+        <span class="filmend" />
+      </div>
+    </div>
+  </div>
   <div class="page-active">
     <div class="outframe">
-      <ThemeBtns />
       <div class="contentframe">
         <div class="inframe">
           <slot>ここにコンテンツを書きます。</slot>
@@ -216,3 +228,217 @@ function scroll() {}
 </div>
 
 <Browser ratio={SAFEAREA_RATIO} isDefaultSafeArea={true} />
+
+<style lang="scss">
+:global(html),
+:global(body) {
+  margin: 0;
+  tab-size: 6;
+  -moz-tab-size: 6;
+}
+
+:global(body) {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
+  text-size-adjust: 100%;
+  user-select: none;
+
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'palt';
+  font-smooth: antialiased;
+  font-kerning: normal;
+  text-align: left;
+  overflow-x: hidden;
+
+  word-break: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  vertical-align: baseline;
+}
+
+.page-active,
+.page-active-bg {
+  min-height: 100vh;
+}
+
+.welcome {
+  -o-object-fit: cover;
+  object-fit: cover;
+  background-size: cover;
+  background-image: url('https://giji-db923.web.app/images/bg/fhd-giji.png');
+  background-position: left 50% top var(--view-bottom);
+}
+
+.filmline {
+  margin: 0;
+  background-repeat: repeat-x;
+  .contentframe {
+    background-image: none;
+    height: 0;
+  }
+  .inframe {
+    padding: 0;
+  }
+}
+
+.filmend {
+  display: inline-block;
+  margin: 0 0 0 -1px;
+}
+
+.writeframe,
+.outframe {
+  width: 100vw;
+}
+
+.writeframe {
+  top: 0;
+  box-sizing: content-box;
+  .contentframe {
+    background-attachment: scroll;
+  }
+}
+
+.contentframe {
+  .inframe {
+    padding: 10px 0;
+    background-repeat: repeat-y;
+    background-attachment: local;
+    background-position: 0 var(--view-bottom);
+  }
+}
+
+.summaryframe {
+  left: 0;
+  bottom: 0;
+}
+
+.sideframe {
+  right: 0;
+  bottom: 0;
+}
+
+.toastframe {
+  right: 0;
+  top: 0;
+}
+
+.summaryframe,
+.toastframe,
+.sideframe {
+  .talk > .baloon,
+  .talk > .portrate {
+    display: none;
+  }
+
+  .chat {
+    z-index: 8;
+  }
+
+  .icons {
+    width: 20px;
+    margin: 0 0 10px auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
+
+    .item-half,
+    .item {
+      box-sizing: content-box;
+      flex-basis: auto;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: 400;
+      font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif;
+    }
+
+    .item-half {
+      width: 20px;
+      height: 25px;
+      font-size: 7px;
+      i {
+        font-size: 20px;
+      }
+    }
+    .item {
+      width: 20px;
+      height: 45px;
+      font-size: 7px;
+      i {
+        font-size: 20px;
+      }
+    }
+    .mdi::before {
+      margin: 6px auto 2px auto;
+    }
+  }
+}
+.summaryframe:not(:hover),
+.toastframe:not(:hover),
+.sideframe:not(:hover) {
+  .detail {
+    display: none;
+  }
+}
+
+.summaryframe,
+.inframe,
+.outframe,
+.fullframe,
+.contentframe {
+  box-sizing: content-box;
+}
+
+.summaryframe,
+.toastframe,
+.sideframe,
+.editframe,
+.writeframe {
+  position: fixed;
+  z-index: 10;
+  &:hover {
+    z-index: 30;
+  }
+  td,
+  th {
+    border-style: none;
+    border-width: 0;
+  }
+}
+
+.summaryframe,
+.toastframe,
+.sideframe,
+.writeframe,
+.center-left,
+.center-right {
+  pointer-events: none;
+}
+
+.editframe,
+.inframe {
+  pointer-events: auto;
+}
+
+.center-left,
+.center-right {
+  position: fixed;
+  top: 50vh;
+  width: 4vw;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+}
+
+.center-left {
+  left: 0;
+}
+
+.center-right {
+  right: 0;
+}
+</style>

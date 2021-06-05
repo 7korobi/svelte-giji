@@ -1,12 +1,13 @@
 <script lang="ts">
-import type { WebPollData } from './dexie'
-
 import { onDestroy } from 'svelte'
 
 import { to_tempo, Tempo } from '../timer/tempo'
+import { INTERVAL_MAX } from '../timer/distance'
 import { __BROWSER__ } from '../browser/device'
-import { webPoll } from './dexie'
 import { isActive } from '../browser/store'
+
+import type { WebPollData } from './dexie'
+import { webPoll } from './dexie'
 
 export let version = '1.0.0'
 export let timer = '1d'
@@ -65,7 +66,7 @@ async function tick() {
   } catch (e) {
     console.error(e)
   }
-  if (tempo.timeout < 0x7fffffff) {
+  if (tempo.timeout < INTERVAL_MAX) {
     // 25days
     timerId = setTimeout(tick, tempo.timeout)
   }
