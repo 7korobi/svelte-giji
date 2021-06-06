@@ -280,7 +280,7 @@ function byF(str: string) {
     </Scroll>
     <Scroll name=".2.2">
       <Chat show="report" handle={color}>
-        <Diagram {icons} {lines} {clusters} />
+        <Diagram {icons} {lines} {clusters} edit={true}/>
       </Chat>
     </Scroll>
   </Scroll>
@@ -301,6 +301,7 @@ function byF(str: string) {
         <h5 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h5>
         <hr class="footnote" />
         <h6 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h6>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
       </Chat>
     </Scroll>
   </Scroll>

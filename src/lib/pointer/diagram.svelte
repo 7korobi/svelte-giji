@@ -112,6 +112,7 @@ export let clusters: Cluster[] = []
 export let icons: Icon[] = []
 export let lines: Line[] = []
 export let min = { x: -300, y: -300, width: 600, height: 600 }
+export let edit = false
 
 let refreshAt = new Date()
 
@@ -158,6 +159,11 @@ let root = {
   width: 1,
   height: 1
 }
+
+$: icon = icons.find((o) => keyIcon(o) === pin)
+$: line = lines.find((o) => keyLine(o) === pin)
+$: cluster = clusters.find((o) => keyCluster(o) === pin)
+$: console.log(icon)
 
 $: byIcon(icons)
 $: byCluster(clusters)
@@ -667,8 +673,37 @@ function parseTouch(e: TouchEvent): MouseEvent {
   </svg>
 </article>
 
+{#if edit}
+<article class="form">
+{#if icon}
+    <p>
+      <input type="text" class="v" bind:value={icon.v}>
+      <input type="text" class="label" bind:value={icon.label}>
+    </p>
+  {/if}
+  {#if line}
+  <p>
+    <input type="text" class="label" bind:value={line.label}>
+  </p>
+{/if}
+  {#if cluster}
+  <p>
+    <input type="text" class="label" bind:value={cluster.label}>
+  </p>
+{/if}
+</article>
+{/if}
+
 <style lang="scss">
 svg {
   max-width: 100%;
+}
+
+
+.v {
+  width: 5ex;
+}
+.label {
+  width: 10em;
 }
 </style>
