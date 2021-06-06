@@ -4,7 +4,7 @@ import { url, style } from '$lib/site/store'
 
 if (dev) {
   url.set({
-    portrate: '/images/portrate/',
+    portrate: 'https://giji.f5.si/images/portrate/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
     top: '/'

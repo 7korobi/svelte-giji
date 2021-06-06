@@ -1,39 +1,9 @@
-<script context="module" lang="ts">
+<script lang="ts">
+import { tick } from 'svelte'
+import { style, url } from '../site/store'
 import { __BROWSER__ } from '../browser/device'
 
-const url = {
-  portrate: 'https://giji.f5.si/images/portrate/',
-  css: 'https://giji.f5.si/css/'
-}
-
-const style = {
-  icon: {
-    width: 90,
-    height: 130
-  },
-  gap_size: 50,
-  line_slide: 25,
-  border_width: 5,
-  rx: 10,
-  ry: 10
-} as const
-
-const { rx, ry, border_width } = style
-
-const marker = {
-  ' ': '',
-  '<': 'url(#svg-marker-arrow-start)',
-  '>': 'url(#svg-marker-arrow-end)',
-  o: 'url(#svg-marker-circle)',
-  x: 'url(#svg-marker-cross)'
-}
-
-const border = {
-  ' ': 'hide',
-  '.': 'dotted',
-  '-': 'solid',
-  '=': 'wide'
-}
+import { Operations, instanceId } from './tracker'
 
 type Marker = keyof typeof marker
 type Border = keyof typeof border
@@ -117,115 +87,27 @@ type DIC<T> = {
   [key: string]: T
 }
 
-function keyCluster({ vs }) {
-  return `@${vs}`
-}
-function keyIcon({ v }) {
-  return v
-}
-function keyLine({ v, w, vpos, wpos }) {
-  return `${[v, w]}=${[vpos, wpos]}`
+const instance_id = instanceId()
+
+const marker = {
+  ' ': '',
+  '<': `url(#svg-marker-${instance_id}-arrow-start)`,
+  '>': `url(#svg-marker-${instance_id}-arrow-end)`,
+  o: `url(#svg-marker-${instance_id}-circle)`,
+  x: `url(#svg-marker-${instance_id}-cross)`
 }
 
-function pathStyle([st, c, ed]: string) {
-  return {
-    class: `path ${border[c]}` || 'hide',
-    'marker-start': marker[st],
-    'marker-end': marker[ed]
-  }
+const border = {
+  ' ': 'hide',
+  '.': 'dotted',
+  '-': 'solid',
+  '=': 'wide'
 }
-
-function cover(vos: Box[]) {
-  // console.log(vos)
-  const { gap_size } = style
-  if (!vos.length) {
-    let x: number, y: number
-    x = y = gap_size
-    vos.push({ ...style.icon, x, y })
-  }
-  const xmin = Math.min(...vos.map((o) => o.x))
-  const xmax = Math.max(...vos.map((o) => o.x + (o.width || 0)))
-  const ymin = Math.min(...vos.map((o) => o.y))
-  const ymax = Math.max(...vos.map((o) => o.y + (o.height || 0)))
-  const width = xmax - xmin + gap_size
-  const height = ymax - ymin + gap_size
-  const x = xmin - 0.5 * gap_size
-  const y = ymin - 0.5 * gap_size
-  return { x, y, width, height }
-}
-
-function pos({ x, y, width, height }: Rect, roll: number): Pos {
-  const curve = Math.floor(Math.min(width, height, style.icon.height))
-  let dx: number, dy: number, vx: number, vy: number
-  switch (roll) {
-    case 0:
-      dx = 0.5 * width
-      dy = 0
-      vx = 0
-      vy = -curve
-      break
-    case 90:
-      dx = 1.0 * width
-      dy = 0.5 * height
-      vx = curve
-      vy = 0
-      break
-    case 180:
-      dx = 0.5 * width
-      dy = 1.0 * height
-      vx = 0
-      vy = curve
-      break
-    case 270:
-      dx = 0
-      dy = 0.5 * height
-      vx = -curve
-      vy = 0
-      break
-  }
-  x = Math.floor(x + dx)
-  y = Math.floor(y + dy)
-  const c = {
-    x: x + vx,
-    y: y + vy
-  }
-  return { x, y, vx, vy, c }
-}
-
-function sizeByPos(a: number, b: number, max: number) {
-  const size = Math.floor(0.3 * (b - a))
-  if (max < size) return [max, size]
-  if (size < -max) return [-max, size]
-  return [size, size]
-}
-
-function slide(a: Pos, b: Pos) {
-  if (a.vy) {
-    const [size, curve] = sizeByPos(a.x, b.x, 0.5 * style.icon.width)
-    a.x += size
-    a.c.x += curve
-  }
-  if (a.vx) {
-    const [size, curve] = sizeByPos(a.y, b.y, 0.5 * style.icon.height)
-    a.y += size
-    a.c.y += curve
-  }
-}
-
-function parseTouch(e: TouchEvent): MouseEvent {
-  const { target } = e
-  const { pageX, pageY } = e.changedTouches[0]
-  return { pageX, pageY, target } as MouseEvent
-}
-</script>
-
-<script lang="ts">
-import { tick } from 'svelte'
 
 const zoomer = zoomerFactory()
+const resizer = resizerFactory()
 
 export let pin: string
-
 export let clusters: Cluster[] = []
 export let icons: Icon[] = []
 export let lines: Line[] = []
@@ -290,7 +172,6 @@ $: byRoot(min, rects, boxs, rootWidth)
 $: refresh(refreshAt, labelHeight)
 
 function refresh(...args) {
-  console.log('refresh')
   byIcon()
   byCluster()
   byLine()
@@ -302,7 +183,6 @@ function refresh(...args) {
 }
 
 function byOrder(...args) {
-  console.log('byOrder')
   const a = []
   const b = []
   const c = []
@@ -344,34 +224,32 @@ function byOrder(...args) {
 }
 
 function byRoot(...args) {
-  console.log('byRoot')
   root = cover([min, ...rects, ...boxs])
   zoom = root.width / rootWidth
 }
 
 function byBox(...args) {
-  console.log('byBox')
   labelHeight = Math.ceil(Math.max(1, ...boxs.map((o) => o.height)))
 }
 
 function byText(...args) {
-  console.log('byText')
   tick().then(() => {
     textEls.forEach((o) => (o as any).__resize())
   })
 }
 
 function byIcon(...args) {
-  console.log('byIcon')
   icons.forEach((o) => {
     const key = keyIcon(o)
+    const { rx, ry, border_width } = $style
+
     let { v, label, roll, x, y } = o
-    let { width, height } = style.icon
+    let { width, height } = $style.icon
 
     const transform = `translate(${x - 0.5 * width} ${
       y - 0.5 * (label ? height + labelHeight : height)
     }) rotate(${roll}, ${0.5 * width}, ${0.5 * height})`
-    const href = `${url.portrate}${v || 'undef'}.jpg`
+    const href = `${$url.portrate}${v || 'undef'}.jpg`
     dicImage[v] = {
       key,
       class: 'icon',
@@ -413,11 +291,11 @@ function byIcon(...args) {
 }
 
 function byCluster(...args) {
-  console.log('byCluster')
   clusters.forEach((o) => {
     const key = keyCluster(o)
     const { vs, label } = o
     const { x, y, width, height } = cover(vs.map((v) => dicRect[v]))
+    const { rx, ry } = $style
 
     dicRect[key] = { key, class: 'cluster', width, height, rx, ry, x, y }
     if (label) {
@@ -436,10 +314,10 @@ function byCluster(...args) {
 }
 
 function byLine(...args) {
-  console.log('byLine')
   lines.forEach((o) => {
     const key = keyLine(o)
     const { v, w, line, vpos, wpos, label } = o
+    const { rx, ry } = $style
 
     const path_style = pathStyle(line)
     const vo = dicRect[v] || dicRect[w]
@@ -458,7 +336,7 @@ function byLine(...args) {
     const yMax = Math.floor(Math.max(vp.y, cvp.y, cwp.y, wp.y))
     const width = xMax - x
     const height = yMax - y
-    if (width * width + height * height < 16 * style.gap_size * style.gap_size) {
+    if (width * width + height * height < 16 * $style.gap_size * $style.gap_size) {
       cvp = vp
       cwp = wp
     }
@@ -488,6 +366,83 @@ function byLine(...args) {
 
 function setOrder(...args) {
   order = [...clusters.map(keyCluster), ...icons.map(keyIcon), ...lines.map(keyLine)]
+}
+
+function cover(vos: Box[]) {
+  // console.log(vos)
+  const { gap_size, icon } = $style
+  if (!vos.length) {
+    let x: number, y: number
+    x = y = gap_size
+    vos.push({ ...icon, x, y })
+  }
+  const xmin = Math.min(...vos.map((o) => o.x))
+  const xmax = Math.max(...vos.map((o) => o.x + (o.width || 0)))
+  const ymin = Math.min(...vos.map((o) => o.y))
+  const ymax = Math.max(...vos.map((o) => o.y + (o.height || 0)))
+  const width = xmax - xmin + gap_size
+  const height = ymax - ymin + gap_size
+  const x = xmin - 0.5 * gap_size
+  const y = ymin - 0.5 * gap_size
+  return { x, y, width, height }
+}
+
+function pos({ x, y, width, height }: Rect, roll: number): Pos {
+  const curve = Math.floor(Math.min(width, height, $style.icon.height))
+  let dx: number, dy: number, vx: number, vy: number
+  switch (roll) {
+    case 0:
+      dx = 0.5 * width
+      dy = 0
+      vx = 0
+      vy = -curve
+      break
+    case 90:
+      dx = 1.0 * width
+      dy = 0.5 * height
+      vx = curve
+      vy = 0
+      break
+    case 180:
+      dx = 0.5 * width
+      dy = 1.0 * height
+      vx = 0
+      vy = curve
+      break
+    case 270:
+      dx = 0
+      dy = 0.5 * height
+      vx = -curve
+      vy = 0
+      break
+  }
+  x = Math.floor(x + dx)
+  y = Math.floor(y + dy)
+  const c = {
+    x: x + vx,
+    y: y + vy
+  }
+  return { x, y, vx, vy, c }
+}
+
+function sizeByPos(a: number, b: number, max: number) {
+  const size = Math.floor(0.3 * (b - a))
+  if (max < size) return [max, size]
+  if (size < -max) return [-max, size]
+  return [size, size]
+}
+
+function slide(a: Pos, b: Pos) {
+  if (a.vy) {
+    const [size, curve] = sizeByPos(a.x, b.x, 0.5 * $style.icon.width)
+    a.x += size
+    a.c.x += curve
+  }
+  if (a.vx) {
+    const [size, curve] = sizeByPos(a.y, b.y, 0.5 * $style.icon.height)
+    a.y += size
+    a.c.y += curve
+  }
 }
 
 function moveXY<T>(o: T, dx: number, dy: number) {
@@ -554,32 +509,67 @@ function zoomerFactory() {
     })
     observer.observe(el)
     return { destroy }
-  }
 
-  function destroy() {
-    observer.unobserve(el)
+    function destroy() {
+      observer.unobserve(el)
+    }
   }
 }
 
-function resizer(el: SVGTextElement, idx: number) {
-  textEls[idx] = el
-  Object.assign(el, {
-    idx,
-    __resize() {
-      let { width, height, x, y } = this.getBBox()
-
-      width = Math.floor(width + 4 * border_width)
-      height = Math.floor(height + 2 * border_width)
-      x = Math.floor(x - 2 * border_width)
-      y = Math.floor(y - 1 * border_width)
-      boxs[this.idx] = { x, y, width, height }
-    }
+function resizerFactory() {
+  if (!__BROWSER__) return () => {}
+  const observer = new ResizeObserver((e) => {
+    e.forEach(({ target, contentRect }) => {
+      ;(target as any).__resize(contentRect)
+    })
   })
-  observer.observe(el)
-  return { destroy }
-  function destroy() {
-    observer.unobserve(el)
+
+  return (el: SVGTextElement, idx: number) => {
+    textEls[idx] = el
+    Object.assign(el, {
+      idx,
+      __resize() {
+        const { border_width } = $style
+        let { width, height, x, y } = this.getBBox()
+
+        width = Math.floor(width + 4 * border_width)
+        height = Math.floor(height + 2 * border_width)
+        x = Math.floor(x - 2 * border_width)
+        y = Math.floor(y - 1 * border_width)
+        boxs[this.idx] = { x, y, width, height }
+      }
+    })
+    observer.observe(el)
+    return { destroy }
+
+    function destroy() {
+      observer.unobserve(el)
+    }
   }
+}
+
+function keyCluster({ vs }) {
+  return `@${vs}`
+}
+function keyIcon({ v }) {
+  return v
+}
+function keyLine({ v, w, vpos, wpos }) {
+  return `${[v, w]}=${[vpos, wpos]}`
+}
+
+function pathStyle([st, c, ed]: string) {
+  return {
+    class: `path ${border[c]}` || 'hide',
+    'marker-start': marker[st],
+    'marker-end': marker[ed]
+  }
+}
+
+function parseTouch(e: TouchEvent): MouseEvent {
+  const { target } = e
+  const { pageX, pageY } = e.changedTouches[0]
+  return { pageX, pageY, target } as MouseEvent
 }
 </script>
 
@@ -595,7 +585,7 @@ function resizer(el: SVGTextElement, idx: number) {
   <svg style="font-size: {0.75 * zoom}rem;" viewBox="{root.x} {root.y} {root.width} {root.height}">
     <marker
       class="edgePath"
-      id="svg-marker-circle"
+      id={`svg-marker-${instance_id}-circle`}
       viewBox="0 0 10 10"
       markerUnits="userSpaceOnUse"
       markerWidth="20"
@@ -607,7 +597,7 @@ function resizer(el: SVGTextElement, idx: number) {
     </marker>
     <marker
       class="edgePath"
-      id="svg-marker-arrow-start"
+      id={`svg-marker-${instance_id}-arrow-start`}
       viewBox="0 0 10 10"
       markerUnits="userSpaceOnUse"
       markerWidth="20"
@@ -619,7 +609,7 @@ function resizer(el: SVGTextElement, idx: number) {
     </marker>
     <marker
       class="edgePath"
-      id="svg-marker-arrow-end"
+      id={`svg-marker-${instance_id}-arrow-end`}
       viewBox="0 0 10 10"
       markerUnits="userSpaceOnUse"
       markerWidth="20"
@@ -631,7 +621,7 @@ function resizer(el: SVGTextElement, idx: number) {
     </marker>
     <marker
       class="edgePath"
-      id="svg-marker-cross"
+      id={`svg-marker-${instance_id}-cross`}
       viewBox="0 0 10 10"
       markerUnits="userSpaceOnUse"
       markerWidth="20"

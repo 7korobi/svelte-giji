@@ -1,12 +1,12 @@
 <script lang="ts">
 import IconifyIcon from '@iconify/svelte'
-import * as icon from '$lib/site/icon'
-import { page } from '$app/stores'
-import Browser, { PageTransition } from '$lib/browser'
-
+import { Export, Footer, icon } from '$lib/site'
+import { url } from '$lib/site/store'
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Report from '$lib/chat/Report.svelte'
-import { Export, Footer } from '$lib/site'
+import Browser, { PageTransition } from '$lib/browser'
+
+import { page } from '$app/stores'
 
 /**
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
@@ -21,7 +21,7 @@ function scroll() {}
 <div class="page-active-bg">
   <div class="welcome">
     <Export />
-    <h1 class="title-bar">人狼議事</h1>
+    <h1 class="title-bar"><a href={$url.top}>人狼議事</a></h1>
     <div class="btns form">
       <ThemeBtns />
     </div>
@@ -281,7 +281,7 @@ function scroll() {}
   object-fit: cover;
   background-size: cover;
   background-image: url('https://giji-db923.web.app/images/bg/fhd-giji.png');
-  background-position: left 50% top var(--view-bottom);
+  background-position: left 50% top calc(-0.3 * var(--view-top));
 }
 
 .title-bar {
@@ -294,7 +294,7 @@ function scroll() {}
 .filmline {
   margin: 0;
   background-repeat: repeat-x;
-  background-position: var(--view-top) 0;
+  background-position: calc(0.5 * var(--view-top)) 0;
   .contentframe {
     background-image: none;
     height: 0;
@@ -364,7 +364,7 @@ function scroll() {}
     padding: 10px 0;
     background-repeat: repeat-y;
     background-attachment: local;
-    background-position: 0 var(--view-bottom);
+    background-position: 0 calc(-0.5 * var(--view-top));
   }
 }
 
