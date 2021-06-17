@@ -7,7 +7,8 @@ import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer/msec'
 import LongPress from '$lib/inline/LongPress.svelte'
 import { Poll } from '$lib/fetch'
 import { reqApi } from '$lib/site/fetch'
-import { Report, Post } from '$lib/chat'
+import { Report, Post, Talk } from '$lib/chat'
+import { HtmlArea } from '$lib/editor'
 
 import '../_app.svelte'
 
@@ -43,9 +44,15 @@ let scale
   </p>
 </Post>
 
-<Report handle="VSSAY">
+<Report handle="VSSAY" />
+
+<Talk handle="SSAY" face_id="c10">
   <Pen />
-</Report>
+</Talk>
+
+<Talk handle="SSAY" face_id="c20">
+  <HtmlArea />
+</Talk>
 
 <Post handle="PSAY">
   <Zoom bind:x bind:y bind:scale>

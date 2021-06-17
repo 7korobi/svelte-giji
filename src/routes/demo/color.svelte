@@ -280,7 +280,7 @@ function byF(str: string) {
     </Scroll>
     <Scroll name=".2.2">
       <Chat show="report" handle={color}>
-        <Diagram {icons} {lines} {clusters} edit={true}/>
+        <Diagram {icons} {lines} {clusters} edit={true} />
       </Chat>
     </Scroll>
   </Scroll>

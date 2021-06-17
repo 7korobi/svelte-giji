@@ -1,10 +1,11 @@
 <script lang="ts">
-import IconifyIcon from '@iconify/svelte'
-import { Export, Footer, icon } from '$lib/site'
+import { Export, Footer } from '$lib/site'
 import { url } from '$lib/site/store'
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Report from '$lib/chat/Report.svelte'
 import Browser, { PageTransition } from '$lib/browser'
+
+import * as Icon from '$lib/icon'
 
 import { page } from '$app/stores'
 
@@ -62,12 +63,12 @@ function scroll() {}
             <button
               class="btn item-half tooltip-left"
               data-tooltip="詳細情報を拡げる操作の ON / OFF">
-              <IconifyIcon width="20px" height="20px" icon={icon.expand} />
+              <Icon.expand />
             </button>
             <button
               class="btn item-half tooltip-left active"
               data-tooltip="ページ一覧を一列にする / 折り返す">
-              <IconifyIcon width="20px" height="20px" icon={icon.swipe} />
+              <Icon.swipeOn />
             </button>
           </div>
         </div>
@@ -76,24 +77,24 @@ function scroll() {}
         <div class="inframe">
           <div class="icons form">
             <button data-tooltip="一番上までスクロール" class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.top} />
+              <Icon.goTop />
             </button>
             <button data-tooltip="マークする" class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.marker} />
+              <Icon.markerOn />
             </button>
             <button data-tooltip="今見ている投稿に関する情報" class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.pin} />
+              <Icon.timelineClock />
             </button>
             <button data-tooltip="今見ている投稿と繋がる投稿" class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.link} />
+              <Icon.tree />
             </button>
             <button data-tooltip="他の日付へ移動、検索など" class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.toc} />
+              <Icon.tocOn />
             </button>
             <button
               data-tooltip="キャラクターの一覧、ステータス等を確認"
               class="btn item tooltip-left">
-              <IconifyIcon width="20px" height="20px" icon={icon.users} />
+              <Icon.usersOn />
             </button>
           </div>
         </div>
@@ -269,6 +270,14 @@ function scroll() {}
   word-wrap: break-word;
   overflow-wrap: break-word;
   vertical-align: baseline;
+}
+
+:global(svg.icon) {
+  speak: none;
+  user-select: none;
+  overflow: visible;
+  width: 1em;
+  height: 1em;
 }
 
 .page-active,
