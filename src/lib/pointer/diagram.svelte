@@ -674,31 +674,30 @@ function parseTouch(e: TouchEvent): MouseEvent {
 </article>
 
 {#if edit}
-<article class="form">
-{#if icon}
-    <p>
-      <input type="text" class="v" bind:value={icon.v}>
-      <input type="text" class="label" bind:value={icon.label}>
-    </p>
-  {/if}
-  {#if line}
-  <p>
-    <input type="text" class="label" bind:value={line.label}>
-  </p>
-{/if}
-  {#if cluster}
-  <p>
-    <input type="text" class="label" bind:value={cluster.label}>
-  </p>
-{/if}
-</article>
+  <article class="form">
+    {#if icon}
+      <p>
+        <input type="text" class="v" bind:value={icon.v} />
+        <input type="text" class="label" bind:value={icon.label} />
+      </p>
+    {/if}
+    {#if line}
+      <p>
+        <input type="text" class="label" bind:value={line.label} />
+      </p>
+    {/if}
+    {#if cluster}
+      <p>
+        <input type="text" class="label" bind:value={cluster.label} />
+      </p>
+    {/if}
+  </article>
 {/if}
 
 <style lang="scss">
 svg {
   max-width: 100%;
 }
-
 
 .v {
   width: 5ex;

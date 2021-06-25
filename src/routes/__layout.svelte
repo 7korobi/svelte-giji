@@ -1,18 +1,24 @@
 <script lang="ts">
 import { Export, Footer } from '$lib/site'
-import { url } from '$lib/site/store'
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Report from '$lib/chat/Report.svelte'
 import Browser, { PageTransition } from '$lib/browser'
 
+import { site } from '$lib/store'
 import * as Icon from '$lib/icon'
 
-import { page } from '$app/stores'
+import { navigating, page, session } from '$app/stores'
+
+const { url } = site
 
 /**
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
  */
 const SAFEAREA_RATIO = 1.0
+
+$: console.log('navigating', $navigating)
+$: console.log('page', $page)
+$: console.log('session', $session)
 
 function resize() {}
 
@@ -279,6 +285,9 @@ function scroll() {}
   width: 1em;
   height: 1em;
 }
+:global(svg.icon path) {
+  fill: var(--pen);
+}
 
 .page-active,
 .page-active-bg {
@@ -329,6 +338,8 @@ function scroll() {}
   align-content: space-around;
   justify-content: space-around;
 
+  --icon-color: white;
+
   p {
     font-size: 7px;
 
@@ -341,6 +352,7 @@ function scroll() {}
     flex-basis: auto;
     text-align: center;
     border-radius: 5px;
+    font-size: 20px;
     font-weight: 400;
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif;
   }
@@ -363,9 +375,6 @@ function scroll() {}
 .writeframe {
   top: 0;
   box-sizing: content-box;
-  .contentframe {
-    background-attachment: scroll;
-  }
 }
 
 .contentframe {

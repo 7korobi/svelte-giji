@@ -1,5 +1,7 @@
 <script lang="ts">
-import { url } from '../site/store'
+import { site } from '../store'
+
+const { url } = site
 
 export let img_src: string = ''
 export let face_id: string = ''

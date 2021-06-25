@@ -1,8 +1,9 @@
 <script lang="ts">
-import '../_app.svelte'
 import { Bits } from '$lib/common/bits'
 
-import Chat, { Banner } from '$lib/chat'
+import { BreadCrumb } from '$lib/topic'
+
+import Chat, { Banner, Report } from '$lib/chat'
 import { Scroll } from '$lib/scroll'
 import { Diagram } from '$lib/pointer'
 
@@ -10,6 +11,8 @@ import FullScreen from '$lib/head/FullScreen.svelte'
 import Btn from '$lib/inline/Btn.svelte'
 
 // import EditorArea from '$lib/form/EditorArea.svelte'
+
+import '../_app.svelte'
 
 export let name: string
 
@@ -162,6 +165,12 @@ function byF(str: string) {
   c = +((5 / 9) * (f - 32)).toFixed(1)
 }
 </script>
+
+<Report handle="SSAY">
+  <h1>Welcome to SvelteKit</h1>
+  <p><a sveltekit:prefetch href="/">ROOT</a></p>
+  <p>Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>
+</Report>
 
 {#each logColors as color}
   <Banner>

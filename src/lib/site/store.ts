@@ -6,6 +6,7 @@ export const url = writable({
   api: '/api/',
   top: '/'
 })
+
 export const style = writable({
   icon: {
     width: 90,

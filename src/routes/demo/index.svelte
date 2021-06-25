@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Zoom, Pen } from '$lib/pointer'
+
 import { viewSize, zoomSize, zoomOffset, zoomScale } from '$lib/browser/store'
 import { Time } from '$lib/timer'
 import { __BROWSER__ } from '$lib/browser/device'
@@ -9,6 +10,8 @@ import { Poll } from '$lib/fetch'
 import { reqApi } from '$lib/site/fetch'
 import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
+
+import { topic } from '$lib/store'
 
 import '../_app.svelte'
 
@@ -23,7 +26,8 @@ let scale
 
 <Report handle="SSAY">
   <h1>Welcome to SvelteKit</h1>
-  <p>Visit <a sveltekit:prefetch href="/">ROOT</a></p>
+  <p><a sveltekit:prefetch href="/">ROOT</a></p>
+  <p>Visit <a sveltekit:prefetch href="/demo/color">COLOR</a></p>
 </Report>
 
 <Post handle="SSAY">

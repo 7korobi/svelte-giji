@@ -9,6 +9,7 @@ const SVG = __BROWSER__ ? document.createElementNS('http://www.w3.org/2000/svg',
 const matrix = createMatrix()
 const tracker = new Operations({ start, move, wheel })
 
+export let mode = 'image' as 'image' | 'text'
 export let min = 0.2
 export let max = 5.0
 export let scale = 1
@@ -115,7 +116,7 @@ function createPoint(): SVGPoint {
 </script>
 
 <div use:tracker.listener class="zoomBox" style="--x: {x}px; --y: {y}px; --scale: {scale};">
-  <div bind:this={tracker.originEl} class="zoom">
+  <div bind:this={tracker.originEl} class={mode}>
     <slot />
   </div>
 </div>
@@ -127,9 +128,15 @@ function createPoint(): SVGPoint {
   touch-action: none;
 }
 
-.zoom {
+.image {
   transform: translate(var(--x), var(--y)) scale(var(--scale));
   transform-origin: 0 0;
   will-change: transform;
+}
+
+.text {
+  font-size: calc(1rem * var(--scale));
+  line-height: calc(1.5em * var(--scale));
+  will-change: font-size;
 }
 </style>

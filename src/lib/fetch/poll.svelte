@@ -4,10 +4,12 @@ import { onDestroy } from 'svelte'
 import { to_tempo, Tempo } from '../timer/tempo'
 import { INTERVAL_MAX } from '../timer/distance'
 import { __BROWSER__ } from '../browser/device'
-import { isActive } from '../browser/store'
+import { browser } from '../store'
 
 import type { WebPollData } from './dexie'
 import { webPoll } from './dexie'
+
+const { isActive } = browser
 
 export let version = '1.0.0'
 export let timer = '1d'

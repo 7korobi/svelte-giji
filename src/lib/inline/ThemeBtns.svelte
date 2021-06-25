@@ -1,8 +1,10 @@
 <script lang="ts">
 import { __BROWSER__ } from '../browser/device'
-import { zoom, font, theme, day } from '../site/store'
+import { site } from '../store'
 
 import Btn from './Btn.svelte'
+
+const { zoom, font, theme, day } = site
 
 $: if (__BROWSER__) {
   document.documentElement.className = [$zoom, $font, $day, $theme].join(' ')

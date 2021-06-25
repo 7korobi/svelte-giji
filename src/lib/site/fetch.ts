@@ -1,7 +1,7 @@
+import type { URL } from '../config'
 import type { WebPollData } from '../fetch/dexie'
 import { url } from './store'
 
-type URL = `http://${string}` | `https://${string}`
 type CARD = string
 type TIMESTAMP = string
 type OPTION_ID = string
