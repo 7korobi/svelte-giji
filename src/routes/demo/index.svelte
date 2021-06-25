@@ -1,20 +1,20 @@
 <script lang="ts">
-import { Zoom, Pen } from '$lib/pointer'
-
-import { viewSize, zoomSize, zoomOffset, zoomScale } from '$lib/browser/store'
-import { Time } from '$lib/timer'
-import { __BROWSER__ } from '$lib/browser/device'
 import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer/msec'
+
+import { Zoom, Pen } from '$lib/pointer'
+import { Time } from '$lib/timer'
+import { __BROWSER__ } from '$lib/browser'
 import LongPress from '$lib/inline/LongPress.svelte'
 import { Poll } from '$lib/fetch'
-import { reqApi } from '$lib/site/fetch'
+import { reqApi } from '$lib/site'
 import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
 
-import { topic } from '$lib/store'
+import { browser } from '$lib/store'
 
 import '../_app.svelte'
 
+const { viewSize, zoomSize, zoomOffset, zoomScale } = browser
 const bootAt = Date.now()
 
 let hello = 'home'

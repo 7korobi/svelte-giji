@@ -1,13 +1,14 @@
 <script lang="ts">
-import { Export, Footer } from '$lib/site'
+import { navigating, page, session } from '$app/stores'
+
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
-import Report from '$lib/chat/Report.svelte'
+
+import { Export, Footer } from '$lib/site'
+import { Report } from '$lib/chat'
 import Browser, { PageTransition } from '$lib/browser'
 
 import { site } from '$lib/store'
 import * as Icon from '$lib/icon'
-
-import { navigating, page, session } from '$app/stores'
 
 const { url } = site
 

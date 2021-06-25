@@ -4,9 +4,7 @@ import { style, url } from '../site/store'
 import { __BROWSER__ } from '../browser/device'
 
 import { Operations, instanceId } from './tracker'
-
-type Marker = keyof typeof marker
-type Border = keyof typeof border
+import type { Cluster, Icon, Line } from './store'
 
 type Rect = Box & {
   key: string
@@ -46,26 +44,6 @@ type Path = {
   d: string
 }
 
-type Line = {
-  v: string
-  w: string
-  line: `${Marker}${Border}${Marker}`
-  vpos: number
-  wpos: number
-  label: string
-}
-type Icon = {
-  v: string
-  label: string
-  roll: number
-  x: number
-  y: number
-}
-type Cluster = {
-  label: string
-  vs: string[]
-}
-
 type Box = {
   x: number
   y: number
@@ -95,26 +73,24 @@ const marker = {
   '>': `url(#svg-marker-${instance_id}-arrow-end)`,
   o: `url(#svg-marker-${instance_id}-circle)`,
   x: `url(#svg-marker-${instance_id}-cross)`
-}
+} as const
 
 const border = {
   ' ': 'hide',
   '.': 'dotted',
   '-': 'solid',
   '=': 'wide'
-}
+} as const
 
 const zoomer = zoomerFactory()
 const resizer = resizerFactory()
 
-export let pin: string
+export let pin: string = undefined
 export let clusters: Cluster[] = []
 export let icons: Icon[] = []
 export let lines: Line[] = []
 export let min = { x: -300, y: -300, width: 600, height: 600 }
 export let edit = false
-
-let refreshAt = new Date()
 
 let dicRect: DIC<Rect> = {}
 let dicPath: DIC<Path> = {}
@@ -129,8 +105,6 @@ let labels: Label[] = []
 let texts: Text[] = []
 let textEls: SVGTextElement[] = []
 let boxs: Box[] = []
-
-let order: string[] = []
 
 let move = {
   key: '',
@@ -151,8 +125,8 @@ let moved = {
 
 let zoom = 1.0
 
-let labelHeight = 0
-let rootWidth = 1
+let labelHeight = 1
+let rootWidth = 2000
 let root = {
   x: 0,
   y: 0,
@@ -163,29 +137,18 @@ let root = {
 $: icon = icons.find((o) => keyIcon(o) === pin)
 $: line = lines.find((o) => keyLine(o) === pin)
 $: cluster = clusters.find((o) => keyCluster(o) === pin)
-$: console.log(icon)
 
-$: byIcon(icons)
-$: byCluster(clusters)
-$: byLine(lines)
-$: setOrder(icons, clusters, lines)
+$: byIcon(icons, labelHeight)
+$: byCluster(clusters, labelHeight, dicRect)
+$: byLine(lines, labelHeight, dicRect)
+$: byOrder(dicRect, dicPath, dicImage, dicText, dicLabel)
 
-$: byText(texts)
-$: byBox(boxs)
-$: byOrder(order)
-$: byRoot(min, rects, boxs, rootWidth)
-
-$: refresh(refreshAt, labelHeight)
-
-function refresh(...args) {
-  byIcon()
-  byCluster()
-  byLine()
-  byBox()
-  byText()
-  setOrder()
-  byOrder()
-  byRoot()
+$: labelHeight = Math.ceil(Math.max(1, ...boxs.map((o) => o.height)))
+$: textEls.forEach((o) => (o as any).__resize())
+$: {
+  // console.log("root cover")
+  root = cover([min, ...rects, ...boxs])
+  zoom = root.width / rootWidth
 }
 
 function byOrder(...args) {
@@ -200,6 +163,8 @@ function byOrder(...args) {
   const x = {}
   const w = {}
   const v = {}
+
+  const order = [...clusters.map(keyCluster), ...icons.map(keyIcon), ...lines.map(keyLine)]
   order.forEach((key) => {
     if (dicRect[key]) {
       a.push((z[key] = dicRect[key]))
@@ -217,11 +182,13 @@ function byOrder(...args) {
       }
     }
   })
+
   rects = a
   paths = b
   images = c
   texts = d
   labels = e
+
   dicRect = z
   dicPath = y
   dicImage = x
@@ -229,22 +196,7 @@ function byOrder(...args) {
   dicLabel = v
 }
 
-function byRoot(...args) {
-  root = cover([min, ...rects, ...boxs])
-  zoom = root.width / rootWidth
-}
-
-function byBox(...args) {
-  labelHeight = Math.ceil(Math.max(1, ...boxs.map((o) => o.height)))
-}
-
-function byText(...args) {
-  tick().then(() => {
-    textEls.forEach((o) => (o as any).__resize())
-  })
-}
-
-function byIcon(...args) {
+async function byIcon(...args) {
   icons.forEach((o) => {
     const key = keyIcon(o)
     const { rx, ry, border_width } = $style
@@ -294,6 +246,13 @@ function byIcon(...args) {
       }
     }
   })
+  dicImage = dicImage
+  dicRect = dicRect
+  dicLabel = dicLabel
+  dicText = dicText
+  await tick()
+  textEls = textEls
+  rects = rects
 }
 
 function byCluster(...args) {
@@ -317,6 +276,9 @@ function byCluster(...args) {
       }
     }
   })
+  dicRect = dicRect
+  dicLabel = dicLabel
+  dicText = dicText
 }
 
 function byLine(...args) {
@@ -342,10 +304,10 @@ function byLine(...args) {
     const yMax = Math.floor(Math.max(vp.y, cvp.y, cwp.y, wp.y))
     const width = xMax - x
     const height = yMax - y
-    if (width * width + height * height < 16 * $style.gap_size * $style.gap_size) {
-      cvp = vp
-      cwp = wp
-    }
+    // if (width * width + height * height < 16 * $style.gap_size * $style.gap_size) {
+    //  cvp = vp
+    //  cwp = wp
+    // }
     const cp = {
       x: Math.floor(0.5 * (cvp.x + cwp.x)),
       y: Math.floor(0.5 * (cvp.y + cwp.y))
@@ -368,15 +330,14 @@ function byLine(...args) {
     // o[vw + 'sub'] = { class: 'dotted', key: "path=#{vw}sub", d }
     dicPath[key] = { ...path_style, key, d }
   })
-}
-
-function setOrder(...args) {
-  order = [...clusters.map(keyCluster), ...icons.map(keyIcon), ...lines.map(keyLine)]
+  dicPath = dicPath
+  dicLabel = dicLabel
+  dicText = dicText
 }
 
 function cover(vos: Box[]) {
-  // console.log(vos)
   const { gap_size, icon } = $style
+
   if (!vos.length) {
     let x: number, y: number
     x = y = gap_size
@@ -390,13 +351,14 @@ function cover(vos: Box[]) {
   const height = ymax - ymin + gap_size
   const x = xmin - 0.5 * gap_size
   const y = ymin - 0.5 * gap_size
+
   return { x, y, width, height }
 }
 
-function pos({ x, y, width, height }: Rect, roll: number): Pos {
-  const curve = Math.floor(Math.min(width, height, $style.icon.height))
+function pos({ x, y, width, height }: Rect, side: number): Pos {
+  const curve = Math.floor(0.5 * Math.min(width, height))
   let dx: number, dy: number, vx: number, vy: number
-  switch (roll) {
+  switch (side) {
     case 0:
       dx = 0.5 * width
       dy = 0
@@ -431,8 +393,9 @@ function pos({ x, y, width, height }: Rect, roll: number): Pos {
   return { x, y, vx, vy, c }
 }
 
-function sizeByPos(a: number, b: number, max: number) {
-  const size = Math.floor(0.3 * (b - a))
+function sizeByPos(diff: number, max: number) {
+  const size = Math.floor(0.1 * diff)
+  const curve = Math.floor(0.3 * diff)
   if (max < size) return [max, size]
   if (size < -max) return [-max, size]
   return [size, size]
@@ -440,22 +403,26 @@ function sizeByPos(a: number, b: number, max: number) {
 
 function slide(a: Pos, b: Pos) {
   if (a.vy) {
-    const [size, curve] = sizeByPos(a.x, b.x, 0.5 * $style.icon.width)
+    const [size, curve] = sizeByPos(b.x - a.x, 0.5 * $style.icon.width)
     a.x += size
     a.c.x += curve
+    if (a.vy < 0 && !(b.vy > 0) && b.c.y < a.c.y ) a.c.y = b.c.y
+    if (a.vy > 0 && !(b.vy < 0) && b.c.y > a.c.y ) a.c.y = b.c.y
   }
   if (a.vx) {
-    const [size, curve] = sizeByPos(a.y, b.y, 0.5 * $style.icon.height)
+    const [size, curve] = sizeByPos(b.y - a.y, 0.5 * $style.icon.height)
     a.y += size
     a.c.y += curve
+    if (a.vx < 0 && !(b.vx > 0) && b.c.x < a.c.x ) a.c.x = b.c.x
+    if (a.vx > 0 && !(b.vx < 0) && b.c.x > a.c.x ) a.c.x = b.c.x
   }
 }
 
-function moveXY<T>(o: T, dx: number, dy: number) {
+function moveXY(o: { x: number; y: number }, dx: number, dy: number) {
   const { x, y } = move
   o.x = Math.floor(x + dx)
   o.y = Math.floor(y + dy)
-  return o
+  return o as typeof moved
 }
 
 function do_move(e: MouseEvent) {
@@ -476,10 +443,10 @@ function do_finish(e: MouseEvent) {
       pin = key
     } else {
       const o = icons.find(({ v }) => v === key)
-      const rect = dicRect[key]
       if (o) {
+        const rect = dicRect[key]
         moveXY(o, dx + 0.5 * rect.width, dy + 0.5 * rect.height)
-        refreshAt = new Date()
+        icons = icons
       }
     }
     move.key = null
@@ -550,6 +517,7 @@ function resizerFactory() {
 
     function destroy() {
       observer.unobserve(el)
+      textEls.splice(idx, 1)
     }
   }
 }
@@ -586,8 +554,7 @@ function parseTouch(e: TouchEvent): MouseEvent {
   on:mousemove={do_move}
   on:mouseleave={do_finish}
   on:touchend={(e) => do_up(parseTouch(e))}
-  on:touchmove={(e) => do_move(parseTouch(e))}
-  on:touchleave={(e) => do_finish(parseTouch(e))}>
+  on:touchmove={(e) => do_move(parseTouch(e))}>
   <svg style="font-size: {0.75 * zoom}rem;" viewBox="{root.x} {root.y} {root.width} {root.height}">
     <marker
       class="edgePath"
@@ -695,10 +662,6 @@ function parseTouch(e: TouchEvent): MouseEvent {
 {/if}
 
 <style lang="scss">
-svg {
-  max-width: 100%;
-}
-
 .v {
   width: 5ex;
 }
