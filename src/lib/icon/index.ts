@@ -1,47 +1,61 @@
-import expand from './expand.svelte'
-import collapse from './collapse.svelte'
+import Expand from './ui/expand.svelte'
+import Collapse from './ui/collapse.svelte'
 
-import goTop from './go-top.svelte'
-import pin from './pin.svelte'
-import tree from './tree.svelte'
+import Standby from './ui/standby.svelte'
+import Spinner from './ui/spinner.svelte'
+import GoTop from './ui/go-top.svelte'
+import Tree from './ui/tree.svelte'
+import Pin from './ui/pin.svelte'
+import Key from './ui/key.svelte'
 
-import markerOn from './marker-on.svelte'
-import markerOff from './marker-off.svelte'
+import MarkerOn from './ui/marker-on.svelte'
+import MarkerOff from './ui/marker-off.svelte'
 
-import tocOn from './toc-on.svelte'
-import tocOff from './toc-off.svelte'
+import TocOn from './ui/toc-on.svelte'
+import TocOff from './ui/toc-off.svelte'
 
-import usersOn from './users-on.svelte'
-import usersOff from './users-off.svelte'
+import UsersOn from './ui/users-on.svelte'
+import UsersOff from './ui/users-off.svelte'
 
-import swipeOn from './swipe-on.svelte'
-import swipeOff from './swipe-off.svelte'
+import SwipeOn from './ui/swipe-on.svelte'
+import SwipeOff from './ui/swipe-off.svelte'
 
-import swipeLR from './swipe-LR.svelte'
-import swipeUD from './swipe-UD.svelte'
+import SwipeLR from './ui/swipe-LR.svelte'
+import SwipeUD from './ui/swipe-UD.svelte'
 
-import swipeLeft from './swipe-left.svelte'
-import swipeRight from './swipe-right.svelte'
+import SwipeLeft from './ui/swipe-left.svelte'
+import SwipeRight from './ui/swipe-right.svelte'
 
-import swipeUp from './swipe-up.svelte'
-import swipeDown from './swipe-down.svelte'
+import SwipeUp from './ui/swipe-up.svelte'
+import SwipeDown from './ui/swipe-down.svelte'
 
-import zoomOut from './zoom-out.svelte'
-import zoomIn from './zoom-in.svelte'
+import ZoomOut from './ui/zoom-out.svelte'
+import ZoomIn from './ui/zoom-in.svelte'
 
-import timelineAlert from './timeline-alert.svelte'
-import timelineHelp from './timeline-help.svelte'
-import timelineClock from './timeline-clock.svelte'
-import timelineMinus from './timeline-minus.svelte'
-import timelinePlus from './timeline-plus.svelte'
-import timelineRemove from './timeline-remove.svelte'
-import timelineText from './timeline-text.svelte'
+import TimelineAlert from './ui/timeline-alert.svelte'
+import TimelineHelp from './ui/timeline-help.svelte'
+import TimelineClock from './ui/timeline-clock.svelte'
+import TimelineMinus from './ui/timeline-minus.svelte'
+import TimelinePlus from './ui/timeline-plus.svelte'
+import TimelineRemove from './ui/timeline-remove.svelte'
+import TimelineText from './ui/timeline-text.svelte'
 
-import facebook from './logo-facebook.svelte'
-import twitter from './logo-twitter.svelte'
-import windows from './logo-windows.svelte'
-import google from './logo-google.svelte'
-import github from './logo-github.svelte'
+import Biohazard from './mood/biohazard.svelte'
+import Tropical from './mood/tropical.svelte'
+import Catwalk from './mood/catwalk.svelte'
+import Music from './mood/music.svelte'
+import Casino from './mood/casino.svelte'
+import Drug from './mood/drug.svelte'
+import Gun from './mood/gun.svelte'
+import Sun from './mood/sun.svelte'
+import Sunrise from './mood/sunrise.svelte'
+import Moon from './mood/moon.svelte'
+
+import Facebook from './logo/facebook.svelte'
+import Twitter from './logo/twitter.svelte'
+import Windows from './logo/windows.svelte'
+import Google from './logo/google.svelte'
+import Github from './logo/github.svelte'
 
 // choice by https://iconify.design/icon-sets/
 // cut this property.
@@ -51,37 +65,50 @@ import github from './logo-github.svelte'
 //   <path fill="#626262"/>
 
 export {
-  expand,
-  collapse,
-  goTop,
-  pin,
-  tree,
-  markerOn,
-  markerOff,
-  tocOn,
-  tocOff,
-  usersOn,
-  usersOff,
-  swipeOn,
-  swipeOff,
-  swipeLR,
-  swipeUD,
-  swipeLeft,
-  swipeRight,
-  swipeUp,
-  swipeDown,
-  zoomOut,
-  zoomIn,
-  timelineAlert,
-  timelineHelp,
-  timelineClock,
-  timelineMinus,
-  timelinePlus,
-  timelineRemove,
-  timelineText,
-  facebook,
-  twitter,
-  windows,
-  google,
-  github
+  Expand,
+  Collapse,
+  Standby,
+  Spinner,
+  GoTop,
+  Tree,
+  Pin,
+  Key,
+  MarkerOn,
+  MarkerOff,
+  TocOn,
+  TocOff,
+  UsersOn,
+  UsersOff,
+  SwipeOn,
+  SwipeOff,
+  SwipeLR,
+  SwipeUD,
+  SwipeLeft,
+  SwipeRight,
+  SwipeUp,
+  SwipeDown,
+  ZoomOut,
+  ZoomIn,
+  TimelineAlert,
+  TimelineHelp,
+  TimelineClock,
+  TimelineMinus,
+  TimelinePlus,
+  TimelineRemove,
+  TimelineText,
+  Biohazard,
+  Tropical,
+  Catwalk,
+  Music,
+  Casino,
+  Drug,
+  Gun,
+  Sun,
+  Sunrise,
+  Moon,
+  Facebook,
+  Twitter,
+  Windows,
+  Google,
+  Github
 }

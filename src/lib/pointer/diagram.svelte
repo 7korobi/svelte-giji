@@ -406,15 +406,15 @@ function slide(a: Pos, b: Pos) {
     const [size, curve] = sizeByPos(b.x - a.x, 0.5 * $style.icon.width)
     a.x += size
     a.c.x += curve
-    if (a.vy < 0 && !(b.vy > 0) && b.c.y < a.c.y ) a.c.y = b.c.y
-    if (a.vy > 0 && !(b.vy < 0) && b.c.y > a.c.y ) a.c.y = b.c.y
+    if (a.vy < 0 && !(b.vy > 0) && b.c.y < a.c.y) a.c.y = b.c.y
+    if (a.vy > 0 && !(b.vy < 0) && b.c.y > a.c.y) a.c.y = b.c.y
   }
   if (a.vx) {
     const [size, curve] = sizeByPos(b.y - a.y, 0.5 * $style.icon.height)
     a.y += size
     a.c.y += curve
-    if (a.vx < 0 && !(b.vx > 0) && b.c.x < a.c.x ) a.c.x = b.c.x
-    if (a.vx > 0 && !(b.vx < 0) && b.c.x > a.c.x ) a.c.x = b.c.x
+    if (a.vx < 0 && !(b.vx > 0) && b.c.x < a.c.x) a.c.x = b.c.x
+    if (a.vx > 0 && !(b.vx < 0) && b.c.x > a.c.x) a.c.x = b.c.x
   }
 }
 

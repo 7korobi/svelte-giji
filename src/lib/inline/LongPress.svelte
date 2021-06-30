@@ -1,5 +1,7 @@
 <script lang="ts">
 import { Operations } from '../pointer/tracker'
+import { Standby } from '../icon'
+
 import type { TYPE } from './button'
 import { className, tap } from './button'
 
@@ -30,7 +32,7 @@ function animeEnd() {
 </script>
 
 <button class:disabled class={className(type, as, value, isPress)} use:tracker.listener>
-  <span on:transitionend={animeEnd}>①</span>
+  <span on:transitionend={animeEnd}><Standby /></span>
   <slot />
 </button>
 
@@ -42,8 +44,6 @@ button {
   transition-duration: var(--speed);
   transition-property: background-color;
 
-  height: 2.1em;
-
   span {
     transition-property: transform;
     transition-timing-function: ease-in-out;
@@ -52,7 +52,8 @@ button {
     transform-origin: center;
     transform: rotateZ(90deg);
 
-    font-size: 2em;
+    font-size: 1.5em;
+    vertical-align: bottom;
     display: inline-block;
   }
 
@@ -73,7 +74,7 @@ button {
 
     span {
       transition-duration: var(--duration);
-      transform: rotateZ(0deg);
+      transform: rotateZ(-10deg);
     }
   }
   &.active {

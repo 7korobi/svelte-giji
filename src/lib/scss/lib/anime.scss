@@ -29,20 +29,12 @@
 .chat,
 .portrate,
 .portrate > IMG {
-  transition-property: border-color, width;
-  transition-duration: 0.3s;
-}
-
-.filmline,
-.filmline > .contentframe,
-.filmend,
-.contentframe .inframe {
-  transition-property: width, height, background-size;
+  transition-property: border-color;
   transition-duration: 0.3s;
 }
 
 .editframe {
-  transition-property: height, width;
+  transition-property: height;
   transition-duration: 0.2s, 0.2s;
   transition-delay: 0.1s, 0s;
   transition-timing-function: ease;

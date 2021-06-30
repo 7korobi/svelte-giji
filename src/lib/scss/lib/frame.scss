@@ -1,0 +1,43 @@
+.contentframe {
+  .talk > .baloon {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .talk > .portrate {
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .baloon {
+    border-color: var(--bg) !important;
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+  }
+
+  .report > .chat {
+    position: relative;
+    border-style: double dotted;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-top-color: transparent;
+      background-color: transparent;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+}

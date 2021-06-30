@@ -1,0 +1,43 @@
+:not(button)[title],
+[data-tooltip] {
+  &:after {
+    z-index: 99998;
+  }
+
+  &:before {
+    z-index: 99999;
+  }
+}
+
+.summaryframe,
+.toastframe,
+.sideframe,
+.editframe,
+.writeframe {
+  &:hover {
+    z-index: 30;
+  }
+  z-index: 10;
+}
+
+.summaryframe,
+.toastframe,
+.sideframe {
+  .chat {
+    z-index: 8;
+  }
+}
+
+.contentframe {
+  .banner {
+    z-index: 6;
+  }
+
+  .chat {
+    z-index: 4;
+  }
+
+  .baloon {
+    z-index: 2;
+  }
+}

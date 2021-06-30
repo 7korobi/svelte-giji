@@ -90,9 +90,11 @@ $bgs: ( BG: 1.0 , BG75: 0.75, BG50: 0.50 )
       +font(16px, 22px, $zoom)
 
 
-@import "./lib/index"
-@import "./lib/contentframe"
+@import "./lib/global"
+@import "./lib/icon"
+@import "./lib/frame"
 @import "./lib/h"
+@import "./lib/z-index"
 
 fieldset
   border-width: 0.2em 0 0 0
@@ -118,9 +120,6 @@ article,
   user-select: text
   overflow: visible
   width: 100%
-
-.contentframe
-  background-attachment: scroll
 
 label,
 abbr,
@@ -269,8 +268,10 @@ textarea
   line-height: 1.5em
   font-size: 1.0rem
 
+button
+  vertical-align: middle
+
 input,
-button,
 select
   vertical-align: middle
   height: 1.6em
@@ -461,7 +462,7 @@ button,
 [href],
 [cite],
 .btn
-  line-height: 1.7em
+  line-height: 1.5em
 
 abbr,
 fieldset,
@@ -815,21 +816,15 @@ rect.hide,
   stroke-width: 2px
   stroke-dasharray: 1px, 0
 
-body :not(button)[title]:after
+:not(button)[title]:after
   content: attr(title)
 
 [data-tooltip]:after
   content: attr(data-tooltip)
 
-body :not(button)[title],
+:not(button)[title],
 [data-tooltip]
   position: relative
-
-  &:after
-    z-index: 99998
-
-  &:before
-    z-index: 99999
 
   &:after,
   &:before

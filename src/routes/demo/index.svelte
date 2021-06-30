@@ -28,6 +28,7 @@ let scale
   <h1>Welcome to SvelteKit</h1>
   <p><a sveltekit:prefetch href="/">ROOT</a></p>
   <p>Visit <a sveltekit:prefetch href="/demo/color">COLOR</a></p>
+  <p>Visit <a sveltekit:prefetch href="/demo/icon">ICON</a></p>
 </Report>
 
 <Post handle="SSAY">

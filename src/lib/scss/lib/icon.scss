@@ -1,0 +1,12 @@
+svg.icon,
+svg.logo {
+  speak: none;
+  user-select: none;
+  overflow: visible;
+  width: 1em;
+  height: 1em;
+}
+
+svg.icon path {
+  fill: var(--pen);
+}

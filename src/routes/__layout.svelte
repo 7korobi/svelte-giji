@@ -44,7 +44,6 @@ function scroll() {}
       <div class="contentframe">
         <div class="inframe">
           <slot>ここにコンテンツを書きます。</slot>
-          <Footer />
         </div>
       </div>
       <div class="toastframe">
@@ -70,12 +69,12 @@ function scroll() {}
             <button
               class="btn item-half tooltip-left"
               data-tooltip="詳細情報を拡げる操作の ON / OFF">
-              <Icon.expand />
+              <Icon.Expand />
             </button>
             <button
               class="btn item-half tooltip-left active"
               data-tooltip="ページ一覧を一列にする / 折り返す">
-              <Icon.swipeOn />
+              <Icon.SwipeOn />
             </button>
           </div>
         </div>
@@ -84,24 +83,24 @@ function scroll() {}
         <div class="inframe">
           <div class="icons form">
             <button data-tooltip="一番上までスクロール" class="btn item tooltip-left">
-              <Icon.goTop />
+              <Icon.GoTop />
             </button>
             <button data-tooltip="マークする" class="btn item tooltip-left">
-              <Icon.markerOn />
+              <Icon.MarkerOn />
             </button>
             <button data-tooltip="今見ている投稿に関する情報" class="btn item tooltip-left">
-              <Icon.timelineClock />
+              <Icon.TimelineClock />
             </button>
             <button data-tooltip="今見ている投稿と繋がる投稿" class="btn item tooltip-left">
-              <Icon.tree />
+              <Icon.Tree />
             </button>
             <button data-tooltip="他の日付へ移動、検索など" class="btn item tooltip-left">
-              <Icon.tocOn />
+              <Icon.TocOn />
             </button>
             <button
               data-tooltip="キャラクターの一覧、ステータス等を確認"
               class="btn item tooltip-left">
-              <Icon.usersOn />
+              <Icon.UsersOn />
             </button>
           </div>
         </div>
@@ -247,54 +246,22 @@ function scroll() {}
       <div class="center-right" />
     </div>
   </div>
+  <div class="welcome">
+    <div class="outframe filmline">
+      <div class="contentframe">
+        <span class="filmstart" />
+      </div>
+    </div>
+    <div class="btns form">
+      <ThemeBtns />
+    </div>
+    <Footer />
+  </div>
 </div>
 
 <Browser ratio={SAFEAREA_RATIO} isDefaultSafeArea={true} />
 
 <style lang="scss">
-:global(html),
-:global(body) {
-  margin: 0;
-  tab-size: 6;
-  -moz-tab-size: 6;
-}
-
-:global(body) {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-overflow-scrolling: touch;
-  -webkit-touch-callout: none;
-  text-size-adjust: 100%;
-  user-select: none;
-
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: 'palt';
-  font-smooth: antialiased;
-  font-kerning: normal;
-  text-align: left;
-  overflow-x: hidden;
-
-  word-break: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  vertical-align: baseline;
-}
-
-:global(svg.icon) {
-  speak: none;
-  user-select: none;
-  overflow: visible;
-  width: 1em;
-  height: 1em;
-}
-:global(svg.icon path) {
-  fill: var(--pen);
-}
-
-.page-active,
-.page-active-bg {
-  min-height: 100vh;
-}
-
 .welcome {
   -o-object-fit: cover;
   object-fit: cover;
@@ -328,9 +295,14 @@ function scroll() {}
   margin: 0 0 0 -1px;
 }
 
+.filmstart {
+  display: inline-block;
+  margin: -26px 0 8px -1px;
+}
+
 .icons {
-  width: 20px;
-  margin: 0 0 10px auto;
+  width: 14px;
+  margin: 0 3px 10px auto;
 
   display: flex;
   flex-direction: column;
@@ -339,32 +311,22 @@ function scroll() {}
   align-content: space-around;
   justify-content: space-around;
 
-  --icon-color: white;
-
-  p {
-    font-size: 7px;
-
-    line-height: 7px;
-  }
-
   .item-half,
   .item {
     box-sizing: content-box;
     flex-basis: auto;
     text-align: center;
     border-radius: 5px;
+    margin: 2px 0;
     font-size: 20px;
-    font-weight: 400;
-    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif;
+    width: 20px;
   }
 
   .item-half {
-    width: 20px;
-    height: 25px;
+    height: 30px;
   }
   .item {
-    width: 20px;
-    height: 45px;
+    height: 60px;
   }
 }
 
@@ -373,12 +335,18 @@ function scroll() {}
   width: 100vw;
 }
 
+.outframe .contentframe .inframe {
+  min-height: calc( 100vh - 40em - 300px );
+}
+
 .writeframe {
   top: 0;
   box-sizing: content-box;
 }
 
 .contentframe {
+  background-attachment: scroll;
+
   .inframe {
     padding: 10px 0;
     background-repeat: repeat-y;
@@ -409,10 +377,6 @@ function scroll() {}
   .talk > .portrate {
     display: none;
   }
-
-  .chat {
-    z-index: 8;
-  }
 }
 .summaryframe:not(:hover),
 .toastframe:not(:hover),
@@ -436,10 +400,6 @@ function scroll() {}
 .editframe,
 .writeframe {
   position: fixed;
-  z-index: 10;
-  &:hover {
-    z-index: 30;
-  }
   td,
   th {
     border-style: none;
