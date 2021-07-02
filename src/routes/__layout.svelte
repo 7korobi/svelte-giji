@@ -336,7 +336,7 @@ function scroll() {}
 }
 
 .outframe .contentframe .inframe {
-  min-height: calc( 100vh - 40em - 300px );
+  min-height: calc(100vh - 40em - 300px);
 }
 
 .writeframe {

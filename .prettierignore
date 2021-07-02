@@ -1,6 +1,6 @@
 pnpm-lock.yaml
 .svelte-kit/**
-static/**
+static/css
 build/**
 node_modules/**
 src/lib/scss/lib/_color.scss
