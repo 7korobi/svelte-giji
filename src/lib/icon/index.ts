@@ -56,7 +56,7 @@ import Undo from './ui/undo.svelte'
 
 import Bold from './text/bold.svelte'
 import Emphasis from './text/emphasis.svelte'
-import underline from './text/underline.svelte'
+import Underline from './text/underline.svelte'
 
 import Indent from './text/indent.svelte'
 import Outdent from './text/outdent.svelte'
@@ -136,7 +136,7 @@ export {
   Undo,
   Bold,
   Emphasis,
-  underline,
+  Underline,
   Indent,
   Outdent,
   RemoveFormat,
