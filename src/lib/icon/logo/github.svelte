@@ -1,4 +1,9 @@
-<svg class="logo github" preserveAspectRatio="xMidYMid slice" viewBox="20 -5 220 230">
+<svg
+  class="logo"
+  id="logo-github"
+  preserveAspectRatio="xMidYMid slice"
+  overflow="visible"
+  viewBox="20 -5 220 230">
   <path
     fill="#9EDCF2"
     d="M200.9 199.8c0 13.9-32.2 25.1-71.9 25.1s-71.9-11.3-71.9-25.1c0-13.9 32.2-25.1 71.9-25.1s71.9 11.2 71.9 25.1zm0 0" />

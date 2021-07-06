@@ -40,6 +40,28 @@ import TimelinePlus from './ui/timeline-plus.svelte'
 import TimelineRemove from './ui/timeline-remove.svelte'
 import TimelineText from './ui/timeline-text.svelte'
 
+import AlignLeft from './ui/align-left.svelte'
+import AlignCenter from './ui/align-center.svelte'
+import AlignRight from './ui/align-right.svelte'
+
+import LinkOn from './ui/link-on.svelte'
+import LinkOff from './ui/link-off.svelte'
+
+import Cut from './ui/cut.svelte'
+import Copy from './ui/copy.svelte'
+import Paste from './ui/paste.svelte'
+
+import Redo from './ui/redo.svelte'
+import Undo from './ui/undo.svelte'
+
+import Bold from './text/bold.svelte'
+import Emphasis from './text/emphasis.svelte'
+import underline from './text/underline.svelte'
+
+import Indent from './text/indent.svelte'
+import Outdent from './text/outdent.svelte'
+import RemoveFormat from './text/remove-format.svelte'
+
 import Biohazard from './mood/biohazard.svelte'
 import Tropical from './mood/tropical.svelte'
 import Catwalk from './mood/catwalk.svelte'
@@ -50,6 +72,12 @@ import Gun from './mood/gun.svelte'
 import Sun from './mood/sun.svelte'
 import Sunrise from './mood/sunrise.svelte'
 import Moon from './mood/moon.svelte'
+
+import CeroA from './mood/cero_age_A.svelte'
+import CeroB from './mood/cero_age_B.svelte'
+import CeroC from './mood/cero_age_C.svelte'
+import CeroD from './mood/cero_age_D.svelte'
+import CeroZ from './mood/cero_age_Z.svelte'
 
 import Facebook from './logo/facebook.svelte'
 import Twitter from './logo/twitter.svelte'
@@ -96,6 +124,22 @@ export {
   TimelinePlus,
   TimelineRemove,
   TimelineText,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  LinkOn,
+  LinkOff,
+  Cut,
+  Copy,
+  Paste,
+  Redo,
+  Undo,
+  Bold,
+  Emphasis,
+  underline,
+  Indent,
+  Outdent,
+  RemoveFormat,
   Biohazard,
   Tropical,
   Catwalk,
@@ -106,6 +150,11 @@ export {
   Sun,
   Sunrise,
   Moon,
+  CeroA,
+  CeroB,
+  CeroC,
+  CeroD,
+  CeroZ,
   Facebook,
   Twitter,
   Windows,
