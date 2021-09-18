@@ -6,10 +6,21 @@ import Btn from '$lib/inline/Btn.svelte'
 
 import { Export, Footer } from '$lib/site'
 import { Report } from '$lib/chat'
-import Browser, { PageTransition } from '$lib/browser'
+import Browser, {
+  KeypadSize,
+  PageTransition,
+  SafeOffset,
+  SafeSize,
+  ViewOffset,
+  ViewSize,
+  ZoomOffset,
+  ZoomSize,
+  __BROWSER__
+} from '$lib/browser'
 
 import { site } from '$lib/store'
 import * as Icon from '$lib/icon'
+import { viewOffset } from '$lib/browser/store'
 
 const { url, side } = site
 
@@ -21,20 +32,22 @@ const SAFEAREA_RATIO = 1.0
 $: console.log('navigating', $navigating)
 $: console.log('page', $page)
 $: console.log('session', $session)
+$: offsetTop = welcomeTopHeight < $viewOffset[0] ? 0 : Math.floor(-0.4 * $viewOffset[0])
+$: offsetFilm = Math.floor(-0.5 * $viewOffset[0])
+$: offsetBottom = welcomeBottomHeight < $viewOffset[2] ? 0 : Math.floor(-0.4 * $viewOffset[2])
 
-function resize() {}
-
-function scroll() {}
+let welcomeTopHeight = 0
+let welcomeBottomHeight = 0
 </script>
 
 <div class="page-active-bg">
-  <div class="welcome">
+  <div class="welcome" bind:offsetHeight={welcomeTopHeight} style={`background-position: left 50% top ${offsetTop}px;`}>
     <Export />
     <h1 class="title-bar"><a href={$url.top}>人狼議事</a></h1>
     <div class="btns form">
       <ThemeBtns />
     </div>
-    <div class="outframe filmline">
+    <div class="outframe filmline" style={`background-position: ${offsetFilm}px 0;`}>
       <div class="contentframe">
         <span class="filmend" />
       </div>
@@ -43,7 +56,7 @@ function scroll() {}
   <div class="page-active">
     <div class="outframe">
       <div class="contentframe">
-        <div class="inframe">
+        <div class="inframe" style={`background-position: 0 ${offsetFilm}px;`}>
           <slot>ここにコンテンツを書きます。</slot>
         </div>
       </div>
@@ -278,8 +291,8 @@ function scroll() {}
       <div class="center-right" />
     </div>
   </div>
-  <div class="welcome">
-    <div class="outframe filmline">
+  <div class="welcome" bind:offsetHeight={welcomeBottomHeight} style={`background-position: left 50% bottom ${offsetBottom}px;`}>
+    <div class="outframe filmline" style={`background-position: ${-offsetFilm}px 0;`}>
       <div class="contentframe">
         <span class="filmstart" />
       </div>
@@ -299,7 +312,6 @@ function scroll() {}
   object-fit: cover;
   background-size: cover;
   background-image: url('https://giji-db923.web.app/images/bg/fhd-giji.png');
-  background-position: left 50% top calc(-0.3 * var(--view-top));
 }
 
 .title-bar {
@@ -312,7 +324,6 @@ function scroll() {}
 .filmline {
   margin: 0;
   background-repeat: repeat-x;
-  background-position: calc(0.5 * var(--view-top)) 0;
   .contentframe {
     background-image: none;
     height: 0;
@@ -383,7 +394,6 @@ function scroll() {}
     padding: 10px 0;
     background-repeat: repeat-y;
     background-attachment: local;
-    background-position: 0 calc(-0.5 * var(--view-top));
   }
 }
 

@@ -1,5 +1,4 @@
 <script lang="ts">
-import type { OFFSET, SIZE } from '../common/config'
 import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from '../common/config'
 
 import { state, isPortrait, isLandscape, safePoint, safeOffset, safeSize } from './store'
@@ -11,8 +10,6 @@ export let isDefaultSafeArea: boolean
 let el: HTMLDivElement
 
 $: compute($isPortrait, $isLandscape)
-$: setSafeOffset($safeOffset)
-$: setSafeSize($safeSize)
 
 function compute($isPortrait: boolean, $isLandscape: boolean) {
   if (!el) return
@@ -38,22 +35,6 @@ function compute($isPortrait: boolean, $isLandscape: boolean) {
   state.safe.measureOffset(top * ratio, right * ratio, bottom * ratio, left * ratio)
   safeOffset.set(state.safe.offset)
   safePoint.set(state.safe.point)
-}
-
-function setSafeOffset([top, right, bottom, left]: OFFSET) {
-  if (!__BROWSER__) return
-  const { style } = document.documentElement
-  style.setProperty('--safe-top', `${top}px`)
-  style.setProperty('--safe-right', `${right}px`)
-  style.setProperty('--safe-bottom', `${bottom}px`)
-  style.setProperty('--safe-left', `${left}px`)
-}
-
-function setSafeSize([width, height]: SIZE) {
-  if (!__BROWSER__) return
-  const { style } = document.documentElement
-  style.setProperty('--safe-width', `${width}px`)
-  style.setProperty('--safe-height', `${height}px`)
 }
 </script>
 

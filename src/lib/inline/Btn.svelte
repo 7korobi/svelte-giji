@@ -9,7 +9,7 @@ export let type: TYPE = 'as'
 </script>
 
 <button
-  class={`${className(type, as, value)} ${$$props.class}`}
+  class={[className(type, as, value), $$props.class].join(' ')}
   data-tooltip={$$props['data-tooltip']}
   on:click={() => (value = tap(type, as, value))}>
   <slot />

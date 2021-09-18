@@ -36,7 +36,15 @@ let scale
   <LongPress bind:value={hello} as="world" disabled>Hello World!</LongPress>
 
   <LongPress bind:value={hello} as="home">Hello Home!</LongPress>
+  <LongPress bind:value={hello} as="home">Hello Home!</LongPress>
 
+  <LongPress bind:value={hello} as="office">Hello Office!</LongPress>
+  <LongPress bind:value={hello} as="office">Hello Office!</LongPress>
+
+  <LongPress bind:value={hello} as="home">Hello Home!</LongPress>
+  <LongPress bind:value={hello} as="home">Hello Home!</LongPress>
+
+  <LongPress bind:value={hello} as="office">Hello Office!</LongPress>
   <LongPress bind:value={hello} as="office">Hello Office!</LongPress>
 </Post>
 

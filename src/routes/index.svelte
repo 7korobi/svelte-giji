@@ -6,6 +6,9 @@ import { BreadCrumb } from '$lib/topic'
 import './_app.svelte'
 </script>
 
+<svelte:head>
+  <title>人狼議事</title>
+</svelte:head>
 <Post handle="SSAY">
   <h1>Welcome to SvelteKit</h1>
   <p>Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>
