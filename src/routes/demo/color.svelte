@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Bits } from '$lib/common/bits'
+import { Bits } from '$lib/inline/bits'
 
 import Chat, { Banner, Report } from '$lib/chat'
 import { Scroll } from '$lib/scroll'

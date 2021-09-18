@@ -1,0 +1,25 @@
+service: svelte-app
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20211221
+
+package:
+  individually: true
+  exclude:
+    - ./**
+  include:
+    - .serverless_build_output/**
+
+functions:
+  svelte:
+    handler: .serverless_build_output/serverless.handler
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+plugins:
+  - serverless-offline

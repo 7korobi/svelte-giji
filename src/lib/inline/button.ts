@@ -1,15 +1,16 @@
-import { Bits } from '../common/bits'
+import type { Writable } from 'svelte/store'
+import { Bits } from './bits'
 
 export type TYPE = 'as' | 'set' | 'off' | 'on' | 'xor' | 'toggle'
 export type STATE = 'active' | 'press' | ''
 
-export function className(type: TYPE, as, value, isPress: boolean = false): STATE {
+export function className(type: TYPE, as: any, value: any, isPress: boolean = false): STATE {
   if (chkActive(type, as, value)) return 'active'
   if (isPress) return 'press'
   return ''
 }
 
-export function chkActive(type, as, value) {
+export function chkActive(type: TYPE, as: any, value: any) {
   switch (type) {
     case 'as':
       return value === as
@@ -17,7 +18,7 @@ export function chkActive(type, as, value) {
   return (value & as) === as
 }
 
-export function tap(type: TYPE, value, as) {
+export function tap(type: TYPE, as: any, value: any) {
   switch (type) {
     case 'as':
     case 'set':

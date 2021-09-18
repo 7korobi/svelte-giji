@@ -1,3 +1,5 @@
+import { Bits } from '$lib/inline/bits'
+import { writeLocal } from '$lib/storage'
 import { writable } from 'svelte/store'
 
 export const url = writable({
@@ -19,7 +21,13 @@ export const style = writable({
   ry: 10
 })
 
-export const zoom = writable('BG')
-export const font = writable('novel')
-export const theme = writable('cinema')
-export const day = writable('day')
+export const day = writeLocal('day', 'day')
+export const zoom = writeLocal('zoom', 'BG')
+export const font = writeLocal('font', 'novel')
+export const theme = writeLocal('theme', 'cinema')
+
+export const side = writeLocal('side', 0)
+export const SideBits = new Bits(
+  ['Expand', 'SwipeOn', 'TimelineClock', 'Tree', 'TocOn', 'UsersOn'],
+  {}
+)

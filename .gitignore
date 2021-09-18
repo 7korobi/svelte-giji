@@ -1,5 +1,11 @@
+/.svelte-kit
+/.begin_build_output
+/.vercel_build_output
+/.netlify_build_output
+/.cloudflare_build_output
+/.serverless_build_output
+/.static_build_output
+/.node_build_output
+
 .DS_Store
 node_modules
-/.svelte-kit
-/build
-/functions

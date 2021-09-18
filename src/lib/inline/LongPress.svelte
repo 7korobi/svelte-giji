@@ -24,8 +24,9 @@ function end() {
 }
 
 function animeEnd() {
+  console.log("animeEnd")
   if (isPress) {
-    value = tap(type, value, as)
+    value = tap(type, as, value)
   }
   isPress = false
 }

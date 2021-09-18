@@ -55,7 +55,7 @@ let scale
   <Pen />
 </Talk>
 
-<Talk handle="SSAY" face_id="c20">
+<Talk handle="SSAY" face_id="c21">
   <HtmlArea />
 </Talk>
 

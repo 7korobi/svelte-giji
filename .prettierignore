@@ -1,6 +1,14 @@
-pnpm-lock.yaml
 .svelte-kit/**
+.begin_build_output
+.vercel_build_output
+.netlify_build_output
+.cloudflare_build_output
+.serverless_build_output
+.static_build_output
+.node_build_output
+
+pnpm-lock.yaml
 static/css
-build/**
+json/**
 node_modules/**
 src/lib/scss/lib/_color.scss
