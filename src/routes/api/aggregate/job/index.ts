@@ -1,6 +1,6 @@
 import fs from 'fs'
 import sh from 'child_process'
-import sortBy from 'lodash/sortBy'
+import sortBy from 'lodash/sortBy.js'
 
 import { db } from '$lib/db'
 

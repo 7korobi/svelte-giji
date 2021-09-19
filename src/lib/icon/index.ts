@@ -54,6 +54,8 @@ import Paste from './ui/paste.svelte'
 import Redo from './ui/redo.svelte'
 import Undo from './ui/undo.svelte'
 
+import Logout from './ui/logout.svelte'
+
 import Bold from './text/bold.svelte'
 import Emphasis from './text/emphasis.svelte'
 import Underline from './text/underline.svelte'
@@ -134,6 +136,7 @@ export {
   Paste,
   Redo,
   Undo,
+  Logout,
   Bold,
   Emphasis,
   Underline,

@@ -1,6 +1,7 @@
+import { writable } from 'svelte/store'
 import { Bits } from '$lib/inline/bits'
 import { writeLocal } from '$lib/storage'
-import { writable } from 'svelte/store'
+import live from '$lib/site/json/live.json'
 
 export const url = writable({
   portrate: '/images/portrate/',
@@ -31,3 +32,4 @@ export const SideBits = new Bits(
   ['Expand', 'SwipeOn', 'TimelineClock', 'Tree', 'TocOn', 'UsersOn'],
   {}
 )
+export { live }

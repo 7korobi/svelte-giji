@@ -9,3 +9,5 @@
 
 .DS_Store
 node_modules
+src/lib/game/json
+src/lib/site/json

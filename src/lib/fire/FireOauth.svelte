@@ -1,93 +1,59 @@
 <script type="ts">
-import { onMount, onDestroy, createEventDispatcher } from 'svelte'
-import firebase from 'firebase/app'
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  signInWithRedirect,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  OAuthProvider,
+  GithubAuthProvider,
+  User
+} from 'firebase/auth'
 
-let user: firebase.User
-let uc: firebase.auth.UserCredential
-let error: any
-let icon = 'btn'
+import { __BROWSER__ } from '$lib/browser'
+import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
+import { app, user, error } from './store'
 
-$: uc && setIcon(uc.credential.providerId)
+const auth = __BROWSER__ ? getAuth($app) : undefined
+$: console.log($user)
 
-const auth = firebase.auth()
+if (__BROWSER__) {
+  onAuthStateChanged(auth, user.set, error.set)
+} else {
+  user.set(undefined)
+  error.set(undefined)
+}
 
-auth.onIdTokenChanged(setUser)
-
-auth.onAuthStateChanged(setUser)
-
-auth
-  .getRedirectResult()
-  .catch(setError)
-  .then((userCredential) => {
-    if (userCredential) {
-      uc = userCredential
-      user = uc.user
-    } else {
-      user = uc = undefined
-    }
-  })
-
-auth
-  .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-  .catch(setError)
-  .then(() => {
-    console.log('session persistence')
-  })
-
-function setIcon(providerId) {
+function icon({ providerData: [{ providerId }] }: User) {
   switch (providerId) {
     case 'twitter.com':
-      return (icon = 'btn mdi mdi-twitter')
+      return Twitter
     case 'facebook.com':
-      return (icon = 'btn mdi mdi-facebook-box')
-    case 'microsoft.com':
-      return (icon = 'btn mdi mdi-microsoft-windows')
+      return Facebook
     case 'google.com':
-      return (icon = 'btn mdi mdi-google')
+      return Google
     case 'github.com':
-      return (icon = 'btn mdi mdi-github-face')
+      return Github
+    case 'microsoft.com':
+      return Windows
+    default:
+      return null
   }
-}
-
-function setError(e) {
-  error = e
-}
-
-function setUser(o: firebase.User) {
-  user = o
-}
-
-function signOut() {
-  user = uc = undefined
-  auth.signOut()
-}
-
-function facebook() {
-  auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
-}
-function twitter() {
-  auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider())
-}
-function github() {
-  auth.signInWithRedirect(new firebase.auth.GithubAuthProvider())
-}
-function google() {
-  auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-}
-function microsoft() {
-  auth.signInWithRedirect(new firebase.auth.OAuthProvider('microsoft.com'))
 }
 </script>
 
-{#if user}
-  <span class="tap pull-right"><i class="btn mdi mdi-logout" on:click={signOut} /></span>
-  <span class="tap"><i class={icon}> &thinsp; {user.displayName}</i></span>
+{#if $user}
+  <button class="pull-right" on:click={() => signOut(auth)}><Logout /></button>
+  <svelte:component this={icon($user)} />
+  <span class="tap">{$user.displayName}</span>
 {:else}
-  <span class="tap"><i class="btn mdi mdi-facebook-box" on:click={facebook} /></span>
-  <span class="tap"><i class="btn mdi mdi-twitter" on:click={twitter} /></span>
-  <span class="tap"><i class="btn mdi mdi-windows" on:click={microsoft} /></span>
-  <span class="tap"><i class="btn mdi mdi-google" on:click={google} /></span>
-  <span class="tap"><i class="btn mdi mdi-github-face" on:click={github} /></span>
+  <button on:click={() => signInWithRedirect(auth, new FacebookAuthProvider())}
+    ><Facebook /></button>
+  <button on:click={() => signInWithRedirect(auth, new TwitterAuthProvider())}><Twitter /></button>
+  <button on:click={() => signInWithRedirect(auth, new OAuthProvider('microsoft.com'))}
+    ><Windows /></button>
+  <button on:click={() => signInWithRedirect(auth, new GoogleAuthProvider())}><Google /></button>
+  <button on:click={() => signInWithRedirect(auth, new GithubAuthProvider())}><Github /></button>
 {/if}
-
-{#if error}<br /> {error.code} {error.message}{/if}

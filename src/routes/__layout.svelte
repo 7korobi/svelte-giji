@@ -6,23 +6,18 @@ import Btn from '$lib/inline/Btn.svelte'
 
 import { Export, Footer } from '$lib/site'
 import { Report } from '$lib/chat'
-import Browser, {
-  KeypadSize,
-  PageTransition,
-  SafeOffset,
-  SafeSize,
-  ViewOffset,
-  ViewSize,
-  ZoomOffset,
-  ZoomSize,
-  __BROWSER__
-} from '$lib/browser'
+import Browser, { __BROWSER__ } from '$lib/browser'
 
-import { site } from '$lib/store'
+import { site, fire } from '$lib/store'
 import * as Icon from '$lib/icon'
 import { viewOffset } from '$lib/browser/store'
 
+let firebase_app
 const { url, side } = site
+
+if (__BROWSER__) {
+  fire.init(site.live.firebase)
+}
 
 /**
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
@@ -41,7 +36,10 @@ let welcomeBottomHeight = 0
 </script>
 
 <div class="page-active-bg">
-  <div class="welcome" bind:offsetHeight={welcomeTopHeight} style={`background-position: left 50% top ${offsetTop}px;`}>
+  <div
+    class="welcome"
+    bind:offsetHeight={welcomeTopHeight}
+    style={`background-position: left 50% top ${offsetTop}px;`}>
     <Export />
     <h1 class="title-bar"><a href={$url.top}>人狼議事</a></h1>
     <div class="btns form">
@@ -291,7 +289,10 @@ let welcomeBottomHeight = 0
       <div class="center-right" />
     </div>
   </div>
-  <div class="welcome" bind:offsetHeight={welcomeBottomHeight} style={`background-position: left 50% bottom ${offsetBottom}px;`}>
+  <div
+    class="welcome"
+    bind:offsetHeight={welcomeBottomHeight}
+    style={`background-position: left 50% bottom ${offsetBottom}px;`}>
     <div class="outframe filmline" style={`background-position: ${-offsetFilm}px 0;`}>
       <div class="contentframe">
         <span class="filmstart" />
@@ -340,7 +341,7 @@ let welcomeBottomHeight = 0
 
 .filmstart {
   display: inline-block;
-  margin: -26px 0 8px -1px;
+  margin: -26px 0 26px -1px;
 }
 
 .icons {

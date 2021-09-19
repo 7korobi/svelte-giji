@@ -9,6 +9,8 @@
 
 pnpm-lock.yaml
 static/css
-json/**
 node_modules/**
 src/lib/scss/lib/_color.scss
+
+json/**
+src/lib/*/json/*
