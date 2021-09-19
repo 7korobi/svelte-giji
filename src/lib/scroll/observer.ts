@@ -1,6 +1,6 @@
 import { __BROWSER__ } from '../browser/device'
 
-export type RANGE = RANGE_STATE | 'focus'
+export type RANGE = RANGE_STATE | 'focus' | 'horizon' | 'vertical'
 type RANGE_STATE = 'compress' | 'hidden' | 'peep' | 'show'
 type RANGE_FOCUS = 'focus' | 'top' | 'right' | 'bottom' | 'left'
 
@@ -21,6 +21,8 @@ const HIDDEN = 'hidden'
 const PEEP = 'peep'
 const SHOW = 'show'
 const FOCUS = 'focus'
+const HORIZON = 'horizon'
+const VERTICAL = 'vertical'
 
 const noop = () => {}
 
@@ -93,6 +95,16 @@ function observeFactory() {
     threshold: 0
   })
 
+  const horizonObserver = new IntersectionObserver(cbFocus, {
+    rootMargin: '-50% 0%',
+    threshold: 0
+  })
+
+  const verticalObserver = new IntersectionObserver(cbFocus, {
+    rootMargin: '0% -50%',
+    threshold: 0
+  })
+
   return observer
   function observer(range: RANGE[], options: OperationsOptions) {
     return new Operations(options, function (this, el) {
@@ -104,6 +116,8 @@ function observeFactory() {
       if (range.includes(SHOW) && range.includes(PEEP)) showObserver.observe(el)
 
       if (range.includes(FOCUS)) coreObserver.observe(el)
+      if (range.includes(HORIZON)) horizonObserver.observe(el)
+      if (range.includes(VERTICAL)) verticalObserver.observe(el)
 
       return { destroy }
       function destroy() {

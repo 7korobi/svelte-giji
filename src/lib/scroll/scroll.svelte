@@ -13,8 +13,6 @@ export let range: RANGE[] = [COMPRESS, HIDDEN, PEEP, SHOW, FOCUS]
 export let focus = ''
 export let state = ''
 
-$: console.log(`name ${name}, state ${state}, focus ${focus}`)
-
 const tracker = observe(range, {
   change(ops) {
     focus = ops.focus

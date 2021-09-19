@@ -1,3 +1,5 @@
 import Scroll from './scroll.svelte'
+import Focus from './focus.svelte'
+import Goal from './goal.svelte'
 
-export { Scroll }
+export { Scroll, Focus, Goal }

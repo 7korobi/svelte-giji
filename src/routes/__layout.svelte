@@ -80,7 +80,7 @@ let welcomeBottomHeight = 0
           <div class="icons form">
             <Btn
               type="toggle"
-              as={site.SideBits.by(['Expand'])}
+              as={site.SideBits.posi.Expand}
               bind:value={$side}
               class="item-half tooltip-left"
               data-tooltip="詳細情報を拡げる操作の ON / OFF">
@@ -88,7 +88,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.by(['SwipeOn'])}
+              as={site.SideBits.posi.SwipeOn}
               bind:value={$side}
               class="item-half tooltip-left"
               data-tooltip="ページ一覧を一列にする / 折り返す">
@@ -111,7 +111,7 @@ let welcomeBottomHeight = 0
             </button>
             <Btn
               type="toggle"
-              as={site.SideBits.by(['TimelineClock'])}
+              as={site.SideBits.posi.TimelineClock}
               bind:value={$side}
               data-tooltip="今見ている投稿に関する情報"
               class="item tooltip-left">
@@ -119,7 +119,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.by(['Tree'])}
+              as={site.SideBits.posi.Tree}
               bind:value={$side}
               data-tooltip="今見ている投稿と繋がる投稿"
               class="item tooltip-left">
@@ -127,7 +127,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.by(['TocOn'])}
+              as={site.SideBits.posi.TocOn}
               bind:value={$side}
               data-tooltip="他の日付へ移動、検索など"
               class="item tooltip-left">
@@ -135,7 +135,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.by(['UsersOn'])}
+              as={site.SideBits.posi.UsersOn}
               bind:value={$side}
               data-tooltip="キャラクターの一覧、ステータス等を確認"
               class="item tooltip-left">
@@ -144,7 +144,7 @@ let welcomeBottomHeight = 0
           </div>
         </div>
       </div>
-      {#if $side & site.SideBits.by(['UsersOn'])}
+      {#if $side & site.SideBits.posi.UsersOn}
         <div class="summaryframe impose">
           <div class="inframe header">
             <div class="swipe">
