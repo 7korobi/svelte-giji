@@ -7,7 +7,14 @@
 /.static_build_output
 /.node_build_output
 
+json
+build
+package
+
 .DS_Store
 node_modules
 src/lib/game/json
 src/lib/site/json
+src/lib/fire/core
+src/__spec__
+

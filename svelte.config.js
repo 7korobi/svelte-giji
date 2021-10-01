@@ -1,38 +1,35 @@
 import preprocess from 'svelte-preprocess'
-import functions from './src/lib/scss/bin/functions.js'
+import functions from './node/lib/scss/bin/functions.js'
 
-import STATIC from '@sveltejs/adapter-static'
-const staticAdapter = STATIC({
+import AdapterStatic from '@sveltejs/adapter-static'
+const STATIC = AdapterStatic({
   pages: '.static_build_output',
   assets: '.static_build_output',
   fallback: null
 })
 
-import NODE from '@sveltejs/adapter-node'
-const nodeAdapter = NODE({
+import AdapterNode from '@sveltejs/adapter-node'
+const NODE = AdapterNode({
   out: '.node_build_output',
-  precompress: true,
-  env: {
-    port: 3000
-  }
+  precompress: true
 })
 
-import NETLIFY from '@sveltejs/adapter-netlify'
-const netlifyAdapter = NETLIFY()
+import AdapterNetlify from '@sveltejs/adapter-netlify'
+const NETLIFY = AdapterNetlify()
 
-import VERCEL from '@sveltejs/adapter-vercel'
-const vercelAdapter = VERCEL()
+import AdapterVercel from '@sveltejs/adapter-vercel'
+const VERCEL = AdapterVercel()
 
 // TODO: use "platform: 'node'" when building for node
-import CLOUDFLARE from '@sveltejs/adapter-cloudflare-workers'
-const cloudflareAdapter = CLOUDFLARE()
+import AdapterCloudflare from '@sveltejs/adapter-cloudflare-workers'
+const CLOUDFLARE = AdapterCloudflare()
 
-import BEGIN from './src/@sveltejs-adapter-begin-11.js'
-const beginAdapter = BEGIN()
+import AdapterBegin from './src/@sveltejs-adapter-begin-11.js'
+const BEGIN = AdapterBegin()
 
 // TODO: has a little debugger bug.
-import SERVERLESS from '@nikso/adapter-serverless'
-const serverlessAdapter = SERVERLESS({
+import AdapterServerless from '@nikso/adapter-serverless'
+const SERVERLESS = AdapterServerless({
   out: '.serverless_build_output'
 })
 
@@ -46,7 +43,7 @@ const config = {
 
   kit: {
     target: 'body',
-    adapter: nodeAdapter
+    adapter: NODE
   }
 }
 

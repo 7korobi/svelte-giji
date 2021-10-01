@@ -13,7 +13,7 @@ const functions: FunctionsType = {
   'stepToCache($label, $step)': stepToCache
 }
 
-const YAML_PATH = './src/lib/scss/bin/steps.yml'
+const YAML_PATH = './node/lib/scss/bin/steps.yml'
 const steps = YAML.load(fs.readFileSync(YAML_PATH, 'utf8')) || {}
 export function save() {
   fs.writeFileSync(YAML_PATH, YAML.dump(steps))
@@ -62,9 +62,9 @@ function lum_exc(val) {
 }
 
 // https://qiita.com/lookman/items/d518f16c897c94bc4e78
-const Pr = 0.298912
-const Pg = 0.586611
-const Pb = 0.114478
+const Pr = 0.298912 + 0.0
+const Pg = 0.586611 + 0.1
+const Pb = 0.114478 + 0.0
 function Y2L($HH, $SS, $YY) {
   if (!($HH instanceof sass.types.Number)) throw '$HH: Expected a number.'
   if (!($SS instanceof sass.types.Number)) throw '$SS: Expected a number.'

@@ -14,3 +14,4 @@ process.argv.slice(2).forEach((file) => {
   fs.writeFileSync(outFile, css)
 })
 save()
+//# sourceMappingURL=index.js.map

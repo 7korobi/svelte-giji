@@ -73,43 +73,45 @@ const potofColors = [
 ]
 
 const logColors = [
-  'title-bar',
-  'welcome-links',
-  'progress',
-  'prologue',
-  'BRONZE',
-  'footer',
-  'header',
-  'btns',
-  'chrblank',
-  'welcome-btns',
-
-  'ADMIN',
   'TITLE',
+  'ADMIN',
   'MAKER',
 
-  'icons',
-  'public',
-  'private',
+  'SSAY',
+  'MSAY',
+  'AIM',
+  'VSSAY',
 
-  'FSAY',
-  'XSAY',
-  'LSAY',
-  'WSAY',
-
-  'HSAY',
-  'hide',
   'TSAY',
 
   'GSAY',
   'GAIM',
   'VGSAY',
-  'SSAY',
-  'MSAY',
-  'AIM',
-  'VSSAY',
+
+  'WSAY',
+  'XSAY',
   'PSAY',
 
+
+  'welcome-btns',
+  'welcome-links',
+  'title-bar',
+  'footer',
+  'header',
+
+  'btns',
+  'icons',
+  'hide',
+
+  'public',
+  'private',
+  'progress',
+  'prologue',
+
+  'BRONZE',
+  'FSAY',
+  'LSAY',
+  'HSAY',
   'ELSE'
 ]
 
@@ -118,7 +120,7 @@ const GameBits = new Bits(['A', 'B', 'C', 'D'], {
   CD: ['C', 'D'],
   BC: ['AB', 'C']
 })
-let games = 0
+let games = 1
 
 let icons: Icon[] = [
   { v: 'c01', roll: 0, x: -200, y: -100, label: '花売り メアリー' },
@@ -166,86 +168,129 @@ function byF(str: string) {
   <p>Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>
 </Report>
 
-{#each logColors as color}
+<Scroll name="chrblank">
   <Banner>
-    <h3>{color}</h3>
+    <h3>chrblank</h3>
   </Banner>
+  <Chat show="report" handle="chrblank">
+    <Diagram {icons} {lines} {clusters} edit={true} />
+    <p>on : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="on" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="on" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <p>off : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="off" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="off" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <p>xor : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="xor" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="xor" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <p>toggle : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="toggle" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="toggle" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <p>set : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="set" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="set" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <p>as : +@ ~@</p>
+    <p>
+      {#each GameBits.labels as game (game)}
+        <Btn type="as" bind:value={games} as={GameBits.posi[game]}>
+          {game}
+        </Btn>
+      {/each}
+      {#each GameBits.labels as game (game)}
+        <Btn type="as" bind:value={games} as={GameBits.nega[game]}>
+          {game}
+        </Btn>
+      {/each}
+    </p>
+    <hr class="blank" />
+    <p>
+      {#each texts as text, idx (text)}
+        {#if rubys[idx]}
+          <ruby
+            >{text}
+            <rt>{rubys[idx]}</rt></ruby>
+        {:else}{text}{/if}
+      {/each}
+    </p>
+  </Chat>
+</Scroll>
+
+{#each logColors as color}
   <Scroll name={color}>
+    <Banner>
+      <h3>{color}</h3>
+    </Banner>
     <Chat show="report" handle={color}>
-      <p>on : +@ ~@</p>
       <p>
-        {#each GameBits.labels as game (game)}
-          <Btn type="on" bind:value={games} as={GameBits.posi[game]}>
-            {game}
-          </Btn>
-        {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="on" bind:value={games} as={GameBits.nega[game]}>
-            {game}
-          </Btn>
-        {/each}
-      </p>
-      <p>off : +@ ~@</p>
-      <p>
-        {#each GameBits.labels as game (game)}
-          <Btn type="off" bind:value={games} as={GameBits.posi[game]}>
-            {game}
-          </Btn>
-        {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="off" bind:value={games} as={GameBits.nega[game]}>
-            {game}
-          </Btn>
-        {/each}
-      </p>
-      <p>xor : +@ ~@</p>
-      <p>
-        {#each GameBits.labels as game (game)}
-          <Btn type="xor" bind:value={games} as={GameBits.posi[game]}>
-            {game}
-          </Btn>
-        {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="xor" bind:value={games} as={GameBits.nega[game]}>
-            {game}
-          </Btn>
-        {/each}
-      </p>
-      <p>toggle : +@ ~@</p>
-      <p>
+        toggle
         {#each GameBits.labels as game (game)}
           <Btn type="toggle" bind:value={games} as={GameBits.posi[game]}>
             {game}
           </Btn>
         {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="toggle" bind:value={games} as={GameBits.nega[game]}>
-            {game}
-          </Btn>
-        {/each}
       </p>
-      <p>set : +@ ~@</p>
       <p>
+        set
         {#each GameBits.labels as game (game)}
           <Btn type="set" bind:value={games} as={GameBits.posi[game]}>
             {game}
           </Btn>
         {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="set" bind:value={games} as={GameBits.nega[game]}>
-            {game}
-          </Btn>
-        {/each}
       </p>
-      <p>as : +@ ~@</p>
       <p>
+        as
         {#each GameBits.labels as game (game)}
           <Btn type="as" bind:value={games} as={GameBits.posi[game]}>
-            {game}
-          </Btn>
-        {/each}
-        {#each GameBits.labels as game (game)}
-          <Btn type="as" bind:value={games} as={GameBits.nega[game]}>
             {game}
           </Btn>
         {/each}

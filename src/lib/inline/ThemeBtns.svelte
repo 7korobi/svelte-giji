@@ -27,8 +27,10 @@ $: switch ($theme) {
 
 <svelte:head>
   <link rel="stylesheet" href="/css/index.css" />
-  <link rel="stylesheet" href="/css/log-{$day}.css" />
-  <link rel="stylesheet" href="/css/theme-{$theme}.css" />
+  {#if __BROWSER__}
+    <link rel="stylesheet" href="/css/log-{$day}.css" />
+    <link rel="stylesheet" href="/css/theme-{$theme}.css" />
+  {/if}
 </svelte:head>
 
 <span>
@@ -48,7 +50,6 @@ $: switch ($theme) {
 </span>
 <span>
   <Btn as="cinema" bind:value={$theme}>煉瓦</Btn>
-  <Btn as="pop" bind:value={$theme}>💭</Btn>
   <Btn as="snow" bind:value={$theme}>雪景</Btn>
   <Btn as="star" bind:value={$theme}>蒼穹</Btn>
   <Btn as="night" bind:value={$theme}>闇夜</Btn>

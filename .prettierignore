@@ -7,6 +7,9 @@
 .static_build_output
 .node_build_output
 
+build
+package
+
 pnpm-lock.yaml
 static/css
 node_modules/**
