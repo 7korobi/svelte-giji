@@ -4,6 +4,7 @@ import { site } from '$lib/store'
 
 if (dev) {
   site.url.set({
+    graphql: 'ws://localhost:4000/graphql',
     portrate: 'https://giji.f5.si/images/portrate/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
@@ -11,6 +12,7 @@ if (dev) {
   })
 } else {
   site.url.set({
+    graphql: 'ws://giji-api.duckdns.org:4000/graphql',
     portrate: 'https://giji.f5.si/images/portrate/',
     css: 'https://giji.f5.si/css/',
     api: 'https://giji-api.duckdns.org/api/',

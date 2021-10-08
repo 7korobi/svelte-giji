@@ -12,6 +12,7 @@ build
 package
 
 .DS_Store
+node
 node_modules
 src/lib/game/json
 src/lib/site/json

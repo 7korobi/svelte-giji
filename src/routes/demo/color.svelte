@@ -92,7 +92,6 @@ const logColors = [
   'XSAY',
   'PSAY',
 
-
   'welcome-btns',
   'welcome-links',
   'title-bar',

@@ -11,17 +11,30 @@ import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
 
 import { browser } from '$lib/store'
+import { create } from '$lib/graphql'
 
 import '../_app.svelte'
+import { site } from '$lib/store'
+
+const { url } = site
 
 const { viewSize, zoomSize, zoomOffset, zoomScale } = browser
 const bootAt = Date.now()
+
+const graphQL = create($url.graphql)
+const helloQ = graphQL.query<string>('{ hello }')
+const greetings = graphQL.query<string>('subscription { tick }')
 
 let hello = 'home'
 
 let x
 let y
 let scale
+
+$: console.log(graphQL)
+$: console.log($helloQ)
+$: console.log($greetings)
+
 </script>
 
 <Report handle="SSAY">
