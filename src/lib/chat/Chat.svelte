@@ -7,7 +7,10 @@ const sveltes = { talk, post, report }
 export let show: keyof typeof sveltes
 export let handle: string = 'VSSAY'
 export let face_id: string = ''
+
 export let log: string = ''
+export let deco: 'mono' | 'head' | 'mono head' | 'head mono' | '' = ''
+
 export let to: string = ''
 export let head: string = ''
 export let label: string = ''
@@ -15,14 +18,18 @@ export let label: string = ''
 
 <svelte:component this={sveltes[show]} {handle} {face_id}>
   {#if head}
-    <div class="name">
-      {#if to}
+    {#if to}
+      <p class="name c">
         <span class="pull-right">{to}</span>▷<span class="pull-left">{head}</span>
-      {:else}<span class="pull-right">{label}</span>{head}{/if}
-      <hr />
-    </div>
+      </p>
+    {:else}
+      <p class="name">
+        <span class="pull-right">{label}</span>{head}
+      </p>
+    {/if}
+    <hr />
   {/if}
-  <div class="text">
+  <div class={`text ${deco}`}>
     {#if log}
       {@html log}
     {:else}

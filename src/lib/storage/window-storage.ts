@@ -25,7 +25,6 @@ function initConverter<T>(init: T): Convert<T> {
   return JSON
 }
 
-
 if (__BROWSER__) {
   window.addEventListener('storage', ({ storageArea, key, newValue, oldValue, url }) => {
     let cache: Cache = undefined
@@ -39,7 +38,13 @@ if (__BROWSER__) {
 
 const local_cache: Cache = {}
 const session_cache: Cache = {}
-function writeCache<T>(convert: Convert<T>, cache: Cache, storage: Storage, key: string, initValue: T) {
+function writeCache<T>(
+  convert: Convert<T>,
+  cache: Cache,
+  storage: Storage,
+  key: string,
+  initValue: T
+) {
   if (cache[key]) throw new Error(`${key} duplicated.`)
 
   initValue = convert.parse(storage.getItem(key)) || initValue
@@ -52,11 +57,11 @@ function writeCache<T>(convert: Convert<T>, cache: Cache, storage: Storage, key:
   return store
 }
 
-export function writeLocal<T>(key: string, initValue: T, convert = initConverter(initValue) ) {
+export function writeLocal<T>(key: string, initValue: T, convert = initConverter(initValue)) {
   if (!__BROWSER__) return writable(initValue)
   return writeCache(convert, local_cache, window.localStorage, key, initValue)
 }
-export function writeSession<T>(key: string, initValue: T, convert = initConverter(initValue) ) {
+export function writeSession<T>(key: string, initValue: T, convert = initConverter(initValue)) {
   if (!__BROWSER__) return writable(initValue)
   return writeCache(convert, session_cache, window.sessionStorage, key, initValue)
 }

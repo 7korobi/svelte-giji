@@ -264,11 +264,36 @@ function byF(str: string) {
   </Chat>
 </Scroll>
 
+
 {#each logColors as color}
+  <Banner>
+    <h3>{color}</h3>
+  </Banner>
+  <Scroll name=".1">
+    <Scroll name=".1.1">
+      <Chat show="post" handle={color}>
+        <button on:click={handleClick}
+          >Clicked
+          <span style={`btnColor: ${btnColor}`}>{count}{rest}</span></button>
+
+        <!-- https://github.com/eugenkiss/7guis/wiki#temperature-converter -->
+        <input value={c} on:input={(e) => byC(e.currentTarget.value)} type="number" />
+        °c =
+        <input value={f} on:input={(e) => byF(e.currentTarget.value)} type="number" />
+        °f<style>
+        input {
+          width: 5em;
+        }
+        </style></Chat>
+    </Scroll>
+  </Scroll>
+{/each}
+
+{#each logColors as color}
+  <Banner>
+    <h3>{color}</h3>
+  </Banner>
   <Scroll name={color}>
-    <Banner>
-      <h3>{color}</h3>
-    </Banner>
     <Chat show="report" handle={color}>
       <p>
         toggle
@@ -306,47 +331,53 @@ function byF(str: string) {
       </p>
     </Chat>
   </Scroll>
+{/each}
+
+
+{#each logColors as color}
+  <Banner>
+    <h3>{color}</h3>
+  </Banner>
   <Scroll name=".2">
     <Scroll name=".2.1">
-      <Chat show="post" handle={color}>
-        <button on:click={handleClick}
-          >Clicked
-          <span style={`btnColor: ${btnColor}`}>{count}{rest}</span></button>
-
-        <!-- https://github.com/eugenkiss/7guis/wiki#temperature-converter -->
-        <input value={c} on:input={(e) => byC(e.currentTarget.value)} type="number" />
-        °c =
-        <input value={f} on:input={(e) => byF(e.currentTarget.value)} type="number" />
-        °f<style>
-        input {
-          width: 5em;
-        }
-        </style></Chat>
-    </Scroll>
-    <Scroll name=".2.2">
       <Chat show="report" handle={color}>
         <Diagram {icons} {lines} {clusters} edit={true} />
       </Chat>
     </Scroll>
   </Scroll>
+{/each}
 
+{#each logColors as color}
+  <Banner>
+    <h3>{color}</h3>
+  </Banner>
   <Scroll name=".3">
-    <Scroll name=".3.2">
+    <Scroll name=".3.1">
+      <Chat show="talk" handle={color} face_id="t10" head="abc" to="def" deco="head mono">
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <hr class="stripe" />
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+      </Chat>
       <Chat show="talk" handle={color} face_id="t10" head="abc">
-        <h1 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h1>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <h6 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h6>
         <hr />
-        <h2 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h2>
+        <h5 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h5>
         <hr />
-        <h3 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h3>
+        <h4 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h4>
         <hr class="stripe" />
         <hr class="blank" />
         <hr class="stripe" />
-        <h4 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h4>
+        <h3 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h3>
         <hr class="footnote" />
-        <h5 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h5>
+        <h2 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h2>
         <hr class="footnote" />
-        <h6 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h6>
-        <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
+        <h1 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h1>
       </Chat>
     </Scroll>
   </Scroll>
