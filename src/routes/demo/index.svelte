@@ -34,7 +34,6 @@ let scale
 $: console.log(graphQL)
 $: console.log($helloQ)
 $: console.log($greetings)
-
 </script>
 
 <Report handle="SSAY">
