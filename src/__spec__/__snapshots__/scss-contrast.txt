@@ -1,583 +1,525 @@
-$bg:$bold     aim-D-ELSE     AA-  5.015668110554285
-$bg:$bold     aim-D-FOAM     AA-  5.033105998852231
-$bg:$bold     aim-D-LOVE     AA-  5.051834994233548
-$bg:$bold     aim-D-MUPET    AA-  5.012736526523461
-$bg:$bold     aim-N-ELSE     AA-  5.038982414706352
-$bg:$bold     aim-N-FOAM     AA-  5.028146749908542
-$bg:$bold     aim-N-LOVE     AA-  5.040046663222103
-$bg:$bold     aim-N-MUPET    AA-  5.1443418116538
-$bg:$bold     ash-BROAD      AA-  5.0678653187904965
-$bg:$bold     ash-ELSE       AA-  5.006367026820357
-$bg:$bold     ash-FOAM       AA-  5.0521306902658525
-$bg:$bold     ash-GRAVE      AA-  5.076332784613968
-$bg:$bold     ash-MOB        AA-  5.050811978522089
-$bg:$bold     ash-MUPET      AA-  5.026289609276235
-$bg:$bold     ash-VGRAVE     AA-  5.018836414112797
-$bg:$bold     prog-ELSE      AA-  5.023047502850763
-$bg:$bold     prog-MOB       AA-  5.046430735041513
-$bg:$bold     prog-MUPET     AA-  5.055346310990233
-$bg:$bold     shout-D-ELSE   B--  2.405419840452735
-$bg:$bold     shout-N-ELSE   AA-  5.00786734260305
-$bg:$bold     shout-N-FOAM   AA-  5.038473626046566
-$bg:$bold     shout-N-MOB    AA-  5.073700987452431
-$bg:$bold     stat-BROAD     A--  4.044040582847891
-$bg:$bold     stat-ELSE      A--  4.051568152254542
-$bg:$bold     stat-FOAM      A--  4.076433178672086
-$bg:$bold     stat-GRAVE     A--  4.080819608625099
-$bg:$bold     stat-LONE      A--  4.0207541305531835
-$bg:$bold     stat-LOVE      A--  4.007791719848842
-$bg:$bold     stat-MOB       A--  4.0053997599520015
-$bg:$bold     stat-MUPET     A--  4.079148958960796
-$bg:$bold     stat-VGRAVE    A--  4.08075578228693
-$bg:$bold     stat-WOLF      A--  4.03703418388366
-$bg:$bold     std-D-BROAD    AA-  5.07722330665112
-$bg:$bold     std-D-GRAVE    AA-  5.066116681553589
-$bg:$bold     std-D-MOB      AA-  5.052005822392357
-$bg:$bold     std-D-VGRAVE   AA-  5.071252166730202
-$bg:$bold     std-N-BROAD    AA-  5.000566357897984
-$bg:$bold     std-N-GRAVE    AA-  5.038235442229983
-$bg:$bold     std-N-MOB      AA-  5.061966177887807
-$bg:$bold     std-N-VGRAVE   AA-  5.04452955248628
-$bg:$bold     think-D-FOAM   A--  4.0327433251486156
-$bg:$bold     think-D-MOB    A--  4.01676583081227
-$bg:$bold     think-D-MUPET  A--  4.001285789024127
-$bg:$bold     think-N-FOAM   A--  4.010342740698565
-$bg:$bold     think-N-MOB    A--  4.011791953554646
-$bg:$bold     think-N-MUPET  A--  4.081824678030666
-$bg:$bold     title-ELSE     B--  2.714105317146592
-$bg:$bold     title-LONE     B--  2.6771204494234673
-$bg:$bold     title-VGRAVE   B--  2.7018300464950444
-$bg:$bold     title-bar-BROA AA-  5.011433037004645
-$bg:$bold     tweet-D-ELSE   A--  4.049499251416538
-$bg:$bold     tweet-D-FOAM   A--  4.035685699412833
-$bg:$bold     tweet-D-MOB    A--  4.005998385411351
-$bg:$bold     tweet-D-WOLF   A--  4.020934032605994
-$bg:$bold     tweet-N-ELSE   A--  4.065388263620989
-$bg:$bold     tweet-N-FOAM   A--  4.044344104103586
-$bg:$bold     tweet-N-MOB    A--  4.006939997285008
-$bg:$bold     tweet-N-WOLF   A--  4.000145914310743
-$bg:$btn      aim-D-ELSE     Z--  1.2006227435642525
-$bg:$btn      aim-D-FOAM     Z--  1.2075839219664664
-$bg:$btn      aim-D-LOVE     Z--  1.2006705360847088
-$bg:$btn      aim-D-MUPET    Z--  1.2054255365753856
-$bg:$btn      aim-N-ELSE     Z--  1.212231204241207
-$bg:$btn      aim-N-FOAM     Z--  1.2141514795569288
-$bg:$btn      aim-N-LOVE     Z--  1.2007657649615369
-$bg:$btn      aim-N-MUPET    Z--  1.2129360845707458
-$bg:$btn      ash-BROAD      Z--  1.2004186029140118
-$bg:$btn      ash-ELSE       Z--  1.213650704490087
-$bg:$btn      ash-FOAM       Z--  1.2086855266803562
-$bg:$btn      ash-GRAVE      Z--  1.2050261454241817
-$bg:$btn      ash-MOB        Z--  1.2112699540251939
-$bg:$btn      ash-MUPET      Z--  1.2060690244375947
-$bg:$btn      ash-VGRAVE     Z--  1.2004636452342659
-$bg:$btn      prog-ELSE      Z--  1.214524342041781
-$bg:$btn      prog-MOB       Z--  1.2042920080152753
-$bg:$btn      prog-MUPET     Z--  1.207287099312061
-$bg:$btn      shout-D-ELSE   Z--  1.2052754341125773
-$bg:$btn      shout-N-ELSE   Z--  1.2083056644830232
-$bg:$btn      shout-N-FOAM   Z--  1.2126664742362308
-$bg:$btn      shout-N-MOB    Z--  1.2037666120650763
-$bg:$btn      stat-BROAD     Z--  1.2151603438782763
-$bg:$btn      stat-ELSE      Z--  1.2047961092953454
-$bg:$btn      stat-FOAM      Z--  1.2150818621579185
-$bg:$btn      stat-GRAVE     Z--  1.2092279370079526
-$bg:$btn      stat-LONE      Z--  1.2022497733667739
-$bg:$btn      stat-LOVE      Z--  1.2026832397757083
-$bg:$btn      stat-MOB       Z--  1.202428224139867
-$bg:$btn      stat-MUPET     Z--  1.2010777440339002
-$bg:$btn      stat-VGRAVE    Z--  1.2096011354852148
-$bg:$btn      stat-WOLF      Z--  1.201235818899639
-$bg:$btn      std-D-BROAD    Z--  1.2004600291558996
-$bg:$btn      std-D-GRAVE    Z--  1.2002020757999137
-$bg:$btn      std-D-MOB      Z--  1.200180049690314
-$bg:$btn      std-D-VGRAVE   Z--  1.2073377080854875
-$bg:$btn      std-N-BROAD    Z--  1.2043696688492982
-$bg:$btn      std-N-GRAVE    Z--  1.2020887498634631
-$bg:$btn      std-N-MOB      Z--  1.2026933268745548
-$bg:$btn      std-N-VGRAVE   Z--  1.2063950852350551
-$bg:$btn      think-D-FOAM   Z--  1.2096143039919458
-$bg:$btn      think-D-MOB    Z--  1.2061268470936906
-$bg:$btn      think-D-MUPET  Z--  1.2105858987324154
-$bg:$btn      think-N-FOAM   Z--  1.2130502051409002
-$bg:$btn      think-N-MOB    Z--  1.2000681234620174
-$bg:$btn      think-N-MUPET  Z--  1.2137171036580028
-$bg:$btn      title-ELSE     Z--  1.2039297296887042
-$bg:$btn      title-LONE     Z--  1.201331655399093
-$bg:$btn      title-VGRAVE   Z--  1.2041343085171998
-$bg:$btn      title-bar-BROA Z--  1.2027435517091665
-$bg:$btn      tweet-D-ELSE   Z--  1.2050021613010766
-$bg:$btn      tweet-D-FOAM   Z--  1.207648730867345
-$bg:$btn      tweet-D-MOB    Z--  1.2015438469820519
-$bg:$btn      tweet-D-WOLF   Z--  1.204142375012137
-$bg:$btn      tweet-N-ELSE   Z--  1.2092750676881727
-$bg:$btn      tweet-N-FOAM   Z--  1.2045355695295012
-$bg:$btn      tweet-N-MOB    Z--  1.2035419559322733
-$bg:$btn      tweet-N-WOLF   Z--  1.2072021010622305
-$bg:$edge     aim-D-ELSE     A--  3.59686853427981
-$bg:$edge     aim-D-FOAM     A--  3.537886007426948
-$bg:$edge     aim-D-LOVE     A--  3.5195919703732823
-$bg:$edge     aim-D-MUPET    A--  3.5721792607640936
-$bg:$edge     aim-N-ELSE     A--  3.05816692182776
-$bg:$edge     aim-N-FOAM     A--  3.017625150737948
-$bg:$edge     aim-N-LOVE     A--  3.047966139924086
-$bg:$edge     aim-N-MUPET    A--  3.0246209388463163
-$bg:$edge     ash-BROAD      A--  3.5780173373696975
-$bg:$edge     ash-ELSE       A--  3.553925296523523
-$bg:$edge     ash-FOAM       A--  3.53468883697016
-$bg:$edge     ash-GRAVE      A--  3.5720475393457702
-$bg:$edge     ash-MOB        A--  3.537657646910043
-$bg:$edge     ash-MUPET      A--  3.5074519906297312
-$bg:$edge     ash-VGRAVE     A--  3.537519713521485
-$bg:$edge     prog-ELSE      A--  3.5057465364395832
-$bg:$edge     prog-MOB       A--  3.549549738879013
-$bg:$edge     prog-MUPET     A--  3.5668487006453815
-$bg:$edge     shout-D-ELSE   AA-  5.581951316530582
-$bg:$edge     shout-N-ELSE   A--  3.0194023397590875
-$bg:$edge     shout-N-FOAM   A--  3.0464665237644994
-$bg:$edge     shout-N-MOB    A--  3.015632631497281
-$bg:$edge     stat-BROAD     Z--  1.8023742704709904
-$bg:$edge     stat-ELSE      B--  2.1991505980418955
-$bg:$edge     stat-FOAM      B--  2.912426612070248
-$bg:$edge     stat-GRAVE     B--  2.536080016209966
-$bg:$edge     stat-LONE      Z--  1.6748815077364805
-$bg:$edge     stat-LOVE      Z--  1.5874921222301033
-$bg:$edge     stat-MOB       Z--  1.7886189622836945
-$bg:$edge     stat-MUPET     Z--  1.9309836683052828
-$bg:$edge     stat-VGRAVE    B--  2.00726408544394
-$bg:$edge     stat-WOLF      Z--  1.7306382945944923
-$bg:$edge     std-D-BROAD    A--  3.5615293590540893
-$bg:$edge     std-D-GRAVE    A--  3.547135339022331
-$bg:$edge     std-D-MOB      A--  3.539909963767493
-$bg:$edge     std-D-VGRAVE   A--  3.554389656413146
-$bg:$edge     std-N-BROAD    A--  3.0278939355635925
-$bg:$edge     std-N-GRAVE    A--  3.0672473521009653
-$bg:$edge     std-N-MOB      A--  3.0000117536143107
-$bg:$edge     std-N-VGRAVE   A--  3.0212349614601126
-$bg:$edge     think-D-FOAM   A--  3.503113076987306
-$bg:$edge     think-D-MOB    A--  3.5221185345765633
-$bg:$edge     think-D-MUPET  A--  3.527539378260487
-$bg:$edge     think-N-FOAM   A--  3.000469345949048
-$bg:$edge     think-N-MOB    A--  3.0446372898103338
-$bg:$edge     think-N-MUPET  A--  3.0058925055515475
-$bg:$edge     title-ELSE     AA-  5.523192089621928
-$bg:$edge     title-LONE     AA-  5.5898903801759685
-$bg:$edge     title-VGRAVE   AA-  5.5334273184291485
-$bg:$edge     title-bar-BROA A--  3.5906963226494604
-$bg:$edge     tweet-D-ELSE   A--  3.5172434626566322
-$bg:$edge     tweet-D-FOAM   A--  3.503158673396059
-$bg:$edge     tweet-D-MOB    A--  3.509984088864728
-$bg:$edge     tweet-D-WOLF   A--  3.5212423107380806
-$bg:$edge     tweet-N-ELSE   A--  3.068985678266173
-$bg:$edge     tweet-N-FOAM   A--  3.0243968942060917
-$bg:$edge     tweet-N-MOB    A--  3.010075856389671
-$bg:$edge     tweet-N-WOLF   A--  3.0403763657650344
-$bg:$line     aim-D-ELSE     A--  3.530629706778637
-$bg:$line     aim-D-FOAM     A--  3.567409508838904
-$bg:$line     aim-D-LOVE     A--  3.5324667441875928
-$bg:$line     aim-D-MUPET    A--  3.5943667440209524
-$bg:$line     aim-N-ELSE     A--  4.153864747542344
-$bg:$line     aim-N-FOAM     A--  4.070045384296125
-$bg:$line     aim-N-LOVE     A--  4.007673238086692
-$bg:$line     aim-N-MUPET    A--  4.064363868564866
-$bg:$line     ash-BROAD      A--  3.5361351523739453
-$bg:$line     ash-ELSE       A--  3.50535576260533
-$bg:$line     ash-FOAM       A--  3.504850822769146
-$bg:$line     ash-GRAVE      A--  3.501188965133027
-$bg:$line     ash-MOB        A--  3.508668626507217
-$bg:$line     ash-MUPET      A--  3.5212517952229496
-$bg:$line     ash-VGRAVE     A--  3.5196168448787732
-$bg:$line     prog-ELSE      A--  3.5125138998800938
-$bg:$line     prog-MOB       A--  3.5074049820693687
-$bg:$line     prog-MUPET     A--  3.5287633820713604
-$bg:$line     shout-D-ELSE   AA-  5.514399356144298
-$bg:$line     shout-N-ELSE   A--  4.159149947675802
-$bg:$line     shout-N-FOAM   A--  4.136694410240597
-$bg:$line     shout-N-MOB    A--  4.033531438346354
-$bg:$line     stat-BROAD     A--  3.51177487262644
-$bg:$line     stat-ELSE      A--  3.5780033797925537
-$bg:$line     stat-FOAM      A--  3.5328226847977846
-$bg:$line     stat-GRAVE     A--  3.570289197319089
-$bg:$line     stat-LONE      A--  3.507026123377355
-$bg:$line     stat-LOVE      A--  3.5041055905974723
-$bg:$line     stat-MOB       A--  3.555292062111084
-$bg:$line     stat-MUPET     A--  3.5738413411816516
-$bg:$line     stat-VGRAVE    A--  3.5360109166025677
-$bg:$line     stat-WOLF      A--  3.5198514647699954
-$bg:$line     std-D-BROAD    A--  3.556042055142234
-$bg:$line     std-D-GRAVE    A--  3.5678597359591717
-$bg:$line     std-D-MOB      A--  3.5085703967567055
-$bg:$line     std-D-VGRAVE   A--  3.5252030436538306
-$bg:$line     std-N-BROAD    A--  4.052508146872624
-$bg:$line     std-N-GRAVE    A--  4.10501380701561
-$bg:$line     std-N-MOB      A--  4.051623044222448
-$bg:$line     std-N-VGRAVE   A--  4.021961025714721
-$bg:$line     think-D-FOAM   A--  3.539658381078027
-$bg:$line     think-D-MOB    A--  3.5224899525311515
-$bg:$line     think-D-MUPET  A--  3.5041894054730123
-$bg:$line     think-N-FOAM   A--  4.0563234878722865
-$bg:$line     think-N-MOB    A--  4.028703539282766
-$bg:$line     think-N-MUPET  A--  4.146172651894434
-$bg:$line     title-ELSE     AA-  5.571562528884875
-$bg:$line     title-LONE     AA-  5.5734643429213
-$bg:$line     title-VGRAVE   AA-  5.553444823076309
-$bg:$line     title-bar-BROA A--  3.531309056739041
-$bg:$line     tweet-D-ELSE   A--  3.528249832128949
-$bg:$line     tweet-D-FOAM   A--  3.5422957598357985
-$bg:$line     tweet-D-MOB    A--  3.509858971874548
-$bg:$line     tweet-D-WOLF   A--  3.50817918939138
-$bg:$line     tweet-N-ELSE   A--  4.065388263620989
-$bg:$line     tweet-N-FOAM   A--  4.044344104103586
-$bg:$line     tweet-N-MOB    A--  4.006939997285008
-$bg:$line     tweet-N-WOLF   A--  4.000145914310743
-$bg:$pen      aim-D-ELSE     AAA  7.105268643710109
-$bg:$pen      aim-D-FOAM     AAA  7.106045648252287
-$bg:$pen      aim-D-LOVE     AAA  7.003137521429784
-$bg:$pen      aim-D-MUPET    AAA  7.015444138811433
-$bg:$pen      aim-N-ELSE     AAA  7.172237566557824
-$bg:$pen      aim-N-FOAM     AAA  7.082241715414809
-$bg:$pen      aim-N-LOVE     AAA  7.138874974698085
-$bg:$pen      aim-N-MUPET    AAA  7.0916308903702125
-$bg:$pen      ash-BROAD      AAA  7.0817901789351145
-$bg:$pen      ash-ELSE       AAA  7.016202239516249
-$bg:$pen      ash-FOAM       AAA  7.077487903641795
-$bg:$pen      ash-GRAVE      AA-  6.857604039587397
-$bg:$pen      ash-MOB        AAA  7.019881479434093
-$bg:$pen      ash-MUPET      AAA  7.022951716894175
-$bg:$pen      ash-VGRAVE     AAA  7.001520839073636
-$bg:$pen      prog-ELSE      AAA  7.074340821467957
-$bg:$pen      prog-MOB       AAA  7.039192060299617
-$bg:$pen      prog-MUPET     AAA  7.019958916689816
-$bg:$pen      shout-D-ELSE   AAA  7.268323753007068
-$bg:$pen      shout-N-ELSE   AAA  7.161032469506819
-$bg:$pen      shout-N-FOAM   AAA  7.016842674288782
-$bg:$pen      shout-N-MOB    AAA  7.0312962838127495
-$bg:$pen      stat-BROAD     AA-  6.131692259322613
-$bg:$pen      stat-ELSE      AA-  6.0528707013927185
-$bg:$pen      stat-FOAM      AA-  6.206979045853244
-$bg:$pen      stat-GRAVE     AA-  6.040112391623564
-$bg:$pen      stat-LONE      AA-  6.018198342818196
-$bg:$pen      stat-LOVE      AA-  6.0829482787625455
-$bg:$pen      stat-MOB       AA-  6.039715916329958
-$bg:$pen      stat-MUPET     AA-  6.102737686854802
-$bg:$pen      stat-VGRAVE    AA-  6.0826044160995005
-$bg:$pen      stat-WOLF      AA-  6.014989116277027
-$bg:$pen      std-D-BROAD    AAA  7.091623526904693
-$bg:$pen      std-D-GRAVE    AAA  7.0540624866098804
-$bg:$pen      std-D-MOB      AAA  7.1104568630654645
-$bg:$pen      std-D-VGRAVE   AAA  7.0157527984482035
-$bg:$pen      std-N-BROAD    AAA  7.169232840582823
-$bg:$pen      std-N-GRAVE    AAA  7.0356890063731665
-$bg:$pen      std-N-MOB      AAA  7.154003855873434
-$bg:$pen      std-N-VGRAVE   AAA  7.128305773555512
-$bg:$pen      think-D-FOAM   AA-  6.017317570287986
-$bg:$pen      think-D-MOB    AA-  6.026020390006484
-$bg:$pen      think-D-MUPET  AA-  6.046989204004626
-$bg:$pen      think-N-FOAM   AA-  6.207647110704241
-$bg:$pen      think-N-MOB    AA-  6.0953189426834005
-$bg:$pen      think-N-MUPET  AA-  6.1258444021152325
-$bg:$pen      title-ELSE     AAA  8.150551531544535
-$bg:$pen      title-LONE     AAA  8.083425728290994
-$bg:$pen      title-VGRAVE   AAA  8.114994859413578
-$bg:$pen      title-bar-BROA AAA  7.006707149902529
-$bg:$pen      tweet-D-ELSE   AA-  6.065692494180406
-$bg:$pen      tweet-D-FOAM   AA-  6.060663301395233
-$bg:$pen      tweet-D-MOB    AA-  6.041338259744311
-$bg:$pen      tweet-D-WOLF   AA-  6.014764465971327
-$bg:$pen      tweet-N-ELSE   AA-  6.22301834885976
-$bg:$pen      tweet-N-FOAM   AA-  6.1025116239186605
-$bg:$pen      tweet-N-MOB    AA-  6.054633766280363
-$bg:$pen      tweet-N-WOLF   AA-  6.057616425096143
-$bg:$shade    aim-D-ELSE     Z--  1.2143926626495765
-$bg:$shade    aim-D-FOAM     Z--  1.211284666145602
-$bg:$shade    aim-D-LOVE     Z--  1.2045401452739077
-$bg:$shade    aim-D-MUPET    Z--  1.2151819942964281
-$bg:$shade    aim-N-ELSE     Z--  1.2066230942825098
-$bg:$shade    aim-N-FOAM     Z--  1.2322910183605267
-$bg:$shade    aim-N-LOVE     Z--  1.2148231341159794
-$bg:$shade    aim-N-MUPET    Z--  1.2055386009892997
-$bg:$shade    ash-BROAD      Z--  1.2069672525764918
-$bg:$shade    ash-ELSE       Z--  1.2023149527488177
-$bg:$shade    ash-FOAM       Z--  1.2018634682583322
-$bg:$shade    ash-GRAVE      Z--  1.2047609837994662
-$bg:$shade    ash-MOB        Z--  1.2111212391393575
-$bg:$shade    ash-MUPET      Z--  1.2059122651371175
-$bg:$shade    ash-VGRAVE     Z--  1.2119682797184979
-$bg:$shade    prog-ELSE      Z--  1.219690473020252
-$bg:$shade    prog-MOB       Z--  1.2195219864625684
-$bg:$shade    prog-MUPET     Z--  1.2214221982421483
-$bg:$shade    shout-D-ELSE   Z--  1.2297091259837207
-$bg:$shade    shout-N-ELSE   Z--  1.2260238664954708
-$bg:$shade    shout-N-FOAM   Z--  1.2099563278955683
-$bg:$shade    shout-N-MOB    Z--  1.2090337232687254
-$bg:$shade    stat-BROAD     Z--  1.2102123900811137
-$bg:$shade    stat-ELSE      Z--  1.209508311636449
-$bg:$shade    stat-FOAM      Z--  1.206397493872153
-$bg:$shade    stat-GRAVE     Z--  1.2024399190501642
-$bg:$shade    stat-LONE      Z--  1.2049870644970637
-$bg:$shade    stat-LOVE      Z--  1.2170043435593394
-$bg:$shade    stat-MOB       Z--  1.2014572950474856
-$bg:$shade    stat-MUPET     Z--  1.2199938040414944
-$bg:$shade    stat-VGRAVE    Z--  1.211443829344004
-$bg:$shade    stat-WOLF      Z--  1.2066669714090759
-$bg:$shade    std-D-BROAD    Z--  1.207682483852298
-$bg:$shade    std-D-GRAVE    Z--  1.2156294036641988
-$bg:$shade    std-D-MOB      Z--  1.2048318656940094
-$bg:$shade    std-D-VGRAVE   Z--  1.203204404031293
-$bg:$shade    std-N-BROAD    Z--  1.234683195857938
-$bg:$shade    std-N-GRAVE    Z--  1.2033535726015157
-$bg:$shade    std-N-MOB      Z--  1.209212149375401
-$bg:$shade    std-N-VGRAVE   Z--  1.2035491981040987
-$bg:$shade    think-D-FOAM   Z--  1.2096786155242605
-$bg:$shade    think-D-MOB    Z--  1.2130192073290111
-$bg:$shade    think-D-MUPET  Z--  1.2115497318774613
-$bg:$shade    think-N-FOAM   Z--  1.209111243881457
-$bg:$shade    think-N-MOB    Z--  1.2060006752456103
-$bg:$shade    think-N-MUPET  Z--  1.207284468776639
-$bg:$shade    title-ELSE     Z--  1.2044525441808343
-$bg:$shade    title-LONE     Z--  1.2078126447898583
-$bg:$shade    title-VGRAVE   Z--  1.212539353682906
-$bg:$shade    title-bar-BROA Z--  1.2074117871395993
-$bg:$shade    tweet-D-ELSE   Z--  1.2002476955729124
-$bg:$shade    tweet-D-FOAM   Z--  1.2144592427211889
-$bg:$shade    tweet-D-MOB    Z--  1.2042333379608525
-$bg:$shade    tweet-D-WOLF   Z--  1.2203899144119483
-$bg:$shade    tweet-N-ELSE   Z--  1.2112172877629754
-$bg:$shade    tweet-N-FOAM   Z--  1.2397620241322984
-$bg:$shade    tweet-N-MOB    Z--  1.2126421160162113
-$bg:$shade    tweet-N-WOLF   Z--  1.2119594954651005
-$bg:shade     aim-D-ELSE     Z--  1.2143926626495765
-$bg:shade     aim-D-FOAM     Z--  1.211284666145602
-$bg:shade     aim-D-LOVE     Z--  1.2045401452739077
-$bg:shade     aim-D-MUPET    Z--  1.2151819942964281
-$bg:shade     aim-N-ELSE     Z--  1.2066230942825098
-$bg:shade     aim-N-FOAM     Z--  1.2322910183605267
-$bg:shade     aim-N-LOVE     Z--  1.2148231341159794
-$bg:shade     aim-N-MUPET    Z--  1.2055386009892997
-$bg:shade     ash-BROAD      Z--  1.2069672525764918
-$bg:shade     ash-ELSE       Z--  1.2023149527488177
-$bg:shade     ash-FOAM       Z--  1.2018634682583322
-$bg:shade     ash-GRAVE      Z--  1.2047609837994662
-$bg:shade     ash-MOB        Z--  1.2111212391393575
-$bg:shade     ash-MUPET      Z--  1.2059122651371175
-$bg:shade     ash-VGRAVE     Z--  1.2119682797184979
-$bg:shade     prog-ELSE      Z--  1.219690473020252
-$bg:shade     prog-MOB       Z--  1.2195219864625684
-$bg:shade     prog-MUPET     Z--  1.2214221982421483
-$bg:shade     shout-D-ELSE   Z--  1.2297091259837207
-$bg:shade     shout-N-ELSE   Z--  1.2260238664954708
-$bg:shade     shout-N-FOAM   Z--  1.2099563278955683
-$bg:shade     shout-N-MOB    Z--  1.2090337232687254
-$bg:shade     stat-BROAD     Z--  1.2102123900811137
-$bg:shade     stat-ELSE      Z--  1.209508311636449
-$bg:shade     stat-FOAM      Z--  1.206397493872153
-$bg:shade     stat-GRAVE     Z--  1.2024399190501642
-$bg:shade     stat-LONE      Z--  1.2049870644970637
-$bg:shade     stat-LOVE      Z--  1.2170043435593394
-$bg:shade     stat-MOB       Z--  1.2014572950474856
-$bg:shade     stat-MUPET     Z--  1.2199938040414944
-$bg:shade     stat-VGRAVE    Z--  1.211443829344004
-$bg:shade     stat-WOLF      Z--  1.2066669714090759
-$bg:shade     std-D-BROAD    Z--  1.207682483852298
-$bg:shade     std-D-GRAVE    Z--  1.2156294036641988
-$bg:shade     std-D-MOB      Z--  1.2048318656940094
-$bg:shade     std-D-VGRAVE   Z--  1.203204404031293
-$bg:shade     std-N-BROAD    Z--  1.234683195857938
-$bg:shade     std-N-GRAVE    Z--  1.2033535726015157
-$bg:shade     std-N-MOB      Z--  1.209212149375401
-$bg:shade     std-N-VGRAVE   Z--  1.2035491981040987
-$bg:shade     think-D-FOAM   Z--  1.2096786155242605
-$bg:shade     think-D-MOB    Z--  1.2130192073290111
-$bg:shade     think-D-MUPET  Z--  1.2115497318774613
-$bg:shade     think-N-FOAM   Z--  1.209111243881457
-$bg:shade     think-N-MOB    Z--  1.2060006752456103
-$bg:shade     think-N-MUPET  Z--  1.207284468776639
-$bg:shade     title-ELSE     Z--  1.2044525441808343
-$bg:shade     title-LONE     Z--  1.2078126447898583
-$bg:shade     title-VGRAVE   Z--  1.212539353682906
-$bg:shade     title-bar-BROA Z--  1.2074117871395993
-$bg:shade     tweet-D-ELSE   Z--  1.2002476955729124
-$bg:shade     tweet-D-FOAM   Z--  1.2144592427211889
-$bg:shade     tweet-D-MOB    Z--  1.2042333379608525
-$bg:shade     tweet-D-WOLF   Z--  1.2203899144119483
-$bg:shade     tweet-N-ELSE   Z--  1.2112172877629754
-$bg:shade     tweet-N-FOAM   Z--  1.2397620241322984
-$bg:shade     tweet-N-MOB    Z--  1.2126421160162113
-$bg:shade     tweet-N-WOLF   Z--  1.2119594954651005
-$btn:$btnOff  aim-D-ELSE     ---  1.08313872896319
-$btn:$btnOff  aim-D-FOAM     ---  1.0968655029733705
-$btn:$btnOff  aim-D-LOVE     Z--  1.327702127655075
-$btn:$btnOff  aim-D-MUPET    ---  1.0955497864954413
-$btn:$btnOff  aim-N-ELSE     Z--  1.343061926871687
-$btn:$btnOff  aim-N-FOAM     Z--  1.355426875011848
-$btn:$btnOff  aim-N-LOVE     Z--  1.326255951017136
-$btn:$btnOff  aim-N-MUPET    Z--  1.3431344976391943
-$btn:$btnOff  ash-BROAD      Z--  1.322302512586899
-$btn:$btnOff  ash-ELSE       Z--  1.3376182321974466
-$btn:$btnOff  ash-FOAM       Z--  1.3455603399144513
-$btn:$btnOff  ash-GRAVE      Z--  1.3283589396796018
-$btn:$btnOff  ash-MOB        Z--  1.3430979377360153
-$btn:$btnOff  ash-MUPET      Z--  1.3267092018252202
-$btn:$btnOff  ash-VGRAVE     Z--  1.324296246065361
-$btn:$btnOff  prog-ELSE      Z--  1.3458453939824715
-$btn:$btnOff  prog-MOB       Z--  1.3256751301587233
-$btn:$btnOff  prog-MUPET     Z--  1.3393860261881498
-$btn:$btnOff  shout-D-ELSE   Z--  1.3320064873809951
-$btn:$btnOff  shout-N-ELSE   Z--  1.3413375318573042
-$btn:$btnOff  shout-N-FOAM   Z--  1.3434128443096802
-$btn:$btnOff  shout-N-MOB    Z--  1.3381318797449295
-$btn:$btnOff  stat-BROAD     ---  1.0922583737071547
-$btn:$btnOff  stat-ELSE      Z--  1.3298801125902178
-$btn:$btnOff  stat-FOAM      Z--  1.3538070154954276
-$btn:$btnOff  stat-GRAVE     Z--  1.3416531036947625
-$btn:$btnOff  stat-LONE      Z--  1.3241957704875582
-$btn:$btnOff  stat-LOVE      Z--  1.3255815939534337
-$btn:$btnOff  stat-MOB       Z--  1.331347206175764
-$btn:$btnOff  stat-MUPET     Z--  1.3263741944371934
-$btn:$btnOff  stat-VGRAVE    Z--  1.3316089629274777
-$btn:$btnOff  stat-WOLF      Z--  1.3223001685156635
-$btn:$btnOff  std-D-BROAD    ---  1.089834541919727
-$btn:$btnOff  std-D-GRAVE    Z--  1.320527343542182
-$btn:$btnOff  std-D-MOB      Z--  1.322447172206671
-$btn:$btnOff  std-D-VGRAVE   Z--  1.3302470693919453
-$btn:$btnOff  std-N-BROAD    Z--  1.3325336711523394
-$btn:$btnOff  std-N-GRAVE    Z--  1.322457202561951
-$btn:$btnOff  std-N-MOB      Z--  1.3256099146087459
-$btn:$btnOff  std-N-VGRAVE   Z--  1.3330324090364216
-$btn:$btnOff  think-D-FOAM   Z--  1.3335818624332711
-$btn:$btnOff  think-D-MOB    Z--  1.3316518672311137
-$btn:$btnOff  think-D-MUPET  Z--  1.3398120277755745
-$btn:$btnOff  think-N-FOAM   Z--  1.3370819180844544
-$btn:$btnOff  think-N-MOB    Z--  1.3219019942911778
-$btn:$btnOff  think-N-MUPET  Z--  1.3364993575189492
-$btn:$btnOff  title-ELSE     Z--  1.3137935314116156
-$btn:$btnOff  title-LONE     Z--  1.3025106914951572
-$btn:$btnOff  title-VGRAVE   Z--  1.3294144196645064
-$btn:$btnOff  title-bar-BROA A--  3.114667720161468
-$btn:$btnOff  tweet-D-ELSE   Z--  1.3319001063405986
-$btn:$btnOff  tweet-D-FOAM   Z--  1.3301291056126008
-$btn:$btnOff  tweet-D-MOB    Z--  1.322381519884604
-$btn:$btnOff  tweet-D-WOLF   Z--  1.332549781583304
-$btn:$btnOff  tweet-N-ELSE   Z--  1.3340621637477195
-$btn:$btnOff  tweet-N-FOAM   Z--  1.335419567633241
-$btn:$btnOff  tweet-N-MOB    Z--  1.326063566755381
-$btn:$btnOff  tweet-N-WOLF   Z--  1.332518014093939
-$btn:$pen     aim-D-ELSE     AAA  8.530747132772285
-$btn:$pen     aim-D-FOAM     AAA  8.581146473589238
-$btn:$pen     aim-D-LOVE     AAA  8.408460882130038
-$btn:$pen     aim-D-MUPET    AAA  8.456595515341416
-$btn:$pen     aim-N-ELSE     AA-  5.916559103135171
-$btn:$pen     aim-N-FOAM     AA-  5.833079178884069
-$btn:$pen     aim-N-LOVE     AA-  5.945268580276985
-$btn:$pen     aim-N-MUPET    AA-  5.846664948450204
-$btn:$pen     ash-BROAD      AA-  5.899433882267482
-$btn:$pen     ash-ELSE       AA-  5.781072110417546
-$btn:$pen     ash-FOAM       AA-  5.855524656673975
-$btn:$pen     ash-GRAVE      AA-  5.690834232624428
-$btn:$pen     ash-MOB        AA-  5.795472310781088
-$btn:$pen     ash-MUPET      AA-  5.823009773565047
-$btn:$pen     ash-VGRAVE     AA-  5.832347249222459
-$btn:$pen     prog-ELSE      AA-  5.8247830665748745
-$btn:$pen     prog-MOB       AA-  5.845087415219592
-$btn:$pen     prog-MUPET     AA-  5.814655785429948
-$btn:$pen     shout-D-ELSE   AA-  6.030425533694382
-$btn:$pen     shout-N-ELSE   AA-  5.926507406195672
-$btn:$pen     shout-N-FOAM   AA-  5.7862922933597005
-$btn:$pen     shout-N-MOB    AA-  5.841079336592062
-$btn:$pen     stat-BROAD     AA-  5.045994374497815
-$btn:$pen     stat-ELSE      AA-  5.023979289684865
-$btn:$pen     stat-FOAM      AA-  5.108280552250193
-$btn:$pen     stat-GRAVE     AA-  4.995015585373332
-$btn:$pen     stat-LONE      AA-  5.00578039284205
-$btn:$pen     stat-LOVE      AA-  5.057814125602158
-$btn:$pen     stat-MOB       AA-  5.022932591798025
-$btn:$pen     stat-MUPET     AA-  5.081051345068095
-$btn:$pen     stat-VGRAVE    AA-  5.0286034277402925
-$btn:$pen     stat-WOLF      AA-  5.007334131766818
-$btn:$pen     std-D-BROAD    AAA  8.513210585870672
-$btn:$pen     std-D-GRAVE    AAA  8.466300439251478
-$btn:$pen     std-D-MOB      AAA  8.533828471234743
-$btn:$pen     std-D-VGRAVE   AAA  8.470382904172798
-$btn:$pen     std-N-BROAD    AA-  5.9526846499153265
-$btn:$pen     std-N-GRAVE    AA-  5.852886492093284
-$btn:$pen     std-N-MOB      AA-  5.948319239838621
-$btn:$pen     std-N-VGRAVE   AA-  5.9087655949515305
-$btn:$pen     think-D-FOAM   AAA  7.2786334046824095
-$btn:$pen     think-D-MOB    AAA  7.268144973520813
-$btn:$pen     think-D-MUPET  AAA  7.3203998601551525
-$btn:$pen     think-N-FOAM   AA-  5.117386802620589
-$btn:$pen     think-N-MOB    AA-  5.079144111502033
-$btn:$pen     think-N-MUPET  AA-  5.047176466124311
-$btn:$pen     title-ELSE     AA-  6.7699561947456806
-$btn:$pen     title-LONE     AA-  6.728721158692525
-$btn:$pen     title-VGRAVE   AA-  6.7392771736622805
-$btn:$pen     title-bar-BROA AA-  5.825603587685507
-$btn:$pen     tweet-D-ELSE   AAA  7.309172565275108
-$btn:$pen     tweet-D-FOAM   AAA  7.319152344144246
-$btn:$pen     tweet-D-MOB    AAA  7.258932813533034
-$btn:$pen     tweet-D-WOLF   AAA  7.242632769193321
-$btn:$pen     tweet-N-ELSE   AA-  5.146073474215088
-$btn:$pen     tweet-N-FOAM   AA-  5.066277641184425
-$btn:$pen     tweet-N-MOB    AA-  5.030679434511607
-$btn:$pen     tweet-N-WOLF   AA-  5.017897516717357
-$grad:$btn    aim-D-ELSE     ---  1.0005435241218583
-$grad:$btn    aim-D-FOAM     ---  1.003335020239383
-$grad:$btn    aim-D-LOVE     Z--  1.4468857515630387
-$grad:$btn    aim-D-MUPET    ---  1.0024489387255644
-$grad:$btn    aim-N-ELSE     ---  1.009647319511035
-$grad:$btn    aim-N-FOAM     ---  1.0107521976211151
-$grad:$btn    aim-N-LOVE     Z--  1.4462601883061097
-$grad:$btn    aim-N-MUPET    Z--  1.2129360845707458
-$grad:$btn    ash-BROAD      ---  1.049178414882886
-$grad:$btn    ash-ELSE       ---  1.0085669051035249
-$grad:$btn    ash-FOAM       ---  1.002312949572501
-$grad:$btn    ash-GRAVE      ---  1.00264234831117
-$grad:$btn    ash-MOB        Z--  1.2145277651490123
-$grad:$btn    ash-MUPET      ---  1.0039637614167247
-$grad:$btn    ash-VGRAVE     ---  1.001177925480839
-$grad:$btn    prog-ELSE      ---  1.0046360723164889
-$grad:$btn    prog-MOB       Z--  1.2643686074819034
-$grad:$btn    prog-MUPET     ---  1.0993554897333997
-$grad:$btn    shout-D-ELSE   Z--  1.2052754341125773
-$grad:$btn    shout-N-ELSE   ---  1.0033376372402816
-$grad:$btn    shout-N-FOAM   ---  1.0037974228283915
-$grad:$btn    shout-N-MOB    Z--  1.2037666120650763
-$grad:$btn    stat-BROAD     Z--  1.5066100884925986
-$grad:$btn    stat-ELSE      ---  1.0033271193596895
-$grad:$btn    stat-FOAM      ---  1.0021129805148579
-$grad:$btn    stat-GRAVE     ---  1.0074401598382576
-$grad:$btn    stat-LONE      ---  1.0400355884641637
-$grad:$btn    stat-LOVE      Z--  1.349845921370455
-$grad:$btn    stat-MOB       Z--  1.251135046329708
-$grad:$btn    stat-MUPET     Z--  1.600378554394281
-$grad:$btn    stat-VGRAVE    ---  1.063538954784078
-$grad:$btn    stat-WOLF      ---  1.080796159621752
-$grad:$btn    std-D-BROAD    Z--  1.5040741909446114
-$grad:$btn    std-D-GRAVE    ---  1.0004575301619745
-$grad:$btn    std-D-MOB      Z--  1.4435731257563085
-$grad:$btn    std-D-VGRAVE   Z--  1.2073377080854875
-$grad:$btn    std-N-BROAD    Z--  1.2043696688492982
-$grad:$btn    std-N-GRAVE    ---  1.000849566613519
-$grad:$btn    std-N-MOB      Z--  1.2026933268745548
-$grad:$btn    std-N-VGRAVE   ---  1.0018282326249142
-$grad:$btn    think-D-FOAM   ---  1.007565803383174
-$grad:$btn    think-D-MOB    Z--  1.4484243086473498
-$grad:$btn    think-D-MUPET  ---  1.0077742760363844
-$grad:$btn    think-N-FOAM   ---  1.0071216092708224
-$grad:$btn    think-N-MOB    Z--  1.2000681234620174
-$grad:$btn    think-N-MUPET  Z--  1.2137171036580028
-$grad:$btn    title-ELSE     Z--  1.2039297296887042
-$grad:$btn    title-LONE     Z--  1.201331655399093
-$grad:$btn    title-VGRAVE   Z--  1.2041343085171998
-$grad:$btn    title-bar-BROA Z--  1.6727171177392228
-$grad:$btn    tweet-D-ELSE   ---  1.0013992426053369
-$grad:$btn    tweet-D-FOAM   ---  1.0015248763008822
-$grad:$btn    tweet-D-MOB    Z--  1.5454530268375448
-$grad:$btn    tweet-D-WOLF   Z--  1.204142375012137
-$grad:$btn    tweet-N-ELSE   Z--  1.2092750676881727
-$grad:$btn    tweet-N-FOAM   Z--  1.2045355695295012
-$grad:$btn    tweet-N-MOB    Z--  1.2035419559322733
-$grad:$btn    tweet-N-WOLF   Z--  1.2072021010622305
+ $bg-$bold    aim-D-ELSE      140deg 153deg /   15%   0% /   73%  28% / AA-  502
+ $bg-$bold    aim-D-FOAM      174deg 182deg /   15%   0% /   72%  28% / AA-  503
+ $bg-$bold    aim-D-LOVE      285deg 290deg /   15%   0% /   76%  27% / AA-  505
+ $bg-$bold    aim-D-MUPET      72deg  82deg /   15%   0% /   72%  28% / AA-  501
+ $bg-$bold    aim-N-ELSE      115deg 128deg /   19%  51% /   20%  52% / AA-  504
+ $bg-$bold    aim-N-FOAM      159deg 167deg /   18%  52% /   24%  58% / AA-  503
+ $bg-$bold    aim-N-LOVE      275deg 280deg /   19%  69% /   25%  75% / AA-  504
+ $bg-$bold    aim-N-MUPET      52deg  62deg /   19%  47% /   20%  48% / AA-  514
+ $bg-$bold    ash-BROAD        49deg  57deg /   11%  26% /   29%  74% / AA-  507
+ $bg-$bold    ash-ELSE        140deg 153deg /   11%  27% /   30%  76% / AA-  501
+ $bg-$bold    ash-FOAM        174deg 182deg /   11%  27% /   29%  76% / AA-  505
+ $bg-$bold    ash-GRAVE       193deg 199deg /   11%  28% /   34%  86% / AA-  508
+ $bg-$bold    ash-MOB          27deg  33deg /   11%  27% /   31%  78% / AA-  505
+ $bg-$bold    ash-MUPET        72deg  82deg /   11%  26% /   29%  75% / AA-  503
+ $bg-$bold    ash-VGRAVE      220deg 225deg /   11%  28% /   35%  85% / AA-  502
+ $bg-$bold    prog-ELSE       140deg 153deg /   35%  46% /   13%  45% / AA-  502
+ $bg-$bold    prog-MOB         27deg  33deg /   35%  48% /   15%  52% / AA-  505
+ $bg-$bold    prog-MUPET       72deg  82deg /   35%  46% /   12%  44% / AA-  506
+ $bg-$bold    shout-D-ELSE    115deg 165deg /   61%  91% /   11%  23% / B--  241
+ $bg-$bold    shout-N-ELSE    115deg 128deg /   44%  71% /   18%  46% / AA-  501
+ $bg-$bold    shout-N-FOAM    159deg 167deg /   43%  72% /   23%  51% / AA-  504
+ $bg-$bold    shout-N-MOB      15deg  21deg /   44%  88% /   24%  68% / AA-  507
+ $bg-$bold    stat-BROAD       33deg  41deg /   86% 100% /   18%  40% / A--  404
+ $bg-$bold    stat-ELSE       115deg 128deg /   82% 100% /   18%  39% / A--  405
+ $bg-$bold    stat-FOAM       159deg 167deg /   63%  86% /   24%  46% / A--  408
+ $bg-$bold    stat-GRAVE      181deg 187deg /   62%  87% /   21%  47% / A--  408
+ $bg-$bold    stat-LONE       316deg 321deg /   65% 100% /   22%  63% / A--  402
+ $bg-$bold    stat-LOVE       275deg 280deg /   68% 100% /   25%  68% / A--  401
+ $bg-$bold    stat-MOB         15deg  21deg /   76% 100% /   22%  54% / A--  401
+ $bg-$bold    stat-MUPET       52deg  62deg /   83% 100% /   15%  32% / A--  408
+ $bg-$bold    stat-VGRAVE     210deg 215deg /   64% 100% /   26%  69% / A--  408
+ $bg-$bold    stat-WOLF       354deg 359deg /   68% 100% /   25%  68% / A--  404
+ $bg-$bold    std-D-BROAD      49deg  57deg /   35%  19% /   62%  21% / AA-  508
+ $bg-$bold    std-D-GRAVE     193deg 199deg /   35%  16% /   77%  30% / AA-  507
+ $bg-$bold    std-D-MOB        27deg  33deg /   35%  17% /   69%  24% / AA-  505
+ $bg-$bold    std-D-VGRAVE    220deg 225deg /   35%  16% /   77%  30% / AA-  507
+ $bg-$bold    std-N-BROAD      33deg  41deg /   40%  70% /   18%  48% / AA-  500
+ $bg-$bold    std-N-GRAVE     181deg 187deg /   38%  70% /   20%  51% / AA-  504
+ $bg-$bold    std-N-MOB        15deg  21deg /   39%  81% /   20%  62% / AA-  506
+ $bg-$bold    std-N-VGRAVE    210deg 215deg /   38%  87% /   22%  71% / AA-  504
+ $bg-$bold    think-D-FOAM    174deg 182deg /   15% 100% /   54%  12% / A--  403
+ $bg-$bold    think-D-MOB      27deg  33deg /   15% 100% /   57%  16% / A--  402
+ $bg-$bold    think-D-MUPET    72deg  82deg /   15% 100% /   53%  12% / A--  400
+ $bg-$bold    think-N-FOAM    159deg 167deg /   19%  45% /   20%  46% / A--  401
+ $bg-$bold    think-N-MOB      15deg  21deg /   20%  55% /   16%  51% / A--  401
+ $bg-$bold    think-N-MUPET    52deg  62deg /   20%  44% /   14%  38% / A--  408
+ $bg-$bold    title-ELSE      115deg 165deg /    8%  53% /    6%  25% / B--  271
+ $bg-$bold    title-LONE      316deg 336deg /    7%  44% /    5%  39% / B--  268
+ $bg-$bold    title-VGRAVE    210deg 230deg /    7%  39% /    9%  46% / B--  270
+ $bg-$bold    title-bar-BROAD  49deg  57deg /   75%  63% /   21%  56% / AA-  501
+ $bg-$bold    tweet-D-ELSE    140deg 153deg /   45% 100% /   48%  14% / A--  405
+ $bg-$bold    tweet-D-FOAM    174deg 182deg /   45% 100% /   45%  13% / A--  404
+ $bg-$bold    tweet-D-MOB      27deg  33deg /   45% 100% /   56%  16% / A--  401
+ $bg-$bold    tweet-D-WOLF      4deg   9deg /   45% 100% /   65%  22% / A--  402
+ $bg-$bold    tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  32% / A--  407
+ $bg-$bold    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  404
+ $bg-$bold    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  46% / A--  401
+ $bg-$bold    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  56% / A--  400
+ $bg-$btn     aim-D-ELSE      140deg 153deg /   15%  37% /   73%  77% / Z--  120
+ $bg-$btn     aim-D-FOAM      174deg 182deg /   15%  37% /   72%  77% / Z--  121
+ $bg-$btn     aim-D-LOVE      285deg 290deg /   15%  60% /   76%  85% / Z--  120
+ $bg-$btn     aim-D-MUPET      72deg  82deg /   15%  36% /   72%  76% / Z--  121
+ $bg-$btn     aim-N-ELSE      115deg 128deg /   19%  32% /   20%  23% / Z--  121
+ $bg-$btn     aim-N-FOAM      159deg 167deg /   18%  30% /   24%  26% / Z--  121
+ $bg-$btn     aim-N-LOVE      275deg 280deg /   19%  62% /   25%  33% / Z--  120
+ $bg-$btn     aim-N-MUPET      52deg  62deg /   19%  28% /   20%  22% / Z--  121
+ $bg-$btn     ash-BROAD        49deg  57deg /   11%  19% /   29%  31% / Z--  120
+ $bg-$btn     ash-ELSE        140deg 153deg /   11%  23% /   30%  32% / Z--  121
+ $bg-$btn     ash-FOAM        174deg 182deg /   11%  23% /   29%  31% / Z--  121
+ $bg-$btn     ash-GRAVE       193deg 199deg /   11%  31% /   34%  38% / Z--  121
+ $bg-$btn     ash-MOB          27deg  33deg /   11%  25% /   31%  34% / Z--  121
+ $bg-$btn     ash-MUPET        72deg  82deg /   11%  22% /   29%  31% / Z--  121
+ $bg-$btn     ash-VGRAVE      220deg 225deg /   11%  98% /   35%  52% / Z--  120
+ $bg-$btn     prog-ELSE       140deg 153deg /   35%  50% /   13%  16% / Z--  121
+ $bg-$btn     prog-MOB         27deg  33deg /   35%  52% /   15%  18% / Z--  120
+ $bg-$btn     prog-MUPET       72deg  82deg /   35%  50% /   12%  15% / Z--  121
+ $bg-$btn     shout-D-ELSE    115deg 128deg /   61%  74% /   11%  14% / Z--  121
+ $bg-$btn     shout-N-ELSE    115deg 128deg /   44%  56% /   18%  21% / Z--  121
+ $bg-$btn     shout-N-FOAM    159deg 167deg /   43%  53% /   23%  25% / Z--  121
+ $bg-$btn     shout-N-MOB      15deg  21deg /   44%  58% /   24%  27% / Z--  120
+ $bg-$btn     stat-BROAD       33deg  41deg /   86%  91% /   18%  19% / Z--  122
+ $bg-$btn     stat-ELSE       115deg 128deg /   82%  91% /   18%  19% / Z--  120
+ $bg-$btn     stat-FOAM       159deg 167deg /   63%  72% /   24%  26% / Z--  122
+ $bg-$btn     stat-GRAVE      181deg 187deg /   62%  77% /   21%  24% / Z--  121
+ $bg-$btn     stat-LONE       316deg 321deg /   65%  85% /   22%  26% / Z--  120
+ $bg-$btn     stat-LOVE       275deg 280deg /   68%  88% /   25%  29% / Z--  120
+ $bg-$btn     stat-MOB         15deg  21deg /   76%  87% /   22%  25% / Z--  120
+ $bg-$btn     stat-MUPET       52deg  62deg /   83%  87% /   15%  16% / Z--  120
+ $bg-$btn     stat-VGRAVE     210deg 215deg /   64%  99% /   26%  33% / Z--  121
+ $bg-$btn     stat-WOLF       354deg 359deg /   68%  86% /   25%  28% / Z--  120
+ $bg-$btn     std-D-BROAD      49deg  57deg /   35%  44% /   62%  64% / Z--  120
+ $bg-$btn     std-D-GRAVE     193deg 199deg /   35%  75% /   77%  85% / Z--  120
+ $bg-$btn     std-D-MOB        27deg  33deg /   35%  55% /   69%  73% / Z--  120
+ $bg-$btn     std-D-VGRAVE    220deg 225deg /   35%  82% /   77%  87% / Z--  121
+ $bg-$btn     std-N-BROAD      33deg  41deg /   40%  51% /   18%  20% / Z--  120
+ $bg-$btn     std-N-GRAVE     181deg 187deg /   38%  54% /   20%  23% / Z--  120
+ $bg-$btn     std-N-MOB        15deg  21deg /   39%  57% /   20%  23% / Z--  120
+ $bg-$btn     std-N-VGRAVE    210deg 215deg /   38%  74% /   22%  29% / Z--  121
+ $bg-$btn     think-D-FOAM    174deg 182deg /   15%  29% /   54%  56% / Z--  121
+ $bg-$btn     think-D-MOB      27deg  33deg /   15%  32% /   57%  61% / Z--  121
+ $bg-$btn     think-D-MUPET    72deg  82deg /   15%  28% /   53%  55% / Z--  121
+ $bg-$btn     think-N-FOAM    159deg 167deg /   19%  31% /   20%  23% / Z--  121
+ $bg-$btn     think-N-MOB      15deg  21deg /   20%  42% /   16%  20% / Z--  120
+ $bg-$btn     think-N-MUPET    52deg  62deg /   20%  33% /   14%  17% / Z--  121
+ $bg-$btn     title-ELSE      115deg 128deg /    8%  35% /    6%  11% / Z--  120
+ $bg-$btn     title-LONE      316deg 321deg /    7%  55% /    5%  15% / Z--  120
+ $bg-$btn     title-VGRAVE    210deg 215deg /    7%  46% /    9%  16% / Z--  120
+ $bg-$btn     title-bar-BROAD  49deg  57deg /   75%  78% /   21%  21% / Z--  120
+ $bg-$btn     tweet-D-ELSE    140deg 153deg /   45%  54% /   48%  50% / Z--  121
+ $bg-$btn     tweet-D-FOAM    174deg 182deg /   45%  56% /   45%  48% / Z--  121
+ $bg-$btn     tweet-D-MOB      27deg  33deg /   45%  56% /   56%  58% / Z--  120
+ $bg-$btn     tweet-D-WOLF      4deg   9deg /   45%  71% /   65%  70% / Z--  120
+ $bg-$btn     tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  14% / Z--  121
+ $bg-$btn     tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  22% / Z--  120
+ $bg-$btn     tweet-N-MOB      15deg  21deg /   95% 100% /   16%  19% / Z--  120
+ $bg-$btn     tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  21% / Z--  121
+ $bg-$edge    aim-D-ELSE      140deg 140deg /   15%  41% /   73%  29% / A--  360
+ $bg-$edge    aim-D-FOAM      174deg 174deg /   15%  41% /   72%  28% / A--  354
+ $bg-$edge    aim-D-LOVE      285deg 285deg /   15%  35% /   76%  42% / A--  352
+ $bg-$edge    aim-D-MUPET      72deg  72deg /   15%  42% /   72%  27% / A--  357
+ $bg-$edge    aim-N-ELSE      115deg 115deg /   19%  19% /   20%  47% / A--  306
+ $bg-$edge    aim-N-FOAM      159deg 159deg /   18%  18% /   24%  50% / A--  302
+ $bg-$edge    aim-N-LOVE      275deg 275deg /   19%  19% /   25%  56% / A--  305
+ $bg-$edge    aim-N-MUPET      52deg  52deg /   19%  19% /   20%  46% / A--  302
+ $bg-$edge    ash-BROAD        49deg  49deg /   11%   0% /   29%  67% / A--  358
+ $bg-$edge    ash-ELSE        140deg 140deg /   11%   0% /   30%  67% / A--  355
+ $bg-$edge    ash-FOAM        174deg 174deg /   11%   0% /   29%  67% / A--  353
+ $bg-$edge    ash-GRAVE       193deg 193deg /   11%   0% /   34%  73% / A--  357
+ $bg-$edge    ash-MOB          27deg  27deg /   11%   0% /   31%  67% / A--  354
+ $bg-$edge    ash-MUPET        72deg  72deg /   11%   0% /   29%  66% / A--  351
+ $bg-$edge    ash-VGRAVE      220deg 220deg /   11%   0% /   35%  70% / A--  354
+ $bg-$edge    prog-ELSE       140deg 140deg /   35%  25% /   13%  42% / A--  351
+ $bg-$edge    prog-MOB         27deg  27deg /   35%  24% /   15%  47% / A--  355
+ $bg-$edge    prog-MUPET       72deg  72deg /   35%  26% /   12%  40% / A--  357
+ $bg-$edge    shout-D-ELSE    115deg 115deg /   61%  61% /   11%  44% / AA-  558
+ $bg-$edge    shout-N-ELSE    115deg 115deg /   44%  44% /   18%  41% / A--  302
+ $bg-$edge    shout-N-FOAM    159deg 159deg /   43%  43% /   23%  46% / A--  305
+ $bg-$edge    shout-N-MOB      15deg  15deg /   44%  44% /   24%  54% / A--  302
+ $bg-$edge    stat-BROAD       33deg  33deg /   86%  68% /   18%   0% / Z--  180
+ $bg-$edge    stat-ELSE       115deg 115deg /   82%  64% /   18%   0% / B--  220
+ $bg-$edge    stat-FOAM       159deg 159deg /   63%  39% /   24%   0% / B--  291
+ $bg-$edge    stat-GRAVE      181deg 181deg /   62%  40% /   21%   0% / B--  254
+ $bg-$edge    stat-LONE       316deg 316deg /   65%  43% /   22%   0% / Z--  167
+ $bg-$edge    stat-LOVE       275deg 275deg /   68%  43% /   25%   0% / Z--  159
+ $bg-$edge    stat-MOB         15deg  15deg /   76%  53% /   22%   0% / Z--  179
+ $bg-$edge    stat-MUPET       52deg  52deg /   83%  68% /   15%   0% / Z--  193
+ $bg-$edge    stat-VGRAVE     210deg 210deg /   64%  38% /   26%   0% / B--  201
+ $bg-$edge    stat-WOLF       354deg 354deg /   68%  43% /   25%   0% / Z--  173
+ $bg-$edge    std-D-BROAD      49deg  49deg /   35%  58% /   62%  24% / A--  356
+ $bg-$edge    std-D-GRAVE     193deg 193deg /   35%  62% /   77%  32% / A--  355
+ $bg-$edge    std-D-MOB        27deg  27deg /   35%  58% /   69%  31% / A--  354
+ $bg-$edge    std-D-VGRAVE    220deg 220deg /   35%  55% /   77%  43% / A--  355
+ $bg-$edge    std-N-BROAD      33deg  33deg /   40%  40% /   18%  44% / A--  303
+ $bg-$edge    std-N-GRAVE     181deg 181deg /   38%  38% /   20%  43% / A--  307
+ $bg-$edge    std-N-MOB        15deg  15deg /   39%  39% /   20%  49% / A--  300
+ $bg-$edge    std-N-VGRAVE    210deg 210deg /   38%  38% /   22%  52% / A--  302
+ $bg-$edge    think-D-FOAM    174deg 174deg /   15% 100% /   54%  14% / A--  350
+ $bg-$edge    think-D-MOB      27deg  27deg /   15% 100% /   57%  20% / A--  352
+ $bg-$edge    think-D-MUPET    72deg  72deg /   15% 100% /   53%  13% / A--  353
+ $bg-$edge    think-N-FOAM    159deg 159deg /   19%  19% /   20%  46% / A--  300
+ $bg-$edge    think-N-MOB      15deg  15deg /   20%  20% /   16%  46% / A--  304
+ $bg-$edge    think-N-MUPET    52deg  52deg /   20%  20% /   14%  39% / A--  301
+ $bg-$edge    title-ELSE      115deg 115deg /    8%   8% /    6%  52% / AA-  552
+ $bg-$edge    title-LONE      316deg 316deg /    7%   7% /    5%  55% / AA-  559
+ $bg-$edge    title-VGRAVE    210deg 210deg /    7%   7% /    9%  56% / AA-  553
+ $bg-$edge    title-bar-BROAD  49deg  49deg /   75%  83% /   21%  44% / A--  359
+ $bg-$edge    tweet-D-ELSE    140deg 140deg /   45% 100% /   48%  16% / A--  352
+ $bg-$edge    tweet-D-FOAM    174deg 174deg /   45% 100% /   45%  15% / A--  350
+ $bg-$edge    tweet-D-MOB      27deg  27deg /   45% 100% /   56%  21% / A--  351
+ $bg-$edge    tweet-D-WOLF      4deg   4deg /   45% 100% /   65%  26% / A--  352
+ $bg-$edge    tweet-N-ELSE    115deg 115deg /   96%  96% /   11%  28% / A--  307
+ $bg-$edge    tweet-N-FOAM    159deg 159deg /   93%  93% /   20%  39% / A--  302
+ $bg-$edge    tweet-N-MOB      15deg  15deg /   95%  95% /   16%  42% / A--  301
+ $bg-$edge    tweet-N-WOLF    354deg 354deg /   93%  93% /   17%  45% / A--  304
+ $bg-$line    aim-D-ELSE      140deg 103deg /   15%  41% /   73%  29% / A--  353
+ $bg-$line    aim-D-FOAM      174deg 152deg /   15%  41% /   72%  29% / A--  357
+ $bg-$line    aim-D-LOVE      285deg 270deg /   15%  34% /   76%  45% / A--  353
+ $bg-$line    aim-D-MUPET      72deg  42deg /   15%  40% /   72%  31% / A--  359
+ $bg-$line    aim-N-ELSE      115deg 128deg /   19%  77% /   20%  40% / A--  415
+ $bg-$line    aim-N-FOAM      159deg 167deg /   18%  74% /   24%  42% / A--  407
+ $bg-$line    aim-N-LOVE      275deg 280deg /   19% 100% /   25%  71% / A--  401
+ $bg-$line    aim-N-MUPET      52deg  62deg /   19%  70% /   20%  37% / A--  406
+ $bg-$line    ash-BROAD        49deg  57deg /   11%  58% /   29%  45% / A--  354
+ $bg-$line    ash-ELSE        140deg 153deg /   11%  63% /   30%  47% / A--  351
+ $bg-$line    ash-FOAM        174deg 182deg /   11%  62% /   29%  46% / A--  350
+ $bg-$line    ash-GRAVE       193deg 199deg /   11% 100% /   34%  65% / A--  350
+ $bg-$line    ash-MOB          27deg  33deg /   11%  84% /   31%  55% / A--  351
+ $bg-$line    ash-MUPET        72deg  82deg /   11%  61% /   29%  45% / A--  352
+ $bg-$line    ash-VGRAVE      220deg 225deg /   11% 100% /   35%  79% / A--  352
+ $bg-$line    prog-ELSE       140deg 153deg /   35%  86% /   13%  30% / A--  351
+ $bg-$line    prog-MOB         27deg  33deg /   35%  99% /   15%  36% / A--  351
+ $bg-$line    prog-MUPET       72deg  82deg /   35%  85% /   12%  29% / A--  353
+ $bg-$line    shout-D-ELSE    115deg 128deg /   61%  71% /   11%  42% / AA-  551
+ $bg-$line    shout-N-ELSE    115deg 128deg /   44%  98% /   18%  36% / A--  416
+ $bg-$line    shout-N-FOAM    159deg 167deg /   43%  96% /   23%  40% / A--  414
+ $bg-$line    shout-N-MOB      15deg  21deg /   44% 100% /   24%  57% / A--  403
+ $bg-$line    stat-BROAD       33deg  41deg /   86% 100% /   18%  37% / A--  351
+ $bg-$line    stat-ELSE       115deg 128deg /   82% 100% /   18%  36% / A--  358
+ $bg-$line    stat-FOAM       159deg 167deg /   63%  83% /   24%  44% / A--  353
+ $bg-$line    stat-GRAVE      181deg 187deg /   62%  85% /   21%  44% / A--  357
+ $bg-$line    stat-LONE       316deg 321deg /   65%  97% /   22%  54% / A--  351
+ $bg-$line    stat-LOVE       275deg 280deg /   68% 100% /   25%  64% / A--  350
+ $bg-$line    stat-MOB         15deg  21deg /   76% 100% /   22%  49% / A--  356
+ $bg-$line    stat-MUPET       52deg  62deg /   83%  98% /   15%  30% / A--  357
+ $bg-$line    stat-VGRAVE     210deg 215deg /   64% 100% /   26%  65% / A--  354
+ $bg-$line    stat-WOLF       354deg 359deg /   68% 100% /   25%  63% / A--  352
+ $bg-$line    std-D-BROAD      49deg  24deg /   35%  53% /   62%  32% / A--  356
+ $bg-$line    std-D-GRAVE     193deg 174deg /   35%  65% /   77%  27% / A--  357
+ $bg-$line    std-D-MOB        27deg   8deg /   35%  54% /   69%  37% / A--  351
+ $bg-$line    std-D-VGRAVE    220deg 205deg /   35%  61% /   77%  35% / A--  353
+ $bg-$line    std-N-BROAD      33deg  41deg /   40% 100% /   18%  38% / A--  405
+ $bg-$line    std-N-GRAVE     181deg 187deg /   38%  98% /   20%  40% / A--  411
+ $bg-$line    std-N-MOB        15deg  21deg /   39% 100% /   20%  49% / A--  405
+ $bg-$line    std-N-VGRAVE    210deg 215deg /   38% 100% /   22%  65% / A--  402
+ $bg-$line    think-D-FOAM    174deg 152deg /   15% 100% /   54%  14% / A--  354
+ $bg-$line    think-D-MOB      27deg   8deg /   15% 100% /   57%  25% / A--  352
+ $bg-$line    think-D-MUPET    72deg  42deg /   15% 100% /   53%  16% / A--  350
+ $bg-$line    think-N-FOAM    159deg 167deg /   19%  75% /   20%  39% / A--  406
+ $bg-$line    think-N-MOB      15deg  21deg /   20% 100% /   16%  46% / A--  403
+ $bg-$line    think-N-MUPET    52deg  62deg /   20%  74% /   14%  32% / A--  415
+ $bg-$line    title-ELSE      115deg 128deg /    8%  24% /    6%  48% / AA-  557
+ $bg-$line    title-LONE      316deg 321deg /    7%  27% /    5%  58% / AA-  557
+ $bg-$line    title-VGRAVE    210deg 215deg /    7%  26% /    9%  58% / AA-  555
+ $bg-$line    title-bar-BROAD  49deg  57deg /   75%   0% /   21%  67% / A--  353
+ $bg-$line    tweet-D-ELSE    140deg 103deg /   45% 100% /   48%  16% / A--  353
+ $bg-$line    tweet-D-FOAM    174deg 152deg /   45% 100% /   45%  15% / A--  354
+ $bg-$line    tweet-D-MOB      27deg   8deg /   45% 100% /   56%  25% / A--  351
+ $bg-$line    tweet-D-WOLF      4deg 349deg /   45% 100% /   65%  26% / A--  351
+ $bg-$line    tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  32% / A--  407
+ $bg-$line    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  404
+ $bg-$line    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  46% / A--  401
+ $bg-$line    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  56% / A--  400
+ $bg-$pen     aim-D-ELSE      140deg 153deg /   15%  26% /   73%  17% / AAA  711
+ $bg-$pen     aim-D-FOAM      174deg 182deg /   15%  26% /   72%  16% / AAA  711
+ $bg-$pen     aim-D-LOVE      285deg 290deg /   15%  26% /   76%  21% / AAA  700
+ $bg-$pen     aim-D-MUPET      72deg  82deg /   15%  26% /   72%  16% / AAA  702
+ $bg-$pen     aim-N-ELSE      115deg 153deg /   19%  25% /   20%  77% / AAA  717
+ $bg-$pen     aim-N-FOAM      159deg 182deg /   18%  25% /   24%  83% / AAA  708
+ $bg-$pen     aim-N-LOVE      275deg 290deg /   19%  25% /   25%  81% / AAA  714
+ $bg-$pen     aim-N-MUPET      52deg  82deg /   19%  25% /   20%  76% / AAA  709
+ $bg-$pen     ash-BROAD        49deg  57deg /   11%   0% /   29%  93% / AAA  708
+ $bg-$pen     ash-ELSE        140deg 153deg /   11%   0% /   30%  94% / AAA  702
+ $bg-$pen     ash-FOAM        174deg 182deg /   11%   0% /   29%  93% / AAA  708
+ $bg-$pen     ash-GRAVE       193deg 199deg /   11%   0% /   34% 100% / AA-  686
+ $bg-$pen     ash-MOB          27deg  33deg /   11%   0% /   31%  93% / AAA  702
+ $bg-$pen     ash-MUPET        72deg  82deg /   11%   0% /   29%  93% / AAA  702
+ $bg-$pen     ash-VGRAVE      220deg 225deg /   11%   0% /   35%  97% / AAA  700
+ $bg-$pen     prog-ELSE       140deg 153deg /   35%  17% /   13%  68% / AAA  707
+ $bg-$pen     prog-MOB         27deg  33deg /   35%  17% /   15%  69% / AAA  704
+ $bg-$pen     prog-MUPET       72deg  82deg /   35%  17% /   12%  65% / AAA  702
+ $bg-$pen     shout-D-ELSE    115deg 153deg /   61%  65% /   11%  49% / AAA  727
+ $bg-$pen     shout-N-ELSE    115deg 153deg /   44%  50% /   18%  73% / AAA  716
+ $bg-$pen     shout-N-FOAM    159deg 182deg /   43%  50% /   23%  86% / AAA  702
+ $bg-$pen     shout-N-MOB      15deg  33deg /   44%  50% /   24%  77% / AAA  703
+ $bg-$pen     stat-BROAD       33deg  57deg /   86%  99% /   18%  40% / AA-  613
+ $bg-$pen     stat-ELSE       115deg 153deg /   82%  99% /   18%  47% / AA-  605
+ $bg-$pen     stat-FOAM       159deg 182deg /   63%  99% /   24%  83% / AA-  621
+ $bg-$pen     stat-GRAVE      181deg 199deg /   62%  99% /   21%  84% / AA-  604
+ $bg-$pen     stat-LONE       316deg 331deg /   65%  99% /   22%  78% / AA-  602
+ $bg-$pen     stat-LOVE       275deg 290deg /   68%  99% /   25%  77% / AA-  608
+ $bg-$pen     stat-MOB         15deg  33deg /   76%  99% /   22%  61% / AA-  604
+ $bg-$pen     stat-MUPET       52deg  82deg /   83%  99% /   15%  42% / AA-  610
+ $bg-$pen     stat-VGRAVE     210deg 225deg /   64%  99% /   26%  85% / AA-  608
+ $bg-$pen     stat-WOLF       354deg   9deg /   68%  99% /   25%  77% / AA-  601
+ $bg-$pen     std-D-BROAD      49deg  57deg /   35%  45% /   62%  11% / AAA  709
+ $bg-$pen     std-D-GRAVE     193deg 199deg /   35%  46% /   77%  20% / AAA  705
+ $bg-$pen     std-D-MOB        27deg  33deg /   35%  46% /   69%  14% / AAA  711
+ $bg-$pen     std-D-VGRAVE    220deg 225deg /   35%  46% /   77%  24% / AAA  702
+ $bg-$pen     std-N-BROAD      33deg  57deg /   40%  45% /   18%  62% / AAA  717
+ $bg-$pen     std-N-GRAVE     181deg 199deg /   38%  45% /   20%  82% / AAA  704
+ $bg-$pen     std-N-MOB        15deg  33deg /   39%  45% /   20%  72% / AAA  715
+ $bg-$pen     std-N-VGRAVE    210deg 225deg /   38%  45% /   22%  82% / AAA  713
+ $bg-$pen     think-D-FOAM    174deg 182deg /   15%   0% /   54%   8% / AA-  602
+ $bg-$pen     think-D-MOB      27deg  33deg /   15%   0% /   57%   8% / AA-  603
+ $bg-$pen     think-D-MUPET    72deg  82deg /   15%   0% /   53%   9% / AA-  605
+ $bg-$pen     think-N-FOAM    159deg 182deg /   19%  25% /   20%  71% / AA-  621
+ $bg-$pen     think-N-MOB      15deg  33deg /   20%  25% /   16%  63% / AA-  610
+ $bg-$pen     think-N-MUPET    52deg  82deg /   20%  25% /   14%  58% / AA-  613
+ $bg-$pen     title-ELSE      115deg 153deg /    8%  15% /    6%  63% / AAA  815
+ $bg-$pen     title-LONE      316deg 331deg /    7%  15% /    5%  68% / AAA  808
+ $bg-$pen     title-VGRAVE    210deg 225deg /    7%  15% /    9%  70% / AAA  811
+ $bg-$pen     title-bar-BROAD  49deg  57deg /   75%  52% /   21%  89% / AAA  701
+ $bg-$pen     tweet-D-ELSE    140deg 153deg /   45%   0% /   48%  13% / AA-  607
+ $bg-$pen     tweet-D-FOAM    174deg 182deg /   45%   0% /   45%  10% / AA-  606
+ $bg-$pen     tweet-D-MOB      27deg  33deg /   45%   0% /   56%  10% / AA-  604
+ $bg-$pen     tweet-D-WOLF      4deg   9deg /   45%   0% /   65%  10% / AA-  601
+ $bg-$pen     tweet-N-ELSE    115deg 153deg /   96%  99% /   11%  40% / AA-  622
+ $bg-$pen     tweet-N-FOAM    159deg 182deg /   93%  99% /   20%  78% / AA-  610
+ $bg-$pen     tweet-N-MOB      15deg  33deg /   95%  99% /   16%  49% / AA-  605
+ $bg-$pen     tweet-N-WOLF    354deg   9deg /   93%  99% /   17%  70% / AA-  606
+ $bg-$shade   aim-D-ELSE      140deg 153deg /   15%  15% /   73%  81% / Z--  121
+ $bg-$shade   aim-D-FOAM      174deg 182deg /   15%  15% /   72%  80% / Z--  121
+ $bg-$shade   aim-D-LOVE      285deg 290deg /   15%  15% /   76%  83% / Z--  120
+ $bg-$shade   aim-D-MUPET      72deg  82deg /   15%  15% /   72%  80% / Z--  122
+ $bg-$shade   aim-N-ELSE      115deg 128deg /   19%  19% /   20%  25% / Z--  121
+ $bg-$shade   aim-N-FOAM      159deg 167deg /   18%  18% /   24%  28% / Z--  123
+ $bg-$shade   aim-N-LOVE      275deg 280deg /   19%  19% /   25%  30% / Z--  121
+ $bg-$shade   aim-N-MUPET      52deg  62deg /   19%  19% /   20%  24% / Z--  121
+ $bg-$shade   ash-BROAD        49deg  57deg /   11%  11% /   29%  33% / Z--  121
+ $bg-$shade   ash-ELSE        140deg 153deg /   11%  11% /   30%  34% / Z--  120
+ $bg-$shade   ash-FOAM        174deg 182deg /   11%  11% /   29%  34% / Z--  120
+ $bg-$shade   ash-GRAVE       193deg 199deg /   11%  11% /   34%  40% / Z--  120
+ $bg-$shade   ash-MOB          27deg  33deg /   11%  11% /   31%  35% / Z--  121
+ $bg-$shade   ash-MUPET        72deg  82deg /   11%  11% /   29%  33% / Z--  121
+ $bg-$shade   ash-VGRAVE      220deg 225deg /   11%  11% /   35%  40% / Z--  121
+ $bg-$shade   prog-ELSE       140deg 153deg /   35%  35% /   13%  17% / Z--  122
+ $bg-$shade   prog-MOB         27deg  33deg /   35%  35% /   15%  19% / Z--  122
+ $bg-$shade   prog-MUPET       72deg  82deg /   35%  35% /   12%  16% / Z--  122
+ $bg-$shade   shout-D-ELSE    115deg 128deg /   61%  61% /   11%  15% / Z--  123
+ $bg-$shade   shout-N-ELSE    115deg 128deg /   44%  44% /   18%  22% / Z--  123
+ $bg-$shade   shout-N-FOAM    159deg 167deg /   43%  43% /   23%  26% / Z--  121
+ $bg-$shade   shout-N-MOB      15deg  21deg /   44%  44% /   24%  28% / Z--  121
+ $bg-$shade   stat-BROAD       33deg  41deg /   86%  86% /   18%  19% / Z--  121
+ $bg-$shade   stat-ELSE       115deg 128deg /   82%  82% /   18%  21% / Z--  121
+ $bg-$shade   stat-FOAM       159deg 167deg /   63%  63% /   24%  27% / Z--  121
+ $bg-$shade   stat-GRAVE      181deg 187deg /   62%  62% /   21%  26% / Z--  120
+ $bg-$shade   stat-LONE       316deg 321deg /   65%  65% /   22%  28% / Z--  120
+ $bg-$shade   stat-LOVE       275deg 280deg /   68%  68% /   25%  30% / Z--  122
+ $bg-$shade   stat-MOB         15deg  21deg /   76%  76% /   22%  25% / Z--  120
+ $bg-$shade   stat-MUPET       52deg  62deg /   83%  83% /   15%  16% / Z--  122
+ $bg-$shade   stat-VGRAVE     210deg 215deg /   64%  64% /   26%  33% / Z--  121
+ $bg-$shade   stat-WOLF       354deg 359deg /   68%  68% /   25%  30% / Z--  121
+ $bg-$shade   std-D-BROAD      49deg  57deg /   35%  35% /   62%  68% / Z--  121
+ $bg-$shade   std-D-GRAVE     193deg 199deg /   35%  35% /   77%  86% / Z--  122
+ $bg-$shade   std-D-MOB        27deg  33deg /   35%  35% /   69%  75% / Z--  120
+ $bg-$shade   std-D-VGRAVE    220deg 225deg /   35%  35% /   77%  84% / Z--  120
+ $bg-$shade   std-N-BROAD      33deg  41deg /   40%  40% /   18%  21% / Z--  123
+ $bg-$shade   std-N-GRAVE     181deg 187deg /   38%  38% /   20%  25% / Z--  120
+ $bg-$shade   std-N-MOB        15deg  21deg /   39%  39% /   20%  24% / Z--  121
+ $bg-$shade   std-N-VGRAVE    210deg 215deg /   38%  38% /   22%  29% / Z--  120
+ $bg-$shade   think-D-FOAM    174deg 182deg /   15%  15% /   54%  61% / Z--  121
+ $bg-$shade   think-D-MOB      27deg  33deg /   15%  15% /   57%  63% / Z--  121
+ $bg-$shade   think-D-MUPET    72deg  82deg /   15%  15% /   53%  60% / Z--  121
+ $bg-$shade   think-N-FOAM    159deg 167deg /   19%  19% /   20%  24% / Z--  121
+ $bg-$shade   think-N-MOB      15deg  21deg /   20%  20% /   16%  21% / Z--  121
+ $bg-$shade   think-N-MUPET    52deg  62deg /   20%  20% /   14%  18% / Z--  121
+ $bg-$shade   title-ELSE      115deg 128deg /    8%   8% /    6%  13% / Z--  120
+ $bg-$shade   title-LONE      316deg 321deg /    7%   7% /    5%  13% / Z--  121
+ $bg-$shade   title-VGRAVE    210deg 215deg /    7%   7% /    9%  16% / Z--  121
+ $bg-$shade   title-bar-BROAD  49deg  57deg /   75%  75% /   21%  22% / Z--  121
+ $bg-$shade   tweet-D-ELSE    140deg 153deg /   45%  45% /   48%  55% / Z--  120
+ $bg-$shade   tweet-D-FOAM    174deg 182deg /   45%  45% /   45%  51% / Z--  121
+ $bg-$shade   tweet-D-MOB      27deg  33deg /   45%  45% /   56%  60% / Z--  120
+ $bg-$shade   tweet-D-WOLF      4deg   9deg /   45%  45% /   65%  69% / Z--  122
+ $bg-$shade   tweet-N-ELSE    115deg 128deg /   96%  96% /   11%  14% / Z--  121
+ $bg-$shade   tweet-N-FOAM    159deg 167deg /   93%  93% /   20%  23% / Z--  124
+ $bg-$shade   tweet-N-MOB      15deg  21deg /   95%  95% /   16%  19% / Z--  121
+ $bg-$shade   tweet-N-WOLF    354deg 359deg /   93%  93% /   17%  22% / Z--  121
+ $btn-$btnOff aim-D-ELSE      153deg 153deg /   37%  80% /   77%  52% / ---  108
+ $btn-$btnOff aim-D-FOAM      182deg 182deg /   37%  76% /   77%  52% / ---  110
+ $btn-$btnOff aim-D-LOVE      290deg 290deg /   60%  23% /   85%  74% / Z--  133
+ $btn-$btnOff aim-D-MUPET      82deg  82deg /   36%  69% /   76%  54% / ---  110
+ $btn-$btnOff aim-N-ELSE      128deg 128deg /   32%  28% /   23%  17% / Z--  134
+ $btn-$btnOff aim-N-FOAM      167deg 167deg /   30%  30% /   26%  20% / Z--  136
+ $btn-$btnOff aim-N-LOVE      280deg 280deg /   62%  26% /   33%  22% / Z--  133
+ $btn-$btnOff aim-N-MUPET      62deg  62deg /   28%  32% /   22%  16% / Z--  134
+ $btn-$btnOff ash-BROAD        57deg  57deg /   19%  29% /   31%  23% / Z--  132
+ $btn-$btnOff ash-ELSE        153deg 153deg /   23%  23% /   32%  26% / Z--  134
+ $btn-$btnOff ash-FOAM        182deg 182deg /   23%  24% /   31%  25% / Z--  135
+ $btn-$btnOff ash-GRAVE       199deg 199deg /   31%  17% /   38%  32% / Z--  133
+ $btn-$btnOff ash-MOB          33deg  33deg /   25%  22% /   34%  27% / Z--  134
+ $btn-$btnOff ash-MUPET        82deg  82deg /   22%  23% /   31%  25% / Z--  133
+ $btn-$btnOff ash-VGRAVE      225deg 225deg /   98%  15% /   52%  33% / Z--  132
+ $btn-$btnOff prog-ELSE       153deg 153deg /   50%  44% /   16%  10% / Z--  135
+ $btn-$btnOff prog-MOB         33deg  33deg /   52%  46% /   18%  11% / Z--  133
+ $btn-$btnOff prog-MUPET       82deg  82deg /   50%  43% /   15%   9% / Z--  134
+ $btn-$btnOff shout-D-ELSE    128deg 128deg /   74%  69% /   14%   8% / Z--  133
+ $btn-$btnOff shout-N-ELSE    128deg 128deg /   56%  52% /   21%  16% / Z--  134
+ $btn-$btnOff shout-N-FOAM    167deg 167deg /   53%  52% /   25%  20% / Z--  134
+ $btn-$btnOff shout-N-MOB      21deg  21deg /   58%  57% /   27%  20% / Z--  134
+ $btn-$btnOff stat-BROAD       41deg  41deg /   91%  86% /   19%  18% / ---  109
+ $btn-$btnOff stat-ELSE       128deg 128deg /   91%  88% /   19%  16% / Z--  133
+ $btn-$btnOff stat-FOAM       167deg 167deg /   72%  73% /   26%  21% / Z--  135
+ $btn-$btnOff stat-GRAVE      187deg 187deg /   77%  63% /   24%  21% / Z--  134
+ $btn-$btnOff stat-LONE       321deg 321deg /   85%  74% /   26%  20% / Z--  132
+ $btn-$btnOff stat-LOVE       280deg 280deg /   88%  82% /   29%  20% / Z--  133
+ $btn-$btnOff stat-MOB         21deg  21deg /   87%  89% /   25%  18% / Z--  133
+ $btn-$btnOff stat-MUPET       62deg  62deg /   87%  92% /   16%  12% / Z--  133
+ $btn-$btnOff stat-VGRAVE     215deg 215deg /   99%  65% /   33%  25% / Z--  133
+ $btn-$btnOff stat-WOLF       359deg 359deg /   86%  77% /   28%  22% / Z--  132
+ $btn-$btnOff std-D-BROAD      57deg  57deg /   44%  42% /   64%  60% / ---  109
+ $btn-$btnOff std-D-GRAVE     199deg 199deg /   75%  43% /   85%  74% / Z--  132
+ $btn-$btnOff std-D-MOB        33deg  33deg /   55%  63% /   73%  60% / Z--  132
+ $btn-$btnOff std-D-VGRAVE    225deg 225deg /   82%  40% /   87%  76% / Z--  133
+ $btn-$btnOff std-N-BROAD      41deg  41deg /   51%  52% /   20%  14% / Z--  133
+ $btn-$btnOff std-N-GRAVE     187deg 187deg /   54%  42% /   23%  19% / Z--  132
+ $btn-$btnOff std-N-MOB        21deg  21deg /   57%  50% /   23%  16% / Z--  133
+ $btn-$btnOff std-N-VGRAVE    215deg 215deg /   74%  43% /   29%  21% / Z--  133
+ $btn-$btnOff think-D-FOAM    182deg 182deg /   29%  59% /   56%  39% / Z--  133
+ $btn-$btnOff think-D-MOB      33deg  33deg /   32%  36% /   61%  50% / Z--  133
+ $btn-$btnOff think-D-MUPET    82deg  82deg /   28%  59% /   55%  38% / Z--  134
+ $btn-$btnOff think-N-FOAM    167deg 167deg /   31%  30% /   23%  17% / Z--  134
+ $btn-$btnOff think-N-MOB      21deg  21deg /   42%  30% /   20%  13% / Z--  132
+ $btn-$btnOff think-N-MUPET    62deg  62deg /   33%  32% /   17%  10% / Z--  134
+ $btn-$btnOff title-ELSE      128deg 128deg /   35%  24% /   11%   0% / Z--  131
+ $btn-$btnOff title-LONE      321deg 321deg /   55%  23% /   15%   0% / Z--  130
+ $btn-$btnOff title-VGRAVE    215deg 215deg /   46%  23% /   16%   3% / Z--  133
+ $btn-$btnOff title-bar-BROAD  57deg   0deg /   78%   0% /   21%   0% / A--  311
+ $btn-$btnOff tweet-D-ELSE    153deg 153deg /   54%  74% /   50%  39% / Z--  133
+ $btn-$btnOff tweet-D-FOAM    182deg 182deg /   56%  64% /   48%  39% / Z--  133
+ $btn-$btnOff tweet-D-MOB      33deg  33deg /   56%  79% /   58%  45% / Z--  132
+ $btn-$btnOff tweet-D-WOLF      9deg   9deg /   71%  57% /   70%  61% / Z--  133
+ $btn-$btnOff tweet-N-ELSE    128deg 128deg /  100% 100% /   14%   9% / Z--  133
+ $btn-$btnOff tweet-N-FOAM    167deg 167deg /  100%  99% /   22%  18% / Z--  134
+ $btn-$btnOff tweet-N-MOB      21deg  21deg /  100% 100% /   19%  12% / Z--  133
+ $btn-$btnOff tweet-N-WOLF    359deg 359deg /  100% 100% /   21%  13% / Z--  133
+ $btn-$pen    aim-D-ELSE      153deg 153deg /   37%  26% /   77%  17% / AAA  853
+ $btn-$pen    aim-D-FOAM      182deg 182deg /   37%  26% /   77%  16% / AAA  858
+ $btn-$pen    aim-D-LOVE      290deg 290deg /   60%  26% /   85%  21% / AAA  841
+ $btn-$pen    aim-D-MUPET      82deg  82deg /   36%  26% /   76%  16% / AAA  846
+ $btn-$pen    aim-N-ELSE      128deg 153deg /   32%  25% /   23%  77% / AA-  592
+ $btn-$pen    aim-N-FOAM      167deg 182deg /   30%  25% /   26%  83% / AA-  583
+ $btn-$pen    aim-N-LOVE      280deg 290deg /   62%  25% /   33%  81% / AA-  595
+ $btn-$pen    aim-N-MUPET      62deg  82deg /   28%  25% /   22%  76% / AA-  585
+ $btn-$pen    ash-BROAD        57deg  57deg /   19%   0% /   31%  93% / AA-  590
+ $btn-$pen    ash-ELSE        153deg 153deg /   23%   0% /   32%  94% / AA-  578
+ $btn-$pen    ash-FOAM        182deg 182deg /   23%   0% /   31%  93% / AA-  586
+ $btn-$pen    ash-GRAVE       199deg 199deg /   31%   0% /   38% 100% / AA-  569
+ $btn-$pen    ash-MOB          33deg  33deg /   25%   0% /   34%  93% / AA-  580
+ $btn-$pen    ash-MUPET        82deg  82deg /   22%   0% /   31%  93% / AA-  582
+ $btn-$pen    ash-VGRAVE      225deg 225deg /   98%   0% /   52%  97% / AA-  583
+ $btn-$pen    prog-ELSE       153deg 153deg /   50%  17% /   16%  68% / AA-  582
+ $btn-$pen    prog-MOB         33deg  33deg /   52%  17% /   18%  69% / AA-  585
+ $btn-$pen    prog-MUPET       82deg  82deg /   50%  17% /   15%  65% / AA-  581
+ $btn-$pen    shout-D-ELSE    128deg 153deg /   74%  65% /   14%  49% / AA-  603
+ $btn-$pen    shout-N-ELSE    128deg 153deg /   56%  50% /   21%  73% / AA-  593
+ $btn-$pen    shout-N-FOAM    167deg 182deg /   53%  50% /   25%  86% / AA-  579
+ $btn-$pen    shout-N-MOB      21deg  33deg /   58%  50% /   27%  77% / AA-  584
+ $btn-$pen    stat-BROAD       41deg  57deg /   91%  99% /   19%  40% / AA-  505
+ $btn-$pen    stat-ELSE       128deg 153deg /   91%  99% /   19%  47% / AA-  502
+ $btn-$pen    stat-FOAM       167deg 182deg /   72%  99% /   26%  83% / AA-  511
+ $btn-$pen    stat-GRAVE      187deg 199deg /   77%  99% /   24%  84% / AA-  500
+ $btn-$pen    stat-LONE       321deg 331deg /   85%  99% /   26%  78% / AA-  501
+ $btn-$pen    stat-LOVE       280deg 290deg /   88%  99% /   29%  77% / AA-  506
+ $btn-$pen    stat-MOB         21deg  33deg /   87%  99% /   25%  61% / AA-  502
+ $btn-$pen    stat-MUPET       62deg  82deg /   87%  99% /   16%  42% / AA-  508
+ $btn-$pen    stat-VGRAVE     215deg 225deg /   99%  99% /   33%  85% / AA-  503
+ $btn-$pen    stat-WOLF       359deg   9deg /   86%  99% /   28%  77% / AA-  501
+ $btn-$pen    std-D-BROAD      57deg  57deg /   44%  45% /   64%  11% / AAA  851
+ $btn-$pen    std-D-GRAVE     199deg 199deg /   75%  46% /   85%  20% / AAA  847
+ $btn-$pen    std-D-MOB        33deg  33deg /   55%  46% /   73%  14% / AAA  853
+ $btn-$pen    std-D-VGRAVE    225deg 225deg /   82%  46% /   87%  24% / AAA  847
+ $btn-$pen    std-N-BROAD      41deg  57deg /   51%  45% /   20%  62% / AA-  595
+ $btn-$pen    std-N-GRAVE     187deg 199deg /   54%  45% /   23%  82% / AA-  585
+ $btn-$pen    std-N-MOB        21deg  33deg /   57%  45% /   23%  72% / AA-  595
+ $btn-$pen    std-N-VGRAVE    215deg 225deg /   74%  45% /   29%  82% / AA-  591
+ $btn-$pen    think-D-FOAM    182deg 182deg /   29%   0% /   56%   8% / AAA  728
+ $btn-$pen    think-D-MOB      33deg  33deg /   32%   0% /   61%   8% / AAA  727
+ $btn-$pen    think-D-MUPET    82deg  82deg /   28%   0% /   55%   9% / AAA  732
+ $btn-$pen    think-N-FOAM    167deg 182deg /   31%  25% /   23%  71% / AA-  512
+ $btn-$pen    think-N-MOB      21deg  33deg /   42%  25% /   20%  63% / AA-  508
+ $btn-$pen    think-N-MUPET    62deg  82deg /   33%  25% /   17%  58% / AA-  505
+ $btn-$pen    title-ELSE      128deg 153deg /   35%  15% /   11%  63% / AA-  677
+ $btn-$pen    title-LONE      321deg 331deg /   55%  15% /   15%  68% / AA-  673
+ $btn-$pen    title-VGRAVE    215deg 225deg /   46%  15% /   16%  70% / AA-  674
+ $btn-$pen    title-bar-BROAD  57deg  57deg /   78%  52% /   21%  89% / AA-  583
+ $btn-$pen    tweet-D-ELSE    153deg 153deg /   54%   0% /   50%  13% / AAA  731
+ $btn-$pen    tweet-D-FOAM    182deg 182deg /   56%   0% /   48%  10% / AAA  732
+ $btn-$pen    tweet-D-MOB      33deg  33deg /   56%   0% /   58%  10% / AAA  726
+ $btn-$pen    tweet-D-WOLF      9deg   9deg /   71%   0% /   70%  10% / AAA  724
+ $btn-$pen    tweet-N-ELSE    128deg 153deg /  100%  99% /   14%  40% / AA-  515
+ $btn-$pen    tweet-N-FOAM    167deg 182deg /  100%  99% /   22%  78% / AA-  507
+ $btn-$pen    tweet-N-MOB      21deg  33deg /  100%  99% /   19%  49% / AA-  503
+ $btn-$pen    tweet-N-WOLF    359deg   9deg /  100%  99% /   21%  70% / AA-  502
+ $grad-$btn   aim-D-ELSE      103deg 153deg /   54%  37% /   73%  77% / ---  100
+ $grad-$btn   aim-D-FOAM      152deg 182deg /   57%  37% /   72%  77% / ---  100
+ $grad-$btn   aim-D-LOVE      270deg 290deg /   60%  60% /   76%  85% / Z--  145
+ $grad-$btn   aim-D-MUPET      42deg  82deg /   79%  36% /   72%  76% / ---  100
+ $grad-$btn   aim-N-ELSE       78deg 128deg /   42%  32% /   20%  23% / ---  101
+ $grad-$btn   aim-N-FOAM      137deg 167deg /   47%  30% /   24%  26% / ---  101
+ $grad-$btn   aim-N-LOVE      260deg 280deg /   54%  62% /   25%  33% / Z--  145
+ $grad-$btn   aim-N-MUPET      52deg  62deg /   19%  28% /   20%  22% / Z--  121
+ $grad-$btn   ash-BROAD        24deg  57deg /  100%  19% /   29%  31% / ---  105
+ $grad-$btn   ash-ELSE        103deg 153deg /   34%  23% /   30%  32% / ---  101
+ $grad-$btn   ash-FOAM        152deg 182deg /   36%  23% /   29%  31% / ---  100
+ $grad-$btn   ash-GRAVE       174deg 199deg /   27%  31% /   34%  38% / ---  100
+ $grad-$btn   ash-MOB           8deg  33deg /  100%  25% /   31%  34% / Z--  121
+ $grad-$btn   ash-MUPET        42deg  82deg /   52%  22% /   29%  31% / ---  100
+ $grad-$btn   ash-VGRAVE      205deg 225deg /   84%  98% /   35%  52% / ---  100
+ $grad-$btn   prog-ELSE       103deg 153deg /   87%  50% /   13%  16% / ---  100
+ $grad-$btn   prog-MOB          8deg  33deg /  100%  52% /   15%  18% / Z--  126
+ $grad-$btn   prog-MUPET       42deg  82deg /  100%  50% /   12%  15% / ---  110
+ $grad-$btn   shout-D-ELSE    115deg 128deg /   61%  74% /   11%  14% / Z--  121
+ $grad-$btn   shout-N-ELSE     78deg 128deg /   64%  56% /   18%  21% / ---  100
+ $grad-$btn   shout-N-FOAM    137deg 167deg /   72%  53% /   23%  25% / ---  100
+ $grad-$btn   shout-N-MOB      15deg  21deg /   44%  58% /   24%  27% / Z--  120
+ $grad-$btn   stat-BROAD        8deg  41deg /   86%  91% /   18%  19% / Z--  151
+ $grad-$btn   stat-ELSE        78deg 128deg /   98%  91% /   18%  19% / ---  100
+ $grad-$btn   stat-FOAM       137deg 167deg /   90%  72% /   24%  26% / ---  100
+ $grad-$btn   stat-GRAVE      162deg 187deg /   89%  77% /   21%  24% / ---  101
+ $grad-$btn   stat-LONE       301deg 321deg /  100%  85% /   22%  26% / ---  104
+ $grad-$btn   stat-LOVE       260deg 280deg /  100%  88% /   25%  29% / Z--  135
+ $grad-$btn   stat-MOB        356deg  21deg /  100%  87% /   22%  25% / Z--  125
+ $grad-$btn   stat-MUPET       22deg  62deg /   83%  87% /   15%  16% / Z--  160
+ $grad-$btn   stat-VGRAVE     195deg 215deg /   64%  99% /   26%  33% / ---  106
+ $grad-$btn   stat-WOLF       339deg 359deg /  100%  86% /   25%  28% / ---  108
+ $grad-$btn   std-D-BROAD      24deg  57deg /   35%  44% /   62%  64% / Z--  150
+ $grad-$btn   std-D-GRAVE     174deg 199deg /   66%  75% /   77%  85% / ---  100
+ $grad-$btn   std-D-MOB         8deg  33deg /   61%  55% /   69%  73% / Z--  144
+ $grad-$btn   std-D-VGRAVE    220deg 225deg /   35%  82% /   77%  87% / Z--  121
+ $grad-$btn   std-N-BROAD      33deg  41deg /   40%  51% /   18%  20% / Z--  120
+ $grad-$btn   std-N-GRAVE     162deg 187deg /   69%  54% /   20%  23% / ---  100
+ $grad-$btn   std-N-MOB        15deg  21deg /   39%  57% /   20%  23% / Z--  120
+ $grad-$btn   std-N-VGRAVE    195deg 215deg /   56%  74% /   22%  29% / ---  100
+ $grad-$btn   think-D-FOAM    152deg 182deg /   36%  29% /   54%  56% / ---  101
+ $grad-$btn   think-D-MOB       8deg  33deg /   45%  32% /   57%  61% / Z--  145
+ $grad-$btn   think-D-MUPET    42deg  82deg /   52%  28% /   53%  55% / ---  101
+ $grad-$btn   think-N-FOAM    137deg 167deg /   52%  31% /   20%  23% / ---  101
+ $grad-$btn   think-N-MOB      15deg  21deg /   20%  42% /   16%  20% / Z--  120
+ $grad-$btn   think-N-MUPET    52deg  62deg /   20%  33% /   14%  17% / Z--  121
+ $grad-$btn   title-ELSE      115deg 128deg /    8%  35% /    6%  11% / Z--  120
+ $grad-$btn   title-LONE      316deg 321deg /    7%  55% /    5%  15% / Z--  120
+ $grad-$btn   title-VGRAVE    210deg 215deg /    7%  46% /    9%  16% / Z--  120
+ $grad-$btn   title-bar-BROAD  24deg  57deg /   75%  78% /   21%  21% / Z--  167
+ $grad-$btn   tweet-D-ELSE    103deg 153deg /   59%  54% /   48%  50% / ---  100
+ $grad-$btn   tweet-D-FOAM    152deg 182deg /   65%  56% /   45%  48% / ---  100
+ $grad-$btn   tweet-D-MOB       8deg  33deg /   45%  56% /   56%  58% / Z--  155
+ $grad-$btn   tweet-D-WOLF      4deg   9deg /   45%  71% /   65%  70% / Z--  120
+ $grad-$btn   tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  14% / Z--  121
+ $grad-$btn   tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  22% / Z--  120
+ $grad-$btn   tweet-N-MOB      15deg  21deg /   95% 100% /   16%  19% / Z--  120
+ $grad-$btn   tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  21% / Z--  121
 ./static/css/index.css <== ./src/lib/scss/index.sass
 ./static/css/log-day.css <== ./src/lib/scss/log-day.sass
 ./static/css/log-night.css <== ./src/lib/scss/log-night.sass

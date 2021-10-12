@@ -33,6 +33,17 @@ useServer({
         const ids = Object.keys(ctx.subscriptions);
         console.log('Complete', { id, ids });
     },
+    validate(schema, ast, rules, typeInfo, options) {
+        const { kind } = ast;
+        const definitions = ast.definitions.map((def) => [
+            def.operation,
+            def.selectionSet.kind,
+            def.selectionSet.selections
+        ]);
+        const document = JSON.stringify([kind, definitions]);
+        console.log('Validate', { document, rules, typeInfo, options });
+        return [];
+    },
     schema,
     roots
 }, server);

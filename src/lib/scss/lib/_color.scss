@@ -234,6 +234,21 @@
   @return $pals;
 }
 
+@function pL($size, $label) {
+  @return str-slice('#{ $label }             ',0, $size)
+}
+
+@function pR($size, $label) {
+  @return str-slice('             #{ $label }',0 - $size)
+}
+
+@function capture($type, $v1, $v2, $label) {
+  $prefix: ' #{pL(13, $label)}#{pL(15,$type)}#{ pR(7, math.round(color.hue($v1))) }#{ pR(7, math.round(color.hue($v2))) } / #{ pR(5, math.round(color.saturation($v1))) }#{ pR(5, math.round(color.saturation($v2))) } / #{ pR(5, math.round(color.lightness($v1))) }#{ pR(5, math.round(color.lightness($v2))) } / ';
+
+  @return contrastRank($v1, $v2, $prefix)
+}
+
+
 $hues: (
   LONE: 326deg,   // 308 + 18 赤紫
   LOVE: 285deg,   // 271 + 14 紫
@@ -346,15 +361,14 @@ $pals: ();
     text-emphasis-color: var(--line);
     text-decoration-color: var(--line);
 
-    $c: contrastRank($bg, $shade,   '$bg:shade     #{$type}');
-    $c: contrastRank($bg, $btn,     '$bg:$btn      #{$type}');
-    $c: contrastRank($bg, $pen,     '$bg:$pen      #{$type}');
-    $c: contrastRank($bg, $line,    '$bg:$line     #{$type}');
-    $c: contrastRank($bg, $bold,    '$bg:$bold     #{$type}');
-    $c: contrastRank($bg, $edge,    '$bg:$edge     #{$type}');
-    $c: contrastRank($bg, $shade,   '$bg:$shade    #{$type}');
-    $c: contrastRank($btn, $pen,    '$btn:$pen     #{$type}');
-    $c: contrastRank($btn, $btnOff, '$btn:$btnOff  #{$type}');
-    $c: contrastRank($grad, $btn,   '$grad:$btn    #{$type}');
+    $c: capture($type, $bg, $shade,   '$bg-$shade');
+    $c: capture($type, $bg, $btn,     '$bg-$btn');
+    $c: capture($type, $bg, $pen,     '$bg-$pen');
+    $c: capture($type, $bg, $line,    '$bg-$line');
+    $c: capture($type, $bg, $bold,    '$bg-$bold');
+    $c: capture($type, $bg, $edge,    '$bg-$edge');
+    $c: capture($type, $btn, $pen,    '$btn-$pen');
+    $c: capture($type, $btn, $btnOff, '$btn-$btnOff');
+    $c: capture($type, $grad, $btn,   '$grad-$btn');
   }
 }

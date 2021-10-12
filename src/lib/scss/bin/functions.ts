@@ -6,7 +6,7 @@ type FunctionsType = {
   [key: string]: (...args: sass.types.SassType[]) => sass.types.SassType | void
 }
 const functions: FunctionsType = {
-  'contrastRank($v1, $v2, $label)': contrastRank,
+  'contrastRank($v1, $v2, $prefix)': contrastRank,
   'contrastRatio($v1, $v2)': contrastRatio,
   'Y2L($HH, $SS, $YY)': Y2L,
   'stepByCache($label)': stepByCache,
@@ -112,14 +112,14 @@ function Y2L($HH, $SS, $YY) {
   return new sass.types.Number(100 * L, '%')
 }
 
-function contrastRank($v1, $v2, $label) {
+function contrastRank($v1, $v2, $prefix) {
   if (!($v1 instanceof sass.types.Color)) throw '$v1: Expected a number.'
   if (!($v2 instanceof sass.types.Color)) throw '$v2: Expected a number.'
-  if (!($label instanceof sass.types.String)) throw '$label: Expected a number.'
+  if (!($prefix instanceof sass.types.String)) throw '$label: Expected a number.'
 
   const $contrast = contrastRatio($v1, $v2)
   const contrast = $contrast.getValue()
-  const prefix = `${$label.getValue()}                     `.slice(0, 28)
+  const contrastLabel = `  ${Math.round(100 * contrast)}`.slice(-5)
 
   let rank = '---'
   if (1.1 < contrast) rank = 'Z--'
@@ -129,6 +129,6 @@ function contrastRank($v1, $v2, $label) {
   if (7 < contrast) rank = 'AAA'
   if (10 < contrast) rank = 'SSS'
 
-  console.log(`${prefix} ${rank}  ${contrast}`)
+  console.log(`${$prefix.getValue()}${rank}${contrastLabel}`)
   return new sass.types.String(rank)
 }
