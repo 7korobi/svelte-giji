@@ -1,5 +1,6 @@
+import esbuild from 'esbuild'
 import preprocess from 'svelte-preprocess'
-import functions from './node/lib/scss/bin/functions.js'
+import { readFileSync } from 'fs'
 
 import AdapterStatic from '@sveltejs/adapter-static'
 const STATIC = AdapterStatic({
@@ -32,6 +33,27 @@ import AdapterServerless from '@nikso/adapter-serverless'
 const SERVERLESS = AdapterServerless({
   out: '.serverless_build_output'
 })
+
+esbuild.build({
+  entryPoints: ['./src/lib/pubsub/bin/socket.io-server.ts'],
+  outdir: './.node_bin/',
+  bundle: true,
+  external: Object.keys(JSON.parse(readFileSync('package.json', 'utf8')).dependencies || {}),
+  format: 'esm',
+  platform: 'node',
+  target: 'node16'
+})
+
+esbuild.build({
+  entryPoints: ['./src/lib/scss/bin/index.ts', './src/lib/scss/bin/functions.ts'],
+  outdir: './.node_bin/scss/',
+  bundle: false,
+  format: 'esm',
+  platform: 'node',
+  target: 'node16'
+})
+
+import functions from './.node_bin/scss/functions.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
