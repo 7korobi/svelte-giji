@@ -13,7 +13,7 @@ const functions: FunctionsType = {
   'stepToCache($label, $step)': stepToCache
 }
 
-const YAML_PATH = "./.node_bin/scss/steps.yml";
+const YAML_PATH = './.node_bin/scss/steps.yml'
 const steps = {} // YAML.load(fs.readFileSync(YAML_PATH, 'utf8')) || {}
 export function save() {
   fs.writeFileSync(YAML_PATH, YAML.dump(steps))

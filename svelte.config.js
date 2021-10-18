@@ -1,6 +1,7 @@
 import esbuild from 'esbuild'
 import preprocess from 'svelte-preprocess'
 import { readFileSync } from 'fs'
+import path from 'path'
 
 import AdapterStatic from '@sveltejs/adapter-static'
 const STATIC = AdapterStatic({
@@ -34,11 +35,13 @@ const SERVERLESS = AdapterServerless({
   out: '.serverless_build_output'
 })
 
+const package_file = path.join(path.dirname(new URL(import.meta.url).pathname), '/package.json')
 esbuild.build({
-  entryPoints: ['./src/lib/pubsub/bin/socket.io-server.ts'],
+  entryPoints: ['./src/lib/pubsub/bin/index.ts'],
   outdir: './.node_bin/',
+  watch: true,
   bundle: true,
-  external: Object.keys(JSON.parse(readFileSync('package.json', 'utf8')).dependencies || {}),
+  external: Object.keys(JSON.parse(readFileSync(package_file, 'utf8')).dependencies || {}),
   format: 'esm',
   platform: 'node',
   target: 'node16'
@@ -47,6 +50,7 @@ esbuild.build({
 esbuild.build({
   entryPoints: ['./src/lib/scss/bin/index.ts', './src/lib/scss/bin/functions.ts'],
   outdir: './.node_bin/scss/',
+  watch: true,
   bundle: false,
   format: 'esm',
   platform: 'node',

@@ -1,5 +1,5 @@
 {
   "watch": ["node"],
   "ext": "js",
-  "exec": "node --experimental-json-modules --es-module-specifier-resolution=node .node_bin/socket.io-server.js"
+  "exec": "node --experimental-json-modules --es-module-specifier-resolution=node .node_bin/index.js"
 }

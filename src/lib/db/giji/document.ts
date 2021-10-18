@@ -1,9 +1,7 @@
-import type { ISO8601, presentation, URL } from '$lib/config'
+import type { ISO8601, presentation } from '$lib/config'
 
 import type {
   StoryID,
-  FolderIDX,
-  StoryIDX,
   AccountID,
   MessageID,
   EventID,
@@ -13,23 +11,7 @@ import type {
   PotofIDX,
   MessageTypeIDX
 } from './id'
-import type {
-  SubType,
-  MoodType,
-  OptionType,
-  SayType,
-  VoteType,
-  RoleTableType,
-  MobType,
-  GameType,
-  EventType,
-  RoleType,
-  MesType,
-  CsType,
-  WinType,
-  LiveType,
-  StyleType
-} from './type'
+import type { SubType, RoleType, MesType, CsType, LiveType, StyleType } from './type'
 
 export namespace Document {
   export type MessageForFace = {
@@ -106,31 +88,6 @@ export namespace Document {
 }
 
 export namespace Document {
-  export type Plan = {
-    _id: string
-    link: URL
-    write_at: ISO8601
-    title: presentation
-    name: presentation
-    state?: presentation
-    chip?: presentation
-    sign: AccountID
-    card: presentation[]
-    upd: {
-      description?: presentation
-      time?: presentation
-      interval?: presentation
-      prologue?: presentation
-      start?: presentation
-    }
-    lock: presentation[]
-    flavor: presentation[]
-    options: presentation[]
-    tags: presentation[][]
-  }
-}
-
-export namespace Document {
   export type SayLimit = {
     say_act?: number
     say: number
@@ -139,45 +96,6 @@ export namespace Document {
     wsay?: number
     xsay?: number
     gsay?: number
-  }
-
-  export type Story = {
-    _id: StoryID
-    folder: Uppercase<FolderIDX>
-    vid: StoryIDX
-    sow_auth_id: AccountID
-    is_epilogue: boolean
-    is_finish: boolean
-    is_full_commit: boolean
-    vpl: [number, number]
-    rating: MoodType
-    options: OptionType[]
-    type: {
-      say: SayType
-      vote: VoteType
-      roletable: RoleTableType
-      mob: MobType
-      game: GameType
-    }
-    upd: {
-      interval: number
-      hour: number
-      minute: number
-    }
-    card: {
-      event: EventType[]
-      discard: RoleType[]
-      config: RoleType[]
-    }
-    timer: {
-      updateddt: ISO8601
-      nextupdatedt: ISO8601
-      nextchargedt: ISO8601
-      nextcommitdt: ISO8601
-      scraplimitdt: ISO8601
-    }
-    name: presentation
-    comment: presentation
   }
 
   export type Message = {
@@ -196,31 +114,6 @@ export namespace Document {
     name: presentation
     to?: presentation
     log: presentation
-  }
-
-  export type Event = {
-    _id: EventID
-    story_id: StoryID
-    turn: EventIDX
-    winner: WinType
-    created_at: ISO8601
-    updated_at: ISO8601
-    event?: null
-    epilogue?: 0 | -1
-    grudge?: 0 | -1
-    riot?: 0 | -1
-    scapegoat?: 0 | -1
-    eclipse?: EventIDX[]
-    seance?: EventIDX[]
-    say?: {
-      modifiedsay: ISO8601
-      modifiedwsay?: ISO8601
-      modifiedgsay?: ISO8601
-      modifiedspsay?: ISO8601
-      modifiedxsay?: ISO8601
-      modifiedvsay?: ISO8601
-    }
-    name?: presentation
   }
 
   export type Potof = {

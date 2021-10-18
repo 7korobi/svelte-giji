@@ -4,7 +4,6 @@ import { writeLocal } from '$lib/storage'
 import live from '$lib/site/json/live.json'
 
 export const url = writable({
-  graphql: 'ws://localhost:4000/graphql',
   portrate: '/images/portrate/',
   css: '/css/',
   api: '/api/',

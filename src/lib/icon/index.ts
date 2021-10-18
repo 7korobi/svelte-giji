@@ -56,6 +56,10 @@ import Undo from './ui/undo.svelte'
 
 import Logout from './ui/logout.svelte'
 
+import BellRinging from './ui/bell-ringing.svelte'
+import BellStop from './ui/bell-stop.svelte'
+import BellDisable from './ui/bell-disable.svelte'
+
 import Bold from './text/bold.svelte'
 import Emphasis from './text/emphasis.svelte'
 import Underline from './text/underline.svelte'
@@ -137,6 +141,9 @@ export {
   Redo,
   Undo,
   Logout,
+  BellRinging,
+  BellStop,
+  BellDisable,
   Bold,
   Emphasis,
   Underline,
