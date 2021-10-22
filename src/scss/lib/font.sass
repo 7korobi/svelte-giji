@@ -96,17 +96,16 @@ strong,
 @mixin font($small_px, $base, $zoom)
   $small: math.div($small_px, $base) * 1rem
 
-  $gap:   $zoom *  24px
-  $sideC: $zoom * 132px
-  $side2: $zoom *  80px
-  $side3: $zoom * 150px
+  $gap:  $zoom *  24px
+  $film: $zoom * 132px
+  $minR: 5 * $base
+  $minL: $zoom * 150px
 
-  $center: 28 * $base + $sideC
-  $half: math.div(( $center + $gap ), 2)
+  $center: 28 * $base + $film
 
   $limit1: math.div( $center, 0.9)
-  $limit2: $center + 2 * ( $gap + $side2 )
-  $limit3: $center + 2 * ( $gap + $side3 )
+  $limit2: $center + 2 * ( $gap + $minR )
+  $limit3: $center + 2 * ( $gap + $minL )
 
 
   font-size: $base
@@ -122,14 +121,22 @@ strong,
 
   .summaryframe
     .stable
-      width: $side3
+      width: $minL
+
+  .banner
+    margin-left:  $center + 15px
+    width: $minR - 6px
+
+  .toastframe,
+  .sideframe
+    width: $minR
 
   //  .impose:hover
   //    width: "calc( 50vw + %s )" % $half
   @media screen and (min-width: $limit3)
     &
       .summaryframe
-        width: calc( 50vw - #{ $half })
+        width: calc( 100vw - #{ $center + $gap + $minL })
 
       .limit3-ng
         display: none
@@ -137,31 +144,24 @@ strong,
   @media screen and (max-width: $limit3)
     &
       .summaryframe
-        width: $side3
+        width: $minL
 
       .limit3-ok
         display: none
 
   @media screen and (min-width: $limit2)
     &
-      .banner
-        margin-left:  $center + 15px
-        width: calc( 50vw - #{ $half + 6px })
-      .toastframe,
-      .sideframe
-        width: calc( 50vw - #{ $half })
-
+      .contentframe
+        margin: 0 $minR 0 auto
       .limit2-ng
         display: none
 
   @media screen and (max-width: $limit2)
     &
+      .contentframe
+        margin: 0 auto
       .banner
         display: none
-      .toastframe,
-      .sideframe
-        width: $side2
-
       .limit2-ok
         display: none
 

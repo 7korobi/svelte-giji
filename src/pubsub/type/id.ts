@@ -1,4 +1,4 @@
-import type { LogType, SubType } from './type'
+import type { LogType, SubType } from './enum'
 
 export enum FolderIDX {
   Allstar = 'ALLSTAR',

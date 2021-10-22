@@ -1,4 +1,3 @@
-import type { Writable } from 'svelte/store'
 import { Bits } from './bits'
 
 export type TYPE = 'as' | 'set' | 'off' | 'on' | 'xor' | 'toggle'

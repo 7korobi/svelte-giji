@@ -2,7 +2,7 @@ export { ObjectId } from 'mongodb'
 import type { Document } from 'mongodb'
 import { Collection, MongoClient } from 'mongodb'
 
-const database_url = `mongodb://giji-api.duckdns.org:27017/giji`
+const database_url = `mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji`
 const client = new MongoClient(database_url, {})
 boot()
 

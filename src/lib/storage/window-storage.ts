@@ -31,6 +31,8 @@ if (__BROWSER__) {
     if (window.localStorage === storageArea) cache = local_cache
     if (window.sessionStorage === storageArea) cache = session_cache
 
+    if (!cache[key]) return
+
     const [store, convert] = cache[key]
     store.set(convert.parse(newValue))
   })
