@@ -1,6 +1,7 @@
 import type { Plan } from '../store/sow-village-plans'
 
-import { db, watch, model, ObjectId } from '$lib/db'
+import { model } from '$lib/db/socket.io-server'
+import { db, watch, ObjectId } from '$lib/db'
 
 const range = 1000 * 3600 * 24 * 50 // 50 days
 
@@ -13,7 +14,6 @@ export const sow_village_plans = model({
   $match: () => ({
     state: { $in: [null, /議事/] }
   }),
-  qid: () => '',
 
   set,
   del,

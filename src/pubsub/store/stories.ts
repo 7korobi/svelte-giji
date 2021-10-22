@@ -12,7 +12,7 @@ import type {
 import type { StoryID, FolderIDX, StoryIDX, AccountID } from '../type/id'
 import type { presentation } from '../type/string'
 
-import socket from '.'
+import { model } from '$lib/db/socket.io-client'
 
 export type Story = {
   _id: StoryID
@@ -56,7 +56,8 @@ export type Story = {
   name: presentation
 }
 
-export const story_summary = socket('story_summary', {
+export const story_summary = model({
+  qid: (is_old) => `${is_old}`,
   format: () => ({
     list: [] as Story[]
   }),
@@ -66,12 +67,11 @@ export const story_summary = socket('story_summary', {
   }
 })
 
-export const story_prologue = socket('story_prologue', {
+export const story_oldlog = model({
+  qid: (_id) => _id,
   format: () => ({
     list: [] as Story[]
   }),
   reduce: (data, doc) => {},
-  order: (data, { sort }) => {
-    sort(data.list).desc((o) => o.timer.nextcommitdt)
-  }
+  order: (data, { sort }) => {}
 })

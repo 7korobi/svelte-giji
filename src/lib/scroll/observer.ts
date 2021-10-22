@@ -59,6 +59,8 @@ function cbRange(keyOn: RANGE_STATE, keyOff: RANGE_STATE, entries: IntersectionO
 
 function cbFocus(entries: IntersectionObserverEntry[]) {
   entries.forEach(({ target, isIntersecting, rootBounds, boundingClientRect }) => {
+    if (!rootBounds) return
+
     const tracker = (target as any).tracker as Operations
     const { change } = tracker.options
 

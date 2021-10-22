@@ -284,19 +284,7 @@ function json<A extends any[], J, T>(
 }
 
 export const reqApi = {
-  plan: {
-    progress: json(
-      '1.0.0',
-      () => `${api_url}plan/progress`,
-      (o: { plans: Plan[] }) => o
-    )
-  },
   story: {
-    progress: json(
-      '1.0.0',
-      () => `${api_url}story/progress`,
-      (o: { events: Event[]; stories: Story[] }) => o
-    ),
     oldlogs: json(
       '1.0.0',
       () => `${api_url}story/oldlog`,

@@ -36,7 +36,7 @@
     "@sveltejs/kit": "next",
     "@types/http-server": "^0.12.1",
     "@types/js-yaml": "^4.0.3",
-    "@types/node": "^16.11.3",
+    "@types/node": "^16.11.4",
     "@types/polka": "^0.5.3",
     "@types/prettier": "~2.2.3",
     "@types/sass": "^1.16.1",
@@ -79,7 +79,7 @@
     "socket.io-msgpack-parser": "^3.0.1",
     "svelte2tsx": "^0.4.7",
     "tslib": "^2.3.1",
-    "ua-parser-js": "^0.7.28",
+    "ua-parser-js": "^0.7.30",
     "ws": "^8.2.3"
   }
 }

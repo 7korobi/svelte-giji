@@ -1,13 +1,15 @@
 import type { RoleType, LiveType } from '../type/enum'
 import type { AccountID, FaceID, MessageTypeIDX, StoryID } from '../type/id'
-import type { ISO8601 } from '../type/string'
+import type { Date } from '../type/string'
+
+import { model } from '$lib/db/socket.io-client'
 
 export type MessageForFace = {
   _id: {
     face_id: FaceID
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
   max: number
   all: number
@@ -18,8 +20,8 @@ export type MessageForFaceMestype = {
     face_id: FaceID
     mestype: MessageTypeIDX
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
   max: number
   all: number
@@ -30,8 +32,8 @@ export type MessageForFaceSowAuth = {
     face_id: FaceID
     sow_auth_id: AccountID
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
   max: number
   all: number
@@ -42,8 +44,8 @@ export type PotofForFace = {
   _id: {
     face_id: FaceID
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
 }
 export type PotofForFaceRole = {
@@ -51,8 +53,8 @@ export type PotofForFaceRole = {
     face_id: FaceID
     role_id: RoleType
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
 }
 export type PotofForFaceLive = {
@@ -60,8 +62,8 @@ export type PotofForFaceLive = {
     face_id: FaceID
     live: LiveType
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
 }
 export type PotofForFaceSowAuthMax = {
@@ -69,7 +71,16 @@ export type PotofForFaceSowAuthMax = {
     face_id: FaceID
     sow_auth_id: AccountID
   }
-  date_min: ISO8601
-  date_max: ISO8601
+  date_min: Date
+  date_max: Date
   story_ids: StoryID[]
 }
+
+export const potof_for_face = model({
+  qid: () => '',
+  format: () => ({
+    list: [] as PotofForFace[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})

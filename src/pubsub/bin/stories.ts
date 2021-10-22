@@ -1,6 +1,10 @@
 import type { StoryID } from '../type/id'
 import type { Story } from '../store/stories'
-import { db, watch, model } from '$lib/db'
+
+import { model } from '$lib/db/socket.io-server'
+import { db, watch } from '$lib/db'
+
+import {} from './events'
 
 const $project = { comment: 0, password: 0 }
 const set = ($set: Story) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true })
@@ -12,7 +16,6 @@ export const story_summary = model({
     is_epilogue: is_old,
     is_finish: is_old
   }),
-  qid: (is_old) => '',
 
   set,
   del,
@@ -25,6 +28,5 @@ export const story_oldlog = model({
   $match: (_id: StoryID) => ({
     _id
   }),
-  qid: (_id) => _id,
   query: ($match) => table().find($match).project<Story>($project)
 })

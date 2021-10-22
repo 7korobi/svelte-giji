@@ -37,7 +37,7 @@ const SERVERLESS = AdapterServerless({
 
 const package_file = path.join(path.dirname(new URL(import.meta.url).pathname), '/package.json')
 esbuild.build({
-  entryPoints: ['./src/pubsub/bin/index.ts'],
+  entryPoints: ['./src/pubsub/server.ts'],
   outdir: './.node_bin/',
   watch: true,
   bundle: true,

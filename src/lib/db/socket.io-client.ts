@@ -1,7 +1,8 @@
+import type { Document } from 'mongodb'
+import type { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import type { Readable } from 'svelte/store'
-import type { DocumentId } from '$lib/db'
 
-import { io } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
 import { inPlaceSort } from 'fast-sort'
 import { readable } from 'svelte/store'
@@ -13,6 +14,11 @@ type BaseT<IdType> = {
 
 type BaseF<T> = {
   list: T[]
+}
+
+type QueryProps<MatchArgs extends any[]> = {
+  name?: string
+  qid: (...args: MatchArgs) => string
 }
 
 type MapReduceProps<T, F> = {
@@ -27,6 +33,18 @@ type ModelSocket<MatchArgs extends any[], IdType, T, F> = {
   set?(docs: T[]): void
   del?(ids: IdType[]): void
 }
+
+type StoreEntry<
+  MatchArgs extends any[],
+  T extends BaseT<any>,
+  F extends BaseF<Document>
+> = QueryProps<MatchArgs> & MapReduceProps<T, F>
+export type BaseStoreEntry = StoreEntry<any[], BaseT<any>, BaseF<Document>>
+
+let STORE = {} as {
+  [name: string]: BaseStoreEntry
+}
+let PubSub: Socket<DefaultEventsMap, DefaultEventsMap>
 
 function sort<IdType, D extends { _id: IdType }>(value: D[] | { [id: string]: D }) {
   if (!(value instanceof Array)) {
@@ -78,63 +96,81 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
   }
 }
 
-export default function socket(uri: string) {
-  if (!__BROWSER__) return Proxy
+export default function client(uri: string, stores: typeof STORE) {
+  STORE = stores
 
-  const PubSub = io(uri, {
+  if (!__BROWSER__) return
+
+  PubSub = io(uri, {
     parser
   })
   PubSub.open()
 
   console.log(`${PubSub.id} <-> connecting...`)
-  return Proxy
+}
 
-  function Proxy<
-    IdType extends DocumentId,
-    T extends BaseT<IdType>,
-    F extends BaseF<T>,
-    MatchArgs extends any[]
-  >(api: string, map_reduce: MapReduceProps<T, F>): ModelSocket<MatchArgs, IdType, T, F> {
-    return {
-      query(...args: MatchArgs) {
-        const mr = MapReduce<IdType, T, F>(map_reduce)
-        if (!__BROWSER__) return readable<F>(mr.format())
+export function model<IdType, T extends BaseT<IdType>, F extends BaseF<T>, MatchArgs extends any[]>(
+  options: QueryProps<MatchArgs> & MapReduceProps<T, F>
+): QueryProps<MatchArgs> & MapReduceProps<T, F> {
+  const o = { ...options, qid }
+  return o
+  function qid(...args: MatchArgs) {
+    return `${o.name}:${o.qid(...args)}`
+  }
+}
 
-        const { subscribe } = readable<F>(mr.format(), (set) => {
-          PubSub.on(`SET:${api}`, (docs: T[]) => {
-            mr.add(docs)
-            console.log(`${PubSub.id} <- set ${docs.length} items.`)
-            set(mr.data)
-          })
-          PubSub.on(`DEL:${api}`, (ids: IdType[]) => {
-            mr.del(ids)
-            console.log(`${PubSub.id} <- del ${ids.length} items.`)
-            set(mr.data)
-          })
-          PubSub.on(`SET:ERROR:${api}`, (docs: T[]) => {})
-          PubSub.on(`DEL:ERROR:${api}`, (ids: IdType[]) => {})
+export function socket<
+  IdType,
+  T extends BaseT<IdType>,
+  F extends BaseF<T>,
+  MatchArgs extends any[]
+>({
+  name,
+  qid,
+  format,
+  order,
+  reduce
+}: QueryProps<MatchArgs> & MapReduceProps<T, F>): ModelSocket<MatchArgs, IdType, T, F> {
+  return {
+    query(...args: MatchArgs) {
+      const api = qid(...args)
+      const mr = MapReduce<IdType, T, F>({ format, order, reduce })
+      if (!__BROWSER__) return readable<F>(mr.format())
 
-          PubSub.emit('query', api, ...args)
-
-          return () => {
-            PubSub.off(`SET:${api}`)
-            PubSub.off(`DEL:${api}`)
-            PubSub.off(`SET:ERROR:${api}`)
-            PubSub.off(`DEL:ERROR:${api}`)
-          }
+      const { subscribe } = readable<F>(mr.format(), (set) => {
+        PubSub.on(`SET:${api}`, (docs: T[]) => {
+          mr.add(docs)
+          console.log(`${PubSub.id} <- set ${docs.length} items.`)
+          set(mr.data)
         })
-        return { subscribe }
-      },
+        PubSub.on(`DEL:${api}`, (ids: IdType[]) => {
+          mr.del(ids)
+          console.log(`${PubSub.id} <- del ${ids.length} items.`)
+          set(mr.data)
+        })
+        PubSub.on(`SET:ERROR:${api}`, (docs: T[]) => {})
+        PubSub.on(`DEL:ERROR:${api}`, (ids: IdType[]) => {})
 
-      set(docs) {
-        if (!__BROWSER__) return
-        PubSub.emit('set', api, docs)
-      },
+        PubSub.emit('query', api, ...args)
 
-      del(ids) {
-        if (!__BROWSER__) return
-        PubSub.emit('del', api, ids)
-      }
+        return () => {
+          PubSub.off(`SET:${api}`)
+          PubSub.off(`DEL:${api}`)
+          PubSub.off(`SET:ERROR:${api}`)
+          PubSub.off(`DEL:ERROR:${api}`)
+        }
+      })
+      return { subscribe }
+    },
+
+    set(docs) {
+      if (!__BROWSER__) return
+      PubSub.emit('set', name, docs)
+    },
+
+    del(ids) {
+      if (!__BROWSER__) return
+      PubSub.emit('del', name, ids)
     }
   }
 }

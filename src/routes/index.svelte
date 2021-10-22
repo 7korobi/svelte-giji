@@ -1,13 +1,25 @@
 <script lang="ts">
+import { writable } from 'svelte/store'
+
 import { __BROWSER__ } from '$lib/browser'
 import { Post, Talk, Report } from '$lib/chat'
 import FireOauth from '$lib/fire/FireOauth.svelte'
 import { fire } from '$lib/store'
 import { Focus } from '$lib/scroll'
+import { Time } from '$lib/timer'
+import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 
 import './_app.svelte'
 
+import { story_summary, sow_village_plans } from '../pubsub/store'
+import { socket } from '$lib/db/socket.io-client'
+
 const { user } = fire
+
+const prologue = writable([])
+const progress = socket(story_summary).query(false)
+const plan = socket(sow_village_plans).query()
+
 let page = ''
 
 if (__BROWSER__) {
@@ -157,6 +169,74 @@ function setHistory(hash) {
     </ul>
   </Report>
 </Focus>
+
+{#each $progress.list as o (o._id)}
+  <Focus name={o._id} bind:value={page}>
+    <Post handle="EVIL">
+      <p class="name">{o.name}</p>
+      <hr />
+      <p class="text">
+        <button id={o._id}>
+          <BellDisable /><BellStop /><BellRinging />
+        </button>
+        <a href={o.folder}>{o.folder}{o.vid}</a> は、進行中だ。
+      </p>
+      <p class="date">
+        {#if o.is_full_commit}
+          コミット時刻 <Time at={o.timer.nextcommitdt} />
+        {:else}
+          更新時刻 <Time at={o.timer.nextupdatedt} />
+        {/if}
+      </p>
+    </Post>
+  </Focus>
+{/each}
+
+{#each $prologue as o (o.id)}
+  <Focus name={o.id} bind:value={page}>
+    <Post handle="MOB">
+      <p class="name">{o.name}</p>
+      <hr />
+      <p class="text">
+        <button id={o.id}>
+          <BellDisable /><BellStop /><BellRinging />
+        </button>
+        <a href={o.folder.href}>{o.folder.nation}{o.vid}</a> は、開始が楽しみだ。
+      </p>
+      <p class="date">
+        廃村期限 <Time at={o.timer.scraplimitdt} />
+      </p>
+    </Post>
+  </Focus>
+{/each}
+
+{#each $plan.list as o (o._id)}
+  <Focus name={o._id.toString()} bind:value={page}>
+    <Post handle="TSAY">
+      <p class="name">
+        <a href={o.link}>{o.name}</a>
+      </p>
+      <hr />
+      <p class="text">
+        {o.state || '（開催地不明）'}
+      </p>
+      <ul class="fine">
+        {#each o.flavor as text}
+          <li>{text}</li>
+        {/each}
+        {#each o.lock as text}
+          <li class="VSSAY">{text}</li>
+        {/each}
+        {#each o.card as text}
+          <li class="VSSAY">{text}</li>
+        {/each}
+      </ul>
+      <p class="date">
+        企画更新 <Time at={o.write_at} />
+      </p>
+    </Post>
+  </Focus>
+{/each}
 
 <Focus name="demo" bind:value={page}>
   <Post handle="SSAY">

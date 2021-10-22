@@ -2,7 +2,7 @@ import type { ObjectId } from 'mongodb'
 import type { AccountID } from '../type/id'
 import type { URL, presentation } from '../type/string'
 
-import socket from '.'
+import { model } from '$lib/db/socket.io-client'
 
 export type Plan = {
   _id: ObjectId
@@ -27,7 +27,8 @@ export type Plan = {
   tags: presentation[][]
 }
 
-export const sow_village_plans = socket('sow_village_plans', {
+export const sow_village_plans = model({
+  qid: () => '',
   format: () => ({
     list: [] as Plan[],
     count: 0

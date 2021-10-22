@@ -1,18 +1,23 @@
 <script lang="ts" context="module">
 import { dev } from '$app/env'
 import { site } from '$lib/store'
+import client from '$lib/db/socket.io-client'
+
+import * as stores from '../pubsub/store'
 
 if (dev) {
+  client('ws://localhost:3001', stores)
+
   site.url.set({
-    graphql: 'ws://localhost:4000/graphql',
     portrate: 'https://giji.f5.si/images/portrate/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
     top: '/'
   })
 } else {
+  client('ws://localhost:3001', stores)
+
   site.url.set({
-    graphql: 'ws://giji-api.duckdns.org:4000/graphql',
     portrate: 'https://giji.f5.si/images/portrate/',
     css: 'https://giji.f5.si/css/',
     api: 'https://giji-api.duckdns.org/api/',
