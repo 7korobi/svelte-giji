@@ -73,7 +73,6 @@ export let mode = 'finish'
     <a href={$url.top}>総合トップ</a>
   </div>
 </div>
-<Poll timer="20m" shift="10m" api={reqApi.story.progress()} />
 
 <style lang="scss">
 .export {

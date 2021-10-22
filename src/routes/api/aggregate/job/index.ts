@@ -1,6 +1,6 @@
 import fs from 'fs'
 import sh from 'child_process'
-import sortBy from 'lodash/sortBy.js'
+import { sort } from '$lib/db/fast-sort'
 
 import { db } from '$lib/db'
 
@@ -164,7 +164,7 @@ async function aggregate_max() {
           story_ids: { $size: o.count }
         })
         .toArray()
-      const [top] = sortBy(data, (a) => a.date_min)
+      const [top] = sort(data).asc((a) => a.date_min)
       o.date_min = top.date_min
       o.date_max = top.date_max
       o._id = top._id

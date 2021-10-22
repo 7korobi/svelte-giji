@@ -25,7 +25,6 @@ let hello = 'home'
 let x
 let y
 let scale
-
 </script>
 
 <Report handle="SSAY">
@@ -122,7 +121,6 @@ let scale
   </Zoom>
 </Post>
 
-<Poll timer="12h" shift="1h10m" api={reqApi.plan.progress()} />
 <Poll timer="12h" shift="1h10m" api={reqApi.story.oldlogs()} />
 <Poll timer="1y" api={reqApi.story.oldlog('allstar-1')} />
 <Poll timer="1y" api={reqApi.story.oldlog('dais-9')} />

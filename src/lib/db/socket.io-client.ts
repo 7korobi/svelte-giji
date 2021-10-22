@@ -4,9 +4,9 @@ import type { Readable } from 'svelte/store'
 
 import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
-import { inPlaceSort } from 'fast-sort'
+import { inPlaceSort } from './fast-sort'
 import { readable } from 'svelte/store'
-import { __BROWSER__ } from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 
 type BaseT<IdType> = {
   _id: IdType
@@ -96,8 +96,21 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
   }
 }
 
+export function model<IdType, T extends BaseT<IdType>, F extends BaseF<T>, MatchArgs extends any[]>(
+  options: QueryProps<MatchArgs> & MapReduceProps<T, F>
+): QueryProps<MatchArgs> & MapReduceProps<T, F> {
+  const o = { ...options, qid }
+  return o
+  function qid(...args: MatchArgs) {
+    return `${o.name}:${options.qid(...args)}`
+  }
+}
+
 export default function client(uri: string, stores: typeof STORE) {
   STORE = stores
+  for (const name in stores) {
+    stores[name].name = name
+  }
 
   if (!__BROWSER__) return
 
@@ -107,16 +120,6 @@ export default function client(uri: string, stores: typeof STORE) {
   PubSub.open()
 
   console.log(`${PubSub.id} <-> connecting...`)
-}
-
-export function model<IdType, T extends BaseT<IdType>, F extends BaseF<T>, MatchArgs extends any[]>(
-  options: QueryProps<MatchArgs> & MapReduceProps<T, F>
-): QueryProps<MatchArgs> & MapReduceProps<T, F> {
-  const o = { ...options, qid }
-  return o
-  function qid(...args: MatchArgs) {
-    return `${o.name}:${o.qid(...args)}`
-  }
 }
 
 export function socket<
@@ -148,16 +151,17 @@ export function socket<
           console.log(`${PubSub.id} <- del ${ids.length} items.`)
           set(mr.data)
         })
-        PubSub.on(`SET:ERROR:${api}`, (docs: T[]) => {})
-        PubSub.on(`DEL:ERROR:${api}`, (ids: IdType[]) => {})
+        PubSub.on(`SET:ERROR:${name}`, (docs: T[]) => {})
+        PubSub.on(`DEL:ERROR:${name}`, (ids: IdType[]) => {})
 
-        PubSub.emit('query', api, ...args)
+        console.log({ name, api, args })
+        PubSub.emit('query', name, ...args)
 
         return () => {
           PubSub.off(`SET:${api}`)
           PubSub.off(`DEL:${api}`)
-          PubSub.off(`SET:ERROR:${api}`)
-          PubSub.off(`DEL:ERROR:${api}`)
+          PubSub.off(`SET:ERROR:${name}`)
+          PubSub.off(`DEL:ERROR:${name}`)
         }
       })
       return { subscribe }

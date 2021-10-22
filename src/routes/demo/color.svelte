@@ -264,7 +264,6 @@ function byF(str: string) {
   </Chat>
 </Scroll>
 
-
 {#each logColors as color}
   <Banner>
     <h3>{color}</h3>
@@ -332,7 +331,6 @@ function byF(str: string) {
     </Chat>
   </Scroll>
 {/each}
-
 
 {#each logColors as color}
   <Banner>

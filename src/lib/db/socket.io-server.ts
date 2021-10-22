@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
 })
 
 export async function query(socket: Socket, name: string, ...args: any[]) {
-  const api = getQid(name, ...args)
+  const api = getApi(name, ...args)
   socket.join(api)
 
   if (!QUERY[api]) QUERY[api] = {}
@@ -81,8 +81,6 @@ export async function query(socket: Socket, name: string, ...args: any[]) {
 function init(socket: Socket, name: string, api: string, ...args: any[]) {
   if (!QUERY[api]) QUERY[api] = {}
   if (QUERY[api].active) return
-
-  console.log('')
 
   const $match = MODEL[name].$match(...args)
   const delay = 1000
@@ -109,7 +107,7 @@ function init(socket: Socket, name: string, api: string, ...args: any[]) {
 }
 
 export function exit(name: string, ...args: any[]) {
-  const api = getQid(name, ...args)
+  const api = getApi(name, ...args)
 
   if (!QUERY[api]) return
   if (!QUERY[api].active) return
@@ -132,7 +130,7 @@ export async function del(name: string, ids: any[]) {
   if (errors.length) io.in(name).emit(`DEL:ERROR:${name}`, errors)
 }
 
-export function getQid(name: string, ...args: any[]) {
+export function getApi(name: string, ...args: any[]) {
   return STORE[name].qid(...args)
 }
 
