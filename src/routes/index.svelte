@@ -11,7 +11,7 @@ import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 
 import './_app.svelte'
 
-import { story_summary, sow_village_plans } from '../pubsub/store'
+import { randoms, story_summary, sow_village_plans } from '../pubsub/store'
 import { socket } from '$lib/db/socket.io-client'
 
 const { user } = fire
@@ -20,11 +20,15 @@ const prologue = writable([])
 const progress = socket(story_summary).query(false)
 const plan = socket(sow_village_plans).query()
 
+const trumps = socket(randoms).query(['trump', 'zodiac', 'eto'])
+
 let page = ''
 
 if (__BROWSER__) {
   page = location.hash.slice(1)
 }
+
+$: console.log($trumps)
 
 $: setHistory(page)
 

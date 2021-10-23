@@ -5,5 +5,5 @@ import { db } from '$lib/db'
 
 export const potof_for_face = model({
   $match() {},
-  query: () => db().collection<PotofForFace>('potof_for_face').find()
+  query: async () => db().collection<PotofForFace>('potof_for_face').find().toArray()
 })

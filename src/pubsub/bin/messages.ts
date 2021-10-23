@@ -10,5 +10,5 @@ export const message_oldlog = model({
   $match: (story_id: StoryID) => ({
     story_id
   }),
-  query: ($match) => table().find($match)
+  query: async ($match) => table().find($match).toArray()
 })

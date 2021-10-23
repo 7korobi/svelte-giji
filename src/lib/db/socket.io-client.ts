@@ -66,12 +66,11 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
 }: MapReduceProps<T, F>) {
   const hash = {} as { [id: string]: T }
   const data = { ...format() }
-  const find = (id: T['_id'][]) => hash[id.toString()]
+  const find = (id: T['_id']) => hash[id.toString()]
   return { add, del, find, format, data }
 
   function add(docs: T[]) {
-    for (let size = docs.length, idx = 0; idx < size; ++idx) {
-      const doc = docs[idx]
+    for (const doc of docs) {
       const id = doc._id.toString()
 
       hash[id] = doc
@@ -82,9 +81,8 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
   }
 
   function del(ids: T['_id'][]) {
-    for (let size = ids.length, idx = 0; idx < size; ++idx) {
-      const id = ids[idx].toString()
-      delete hash[id]
+    for (const id of ids) {
+      delete hash[id.toString()]
     }
     data.list = data.list.filter((o) => hash[o._id.toString()])
 

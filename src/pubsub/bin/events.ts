@@ -19,12 +19,12 @@ export const event_progress = model({
   del,
   isLive: async () => true,
   live: ($match, set, del) => watch(set, del, table, [{ $match }, { $project }]),
-  query: ($match) => table().find($match)
+  query: async ($match) => table().find($match).toArray()
 })
 
 export const event_oldlog = model({
   $match: (story_id: StoryID) => ({
     story_id
   }),
-  query: ($match) => table().find($match)
+  query: async ($match) => table().find($match).toArray()
 })

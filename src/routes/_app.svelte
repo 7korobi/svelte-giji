@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
 import { dev } from '$app/env'
 import { site } from '$lib/store'
-import client from '$lib/db/socket.io-client'
 
+import client from '$lib/db/socket.io-client'
 import * as stores from '../pubsub/store'
 
 if (dev) {

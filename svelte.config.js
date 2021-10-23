@@ -44,7 +44,7 @@ esbuild.build({
   external: Object.keys(JSON.parse(readFileSync(package_file, 'utf8')).dependencies || {}),
   format: 'esm',
   platform: 'node',
-  target: 'node16'
+  target: 'node15'
 })
 
 esbuild.build({
@@ -54,7 +54,7 @@ esbuild.build({
   bundle: false,
   format: 'esm',
   platform: 'node',
-  target: 'node16'
+  target: 'node15'
 })
 
 import functions from './.node_bin/scss/functions.js'

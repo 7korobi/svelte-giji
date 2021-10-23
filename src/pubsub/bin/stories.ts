@@ -21,12 +21,12 @@ export const story_summary = model({
   del,
   isLive: async () => true,
   live: ($match, set, del) => watch(set, del, table, [{ $match }, { $project }]),
-  query: ($match) => table().find($match).project<Story>($project)
+  query: async ($match) => table().find($match).project<Story>($project).toArray()
 })
 
 export const story_oldlog = model({
   $match: (_id: StoryID) => ({
     _id
   }),
-  query: ($match) => table().find($match).project<Story>($project)
+  query: async ($match) => table().find($match).project<Story>($project).toArray()
 })

@@ -6,12 +6,12 @@ import parser from 'socket.io-msgpack-parser'
 
 type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
   $match(...args: MatchArgs): MatchReturn
-  query($match: MatchReturn): FindCursor<T>
+  query($match: MatchReturn): Promise<T[]>
 }
 
 type ModelLive<IdType, T, MatchArgs extends any[], MatchReturn> = {
   $match(...args: MatchArgs): MatchReturn
-  query($match: MatchReturn): FindCursor<T>
+  query($match: MatchReturn): Promise<T[]>
 
   isLive(...args: MatchArgs): Promise<boolean>
   live($match: MatchReturn, set: (docs: T) => void, del: (ids: IdType) => void): ChangeStream<T>
@@ -66,7 +66,7 @@ export async function query(socket: Socket, name: string, ...args: any[]) {
 
   if (!QUERY[api].cache) {
     const $match = MODEL[name].$match(...args)
-    QUERY[api].cache = await MODEL[name].query($match).toArray()
+    QUERY[api].cache = await MODEL[name].query($match)
     console.log(api, { $match, size: QUERY[api].cache.length })
   }
 

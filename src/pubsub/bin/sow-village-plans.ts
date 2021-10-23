@@ -19,5 +19,8 @@ export const sow_village_plans = model({
   del,
   isLive: async () => true,
   live: ($match, set, del) => watch(set, del, table, [{ $match }]),
-  query: ($match) => table().find({ ...$match, write_at: { $gte: new Date(Date.now() - range) } })
+  query: async ($match) =>
+    table()
+      .find({ ...$match, write_at: { $gte: new Date(Date.now() - range) } })
+      .toArray()
 })
