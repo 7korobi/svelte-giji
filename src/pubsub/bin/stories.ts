@@ -1,32 +1,17 @@
 import type { StoryID } from '../type/id'
 import type { Story } from '../store/stories'
 
-import { model } from '$lib/db/socket.io-server'
-import { db, watch } from '$lib/db'
-
+import { modelAsMongoDB } from '$lib/db/socket.io-server'
 import {} from './events'
 
-const $project = { comment: 0, password: 0 }
-const set = ($set: Story) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true })
-const del = (ids: StoryID[]) => table().deleteMany({ _id: ids })
-const table = () => db().collection<Story>('stories')
+export const stories = modelAsMongoDB<StoryID, Story>('stories', { comment: 0, password: 0 })
 
-export const story_summary = model({
+export const story_summary = {
+  ...stories,
   $match: (is_old: boolean) => ({
     is_epilogue: is_old,
     is_finish: is_old
   }),
 
-  set,
-  del,
-  isLive: async () => true,
-  live: ($match, set, del) => watch(set, del, table, [{ $match }, { $project }]),
-  query: async ($match) => table().find($match).project<Story>($project).toArray()
-})
-
-export const story_oldlog = model({
-  $match: (_id: StoryID) => ({
-    _id
-  }),
-  query: async ($match) => table().find($match).project<Story>($project).toArray()
-})
+  isLive: async () => true
+}

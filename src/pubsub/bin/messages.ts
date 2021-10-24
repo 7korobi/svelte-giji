@@ -1,14 +1,13 @@
-import type { StoryID } from '../type/id'
+import type { MessageID, StoryID } from '../type/id'
 import type { Message } from '../store/messages'
 
-import { model } from '$lib/db/socket.io-server'
-import { db } from '$lib/db'
+import { modelAsMongoDB } from '$lib/db/socket.io-server'
 
-const table = () => db().collection<Message>('messages')
+export const messages = modelAsMongoDB<MessageID, Message>('messages')
 
-export const message_oldlog = model({
+export const message_oldlog = {
+  ...messages,
   $match: (story_id: StoryID) => ({
     story_id
-  }),
-  query: async ($match) => table().find($match).toArray()
-})
+  })
+}

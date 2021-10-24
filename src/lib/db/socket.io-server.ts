@@ -1,8 +1,10 @@
 import type { ChangeStream, DeleteResult, Document, ModifyResult } from 'mongodb'
 import type { BaseStoreEntry } from './socket.io-client'
+import type { DIC } from '$lib/map-reduce'
 
 import { Server, Socket } from 'socket.io'
 import parser from 'socket.io-msgpack-parser'
+import { db, watch } from './mongodb'
 
 type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
   $match(...args: MatchArgs): MatchReturn
@@ -138,6 +140,26 @@ export function model<IdType, T, MatchArgs extends any[], MatchReturn>(
   o: ModelEntry<IdType, T, MatchArgs, MatchReturn>
 ) {
   return o
+}
+
+export function modelAsMongoDB<IdType, T extends { _id: IdType }>(
+  collection: string,
+  $project?: DIC<0 | 1>
+) {
+  const table = () => db().collection<T>(collection)
+
+  return {
+    $match: (ids: IdType[]) => ({ _id: ids }),
+    set: ($set: T) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
+    del: (ids: IdType[]) => table().deleteMany({ _id: ids }),
+    isLive: async () => true,
+    live: (
+      $match: any,
+      set: ($set: T) => Promise<ModifyResult<T>>,
+      del: (ids: IdType[]) => Promise<DeleteResult>
+    ) => watch(set, del, table, $project ? [{ $match }, { $project }] : [{ $match }]),
+    query: async ($match: any) => table().find($match).toArray()
+  }
 }
 
 export default function server(

@@ -20,15 +20,16 @@ export enum FolderIDX {
   Xebec = 'XEBEC'
 }
 
+export type FolderHead = Lowercase<string>
 export type PotofIDX = number
 export type StoryIDX = number
 export type EventIDX = number
 export type MessageTypeIDX = `${LogType}${SubType}`
 export type MessageIDX = `${LogType}${SubType}${number}`
 
-export type StoryID = `${Lowercase<FolderIDX>}-${StoryIDX}`
-export type EventID = `${Lowercase<FolderIDX>}-${StoryIDX}-${EventIDX}`
-export type MessageID = `${Lowercase<FolderIDX>}-${StoryIDX}-${EventIDX}-${MessageIDX}`
+export type StoryID = `${FolderHead}-${StoryIDX}`
+export type EventID = `${FolderHead}-${StoryIDX}-${EventIDX}`
+export type MessageID = `${FolderHead}-${StoryIDX}-${EventIDX}-${MessageIDX}`
 
 export type FaceID = string
 export type AccountID = string

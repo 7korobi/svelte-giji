@@ -13,12 +13,12 @@ import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 
 import './_app.svelte'
 
-import { randoms, story_summary, sow_village_plans, events, Story } from '../pubsub/store'
+import { randoms, story_summary, new_plans, events, Story } from '../pubsub/store'
 import { socket } from '$lib/db/socket.io-client'
 
 const { user } = fire
 
-const plan = socket(sow_village_plans).query()
+const plan = socket(new_plans).query()
 const story_all = socket(story_summary).query(false)
 
 const trumps = socket(randoms).query(['trump', 'zodiac', 'eto'])

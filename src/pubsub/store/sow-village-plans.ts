@@ -27,7 +27,7 @@ export type Plan = {
   tags: presentation[][]
 }
 
-export const sow_village_plans = model({
+export const new_plans = model({
   qid: () => '',
   format: () => ({
     list: [] as Plan[],

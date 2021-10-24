@@ -22,8 +22,8 @@ export type Message = {
   log: presentation
 }
 
-export const message_oldlog = model({
-  qid: (story_id) => story_id,
+export const messages = model({
+  qid: (ids: StoryID[]) => ids.toString(),
   format: () => ({
     list: [] as Message[]
   }),
