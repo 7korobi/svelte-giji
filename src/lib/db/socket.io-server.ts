@@ -1,4 +1,4 @@
-import type { ChangeStream, DeleteResult, Document, FindCursor, ModifyResult } from 'mongodb'
+import type { ChangeStream, DeleteResult, Document, ModifyResult } from 'mongodb'
 import type { BaseStoreEntry } from './socket.io-client'
 
 import { Server, Socket } from 'socket.io'

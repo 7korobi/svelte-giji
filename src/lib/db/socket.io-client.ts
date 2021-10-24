@@ -1,34 +1,26 @@
 import type { Document } from 'mongodb'
 import type { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import type { Readable } from 'svelte/store'
+import type { BaseF, BaseT, MapReduceProps } from '$lib/map-reduce'
 
 import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
-import { inPlaceSort } from './fast-sort'
 import { readable } from 'svelte/store'
+
+import { MapReduce } from '$lib/map-reduce'
 import { __BROWSER__ } from '$lib/browser/device'
-
-type BaseT<IdType> = {
-  _id: IdType
-}
-
-type BaseF<T> = {
-  list: T[]
-}
 
 type QueryProps<MatchArgs extends any[]> = {
   name?: string
   qid: (...args: MatchArgs) => string
 }
 
-type MapReduceProps<T, F> = {
-  format: () => F
-  order: (o: F, option: { sort: typeof sort }) => void
-  reduce: (o: F, doc: T) => void
-}
-
-type ModelSocket<MatchArgs extends any[], IdType, T, F> = {
-  query(...args: MatchArgs): Readable<F>
+type ModelSocket<MatchArgs extends any[], IdType, T extends BaseT<any>, F> = {
+  query(
+    ...args: MatchArgs
+  ): Readable<F> & {
+    find(id: T['_id']): T
+  }
 
   set?(docs: T[]): void
   del?(ids: IdType[]): void
@@ -46,61 +38,13 @@ let STORE = {} as {
 }
 let PubSub: Socket<DefaultEventsMap, DefaultEventsMap>
 
-function sort<IdType, D extends { _id: IdType }>(value: D[] | { [id: string]: D }) {
-  if (!(value instanceof Array)) {
-    const list = [] as D[]
-    for (const id in value) {
-      const item = value[id]
-      item._id = id as any
-      list.push(item)
-    }
-    value = list
-  }
-  return inPlaceSort<D>(value)
-}
-
-export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
-  order,
-  format,
-  reduce
-}: MapReduceProps<T, F>) {
-  const hash = {} as { [id: string]: T }
-  const data = { ...format() }
-  const find = (id: T['_id']) => hash[id.toString()]
-  return { add, del, find, format, data }
-
-  function add(docs: T[]) {
-    for (const doc of docs) {
-      const id = doc._id.toString()
-
-      hash[id] = doc
-      data.list.push(doc)
-      reduce(data, doc)
-    }
-    order(data, { sort })
-  }
-
-  function del(ids: T['_id'][]) {
-    for (const id of ids) {
-      delete hash[id.toString()]
-    }
-    data.list = data.list.filter((o) => hash[o._id.toString()])
-
-    Object.assign(data, format())
-    for (let size = data.list.length, idx = 0; idx < size; ++idx) {
-      const doc = data.list[idx]
-      reduce(data, doc)
-    }
-  }
-}
-
 export function model<IdType, T extends BaseT<IdType>, F extends BaseF<T>, MatchArgs extends any[]>(
   options: QueryProps<MatchArgs> & MapReduceProps<T, F>
 ): QueryProps<MatchArgs> & MapReduceProps<T, F> {
   const o = { ...options, qid }
   return o
   function qid(...args: MatchArgs) {
-    return `${o.name}:${options.qid(...args)}`
+    return `${o.name}(${options.qid(...args)})`
   }
 }
 
@@ -136,17 +80,17 @@ export function socket<
     query(...args: MatchArgs) {
       const api = qid(...args)
       const mr = MapReduce<IdType, T, F>({ format, order, reduce })
-      if (!__BROWSER__) return readable<F>(mr.format())
+      if (!__BROWSER__) return { ...readable<F>(mr.format()), find: mr.find }
 
       const { subscribe } = readable<F>(mr.format(), (set) => {
         PubSub.on(`SET:${api}`, (docs: T[]) => {
           mr.add(docs)
-          console.log(`${PubSub.id} <- set ${docs.length} items.`)
+          console.log(`${PubSub.id} <- set ${docs.length} items by ${api}`)
           set(mr.data)
         })
         PubSub.on(`DEL:${api}`, (ids: IdType[]) => {
           mr.del(ids)
-          console.log(`${PubSub.id} <- del ${ids.length} items.`)
+          console.log(`${PubSub.id} <- del ${ids.length} items by ${api}`)
           set(mr.data)
         })
         PubSub.on(`SET:ERROR:${name}`, (docs: T[]) => {})
@@ -162,7 +106,7 @@ export function socket<
           PubSub.off(`DEL:ERROR:${name}`)
         }
       })
-      return { subscribe }
+      return { subscribe, find: mr.find }
     },
 
     set(docs) {

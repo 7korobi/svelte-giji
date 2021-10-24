@@ -57,7 +57,7 @@ export type Story = {
 }
 
 export const story_summary = model({
-  qid: (is_old) => `${is_old}`,
+  qid: (is_old) => is_old.toString(),
   format: () => ({
     list: [] as Story[]
   }),

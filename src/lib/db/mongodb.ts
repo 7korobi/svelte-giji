@@ -1,13 +1,20 @@
-export { ObjectId } from 'mongodb'
 import type { Document } from 'mongodb'
 import { Collection, MongoClient } from 'mongodb'
 
-const database_url = `mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji`
-const client = new MongoClient(database_url, {})
-boot()
+let client: MongoClient
 
 export function db() {
   return client.db()
+}
+
+export async function dbBoot(url: string) {
+  client = new MongoClient(url, {})
+  await client.connect()
+  console.warn('MongoDB connected.')
+  process.on('beforeExit', () => {
+    client.close()
+    console.warn('MongoDB safely closed.')
+  })
 }
 
 export function watch<K, T>(
@@ -32,13 +39,4 @@ export function watch<K, T>(
           break
       }
     })
-}
-
-async function boot() {
-  await client.connect()
-  console.warn('MongoDB connected.')
-  process.on('beforeExit', () => {
-    client.close()
-    console.warn('MongoDB safely closed.')
-  })
 }

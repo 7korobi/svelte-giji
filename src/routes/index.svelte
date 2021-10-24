@@ -1,5 +1,7 @@
 <script lang="ts">
-import { writable } from 'svelte/store'
+import type { EventID } from 'src/pubsub/type/id'
+
+import groupBy from 'just-group-by'
 
 import { __BROWSER__ } from '$lib/browser'
 import { Post, Talk, Report } from '$lib/chat'
@@ -11,14 +13,13 @@ import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 
 import './_app.svelte'
 
-import { randoms, story_summary, sow_village_plans } from '../pubsub/store'
+import { randoms, story_summary, sow_village_plans, events, Story } from '../pubsub/store'
 import { socket } from '$lib/db/socket.io-client'
 
 const { user } = fire
 
-const prologue = writable([])
-const progress = socket(story_summary).query(false)
 const plan = socket(sow_village_plans).query()
+const story_all = socket(story_summary).query(false)
 
 const trumps = socket(randoms).query(['trump', 'zodiac', 'eto'])
 
@@ -29,6 +30,12 @@ if (__BROWSER__) {
 }
 
 $: console.log($trumps)
+
+const prologue_id = (o: Story) => `${o._id}-0` as EventID
+$: event = socket(events).query($story_all.list.map(prologue_id))
+$: story_by = groupBy($story_all.list, (o) => !!event.find(prologue_id(o)))
+$: story_prologue = story_by.false
+$: story_progress = story_by.true
 
 $: setHistory(page)
 
@@ -174,7 +181,7 @@ function setHistory(hash) {
   </Report>
 </Focus>
 
-{#each $progress.list as o (o._id)}
+{#each story_progress ?? [] as o (o._id)}
   <Focus name={o._id} bind:value={page}>
     <Post handle="EVIL">
       <p class="name">{o.name}</p>
@@ -196,16 +203,16 @@ function setHistory(hash) {
   </Focus>
 {/each}
 
-{#each $prologue as o (o.id)}
-  <Focus name={o.id} bind:value={page}>
+{#each story_prologue ?? [] as o (o._id)}
+  <Focus name={o._id} bind:value={page}>
     <Post handle="MOB">
       <p class="name">{o.name}</p>
       <hr />
       <p class="text">
-        <button id={o.id}>
+        <button id={o._id}>
           <BellDisable /><BellStop /><BellRinging />
         </button>
-        <a href={o.folder.href}>{o.folder.nation}{o.vid}</a> は、開始が楽しみだ。
+        <a href={o.folder}>{o.folder}{o.vid}</a> は、開始が楽しみだ。
       </p>
       <p class="date">
         廃村期限 <Time at={o.timer.scraplimitdt} />

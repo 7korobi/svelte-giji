@@ -1,6 +1,6 @@
 import type { WinType } from '../type/enum'
 import type { EventID, StoryID, EventIDX } from '../type/id'
-import type { ISO8601, presentation } from '../type/string'
+import type { presentation } from '../type/string'
 
 import { model } from '$lib/db/socket.io-client'
 
@@ -29,24 +29,13 @@ export type Event = {
   name?: presentation
 }
 
-export const event_progress = model({
-  qid: () => '',
+export const events = model({
+  qid: (ids: EventID[]) => ids.toString(),
   format: () => ({
     list: [] as Event[]
   }),
   reduce: (data, doc) => {},
   order: (data, { sort }) => {
-    sort(data.list).asc((o) => o.turn)
-  }
-})
-
-export const event_oldlog = model({
-  qid: (story_id) => story_id,
-  format: () => ({
-    list: [] as Event[]
-  }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {
-    sort(data.list).asc((o) => o.turn)
+    sort(data.list).asc([(o) => o.story_id, (o) => o.turn])
   }
 })

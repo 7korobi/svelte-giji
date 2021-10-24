@@ -1,4 +1,4 @@
-import type { MesType, SubType, CsType, StyleType } from '../type/enum'
+import type { MesType, SubType, StyleType } from '../type/enum'
 import type { MessageID, StoryID, EventID, MessageIDX, AccountID, FaceID } from '../type/id'
 import type { presentation } from '../type/string'
 
@@ -11,7 +11,7 @@ export type Message = {
   mestype: MesType
   subid: SubType
   logid: MessageIDX
-  csid?: CsType
+  csid?: string
   sow_auth_id: AccountID
   date: Date
   size: number

@@ -1,6 +1,5 @@
 import type { RoleType, LiveType } from '../type/enum'
 import type { AccountID, FaceID, MessageTypeIDX, StoryID } from '../type/id'
-import type { Date } from '../type/string'
 
 import { model } from '$lib/db/socket.io-client'
 

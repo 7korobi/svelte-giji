@@ -1,6 +1,6 @@
 import fs from 'fs'
 import sh from 'child_process'
-import { sort } from '$lib/db/fast-sort'
+import { sort } from '$lib/map-reduce/fast-sort'
 
 import { db } from '$lib/db'
 

@@ -1,48 +1,32 @@
-export enum StyleType {
-  Text = 'text',
-  Head = 'head',
-  Mono = 'mono'
-}
+export type StyleType = 'text' | 'head' | 'mono'
 
-export enum MoodType {
-  Teller = 'teller'
-}
+export type MoodType = 'teller'
 
-export enum WinType {
-  NONE = 'WIN_NONE',
-  HUMAN = 'WIN_HUMAN'
-}
+export type WinType = 'WIN_NONE' | 'WIN_HUMAN'
 
-export enum OptionType {
-  AimingTalk = 'aiming-talk',
-  Entrust = 'entrust',
-  RandomTarget = 'random-target',
-  SelectRole = 'select-role',
-  SeqEvent = 'seq-event',
-  UndeadTalk = 'undead-talk'
-}
+export type OptionType =
+  | 'aiming-talk'
+  | 'entrust'
+  | 'random-target'
+  | 'select-role'
+  | 'seq-event'
+  | 'undead-talk'
 
-export enum LiveType {
-  Live = 'live',
-  Victim = 'victim',
-  Executed = 'executed',
-  Suddendead = 'suddendead'
-}
+export type LiveType = 'live' | 'victim' | 'executed' | 'suddendead'
 
-export enum RoleTableType {
-  Custom = 'custom',
-  Default = 'default',
-  Hamster = 'hamster',
-  Lover = 'lover',
-  Mistery = 'mistery',
-  Random = 'random',
-  Test1St = 'test1st',
-  Test2Nd = 'test2nd',
-  Ultimate = 'ultimate',
-  WbbsC = 'wbbs_c',
-  WbbsF = 'wbbs_f',
-  WbbsG = 'wbbs_g'
-}
+export type RoleTableType =
+  | 'custom'
+  | 'default'
+  | 'hamster'
+  | 'lover'
+  | 'mistery'
+  | 'random'
+  | 'test1st'
+  | 'test2nd'
+  | 'ultimate'
+  | 'wbbs_c'
+  | 'wbbs_f'
+  | 'wbbs_g'
 
 export enum RoleType {
   Alchemist = 'alchemist',
@@ -138,25 +122,18 @@ export enum RoleType {
 
 export enum EventType {}
 
-export enum CsType {
-  All = 'all',
-  Ririnra = 'ririnra',
-  RirinraC01 = 'ririnra_c01'
-}
-
-export enum MesType {
-  CAST = 'CAST',
-  ADMIN = 'ADMIN',
-  MAKER = 'MAKER',
-  INFOSP = 'INFOSP',
-  INFONOM = 'INFONOM',
-  AIM = 'AIM',
-  TSAY = 'TSAY',
-  WSAY = 'WSAY',
-  GSAY = 'GSAY',
-  SSAY = 'SAY',
-  DELETED = 'DELETED'
-}
+export type MesType =
+  | 'CAST'
+  | 'ADMIN'
+  | 'MAKER'
+  | 'INFOSP'
+  | 'INFONOM'
+  | 'AIM'
+  | 'TSAY'
+  | 'WSAY'
+  | 'GSAY'
+  | 'SAY'
+  | 'DELETED'
 
 export enum LogType {
   CAST = 'c',
@@ -171,12 +148,7 @@ export enum LogType {
   DELETED = 'D'
 }
 
-export enum SubType {
-  A = 'A',
-  I = 'I',
-  M = 'M',
-  S = 'S'
-}
+export type SubType = 'A' | 'I' | 'M' | 'S'
 
 export enum SayType {
   Euro = 'euro',
