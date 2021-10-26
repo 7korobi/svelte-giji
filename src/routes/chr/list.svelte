@@ -1,0 +1,81 @@
+<script lang="ts">
+import { flip } from 'svelte/animate'
+import { scale } from 'svelte/transition'
+import { backOut } from 'svelte/easing'
+
+import Portrate from '$lib/block/Portrate.svelte'
+import Btn from '$lib/inline/Btn.svelte'
+
+import { Post, Report } from '$lib/chat'
+import { setHash } from '$lib/uri'
+import { Faces } from '../../pubsub/store/chr_face'
+import { Tags } from '../../pubsub/store/chr_tag'
+
+let tag_id = 'giji'
+
+$: faces = Faces.data.tag[tag_id]
+$: setHash(tag_id)
+
+function face_size(tag_id: string) {
+  return Faces.data.tag[tag_id]?.list?.length
+}
+</script>
+
+<Post handle="footer">
+  <p class="text">
+    <a href="/">TOP</a>
+  </p>
+</Post>
+
+<Report handle="header">
+  <div class="center form">
+    {#each Tags.data.group as tagss, i}
+      <fieldset>
+        {#if tagss._id !== 'undefined'}
+          <legend>{tagss._id}</legend>
+        {/if}
+        {#each tagss as tags, j}
+          <p class="center">
+            {#each tags.list as o, k}
+              {#if face_size(o._id)}
+                <Btn class="btn" as={o._id} bind:value={tag_id}
+                  >{o.label}<sup>{face_size(o._id)}</sup></Btn>
+              {/if}
+            {/each}
+          </p>
+        {/each}
+      </fieldset>
+    {/each}
+  </div>
+  <hr />
+  <p class="form" />
+  <p data-v-4dcf7e9c="" class="form">
+    <label data-v-4dcf7e9c="" for="search" class="mdi mdi-magnify" /><input
+      data-v-4dcf7e9c=""
+      id="search"
+      size="30"
+      list="search_log"
+      class="search" /><datalist data-v-4dcf7e9c="" id="search_log" /><!---->
+  </p>
+  <sub style="width: 100%;">{Tags.find(tag_id).long}</sub>
+</Report>
+
+<div class="fullframe">
+  <div class="portrates">
+    {#each faces.list as o (o._id)}
+      <div
+        transition:scale={{ delay: 0, duration: 400, easing: backOut }}
+        animate:flip={{ delay: 0, duration: 500, easing: backOut }}>
+        <Portrate face_id={o._id}>
+          <p>{o.name}</p>
+        </Portrate>
+      </div>
+    {/each}
+  </div>
+</div>
+
+<Post handle="footer">
+  <p class="text">
+    <a href="/">TOP</a>
+  </p>
+</Post>

@@ -1,5 +1,4 @@
-import type { DIC } from './dic'
-import { inPlaceSort } from './fast-sort'
+import { sort, group_sort } from './dic'
 
 export type BaseT<IdType> = {
   _id: IdType
@@ -11,21 +10,8 @@ export type BaseF<T> = {
 
 export type MapReduceProps<T, F> = {
   format: () => F
-  order: (o: F, option: { sort: typeof sort }) => void
+  order: (o: F, option: { sort: typeof sort; group_sort: typeof group_sort }) => void
   reduce: (o: F, doc: T) => void
-}
-
-function sort<D>(value: D[] | DIC<D>) {
-  if (!(value instanceof Array)) {
-    const list = [] as D[]
-    for (const id in value) {
-      const item = value[id]
-      ;(item as any)._id = id
-      list.push(item)
-    }
-    value = list
-  }
-  return inPlaceSort<D>(value)
 }
 
 export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
@@ -57,7 +43,7 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>>({
       }
       hash[id] = doc
     }
-    order(data, { sort })
+    order(data, { sort, group_sort })
   }
 
   function del(ids: T['_id'][]) {

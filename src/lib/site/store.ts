@@ -4,7 +4,7 @@ import { writeLocal } from '$lib/storage'
 import live from '$lib/site/json/live.json'
 
 export const url = writable({
-  portrate: '/images/portrate/',
+  portrate: 'https://giji.f5.si/images/portrate/',
   css: '/css/',
   api: '/api/',
   top: '/'

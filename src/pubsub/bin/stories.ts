@@ -1,10 +1,9 @@
-import type { StoryID } from '../type/id'
 import type { Story } from '../store/stories'
 
 import { modelAsMongoDB } from '$lib/db/socket.io-server'
 import {} from './events'
 
-export const stories = modelAsMongoDB<StoryID, Story>('stories', { comment: 0, password: 0 })
+export const stories = modelAsMongoDB<Story>('stories', { comment: 0, password: 0 })
 
 export const story_summary = {
   ...stories,

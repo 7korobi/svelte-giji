@@ -7,3 +7,4 @@ import Chat from './Chat.svelte'
 
 export default Chat
 export { Talk, Post, Report, Banner }
+export * from './deco'

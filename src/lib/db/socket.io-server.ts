@@ -142,21 +142,18 @@ export function model<IdType, T, MatchArgs extends any[], MatchReturn>(
   return o
 }
 
-export function modelAsMongoDB<IdType, T extends { _id: IdType }>(
-  collection: string,
-  $project?: DIC<0 | 1>
-) {
+export function modelAsMongoDB<T extends { _id: any }>(collection: string, $project?: DIC<0 | 1>) {
   const table = () => db().collection<T>(collection)
 
   return {
-    $match: (ids: IdType[]) => ({ _id: ids }),
+    $match: (ids: T['_id'][]) => ({ _id: ids }),
     set: ($set: T) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
-    del: (ids: IdType[]) => table().deleteMany({ _id: ids }),
+    del: (ids: T['_id'][]) => table().deleteMany({ _id: ids }),
     isLive: async () => true,
     live: (
       $match: any,
       set: ($set: T) => Promise<ModifyResult<T>>,
-      del: (ids: IdType[]) => Promise<DeleteResult>
+      del: (ids: T['_id'][]) => Promise<DeleteResult>
     ) => watch(set, del, table, $project ? [{ $match }, { $project }] : [{ $match }]),
     query: async ($match: any) => table().find($match).toArray()
   }

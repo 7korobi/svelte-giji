@@ -1,11 +1,10 @@
 import type { DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
-import type { LiveType, MesType, RoleType } from '../type/enum'
+import type { MessageForFace, PotofForFace, PotofForFaceSowAuthMax } from './aggregate'
 
 import { model } from '$lib/db/socket.io-client'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/chr_face.json'
-import type { FolderIDX, StoryID } from '../type/id'
 
 const katakanas = (() => {
   const result: string[] = []
@@ -32,25 +31,6 @@ export type Face = {
 
   name: presentation
   comment: presentation
-}
-
-export type Aggregate = {
-  folders: FolderIDX
-  roles: RoleType[]
-  lives: LiveType[]
-  sow_auths: presentation[]
-  mestypes: MesType[]
-  log: {
-    story_ids: StoryID[]
-    date_max: Date
-    date_min: Date
-  }
-  fav: {
-    _id: {
-      sow_auth_id?: presentation
-    }
-    count: number
-  }
 }
 
 export const Faces = MapReduce({
@@ -107,3 +87,30 @@ json.forEach((o: Face, idx) => {
 })
 
 Faces.add(json as Face[])
+
+export const message_for_face = model({
+  qid: (o: PotofForFace['_id']) => o.face_id,
+  format: () => ({
+    list: [] as MessageForFace[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})
+
+export const potof_for_face = model({
+  qid: (o: PotofForFace['_id']) => o.face_id,
+  format: () => ({
+    list: [] as PotofForFace[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})
+
+export const potof_for_face_sow_auth_max = model({
+  qid: (o: PotofForFaceSowAuthMax['_id']) => [o.face_id, o.sow_auth_id].toString(),
+  format: () => ({
+    list: [] as PotofForFaceSowAuthMax[]
+  }),
+  reduce: (data, doc: PotofForFaceSowAuthMax) => {},
+  order: (data, { sort }) => {}
+})

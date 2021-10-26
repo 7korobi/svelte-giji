@@ -1,7 +1,6 @@
-import type { RoleType, LiveType } from '../type/enum'
-import type { AccountID, FaceID, MessageTypeIDX, StoryID } from '../type/id'
-
-import { model } from '$lib/db/socket.io-client'
+import type { RoleType, LiveType, MesType } from '../type/enum'
+import type { AccountID, FaceID, FolderIDX, MessageTypeIDX, StoryID } from '../type/id'
+import type { presentation } from '../type/string'
 
 export type MessageForFace = {
   _id: {
@@ -47,6 +46,15 @@ export type PotofForFace = {
   date_max: Date
   story_ids: StoryID[]
 }
+export type PotofForFaceSowAuthMax = {
+  _id: {
+    face_id: FaceID
+    sow_auth_id: AccountID
+  }
+  date_min: Date
+  date_max: Date
+  story_ids: StoryID[]
+}
 export type PotofForFaceRole = {
   _id: {
     face_id: FaceID
@@ -65,21 +73,22 @@ export type PotofForFaceLive = {
   date_max: Date
   story_ids: StoryID[]
 }
-export type PotofForFaceSowAuthMax = {
-  _id: {
-    face_id: FaceID
-    sow_auth_id: AccountID
-  }
-  date_min: Date
-  date_max: Date
-  story_ids: StoryID[]
-}
 
-export const potof_for_face = model({
-  qid: () => '',
-  format: () => ({
-    list: [] as PotofForFace[]
-  }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {}
-})
+export type Aggregate = {
+  folders: FolderIDX
+  roles: RoleType[]
+  lives: LiveType[]
+  sow_auths: presentation[]
+  mestypes: MesType[]
+  log: {
+    story_ids: StoryID[]
+    date_max: Date
+    date_min: Date
+  }
+  fav: {
+    _id: {
+      sow_auth_id?: presentation
+    }
+    count: number
+  }
+}

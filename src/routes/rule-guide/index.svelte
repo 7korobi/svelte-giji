@@ -4,6 +4,7 @@ import { Focus } from '$lib/scroll'
 import { __BROWSER__ } from '$lib/browser'
 import { nation, village, maker, player } from '$lib/game/json/rule.json'
 import '../_app.svelte'
+import { setHash } from '$lib/uri'
 
 let page = ''
 let chat = ''
@@ -11,14 +12,7 @@ if (__BROWSER__) {
   page = chat = location.hash.slice(1)
 }
 
-$: setHistory(chat || page)
-
-function setHistory(hash) {
-  if (!__BROWSER__) return
-  const url = new URL(location.href)
-  url.hash = hash
-  history.pushState({}, '', url)
-}
+$: setHash(chat || page)
 </script>
 
 <svelte:head>
@@ -46,7 +40,7 @@ function setHistory(hash) {
     ようこそ。ここにはこのサイトを楽しむためのルールや心構えを綴ってある。
     暖炉のそばが開いているから、腰を下ろして熟読しよう。楽しいゲームは全員が対等で、全員が読んで理解しているルールがあって成り立つんだ。<br />
     ただし、やむを得ず、ルール違反をすることもあるだろうね。違反してしまった事実は覆らないけれど、ルールを破らざるをえなかった事情は、落ち着いて聞いてあげよう。
-    <a chk="confirm" href="http://www.nihonjiten.com/data/763.html">罪を憎んで、人を憎まず</a>。
+    <a href="http://www.nihonjiten.com/data/763.html">罪を憎んで、人を憎まず</a>。
     これは話し合いをするゲームなんだ。<br /><br />
 
     <strong

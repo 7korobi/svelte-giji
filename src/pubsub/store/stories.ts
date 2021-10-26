@@ -56,6 +56,15 @@ export type Story = {
   name: presentation
 }
 
+export const stories = model({
+  qid: (ids) => ids.toString,
+  format: () => ({
+    list: [] as Story[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})
+
 export const story_summary = model({
   qid: (is_old) => is_old.toString(),
   format: () => ({
@@ -65,13 +74,4 @@ export const story_summary = model({
   order: (data, { sort }) => {
     sort(data.list).desc((o) => o.timer.nextcommitdt)
   }
-})
-
-export const story_oldlog = model({
-  qid: (_id) => _id,
-  format: () => ({
-    list: [] as Story[]
-  }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {}
 })

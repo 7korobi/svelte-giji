@@ -21,7 +21,7 @@ const { user } = fire
 const plan = socket(new_plans).query()
 const story_all = socket(story_summary).query(false)
 
-const trumps = socket(randoms).query(['trump', 'zodiac', 'eto'])
+const trumps = socket(randoms).query(['trump', 'zodiac', 'IAU'])
 
 let page = ''
 
@@ -79,6 +79,16 @@ function setHistory(hash) {
   <Post handle="SSAY">
     <p><a href="/rule-guide">人狼議事のルール</a></p>
     <p class="text">人狼議事を遊ぶとき、従うべきルールはこちら。</p>
+  </Post>
+</Focus>
+
+<Focus name="chr" bind:value={page}>
+  <Post handle="SSAY">
+    <p>
+      <a href="/chr/list">キャラクター一覧</a>
+      <a href="/chr/npc">最初の犠牲者一覧</a>
+    </p>
+    <p class="text">人狼議事を遊ぶ参考にどうぞ。</p>
   </Post>
 </Focus>
 

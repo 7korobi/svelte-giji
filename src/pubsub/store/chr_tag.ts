@@ -1,4 +1,5 @@
 import type { presentation } from '../type/string'
+import type { DIC } from '$lib/map-reduce'
 
 import { model } from '$lib/db/socket.io-client'
 import { MapReduce, dic } from '$lib/map-reduce'
@@ -18,22 +19,20 @@ export type Tag = {
 export const Tags = MapReduce({
   format: () => ({
     list: [] as Tag[],
-    group: {} as {
-      list: Tag[]
-    }[][]
+    base: {} as DIC<DIC<{ list: Tag[] }>>,
+    group: {} as { list: Tag[] }[][]
   }),
   reduce: (data, doc: Tag) => {
     const group = Math.floor(doc.order / 1000)
-    dic(data.group, doc.head as any, {} as [], group.toString() as any, {}, 'list', []).push(doc)
+    dic(data.base, doc.head, {}, group.toString(), {}, 'list', []).push(doc)
   },
-  order: (data, { sort }) => {
-    for (const head in data.group) {
-      for (const group in data.group[head]) {
-        sort(data.group[head][group].list).asc((o) => o.order)
-      }
-      // data.group[head] = sort(data.group[head]).asc((o) => o.list[0].order)
-    }
-    // data.group = sort(data.group).asc((o) => o[0].list[0].order)
+  order: (data, { sort, group_sort }) => {
+    data.group = group_sort(
+      data.base,
+      (d) => sort(d).asc((o) => o[0].list[0].order),
+      (d) => sort(d).asc((o) => o.list[0].order),
+      (d) => ({ list: sort(d.list).asc((o) => o.order) })
+    )
   }
 })
 
@@ -42,4 +41,3 @@ for (const _id in json) {
   o._id = _id
   Tags.add([o])
 }
-console.log(Tags.data)
