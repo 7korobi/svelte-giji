@@ -9,10 +9,10 @@ import { setHash } from '$lib/uri'
 let page = ''
 let chat = ''
 if (__BROWSER__) {
-  page = chat = location.hash.slice(1)
+  page = location.hash.slice(1)
 }
 
-$: setHash(chat || page)
+$: setHash(page)
 </script>
 
 <svelte:head>

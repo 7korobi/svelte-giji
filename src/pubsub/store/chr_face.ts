@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
 import type { MessageForFace, PotofForFace, PotofForFaceSowAuthMax } from './aggregate'
 
@@ -20,6 +20,7 @@ const katakanas = (() => {
 export type FacesFormat = {
   list: Face[]
   name_head: string[][]
+  name_head_dic: DIC<string[]>
 }
 
 export type Face = {
@@ -58,26 +59,23 @@ export const Faces = MapReduce({
     function emit(o: FacesFormat) {
       if (!o.list) {
         o.list = []
-        o.name_head = {} as string[][]
+        o.name_head_dic = {} as DIC<string[]>
       }
       o.list.push(doc)
-      dic(o.name_head, head as any, []).push(doc.name)
+      dic(o.name_head_dic, head, []).push(doc.name)
     }
   },
   order: (data, { sort }) => {
     for (const kana of katakanas) {
-      if (data.tag.all.name_head[kana]) {
+      if (data.tag.all.name_head_dic[kana]) {
         data.cover.push(kana)
       } else {
         data.remain.push(kana)
       }
     }
-
     for (const tag_id in data.tag) {
       sort(data.tag[tag_id].list).asc((o) => o.order)
-      data.tag[tag_id].name_head = sort(data.tag[tag_id].name_head as any).desc(
-        (o: any) => o.length
-      ) as any
+      data.tag[tag_id].name_head = sort(data.tag[tag_id].name_head_dic).desc((o) => o.length)
     }
   }
 })

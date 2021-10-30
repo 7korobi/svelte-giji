@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Tag } from '../../pubsub/store/chr_tag'
 import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
@@ -10,8 +11,13 @@ import { Post, Report } from '$lib/chat'
 import { setHash } from '$lib/uri'
 import { Faces } from '../../pubsub/store/chr_face'
 import { Tags } from '../../pubsub/store/chr_tag'
+import { ChrJobs } from '../../pubsub/store/chr_set'
+import { __BROWSER__ } from '$lib/browser'
 
-let tag_id = 'giji'
+let tag_id: Tag['_id'] = 'giji'
+if (__BROWSER__) {
+  tag_id = location.hash.slice(1) || 'giji'
+}
 
 $: faces = Faces.data.tag[tag_id]
 $: setHash(tag_id)
@@ -57,7 +63,7 @@ function face_size(tag_id: string) {
       list="search_log"
       class="search" /><datalist data-v-4dcf7e9c="" id="search_log" /><!---->
   </p>
-  <sub style="width: 100%;">{Tags.find(tag_id).long}</sub>
+  <sub style="width: 100%;">{Tags.find(tag_id)?.long}</sub>
 </Report>
 
 <div class="fullframe">
@@ -67,6 +73,7 @@ function face_size(tag_id: string) {
         transition:scale={{ delay: 0, duration: 400, easing: backOut }}
         animate:flip={{ delay: 0, duration: 500, easing: backOut }}>
         <Portrate face_id={o._id}>
+          <p>{ChrJobs.find(`${Tags.find(tag_id)?.chr_set_id}_${o._id}`).job}</p>
           <p>{o.name}</p>
         </Portrate>
       </div>

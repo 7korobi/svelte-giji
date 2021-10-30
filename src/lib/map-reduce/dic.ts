@@ -3,7 +3,9 @@ import { inPlaceSort } from './fast-sort'
 export type DIC<T> = {
   [id: string]: T
 }
-type ARY<T> = T[]
+export type ARY<T> = T[] & {
+  _id: string
+}
 
 export function sort<D>(value: D[] | DIC<D>) {
   if (!(value instanceof Array)) {
@@ -18,14 +20,14 @@ export function sort<D>(value: D[] | DIC<D>) {
   return inPlaceSort<D>(value)
 }
 
-type DA<T> = DIC<T> | T[]
-export function group_sort<T>(data: DA<DA<T[]>>, cb3: (data: T[][][])=> T[][][], cb2: (data: T[][])=> T[][], cb1: (data: T[])=> T[]): T[][][]
-export function group_sort<T>(data: DA<DA<{list: T[]}>>, cb3: (data: {list: T[]}[][])=> {list:T[]}[][], cb2: (data: { list: T[]}[])=> {list:T[]}[], cb1: (data: { list: T[]})=> {list:T[]}): {list:T[]}[][]
-export function group_sort<T>(data: DA<DA<T[]>>, cb3: (data: T[][][])=> T[][][], cb2: (data: T[][])=> T[][], cb1: (data: T[])=> T[]): T[][][]
-export function group_sort<T>(data: DA<{list: T[]}>, cb2: (data: { list: T[]}[])=> {list:T[]}[], cb1: (data: { list: T[]})=> {list:T[]}): {list:T[]}[]
-export function group_sort<T>(data: DA<T[]>, cb2: (data: T[][])=> T[][], cb1: (data: T[])=> T[]): T[][]
-export function group_sort<T>(data: {list: T[]}, cb1: (data: { list: T[]})=> {list:T[]}): {list:T[]}
-export function group_sort<T>(data: T[], cb1: (data: T[])=> T[]): T[]
+type DA<T> = DIC<T> | ARY<T>
+export function group_sort<T>(data: DA<DA<ARY<T>>>, cb3: (data: DA<ARY<ARY<T>>>)=> ARY<ARY<T>>[], cb2: (data: DA<ARY<T>>)=> ARY<T>[], cb1: (data: DA<T>)=> T[]): ARY<ARY<ARY<T>>>
+export function group_sort<T>(data: DA<DA<{ list: T[] }>>, cb3: (data: DA<ARY<{ list: T[] }>>)=> ARY<{ list: T[] }>[], cb2: (data: DA<{ list: T[] }>)=> { list: T[] }[], cb1: (data: { list: T[] })=> { list: T[] }): ARY<ARY<{ list: T[] }>>
+export function group_sort<T>(data: DA<DA<ARY<T>>>, cb3: (data: DA<ARY<ARY<T>>>)=> ARY<ARY<T>>[], cb2: (data: DA<ARY<T>>)=> ARY<T>[], cb1: (data: DA<T>)=> T[]): ARY<ARY<ARY<T>>>
+export function group_sort<T>(data: DA<{ list: T[] }>, cb2: (data: DA<{ list: T[] }>)=> { list: T[] }[], cb1: (data: { list: T[] })=> { list: T[] }): ARY<{ list: T[] }>
+export function group_sort<T>(data: DA<ARY<T>>, cb2: (data: DA<ARY<T>>)=> ARY<T>[], cb1: (data: DA<T>)=> T[]): ARY<ARY<T>>
+export function group_sort<T>(data: { list: T[] }, cb1: (data: { list: T[] })=> { list: T[] }): { list: T[] }
+export function group_sort<T>(data: ARY<T>, cb1: (data: DA<T>)=> T[]): ARY<T>
 export function group_sort(data, cb, ...cbs) {
   if (cbs.length) {
     if (data instanceof Array) {

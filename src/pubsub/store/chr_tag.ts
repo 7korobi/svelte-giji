@@ -1,5 +1,5 @@
 import type { presentation } from '../type/string'
-import type { DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from '$lib/map-reduce'
 
 import { model } from '$lib/db/socket.io-client'
 import { MapReduce, dic } from '$lib/map-reduce'
@@ -20,7 +20,7 @@ export const Tags = MapReduce({
   format: () => ({
     list: [] as Tag[],
     base: {} as DIC<DIC<{ list: Tag[] }>>,
-    group: {} as { list: Tag[] }[][]
+    group: {} as ARY<ARY<{ list: Tag[] }>>
   }),
   reduce: (data, doc: Tag) => {
     const group = Math.floor(doc.order / 1000)

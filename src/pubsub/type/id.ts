@@ -31,5 +31,8 @@ export type StoryID = `${FolderHead}-${StoryIDX}`
 export type EventID = `${FolderHead}-${StoryIDX}-${EventIDX}`
 export type MessageID = `${FolderHead}-${StoryIDX}-${EventIDX}-${MessageIDX}`
 
+export type ChrSetID = string
+export type ChrJobID = `${ChrSetID}_${FaceID}`
+
 export type FaceID = string
 export type AccountID = string
