@@ -9,7 +9,7 @@ import Portrate from '$lib/block/Portrate.svelte'
 import Btn from '$lib/inline/Btn.svelte'
 
 import { __BROWSER__ } from '$lib/browser'
-import { Post, Report } from '$lib/chat'
+import { Post, Report, Portrates } from '$lib/chat'
 import { setHash } from '$lib/uri'
 import { Tags } from '../../pubsub/store/chr_tag'
 import { faces_with_tag_and_job, face_size } from '../../pubsub/join/chr';
@@ -61,20 +61,29 @@ $: setHash(tag_id)
   <sub style="width: 100%;">{Tags.find(tag_id)?.long}</sub>
 </Report>
 
-<div class="fullframe">
-  <div class="portrates">
+<Portrates>
+  {#if false}
     {#each faces_with_tag_and_job(tag_id) as [o, tag, chr_job], idx (o._id)}
-      <div
-        transition:scale={{ delay: 0, duration: 400, easing: backOut }}
-        animate:flip={{ delay: 0, duration: 500, easing: backOut }}>
-        <Portrate face_id={o._id}>
-          <p>{chr_job.job}</p>
-          <p>{o.name}</p>
-        </Portrate>
-      </div>
+    <div>
+      <Portrate face_id={o._id}>
+        <p>{chr_job.job}</p>
+        <p>{o.name}</p>
+      </Portrate>
+    </div>
     {/each}
-  </div>
-</div>
+  {:else}
+    {#each faces_with_tag_and_job(tag_id) as [o, tag, chr_job], idx (o._id)}
+    <div
+      in:scale={ tag_id === 'all' ? { delay: 0, duration: 0, opacity: 0, start: 1 } : { delay: 0, duration: 600, opacity: 0, start: 0, easing: backOut }}
+      animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
+      <Portrate face_id={o._id}>
+        <p>{chr_job.job}</p>
+        <p>{o.name}</p>
+      </Portrate>
+    </div>
+    {/each}
+  {/if}
+</Portrates>
 
 <Post handle="footer">
   <p class="text">
