@@ -122,10 +122,10 @@
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(0%, +0.5%, 5.5, 0, $rgb, 'edge-#{$key}'),
+      'edge-#{$key}': fixByContrast(   0%, +0.5%, 5.5,   0, $rgb,     'edge-#{$key}'),
       'pen-#{$key}': $rgb_pen,
-      'bold-#{$key}': fixByContrast(+0.1%, -0.1%, 3, $DP, $rgb_pen, 'bold-#{$key}'),
-      'line-#{$key}': fixByContrast(+0.3%, +0.9%, 5.5, $DP, $rgb, 'line-#{$key}'),
+      'bold-#{$key}': fixByContrast(+0.1%, -0.1%, 3  , $DP, $rgb_pen, 'bold-#{$key}'),
+      'line-#{$key}': fixByContrast(+0.3%, +0.9%, 5.5, $DP, $rgb,     'line-#{$key}'),
       'mono-url-#{$key}': url('//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid-w.png')
     )
   );
@@ -144,7 +144,7 @@
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(   0%, +0.5%, 3, 0, $rgb, 'edge-#{$key}'),
+      'edge-#{$key}': fixByContrast(   0%, +0.5%, 3,   0, $rgb, 'edge-#{$key}'),
       'pen-#{$key}': $rgb_pen,
       'bold-#{$key}': fixByContrast(+0.5%, +0.5%, 5, $DP, $rgb, 'bold-#{$key}'),
       'line-#{$key}': fixByContrast(+1.5%, +0.5%, 4, $DP, $rgb, 'line-#{$key}'),
@@ -166,7 +166,7 @@
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(   0%, +0.5%, 3, 0, $rgb, 'edge-#{$key}'),
+      'edge-#{$key}': fixByContrast(   0%, +0.5%, 3,   0, $rgb, 'edge-#{$key}'),
       'pen-#{$key}': $rgb_pen,
       'bold-#{$key}': fixByContrast(+0.5%, +0.5%, 4, $DP, $rgb, 'bold-#{$key}'),
       'line-#{$key}': fixByContrast(+1.5%, +0.5%, 4, $DP, $rgb, 'line-#{$key}'),
@@ -175,7 +175,6 @@
   );
   @return $pals;
 }
-
 
 @function pal_Day($key, $dd, $HH, $SS, $YY) {
   $DP: +0.25 * $dd;
@@ -187,9 +186,9 @@
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(+0.3%, -0.5%, 3.5, 0, $rgb, 'edge-#{$key}'),
-      'pen-#{$key}': fixByContrast(+0.1%, -0.5%, 7, $DP, $rgb, 'pen-#{$key}'),
-      'bold-#{$key}': fixByContrast(-0.2%, -0.5%, 5, $DP, $rgb, 'bold-#{$key}'),
+      'edge-#{$key}': fixByContrast(+0.3%, -0.5%, 3.5,   0, $rgb, 'edge-#{$key}'),
+      'pen-#{$key}': fixByContrast( +0.1%, -0.5%, 7  , $DP, $rgb, 'pen-#{$key}'),
+      'bold-#{$key}': fixByContrast(-0.2%, -0.5%, 5  , $DP, $rgb, 'bold-#{$key}'),
       'line-#{$key}': fixByContrast(+0.3%, -0.5%, 3.5, $DN, $rgb, 'line-#{$key}'),
       'mono-url-#{$key}': url('//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid-b.png')
     )
@@ -207,9 +206,9 @@
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(+0.3%, -0.1%, 3.5, 0, $rgb, 'edge-#{$key}'),
-      'pen-#{$key}': fixByContrast(-0.2%, -0.1%, 6, $DP, $rgb, 'pen-#{$key}'),
-      'bold-#{$key}': fixByContrast(+0.6%, -0.1%, 4, $DP, $rgb, 'bold-#{$key}'),
+      'edge-#{$key}': fixByContrast(+0.3%, -0.1%, 3.5,   0, $rgb, 'edge-#{$key}'),
+      'pen-#{$key}': fixByContrast( -0.2%, -0.1%, 6  , $DP, $rgb, 'pen-#{$key}'),
+      'bold-#{$key}': fixByContrast(+0.6%, -0.1%, 4  , $DP, $rgb, 'bold-#{$key}'),
       'line-#{$key}': fixByContrast(+0.3%, -0.1%, 3.5, $DN, $rgb, 'line-#{$key}'),
       'mono-url-#{$key}': url('//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid-b.png')
     )
@@ -224,30 +223,29 @@
   $pals: map-merge(
     $pals,
     (
-      'btn-#{$key}': fixByContrast(+0.5%, +0.1%, 1.2, $DP, $rgb, 'btn-#{$key}'),
-      'grad-#{$key}': fixByContrast(+0.5%, 0%, 1.2, $DN, $rgb, 'grad-#{$key}'),
-      'shade-#{$key}': fixByContrast(0%, +0.5%, 1.2, $DP, $rgb, 'shade-#{$key}'),
+      'btn-#{$key}': fixByContrast(+0.5%, +0.1%, 1.2,  $DP, $rgb, 'btn-#{$key}'),
+      'grad-#{$key}': fixByContrast(+0.5%,    0%, 1.2,  $DN, $rgb, 'grad-#{$key}'),
+      'shade-#{$key}': fixByContrast(   0%, +0.5%, 1.2,  $DP, $rgb, 'shade-#{$key}'),
       'btn-on-#{$key}': fixByContrast(+0.5%, +0.1%, 1.55, $DP, $rgb, 'btn-on-#{$key}'),
-      'btn-off-#{$key}': fixByContrast(+0.3%, -0.1%, 1.10, $DP, $rgb, 'btn-off-#{$key}')
+      'btn-off-#{$key}': fixByContrast(+0.3%, -0.1%, 1.1,  $DP, $rgb, 'btn-off-#{$key}')
     )
   );
   @return $pals;
 }
 
 @function pL($size, $label) {
-  @return str-slice('#{ $label }             ',0, $size)
+  @return str-slice('#{ $label }             ', 0, $size);
 }
 
 @function pR($size, $label) {
-  @return str-slice('             #{ $label }',0 - $size)
+  @return str-slice('             #{ $label }', 0 - $size);
 }
 
 @function capture($type, $v1, $v2, $label) {
   $prefix: ' #{pL(13, $label)}#{pL(15,$type)}#{ pR(7, math.round(color.hue($v1))) }#{ pR(7, math.round(color.hue($v2))) } / #{ pR(5, math.round(color.saturation($v1))) }#{ pR(5, math.round(color.saturation($v2))) } / #{ pR(5, math.round(color.lightness($v1))) }#{ pR(5, math.round(color.lightness($v2))) } / ';
 
-  @return contrastRank($v1, $v2, $prefix)
+  @return contrastRank($v1, $v2, $prefix);
 }
-
 
 $hues: (
   LONE: 326deg,   // 308 + 18 赤紫

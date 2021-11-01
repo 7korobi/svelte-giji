@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Tag } from '../../pubsub/store/chr_tag'
+
 import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
@@ -7,24 +8,18 @@ import { backOut } from 'svelte/easing'
 import Portrate from '$lib/block/Portrate.svelte'
 import Btn from '$lib/inline/Btn.svelte'
 
+import { __BROWSER__ } from '$lib/browser'
 import { Post, Report } from '$lib/chat'
 import { setHash } from '$lib/uri'
-import { Faces } from '../../pubsub/store/chr_face'
 import { Tags } from '../../pubsub/store/chr_tag'
-import { ChrJobs } from '../../pubsub/store/chr_set'
-import { __BROWSER__ } from '$lib/browser'
+import { faces_with_tag_and_job, face_size } from '../../pubsub/join/chr';
 
 let tag_id: Tag['_id'] = 'giji'
 if (__BROWSER__) {
   tag_id = location.hash.slice(1) || 'giji'
 }
 
-$: faces = Faces.data.tag[tag_id]
 $: setHash(tag_id)
-
-function face_size(tag_id: string) {
-  return Faces.data.tag[tag_id]?.list?.length
-}
 </script>
 
 <Post handle="footer">
@@ -68,12 +63,12 @@ function face_size(tag_id: string) {
 
 <div class="fullframe">
   <div class="portrates">
-    {#each faces.list as o (o._id)}
+    {#each faces_with_tag_and_job(tag_id) as [o, tag, chr_job], idx (o._id)}
       <div
         transition:scale={{ delay: 0, duration: 400, easing: backOut }}
         animate:flip={{ delay: 0, duration: 500, easing: backOut }}>
         <Portrate face_id={o._id}>
-          <p>{ChrJobs.find(`${Tags.find(tag_id)?.chr_set_id}_${o._id}`).job}</p>
+          <p>{chr_job.job}</p>
           <p>{o.name}</p>
         </Portrate>
       </div>
