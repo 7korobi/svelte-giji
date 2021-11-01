@@ -23,7 +23,7 @@
     "font:logo": "svgtofont --sources ./src/lib/icon/logo --output ./static/font --fontName logo",
     "font:mood": "svgtofont --sources ./src/lib/icon/mood --output ./static/font --fontName mood",
     "font:ui": "svgtofont --sources ./src/lib/icon/ui --output ./static/font --fontName ui",
-    "make:sass": "node .node_bin/scss/index.js ./src/lib/scss/*.sass | sort | uniq > src/__spec__/__snapshots__/scss-contrast.txt",
+    "make:sass": "node .node_bin/scss/index.js | sort | uniq > src/__spec__/__snapshots__/scss-contrast.txt",
     "make:brotli": "find public -type f -not -name \"*.br\" | grep -v \"dist/font\" | xargs -L1  brotli -Z -f -k"
   },
   "devDependencies": {
@@ -72,6 +72,7 @@
     "esbuild": "^0.13.12",
     "fast-sort": "^3.0.3",
     "firebase": "^9.2.0",
+    "glob": "^7.2.0",
     "js-yaml": "^4.1.0",
     "just-group-by": "^1.3.1",
     "moment": "^2.29.1",

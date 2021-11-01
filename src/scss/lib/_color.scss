@@ -2,7 +2,7 @@
 @use "sass:string";
 @use "sass:math";
 
-@use "../../common/_color" as *;
+@use "../../lib/common/_color" as *;
 
 @function pen($type) {
   @return map-get($pals, 'pen-#{$type}');

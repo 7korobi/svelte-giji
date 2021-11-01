@@ -520,13 +520,13 @@
  $grad-$btn   tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  22% / Z--  120
  $grad-$btn   tweet-N-MOB      15deg  21deg /   95% 100% /   16%  19% / Z--  120
  $grad-$btn   tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  21% / Z--  121
-./static/css/index.css <== ./src/lib/scss/index.sass
-./static/css/log-day.css <== ./src/lib/scss/log-day.sass
-./static/css/log-night.css <== ./src/lib/scss/log-night.sass
-./static/css/theme-cinema.css <== ./src/lib/scss/theme-cinema.sass
-./static/css/theme-moon.css <== ./src/lib/scss/theme-moon.sass
-./static/css/theme-night.css <== ./src/lib/scss/theme-night.sass
-./static/css/theme-pop.css <== ./src/lib/scss/theme-pop.sass
-./static/css/theme-snow.css <== ./src/lib/scss/theme-snow.sass
-./static/css/theme-star.css <== ./src/lib/scss/theme-star.sass
-./static/css/theme-wa.css <== ./src/lib/scss/theme-wa.sass
+./static/css/index.css <== ./src/scss/index.sass
+./static/css/log-day.css <== ./src/scss/log-day.sass
+./static/css/log-night.css <== ./src/scss/log-night.sass
+./static/css/theme-cinema.css <== ./src/scss/theme-cinema.sass
+./static/css/theme-moon.css <== ./src/scss/theme-moon.sass
+./static/css/theme-night.css <== ./src/scss/theme-night.sass
+./static/css/theme-pop.css <== ./src/scss/theme-pop.sass
+./static/css/theme-snow.css <== ./src/scss/theme-snow.sass
+./static/css/theme-star.css <== ./src/scss/theme-star.sass
+./static/css/theme-wa.css <== ./src/scss/theme-wa.sass

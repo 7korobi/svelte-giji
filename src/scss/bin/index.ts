@@ -1,18 +1,21 @@
 import sass from 'sass'
+import glob from 'glob'
 import fs from 'fs'
 import functions, { save } from './functions.js'
 
-process.argv.slice(2).forEach((file) => {
-  const outFile = file.replace('./src/lib/scss/', './static/css/').replace('.sass', '.css')
-  console.log(`${outFile} <== ${file}`)
-  const { css } = sass.renderSync({
-    file,
-    outFile,
-    functions,
-    outputStyle: 'compressed',
-    sourceMap: false
+glob('./src/scss/*.sass', (err: any, files: string[])=> {
+  files.forEach((file)=>{
+    const outFile = file.replace('./src/scss/', './static/css/').replace('.sass', '.css')
+    console.log(`${outFile} <== ${file}`)
+    const { css } = sass.renderSync({
+      file,
+      outFile,
+      functions,
+      outputStyle: 'compressed',
+      sourceMap: false
+    })
+    fs.writeFileSync(outFile, css)
   })
-  fs.writeFileSync(outFile, css)
+  save()
 })
 
-save()
