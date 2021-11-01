@@ -82,12 +82,12 @@
       left: $zoom * 118px
 
     .talk > .chat
-      width: calc(100% - #{ $zoom * 132px })
+      width: calc( 100% - $zoom * 132px )
       margin:  0 $zoom * 7px 0 $zoom * 19px
       min-height: $zoom * 70px
 
     .post > .chat
-      width: calc(100% - #{ $zoom * 107px})
+      width: calc( 100% - $zoom * 107px )
       margin: 0 0 0 $zoom * 107px
       // box-shadow: inset -30px 0px 45px -38px #222
       // 罫線にshadowが乗らない。
@@ -95,12 +95,12 @@
         margin-right: $zoom * 7px
 
     .report > .chat
-      width: calc(100% + #{ $zoom * 20px })
+      width: calc( 100% + $zoom * 20px )
       margin: 0 $zoom * -10px 0 $zoom * -10px
       padding: 1px $zoom * 8px 1px $zoom * 10px
 
       &::before, &::after
-        top: calc( #{ $zoom * -3px } - 0.25em )
+        top: calc( $zoom * -3px - 0.25em )
         border-width: 1px
 
       &::before
