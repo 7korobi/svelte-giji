@@ -22,6 +22,7 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
+    "noEmit": true,
     "paths": {
       "$lib/*": ["src/lib/*"]
     }

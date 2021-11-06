@@ -6,6 +6,8 @@ import Report from './Report.svelte'
 import Chat from './Chat.svelte'
 import Portrates from './Portrates.svelte'
 
-export default Chat
-export { Talk, Post, Report, Banner, Portrates }
+import * as store from './store'
+
 export * from './deco'
+export { Chat, Talk, Post, Report, Banner, Portrates }
+export default store

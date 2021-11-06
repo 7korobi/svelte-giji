@@ -1,10 +1,10 @@
 <script lang="ts">
+import type { Line, Icon, Cluster } from '$lib/pointer'
 import { Bits } from '$lib/inline/bits'
 
-import Chat, { Banner, Report } from '$lib/chat'
+import { Chat, Banner, Report } from '$lib/chat'
 import { Scroll } from '$lib/scroll'
 import { Diagram } from '$lib/pointer'
-import type { Line, Icon, Cluster } from '$lib/pointer'
 
 import Btn from '$lib/inline/Btn.svelte'
 
@@ -49,27 +49,7 @@ const potofColors = [
   'victim',
   'cursed',
   'feared',
-  'droop',
-
-  'GAIM',
-  'ELSE',
-  'AIM',
-  'PSAY',
-  'HSAY',
-  'hide',
-  'TSAY',
-  'private',
-
-  'GSAY',
-  'VGSAY',
-  'SSAY',
-  'MSAY',
-  'VSSAY',
-
-  'FSAY',
-  'XSAY',
-  'LSAY',
-  'WSAY'
+  'droop'
 ]
 
 const logColors = [
@@ -264,7 +244,7 @@ function byF(str: string) {
   </Chat>
 </Scroll>
 
-{#each logColors as color}
+{#each [...potofColors, ...logColors] as color}
   <Banner>
     <h3>{color}</h3>
   </Banner>

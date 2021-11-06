@@ -1,4 +1,4 @@
-import type { URL } from '../../pubsub/type/string'
+import type { URL } from '$lib/pubsub/type/string'
 import type { WebPollData } from '../fetch/dexie'
 import { url } from './store'
 

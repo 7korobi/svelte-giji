@@ -1,11 +1,10 @@
 <script lang="ts">
 import Btn from '../inline/Btn.svelte'
-import { Poll } from '../fetch'
-
+import Active from './export_active.svelte'
 import { url } from './store'
-import { reqApi } from './fetch'
+import site from '$lib/site'
 
-export let mode = 'finish'
+const { welcome_mode } = site
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -13,7 +12,7 @@ export let mode = 'finish'
   <div class="welcome-btns cap">ロビー</div>
   <div class="welcome-btns cap">夢の形、陰謀</div>
   <div class="welcome-btns cap">ＲＰ</div>
-  {#if mode === 'progress'}
+  {#if $welcome_mode === 'progress'}
     <div class="welcome-links form tap">
       <p><a>lobby</a></p>
       <p><a>offparty</a></p>
@@ -29,21 +28,13 @@ export let mode = 'finish'
       <p><a>role-play</a></p>
       <p><a>RP-advance</a></p>
       <p><a>crazy</a></p>
-      <p>
-        <a href="http://perjury.rulez.jp/sow.cgi" class="EVIL">2村:perjury<sup>1</sup></a>
-      </p>
-      <p>
-        <a href="http://xebec.x0.to/xebec/sow.cgi">3村:xebec</a>
-      </p>
-      <p>
-        <a href="http://ciel.moo.jp/cheat/sow.cgi">2村:ciel</a>
-      </p>
-      <p>
-        <a href="http://dais.kokage.cc/dais/sow.cgi" class="EVIL">3村:dais<sup>1</sup></a>
-      </p>
+      <Active folder_idx="perjury" />
+      <Active folder_idx="xebec" />
+      <Active folder_idx="ciel" />
+      <Active folder_idx="dais" />
     </div>
   {/if}
-  {#if mode === 'finish'}
+  {#if $welcome_mode === 'finish'}
     <div class="welcome-links form tap">
       <p><a href="/sow/village?folder_id=LOBBY" class="">lobby</a></p>
       <p><a href="/sow/village?folder_id=OFFPARTY" class="">offparty</a></p>
@@ -59,15 +50,15 @@ export let mode = 'finish'
       <p><a href="/sow/village?folder_id=RP" class="">role-play</a></p>
       <p><a href="/sow/village?folder_id=PRETENSE" class="">RP-advance</a></p>
       <p><a href="/sow/village?folder_id=CRAZY" class="">crazy</a></p>
-      <p><a href="/sow/village?folder_id=PERJURY" class="EVIL">perjury<sup>1</sup></a></p>
+      <p><a href="/sow/village?folder_id=PERJURY">perjury</a></p>
       <p><a href="/sow/village?folder_id=XEBEC" class="">xebec</a></p>
       <p><a href="/sow/village?folder_id=CIEL" class="">ciel</a></p>
-      <p><a href="/sow/village?folder_id=DAIS" class="EVIL">dais<sup>1</sup></a></p>
+      <p><a href="/sow/village?folder_id=DAIS">dais</a></p>
     </div>
   {/if}
   <div class="welcome-btns col4">
-    <Btn bind:value={mode} as="finish">終了した村</Btn>
-    <Btn bind:value={mode} as="progress">進行中の村</Btn>
+    <Btn bind:value={$welcome_mode} as="finish">終了した村</Btn>
+    <Btn bind:value={$welcome_mode} as="progress">進行中の村</Btn>
   </div>
   <div class="welcome-btns col4 shoe">
     <a href={$url.top}>総合トップ</a>

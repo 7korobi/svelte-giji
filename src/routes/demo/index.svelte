@@ -3,17 +3,15 @@ import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer/msec'
 
 import { Zoom, Pen } from '$lib/pointer'
 import { Time } from '$lib/timer'
-import { __BROWSER__ } from '$lib/browser'
 import LongPress from '$lib/inline/LongPress.svelte'
 import { Poll } from '$lib/fetch'
-import { reqApi } from '$lib/site'
+import site, { reqApi } from '$lib/site'
 import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
-
-import { browser } from '$lib/store'
+import browser from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 
 import '../_app.svelte'
-import { site } from '$lib/store'
 
 const { url } = site
 

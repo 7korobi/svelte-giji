@@ -4,16 +4,19 @@ import { navigating, page, session } from '$app/stores'
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Btn from '$lib/inline/Btn.svelte'
 
-import { Export, Footer } from '$lib/site'
 import { Report } from '$lib/chat'
-import Browser, { __BROWSER__ } from '$lib/browser'
+import site, { Export, Footer } from '$lib/site'
+import fire from '$lib/fire'
+import browser, { Browser } from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 
-import { site, fire } from '$lib/store'
 import * as Icon from '$lib/icon'
-import { viewOffset } from '$lib/browser/store'
+
+import './_app.svelte'
 
 let firebase_app
 const { url, side } = site
+const { viewOffset } = browser
 
 if (__BROWSER__) {
   fire.init(site.live.firebase)

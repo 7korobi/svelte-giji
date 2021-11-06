@@ -27,10 +27,8 @@ $: switch ($theme) {
 
 <svelte:head>
   <link rel="stylesheet" href="/css/index.css" />
-  {#if __BROWSER__}
-    <link rel="stylesheet" href="/css/log-{$day}.css" />
-    <link rel="stylesheet" href="/css/theme-{$theme}.css" />
-  {/if}
+  <link rel="stylesheet" href="/css/log-{$day}.css" />
+  <link rel="stylesheet" href="/css/theme-{$theme}.css" />
 </svelte:head>
 
 <span>

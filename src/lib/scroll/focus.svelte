@@ -1,10 +1,10 @@
 <script lang="ts">
-import { browser } from '$lib/store'
+import browser from '$lib/browser'
 
 import { tick } from 'svelte'
 import { observe } from './observer'
 
-export let name = ''
+export let id = ''
 export let value = ''
 
 const { viewSize } = browser
@@ -12,23 +12,23 @@ const { viewSize } = browser
 const tracker = observe(['horizon'], {
   async change(ops) {
     if (ops.focus === 'focus') {
-      value = name
+      value = id
     } else {
       await tick()
-      if (name === value) value = ''
+      if (id === value) value = ''
     }
   }
 })
 
 function focusing(el: HTMLDivElement) {
-  if (name !== value) return
+  if (id !== value) return
   const inline = el.clientWidth > $viewSize[0] ? 'nearest' : 'center'
   const block = el.clientHeight > $viewSize[1] ? 'nearest' : 'center'
   el.scrollIntoView({ block, inline })
 }
 </script>
 
-<div {name} use:focusing use:tracker.listener>
+<div {id} use:focusing use:tracker.listener>
   <slot />
 </div>
 

@@ -1,4 +1,5 @@
-import type { BOOLS, CSIDS, GAMES, SAYCNTS, TRSIDS, VOTETYPES } from '../_dic'
+import type { CSID } from '$lib/pubsub/map-reduce/chr_set'
+import type { SAYCNT, TRSID, GAME, VOTETYPES, BOOLS } from '$lib/pubsub/map-reduce/folder'
 
 export type Folders = Folder[]
 export type Folder = {
@@ -26,10 +27,10 @@ export type Folder = {
     role_play: boolean
   }
   config: {
-    csid: CSIDS[]
-    saycnt: SAYCNTS[]
-    trsid: TRSIDS[]
-    game: GAMES[]
+    csid: CSID[]
+    saycnt: SAYCNT[]
+    trsid: TRSID[]
+    game: GAME[]
     pl: string
     erb: string
     cd_default: '戦' | '演'

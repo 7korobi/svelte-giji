@@ -3,8 +3,8 @@ import Browser from './index.svelte'
 import Viewport from './key.svelte'
 import Key from './key.svelte'
 
-export * from './measure'
+import * as store from './store'
 
-export { __BROWSER__ } from './device'
-export { Key, Viewport, PageTransition }
-export default Browser
+export * from './measure'
+export { Browser, Key, Viewport, PageTransition }
+export default store

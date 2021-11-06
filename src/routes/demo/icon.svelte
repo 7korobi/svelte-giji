@@ -1,7 +1,6 @@
 <script lang="ts">
-import { __BROWSER__ } from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 import * as IconDic from '$lib/icon'
-import IconSvg from '$lib/icon/icon.svelte'
 import { Report, Post, Talk } from '$lib/chat'
 
 import '../_app.svelte'
@@ -116,7 +115,6 @@ for (const key of Object.keys(IconDic).sort()) {
   </article>
   <br />
 </Report>
-<IconSvg />
 
 <style lang="scss">
 .x3 {

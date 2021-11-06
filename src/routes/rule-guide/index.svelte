@@ -1,18 +1,12 @@
 <script lang="ts">
 import { Post, Talk, Report, Banner } from '$lib/chat'
 import { Focus } from '$lib/scroll'
-import { __BROWSER__ } from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 import { nation, village, maker, player } from '$lib/game/json/rule.json'
 import '../_app.svelte'
-import { setHash } from '$lib/uri'
+import uri from '$lib/uri'
 
-let page = ''
-let chat = ''
-if (__BROWSER__) {
-  page = location.hash.slice(1)
-}
-
-$: setHash(page)
+const chat = uri.hash()
 </script>
 
 <svelte:head>
@@ -50,11 +44,11 @@ $: setHash(page)
   </p>
 </Talk>
 
-<Focus name="nation" bind:value={page}>
+<Focus id="nation">
   <Report handle="MAKER">ルール</Report>
   <Report handle="footer">{nation.head}</Report>
   {#each nation.list as o, idx}
-    <Focus name={`nation-${idx + 1}`} bind:value={chat}>
+    <Focus id={`nation-${idx + 1}`} bind:value={$chat}>
       <Report handle="VSSAY">
         <strong>{o.head}</strong>
         <hr />
@@ -64,10 +58,10 @@ $: setHash(page)
   {/each}
 </Focus>
 
-<Focus name="village" bind:value={page}>
+<Focus id="village">
   <Report handle="footer">{village.head}</Report>
   {#each village.list as o, idx}
-    <Focus name={`village-${idx + 1}`} bind:value={chat}>
+    <Focus id={`village-${idx + 1}`} bind:value={$chat}>
       <Report handle="SSAY">
         <strong>{o.head}</strong>
         <hr />
@@ -77,9 +71,9 @@ $: setHash(page)
   {/each}
 </Focus>
 
-<Focus name="violation" bind:value={page}>
+<Focus id="violation">
   <Report handle="MAKER">ルール違反があったら？</Report>
-  <Focus name="violation-1" bind:value={chat}>
+  <Focus id="violation-1" bind:value={$chat}>
     <Report handle="footer">はじめに</Report>
     <Talk handle="MSAY" face_id="c96">
       <p class="name">学者 レオナルド</p>
@@ -102,7 +96,7 @@ $: setHash(page)
       </p>
     </Talk>
   </Focus>
-  <Focus name="violation-2" bind:value={chat}>
+  <Focus id="violation-2" bind:value={$chat}>
     <Report handle="footer">突然死</Report>
     <Talk handle="GSAY" face_id="t07">
       <p class="name">勧善懲悪委 アカリ</p>
@@ -123,7 +117,7 @@ $: setHash(page)
       </p>
     </Talk>
   </Focus>
-  <Focus name="violation-3" bind:value={chat}>
+  <Focus id="violation-3" bind:value={$chat}>
     <Report handle="footer">どうすればいいの？</Report>
     <Talk handle="MSAY" face_id="c96">
       <p class="name">学者 レオナルド</p>
@@ -164,12 +158,12 @@ $: setHash(page)
     </Talk>
   </Focus>
 </Focus>
-<Focus name="player" bind:value={page}>
+<Focus id="player">
   <Report handle="MAKER">心構え</Report>
   <Post handle="VSSAY">心構えを守って、楽しく、強く遊ぼう。</Post>
   <Report handle="footer">遊びにきたかたへ</Report>
   {#each player.list as o, idx}
-    <Focus name={`player-${idx + 1}`} bind:value={chat}>
+    <Focus id={`player-${idx + 1}`} bind:value={$chat}>
       <Report handle="MSAY">
         <strong>{o.head}</strong>
         <hr />
@@ -179,7 +173,7 @@ $: setHash(page)
   {/each}
 </Focus>
 
-<Focus name="maker" bind:value={page}>
+<Focus id="maker">
   <Report handle="footer">{maker.head}</Report>
   <Talk handle="WSAY" face_id="t10">
     <p class="name">営利政府 トレイル</p>
@@ -191,7 +185,7 @@ $: setHash(page)
     </p>
   </Talk>
   {#each maker.list as o, idx}
-    <Focus name={`maker-${idx + 1}`} bind:value={chat}>
+    <Focus id={`maker-${idx + 1}`} bind:value={$chat}>
       <Report handle="VSSAY">
         <strong>{o.head}</strong>
         <hr />

@@ -1,7 +1,7 @@
-import type { Document } from 'mongodb'
 import type { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import type { Readable } from 'svelte/store'
 import type { BaseF, BaseT, MapReduceProps } from '$lib/map-reduce'
+import type * as dic from '$lib/map-reduce/dic'
 
 import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
@@ -16,31 +16,40 @@ type QueryProps<MatchArgs extends any[]> = {
 }
 
 type StoreEntry<
-  T extends BaseT<any>,
-  F extends BaseF<Document>,
+  F extends BaseF<BaseT<any>>,
   MatchArgs extends any[],
   OrderArgs extends any[]
-> = QueryProps<MatchArgs> & MapReduceProps<T, F, OrderArgs>
-export type BaseStoreEntry = StoreEntry<BaseT<any>, BaseF<Document>, any[], any[]>
+> = QueryProps<MatchArgs> & MapReduceProps<F, OrderArgs>
+export type BaseStoreEntry = StoreEntry<BaseF<BaseT<any>>, any[], any[]>
 
 let STORE = {} as {
   [name: string]: BaseStoreEntry
 }
 let PubSub: Socket<DefaultEventsMap, DefaultEventsMap>
 
+const PubSubCache = {}
+
 export function model<
-  IdType,
-  T extends BaseT<IdType>,
-  F extends BaseF<T>,
+  F extends BaseF<BaseT<any>>,
   MatchArgs extends any[],
   OrderArgs extends any[]
 >(
-  options: QueryProps<MatchArgs> & MapReduceProps<T, F, OrderArgs>
-): QueryProps<MatchArgs> & MapReduceProps<T, F, OrderArgs> {
-  const o = { ...options, qid }
+  props: StoreEntry<F, MatchArgs, OrderArgs>
+): {
+  name?: string
+  qid: (...args: MatchArgs) => string
+  format: () => F
+  reduce: (o: F, doc: F['list'][number]) => void
+  order: (
+    o: F,
+    { sort, group_sort }: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
+    ...args: OrderArgs
+  ) => void
+} {
+  const o = { ...props, qid }
   return o
   function qid(...args: MatchArgs) {
-    return `${o.name}(${options.qid(...args)})`
+    return `${o.name}(${props.qid(...args)})`
   }
 }
 
@@ -56,8 +65,6 @@ export default function client(uri: string, stores: typeof STORE) {
     parser
   })
   PubSub.open()
-
-  console.log(`${PubSub.id} <-> connecting...`)
 }
 
 export function socket<
@@ -72,7 +79,7 @@ export function socket<
   format,
   order,
   reduce
-}: QueryProps<MatchArgs> & MapReduceProps<T, F, OrderArgs>): {
+}: StoreEntry<F, MatchArgs, OrderArgs>): {
   query(
     ...args: MatchArgs
   ): Readable<F> & {
@@ -85,27 +92,30 @@ export function socket<
 } {
   return {
     query(...qa: MatchArgs) {
+      const mr = MapReduce<F, OrderArgs>({ format, order, reduce })
       const api = qid(...qa)
-      const mr = MapReduce<IdType, T, F, OrderArgs>({ format, order, reduce })
-      if (!__BROWSER__) return { ...readable<F>(mr.format()), find: mr.find, sort }
+
+      if (PubSubCache[api]) return PubSubCache[api]
+      if (!__BROWSER__)
+        return (PubSubCache[api] = { ...readable<F>(mr.format()), find: mr.find, sort })
 
       const { subscribe, set } = writable<F>(mr.format(), (set) => {
         PubSub.on(`SET:${api}`, SET)
         PubSub.on(`DEL:${api}`, DEL)
         PubSub.on(`SET:ERROR:${name}`, SET_ERROR)
         PubSub.on(`DEL:ERROR:${name}`, DEL_ERROR)
-
-        console.log({ name, api, qa })
         PubSub.emit('query', name, ...qa)
 
         return () => {
+          delete PubSubCache[api]
+          PubSub.emit('leave', name, ...qa)
           PubSub.off(`SET:${api}`)
           PubSub.off(`DEL:${api}`)
           PubSub.off(`SET:ERROR:${name}`)
           PubSub.off(`DEL:ERROR:${name}`)
         }
       })
-      return { subscribe, find: mr.find, sort }
+      return (PubSubCache[api] = { subscribe, find: mr.find, sort })
 
       function sort(...sa: OrderArgs): void {
         mr.sort(...sa)

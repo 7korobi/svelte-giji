@@ -3,8 +3,8 @@ import glob from 'glob'
 import fs from 'fs'
 import functions, { save } from './functions.js'
 
-glob('./src/scss/*.sass', (err: any, files: string[])=> {
-  files.forEach((file)=>{
+glob('./src/scss/*.sass', (err: any, files: string[]) => {
+  files.forEach((file) => {
     const outFile = file.replace('./src/scss/', './static/css/').replace('.sass', '.css')
     console.log(`${outFile} <== ${file}`)
     const { css } = sass.renderSync({
@@ -18,4 +18,3 @@ glob('./src/scss/*.sass', (err: any, files: string[])=> {
   })
   save()
 })
-

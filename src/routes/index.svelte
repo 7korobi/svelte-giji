@@ -1,62 +1,39 @@
 <script lang="ts">
-import type { EventID } from 'src/pubsub/type/id'
+import type { StoryBy } from '$lib/pubsub/map-reduce'
 
-import groupBy from 'just-group-by'
-
-import { __BROWSER__ } from '$lib/browser'
-import { Post, Talk, Report } from '$lib/chat'
+import Summary from '$lib/pubsub/join/summary.svelte'
 import FireOauth from '$lib/fire/FireOauth.svelte'
-import { fire } from '$lib/store'
+import { BellDisable, BellStop, BellRinging } from '$lib/icon'
+import { __BROWSER__ } from '$lib/browser/device'
+import { Post, Talk, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
 import { Time } from '$lib/timer'
-import { BellDisable, BellStop, BellRinging } from '$lib/icon'
+import uri from '$lib/uri'
+import fire from '$lib/fire'
 
-import './_app.svelte'
-
-import { randoms, story_summary, new_plans, events, Story } from '../pubsub/store'
-import { socket } from '$lib/db/socket.io-client'
+import { story_with_folder } from '$lib/pubsub/join/book'
+import { NewPlans, Randoms } from '$lib/pubsub/client'
 
 const { user } = fire
+const page = uri.hash()
+const trumps = Randoms.query(['trump', 'zodiac', 'IAU'])
 
-const plan = socket(new_plans).query()
-const story_all = socket(story_summary).query(false)
+const plan = NewPlans.query()
 
-const trumps = socket(randoms).query(['trump', 'zodiac', 'IAU'])
-
-let page = ''
-
-if (__BROWSER__) {
-  page = location.hash.slice(1)
-}
-
-$: console.log($trumps)
-
-const prologue_id = (o: Story) => `${o._id}-0` as EventID
-$: event = socket(events).query($story_all.list.map(prologue_id))
-$: story_by = groupBy($story_all.list, (o) => !!event.find(prologue_id(o)))
-$: story_prologue = story_by.false
-$: story_progress = story_by.true
-
-$: setHistory(page)
-
-function setHistory(hash) {
-  if (!__BROWSER__) return
-  const url = new URL(location.href)
-  url.hash = hash
-  history.pushState({}, '', url)
-}
+let story_by: StoryBy = {}
 </script>
 
 <svelte:head>
   <title>人狼議事</title>
 </svelte:head>
+<Summary bind:story_by />
 <Post handle="TSAY">
   <FireOauth />
   <p>ログイン中にできること。</p>
   <p>：過去ログビュアーでタップしたとき、栞を挟んで記録します。</p>
 </Post>
 
-<Focus name="lobby" bind:value={page}>
+<Focus id="lobby" bind:value={$page}>
   {#if $user}
     <Report handle="footer center">ロビー</Report>
   {/if}
@@ -73,7 +50,7 @@ function setHistory(hash) {
     </p></Talk>
 </Focus>
 
-<Focus name="info" bind:value={page}>
+<Focus id="info" bind:value={$page}>
   <Report handle="footer center">みんなの情報</Report>
 
   <Post handle="SSAY">
@@ -82,7 +59,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="chr" bind:value={page}>
+<Focus id="chr" bind:value={$page}>
   <Post handle="SSAY">
     <p>
       <a href="/chr/list">キャラクター一覧</a>
@@ -92,7 +69,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="oldlog" bind:value={page}>
+<Focus id="oldlog" bind:value={$page}>
   <Post handle="GSAY">
     <p>進行中形式のままの過去ログ</p>
     <hr />
@@ -108,7 +85,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="waoon-record" bind:value={page}>
+<Focus id="waoon-record" bind:value={$page}>
   <Post handle="PSAY">
     <p>
       <a href="https://waoon.net/record/">人狼戦績まとめ</a>
@@ -117,7 +94,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="history" bind:value={page}>
+<Focus id="history" bind:value={$page}>
   <Report handle="footer center">おまけの情報</Report>
 
   <Post handle="SSAY">
@@ -138,7 +115,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="testsite" bind:value={page}>
+<Focus id="testsite" bind:value={$page}>
   <Post handle="VGSAY">
     <p>
       <a href="https://giji-db923.web.app">テストサイト</a>
@@ -147,7 +124,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="creation" bind:value={page}>
+<Focus id="creation" bind:value={$page}>
   <Post handle="VGSAY">
     &nbsp;
     <a href="/demo/names">人名単語索引</a>
@@ -163,7 +140,7 @@ function setHistory(hash) {
   </Post>
 </Focus>
 
-<Focus name="sleeping" bind:value={page}>
+<Focus id="sleeping" bind:value={$page}>
   <Talk face_id="sf04" handle="GSAY">
     <p class="name">お散歩隊長 アシモフ</p>
     <hr />
@@ -174,7 +151,7 @@ function setHistory(hash) {
     </p></Talk>
 </Focus>
 
-<Focus name="fcm-head" bind:value={page}>
+<Focus id="fcm-head" bind:value={$page}>
   <Report handle="footer">
     <h3 class="text center ">企画村予定／開始待ちの村／進行中の村</h3>
     <hr />
@@ -191,16 +168,16 @@ function setHistory(hash) {
   </Report>
 </Focus>
 
-{#each story_progress ?? [] as o (o._id)}
-  <Focus name={o._id} bind:value={page}>
-    <Post handle="EVIL">
+{#each story_with_folder(story_by.progress) as [o, folder] (o._id)}
+  <Focus id={o._id} bind:value={$page}>
+    <Post handle="SSAY">
       <p class="name">{o.name}</p>
       <hr />
       <p class="text">
         <button id={o._id}>
           <BellDisable /><BellStop /><BellRinging />
         </button>
-        <a href={o.folder}>{o.folder}{o.vid}</a> は、進行中だ。
+        <a href={folder.top_url}>{folder.nation}{o.vid}</a> は、進行中だ。
       </p>
       <p class="date">
         {#if o.is_full_commit}
@@ -213,16 +190,16 @@ function setHistory(hash) {
   </Focus>
 {/each}
 
-{#each story_prologue ?? [] as o (o._id)}
-  <Focus name={o._id} bind:value={page}>
-    <Post handle="MOB">
+{#each story_with_folder(story_by.prologue) as [o, folder] (o._id)}
+  <Focus id={o._id} bind:value={$page}>
+    <Post handle="LSAY">
       <p class="name">{o.name}</p>
       <hr />
       <p class="text">
         <button id={o._id}>
           <BellDisable /><BellStop /><BellRinging />
         </button>
-        <a href={o.folder}>{o.folder}{o.vid}</a> は、開始が楽しみだ。
+        <a href={folder.top_url}>{folder.nation}{o.vid}</a> は、開始が楽しみだ。
       </p>
       <p class="date">
         廃村期限 <Time at={o.timer.scraplimitdt} />
@@ -232,7 +209,7 @@ function setHistory(hash) {
 {/each}
 
 {#each $plan.list as o (o._id)}
-  <Focus name={o._id.toString()} bind:value={page}>
+  <Focus id={o._id.toString()} bind:value={$page}>
     <Post handle="TSAY">
       <p class="name">
         <a href={o.link}>{o.name}</a>
@@ -259,7 +236,7 @@ function setHistory(hash) {
   </Focus>
 {/each}
 
-<Focus name="demo" bind:value={page}>
+<Focus id="demo" bind:value={$page}>
   <Post handle="SSAY">
     <h1 class="text mono center">Welcome to SvelteKit</h1>
     <p class="text">Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>

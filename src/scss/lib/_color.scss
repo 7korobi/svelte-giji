@@ -71,14 +71,14 @@
   $DN: -0.75 * $dd;
 
   $rgb_pen: HSYA($HH + $DP, $SS, $YY);
-  $rgb: fixByContrast(-0.3%, -0.5%, 6, $DN, $rgb_pen, 'pen-#{$key}');
+  $rgb: fixByContrast(-0.2%, -0.6%, 7, $DN, $rgb_pen, 'pen-#{$key}');
 
   $pals: pal_btn($key, $dd, $rgb);
   $pals: map-merge(
     $pals,
     (
       'bg-#{$key}': $rgb,
-      'edge-#{$key}': fixByContrast(-0.5%, -0.5%, 3.5, 0, $rgb, 'edge-#{$key}'),
+      'edge-#{$key}': fixByContrast(-0.1%, +0.5%, 3.5, 0, $rgb, 'edge-#{$key}'),
       'pen-#{$key}': $rgb_pen,
       'bold-#{$key}': fixByContrast(+0.5%, +0.5%, 4, $DP, $rgb, 'bold-#{$key}'),
       'line-#{$key}': fixByContrast(+0.5%, +0.5%, 3.5, $DP, $rgb, 'line-#{$key}'),

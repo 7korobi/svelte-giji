@@ -13,8 +13,7 @@ package
 pnpm-lock.yaml
 static/css
 node_modules/**
-src/lib/scss/lib/_color.scss
-src/lib/map-reduce/dic.ts
-
 json/**
+src/scss/lib/_color.scss
+src/lib/map-reduce/dic.ts
 src/lib/*/json/*

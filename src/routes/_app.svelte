@@ -1,13 +1,11 @@
 <script lang="ts" context="module">
 import { dev } from '$app/env'
-import { site } from '$lib/store'
-
-import client from '$lib/db/socket.io-client'
-import * as stores from '../pubsub/store'
+import { Folders } from '$lib/pubsub/map-reduce'
+import chat from '$lib/chat'
+import site from '$lib/site'
 
 if (dev) {
-  client('ws://localhost:3001', stores)
-
+  chat.sameSites.set(Array.from(Folders.data.sameSites))
   site.url.set({
     portrate: 'https://giji.f5.si/images/portrate/',
     css: '/css/',
@@ -15,8 +13,6 @@ if (dev) {
     top: '/'
   })
 } else {
-  client('ws://localhost:3001', stores)
-
   site.url.set({
     portrate: 'https://giji.f5.si/images/portrate/',
     css: 'https://giji.f5.si/css/',

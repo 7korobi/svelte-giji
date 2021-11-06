@@ -2,6 +2,7 @@ import { writable } from 'svelte/store'
 import { Bits } from '$lib/inline/bits'
 import { writeLocal } from '$lib/storage'
 import live from '$lib/site/json/live.json'
+import { __BROWSER__ } from '$lib/browser/device'
 
 export const url = writable({
   portrate: 'https://giji.f5.si/images/portrate/',
@@ -25,7 +26,9 @@ export const style = writable({
 export const day = writeLocal('day', 'day')
 export const zoom = writeLocal('zoom', 'BG')
 export const font = writeLocal('font', 'novel')
-export const theme = writeLocal('theme', 'cinema')
+export const theme = writeLocal('theme', __BROWSER__ ? 'cinema' : 'snow')
+
+export const welcome_mode = writeLocal('welcome_mode', 'progress')
 
 export const side = writeLocal('side', 0)
 export const SideBits = new Bits(

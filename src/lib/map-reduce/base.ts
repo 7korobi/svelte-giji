@@ -8,40 +8,42 @@ export type BaseF<T> = {
   list: T[]
 }
 
-export type MapReduceProps<T, F, S extends any[]> = {
+export type MapReduceProps<F extends { list: BaseT<any>[] }, OrderArgs extends any[]> = {
   format: () => F
   order: (
     o: F,
     option: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
-    ...args: S
+    ...args: OrderArgs
   ) => void
-  reduce: (o: F, doc: T) => void
+  reduce: (o: F, doc: F['list'][number]) => void
 }
 
-export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>, S extends any[]>({
+export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   format,
   reduce,
   order
-}: MapReduceProps<T, F, S>) {
-  const hash = {} as { [id: string]: T }
+}: MapReduceProps<F, OrderArgs>) {
+  const hash = {} as { [id: string]: F['list'][number] }
   const data = format()
-  let sArgs = [] as S
-  const find = (id: T['_id']) => hash[id.toString()]
+  let sArgs = [] as OrderArgs
+  const find = (id: F['list'][number]['_id']) => hash[id.toString()]
   return { add, del, find, sort, format, data }
 
   function full_calculate() {
+    const { list } = data
     Object.assign(data, format())
-    for (const doc of data.list) {
+    for (const doc of list) {
+      data.list.push(doc)
       reduce(data, doc)
     }
   }
 
-  function sort(...sa: S) {
+  function sort(...sa: OrderArgs) {
     sArgs = sa
     order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...sArgs)
   }
 
-  function add(docs: T[]) {
+  function add(docs: F['list'][number][]) {
     let is_update = false
     for (const doc of docs) {
       const id = doc._id.toString()
@@ -58,7 +60,7 @@ export function MapReduce<IdType, T extends BaseT<IdType>, F extends BaseF<T>, S
     sort(...sArgs)
   }
 
-  function del(ids: T['_id'][]) {
+  function del(ids: F['list'][number]['_id'][]) {
     for (const id of ids) {
       delete hash[id.toString()]
     }

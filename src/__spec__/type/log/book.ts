@@ -3,7 +3,7 @@ import type { Parts } from './part'
 import type { Folder } from './folder'
 import type { Potofs } from '../game/potof'
 import type { Winner } from '../game/game'
-import type { FOLDER_IDS } from '../_dic'
+import type { FOLDER_IDX } from '$lib/pubsub/map-reduce/folder'
 
 export type Books = Book[]
 export type Book = {
@@ -41,4 +41,4 @@ export type BookMap = {
     max: number
     max_is: Book
   }
-} & { [key in FOLDER_IDS | 'all']: Book }
+} & { [key in FOLDER_IDX | 'all']: Book }

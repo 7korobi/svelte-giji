@@ -1,9 +1,8 @@
+import type { Socket, Server } from 'socket.io'
 import type { ChangeStream, DeleteResult, Document, ModifyResult } from 'mongodb'
-import type { BaseStoreEntry } from './socket.io-client'
 import type { DIC } from '$lib/map-reduce'
+import type { BaseStoreEntry } from './socket.io-client'
 
-import { Server, Socket } from 'socket.io'
-import parser from 'socket.io-msgpack-parser'
 import { db, watch } from './mongodb'
 
 type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
@@ -11,22 +10,22 @@ type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
   query($match: MatchReturn): Promise<T[]>
 }
 
-type ModelLive<IdType, T, MatchArgs extends any[], MatchReturn> = {
+type ModelLive<T extends Document, MatchArgs extends any[], MatchReturn> = {
   $match(...args: MatchArgs): MatchReturn
   query($match: MatchReturn): Promise<T[]>
 
   isLive(...args: MatchArgs): Promise<boolean>
-  live($match: MatchReturn, set: (docs: T) => void, del: (ids: IdType) => void): ChangeStream<T>
+  live($match: MatchReturn, set: (docs: T) => void, del: (id: T['_id']) => void): ChangeStream<T>
 
   set(doc: T): Promise<ModifyResult<T>>
-  del(ids: IdType[]): Promise<DeleteResult>
+  del(ids: T['_id'][]): Promise<DeleteResult>
 }
 
-type ModelEntry<IdType, T, MatchArgs extends any[], MatchReturn> =
+type ModelEntry<T, MatchArgs extends any[], MatchReturn> =
   | ModelQuery<T, MatchArgs, MatchReturn>
-  | ModelLive<IdType, T, MatchArgs, MatchReturn>
+  | ModelLive<T, MatchArgs, MatchReturn>
 
-export type BaseModelEntry = ModelLive<any, Document, any[], Document>
+export type BaseModelEntry = ModelLive<Document, any[], Document>
 
 let MODEL = {} as {
   [name: string]: BaseModelEntry
@@ -44,36 +43,38 @@ const QUERY = {} as {
   }
 }
 
-const io = new Server({
-  parser,
-  serveClient: false,
-  cors: {
-    origin: ['https://admin.socket.io', 'http://localhost:3000', 'http://localhost:3001'],
-    methods: ['GET', 'POST']
+let io: Server
+
+async function leave(socket: Socket, name: string, ...args: any[]) {
+  const api = getApi(name, ...args)
+  socket.leave(api)
+
+  const sockets = await socket.to(api).allSockets()
+  if (QUERY[api] && !sockets.size) {
+    console.log(socket.id, api, 'closed.')
+    QUERY[api].active?.close()
+    delete QUERY[api].cache
+    delete QUERY[api].active
   }
-})
+}
 
-io.on('set', set)
-io.on('del', del)
-io.on('connection', (socket) => {
-  socket.on('query', query.bind(null, socket))
-})
-
-export async function query(socket: Socket, name: string, ...args: any[]) {
+async function query(socket: Socket, name: string, ...args: any[]) {
   const api = getApi(name, ...args)
   socket.join(api)
 
   if (!QUERY[api]) QUERY[api] = {}
-  console.log(api, !!QUERY[api].cache)
 
-  if (!QUERY[api].cache) {
+  if (QUERY[api].cache) {
+    const size = QUERY[api].cache.length
+    console.log(socket.id, api, `{ size: ${size} ... } (cached)`)
+  } else {
     const $match = MODEL[name].$match(...args)
     QUERY[api].cache = await MODEL[name].query($match)
-    console.log(api, { $match, size: QUERY[api].cache.length })
+    const size = QUERY[api].cache.length
+    console.log(socket.id, api, { size, $match })
   }
 
   socket.emit(`SET:${api}`, QUERY[api].cache)
-  console.log({ rooms: socket.rooms })
 
   if (!MODEL[name].isLive) return
   if (!(await MODEL[name].isLive(...args))) return
@@ -136,8 +137,8 @@ export function getApi(name: string, ...args: any[]) {
   return STORE[name].qid(...args)
 }
 
-export function model<IdType, T, MatchArgs extends any[], MatchReturn>(
-  o: ModelEntry<IdType, T, MatchArgs, MatchReturn>
+export function model<T, MatchArgs extends any[], MatchReturn>(
+  o: ModelEntry<T, MatchArgs, MatchReturn>
 ) {
   return o
 }
@@ -159,8 +160,9 @@ export function modelAsMongoDB<T extends { _id: any }>(collection: string, $proj
   }
 }
 
-export default function server(
-  models: { [api: string]: ModelEntry<any, Document, any[], any> },
+export default function listen(
+  socketio: Server,
+  models: { [api: string]: ModelEntry<Document, any[], any> },
   stores: typeof STORE
 ) {
   MODEL = models as typeof MODEL
@@ -169,6 +171,13 @@ export default function server(
   for (const name in stores) {
     stores[name].name = name
   }
+
+  io = socketio
+  io.on('set', set)
+  io.on('del', del)
+  io.on('connection', (socket) => {
+    socket.on('query', query.bind(null, socket))
+    socket.on('leave', leave.bind(null, socket))
+  })
   console.log(io.eventNames(), io.path())
-  return io
 }
