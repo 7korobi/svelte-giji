@@ -49,6 +49,11 @@ random_test
     <p><a href="/rule-guide">人狼議事のルール</a></p>
     <p class="text">人狼議事を遊ぶとき、従うべきルールはこちら。</p>
   </Post>
+
+  <Post handle="SSAY">
+    <p><a href="/guideline">人狼議事二次利用のガイドライン</a></p>
+    <p class="text">人狼議事の思い出で、もっと遊ぶときのガイドラインはこちら。</p>
+  </Post>
 </Focus>
 
 <Focus id="chr" bind:value={$page}>

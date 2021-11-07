@@ -163,15 +163,17 @@ CHR_SET_IDS.forEach((key, idx) => {
 
 const chr_set_at = CHR_SET_IDS.length - 1
 ChrJobs.add(
-  Faces.data.list.map<ChrJob>((face) => {
-    const job = ChrJobs.data.face[face._id][0]?.job
-    return {
-      _id: `all_${face._id}`,
-      job,
-      face_id: face._id,
-      chr_set_id: 'all',
-      chr_set_at,
-      search_words: ''
-    }
-  }).filter((o)=> !ChrJobs.find(o._id))
+  Faces.data.list
+    .map<ChrJob>((face) => {
+      const job = ChrJobs.data.face[face._id][0]?.job
+      return {
+        _id: `all_${face._id}`,
+        job,
+        face_id: face._id,
+        chr_set_id: 'all',
+        chr_set_at,
+        search_words: ''
+      }
+    })
+    .filter((o) => !ChrJobs.find(o._id))
 )

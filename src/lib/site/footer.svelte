@@ -28,7 +28,8 @@
       SoyBean<br />
       Sangria<br />
       @7korobi<br />
-      @hello_giji
+      @hello_giji<br />
+      <a href="/guideline" class="XSAY">ガイドライン</a>
     </blockquote>
   </div>
 </article>
