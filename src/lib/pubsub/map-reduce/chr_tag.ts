@@ -1,8 +1,9 @@
 import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
-import type { CHR_SET_IDX } from '.'
-
+import type { CHR_SET_IDX, Face } from '.'
 import { MapReduce, dic } from '$lib/map-reduce'
+import { Faces } from '.'
+
 import json from '$lib/game/json/chr_tag.json'
 
 export type Tag = {
@@ -13,6 +14,7 @@ export type Tag = {
   label: presentation
   long: presentation
   head: presentation
+  faces: Face[]
   face_sort: ['face.order' | 'face.q.head', 'asc']
 }
 

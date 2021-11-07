@@ -24,9 +24,9 @@ story_summary_all.subscribe(($story) => {
   const chk_turn = (o: Story) => (event_summary_all.find(prologue_id(o)) ? 'progress' : 'prologue')
   event_summary_all.subscribe(($event) => {
     const data = {
-			prologue: {},
-			progress: {}
-		} as story_reduce
+      prologue: {},
+      progress: {}
+    } as story_reduce
     for (const story of $story.list) {
       const folder_id = story.folder.toLowerCase()
       const folder = Folders.find(folder_id as Folder['_id'])

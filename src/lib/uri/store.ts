@@ -3,9 +3,9 @@ import { writable } from 'svelte/store'
 
 export function hash<T extends string>(init: T = undefined) {
   if (!__BROWSER__) return writable<T>(init || undefined)
-  const value = location.hash.slice(1)
+  const value = location.hash.slice(1) as T
 
-  const ret = writable(value || init)
+  const ret = writable<T>(value || init)
   ret.subscribe(setHash)
   return ret
 }

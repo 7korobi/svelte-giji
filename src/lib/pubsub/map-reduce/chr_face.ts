@@ -1,6 +1,6 @@
 import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
-
+import type { ChrJob, Tag } from '.'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/chr_face.json'
 
@@ -17,6 +17,8 @@ const katakanas = (() => {
 
 export type FacesFormat = {
   list: Face[]
+  tag?: Tag
+  chr_jobs?: ChrJob[]
   name_head: string[][]
   name_head_dic: DIC<string[]>
 }
@@ -24,6 +26,7 @@ export type FacesFormat = {
 export type Face = {
   _id: string
   tag_ids: string[]
+  tags?: Tag[]
   yml_idx: number
 
   order: number

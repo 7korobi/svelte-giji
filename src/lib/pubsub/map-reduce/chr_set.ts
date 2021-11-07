@@ -1,6 +1,7 @@
 import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
 import type { FaceID } from '../type/id'
+import type { Face } from '.'
 
 import { MapReduce, dic } from '$lib/map-reduce'
 import { Faces } from '../map-reduce'
@@ -24,6 +25,7 @@ export type CHR_JOB_ID = `${CHR_SET_IDX}_${FaceID}`
 
 export type ChrSet = {
   _id: CHR_SET_IDX
+  npcs: ChrNpc[]
   admin: presentation
   maker: presentation
   label: presentation
@@ -33,8 +35,11 @@ export type ChrNpc = {
   _id: CHR_JOB_ID
   csid: CSID
   face_id: FaceID
+  face?: Face
   chr_set_id: CHR_SET_IDX
+  chr_set?: ChrSet
   chr_set_at: number
+  chr_job?: ChrJob
   label: presentation
   intro: presentation[]
   say_0: presentation
@@ -45,10 +50,13 @@ export type ChrNpc = {
 export type ChrJob = {
   _id: CHR_JOB_ID
   face_id: FaceID
+  face?: Face
   chr_set_id: CHR_SET_IDX
+  chr_set?: ChrSet
   chr_set_at: number
   job: presentation
-  search_words: string
+  head?: string
+  search_words?: string
 }
 
 const cs = { ririnra, wa, time, sf, fable, mad, ger, changed, animal, school, all }
@@ -123,13 +131,6 @@ export const ChrJobs = MapReduce({
     face: {} as DIC<ChrJob[]>
   }),
   reduce: (data, doc) => {
-    const face = Faces.find(doc.face_id)
-    doc.search_words = face
-      ? ['animal', 'school'].includes(doc.chr_set_id)
-        ? face.name
-        : `${doc.job} ${face.name}`
-      : ''
-
     dic(data.face, doc.face_id, []).push(doc)
   },
   order: (data, { sort }) => {
@@ -172,5 +173,5 @@ ChrJobs.add(
       chr_set_at,
       search_words: ''
     }
-  })
+  }).filter((o)=> !ChrJobs.find(o._id))
 )
