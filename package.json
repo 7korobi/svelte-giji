@@ -59,6 +59,7 @@
     "debug": "^4.3.2",
     "dexie": "^3.0.3",
     "esbuild": "^0.13.12",
+    "esbuild-svelte": "^0.5.7",
     "fast-sort": "^3.0.3",
     "firebase": "=9.2.0",
     "glob": "^7.2.0",

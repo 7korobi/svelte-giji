@@ -45,8 +45,6 @@ export type Story = {
   name: presentation
 }
 
-export type StoryBy = { progress?: Story[]; prologue?: Story[] }
-
 export type STORY_IDX = number
 export type STORY_ID = `${FOLDER_IDX}-${STORY_IDX}`
 

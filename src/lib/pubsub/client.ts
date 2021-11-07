@@ -1,18 +1,6 @@
-import { dev } from '$app/env'
-import client, { socket } from '$lib/db/socket.io-client'
-import { randoms, events, new_plans, story_summary } from './model-client'
+import client from '$lib/db/socket.io-client'
 import * as stores from './model-client'
 
-if (dev) {
-  client('http://localhost:3001', stores)
-} else {
-  client('https://localhost:3001', stores)
-}
+const dev = true
 
-export const StorySummary = socket(story_summary)
-
-export const Events = socket(events)
-
-export const NewPlans = socket(new_plans)
-
-export const Randoms = socket(randoms)
+client(dev ? 'http://localhost:3001' : 'https://localhost:3001', stores)

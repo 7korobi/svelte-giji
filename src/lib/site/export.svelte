@@ -1,10 +1,7 @@
 <script lang="ts">
 import Btn from '../inline/Btn.svelte'
 import Active from './export_active.svelte'
-import { url } from './store'
-import site from '$lib/site'
-
-const { welcome_mode } = site
+import { url, welcome_mode } from './store'
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->

@@ -60,7 +60,7 @@ export default function client(uri: string, stores: typeof STORE) {
   }
 
   if (!__BROWSER__) return
-
+  if (PubSub) return
   PubSub = io(uri, {
     parser
   })

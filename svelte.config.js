@@ -2,6 +2,8 @@ import esbuild from 'esbuild'
 import preprocess from 'svelte-preprocess'
 import { readFileSync } from 'fs'
 import path from 'path'
+import svelte from 'esbuild-svelte'
+import sveltePreprocess from 'svelte-preprocess'
 
 import AdapterStatic from '@sveltejs/adapter-static'
 const STATIC = AdapterStatic({
@@ -36,12 +38,34 @@ const SERVERLESS = AdapterServerless({
 })
 
 const package_file = path.join(path.dirname(new URL(import.meta.url).pathname), '/package.json')
+const package_json = JSON.parse(readFileSync(package_file, 'utf8'))
+const dependencies = Object.keys({ ...package_json.dependencies, ...package_json.devDependencies })
+const packages = [
+  'block',
+  'browser',
+  'chat',
+  'common',
+  'db',
+  'fetch',
+  'fire',
+  'icon',
+  'map-reduce',
+  'pointer',
+  'pubsub',
+  'scroll',
+  'site',
+  'storage',
+  'timer',
+  'topic',
+  'uri'
+].map((name) => `${name}/$lib`)
+// const packages = ['browser','db','fetch','fire','icon','map-reduce', 'pointer', 'pubsub', 'scroll', 'site', 'storage', 'timer', 'topic', 'uri']
+
 esbuild.build({
   entryPoints: ['./src/lib/pubsub/server.ts'],
   outdir: './.node_bin/',
-  watch: true,
   bundle: true,
-  external: Object.keys(JSON.parse(readFileSync(package_file, 'utf8')).dependencies || {}),
+  external: dependencies,
   format: 'esm',
   platform: 'node',
   target: 'node15'
@@ -50,7 +74,6 @@ esbuild.build({
 esbuild.build({
   entryPoints: ['./src/scss/bin/index.ts', './src/scss/bin/functions.ts'],
   outdir: './.node_bin/scss/',
-  watch: true,
   bundle: false,
   format: 'esm',
   platform: 'node',
@@ -73,4 +96,39 @@ const config = {
   }
 }
 
+pkg(`browser`)
+// pkg('chat')
+pkg(`db`)
+pkg(`fetch`)
+pkg(`fire`)
+pkg(`fire`)
+pkg(`icon`)
+pkg(`map-reduce`)
+// pkg(`pointer`)
+pkg(`pubsub`, ['client.ts'])
+// pkg(`scroll`)
+// pkg(`site`)
+pkg(`storage`)
+pkg(`timer`)
+pkg(`topic`)
+pkg(`uri`)
+
 export default config
+
+function pkg(name, targets = ['index.ts']) {
+  esbuild.build({
+    entryPoints: targets.map((file) => `./src/lib/${name}/${file}`),
+    outdir: `./package/${name}/`,
+    bundle: true,
+    format: 'esm',
+    target: 'node15',
+    external: [...dependencies, ...packages],
+    plugins: [
+      svelte({
+        typescript: true,
+        preprocess: sveltePreprocess(),
+        compilerOptions: {}
+      })
+    ]
+  })
+}

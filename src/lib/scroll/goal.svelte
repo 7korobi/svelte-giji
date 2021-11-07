@@ -14,6 +14,8 @@ const tracker = observe(['peep', 'hidden'], {
     }
   }
 })
+
+onPeep
 </script>
 
 <div use:tracker.listener>

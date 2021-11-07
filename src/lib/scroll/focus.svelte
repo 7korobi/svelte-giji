@@ -1,7 +1,6 @@
 <script lang="ts">
-import browser from '$lib/browser'
-
 import { tick } from 'svelte'
+import browser from '$lib/browser'
 import { observe } from './observer'
 
 export let id = ''
@@ -22,8 +21,8 @@ const tracker = observe(['horizon'], {
 
 function focusing(el: HTMLDivElement) {
   if (id !== value) return
-  const inline = el.clientWidth > $viewSize[0] ? 'nearest' : 'center'
-  const block = el.clientHeight > $viewSize[1] ? 'nearest' : 'center'
+  const inline = el.clientWidth < $viewSize[0] ? 'nearest' : 'nearest'
+  const block = el.clientHeight < $viewSize[1] ? 'nearest' : 'nearest'
   el.scrollIntoView({ block, inline })
 }
 </script>

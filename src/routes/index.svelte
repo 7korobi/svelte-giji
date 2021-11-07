@@ -1,32 +1,24 @@
 <script lang="ts">
-import type { StoryBy } from '$lib/pubsub/map-reduce'
-
-import Summary from '$lib/pubsub/join/summary.svelte'
 import FireOauth from '$lib/fire/FireOauth.svelte'
 import { BellDisable, BellStop, BellRinging } from '$lib/icon'
-import { __BROWSER__ } from '$lib/browser/device'
 import { Post, Talk, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
 import { Time } from '$lib/timer'
 import uri from '$lib/uri'
 import fire from '$lib/fire'
-
-import { story_with_folder } from '$lib/pubsub/join/book'
-import { NewPlans, Randoms } from '$lib/pubsub/client'
+import { new_plan, random_test } from '$lib/pubsub/query/extra'
+import { story_reduce } from '$lib/pubsub/query/book'
 
 const { user } = fire
 const page = uri.hash()
-const trumps = Randoms.query(['trump', 'zodiac', 'IAU'])
 
-const plan = NewPlans.query()
-
-let story_by: StoryBy = {}
+new_plan
+random_test
 </script>
 
 <svelte:head>
   <title>人狼議事</title>
 </svelte:head>
-<Summary bind:story_by />
 <Post handle="TSAY">
   <FireOauth />
   <p>ログイン中にできること。</p>
@@ -168,7 +160,7 @@ let story_by: StoryBy = {}
   </Report>
 </Focus>
 
-{#each story_with_folder(story_by.progress) as [o, folder] (o._id)}
+{#each $story_reduce.progress?.list || [] as [o, folder] (o._id)}
   <Focus id={o._id} bind:value={$page}>
     <Post handle="SSAY">
       <p class="name">{o.name}</p>
@@ -190,7 +182,7 @@ let story_by: StoryBy = {}
   </Focus>
 {/each}
 
-{#each story_with_folder(story_by.prologue) as [o, folder] (o._id)}
+{#each $story_reduce.prologue?.list || [] as [o, folder] (o._id)}
   <Focus id={o._id} bind:value={$page}>
     <Post handle="LSAY">
       <p class="name">{o.name}</p>
@@ -208,7 +200,7 @@ let story_by: StoryBy = {}
   </Focus>
 {/each}
 
-{#each $plan.list as o (o._id)}
+{#each $new_plan.list as o (o._id)}
   <Focus id={o._id.toString()} bind:value={$page}>
     <Post handle="TSAY">
       <p class="name">
@@ -239,7 +231,7 @@ let story_by: StoryBy = {}
 <Focus id="demo" bind:value={$page}>
   <Post handle="SSAY">
     <h1 class="text mono center">Welcome to SvelteKit</h1>
-    <p class="text">Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>
+    <p class="text">Visit <a href="/demo">DEMO</a></p>
   </Post>
 </Focus>
 
