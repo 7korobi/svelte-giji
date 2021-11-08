@@ -8,5 +8,6 @@ export const user = writable<User>(undefined)
 export const error = writable<Error>(undefined)
 
 export function init(options: FirebaseOptions, name?: string) {
-  app.set(initializeApp(options, name))
+  const fireApp = initializeApp(options, name)
+  app.set(fireApp)
 }

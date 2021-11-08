@@ -147,9 +147,9 @@ export function modelAsMongoDB<T extends { _id: any }>(collection: string, $proj
   const table = () => db().collection<T>(collection)
 
   return {
-    $match: (ids: T['_id'][]) => ({ _id: ids }),
+    $match: (ids: T['_id'][]) => ({ _id: { $in: ids } }),
     set: ($set: T) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
-    del: (ids: T['_id'][]) => table().deleteMany({ _id: ids }),
+    del: (ids: T['_id'][]) => table().deleteMany({ _id: { $in: ids } }),
     isLive: async () => true,
     live: (
       $match: any,

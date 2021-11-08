@@ -1,5 +1,5 @@
 <script lang="ts">
-import FireOauth from '$lib/fire/FireOauth.svelte'
+import { FireOauth } from '$lib/fire'
 import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 import { Post, Talk, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
@@ -115,7 +115,7 @@ random_test
 <Focus id="testsite" bind:value={$page}>
   <Post handle="VGSAY">
     <p>
-      <a href="https://giji-db923.web.app">テストサイト</a>
+      <a href="https://giji-log.web.app">テストサイト</a>
     </p>
     <p class="text">つくりかけの人狼議事総合トップが置いてあります。</p>
   </Post>
@@ -123,8 +123,6 @@ random_test
 
 <Focus id="creation" bind:value={$page}>
   <Post handle="VGSAY">
-    &nbsp;
-    <a href="/demo/names">人名単語索引</a>
     &nbsp;
     <a href="https://naming-dic.com/about.html">ネーミング辞典</a>
     &nbsp;

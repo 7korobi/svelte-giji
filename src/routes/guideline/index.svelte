@@ -24,23 +24,23 @@ const chat = uri.hash()
 <Post handle="MSAY">
   <p>
     議事総合トップ<br />
-		人狼議事lobby<br />
-		人狼議事morphe<br />
-		人狼議事cafe<br />
-		人狼議事perjury<br />
-		人狼議事xebec<br />
-		人狼議事crazy<br />
-		人狼議事ciel
+    人狼議事lobby<br />
+    人狼議事morphe<br />
+    人狼議事cafe<br />
+    人狼議事perjury<br />
+    人狼議事xebec<br />
+    人狼議事crazy<br />
+    人狼議事ciel
   </p>
 </Post>
 <Report handle="footer">人狼議事サポートサイト</Report>
 <Post handle="MSAY">
   <p>
-		SoyBean<br />
-		Sangria<br />
-		@7korobi<br />
-		@hello_giji<br />
-	</p>
+    SoyBean<br />
+    Sangria<br />
+    @7korobi<br />
+    @hello_giji<br />
+  </p>
 </Post>
 <Report handle="footer">二次創作での使い方ガイド</Report>
 <Talk handle="MSAY" face_id="c96">

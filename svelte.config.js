@@ -92,7 +92,7 @@ const config = {
 
   kit: {
     target: 'body',
-    adapter: NODE
+    adapter: STATIC
   }
 }
 

@@ -9,6 +9,7 @@ import { dbBoot } from '$lib/db'
 import * as stores from './model-client'
 import * as models from './model-server'
 import { argv } from 'process'
+import { site } from '$lib/store'
 
 const mode = argv.pop()
 const bootstrap = { dev, prod }
@@ -16,7 +17,7 @@ const bootstrap = { dev, prod }
 bootstrap[mode]()
 
 function dev() {
-  dbBoot(`mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji`)
+  dbBoot(site.live.db.mongodb)
   const io = new Server({
     parser,
     serveClient: false,
@@ -34,7 +35,7 @@ function prod() {
   const key = readFileSync(`../../giji/giji/config/https/dev-server-key.pem`)
   const cert = readFileSync(`../../giji/giji/config/https/dev-server-cert.pem`)
 
-  dbBoot(`mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji`)
+  dbBoot(site.live.db.mongodb)
 
   const listener = https.createServer({ key, cert })
   const io = new Server(listener, {

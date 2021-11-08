@@ -5,7 +5,9 @@ import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Btn from '$lib/inline/Btn.svelte'
 
 import { Report } from '$lib/chat'
-import site, { Export, Footer } from '$lib/site'
+import Export from '$lib/site/export.svelte'
+import Footer from '$lib/site/footer.svelte'
+import site from '$lib/site'
 import fire from '$lib/fire'
 import browser, { Browser } from '$lib/browser'
 import { __BROWSER__ } from '$lib/browser/device'
@@ -14,7 +16,6 @@ import * as Icon from '$lib/icon'
 
 import './_app.svelte'
 
-let firebase_app
 const { url, side } = site
 const { viewOffset } = browser
 
