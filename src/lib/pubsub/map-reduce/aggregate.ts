@@ -40,6 +40,32 @@ export type MessageForFaceSowAuth = {
   count: number
 }
 
+export type MessageForFaceLive = {
+  _id: {
+    face_id: FaceID
+    sow_auth_id: AccountID
+  }
+  date_min: Date
+  date_max: Date
+  story_ids: STORY_ID[]
+  max: number
+  all: number
+  count: number
+}
+
+export type MessageForFaceRole = {
+  _id: {
+    face_id: FaceID
+    sow_auth_id: AccountID
+  }
+  date_min: Date
+  date_max: Date
+  story_ids: STORY_ID[]
+  max: number
+  all: number
+  count: number
+}
+
 export type PotofForFace = {
   _id: {
     face_id: FaceID

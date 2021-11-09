@@ -22,7 +22,7 @@ function dev() {
     parser,
     serveClient: false,
     cors: {
-      origin: ['http://localhost:3000'],
+      origin: ['http://localhost:3000', 'https://giji-db923.web.app'],
       methods: ['GET', 'POST']
     }
   })

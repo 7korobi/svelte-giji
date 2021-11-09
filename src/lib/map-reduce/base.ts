@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store'
+import { __BROWSER__ } from '$lib/browser/device'
 import * as dic from './dic'
 
 export type BaseT<IdType> = {
@@ -16,18 +18,27 @@ export type MapReduceProps<F extends { list: BaseT<any>[] }, OrderArgs extends a
     ...args: OrderArgs
   ) => void
   reduce: (o: F, doc: F['list'][number]) => void
+  start?: (set: (value: F) => void) => void | (() => void)
 }
 
 export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   format,
   reduce,
-  order
+  order,
+  start = undefined
 }: MapReduceProps<F, OrderArgs>) {
   const hash = {} as { [id: string]: F['list'][number] }
   const data = format()
-  let sArgs = [] as OrderArgs
   const find = (id: F['list'][number]['_id']) => hash[id.toString()]
-  return { add, del, find, sort, format, data }
+  const { subscribe, set } = writable<F>(format(), __BROWSER__ ? start : undefined)
+  let sArgs = [] as OrderArgs
+
+  return { add, del, find, sort, format, data, subscribe }
+
+  function sort(...sa: OrderArgs) {
+    order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
+    set(data)
+  }
 
   function full_calculate() {
     const { list } = data
@@ -36,11 +47,6 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
       data.list.push(doc)
       reduce(data, doc)
     }
-  }
-
-  function sort(...sa: OrderArgs) {
-    sArgs = sa
-    order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...sArgs)
   }
 
   function add(docs: F['list'][number][]) {
@@ -58,6 +64,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
     }
     if (is_update) full_calculate()
     sort(...sArgs)
+    set(data)
   }
 
   function del(ids: F['list'][number]['_id'][]) {
@@ -66,5 +73,6 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
     }
     full_calculate()
     // data.list = data.list.filter((o) => hash[o._id.toString()])
+    set(data)
   }
 }

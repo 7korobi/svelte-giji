@@ -92,50 +92,34 @@ export function socket<
 } {
   return {
     query(...qa: MatchArgs) {
-      const mr = MapReduce<F, OrderArgs>({ format, order, reduce })
       const api = qid(...qa)
-
       if (PubSubCache[api]) return PubSubCache[api]
-      if (!__BROWSER__)
-        return (PubSubCache[api] = { ...readable<F>(mr.format()), find: mr.find, sort })
 
-      const { subscribe, set } = writable<F>(mr.format(), (set) => {
-        PubSub.on(`SET:${api}`, SET)
-        PubSub.on(`DEL:${api}`, DEL)
-        PubSub.on(`SET:ERROR:${name}`, SET_ERROR)
-        PubSub.on(`DEL:ERROR:${name}`, DEL_ERROR)
-        PubSub.emit('query', name, ...qa)
+      const { subscribe, find, sort, add, del } = MapReduce<F, OrderArgs>({
+        format,
+        order,
+        reduce,
+        start(set) {
+          PubSub.on(`SET:${api}`, add)
+          PubSub.on(`DEL:${api}`, del)
+          PubSub.on(`SET:ERROR:${name}`, SET_ERROR)
+          PubSub.on(`DEL:ERROR:${name}`, DEL_ERROR)
+          PubSub.emit('query', name, ...qa)
 
-        return () => {
-          delete PubSubCache[api]
-          PubSub.emit('leave', name, ...qa)
-          PubSub.off(`SET:${api}`)
-          PubSub.off(`DEL:${api}`)
-          PubSub.off(`SET:ERROR:${name}`)
-          PubSub.off(`DEL:ERROR:${name}`)
+          return () => {
+            delete PubSubCache[api]
+            PubSub.emit('leave', name, ...qa)
+            PubSub.off(`SET:${api}`)
+            PubSub.off(`DEL:${api}`)
+            PubSub.off(`SET:ERROR:${name}`)
+            PubSub.off(`DEL:ERROR:${name}`)
+          }
         }
       })
-      return (PubSubCache[api] = { subscribe, find: mr.find, sort })
 
-      function sort(...sa: OrderArgs): void {
-        mr.sort(...sa)
-        set(mr.data)
-      }
-
-      function SET(docs: T[]) {
-        mr.add(docs)
-        console.log(`${PubSub.id} <- set ${docs.length} items by ${api}`)
-        set(mr.data)
-      }
+      return (PubSubCache[api] = { subscribe, find, sort })
 
       function SET_ERROR(docs: T[]) {}
-
-      function DEL(ids: IdType[]) {
-        mr.del(ids)
-        console.log(`${PubSub.id} <- del ${ids.length} items by ${api}`)
-        set(mr.data)
-      }
-
       function DEL_ERROR(ids: IdType[]) {}
     },
 

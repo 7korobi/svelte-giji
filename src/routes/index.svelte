@@ -115,7 +115,7 @@ random_test
 <Focus id="testsite" bind:value={$page}>
   <Post handle="VGSAY">
     <p>
-      <a href="https://giji-log.web.app">テストサイト</a>
+      <a href="https://giji-db923.web.app">テストサイト</a>
     </p>
     <p class="text">つくりかけの人狼議事総合トップが置いてあります。</p>
   </Post>

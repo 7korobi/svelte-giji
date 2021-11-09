@@ -1,12 +1,12 @@
 <script lang="ts">
+import type { WebPollData } from './dexie'
+
 import { onDestroy } from 'svelte'
 
 import { to_tempo, Tempo } from '../timer/tempo'
 import { INTERVAL_MAX } from '../timer/distance'
 import { __BROWSER__ } from '../browser/device'
-import { browser } from '../store'
-
-import type { WebPollData } from './dexie'
+import browser from '../browser'
 import { webPoll } from './dexie'
 
 const { isActive } = browser
@@ -14,13 +14,19 @@ const { isActive } = browser
 export let version = '1.0.0'
 export let timer = '1d'
 export let shift = '0s'
+export let idx = ''
+
+// for export.
+export let onFetch = (pack) => {}
 export let pack: any = undefined
 export let next_at = -Infinity
-export let api = {
-  name: '',
-  async call(): Promise<WebPollData<any>> {
-    return { version, idx: api.name, next_at, pack: {} }
-  }
+
+// for requesting.
+export let api_call = async () => {
+  const req = await fetch(idx)
+  pack = await req.json()
+  onFetch(pack)
+  return { version, idx, pack } as WebPollData<any>
 }
 
 let timerId = 0 as any
@@ -41,7 +47,6 @@ onDestroy(() => {
 })
 
 function logger(tempo: Tempo, mode: string = '') {
-  const idx = api.name
   const wait = new Date().getTime() - tempo.write_at
   console.log({ wait, idx, mode })
 }
@@ -54,19 +59,19 @@ async function tick() {
       logger(tempo)
     } else {
       // IndexedDB metadata not use if memory has past data,
-      const data = await webPoll.data.get(api.name)
+      const data = await webPoll.data.get(idx)
       if (data && data.version === version) {
         get_by_cache(tempo, data)
         if (data.next_at <= tempo.write_at) {
-          await get_by_api(tempo, await api.call())
+          await get_by_api(tempo, await api_call())
         }
       } else {
-        await get_by_api(tempo, await api.call())
+        await get_by_api(tempo, await api_call())
       }
     }
     next_at = tempo.next_at
   } catch (e) {
-    console.error(e)
+    console.error({ idx, version }, e)
   }
   if (tempo.timeout < INTERVAL_MAX) {
     // 25days

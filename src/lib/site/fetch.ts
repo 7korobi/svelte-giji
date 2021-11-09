@@ -1,6 +1,4 @@
 import type { URL } from '$lib/pubsub/type/string'
-import type { WebPollData } from '../fetch/dexie'
-import { url } from './store'
 
 type CARD = string
 type TIMESTAMP = string
@@ -258,65 +256,5 @@ type FaceSowAuthAggregate = {
   _id: {
     face_id: FACE_ID
     sow_auth_id: SOW_AUTH_ID
-  }
-}
-
-let api_url = ''
-
-url.subscribe(({ api }) => {
-  api_url = api
-})
-
-function json<A extends any[], J, T>(
-  version: string,
-  getIdx: (...args: A) => string,
-  getResult: (pack: J) => T
-) {
-  return function caller(...args: A) {
-    const idx = getIdx(...args)
-    return { name: idx, call }
-    async function call() {
-      const req = await fetch(idx)
-      const pack = getResult(await req.json())
-      return { version, idx, pack } as WebPollData<T>
-    }
-  }
-}
-
-export const reqApi = {
-  story: {
-    oldlogs: json(
-      '1.0.0',
-      () => `${api_url}story/oldlog`,
-      (o: { faces: FaceAggregate; stories: Story[] }) => o
-    ),
-    oldlog: json(
-      '1.0.0',
-      (story_id: STORY_ID) => `${api_url}story/oldlog/${story_id}`,
-      (o: { stories: [Story]; events: Event[]; messages: Message[]; potofs: Potof[] }) => o
-    )
-  },
-  aggregate: {
-    faces: json(
-      '1.0.0',
-      () => `${api_url}aggregate/faces`,
-      (o: {
-        faces: FaceAggregate[]
-        m_faces: FaceMesTypeSumAggregate[]
-        sow_auths: FaceSowAuthAggregate[]
-      }) => o
-    ),
-    face: json(
-      '1.0.0',
-      (face_id: FACE_ID) => `${api_url}aggregate/faces/${face_id}`,
-      (o: {
-        faces: [FaceAggregate]
-        m_faces: [FaceMesTypeSumAggregate]
-        mestypes: FaceMestypeAggregate[]
-        lives: FaceLiveAggregate[]
-        roles: FaceRoleAggregate[]
-        sow_auths: FaceSowAuthAggregate[]
-      }) => o
-    )
   }
 }

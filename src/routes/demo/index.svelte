@@ -5,11 +5,13 @@ import { Zoom, Pen } from '$lib/pointer'
 import { Time } from '$lib/timer'
 import LongPress from '$lib/inline/LongPress.svelte'
 import { Poll } from '$lib/fetch'
-import site, { reqApi } from '$lib/site'
 import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
 import browser from '$lib/browser'
 import { __BROWSER__ } from '$lib/browser/device'
+
+import site from '$lib/site'
+import { face, faces } from '$lib/pubsub/poll'
 
 import '../_app.svelte'
 
@@ -119,12 +121,8 @@ let scale
   </Zoom>
 </Post>
 
-<Poll timer="12h" shift="1h10m" api={reqApi.story.oldlogs()} />
-<Poll timer="1y" api={reqApi.story.oldlog('allstar-1')} />
-<Poll timer="1y" api={reqApi.story.oldlog('dais-9')} />
-
-<Poll timer="12h" shift="1h10m" api={reqApi.aggregate.faces()} />
-<Poll timer="12h" shift="1h10m" api={reqApi.aggregate.face('c01')} />
+<Poll {...faces()} />
+<Poll {...face('c01')} />
 
 <style lang="scss">
 @use "../../lib/common/_color" as *;
