@@ -3,6 +3,13 @@ import sh from 'child_process'
 import { sort } from '$lib/map-reduce/fast-sort'
 
 import { db } from '$lib/db'
+import site from '$lib/site'
+import type { DIC } from '$lib/map-reduce'
+
+let $url: DIC<string>
+site.url.subscribe((o) => {
+  $url = o
+})
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -191,17 +198,17 @@ async function oldlog() {
   const data = [
     ...o.story_ids.map((id) => {
       const dst = `./static/sow/${id}.json.gz`
-      const src = `${url.api}/story/oldlog/${id}`
+      const src = `${$url.api}/story/oldlog/${id}`
       return `  ls \"${dst}\" || curl \"${src}\" | gzip --stdout --best > \"${dst}\" `
     }),
     (() => {
       const dst = `./static/sow/index.json.gz`
-      const src = `${url.api}/story/oldlog`
+      const src = `${$url.api}/story/oldlog`
       return ` curl \"${src}\" | gzip --stdout --best > \"${dst}\" `
     })(),
     (() => {
       const dst = `./static/aggregate/faces/index.json.gz`
-      const src = `${url.api}/aggregate/faces`
+      const src = `${$url.api}/aggregate/faces`
       return ` curl \"${src}\" | gzip --stdout --best > \"${dst}\" `
     })(),
     (() => {

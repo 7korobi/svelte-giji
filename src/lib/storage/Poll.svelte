@@ -2,12 +2,11 @@
 import type { WebPollData } from './dexie'
 
 import { onDestroy } from 'svelte'
-
-import { to_tempo, Tempo } from '../timer/tempo'
-import { INTERVAL_MAX } from '../timer/distance'
-import { __BROWSER__ } from '../browser/device'
-import browser from '../browser'
 import { webPoll } from './dexie'
+import { to_tempo, Tempo } from '$lib/timer'
+import { INTERVAL_MAX } from '$lib/timer'
+import browser from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser/device'
 
 const { isActive } = browser
 
@@ -93,3 +92,5 @@ async function get_by_api(tempo: Tempo, api: WebPollData<any>) {
   logger(tempo, '(api)')
 }
 </script>
+
+<div />

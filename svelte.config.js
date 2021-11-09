@@ -46,7 +46,6 @@ const packages = [
   'chat',
   'common',
   'db',
-  'fetch',
   'fire',
   'icon',
   'map-reduce',
@@ -59,7 +58,7 @@ const packages = [
   'topic',
   'uri'
 ].map((name) => `${name}/$lib`)
-// const packages = ['browser','db','fetch','fire','icon','map-reduce', 'pointer', 'pubsub', 'scroll', 'site', 'storage', 'timer', 'topic', 'uri']
+// const packages = ['browser','db','fire','icon','map-reduce', 'pointer', 'pubsub', 'scroll', 'site', 'storage', 'timer', 'topic', 'uri']
 
 esbuild.build({
   entryPoints: ['./src/lib/pubsub/server.ts'],
@@ -99,8 +98,6 @@ const config = {
 pkg(`browser`)
 // pkg('chat')
 pkg(`db`)
-pkg(`fetch`)
-pkg(`fire`)
 pkg(`fire`)
 pkg(`icon`)
 pkg(`map-reduce`)

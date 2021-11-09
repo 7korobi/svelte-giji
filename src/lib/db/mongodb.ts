@@ -8,13 +8,11 @@ export function db() {
 }
 
 export async function dbBoot(url: string) {
+  if (client) exit()
   client = new MongoClient(url, {})
   await client.connect()
   console.warn('MongoDB connected.')
-  process.on('beforeExit', () => {
-    client.close()
-    console.warn('MongoDB safely closed.')
-  })
+  process.on('beforeExit', exit)
 }
 
 export function watch<K, T>(
@@ -39,4 +37,9 @@ export function watch<K, T>(
           break
       }
     })
+}
+
+function exit() {
+  client.close()
+  console.warn('MongoDB safely close.')
 }

@@ -5,7 +5,6 @@ import type * as dic from '$lib/map-reduce/dic'
 
 import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
-import { readable, writable } from 'svelte/store'
 
 import { MapReduce } from '$lib/map-reduce'
 import { __BROWSER__ } from '$lib/browser/device'
