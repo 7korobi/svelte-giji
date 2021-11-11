@@ -63,8 +63,9 @@
     "debug": "^4.3.2",
     "dexie": "^3.0.3",
     "esbuild": "^0.13.13",
+    "esbuild-plugin-d.ts": "^1.0.6",
     "esbuild-svelte": "^0.5.7",
-    "fast-sort": "^3.0.3",
+    "fast-sort": "^3.1.0",
     "firebase": "=9.2.0",
     "glob": "^7.2.0",
     "js-yaml": "^4.1.0",
@@ -74,7 +75,6 @@
     "socket.io": "^4.3.2",
     "socket.io-client": "^4.3.2",
     "socket.io-msgpack-parser": "^3.0.1",
-    "svelte2tsx": "^0.4.8",
     "tslib": "^2.3.1",
     "ua-parser-js": "^0.7.31",
     "ws": "^8.2.3"

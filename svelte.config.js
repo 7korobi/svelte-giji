@@ -1,4 +1,6 @@
 import esbuild from 'esbuild'
+import { dtsPlugin } from 'esbuild-plugin-d.ts'
+
 import preprocess from 'svelte-preprocess'
 import { readFileSync } from 'fs'
 import path from 'path'
@@ -67,7 +69,10 @@ esbuild.build({
   external: dependencies,
   format: 'esm',
   platform: 'node',
-  target: 'node15'
+  target: 'node15',
+  plugins:[
+    dtsPlugin()
+  ]
 })
 
 esbuild.build({
@@ -76,7 +81,10 @@ esbuild.build({
   bundle: false,
   format: 'esm',
   platform: 'node',
-  target: 'node15'
+  target: 'node15',
+  plugins:[
+    dtsPlugin()
+  ]
 })
 
 import functions from './.node_bin/scss/functions.js'
@@ -95,6 +103,8 @@ const config = {
   }
 }
 
+export default config
+
 pkg(`browser`)
 // pkg('chat')
 pkg(`db`)
@@ -110,8 +120,6 @@ pkg(`timer`)
 pkg(`topic`)
 pkg(`uri`)
 
-export default config
-
 function pkg(name, targets = ['index.ts']) {
   esbuild.build({
     entryPoints: targets.map((file) => `./src/lib/${name}/${file}`),
@@ -125,7 +133,8 @@ function pkg(name, targets = ['index.ts']) {
         typescript: true,
         preprocess: sveltePreprocess(),
         compilerOptions: {}
-      })
+      }),
+      dtsPlugin()
     ]
   })
 }
