@@ -43,6 +43,7 @@ button {
   transition-timing-function: ease-in-out;
   transition-duration: var(--speed);
   transition-property: background-color;
+  user-select: none;
 
   span {
     transition-property: transform;

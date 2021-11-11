@@ -224,7 +224,7 @@ function rating_img(rating: string) {
 {/each}
 
 <Report handle="footer" key="limitup">
-  <scroll-mine v-if="page_next_idx" @input="page_add" :as="page_next_idx">次頁</scroll-mine>
+  <scrollmine v-if="page_next_idx" on:input={() => 1} :as="page_next_idx">次頁</scrollmine>
 </Report>
 
 <Poll {...oldlogs()} />
