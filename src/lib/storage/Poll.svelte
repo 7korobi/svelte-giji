@@ -24,7 +24,6 @@ export let next_at = -Infinity
 export let api_call = async () => {
   const req = await fetch(idx)
   pack = await req.json()
-  onFetch(pack)
   return { version, idx, pack } as WebPollData<any>
 }
 
@@ -32,6 +31,7 @@ let timerId = 0 as any
 
 $: tempo = to_tempo(timer, shift)
 $: restart($isActive)
+$: if (pack) onFetch(pack)
 
 function restart(is_active: boolean) {
   if (is_active) {

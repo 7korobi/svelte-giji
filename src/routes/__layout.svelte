@@ -345,7 +345,7 @@ let welcomeBottomHeight = 0
 
 .filmstart {
   display: inline-block;
-  margin: -26px 0 26px -1px;
+  margin: -26px 0 8px -1px;
 }
 
 .icons {

@@ -1,3 +1,4 @@
+import type { SortCmd } from './fast-sort'
 import { inPlaceSort } from './fast-sort'
 
 export type DIC<T> = {
@@ -7,6 +8,8 @@ export type ARY<T> = T[] & {
   _id: string
 }
 
+export function sort<D>(value: D[]): SortCmd<D>
+export function sort<D>(value: DIC<D>): SortCmd<D & {_id: string}>
 export function sort<D>(value: D[] | DIC<D>) {
   if (!(value instanceof Array)) {
     const list = [] as D[]
@@ -17,7 +20,7 @@ export function sort<D>(value: D[] | DIC<D>) {
     }
     value = list
   }
-  return inPlaceSort<D>(value)
+  return inPlaceSort(value)
 }
 
 type DA<T> = DIC<T> | ARY<T>

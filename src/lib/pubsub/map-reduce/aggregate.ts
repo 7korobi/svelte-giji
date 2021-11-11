@@ -3,6 +3,7 @@ import type { RoleType, LiveType } from '../type/enum'
 import type { AccountID, FaceID } from '../type/id'
 import type { presentation } from '../type/string'
 import type { FOLDER_IDX, MESSAGE_TYPE_IDX, MesType } from '.'
+import { model } from '$lib/db/socket.io-client'
 
 export type MessageForFace = {
   _id: {
@@ -120,3 +121,11 @@ export type Aggregate = {
     count: number
   }
 }
+
+export const potof_for_faces = model({
+  format: () => ({
+    list: [] as PotofForFace[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})

@@ -151,10 +151,16 @@ const sortArray = function (order: IOrder, ctx: any[], sortBy: IAnySortBy, compa
 
 // >>> Public <<<
 
+export type SortCmd<T> = {
+  asc(sortBy?: ISortBy<T> | ISortBy<T>[]): T[]
+  desc(sortBy?: ISortBy<T> | ISortBy<T>[]): T[]
+  by(sortBy: ISortByObjectSorter<T> | ISortByObjectSorter<T>[]): T[]
+}
+
 export const createNewSortInstance = function (opts: ISortInstanceOptions) {
   const comparer = castComparer(opts.comparer)
 
-  return function <T>(_ctx: T[]) {
+  return function <T>(_ctx: T[]): SortCmd<T> {
     const ctx = Array.isArray(_ctx) && !opts.inPlaceSorting ? _ctx.slice() : _ctx
 
     return {

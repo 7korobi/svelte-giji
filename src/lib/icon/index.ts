@@ -47,6 +47,7 @@ import AlignRight from './ui/align-right.svelte'
 import LinkOn from './ui/link-on.svelte'
 import LinkOff from './ui/link-off.svelte'
 
+import Erase from './ui/erase.svelte'
 import Cut from './ui/cut.svelte'
 import Copy from './ui/copy.svelte'
 import Paste from './ui/paste.svelte'
@@ -135,6 +136,7 @@ export {
   AlignRight,
   LinkOn,
   LinkOff,
+  Erase,
   Cut,
   Copy,
   Paste,

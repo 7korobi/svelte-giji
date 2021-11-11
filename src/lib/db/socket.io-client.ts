@@ -30,8 +30,8 @@ const PubSubCache = {}
 
 export function model<
   F extends BaseF<BaseT<any>>,
-  MatchArgs extends any[],
-  OrderArgs extends any[]
+  OrderArgs extends any[],
+  MatchArgs extends any[]
 >(
   props: StoreEntry<F, MatchArgs, OrderArgs>
 ): {
@@ -44,10 +44,26 @@ export function model<
     { sort, group_sort }: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
     ...args: OrderArgs
   ) => void
-} {
+}
+
+export function model<F extends BaseF<BaseT<any>>, OrderArgs extends any[]>(
+  props: MapReduceProps<F, OrderArgs>
+): {
+  format: () => F
+  reduce: (o: F, doc: F['list'][number]) => void
+  order: (
+    o: F,
+    { sort, group_sort }: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
+    ...args: OrderArgs
+  ) => void
+}
+
+export function model(props: any) {
+  if (!props.qid) return props
+
   const o = { ...props, qid }
   return o
-  function qid(...args: MatchArgs) {
+  function qid(...args: any[]) {
     return `${o.name}(${props.qid(...args)})`
   }
 }

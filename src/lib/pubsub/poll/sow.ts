@@ -2,6 +2,7 @@ import type { STORY_ID, Story, Event, Message, Potof, PotofForFace } from '../ma
 import { MapReduce } from '$lib/map-reduce'
 import site from '$lib/site'
 import { stories, events, messages, potofs } from '../model-client'
+import { potof_for_faces } from '../map-reduce'
 
 let api_url = ''
 
@@ -10,6 +11,7 @@ site.url.subscribe(({ api }) => {
 })
 
 export const oldlogs_stories = MapReduce(stories)
+export const oldlogs_faces = MapReduce(potof_for_faces)
 
 export const oldlog_stories = MapReduce(stories)
 export const oldlog_events = MapReduce(events)
@@ -22,9 +24,10 @@ export function oldlogs() {
     timer: '12h',
     shift: '1h10m',
     idx: `${api_url}story/oldlog`,
-    onFetch(o: { faces: PotofForFace; stories: Story[] }) {
+    onFetch(o: { faces: PotofForFace[]; stories: Story[] }) {
       oldlogs_stories.add(o.stories)
-      console.log(o)
+      oldlogs_faces.add(o.faces)
+      console.log(o, oldlogs_stories.data, oldlogs_faces.data)
     }
   }
 }

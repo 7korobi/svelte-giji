@@ -9,9 +9,6 @@ export type Story = {
   vid: STORY_IDX
   sow_auth_id: AccountID
 
-  password?: presentation
-  comment?: presentation
-
   is_epilogue: boolean
   is_finish: boolean
   is_full_commit: boolean
@@ -31,7 +28,7 @@ export type Story = {
     minute: number
   }
   card: {
-    event: EventType[]
+    event: string[]
     discard: RoleType[]
     config: RoleType[]
   }
@@ -43,6 +40,10 @@ export type Story = {
     scraplimitdt: Date
   }
   name: presentation
+
+  password?: presentation
+  comment?: presentation
+  write_at?: number
 }
 
 export type STORY_IDX = number
