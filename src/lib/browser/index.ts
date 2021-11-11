@@ -1,6 +1,6 @@
 import PageTransition from './page-transition.svelte'
 import Browser from './index.svelte'
-import Viewport from './key.svelte'
+import Viewport from './viewport.svelte'
 import Key from './key.svelte'
 
 import * as store from './store'

@@ -70,9 +70,7 @@ esbuild.build({
   format: 'esm',
   platform: 'node',
   target: 'node15',
-  plugins:[
-    dtsPlugin()
-  ]
+  plugins: [dtsPlugin()]
 })
 
 esbuild.build({
@@ -82,9 +80,7 @@ esbuild.build({
   format: 'esm',
   platform: 'node',
   target: 'node15',
-  plugins:[
-    dtsPlugin()
-  ]
+  plugins: [dtsPlugin()]
 })
 
 import functions from './.node_bin/scss/functions.js'
