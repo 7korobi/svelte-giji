@@ -8,7 +8,7 @@ import { backOut } from 'svelte/easing'
 import { Post, Report, Portrates } from '$lib/chat'
 
 import { Tags } from '$lib/pubsub/map-reduce'
-import { faces_by_tag, tag_by_group } from '$lib/pubsub/query/chr'
+import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
 import { __BROWSER__ } from '$lib/browser/device'
 
 import uri from '$lib/uri'

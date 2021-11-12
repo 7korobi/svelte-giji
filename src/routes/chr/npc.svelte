@@ -5,7 +5,7 @@ import { Post, Report, Talk } from '$lib/chat'
 import uri from '$lib/uri'
 import Btn from '$lib/inline/Btn.svelte'
 import { fade } from 'svelte/transition'
-import { chr_sets_by_label } from '$lib/pubsub/query/chr'
+import { chr_sets_by_label } from '$lib/pubsub/chr/query'
 
 const chr_set_id = uri.hash<ChrSet['_id']>('ririnra')
 </script>
