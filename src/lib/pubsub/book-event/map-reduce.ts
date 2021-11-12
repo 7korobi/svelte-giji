@@ -1,5 +1,5 @@
-import type { presentation } from '../type/string'
-import type { FOLDER_IDX, STORY_IDX, STORY_ID } from '.'
+import type { presentation } from '../_type/string'
+import type { FOLDER_IDX, STORY_IDX, STORY_ID } from '../map-reduce'
 
 export type Event = {
   _id: EVENT_ID

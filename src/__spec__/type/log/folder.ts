@@ -1,5 +1,5 @@
-import type { CSID } from '$lib/pubsub/map-reduce/chr_set'
-import type { SAYCNT, TRSID, GAME, VOTETYPES, BOOLS } from '$lib/pubsub/map-reduce/folder'
+import type { CSID } from '$lib/pubsub/chr_set/map-reduce'
+import type { SAYCNT, TRSID, GAME, VOTETYPES, BOOLS } from '$lib/pubsub/book_folder/map-reduce'
 
 export type Folders = Folder[]
 export type Folder = {

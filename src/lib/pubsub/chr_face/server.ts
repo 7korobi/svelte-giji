@@ -5,7 +5,7 @@ import type {
   PotofForFaceLive,
   PotofForFaceRole,
   PotofForFaceSowAuthMax
-} from '../map-reduce/aggregate'
+} from '../aggregate/map-reduce'
 import { modelAsMongoDB } from '$lib/db/socket.io-server'
 
 export const message_for_face = modelAsMongoDB<MessageForFace>('message_for_face')

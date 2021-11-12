@@ -3,7 +3,7 @@ import type { Parts } from './part'
 import type { Folder } from './folder'
 import type { Potofs } from '../game/potof'
 import type { Winner } from '../game/game'
-import type { FOLDER_IDX } from '$lib/pubsub/map-reduce/folder'
+import type { FOLDER_IDX } from '$lib/pubsub/book_folder/map-reduce'
 
 export type Books = Book[]
 export type Book = {

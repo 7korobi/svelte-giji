@@ -1,4 +1,4 @@
-import type { URL } from '$lib/pubsub/type/string'
+import type { URL } from '$lib/pubsub/_type/string'
 
 type CARD = string
 type TIMESTAMP = string

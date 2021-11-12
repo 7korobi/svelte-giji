@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { FOLDER_IDX } from '$lib/pubsub/map-reduce'
 import { Folders } from '$lib/pubsub/map-reduce'
-import { story_reduce } from '$lib/pubsub/query/book'
+import { story_reduce } from '$lib/pubsub/book/query'
 import { __BROWSER__ } from '$lib/browser/device'
 
 export let folder_idx: FOLDER_IDX

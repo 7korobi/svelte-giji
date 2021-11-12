@@ -6,8 +6,8 @@ import { Focus } from '$lib/scroll'
 import { Time } from '$lib/timer'
 import uri from '$lib/uri'
 import fire from '$lib/fire'
-import { new_plan, random_test } from '$lib/pubsub/query/extra'
-import { story_reduce } from '$lib/pubsub/query/book'
+import { new_plan, random_test } from '$lib/pubsub/extra/query'
+import { story_reduce } from '$lib/pubsub/book/query'
 import { Ables, Roles } from '$lib/pubsub/map-reduce'
 
 const { user } = fire

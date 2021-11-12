@@ -1,6 +1,6 @@
 import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
-import type { ChrJob, Tag } from '.'
+import type { ChrJob, Tag } from '../map-reduce'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/chr_face.json'
 

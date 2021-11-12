@@ -8,6 +8,7 @@ if (dev) {
   chat.sameSites.set(Array.from(Folders.data.sameSites))
   site.url.set({
     portrate: 'https://giji.f5.si/images/portrate/',
+    icon: 'https://giji.f5.si/images/icon/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
     top: '/'
@@ -15,6 +16,7 @@ if (dev) {
 } else {
   site.url.set({
     portrate: 'https://giji.f5.si/images/portrate/',
+    icon: 'https://giji.f5.si/images/icon/',
     css: 'https://giji.f5.si/css/',
     api: 'https://giji-api.duckdns.org/api/',
     top: 'https://giji.f5.si/'

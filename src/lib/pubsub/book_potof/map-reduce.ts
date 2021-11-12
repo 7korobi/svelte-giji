@@ -1,8 +1,8 @@
 import type { ObjectId } from 'mongodb'
-import type { LiveType, RoleType } from '../type/enum'
-import type { AccountID, FaceID, PotofIDX } from '../type/id'
-import type { presentation } from '../type/string'
-import type { STORY_ID, EVENT_ID, EVENT_IDX } from '.'
+import type { LiveType, RoleType } from '../_type/enum'
+import type { AccountID, FaceID, PotofIDX } from '../_type/id'
+import type { presentation } from '../_type/string'
+import type { STORY_ID, EVENT_ID, EVENT_IDX } from '../map-reduce'
 
 export type SayLimit = {
   say_act?: number

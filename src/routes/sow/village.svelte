@@ -2,10 +2,11 @@
 import { oldlogs, oldlogs_stories } from '$lib/pubsub/poll'
 import { Post, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
-import OldlogsGroup from '$lib/pubsub/ui/oldlogs-group.svelte'
+import OldlogsGroup from '$lib/pubsub/sow/finder.svelte'
 import Poll from '$lib/storage/Poll.svelte'
 import Grid from '$lib/inline/Grid.svelte'
 import Sup from '$lib/inline/Sup.svelte'
+import Btn from '$lib/inline/Btn.svelte'
 import site from '$lib/site'
 import uri from '$lib/uri'
 
@@ -41,7 +42,7 @@ function entrySearch() {
 }
 
 function rating_img(rating: string) {
-  return `${$url.store}/images/icon/cd_${rating}.png`
+  return `${$url.icon}/cd_${rating}.png`
 }
 </script>
 

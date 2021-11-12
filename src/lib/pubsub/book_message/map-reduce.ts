@@ -1,6 +1,6 @@
-import type { AccountID, FaceID } from '../type/id'
-import type { presentation } from '../type/string'
-import type { STORY_IDX, STORY_ID, EVENT_IDX, EVENT_ID, FOLDER_IDX } from '.'
+import type { AccountID, FaceID } from '../_type/id'
+import type { presentation } from '../_type/string'
+import type { STORY_IDX, STORY_ID, EVENT_IDX, EVENT_ID, FOLDER_IDX } from '../map-reduce'
 
 export type Message = {
   _id: MESSAGE_ID

@@ -1,6 +1,6 @@
 import type { ARY, DIC } from '$lib/map-reduce'
-import type { ABLE_ID, WIN } from '.'
-import type { presentation } from '../type/string'
+import type { ABLE_ID, WIN } from '../map-reduce'
+import type { presentation } from '../_type/string'
 
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/set_roles.json'

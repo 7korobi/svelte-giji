@@ -1,8 +1,8 @@
-import type { STORY_ID } from './story'
-import type { RoleType, LiveType } from '../type/enum'
-import type { AccountID, FaceID } from '../type/id'
-import type { presentation } from '../type/string'
-import type { FOLDER_IDX, MESSAGE_TYPE_IDX, MesType } from '.'
+import type { STORY_ID } from '../book_story/map-reduce'
+import type { RoleType, LiveType } from '../_type/enum'
+import type { AccountID, FaceID } from '../_type/id'
+import type { presentation } from '../_type/string'
+import type { FOLDER_IDX, MESSAGE_TYPE_IDX, MesType } from '../map-reduce'
 import { model } from '$lib/db/socket.io-client'
 
 export type MessageForFace = {

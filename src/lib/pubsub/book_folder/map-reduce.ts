@@ -1,5 +1,5 @@
-import type { presentation, URL } from '../type/string'
-import type { CHR_SET_IDX } from '.'
+import type { presentation, URL } from '../_type/string'
+import type { CHR_SET_IDX } from '../map-reduce'
 
 import { MapReduce } from '$lib/map-reduce'
 import sow_json from '$lib/game/json/sow_folder.json'

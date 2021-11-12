@@ -1,6 +1,6 @@
 import type { ObjectId } from 'mongodb'
-import type { AccountID } from '../type/id'
-import type { URL, presentation } from '../type/string'
+import type { AccountID } from '../_type/id'
+import type { URL, presentation } from '../_type/string'
 
 export type Plan = {
   _id: ObjectId

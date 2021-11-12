@@ -1,7 +1,7 @@
 import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../type/string'
 import type { FaceID } from '../type/id'
-import type { Face } from '.'
+import type { Face } from '../map-reduce'
 
 import { MapReduce, dic } from '$lib/map-reduce'
 import { Faces } from '../map-reduce'

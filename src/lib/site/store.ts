@@ -6,6 +6,7 @@ import { __BROWSER__ } from '$lib/browser/device'
 
 export const url = writable({
   portrate: 'https://giji.f5.si/images/portrate/',
+  icon: 'https://giji.f5.si/images/icon/',
   css: '/css/',
   api: '/api/',
   top: '/'
