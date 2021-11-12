@@ -338,16 +338,6 @@ let welcomeBottomHeight = 0
   }
 }
 
-.filmend {
-  display: inline-block;
-  margin: 0 0 0 -1px;
-}
-
-.filmstart {
-  display: inline-block;
-  margin: -26px 0 8px -1px;
-}
-
 .icons {
   width: 14px;
   margin: 0 3px 10px auto;

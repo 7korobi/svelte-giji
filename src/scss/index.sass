@@ -74,6 +74,41 @@
 // font & zoom section
 $bgs: ( BG: 1.0 , BG75: 0.75, BG50: 0.50 )
 
+.filmend, .filmstart
+  display: inline-block
+  position: relative
+  left: -1px
+
+.BG
+  .filmend
+    top: 0
+  .filmstart
+    top: -26px
+
+.BG75
+  .filmend
+    top: 0
+  .filmstart
+    bottom: 19.5px
+
+.BG50
+  .filmend
+    top: 0
+  .filmstart
+    bottom: 13px
+
+  &.goth-M
+    .filmend
+      top: -1px
+    .filmstart
+      bottom: 14px
+
+  &.goth-L, &.large
+    .filmend
+      top: -8px
+    .filmstart
+      bottom: 21px
+
 @each $bg, $zoom in $bgs
   .#{$bg}
     +zoom($zoom)
