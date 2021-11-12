@@ -1,253 +1,249 @@
  $bg-$bold    aim-D-ELSE      140deg 153deg /   15%   0% /   73%  28% / AA-  502
- $bg-$bold    aim-D-FOAM      174deg 182deg /   15%   0% /   72%  28% / AA-  503
+ $bg-$bold    aim-D-FOAM      174deg 182deg /   15%   0% /   72%  27% / AA-  511
  $bg-$bold    aim-D-LOVE      285deg 290deg /   15%   0% /   76%  27% / AA-  505
- $bg-$bold    aim-D-MUPET      72deg  82deg /   15%   0% /   72%  28% / AA-  501
+ $bg-$bold    aim-D-MUPET      72deg  82deg /   15%   0% /   72%  28% / AA-  509
  $bg-$bold    aim-N-ELSE      115deg 128deg /   19%  51% /   20%  52% / AA-  504
  $bg-$bold    aim-N-FOAM      159deg 167deg /   18%  52% /   24%  58% / AA-  503
- $bg-$bold    aim-N-LOVE      275deg 280deg /   19%  69% /   25%  75% / AA-  504
+ $bg-$bold    aim-N-LOVE      275deg 280deg /   19%  70% /   25%  76% / AA-  514
  $bg-$bold    aim-N-MUPET      52deg  62deg /   19%  47% /   20%  48% / AA-  514
- $bg-$bold    ash-BROAD        49deg  57deg /   11%  26% /   29%  74% / AA-  507
- $bg-$bold    ash-ELSE        140deg 153deg /   11%  27% /   30%  76% / AA-  501
- $bg-$bold    ash-FOAM        174deg 182deg /   11%  27% /   29%  76% / AA-  505
- $bg-$bold    ash-GRAVE       193deg 199deg /   11%  28% /   34%  86% / AA-  508
- $bg-$bold    ash-MOB          27deg  33deg /   11%  27% /   31%  78% / AA-  505
- $bg-$bold    ash-MUPET        72deg  82deg /   11%  26% /   29%  75% / AA-  503
- $bg-$bold    ash-VGRAVE      220deg 225deg /   11%  28% /   35%  85% / AA-  502
- $bg-$bold    prog-ELSE       140deg 153deg /   35%  46% /   13%  45% / AA-  502
- $bg-$bold    prog-MOB         27deg  33deg /   35%  48% /   15%  52% / AA-  505
- $bg-$bold    prog-MUPET       72deg  82deg /   35%  46% /   12%  44% / AA-  506
+ $bg-$bold    ash-BROAD        49deg  57deg /   11%  32% /   29%  72% / AA-  501
+ $bg-$bold    ash-ELSE        140deg 153deg /   11%  34% /   30%  76% / AA-  504
+ $bg-$bold    ash-FOAM        174deg 182deg /   11%  34% /   29%  74% / AA-  501
+ $bg-$bold    ash-GRAVE       193deg 199deg /   11%  37% /   34%  86% / AA-  504
+ $bg-$bold    ash-MOB          27deg  33deg /   11%  34% /   31%  78% / AA-  503
+ $bg-$bold    ash-MUPET        72deg  82deg /   11%  33% /   29%  73% / AA-  500
+ $bg-$bold    ash-VGRAVE      220deg 225deg /   11%  36% /   35%  85% / AA-  501
+ $bg-$bold    prog-ELSE       140deg 153deg /   35%  51% /   13%  44% / AA-  504
+ $bg-$bold    prog-MOB         27deg  33deg /   35%  53% /   15%  51% / AA-  506
+ $bg-$bold    prog-MUPET       72deg  82deg /   35%  50% /   12%  42% / AA-  501
  $bg-$bold    shout-D-ELSE    115deg 165deg /   61%  91% /   11%  23% / B--  241
- $bg-$bold    shout-N-ELSE    115deg 128deg /   44%  71% /   18%  46% / AA-  501
- $bg-$bold    shout-N-FOAM    159deg 167deg /   43%  72% /   23%  51% / AA-  504
- $bg-$bold    shout-N-MOB      15deg  21deg /   44%  88% /   24%  68% / AA-  507
+ $bg-$bold    shout-N-ELSE    115deg 128deg /   44%  72% /   18%  46% / AA-  516
+ $bg-$bold    shout-N-FOAM    159deg 167deg /   43%  72% /   23%  52% / AA-  509
+ $bg-$bold    shout-N-MOB      15deg  21deg /   44%  88% /   24%  68% / AA-  511
  $bg-$bold    stat-BROAD       33deg  41deg /   91% 100% /   15%  38% / A--  407
  $bg-$bold    stat-ELSE       115deg 128deg /   88% 100% /   14%  35% / A--  405
  $bg-$bold    stat-FOAM       159deg 167deg /   78%  99% /   20%  41% / A--  410
- $bg-$bold    stat-GRAVE      181deg 187deg /   77% 100% /   17%  41% / A--  401
- $bg-$bold    stat-LONE       316deg 321deg /   79% 100% /   17%  50% / A--  401
- $bg-$bold    stat-LOVE       275deg 280deg /   80% 100% /   20%  64% / A--  404
+ $bg-$bold    stat-GRAVE      181deg 187deg /   77% 100% /   17%  41% / A--  414
+ $bg-$bold    stat-LONE       316deg 321deg /   79% 100% /   17%  50% / A--  407
+ $bg-$bold    stat-LOVE       275deg 280deg /   80% 100% /   20%  64% / A--  411
  $bg-$bold    stat-MOB         15deg  21deg /   85% 100% /   18%  48% / A--  402
- $bg-$bold    stat-MUPET       52deg  62deg /   89% 100% /   12%  29% / A--  402
- $bg-$bold    stat-VGRAVE     210deg 215deg /   78% 100% /   22%  64% / A--  400
- $bg-$bold    stat-WOLF       354deg 359deg /   80% 100% /   20%  62% / A--  405
+ $bg-$bold    stat-VGRAVE     210deg 215deg /   78% 100% /   22%  65% / A--  408
+ $bg-$bold    stat-WOLF       354deg 359deg /   80% 100% /   20%  63% / A--  408
  $bg-$bold    std-D-BROAD      49deg  57deg /   35%  19% /   62%  21% / AA-  508
  $bg-$bold    std-D-GRAVE     193deg 199deg /   35%  16% /   77%  30% / AA-  507
- $bg-$bold    std-D-MOB        27deg  33deg /   35%  17% /   69%  24% / AA-  505
- $bg-$bold    std-D-VGRAVE    220deg 225deg /   35%  16% /   77%  30% / AA-  507
+ $bg-$bold    std-D-MOB        27deg  33deg /   35%  17% /   69%  23% / AA-  513
+ $bg-$bold    std-D-VGRAVE    220deg 225deg /   35%  16% /   77%  29% / AA-  515
  $bg-$bold    std-N-BROAD      33deg  41deg /   40%  70% /   18%  48% / AA-  500
- $bg-$bold    std-N-GRAVE     181deg 187deg /   38%  70% /   20%  51% / AA-  504
+ $bg-$bold    std-N-GRAVE     181deg 187deg /   38%  70% /   20%  52% / AA-  509
  $bg-$bold    std-N-MOB        15deg  21deg /   39%  81% /   20%  62% / AA-  506
  $bg-$bold    std-N-VGRAVE    210deg 215deg /   38%  87% /   22%  71% / AA-  504
- $bg-$bold    think-D-FOAM    174deg 182deg /   15% 100% /   54%  12% / A--  403
- $bg-$bold    think-D-MOB      27deg  33deg /   15% 100% /   57%  16% / A--  402
- $bg-$bold    think-D-MUPET    72deg  82deg /   15% 100% /   53%  12% / A--  400
- $bg-$bold    think-N-FOAM    159deg 167deg /   19%  45% /   20%  46% / A--  401
+ $bg-$bold    think-D-FOAM    174deg 182deg /   15% 100% /   54%  12% / A--  414
+ $bg-$bold    think-D-MOB      27deg  33deg /   15% 100% /   57%  15% / A--  409
+ $bg-$bold    think-D-MUPET    72deg  82deg /   15% 100% /   53%  12% / A--  406
+ $bg-$bold    think-N-FOAM    159deg 167deg /   19%  45% /   20%  46% / A--  410
  $bg-$bold    think-N-MOB      15deg  21deg /   20%  55% /   16%  51% / A--  401
  $bg-$bold    think-N-MUPET    52deg  62deg /   20%  44% /   14%  38% / A--  408
  $bg-$bold    title-ELSE      115deg 165deg /    8%  53% /    6%  25% / B--  271
  $bg-$bold    title-LONE      316deg 336deg /    7%  44% /    5%  39% / B--  268
  $bg-$bold    title-VGRAVE    210deg 230deg /    7%  39% /    9%  46% / B--  270
  $bg-$bold    title-bar-BROAD  49deg  57deg /   75%  63% /   21%  56% / AA-  501
- $bg-$bold    tweet-D-ELSE    140deg 153deg /   45% 100% /   48%  14% / A--  405
- $bg-$bold    tweet-D-FOAM    174deg 182deg /   45% 100% /   45%  13% / A--  404
- $bg-$bold    tweet-D-MOB      27deg  33deg /   45% 100% /   56%  16% / A--  401
- $bg-$bold    tweet-D-WOLF      4deg   9deg /   45% 100% /   65%  22% / A--  402
+ $bg-$bold    tweet-D-ELSE    140deg 153deg /   50% 100% /   43%  11% / A--  422
+ $bg-$bold    tweet-D-FOAM    174deg 182deg /   50% 100% /   41%  10% / A--  426
+ $bg-$bold    tweet-D-MOB      27deg  33deg /   50% 100% /   51%  13% / A--  415
+ $bg-$bold    tweet-D-WOLF      4deg   9deg /   50% 100% /   61%  18% / A--  406
  $bg-$bold    tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  32% / A--  407
- $bg-$bold    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  404
- $bg-$bold    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  46% / A--  401
- $bg-$bold    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  56% / A--  400
- $bg-$btn     aim-D-ELSE      140deg 153deg /   15%  37% /   73%  77% / Z--  120
- $bg-$btn     aim-D-FOAM      174deg 182deg /   15%  37% /   72%  77% / Z--  121
- $bg-$btn     aim-D-LOVE      285deg 290deg /   15%  60% /   76%  85% / Z--  120
- $bg-$btn     aim-D-MUPET      72deg  82deg /   15%  36% /   72%  76% / Z--  121
- $bg-$btn     aim-N-ELSE      115deg 128deg /   19%  32% /   20%  23% / Z--  121
- $bg-$btn     aim-N-FOAM      159deg 167deg /   18%  30% /   24%  26% / Z--  121
- $bg-$btn     aim-N-LOVE      275deg 280deg /   19%  62% /   25%  33% / Z--  120
- $bg-$btn     aim-N-MUPET      52deg  62deg /   19%  28% /   20%  22% / Z--  121
- $bg-$btn     ash-BROAD        49deg  57deg /   11%  19% /   29%  31% / Z--  120
- $bg-$btn     ash-ELSE        140deg 153deg /   11%  23% /   30%  32% / Z--  121
- $bg-$btn     ash-FOAM        174deg 182deg /   11%  23% /   29%  31% / Z--  121
- $bg-$btn     ash-GRAVE       193deg 199deg /   11%  31% /   34%  38% / Z--  121
- $bg-$btn     ash-MOB          27deg  33deg /   11%  25% /   31%  34% / Z--  121
- $bg-$btn     ash-MUPET        72deg  82deg /   11%  22% /   29%  31% / Z--  121
- $bg-$btn     ash-VGRAVE      220deg 225deg /   11%  98% /   35%  52% / Z--  120
- $bg-$btn     prog-ELSE       140deg 153deg /   35%  50% /   13%  16% / Z--  121
- $bg-$btn     prog-MOB         27deg  33deg /   35%  52% /   15%  18% / Z--  120
- $bg-$btn     prog-MUPET       72deg  82deg /   35%  50% /   12%  15% / Z--  121
- $bg-$btn     shout-D-ELSE    115deg 128deg /   61%  74% /   11%  14% / Z--  121
- $bg-$btn     shout-N-ELSE    115deg 128deg /   44%  56% /   18%  21% / Z--  121
- $bg-$btn     shout-N-FOAM    159deg 167deg /   43%  53% /   23%  25% / Z--  121
- $bg-$btn     shout-N-MOB      15deg  21deg /   44%  58% /   24%  27% / Z--  120
- $bg-$btn     stat-BROAD       33deg  41deg /   91%  98% /   15%  16% / Z--  120
- $bg-$btn     stat-ELSE       115deg 128deg /   88%  99% /   14%  16% / Z--  120
- $bg-$btn     stat-FOAM       159deg 167deg /   78%  87% /   20%  22% / Z--  120
- $bg-$btn     stat-GRAVE      181deg 187deg /   77%  93% /   17%  20% / Z--  122
- $bg-$btn     stat-LONE       316deg 321deg /   79%  99% /   17%  21% / Z--  120
- $bg-$btn     stat-LOVE       275deg 280deg /   80% 100% /   20%  24% / Z--  120
- $bg-$btn     stat-MOB         15deg  21deg /   85%  98% /   18%  21% / Z--  121
- $bg-$btn     stat-MUPET       52deg  62deg /   89%  95% /   12%  13% / Z--  121
- $bg-$btn     stat-VGRAVE     210deg 215deg /   78% 100% /   22%  29% / Z--  120
- $bg-$btn     stat-WOLF       354deg 359deg /   80%  99% /   20%  23% / Z--  120
- $bg-$btn     std-D-BROAD      49deg  57deg /   35%  44% /   62%  64% / Z--  120
- $bg-$btn     std-D-GRAVE     193deg 199deg /   35%  75% /   77%  85% / Z--  120
- $bg-$btn     std-D-MOB        27deg  33deg /   35%  55% /   69%  73% / Z--  120
- $bg-$btn     std-D-VGRAVE    220deg 225deg /   35%  82% /   77%  87% / Z--  121
- $bg-$btn     std-N-BROAD      33deg  41deg /   40%  51% /   18%  20% / Z--  120
- $bg-$btn     std-N-GRAVE     181deg 187deg /   38%  54% /   20%  23% / Z--  120
- $bg-$btn     std-N-MOB        15deg  21deg /   39%  57% /   20%  23% / Z--  120
- $bg-$btn     std-N-VGRAVE    210deg 215deg /   38%  74% /   22%  29% / Z--  121
- $bg-$btn     think-D-FOAM    174deg 182deg /   15%  29% /   54%  56% / Z--  121
- $bg-$btn     think-D-MOB      27deg  33deg /   15%  32% /   57%  61% / Z--  121
- $bg-$btn     think-D-MUPET    72deg  82deg /   15%  28% /   53%  55% / Z--  121
- $bg-$btn     think-N-FOAM    159deg 167deg /   19%  31% /   20%  23% / Z--  121
- $bg-$btn     think-N-MOB      15deg  21deg /   20%  42% /   16%  20% / Z--  120
- $bg-$btn     think-N-MUPET    52deg  62deg /   20%  33% /   14%  17% / Z--  121
- $bg-$btn     title-ELSE      115deg 128deg /    8%  35% /    6%  11% / Z--  120
- $bg-$btn     title-LONE      316deg 321deg /    7%  55% /    5%  15% / Z--  120
- $bg-$btn     title-VGRAVE    210deg 215deg /    7%  46% /    9%  16% / Z--  120
- $bg-$btn     title-bar-BROAD  49deg  57deg /   75%  78% /   21%  21% / Z--  120
- $bg-$btn     tweet-D-ELSE    140deg 153deg /   45%  54% /   48%  50% / Z--  121
- $bg-$btn     tweet-D-FOAM    174deg 182deg /   45%  56% /   45%  48% / Z--  121
- $bg-$btn     tweet-D-MOB      27deg  33deg /   45%  56% /   56%  58% / Z--  120
- $bg-$btn     tweet-D-WOLF      4deg   9deg /   45%  71% /   65%  70% / Z--  120
- $bg-$btn     tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  14% / Z--  121
- $bg-$btn     tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  22% / Z--  120
- $bg-$btn     tweet-N-MOB      15deg  21deg /   95% 100% /   16%  19% / Z--  120
- $bg-$btn     tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  21% / Z--  121
+ $bg-$bold    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  412
+ $bg-$bold    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  47% / A--  410
+ $bg-$bold    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  57% / A--  402
+ $bg-$btn     aim-D-ELSE      140deg 153deg /   15%  50% /   73%  80% / Z--  131
+ $bg-$btn     aim-D-FOAM      174deg 182deg /   15%  50% /   72%  79% / Z--  133
+ $bg-$btn     aim-D-LOVE      285deg 290deg /   15%  80% /   76%  89% / Z--  133
+ $bg-$btn     aim-D-MUPET      72deg  82deg /   15%  50% /   72%  79% / Z--  134
+ $bg-$btn     aim-N-ELSE      115deg 128deg /   19%  29% /   20%  28% / Z--  151
+ $bg-$btn     aim-N-FOAM      159deg 167deg /   18%  28% /   24%  32% / Z--  157
+ $bg-$btn     aim-N-LOVE      275deg 280deg /   19%  34% /   25%  37% / Z--  143
+ $bg-$btn     aim-N-MUPET      52deg  62deg /   19%  29% /   20%  28% / Z--  165
+ $bg-$btn     ash-BROAD        49deg  57deg /   11%  21% /   29%  37% / Z--  164
+ $bg-$btn     ash-ELSE        140deg 153deg /   11%  21% /   30%  38% / Z--  153
+ $bg-$btn     ash-FOAM        174deg 182deg /   11%  21% /   29%  37% / Z--  153
+ $bg-$btn     ash-GRAVE       193deg 199deg /   11%  21% /   34%  42% / Z--  137
+ $bg-$btn     ash-MOB          27deg  33deg /   11%  21% /   31%  39% / Z--  147
+ $bg-$btn     ash-MUPET        72deg  82deg /   11%  21% /   29%  37% / Z--  155
+ $bg-$btn     ash-VGRAVE      220deg 225deg /   11%  26% /   35%  47% / Z--  136
+ $bg-$btn     prog-ELSE       140deg 153deg /   35%  45% /   13%  21% / Z--  154
+ $bg-$btn     prog-MOB         27deg  33deg /   35%  45% /   15%  23% / Z--  145
+ $bg-$btn     prog-MUPET       72deg  82deg /   35%  45% /   12%  20% / Z--  154
+ $bg-$btn     shout-D-ELSE    115deg 128deg /   61%  71% /   11%  19% / Z--  162
+ $bg-$btn     shout-N-ELSE    115deg 128deg /   44%  54% /   18%  26% / Z--  162
+ $bg-$btn     shout-N-FOAM    159deg 167deg /   43%  53% /   23%  31% / Z--  166
+ $bg-$btn     shout-N-MOB      15deg  21deg /   44%  54% /   24%  32% / Z--  149
+ $bg-$btn     stat-BROAD       33deg  41deg /   91%  96% /   15%  19% / Z--  138
+ $bg-$btn     stat-ELSE       115deg 128deg /   88%  93% /   14%  18% / Z--  132
+ $bg-$btn     stat-FOAM       159deg 167deg /   78%  83% /   20%  24% / Z--  135
+ $bg-$btn     stat-GRAVE      181deg 187deg /   77%  87% /   17%  25% / Z--  157
+ $bg-$btn     stat-LONE       316deg 321deg /   79%  89% /   17%  25% / Z--  137
+ $bg-$btn     stat-LOVE       275deg 280deg /   80%  90% /   20%  28% / Z--  134
+ $bg-$btn     stat-MOB         15deg  21deg /   85%  95% /   18%  26% / Z--  152
+ $bg-$btn     stat-VGRAVE     210deg 215deg /   78%  93% /   22%  34% / Z--  143
+ $bg-$btn     stat-WOLF       354deg 359deg /   80%  90% /   20%  28% / Z--  138
+ $bg-$btn     std-D-BROAD      49deg  57deg /   35%  55% /   62%  66% / Z--  135
+ $bg-$btn     std-D-GRAVE     193deg 199deg /   35%  95% /   77%  89% / Z--  131
+ $bg-$btn     std-D-MOB        27deg  33deg /   35%  70% /   69%  76% / Z--  133
+ $bg-$btn     std-D-VGRAVE    220deg 225deg /   35% 100% /   77%  90% / Z--  133
+ $bg-$btn     std-N-BROAD      33deg  41deg /   40%  50% /   18%  26% / Z--  159
+ $bg-$btn     std-N-GRAVE     181deg 187deg /   38%  48% /   20%  28% / Z--  150
+ $bg-$btn     std-N-MOB        15deg  21deg /   39%  49% /   20%  28% / Z--  142
+ $bg-$btn     std-N-VGRAVE    210deg 215deg /   38%  53% /   22%  34% / Z--  145
+ $bg-$btn     think-D-FOAM    174deg 182deg /   15%  35% /   54%  58% / Z--  132
+ $bg-$btn     think-D-MOB      27deg  33deg /   15%  45% /   57%  63% / Z--  134
+ $bg-$btn     think-D-MUPET    72deg  82deg /   15%  35% /   53%  57% / Z--  134
+ $bg-$btn     think-N-FOAM    159deg 167deg /   19%  29% /   20%  28% / Z--  156
+ $bg-$btn     think-N-MOB      15deg  21deg /   20%  30% /   16%  24% / Z--  137
+ $bg-$btn     think-N-MUPET    52deg  62deg /   20%  30% /   14%  22% / Z--  157
+ $bg-$btn     title-ELSE      115deg 128deg /    8%  23% /    6%  18% / Z--  151
+ $bg-$btn     title-LONE      316deg 321deg /    7%  22% /    5%  17% / Z--  133
+ $bg-$btn     title-VGRAVE    210deg 215deg /    7%  22% /    9%  21% / Z--  142
+ $bg-$btn     title-bar-BROAD  49deg  57deg /   75%  80% /   21%  25% / Z--  153
+ $bg-$btn     tweet-D-ELSE    140deg 153deg /   50%  65% /   43%  46% / Z--  136
+ $bg-$btn     tweet-D-FOAM    174deg 182deg /   50%  65% /   41%  44% / Z--  133
+ $bg-$btn     tweet-D-MOB      27deg  33deg /   50%  65% /   51%  54% / Z--  131
+ $bg-$btn     tweet-D-WOLF      4deg   9deg /   50%  90% /   61%  69% / Z--  132
+ $bg-$btn     tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  15% / Z--  133
+ $bg-$btn     tweet-N-FOAM    159deg 167deg /   93%  98% /   20%  24% / Z--  138
+ $bg-$btn     tweet-N-MOB      15deg  21deg /   95% 100% /   16%  24% / Z--  150
+ $bg-$btn     tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  25% / Z--  137
  $bg-$edge    aim-D-ELSE      140deg 140deg /   15%  41% /   73%  29% / A--  360
  $bg-$edge    aim-D-FOAM      174deg 174deg /   15%  41% /   72%  28% / A--  354
  $bg-$edge    aim-D-LOVE      285deg 285deg /   15%  35% /   76%  42% / A--  352
- $bg-$edge    aim-D-MUPET      72deg  72deg /   15%  42% /   72%  27% / A--  357
- $bg-$edge    aim-N-ELSE      115deg 115deg /   19%  19% /   20%  47% / A--  306
- $bg-$edge    aim-N-FOAM      159deg 159deg /   18%  18% /   24%  50% / A--  302
+ $bg-$edge    aim-D-MUPET      72deg  72deg /   15%  42% /   72%  27% / A--  367
+ $bg-$edge    aim-N-ELSE      115deg 115deg /   19%  19% /   20%  47% / A--  310
+ $bg-$edge    aim-N-FOAM      159deg 159deg /   18%  18% /   24%  51% / A--  306
  $bg-$edge    aim-N-LOVE      275deg 275deg /   19%  19% /   25%  56% / A--  305
- $bg-$edge    aim-N-MUPET      52deg  52deg /   19%  19% /   20%  46% / A--  302
- $bg-$edge    ash-BROAD        49deg  49deg /   11%   0% /   29%  67% / A--  358
- $bg-$edge    ash-ELSE        140deg 140deg /   11%   0% /   30%  67% / A--  355
- $bg-$edge    ash-FOAM        174deg 174deg /   11%   0% /   29%  67% / A--  353
- $bg-$edge    ash-GRAVE       193deg 193deg /   11%   0% /   34%  73% / A--  357
- $bg-$edge    ash-MOB          27deg  27deg /   11%   0% /   31%  67% / A--  354
- $bg-$edge    ash-MUPET        72deg  72deg /   11%   0% /   29%  66% / A--  351
- $bg-$edge    ash-VGRAVE      220deg 220deg /   11%   0% /   35%  70% / A--  354
- $bg-$edge    prog-ELSE       140deg 140deg /   35%  25% /   13%  42% / A--  351
- $bg-$edge    prog-MOB         27deg  27deg /   35%  24% /   15%  47% / A--  355
- $bg-$edge    prog-MUPET       72deg  72deg /   35%  26% /   12%  40% / A--  357
+ $bg-$edge    aim-N-MUPET      52deg  52deg /   19%  19% /   20%  46% / A--  307
+ $bg-$edge    ash-BROAD        49deg  49deg /   11%   2% /   29%  66% / A--  354
+ $bg-$edge    ash-ELSE        140deg 140deg /   11%   2% /   30%  67% / A--  352
+ $bg-$edge    ash-FOAM        174deg 174deg /   11%   2% /   29%  66% / A--  351
+ $bg-$edge    ash-GRAVE       193deg 193deg /   11%   1% /   34%  73% / A--  352
+ $bg-$edge    ash-MOB          27deg  27deg /   11%   2% /   31%  66% / A--  351
+ $bg-$edge    ash-MUPET        72deg  72deg /   11%   2% /   29%  66% / A--  350
+ $bg-$edge    ash-VGRAVE      220deg 220deg /   11%   2% /   35%  70% / A--  353
+ $bg-$edge    prog-ELSE       140deg 140deg /   35%  28% /   13%  42% / A--  352
+ $bg-$edge    prog-MOB         27deg  27deg /   35%  27% /   15%  47% / A--  353
+ $bg-$edge    prog-MUPET       72deg  72deg /   35%  28% /   12%  39% / A--  351
  $bg-$edge    shout-D-ELSE    115deg 115deg /   61%  61% /   11%  44% / AA-  558
- $bg-$edge    shout-N-ELSE    115deg 115deg /   44%  44% /   18%  41% / A--  302
- $bg-$edge    shout-N-FOAM    159deg 159deg /   43%  43% /   23%  46% / A--  305
+ $bg-$edge    shout-N-ELSE    115deg 115deg /   44%  44% /   18%  41% / A--  306
+ $bg-$edge    shout-N-FOAM    159deg 159deg /   43%  43% /   23%  47% / A--  312
  $bg-$edge    shout-N-MOB      15deg  15deg /   44%  44% /   24%  54% / A--  302
  $bg-$edge    stat-BROAD       33deg  33deg /   91%  85% /   15%  41% / A--  351
- $bg-$edge    stat-ELSE       115deg 115deg /   88%  84% /   14%  36% / A--  357
+ $bg-$edge    stat-ELSE       115deg 115deg /   88%  84% /   14%  36% / A--  366
  $bg-$edge    stat-FOAM       159deg 159deg /   78%  73% /   20%  44% / A--  355
- $bg-$edge    stat-GRAVE      181deg 181deg /   77%  72% /   17%  40% / A--  350
- $bg-$edge    stat-LONE       316deg 316deg /   79%  72% /   17%  52% / A--  350
+ $bg-$edge    stat-GRAVE      181deg 181deg /   77%  72% /   17%  40% / A--  362
+ $bg-$edge    stat-LONE       316deg 316deg /   79%  72% /   17%  52% / A--  353
  $bg-$edge    stat-LOVE       275deg 275deg /   80%  72% /   20%  60% / A--  352
  $bg-$edge    stat-MOB         15deg  15deg /   85%  78% /   18%  51% / A--  356
- $bg-$edge    stat-MUPET       52deg  52deg /   89%  85% /   12%  32% / A--  352
  $bg-$edge    stat-VGRAVE     210deg 210deg /   78%  71% /   22%  56% / A--  352
- $bg-$edge    stat-WOLF       354deg 354deg /   80%  72% /   20%  58% / A--  352
+ $bg-$edge    stat-WOLF       354deg 354deg /   80%  72% /   20%  59% / A--  356
  $bg-$edge    std-D-BROAD      49deg  49deg /   35%  58% /   62%  24% / A--  356
  $bg-$edge    std-D-GRAVE     193deg 193deg /   35%  62% /   77%  32% / A--  355
- $bg-$edge    std-D-MOB        27deg  27deg /   35%  58% /   69%  31% / A--  354
+ $bg-$edge    std-D-MOB        27deg  27deg /   35%  58% /   69%  30% / A--  361
  $bg-$edge    std-D-VGRAVE    220deg 220deg /   35%  55% /   77%  43% / A--  355
  $bg-$edge    std-N-BROAD      33deg  33deg /   40%  40% /   18%  44% / A--  303
- $bg-$edge    std-N-GRAVE     181deg 181deg /   38%  38% /   20%  43% / A--  307
- $bg-$edge    std-N-MOB        15deg  15deg /   39%  39% /   20%  49% / A--  300
- $bg-$edge    std-N-VGRAVE    210deg 210deg /   38%  38% /   22%  52% / A--  302
- $bg-$edge    think-D-FOAM    174deg 174deg /   15% 100% /   54%  14% / A--  350
- $bg-$edge    think-D-MOB      27deg  27deg /   15% 100% /   57%  20% / A--  352
- $bg-$edge    think-D-MUPET    72deg  72deg /   15% 100% /   53%  13% / A--  353
- $bg-$edge    think-N-FOAM    159deg 159deg /   19%  19% /   20%  46% / A--  300
+ $bg-$edge    std-N-GRAVE     181deg 181deg /   38%  38% /   20%  44% / A--  314
+ $bg-$edge    std-N-MOB        15deg  15deg /   39%  39% /   20%  50% / A--  304
+ $bg-$edge    std-N-VGRAVE    210deg 210deg /   38%  38% /   22%  52% / A--  306
+ $bg-$edge    think-D-FOAM    174deg 174deg /   15% 100% /   54%  14% / A--  355
+ $bg-$edge    think-D-MOB      27deg  27deg /   15% 100% /   57%  19% / A--  364
+ $bg-$edge    think-D-MUPET    72deg  72deg /   15% 100% /   53%  13% / A--  369
+ $bg-$edge    think-N-FOAM    159deg 159deg /   19%  19% /   20%  46% / A--  307
  $bg-$edge    think-N-MOB      15deg  15deg /   20%  20% /   16%  46% / A--  304
  $bg-$edge    think-N-MUPET    52deg  52deg /   20%  20% /   14%  39% / A--  301
  $bg-$edge    title-ELSE      115deg 115deg /    8%   8% /    6%  52% / AA-  552
  $bg-$edge    title-LONE      316deg 316deg /    7%   7% /    5%  55% / AA-  559
  $bg-$edge    title-VGRAVE    210deg 210deg /    7%   7% /    9%  56% / AA-  553
  $bg-$edge    title-bar-BROAD  49deg  49deg /   75%  83% /   21%  44% / A--  359
- $bg-$edge    tweet-D-ELSE    140deg 140deg /   45% 100% /   48%  16% / A--  352
- $bg-$edge    tweet-D-FOAM    174deg 174deg /   45% 100% /   45%  15% / A--  350
- $bg-$edge    tweet-D-MOB      27deg  27deg /   45% 100% /   56%  21% / A--  351
- $bg-$edge    tweet-D-WOLF      4deg   4deg /   45% 100% /   65%  26% / A--  352
+ $bg-$edge    tweet-D-ELSE    140deg 140deg /   50% 100% /   43%  13% / A--  368
+ $bg-$edge    tweet-D-FOAM    174deg 174deg /   50% 100% /   41%  12% / A--  372
+ $bg-$edge    tweet-D-MOB      27deg  27deg /   50% 100% /   51%  17% / A--  365
+ $bg-$edge    tweet-D-WOLF      4deg   4deg /   50% 100% /   61%  22% / A--  357
  $bg-$edge    tweet-N-ELSE    115deg 115deg /   96%  96% /   11%  28% / A--  307
- $bg-$edge    tweet-N-FOAM    159deg 159deg /   93%  93% /   20%  39% / A--  302
- $bg-$edge    tweet-N-MOB      15deg  15deg /   95%  95% /   16%  42% / A--  301
- $bg-$edge    tweet-N-WOLF    354deg 354deg /   93%  93% /   17%  45% / A--  304
+ $bg-$edge    tweet-N-FOAM    159deg 159deg /   93%  93% /   20%  39% / A--  309
+ $bg-$edge    tweet-N-MOB      15deg  15deg /   95%  95% /   16%  43% / A--  305
+ $bg-$edge    tweet-N-WOLF    354deg 354deg /   93%  93% /   17%  46% / A--  309
  $bg-$line    aim-D-ELSE      140deg 103deg /   15%  41% /   73%  29% / A--  353
- $bg-$line    aim-D-FOAM      174deg 152deg /   15%  41% /   72%  29% / A--  357
- $bg-$line    aim-D-LOVE      285deg 270deg /   15%  34% /   76%  45% / A--  353
+ $bg-$line    aim-D-FOAM      174deg 152deg /   15%  41% /   72%  28% / A--  362
+ $bg-$line    aim-D-LOVE      285deg 270deg /   15%  34% /   76%  44% / A--  359
  $bg-$line    aim-D-MUPET      72deg  42deg /   15%  40% /   72%  31% / A--  359
- $bg-$line    aim-N-ELSE      115deg 128deg /   19%  77% /   20%  40% / A--  415
- $bg-$line    aim-N-FOAM      159deg 167deg /   18%  74% /   24%  42% / A--  407
- $bg-$line    aim-N-LOVE      275deg 280deg /   19% 100% /   25%  71% / A--  401
+ $bg-$line    aim-N-ELSE      115deg 128deg /   19%  79% /   20%  40% / A--  433
+ $bg-$line    aim-N-FOAM      159deg 167deg /   18%  75% /   24%  43% / A--  424
+ $bg-$line    aim-N-LOVE      275deg 280deg /   19% 100% /   25%  72% / A--  410
  $bg-$line    aim-N-MUPET      52deg  62deg /   19%  70% /   20%  37% / A--  406
  $bg-$line    ash-BROAD        49deg  57deg /   11%  58% /   29%  45% / A--  354
  $bg-$line    ash-ELSE        140deg 153deg /   11%  63% /   30%  47% / A--  351
- $bg-$line    ash-FOAM        174deg 182deg /   11%  62% /   29%  46% / A--  350
+ $bg-$line    ash-FOAM        174deg 182deg /   11%  63% /   29%  46% / A--  354
  $bg-$line    ash-GRAVE       193deg 199deg /   11% 100% /   34%  65% / A--  350
- $bg-$line    ash-MOB          27deg  33deg /   11%  84% /   31%  55% / A--  351
- $bg-$line    ash-MUPET        72deg  82deg /   11%  61% /   29%  45% / A--  352
- $bg-$line    ash-VGRAVE      220deg 225deg /   11% 100% /   35%  79% / A--  352
- $bg-$line    prog-ELSE       140deg 153deg /   35%  86% /   13%  30% / A--  351
- $bg-$line    prog-MOB         27deg  33deg /   35%  99% /   15%  36% / A--  351
+ $bg-$line    ash-MOB          27deg  33deg /   11%  84% /   31%  55% / A--  355
+ $bg-$line    ash-MUPET        72deg  82deg /   11%  61% /   29%  45% / A--  356
+ $bg-$line    ash-VGRAVE      220deg 225deg /   11% 100% /   35%  79% / A--  355
+ $bg-$line    prog-ELSE       140deg 153deg /   35%  87% /   13%  30% / A--  360
+ $bg-$line    prog-MOB         27deg  33deg /   35% 100% /   15%  36% / A--  352
  $bg-$line    prog-MUPET       72deg  82deg /   35%  85% /   12%  29% / A--  353
  $bg-$line    shout-D-ELSE    115deg 128deg /   61%  71% /   11%  42% / AA-  551
  $bg-$line    shout-N-ELSE    115deg 128deg /   44%  98% /   18%  36% / A--  416
- $bg-$line    shout-N-FOAM    159deg 167deg /   43%  96% /   23%  40% / A--  414
- $bg-$line    shout-N-MOB      15deg  21deg /   44% 100% /   24%  57% / A--  403
+ $bg-$line    shout-N-FOAM    159deg 167deg /   43%  97% /   23%  41% / A--  430
+ $bg-$line    shout-N-MOB      15deg  21deg /   44% 100% /   24%  57% / A--  408
  $bg-$line    stat-BROAD       33deg  41deg /   91% 100% /   15%  35% / A--  352
- $bg-$line    stat-ELSE       115deg 128deg /   88% 100% /   14%  33% / A--  351
+ $bg-$line    stat-ELSE       115deg 128deg /   88% 100% /   14%  33% / A--  363
  $bg-$line    stat-FOAM       159deg 167deg /   78%  97% /   20%  39% / A--  360
  $bg-$line    stat-GRAVE      181deg 187deg /   77%  98% /   17%  38% / A--  351
  $bg-$line    stat-LONE       316deg 321deg /   79% 100% /   17%  46% / A--  350
- $bg-$line    stat-LOVE       275deg 280deg /   80% 100% /   20%  59% / A--  353
- $bg-$line    stat-MOB         15deg  21deg /   85% 100% /   18%  45% / A--  350
- $bg-$line    stat-MUPET       52deg  62deg /   89% 100% /   12%  27% / A--  351
- $bg-$line    stat-VGRAVE     210deg 215deg /   78% 100% /   22%  60% / A--  351
- $bg-$line    stat-WOLF       354deg 359deg /   80% 100% /   20%  50% / A--  354
- $bg-$line    std-D-BROAD      49deg  24deg /   35%  53% /   62%  32% / A--  356
+ $bg-$line    stat-LOVE       275deg 280deg /   80% 100% /   20%  59% / A--  355
+ $bg-$line    stat-MOB         15deg  21deg /   85% 100% /   18%  45% / A--  357
+ $bg-$line    stat-VGRAVE     210deg 215deg /   78% 100% /   22%  61% / A--  359
+ $bg-$line    stat-WOLF       354deg 359deg /   80% 100% /   20%  51% / A--  354
+ $bg-$line    std-D-BROAD      49deg  24deg /   35%  54% /   62%  31% / A--  361
  $bg-$line    std-D-GRAVE     193deg 174deg /   35%  65% /   77%  27% / A--  357
  $bg-$line    std-D-MOB        27deg   8deg /   35%  54% /   69%  37% / A--  351
- $bg-$line    std-D-VGRAVE    220deg 205deg /   35%  61% /   77%  35% / A--  353
- $bg-$line    std-N-BROAD      33deg  41deg /   40% 100% /   18%  38% / A--  405
+ $bg-$line    std-D-VGRAVE    220deg 205deg /   35%  61% /   77%  34% / A--  358
+ $bg-$line    std-N-BROAD      33deg  41deg /   40% 100% /   18%  39% / A--  415
  $bg-$line    std-N-GRAVE     181deg 187deg /   38%  98% /   20%  40% / A--  411
- $bg-$line    std-N-MOB        15deg  21deg /   39% 100% /   20%  49% / A--  405
- $bg-$line    std-N-VGRAVE    210deg 215deg /   38% 100% /   22%  65% / A--  402
- $bg-$line    think-D-FOAM    174deg 152deg /   15% 100% /   54%  14% / A--  354
- $bg-$line    think-D-MOB      27deg   8deg /   15% 100% /   57%  25% / A--  352
- $bg-$line    think-D-MUPET    72deg  42deg /   15% 100% /   53%  16% / A--  350
- $bg-$line    think-N-FOAM    159deg 167deg /   19%  75% /   20%  39% / A--  406
+ $bg-$line    std-N-MOB        15deg  21deg /   39% 100% /   20%  50% / A--  414
+ $bg-$line    std-N-VGRAVE    210deg 215deg /   38% 100% /   22%  65% / A--  407
+ $bg-$line    think-D-FOAM    174deg 152deg /   15% 100% /   54%  14% / A--  364
+ $bg-$line    think-D-MOB      27deg   8deg /   15% 100% /   57%  24% / A--  355
+ $bg-$line    think-D-MUPET    72deg  42deg /   15% 100% /   53%  16% / A--  366
+ $bg-$line    think-N-FOAM    159deg 167deg /   19%  76% /   20%  39% / A--  423
  $bg-$line    think-N-MOB      15deg  21deg /   20% 100% /   16%  46% / A--  403
  $bg-$line    think-N-MUPET    52deg  62deg /   20%  74% /   14%  32% / A--  415
  $bg-$line    title-ELSE      115deg 128deg /    8%  24% /    6%  48% / AA-  557
  $bg-$line    title-LONE      316deg 321deg /    7%  27% /    5%  58% / AA-  557
  $bg-$line    title-VGRAVE    210deg 215deg /    7%  26% /    9%  58% / AA-  555
  $bg-$line    title-bar-BROAD  49deg  57deg /   75%   0% /   21%  67% / A--  353
- $bg-$line    tweet-D-ELSE    140deg 103deg /   45% 100% /   48%  16% / A--  353
- $bg-$line    tweet-D-FOAM    174deg 152deg /   45% 100% /   45%  15% / A--  354
- $bg-$line    tweet-D-MOB      27deg   8deg /   45% 100% /   56%  25% / A--  351
- $bg-$line    tweet-D-WOLF      4deg 349deg /   45% 100% /   65%  26% / A--  351
+ $bg-$line    tweet-D-ELSE    140deg 103deg /   50% 100% /   43%  13% / A--  365
+ $bg-$line    tweet-D-FOAM    174deg 152deg /   50% 100% /   41%  13% / A--  355
+ $bg-$line    tweet-D-MOB      27deg   8deg /   50% 100% /   51%  22% / A--  350
+ $bg-$line    tweet-D-WOLF      4deg 349deg /   50% 100% /   61%  22% / A--  362
  $bg-$line    tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  32% / A--  407
- $bg-$line    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  404
- $bg-$line    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  46% / A--  401
- $bg-$line    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  56% / A--  400
- $bg-$pen     aim-D-ELSE      140deg 153deg /   15%  26% /   73%  17% / AAA  711
- $bg-$pen     aim-D-FOAM      174deg 182deg /   15%  26% /   72%  16% / AAA  711
- $bg-$pen     aim-D-LOVE      285deg 290deg /   15%  26% /   76%  21% / AAA  700
- $bg-$pen     aim-D-MUPET      72deg  82deg /   15%  26% /   72%  16% / AAA  702
+ $bg-$line    tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  43% / A--  412
+ $bg-$line    tweet-N-MOB      15deg  21deg /   95% 100% /   16%  47% / A--  410
+ $bg-$line    tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  57% / A--  402
+ $bg-$pen     aim-D-ELSE      140deg 153deg /   15%  26% /   73%  20% / AA-  609
+ $bg-$pen     aim-D-FOAM      174deg 182deg /   15%  26% /   72%  19% / AA-  619
+ $bg-$pen     aim-D-LOVE      285deg 290deg /   15%  25% /   76%  25% / AA-  611
+ $bg-$pen     aim-D-MUPET      72deg  82deg /   15%  25% /   72%  20% / AA-  600
  $bg-$pen     aim-N-ELSE      115deg 153deg /   19%  25% /   20%  77% / AAA  717
  $bg-$pen     aim-N-FOAM      159deg 182deg /   18%  25% /   24%  83% / AAA  708
  $bg-$pen     aim-N-LOVE      275deg 290deg /   19%  25% /   25%  81% / AAA  714
  $bg-$pen     aim-N-MUPET      52deg  82deg /   19%  25% /   20%  76% / AAA  709
- $bg-$pen     ash-BROAD        49deg  57deg /   11%   0% /   29%  93% / AAA  708
- $bg-$pen     ash-ELSE        140deg 153deg /   11%   0% /   30%  94% / AAA  702
- $bg-$pen     ash-FOAM        174deg 182deg /   11%   0% /   29%  93% / AAA  708
- $bg-$pen     ash-GRAVE       193deg 199deg /   11%   0% /   34% 100% / AA-  686
- $bg-$pen     ash-MOB          27deg  33deg /   11%   0% /   31%  93% / AAA  702
- $bg-$pen     ash-MUPET        72deg  82deg /   11%   0% /   29%  93% / AAA  702
- $bg-$pen     ash-VGRAVE      220deg 225deg /   11%   0% /   35%  97% / AAA  700
- $bg-$pen     prog-ELSE       140deg 153deg /   35%  17% /   13%  68% / AAA  707
- $bg-$pen     prog-MOB         27deg  33deg /   35%  17% /   15%  69% / AAA  704
- $bg-$pen     prog-MUPET       72deg  82deg /   35%  17% /   12%  65% / AAA  702
+ $bg-$pen     ash-BROAD        49deg  57deg /   11%   0% /   29%  87% / AA-  605
+ $bg-$pen     ash-ELSE        140deg 153deg /   11%   0% /   30%  88% / AA-  605
+ $bg-$pen     ash-FOAM        174deg 182deg /   11%   0% /   29%  87% / AA-  605
+ $bg-$pen     ash-GRAVE       193deg 199deg /   11%   0% /   34%  94% / AA-  602
+ $bg-$pen     ash-MOB          27deg  33deg /   11%   0% /   31%  87% / AA-  605
+ $bg-$pen     ash-MUPET        72deg  82deg /   11%   0% /   29%  87% / AA-  606
+ $bg-$pen     ash-VGRAVE      220deg 225deg /   11%   0% /   35%  90% / AA-  601
+ $bg-$pen     prog-ELSE       140deg 153deg /   35%  23% /   13%  59% / AA-  602
+ $bg-$pen     prog-MOB         27deg  33deg /   35%  23% /   15%  62% / AA-  601
+ $bg-$pen     prog-MUPET       72deg  82deg /   35%  24% /   12%  57% / AA-  606
  $bg-$pen     shout-D-ELSE    115deg 153deg /   61%  65% /   11%  49% / AAA  727
  $bg-$pen     shout-N-ELSE    115deg 153deg /   44%  50% /   18%  73% / AAA  716
  $bg-$pen     shout-N-FOAM    159deg 182deg /   43%  50% /   23%  86% / AAA  702
@@ -259,20 +255,19 @@
  $bg-$pen     stat-LONE       316deg 331deg /   79%  99% /   17%  78% / AAA  707
  $bg-$pen     stat-LOVE       275deg 290deg /   80%  99% /   20%  77% / AAA  701
  $bg-$pen     stat-MOB         15deg  33deg /   85%  99% /   18%  61% / AAA  703
- $bg-$pen     stat-MUPET       52deg  82deg /   89%  99% /   12%  42% / AAA  722
  $bg-$pen     stat-VGRAVE     210deg 225deg /   78%  99% /   22%  85% / AAA  702
  $bg-$pen     stat-WOLF       354deg   9deg /   80%  99% /   20%  77% / AAA  700
- $bg-$pen     std-D-BROAD      49deg  57deg /   35%  45% /   62%  11% / AAA  709
- $bg-$pen     std-D-GRAVE     193deg 199deg /   35%  46% /   77%  20% / AAA  705
- $bg-$pen     std-D-MOB        27deg  33deg /   35%  46% /   69%  14% / AAA  711
- $bg-$pen     std-D-VGRAVE    220deg 225deg /   35%  46% /   77%  24% / AAA  702
+ $bg-$pen     std-D-BROAD      49deg  57deg /   35%  45% /   62%  14% / AA-  617
+ $bg-$pen     std-D-GRAVE     193deg 199deg /   35%  46% /   77%  24% / AA-  609
+ $bg-$pen     std-D-MOB        27deg  33deg /   35%  45% /   69%  17% / AA-  617
+ $bg-$pen     std-D-VGRAVE    220deg 225deg /   35%  45% /   77%  28% / AA-  609
  $bg-$pen     std-N-BROAD      33deg  57deg /   40%  45% /   18%  62% / AAA  717
  $bg-$pen     std-N-GRAVE     181deg 199deg /   38%  45% /   20%  82% / AAA  704
  $bg-$pen     std-N-MOB        15deg  33deg /   39%  45% /   20%  72% / AAA  715
  $bg-$pen     std-N-VGRAVE    210deg 225deg /   38%  45% /   22%  82% / AAA  713
- $bg-$pen     think-D-FOAM    174deg 182deg /   15%   0% /   54%   8% / AA-  602
- $bg-$pen     think-D-MOB      27deg  33deg /   15%   0% /   57%   8% / AA-  603
- $bg-$pen     think-D-MUPET    72deg  82deg /   15%   0% /   53%   9% / AA-  605
+ $bg-$pen     think-D-FOAM    174deg 182deg /   15% 100% /   54%   7% / AA-  553
+ $bg-$pen     think-D-MOB      27deg  33deg /   15% 100% /   57%   8% / AA-  562
+ $bg-$pen     think-D-MUPET    72deg  82deg /   15% 100% /   53%   7% / AA-  551
  $bg-$pen     think-N-FOAM    159deg 182deg /   19%  25% /   20%  71% / AA-  621
  $bg-$pen     think-N-MOB      15deg  33deg /   20%  25% /   16%  63% / AA-  610
  $bg-$pen     think-N-MUPET    52deg  82deg /   20%  25% /   14%  58% / AA-  613
@@ -280,246 +275,242 @@
  $bg-$pen     title-LONE      316deg 331deg /    7%  15% /    5%  68% / AAA  808
  $bg-$pen     title-VGRAVE    210deg 225deg /    7%  15% /    9%  70% / AAA  811
  $bg-$pen     title-bar-BROAD  49deg  57deg /   75%  52% /   21%  89% / AAA  701
- $bg-$pen     tweet-D-ELSE    140deg 153deg /   45%   0% /   48%  13% / AA-  607
- $bg-$pen     tweet-D-FOAM    174deg 182deg /   45%   0% /   45%  10% / AA-  606
- $bg-$pen     tweet-D-MOB      27deg  33deg /   45%   0% /   56%  10% / AA-  604
- $bg-$pen     tweet-D-WOLF      4deg   9deg /   45%   0% /   65%  10% / AA-  601
+ $bg-$pen     tweet-D-ELSE    140deg 153deg /   50% 100% /   43%   6% / AA-  557
+ $bg-$pen     tweet-D-FOAM    174deg 182deg /   50% 100% /   41%   5% / AA-  550
+ $bg-$pen     tweet-D-MOB      27deg  33deg /   50% 100% /   51%   5% / AA-  557
+ $bg-$pen     tweet-D-WOLF      4deg   9deg /   50% 100% /   61%   8% / AA-  553
  $bg-$pen     tweet-N-ELSE    115deg 153deg /   96%  99% /   11%  40% / AA-  622
  $bg-$pen     tweet-N-FOAM    159deg 182deg /   93%  99% /   20%  78% / AA-  610
  $bg-$pen     tweet-N-MOB      15deg  33deg /   95%  99% /   16%  49% / AA-  605
  $bg-$pen     tweet-N-WOLF    354deg   9deg /   93%  99% /   17%  70% / AA-  606
- $bg-$shade   aim-D-ELSE      140deg 153deg /   15%  15% /   73%  81% / Z--  121
- $bg-$shade   aim-D-FOAM      174deg 182deg /   15%  15% /   72%  80% / Z--  121
- $bg-$shade   aim-D-LOVE      285deg 290deg /   15%  15% /   76%  83% / Z--  120
- $bg-$shade   aim-D-MUPET      72deg  82deg /   15%  15% /   72%  80% / Z--  122
- $bg-$shade   aim-N-ELSE      115deg 128deg /   19%  19% /   20%  25% / Z--  121
- $bg-$shade   aim-N-FOAM      159deg 167deg /   18%  18% /   24%  28% / Z--  123
- $bg-$shade   aim-N-LOVE      275deg 280deg /   19%  19% /   25%  30% / Z--  121
- $bg-$shade   aim-N-MUPET      52deg  62deg /   19%  19% /   20%  24% / Z--  121
- $bg-$shade   ash-BROAD        49deg  57deg /   11%  11% /   29%  33% / Z--  121
- $bg-$shade   ash-ELSE        140deg 153deg /   11%  11% /   30%  34% / Z--  120
- $bg-$shade   ash-FOAM        174deg 182deg /   11%  11% /   29%  34% / Z--  120
- $bg-$shade   ash-GRAVE       193deg 199deg /   11%  11% /   34%  40% / Z--  120
- $bg-$shade   ash-MOB          27deg  33deg /   11%  11% /   31%  35% / Z--  121
- $bg-$shade   ash-MUPET        72deg  82deg /   11%  11% /   29%  33% / Z--  121
- $bg-$shade   ash-VGRAVE      220deg 225deg /   11%  11% /   35%  40% / Z--  121
- $bg-$shade   prog-ELSE       140deg 153deg /   35%  35% /   13%  17% / Z--  122
- $bg-$shade   prog-MOB         27deg  33deg /   35%  35% /   15%  19% / Z--  122
- $bg-$shade   prog-MUPET       72deg  82deg /   35%  35% /   12%  16% / Z--  122
- $bg-$shade   shout-D-ELSE    115deg 128deg /   61%  61% /   11%  15% / Z--  123
- $bg-$shade   shout-N-ELSE    115deg 128deg /   44%  44% /   18%  22% / Z--  123
- $bg-$shade   shout-N-FOAM    159deg 167deg /   43%  43% /   23%  26% / Z--  121
- $bg-$shade   shout-N-MOB      15deg  21deg /   44%  44% /   24%  28% / Z--  121
- $bg-$shade   stat-BROAD       33deg  41deg /   91%  91% /   15%  17% / Z--  121
- $bg-$shade   stat-ELSE       115deg 128deg /   88%  88% /   14%  17% / Z--  121
- $bg-$shade   stat-FOAM       159deg 167deg /   78%  78% /   20%  23% / Z--  121
- $bg-$shade   stat-GRAVE      181deg 187deg /   77%  77% /   17%  22% / Z--  120
- $bg-$shade   stat-LONE       316deg 321deg /   79%  79% /   17%  23% / Z--  121
- $bg-$shade   stat-LOVE       275deg 280deg /   80%  80% /   20%  25% / Z--  120
- $bg-$shade   stat-MOB         15deg  21deg /   85%  85% /   18%  22% / Z--  123
- $bg-$shade   stat-MUPET       52deg  62deg /   89%  89% /   12%  14% / Z--  124
- $bg-$shade   stat-VGRAVE     210deg 215deg /   78%  78% /   22%  29% / Z--  120
- $bg-$shade   stat-WOLF       354deg 359deg /   80%  80% /   20%  25% / Z--  121
- $bg-$shade   std-D-BROAD      49deg  57deg /   35%  35% /   62%  68% / Z--  121
- $bg-$shade   std-D-GRAVE     193deg 199deg /   35%  35% /   77%  86% / Z--  122
- $bg-$shade   std-D-MOB        27deg  33deg /   35%  35% /   69%  75% / Z--  120
- $bg-$shade   std-D-VGRAVE    220deg 225deg /   35%  35% /   77%  84% / Z--  120
- $bg-$shade   std-N-BROAD      33deg  41deg /   40%  40% /   18%  21% / Z--  123
- $bg-$shade   std-N-GRAVE     181deg 187deg /   38%  38% /   20%  25% / Z--  120
- $bg-$shade   std-N-MOB        15deg  21deg /   39%  39% /   20%  24% / Z--  121
- $bg-$shade   std-N-VGRAVE    210deg 215deg /   38%  38% /   22%  29% / Z--  120
- $bg-$shade   think-D-FOAM    174deg 182deg /   15%  15% /   54%  61% / Z--  121
- $bg-$shade   think-D-MOB      27deg  33deg /   15%  15% /   57%  63% / Z--  121
- $bg-$shade   think-D-MUPET    72deg  82deg /   15%  15% /   53%  60% / Z--  121
- $bg-$shade   think-N-FOAM    159deg 167deg /   19%  19% /   20%  24% / Z--  121
- $bg-$shade   think-N-MOB      15deg  21deg /   20%  20% /   16%  21% / Z--  121
- $bg-$shade   think-N-MUPET    52deg  62deg /   20%  20% /   14%  18% / Z--  121
- $bg-$shade   title-ELSE      115deg 128deg /    8%   8% /    6%  13% / Z--  120
- $bg-$shade   title-LONE      316deg 321deg /    7%   7% /    5%  13% / Z--  121
- $bg-$shade   title-VGRAVE    210deg 215deg /    7%   7% /    9%  16% / Z--  121
- $bg-$shade   title-bar-BROAD  49deg  57deg /   75%  75% /   21%  22% / Z--  121
- $bg-$shade   tweet-D-ELSE    140deg 153deg /   45%  45% /   48%  55% / Z--  120
- $bg-$shade   tweet-D-FOAM    174deg 182deg /   45%  45% /   45%  51% / Z--  121
- $bg-$shade   tweet-D-MOB      27deg  33deg /   45%  45% /   56%  60% / Z--  120
- $bg-$shade   tweet-D-WOLF      4deg   9deg /   45%  45% /   65%  69% / Z--  122
- $bg-$shade   tweet-N-ELSE    115deg 128deg /   96%  96% /   11%  14% / Z--  121
- $bg-$shade   tweet-N-FOAM    159deg 167deg /   93%  93% /   20%  23% / Z--  124
- $bg-$shade   tweet-N-MOB      15deg  21deg /   95%  95% /   16%  19% / Z--  121
- $bg-$shade   tweet-N-WOLF    354deg 359deg /   93%  93% /   17%  22% / Z--  121
- $btn-$btnOff aim-D-ELSE      153deg 153deg /   37%  80% /   77%  52% / ---  108
- $btn-$btnOff aim-D-FOAM      182deg 182deg /   37%  76% /   77%  52% / ---  110
- $btn-$btnOff aim-D-LOVE      290deg 290deg /   60%  23% /   85%  74% / Z--  133
- $btn-$btnOff aim-D-MUPET      82deg  82deg /   36%  69% /   76%  54% / ---  110
- $btn-$btnOff aim-N-ELSE      128deg 128deg /   32%  28% /   23%  17% / Z--  134
- $btn-$btnOff aim-N-FOAM      167deg 167deg /   30%  30% /   26%  20% / Z--  136
- $btn-$btnOff aim-N-LOVE      280deg 280deg /   62%  26% /   33%  22% / Z--  133
- $btn-$btnOff aim-N-MUPET      62deg  62deg /   28%  32% /   22%  16% / Z--  134
- $btn-$btnOff ash-BROAD        57deg  57deg /   19%  29% /   31%  23% / Z--  132
- $btn-$btnOff ash-ELSE        153deg 153deg /   23%  23% /   32%  26% / Z--  134
- $btn-$btnOff ash-FOAM        182deg 182deg /   23%  24% /   31%  25% / Z--  135
- $btn-$btnOff ash-GRAVE       199deg 199deg /   31%  17% /   38%  32% / Z--  133
- $btn-$btnOff ash-MOB          33deg  33deg /   25%  22% /   34%  27% / Z--  134
- $btn-$btnOff ash-MUPET        82deg  82deg /   22%  23% /   31%  25% / Z--  133
- $btn-$btnOff ash-VGRAVE      225deg 225deg /   98%  15% /   52%  33% / Z--  132
- $btn-$btnOff prog-ELSE       153deg 153deg /   50%  44% /   16%  10% / Z--  135
- $btn-$btnOff prog-MOB         33deg  33deg /   52%  46% /   18%  11% / Z--  133
- $btn-$btnOff prog-MUPET       82deg  82deg /   50%  43% /   15%   9% / Z--  134
- $btn-$btnOff shout-D-ELSE    128deg 128deg /   74%  69% /   14%   8% / Z--  133
- $btn-$btnOff shout-N-ELSE    128deg 128deg /   56%  52% /   21%  16% / Z--  134
- $btn-$btnOff shout-N-FOAM    167deg 167deg /   53%  52% /   25%  20% / Z--  134
- $btn-$btnOff shout-N-MOB      21deg  21deg /   58%  57% /   27%  20% / Z--  134
- $btn-$btnOff stat-BROAD       41deg  41deg /   98% 100% /   16%  11% / Z--  132
- $btn-$btnOff stat-ELSE       128deg 128deg /   99%  94% /   16%  12% / Z--  132
- $btn-$btnOff stat-FOAM       167deg 167deg /   87%  85% /   22%  17% / Z--  134
- $btn-$btnOff stat-GRAVE      187deg 187deg /   93%  78% /   20%  17% / Z--  135
- $btn-$btnOff stat-LONE       321deg 321deg /   99%  88% /   21%  14% / Z--  133
- $btn-$btnOff stat-LOVE       280deg 280deg /  100%  95% /   24%  15% / Z--  133
- $btn-$btnOff stat-MOB         21deg  21deg /   98%  98% /   21%  14% / Z--  133
- $btn-$btnOff stat-MUPET       62deg  62deg /   95%  97% /   13%   9% / Z--  133
- $btn-$btnOff stat-VGRAVE     215deg 215deg /  100%  80% /   29%  21% / Z--  133
- $btn-$btnOff stat-WOLF       359deg 359deg /   99%  90% /   23%  16% / Z--  133
- $btn-$btnOff std-D-BROAD      57deg  57deg /   44%  42% /   64%  60% / ---  109
- $btn-$btnOff std-D-GRAVE     199deg 199deg /   75%  43% /   85%  74% / Z--  132
- $btn-$btnOff std-D-MOB        33deg  33deg /   55%  63% /   73%  60% / Z--  132
- $btn-$btnOff std-D-VGRAVE    225deg 225deg /   82%  40% /   87%  76% / Z--  133
- $btn-$btnOff std-N-BROAD      41deg  41deg /   51%  52% /   20%  14% / Z--  133
- $btn-$btnOff std-N-GRAVE     187deg 187deg /   54%  42% /   23%  19% / Z--  132
- $btn-$btnOff std-N-MOB        21deg  21deg /   57%  50% /   23%  16% / Z--  133
- $btn-$btnOff std-N-VGRAVE    215deg 215deg /   74%  43% /   29%  21% / Z--  133
- $btn-$btnOff think-D-FOAM    182deg 182deg /   29%  59% /   56%  39% / Z--  133
- $btn-$btnOff think-D-MOB      33deg  33deg /   32%  36% /   61%  50% / Z--  133
- $btn-$btnOff think-D-MUPET    82deg  82deg /   28%  59% /   55%  38% / Z--  134
- $btn-$btnOff think-N-FOAM    167deg 167deg /   31%  30% /   23%  17% / Z--  134
- $btn-$btnOff think-N-MOB      21deg  21deg /   42%  30% /   20%  13% / Z--  132
- $btn-$btnOff think-N-MUPET    62deg  62deg /   33%  32% /   17%  10% / Z--  134
- $btn-$btnOff title-ELSE      128deg 128deg /   35%  24% /   11%   0% / Z--  131
- $btn-$btnOff title-LONE      321deg 321deg /   55%  23% /   15%   0% / Z--  130
- $btn-$btnOff title-VGRAVE    215deg 215deg /   46%  23% /   16%   3% / Z--  133
- $btn-$btnOff title-bar-BROAD  57deg   0deg /   78%   0% /   21%   0% / A--  311
- $btn-$btnOff tweet-D-ELSE    153deg 153deg /   54%  74% /   50%  39% / Z--  133
- $btn-$btnOff tweet-D-FOAM    182deg 182deg /   56%  64% /   48%  39% / Z--  133
- $btn-$btnOff tweet-D-MOB      33deg  33deg /   56%  79% /   58%  45% / Z--  132
- $btn-$btnOff tweet-D-WOLF      9deg   9deg /   71%  57% /   70%  61% / Z--  133
- $btn-$btnOff tweet-N-ELSE    128deg 128deg /  100% 100% /   14%   9% / Z--  133
- $btn-$btnOff tweet-N-FOAM    167deg 167deg /  100%  99% /   22%  18% / Z--  134
- $btn-$btnOff tweet-N-MOB      21deg  21deg /  100% 100% /   19%  12% / Z--  133
- $btn-$btnOff tweet-N-WOLF    359deg 359deg /  100% 100% /   21%  13% / Z--  133
- $btn-$pen    aim-D-ELSE      153deg 153deg /   37%  26% /   77%  17% / AAA  853
- $btn-$pen    aim-D-FOAM      182deg 182deg /   37%  26% /   77%  16% / AAA  858
- $btn-$pen    aim-D-LOVE      290deg 290deg /   60%  26% /   85%  21% / AAA  841
- $btn-$pen    aim-D-MUPET      82deg  82deg /   36%  26% /   76%  16% / AAA  846
- $btn-$pen    aim-N-ELSE      128deg 153deg /   32%  25% /   23%  77% / AA-  592
- $btn-$pen    aim-N-FOAM      167deg 182deg /   30%  25% /   26%  83% / AA-  583
- $btn-$pen    aim-N-LOVE      280deg 290deg /   62%  25% /   33%  81% / AA-  595
- $btn-$pen    aim-N-MUPET      62deg  82deg /   28%  25% /   22%  76% / AA-  585
- $btn-$pen    ash-BROAD        57deg  57deg /   19%   0% /   31%  93% / AA-  590
- $btn-$pen    ash-ELSE        153deg 153deg /   23%   0% /   32%  94% / AA-  578
- $btn-$pen    ash-FOAM        182deg 182deg /   23%   0% /   31%  93% / AA-  586
- $btn-$pen    ash-GRAVE       199deg 199deg /   31%   0% /   38% 100% / AA-  569
- $btn-$pen    ash-MOB          33deg  33deg /   25%   0% /   34%  93% / AA-  580
- $btn-$pen    ash-MUPET        82deg  82deg /   22%   0% /   31%  93% / AA-  582
- $btn-$pen    ash-VGRAVE      225deg 225deg /   98%   0% /   52%  97% / AA-  583
- $btn-$pen    prog-ELSE       153deg 153deg /   50%  17% /   16%  68% / AA-  582
- $btn-$pen    prog-MOB         33deg  33deg /   52%  17% /   18%  69% / AA-  585
- $btn-$pen    prog-MUPET       82deg  82deg /   50%  17% /   15%  65% / AA-  581
- $btn-$pen    shout-D-ELSE    128deg 153deg /   74%  65% /   14%  49% / AA-  603
- $btn-$pen    shout-N-ELSE    128deg 153deg /   56%  50% /   21%  73% / AA-  593
- $btn-$pen    shout-N-FOAM    167deg 182deg /   53%  50% /   25%  86% / AA-  579
- $btn-$pen    shout-N-MOB      21deg  33deg /   58%  50% /   27%  77% / AA-  584
- $btn-$pen    stat-BROAD       41deg  57deg /   98%  99% /   16%  40% / AA-  585
- $btn-$pen    stat-ELSE       128deg 153deg /   99%  99% /   16%  47% / AA-  601
- $btn-$pen    stat-FOAM       167deg 182deg /   87%  99% /   22%  83% / AA-  589
- $btn-$pen    stat-GRAVE      187deg 199deg /   93%  99% /   20%  84% / AA-  577
- $btn-$pen    stat-LONE       321deg 331deg /   99%  99% /   21%  78% / AA-  587
- $btn-$pen    stat-LOVE       280deg 290deg /  100%  99% /   24%  77% / AA-  582
- $btn-$pen    stat-MOB         21deg  33deg /   98%  99% /   21%  61% / AA-  583
- $btn-$pen    stat-MUPET       62deg  82deg /   95%  99% /   13%  42% / AA-  599
- $btn-$pen    stat-VGRAVE     215deg 225deg /  100%  99% /   29%  85% / AA-  585
- $btn-$pen    stat-WOLF       359deg   9deg /   99%  99% /   23%  77% / AA-  582
- $btn-$pen    std-D-BROAD      57deg  57deg /   44%  45% /   64%  11% / AAA  851
- $btn-$pen    std-D-GRAVE     199deg 199deg /   75%  46% /   85%  20% / AAA  847
- $btn-$pen    std-D-MOB        33deg  33deg /   55%  46% /   73%  14% / AAA  853
- $btn-$pen    std-D-VGRAVE    225deg 225deg /   82%  46% /   87%  24% / AAA  847
- $btn-$pen    std-N-BROAD      41deg  57deg /   51%  45% /   20%  62% / AA-  595
- $btn-$pen    std-N-GRAVE     187deg 199deg /   54%  45% /   23%  82% / AA-  585
- $btn-$pen    std-N-MOB        21deg  33deg /   57%  45% /   23%  72% / AA-  595
- $btn-$pen    std-N-VGRAVE    215deg 225deg /   74%  45% /   29%  82% / AA-  591
- $btn-$pen    think-D-FOAM    182deg 182deg /   29%   0% /   56%   8% / AAA  728
- $btn-$pen    think-D-MOB      33deg  33deg /   32%   0% /   61%   8% / AAA  727
- $btn-$pen    think-D-MUPET    82deg  82deg /   28%   0% /   55%   9% / AAA  732
- $btn-$pen    think-N-FOAM    167deg 182deg /   31%  25% /   23%  71% / AA-  512
- $btn-$pen    think-N-MOB      21deg  33deg /   42%  25% /   20%  63% / AA-  508
- $btn-$pen    think-N-MUPET    62deg  82deg /   33%  25% /   17%  58% / AA-  505
- $btn-$pen    title-ELSE      128deg 153deg /   35%  15% /   11%  63% / AA-  677
- $btn-$pen    title-LONE      321deg 331deg /   55%  15% /   15%  68% / AA-  673
- $btn-$pen    title-VGRAVE    215deg 225deg /   46%  15% /   16%  70% / AA-  674
- $btn-$pen    title-bar-BROAD  57deg  57deg /   78%  52% /   21%  89% / AA-  583
- $btn-$pen    tweet-D-ELSE    153deg 153deg /   54%   0% /   50%  13% / AAA  731
- $btn-$pen    tweet-D-FOAM    182deg 182deg /   56%   0% /   48%  10% / AAA  732
- $btn-$pen    tweet-D-MOB      33deg  33deg /   56%   0% /   58%  10% / AAA  726
- $btn-$pen    tweet-D-WOLF      9deg   9deg /   71%   0% /   70%  10% / AAA  724
- $btn-$pen    tweet-N-ELSE    128deg 153deg /  100%  99% /   14%  40% / AA-  515
- $btn-$pen    tweet-N-FOAM    167deg 182deg /  100%  99% /   22%  78% / AA-  507
- $btn-$pen    tweet-N-MOB      21deg  33deg /  100%  99% /   19%  49% / AA-  503
- $btn-$pen    tweet-N-WOLF    359deg   9deg /  100%  99% /   21%  70% / AA-  502
- $grad-$btn   aim-D-ELSE      103deg 153deg /   54%  37% /   73%  77% / ---  100
- $grad-$btn   aim-D-FOAM      152deg 182deg /   57%  37% /   72%  77% / ---  100
- $grad-$btn   aim-D-LOVE      270deg 290deg /   60%  60% /   76%  85% / Z--  145
- $grad-$btn   aim-D-MUPET      42deg  82deg /   79%  36% /   72%  76% / ---  100
- $grad-$btn   aim-N-ELSE       78deg 128deg /   42%  32% /   20%  23% / ---  101
- $grad-$btn   aim-N-FOAM      137deg 167deg /   47%  30% /   24%  26% / ---  101
- $grad-$btn   aim-N-LOVE      260deg 280deg /   54%  62% /   25%  33% / Z--  145
- $grad-$btn   aim-N-MUPET      52deg  62deg /   19%  28% /   20%  22% / Z--  121
- $grad-$btn   ash-BROAD        24deg  57deg /  100%  19% /   29%  31% / ---  105
- $grad-$btn   ash-ELSE        103deg 153deg /   34%  23% /   30%  32% / ---  101
- $grad-$btn   ash-FOAM        152deg 182deg /   36%  23% /   29%  31% / ---  100
- $grad-$btn   ash-GRAVE       174deg 199deg /   27%  31% /   34%  38% / ---  100
- $grad-$btn   ash-MOB           8deg  33deg /  100%  25% /   31%  34% / Z--  121
- $grad-$btn   ash-MUPET        42deg  82deg /   52%  22% /   29%  31% / ---  100
- $grad-$btn   ash-VGRAVE      205deg 225deg /   84%  98% /   35%  52% / ---  100
- $grad-$btn   prog-ELSE       103deg 153deg /   87%  50% /   13%  16% / ---  100
- $grad-$btn   prog-MOB          8deg  33deg /  100%  52% /   15%  18% / Z--  126
- $grad-$btn   prog-MUPET       42deg  82deg /  100%  50% /   12%  15% / ---  110
- $grad-$btn   shout-D-ELSE    115deg 128deg /   61%  74% /   11%  14% / Z--  121
- $grad-$btn   shout-N-ELSE     78deg 128deg /   64%  56% /   18%  21% / ---  100
- $grad-$btn   shout-N-FOAM    137deg 167deg /   72%  53% /   23%  25% / ---  100
- $grad-$btn   shout-N-MOB      15deg  21deg /   44%  58% /   24%  27% / Z--  120
- $grad-$btn   stat-BROAD        8deg  41deg /  100%  98% /   15%  16% / Z--  141
- $grad-$btn   stat-ELSE        78deg 128deg /  100%  99% /   14%  16% / ---  107
- $grad-$btn   stat-FOAM       137deg 167deg /  100%  87% /   20%  22% / ---  107
- $grad-$btn   stat-GRAVE      162deg 187deg /  100%  93% /   17%  20% / ---  108
- $grad-$btn   stat-LONE       301deg 321deg /  100%  99% /   17%  21% / Z--  112
- $grad-$btn   stat-LOVE       260deg 280deg /  100% 100% /   20%  24% / Z--  132
- $grad-$btn   stat-MOB        356deg  21deg /  100%  98% /   18%  21% / Z--  127
- $grad-$btn   stat-MUPET       22deg  62deg /   89%  95% /   12%  13% / Z--  152
- $grad-$btn   stat-VGRAVE     195deg 215deg /   78% 100% /   22%  29% / ---  107
- $grad-$btn   stat-WOLF       339deg 359deg /  100%  99% /   20%  23% / Z--  114
- $grad-$btn   std-D-BROAD      24deg  57deg /   35%  44% /   62%  64% / Z--  150
- $grad-$btn   std-D-GRAVE     174deg 199deg /   66%  75% /   77%  85% / ---  100
- $grad-$btn   std-D-MOB         8deg  33deg /   61%  55% /   69%  73% / Z--  144
- $grad-$btn   std-D-VGRAVE    220deg 225deg /   35%  82% /   77%  87% / Z--  121
- $grad-$btn   std-N-BROAD      33deg  41deg /   40%  51% /   18%  20% / Z--  120
- $grad-$btn   std-N-GRAVE     162deg 187deg /   69%  54% /   20%  23% / ---  100
- $grad-$btn   std-N-MOB        15deg  21deg /   39%  57% /   20%  23% / Z--  120
- $grad-$btn   std-N-VGRAVE    195deg 215deg /   56%  74% /   22%  29% / ---  100
- $grad-$btn   think-D-FOAM    152deg 182deg /   36%  29% /   54%  56% / ---  101
- $grad-$btn   think-D-MOB       8deg  33deg /   45%  32% /   57%  61% / Z--  145
- $grad-$btn   think-D-MUPET    42deg  82deg /   52%  28% /   53%  55% / ---  101
- $grad-$btn   think-N-FOAM    137deg 167deg /   52%  31% /   20%  23% / ---  101
- $grad-$btn   think-N-MOB      15deg  21deg /   20%  42% /   16%  20% / Z--  120
- $grad-$btn   think-N-MUPET    52deg  62deg /   20%  33% /   14%  17% / Z--  121
- $grad-$btn   title-ELSE      115deg 128deg /    8%  35% /    6%  11% / Z--  120
- $grad-$btn   title-LONE      316deg 321deg /    7%  55% /    5%  15% / Z--  120
- $grad-$btn   title-VGRAVE    210deg 215deg /    7%  46% /    9%  16% / Z--  120
- $grad-$btn   title-bar-BROAD  24deg  57deg /   75%  78% /   21%  21% / Z--  167
- $grad-$btn   tweet-D-ELSE    103deg 153deg /   59%  54% /   48%  50% / ---  100
- $grad-$btn   tweet-D-FOAM    152deg 182deg /   65%  56% /   45%  48% / ---  100
- $grad-$btn   tweet-D-MOB       8deg  33deg /   45%  56% /   56%  58% / Z--  155
- $grad-$btn   tweet-D-WOLF      4deg   9deg /   45%  71% /   65%  70% / Z--  120
- $grad-$btn   tweet-N-ELSE    115deg 128deg /   96% 100% /   11%  14% / Z--  121
- $grad-$btn   tweet-N-FOAM    159deg 167deg /   93% 100% /   20%  22% / Z--  120
- $grad-$btn   tweet-N-MOB      15deg  21deg /   95% 100% /   16%  19% / Z--  120
- $grad-$btn   tweet-N-WOLF    354deg 359deg /   93% 100% /   17%  21% / Z--  121
+ $bg-$shade   aim-D-ELSE      140deg 153deg /   15%  15% /   73%  84% / Z--  131
+ $bg-$shade   aim-D-FOAM      174deg 182deg /   15%  15% /   72%  83% / Z--  130
+ $bg-$shade   aim-D-LOVE      285deg 290deg /   15%  15% /   76%  86% / Z--  133
+ $bg-$shade   aim-D-MUPET      72deg  82deg /   15%  15% /   72%  84% / Z--  131
+ $bg-$shade   aim-N-ELSE      115deg 128deg /   19%  19% /   20%  28% / Z--  141
+ $bg-$shade   aim-N-FOAM      159deg 167deg /   18%  18% /   24%  32% / Z--  145
+ $bg-$shade   aim-N-LOVE      275deg 280deg /   19%  19% /   25%  33% / Z--  135
+ $bg-$shade   aim-N-MUPET      52deg  62deg /   19%  19% /   20%  28% / Z--  150
+ $bg-$shade   ash-BROAD        49deg  57deg /   11%  11% /   29%  37% / Z--  145
+ $bg-$shade   ash-ELSE        140deg 153deg /   11%  11% /   30%  38% / Z--  139
+ $bg-$shade   ash-FOAM        174deg 182deg /   11%  11% /   29%  37% / Z--  139
+ $bg-$shade   ash-GRAVE       193deg 199deg /   11%  11% /   34%  42% / Z--  133
+ $bg-$shade   ash-MOB          27deg  33deg /   11%  11% /   31%  39% / Z--  142
+ $bg-$shade   ash-MUPET        72deg  82deg /   11%  11% /   29%  37% / Z--  140
+ $bg-$shade   ash-VGRAVE      220deg 225deg /   11%  11% /   35%  43% / Z--  133
+ $bg-$shade   prog-ELSE       140deg 153deg /   35%  35% /   13%  21% / Z--  144
+ $bg-$shade   prog-MOB         27deg  33deg /   35%  35% /   15%  23% / Z--  143
+ $bg-$shade   prog-MUPET       72deg  82deg /   35%  35% /   12%  20% / Z--  145
+ $bg-$shade   shout-D-ELSE    115deg 128deg /   61%  61% /   11%  19% / Z--  152
+ $bg-$shade   shout-N-ELSE    115deg 128deg /   44%  44% /   18%  26% / Z--  149
+ $bg-$shade   shout-N-FOAM    159deg 167deg /   43%  43% /   23%  31% / Z--  151
+ $bg-$shade   shout-N-MOB      15deg  21deg /   44%  44% /   24%  32% / Z--  146
+ $bg-$shade   stat-BROAD       33deg  41deg /   91%  91% /   15%  19% / Z--  137
+ $bg-$shade   stat-ELSE       115deg 128deg /   88%  88% /   14%  22% / Z--  167
+ $bg-$shade   stat-FOAM       159deg 167deg /   78%  78% /   20%  28% / Z--  165
+ $bg-$shade   stat-GRAVE      181deg 187deg /   77%  77% /   17%  25% / Z--  147
+ $bg-$shade   stat-LONE       316deg 321deg /   79%  79% /   17%  25% / Z--  133
+ $bg-$shade   stat-LOVE       275deg 280deg /   80%  80% /   20%  28% / Z--  132
+ $bg-$shade   stat-MOB         15deg  21deg /   85%  85% /   18%  26% / Z--  149
+ $bg-$shade   stat-VGRAVE     210deg 215deg /   78%  78% /   22%  34% / Z--  142
+ $bg-$shade   stat-WOLF       354deg 359deg /   80%  80% /   20%  28% / Z--  133
+ $bg-$shade   std-D-BROAD      49deg  57deg /   35%  35% /   62%  72% / Z--  130
+ $bg-$shade   std-D-GRAVE     193deg 199deg /   35%  35% /   77%  90% / Z--  131
+ $bg-$shade   std-D-MOB        27deg  33deg /   35%  35% /   69%  78% / Z--  131
+ $bg-$shade   std-D-VGRAVE    220deg 225deg /   35%  35% /   77%  87% / Z--  132
+ $bg-$shade   std-N-BROAD      33deg  41deg /   40%  40% /   18%  26% / Z--  152
+ $bg-$shade   std-N-GRAVE     181deg 187deg /   38%  38% /   20%  28% / Z--  139
+ $bg-$shade   std-N-MOB        15deg  21deg /   39%  39% /   20%  28% / Z--  142
+ $bg-$shade   std-N-VGRAVE    210deg 215deg /   38%  38% /   22%  34% / Z--  149
+ $bg-$shade   think-D-FOAM    174deg 182deg /   15%  15% /   54%  64% / Z--  132
+ $bg-$shade   think-D-MOB      27deg  33deg /   15%  15% /   57%  66% / Z--  134
+ $bg-$shade   think-D-MUPET    72deg  82deg /   15%  15% /   53%  64% / Z--  133
+ $bg-$shade   think-N-FOAM    159deg 167deg /   19%  19% /   20%  28% / Z--  145
+ $bg-$shade   think-N-MOB      15deg  21deg /   20%  20% /   16%  24% / Z--  137
+ $bg-$shade   think-N-MUPET    52deg  62deg /   20%  20% /   14%  22% / Z--  145
+ $bg-$shade   title-ELSE      115deg 128deg /    8%   8% /    6%  18% / Z--  142
+ $bg-$shade   title-LONE      316deg 321deg /    7%   7% /    5%  17% / Z--  137
+ $bg-$shade   title-VGRAVE    210deg 215deg /    7%   7% /    9%  21% / Z--  145
+ $bg-$shade   title-bar-BROAD  49deg  57deg /   75%  75% /   21%  25% / Z--  146
+ $bg-$shade   tweet-D-ELSE    140deg 153deg /   50%  50% /   43%  50% / Z--  134
+ $bg-$shade   tweet-D-FOAM    174deg 182deg /   50%  50% /   41%  48% / Z--  133
+ $bg-$shade   tweet-D-MOB      27deg  33deg /   50%  50% /   51%  57% / Z--  130
+ $bg-$shade   tweet-D-WOLF      4deg   9deg /   50%  50% /   61%  68% / Z--  134
+ $bg-$shade   tweet-N-ELSE    115deg 128deg /   96%  96% /   11%  19% / Z--  170
+ $bg-$shade   tweet-N-FOAM    159deg 167deg /   93%  93% /   20%  24% / Z--  133
+ $bg-$shade   tweet-N-MOB      15deg  21deg /   95%  95% /   16%  24% / Z--  149
+ $bg-$shade   tweet-N-WOLF    354deg 359deg /   93%  93% /   17%  25% / Z--  134
+ $btn-$btnOff aim-D-ELSE      153deg 153deg /   50%  18% /   80%  67% / Z--  151
+ $btn-$btnOff aim-D-FOAM      182deg 182deg /   50%  18% /   79%  66% / Z--  152
+ $btn-$btnOff aim-D-LOVE      290deg 290deg /   80%  17% /   89%  72% / Z--  151
+ $btn-$btnOff aim-D-MUPET      82deg  82deg /   50%  18% /   79%  66% / Z--  153
+ $btn-$btnOff aim-N-ELSE      128deg 128deg /   29%  21% /   28%  24% / Z--  127
+ $btn-$btnOff aim-N-FOAM      167deg 167deg /   28%  19% /   32%  26% / Z--  142
+ $btn-$btnOff aim-N-LOVE      280deg 280deg /   34%  21% /   37%  29% / Z--  124
+ $btn-$btnOff aim-N-MUPET      62deg  62deg /   29%  20% /   28%  22% / Z--  145
+ $btn-$btnOff ash-BROAD        57deg  57deg /   21%  12% /   37%  31% / Z--  144
+ $btn-$btnOff ash-ELSE        153deg 153deg /   21%  13% /   38%  34% / Z--  127
+ $btn-$btnOff ash-FOAM        182deg 182deg /   21%  13% /   37%  33% / Z--  127
+ $btn-$btnOff ash-GRAVE       199deg 199deg /   21%  13% /   42%  38% / Z--  120
+ $btn-$btnOff ash-MOB          33deg  33deg /   21%  12% /   39%  33% / Z--  133
+ $btn-$btnOff ash-MUPET        82deg  82deg /   21%  13% /   37%  33% / Z--  129
+ $btn-$btnOff ash-VGRAVE      225deg 225deg /   26%  13% /   47%  39% / Z--  120
+ $btn-$btnOff prog-ELSE       153deg 153deg /   45%  37% /   21%  17% / Z--  128
+ $btn-$btnOff prog-MOB         33deg  33deg /   45%  36% /   23%  17% / Z--  131
+ $btn-$btnOff prog-MUPET       82deg  82deg /   45%  37% /   20%  16% / Z--  128
+ $btn-$btnOff shout-D-ELSE    128deg 128deg /   71%  62% /   19%  13% / Z--  146
+ $btn-$btnOff shout-N-ELSE    128deg 128deg /   54%  45% /   26%  20% / Z--  146
+ $btn-$btnOff shout-N-FOAM    167deg 167deg /   53%  44% /   31%  25% / Z--  148
+ $btn-$btnOff shout-N-MOB      21deg  21deg /   54%  45% /   32%  26% / Z--  130
+ $btn-$btnOff stat-BROAD       41deg  41deg /   96%  92% /   19%  17% / Z--  113
+ $btn-$btnOff stat-ELSE       128deg 128deg /   93%  89% /   18%  16% / Z--  116
+ $btn-$btnOff stat-FOAM       167deg 167deg /   83%  79% /   24%  22% / Z--  118
+ $btn-$btnOff stat-GRAVE      187deg 187deg /   87%  79% /   25%  21% / Z--  134
+ $btn-$btnOff stat-LONE       321deg 321deg /   89%  81% /   25%  21% / Z--  119
+ $btn-$btnOff stat-LOVE       280deg 280deg /   90%  82% /   28%  24% / Z--  115
+ $btn-$btnOff stat-MOB         21deg  21deg /   95%  86% /   26%  20% / Z--  133
+ $btn-$btnOff stat-VGRAVE     215deg 215deg /   93%  81% /   34%  28% / Z--  124
+ $btn-$btnOff stat-WOLF       359deg 359deg /   90%  82% /   28%  24% / Z--  120
+ $btn-$btnOff std-D-BROAD      57deg  57deg /   55%  42% /   66%  48% / Z--  157
+ $btn-$btnOff std-D-GRAVE     199deg 199deg /   95%  37% /   89%  73% / Z--  150
+ $btn-$btnOff std-D-MOB        33deg  33deg /   70%  38% /   76%  63% / Z--  146
+ $btn-$btnOff std-D-VGRAVE    225deg 225deg /  100%  36% /   90%  75% / Z--  147
+ $btn-$btnOff std-N-BROAD      41deg  41deg /   50%  41% /   26%  20% / Z--  138
+ $btn-$btnOff std-N-GRAVE     187deg 187deg /   48%  40% /   28%  24% / Z--  129
+ $btn-$btnOff std-N-MOB        21deg  21deg /   49%  40% /   28%  22% / Z--  128
+ $btn-$btnOff std-N-VGRAVE    215deg 215deg /   53%  41% /   34%  28% / Z--  122
+ $btn-$btnOff think-D-FOAM    182deg 182deg /   35%  17% /   58%  50% / Z--  147
+ $btn-$btnOff think-D-MOB      33deg  33deg /   45%  18% /   63%  51% / Z--  155
+ $btn-$btnOff think-D-MUPET    82deg  82deg /   35%  17% /   57%  49% / Z--  150
+ $btn-$btnOff think-N-FOAM    167deg 167deg /   29%  20% /   28%  22% / Z--  141
+ $btn-$btnOff think-N-MOB      21deg  21deg /   30%  22% /   24%  20% / Z--  117
+ $btn-$btnOff think-N-MUPET    62deg  62deg /   30%  21% /   22%  16% / Z--  140
+ $btn-$btnOff title-ELSE      128deg 128deg /   23%  10% /   18%  10% / Z--  137
+ $btn-$btnOff title-LONE      321deg 321deg /   22%  10% /   17%  11% / Z--  117
+ $btn-$btnOff title-VGRAVE    215deg 215deg /   22%   9% /   21%  13% / Z--  128
+ $btn-$btnOff title-bar-BROAD  57deg   0deg /   80%   0% /   25%   0% / A--  395
+ $btn-$btnOff tweet-D-ELSE    153deg 153deg /   65%  52% /   46%  39% / Z--  158
+ $btn-$btnOff tweet-D-FOAM    182deg 182deg /   65%  51% /   44%  39% / Z--  146
+ $btn-$btnOff tweet-D-MOB      33deg  33deg /   65%  50% /   54%  51% / Z--  116
+ $btn-$btnOff tweet-D-WOLF      9deg   9deg /   90%  53% /   69%  55% / Z--  153
+ $btn-$btnOff tweet-N-ELSE    128deg 128deg /  100%  97% /   15%  13% / Z--  116
+ $btn-$btnOff tweet-N-FOAM    167deg 167deg /   98%  94% /   24%  22% / Z--  117
+ $btn-$btnOff tweet-N-MOB      21deg  21deg /  100%  96% /   24%  18% / Z--  132
+ $btn-$btnOff tweet-N-WOLF    359deg 359deg /  100%  95% /   25%  21% / Z--  119
+ $btn-$pen    aim-D-ELSE      153deg 153deg /   50%  26% /   80%  20% / AAA  801
+ $btn-$pen    aim-D-FOAM      182deg 182deg /   50%  26% /   79%  19% / AAA  820
+ $btn-$pen    aim-D-LOVE      290deg 290deg /   80%  25% /   89%  25% / AAA  814
+ $btn-$pen    aim-D-MUPET      82deg  82deg /   50%  25% /   79%  20% / AAA  802
+ $btn-$pen    aim-N-ELSE      128deg 153deg /   29%  25% /   28%  77% / AA-  474
+ $btn-$pen    aim-N-FOAM      167deg 182deg /   28%  25% /   32%  83% / AA-  450
+ $btn-$pen    aim-N-LOVE      280deg 290deg /   34%  25% /   37%  81% / AA-  499
+ $btn-$pen    aim-N-MUPET      62deg  82deg /   29%  25% /   28%  76% / A--  431
+ $btn-$pen    ash-BROAD        57deg  57deg /   21%   0% /   37%  87% / A--  369
+ $btn-$pen    ash-ELSE        153deg 153deg /   21%   0% /   38%  88% / A--  396
+ $btn-$pen    ash-FOAM        182deg 182deg /   21%   0% /   37%  87% / A--  396
+ $btn-$pen    ash-GRAVE       199deg 199deg /   21%   0% /   42%  94% / A--  438
+ $btn-$pen    ash-MOB          33deg  33deg /   21%   0% /   39%  87% / A--  412
+ $btn-$pen    ash-MUPET        82deg  82deg /   21%   0% /   37%  87% / A--  391
+ $btn-$pen    ash-VGRAVE      225deg 225deg /   26%   0% /   47%  90% / A--  443
+ $btn-$pen    prog-ELSE       153deg 153deg /   45%  23% /   21%  59% / A--  390
+ $btn-$pen    prog-MOB         33deg  33deg /   45%  23% /   23%  62% / A--  414
+ $btn-$pen    prog-MUPET       82deg  82deg /   45%  24% /   20%  57% / A--  393
+ $btn-$pen    shout-D-ELSE    128deg 153deg /   71%  65% /   19%  49% / A--  448
+ $btn-$pen    shout-N-ELSE    128deg 153deg /   54%  50% /   26%  73% / A--  443
+ $btn-$pen    shout-N-FOAM    167deg 182deg /   53%  50% /   31%  86% / A--  423
+ $btn-$pen    shout-N-MOB      21deg  33deg /   54%  50% /   32%  77% / AA-  473
+ $btn-$pen    stat-BROAD       41deg  57deg /   96%  99% /   19%  40% / AA-  510
+ $btn-$pen    stat-ELSE       128deg 153deg /   93%  99% /   18%  47% / AA-  546
+ $btn-$pen    stat-FOAM       167deg 182deg /   83%  99% /   24%  83% / AA-  527
+ $btn-$pen    stat-GRAVE      187deg 199deg /   87%  99% /   25%  84% / A--  447
+ $btn-$pen    stat-LONE       321deg 331deg /   89%  99% /   25%  78% / AA-  517
+ $btn-$pen    stat-LOVE       280deg 290deg /   90%  99% /   28%  77% / AA-  522
+ $btn-$pen    stat-MOB         21deg  33deg /   95%  99% /   26%  61% / AA-  461
+ $btn-$pen    stat-VGRAVE     215deg 225deg /   93%  99% /   34%  85% / AA-  493
+ $btn-$pen    stat-WOLF       359deg   9deg /   90%  99% /   28%  77% / AA-  508
+ $btn-$pen    std-D-BROAD      57deg  57deg /   55%  45% /   66%  14% / AAA  833
+ $btn-$pen    std-D-GRAVE     199deg 199deg /   95%  46% /   89%  24% / AAA  800
+ $btn-$pen    std-D-MOB        33deg  33deg /   70%  45% /   76%  17% / AAA  818
+ $btn-$pen    std-D-VGRAVE    225deg 225deg /  100%  45% /   90%  28% / AAA  812
+ $btn-$pen    std-N-BROAD      41deg  57deg /   50%  45% /   26%  62% / AA-  450
+ $btn-$pen    std-N-GRAVE     187deg 199deg /   48%  45% /   28%  82% / AA-  470
+ $btn-$pen    std-N-MOB        21deg  33deg /   49%  45% /   28%  72% / AA-  503
+ $btn-$pen    std-N-VGRAVE    215deg 225deg /   53%  45% /   34%  82% / AA-  493
+ $btn-$pen    think-D-FOAM    182deg 182deg /   35% 100% /   58%   7% / AAA  730
+ $btn-$pen    think-D-MOB      33deg  33deg /   45% 100% /   63%   8% / AAA  753
+ $btn-$pen    think-D-MUPET    82deg  82deg /   35% 100% /   57%   7% / AAA  736
+ $btn-$pen    think-N-FOAM    167deg 182deg /   29%  25% /   28%  71% / A--  399
+ $btn-$pen    think-N-MOB      21deg  33deg /   30%  25% /   24%  63% / A--  445
+ $btn-$pen    think-N-MUPET    62deg  82deg /   30%  25% /   22%  58% / A--  390
+ $btn-$pen    title-ELSE      128deg 153deg /   23%  15% /   18%  63% / AA-  541
+ $btn-$pen    title-LONE      321deg 331deg /   22%  15% /   17%  68% / AA-  609
+ $btn-$pen    title-VGRAVE    215deg 225deg /   22%  15% /   21%  70% / AA-  572
+ $btn-$pen    title-bar-BROAD  57deg  57deg /   80%  52% /   25%  89% / AA-  459
+ $btn-$pen    tweet-D-ELSE    153deg 153deg /   65% 100% /   46%   6% / AAA  757
+ $btn-$pen    tweet-D-FOAM    182deg 182deg /   65% 100% /   44%   5% / AAA  731
+ $btn-$pen    tweet-D-MOB      33deg  33deg /   65% 100% /   54%   5% / AAA  728
+ $btn-$pen    tweet-D-WOLF      9deg   9deg /   90% 100% /   69%   8% / AAA  731
+ $btn-$pen    tweet-N-ELSE    128deg 153deg /  100%  99% /   15%  40% / AA-  468
+ $btn-$pen    tweet-N-FOAM    167deg 182deg /   98%  99% /   24%  78% / A--  443
+ $btn-$pen    tweet-N-MOB      21deg  33deg /  100%  99% /   24%  49% / A--  402
+ $btn-$pen    tweet-N-WOLF    359deg   9deg /  100%  99% /   25%  70% / A--  442
+ $grad-$btn   aim-D-ELSE      103deg 153deg /   95%  50% /   57%  80% / ---  101
+ $grad-$btn   aim-D-FOAM      152deg 182deg /   95%  50% /   56%  79% / ---  100
+ $grad-$btn   aim-D-LOVE      270deg 290deg /   40%  80% /   71%  89% / Z--  178
+ $grad-$btn   aim-D-MUPET      42deg  82deg /  100%  50% /   43%  79% / Z--  180
+ $grad-$btn   aim-N-ELSE       78deg 128deg /   34%  29% /   23%  28% / Z--  114
+ $grad-$btn   aim-N-FOAM      137deg 167deg /   38%  28% /   28%  32% / Z--  114
+ $grad-$btn   aim-N-LOVE      260deg 280deg /  100%  34% /   44%  37% / ---  109
+ $grad-$btn   aim-N-MUPET      22deg  62deg /   59%  29% /   28%  28% / Z--  127
+ $grad-$btn   ash-BROAD        24deg  57deg /   46%  21% /   36%  37% / Z--  125
+ $grad-$btn   ash-ELSE        103deg 153deg /   31%  21% /   34%  38% / ---  108
+ $grad-$btn   ash-FOAM        152deg 182deg /   31%  21% /   33%  37% / Z--  110
+ $grad-$btn   ash-GRAVE       174deg 199deg /   26%  21% /   37%  42% / ---  101
+ $grad-$btn   ash-MOB           8deg  33deg /   66%  21% /   42%  39% / ---  109
+ $grad-$btn   ash-MUPET        42deg  82deg /   36%  21% /   34%  37% / Z--  112
+ $grad-$btn   ash-VGRAVE      205deg 225deg /   36%  26% /   40%  47% / ---  103
+ $grad-$btn   prog-ELSE       103deg 153deg /   55%  45% /   17%  21% / Z--  117
+ $grad-$btn   prog-MOB          8deg  33deg /   85%  45% /   25%  23% / ---  108
+ $grad-$btn   prog-MUPET       42deg  82deg /   65%  45% /   18%  20% / Z--  114
+ $grad-$btn   shout-D-ELSE     78deg 128deg /   76%  71% /   14%  19% / Z--  124
+ $grad-$btn   shout-N-ELSE     78deg 128deg /   59%  54% /   21%  26% / Z--  117
+ $grad-$btn   shout-N-FOAM    137deg 167deg /   63%  53% /   27%  31% / Z--  118
+ $grad-$btn   shout-N-MOB     356deg  21deg /   89%  54% /   33%  32% / ---  108
+ $grad-$btn   stat-BROAD        8deg  41deg /  100%  96% /   27%  19% / ---  103
+ $grad-$btn   stat-ELSE        78deg 128deg /  100%  93% /   17%  18% / ---  105
+ $grad-$btn   stat-FOAM       137deg 167deg /   93%  83% /   23%  24% / ---  102
+ $grad-$btn   stat-GRAVE      162deg 187deg /   92%  87% /   20%  25% / Z--  119
+ $grad-$btn   stat-LONE       301deg 321deg /  100%  89% /   22%  25% / ---  102
+ $grad-$btn   stat-LOVE       260deg 280deg /  100%  90% /   35%  28% / ---  100
+ $grad-$btn   stat-MOB        356deg  21deg /  100%  95% /   26%  26% / Z--  117
+ $grad-$btn   stat-VGRAVE     195deg 215deg /   83%  93% /   23%  34% / ---  104
+ $grad-$btn   stat-WOLF       339deg 359deg /  100%  90% /   26%  28% / ---  102
+ $grad-$btn   std-D-BROAD      24deg  57deg /   45%  55% /   60%  66% / Z--  177
+ $grad-$btn   std-D-GRAVE     174deg 199deg /  100%  95% /   64%  89% / ---  101
+ $grad-$btn   std-D-MOB         8deg  33deg /   55%  70% /   65%  76% / Z--  180
+ $grad-$btn   std-D-VGRAVE    205deg 225deg /  100% 100% /   61%  90% / Z--  176
+ $grad-$btn   std-N-BROAD       8deg  41deg /   90%  50% /   28%  26% / Z--  122
+ $grad-$btn   std-N-GRAVE     162deg 187deg /   58%  48% /   24%  28% / ---  107
+ $grad-$btn   std-N-MOB       356deg  21deg /   84%  49% /   29%  28% / ---  108
+ $grad-$btn   std-N-VGRAVE    195deg 215deg /   53%  53% /   25%  34% / ---  106
+ $grad-$btn   think-D-FOAM    152deg 182deg /  100%  35% /   29%  58% / Z--  173
+ $grad-$btn   think-D-MOB       8deg  33deg /   35%  45% /   53%  63% / Z--  182
+ $grad-$btn   think-D-MUPET    42deg  82deg /  100%  35% /   33%  57% / Z--  181
+ $grad-$btn   think-N-FOAM    137deg 167deg /   39%  29% /   24%  28% / Z--  115
+ $grad-$btn   think-N-MOB     356deg  21deg /   75%  30% /   27%  24% / ---  102
+ $grad-$btn   think-N-MUPET    22deg  62deg /   65%  30% /   23%  22% / Z--  115
+ $grad-$btn   title-ELSE       78deg 128deg /   43%  23% /   13%  18% / Z--  111
+ $grad-$btn   title-LONE      301deg 321deg /   67%  22% /   17%  17% / ---  101
+ $grad-$btn   title-VGRAVE    195deg 215deg /   42%  22% /   16%  21% / ---  108
+ $grad-$btn   title-bar-BROAD  24deg  57deg /   75%  80% /   21%  25% / B--  212
+ $grad-$btn   tweet-D-ELSE    103deg 153deg /  100%  65% /   28%  46% / Z--  181
+ $grad-$btn   tweet-D-FOAM    152deg 182deg /  100%  65% /   27%  44% / Z--  182
+ $grad-$btn   tweet-D-MOB       8deg  33deg /   50%  65% /   51%  54% / Z--  175
+ $grad-$btn   tweet-D-WOLF    349deg   9deg /  100%  90% /   47%  69% / Z--  173
+ $grad-$btn   tweet-N-ELSE     78deg 128deg /  100% 100% /   14%  15% / ---  100
+ $grad-$btn   tweet-N-FOAM    137deg 167deg /  100%  98% /   24%  24% / ---  102
+ $grad-$btn   tweet-N-MOB     356deg  21deg /  100% 100% /   25%  24% / Z--  113
+ $grad-$btn   tweet-N-WOLF    339deg 359deg /  100% 100% /   24%  25% / ---  102
 ./static/css/index.css <== ./src/scss/index.sass
 ./static/css/log-day.css <== ./src/scss/log-day.sass
 ./static/css/log-night.css <== ./src/scss/log-night.sass
