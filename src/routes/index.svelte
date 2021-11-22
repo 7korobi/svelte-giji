@@ -8,13 +8,14 @@ import uri from '$lib/uri'
 import fire from '$lib/fire'
 import { new_plan, random_test } from '$lib/pubsub/extra/query'
 import { story_reduce } from '$lib/pubsub/book/query'
-import { Ables, Roles } from '$lib/pubsub/map-reduce'
+import { Ables, Roles, SayLimits } from '$lib/pubsub/map-reduce'
 
 const { user } = fire
 const page = uri.hash()
 
 $: console.log($Roles)
 $: console.log($Ables)
+$: console.log($SayLimits)
 
 new_plan
 random_test

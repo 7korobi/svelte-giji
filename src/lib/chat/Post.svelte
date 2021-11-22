@@ -2,6 +2,7 @@
 import { deco } from './deco'
 
 export let handle: string = 'VSSAY'
+export let face_id: string = 'undef'
 </script>
 
 <div class="post">

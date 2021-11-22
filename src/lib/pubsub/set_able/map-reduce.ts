@@ -56,10 +56,4 @@ export const Ables = MapReduce({
   order: (o, { sort }) => {}
 })
 
-const list: Able[] = []
-for (const _id in json) {
-  const o = json[_id]
-  o._id = _id
-  list.push(o)
-}
-Ables.add(list)
+Ables.deploy(json)

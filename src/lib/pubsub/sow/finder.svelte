@@ -23,16 +23,16 @@ function submenu() {
   <button on:click={reset}><Erase /></button>
 </span><span>
   <Btn as="vid" bind:value onToggle={submenu}>州<Sup value={g.folder_id.length} /></Btn>
-  <Btn as="rating" bind:value onToggle={submenu}>こだわり<Sup value={g.rating.length} /></Btn>
+  <Btn as="rating" bind:value onToggle={submenu}>こだわり<Sup value={g.mark.length} /></Btn>
 </span><span>
-  <Btn as="timer.updateddt" bind:value onToggle={submenu}
-    >年月日<Sup value={g.monthry.length} /></Btn
-  >
+  <Btn as="write_at" bind:value onToggle={submenu}>年月日<Sup value={g.monthry.length} /></Btn>
   <Btn as="upd_range" bind:value onToggle={submenu}>更新間隔<Sup value={g.upd_range.length} /></Btn>
   <Btn as="upd_at" bind:value onToggle={submenu}>更新時刻<Sup value={g.upd_at.length} /></Btn>
 </span><span>
   <Btn as="vpl.0" bind:value onToggle={submenu}>人数<Sup value={g.size.length} /></Btn>
-  <Btn as="say.label" bind:value onToggle={submenu}>発言ルール<Sup value={g.say.length} /></Btn>
+  <Btn as="say.label" bind:value onToggle={submenu}
+    >発言ルール<Sup value={g.say_limit.length} /></Btn
+  >
   <Btn as="game.label" bind:value onToggle={submenu}>ゲーム<Sup value={g.game.length} /></Btn>
 </span><span>
   <Btn as="sow_auth_id" bind:value onToggle={submenu}

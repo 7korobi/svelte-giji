@@ -1,7 +1,24 @@
-import type { MoodType, RoleType } from '../_type/enum'
 import type { AccountID } from '../_type/id'
 import type { presentation } from '../_type/string'
-import type { FOLDER_IDX, SAYCNT, VOTETYPE, GAME, Folder, Event } from '../map-reduce'
+import type {
+  FOLDER_IDX,
+  SAYCNT,
+  VOTETYPE,
+  GAME,
+  Folder,
+  Event,
+  SayLimit,
+  ROLE_ID,
+  MobRole,
+  MOB,
+  Mark,
+  Game,
+  RoleTable,
+  OPTION_ID,
+  Option,
+  MARK_ID,
+  Role
+} from '../map-reduce'
 
 export type Story = {
   _id: STORY_ID
@@ -12,29 +29,43 @@ export type Story = {
 
   folder?: Folder
   prologue?: Event
+  say_limit: SayLimit
+  mob_role: MobRole
+  game: Game
+  role_table: RoleTable
+  marks: Mark[]
+  options: Option[]
+  events: (Role & { count: number })[]
+  configs: (Role & { count: number })[]
+  discards: (Role & { count: number })[]
+
+  type: {
+    say: SAYCNT
+    mob: MOB
+    game: GAME
+    vote: VOTETYPE
+    roletable: ROLETABLE
+  }
 
   is_epilogue: boolean
   is_finish: boolean
   is_full_commit: boolean
+
+  write_at: number
+
   vpl: [number, number]
-  rating: MoodType
-  options: BOOK_OPTION[]
-  type: {
-    say: SAYCNT
-    vote: VOTETYPE
-    roletable: ROLETABLE
-    mob: MOB
-    game: GAME
-  }
+  rating: MARK_ID
+  option_ids: OPTION_ID[]
+  mark_ids: MARK_ID[]
   upd: {
     interval: number
     hour: number
     minute: number
   }
   card: {
-    event: string[]
-    discard: RoleType[]
-    config: RoleType[]
+    event: ROLE_ID[]
+    discard: ROLE_ID[]
+    config: ROLE_ID[]
   }
   timer: {
     updateddt: Date
@@ -44,27 +75,18 @@ export type Story = {
     scraplimitdt: Date
   }
   name: presentation
+  upd_range: presentation
+  upd_at: presentation
+  size: presentation
 
   password?: presentation
   comment?: presentation
-  write_at?: number
 }
 
 export type STORY_IDX = number
 export type STORY_ID = `${FOLDER_IDX}-${STORY_IDX}`
 
-export type BOOK_OPTION = typeof BOOK_OPTIONS[number]
 export type ROLETABLE = typeof ROLETABLES[number]
-export type MOB = typeof MOBS[number]
-
-export const BOOK_OPTIONS = [
-  'aiming-talk',
-  'entrust',
-  'random-target',
-  'select-role',
-  'seq-event',
-  'undead-talk'
-] as const
 
 export const ROLETABLES = [
   'custom',
@@ -80,5 +102,3 @@ export const ROLETABLES = [
   'wbbs_f',
   'wbbs_g'
 ] as const
-
-export const MOBS = ['alive', 'gamemaster', 'grave', 'juror', 'visiter']

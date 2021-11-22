@@ -3,16 +3,7 @@ import type { LiveType, RoleType } from '../_type/enum'
 import type { AccountID, FaceID, PotofIDX } from '../_type/id'
 import type { presentation } from '../_type/string'
 import type { STORY_ID, EVENT_ID, EVENT_IDX } from '../map-reduce'
-
-export type SayLimit = {
-  say_act?: number
-  say: number
-  tsay: number
-  spsay?: number
-  wsay?: number
-  xsay?: number
-  gsay?: number
-}
+import type { SayLimit } from '../set_say/map-reduce'
 
 export type Potof = {
   _id: ObjectId

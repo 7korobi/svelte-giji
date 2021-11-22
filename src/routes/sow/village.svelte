@@ -40,16 +40,14 @@ function entrySearch() {
   order = 'name'
   drill = false
 }
-
-function rating_img(rating: string) {
-  return `${$url.icon}/cd_${rating}.png`
-}
 </script>
 
 <Post handle="btns">
-  <OldlogsGroup bind:value={order} />
+  <OldlogsGroup bind:value={order} bind:drill />
   <input type="text" bind:value={order} on:focus={entrySearch} />
-  <sub style="width: 100%">{$oldlogs_stories.list.length}村があてはまります。</sub>
+  <p>
+    <sub style="width: 100%">{$oldlogs_stories.list.length}村があてはまります。</sub>
+  </p>
 </Post>
 
 <Report handle="btns">
@@ -102,8 +100,10 @@ function rating_img(rating: string) {
 
     {#if order === 'rating'}
       <p>
-        {#each g.rating as o (o._id)}
-          <Btn bind:value={rating} as={[o._id]}>{rating_img(o._id)}<Sup value={o.count} /></Btn>
+        {#each g.mark as o (o._id)}
+          <Btn bind:value={rating} as={[o._id]}
+            ><img class="mark" alt="" src="{$url.icon}{o.file}" /><Sup value={o.count} /></Btn
+          >
         {/each}
       </p>
     {/if}
@@ -119,7 +119,7 @@ function rating_img(rating: string) {
     {#if order === 'card.option'}
       <p>
         {#each g.option as o (o._id)}
-          <Btn bind:value={option} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+          <Btn bind:value={option} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
@@ -127,7 +127,7 @@ function rating_img(rating: string) {
     {#if order === 'card.event'}
       <p>
         {#each g.event as o (o._id)}
-          <Btn bind:value={event} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+          <Btn bind:value={event} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
@@ -135,7 +135,7 @@ function rating_img(rating: string) {
     {#if order === 'card.config'}
       <p>
         {#each g.config as o (o._id)}
-          <Btn bind:value={config} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+          <Btn bind:value={config} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
@@ -143,15 +143,15 @@ function rating_img(rating: string) {
     {#if order === 'card.discard'}
       <p>
         {#each g.discard as o (o._id)}
-          <Btn bind:value={discard} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+          <Btn bind:value={discard} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
 
     {#if order === 'say.label'}
       <p>
-        {#each g.say as o (o._id)}
-          <Btn bind:value={say} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+        {#each g.say_limit as o (o._id)}
+          <Btn bind:value={say} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
@@ -171,13 +171,18 @@ function rating_img(rating: string) {
     <Report handle="MAKER">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>
-        <a href="/sow/show?book_id={o._id}&top&full">{o.name}</a>
+        <a href="/sow/show?book_id={o._id}&full">{o.name}</a>
       </p>
       <div class="cards">
         <table class="btns card" style="width: 33%">
           <tbody>
             <tr>
-              <th><kbd style="width: 40px"><img class="mark" src={rating_img(o.rating)} /></kbd></th
+              <th
+                ><kbd>
+                  {#each o.marks as mark (mark._id)}
+                    <img class="mark" alt="" src="{$url.icon}{mark.file}" />
+                  {/each}
+                </kbd></th
               >
               <td>{o._id}</td>
             </tr>
@@ -187,7 +192,7 @@ function rating_img(rating: string) {
             </tr>
             <tr>
               <th>規模</th>
-              <td>{o.size}人 {o.say}</td>
+              <td>{o.size}人 <wbr />{o.say_limit.label}</td>
             </tr>
             <tr>
               <td colspan="2">
@@ -198,27 +203,37 @@ function rating_img(rating: string) {
         </table>
         <div class="card" style="width: 66%">
           <p>
-            <a class="label {o.mob.win}" v-if="o.mob">{o.mob.label}</a>
-            <a class="label" v-if="o.game">{o.game.label}</a>
-            <template v-for="opt in o.option_datas.list">
-              <wbr /><a class="label">{opt.label}</a>
-            </template>
+            {#if o.mob_role}
+              <wbr /><span class="label {o.mob_role.win || 'btns'}">{o.mob_role.label}</span>
+            {/if}
+            {#if o.game}
+              <wbr /><span class="label btns">{o.game.label}</span>
+            {/if}
+            {#each o.options as opt (opt.label)}
+              <wbr /><span class="label btns">{opt.label}</span>
+            {/each}
           </p>
           <p>
-            <template v-if="role" v-for="role in o.roles.config">
-              <wbr /><a class="label" :class="role.win">{role.label}<Sup value={role.count} /></a>
-            </template>
+            {#each o.configs as role (role._id)}
+              <wbr /><span class="label {role.win || 'btns'}"
+                >{role.label}<Sup value={role.count} /></span
+              >
+            {/each}
           </p>
           <hr />
           <p>
-            <template v-if="role" v-for="role in o.roles.event">
-              <wbr /><a class="label" :class="role.win">{role.label}<Sup value={role.count} /></a>
-            </template>
+            {#each o.events as role (role._id)}
+              <wbr /><span class="label {role.win || 'btns'}"
+                >{role.label}<Sup value={role.count} /></span
+              >
+            {/each}
           </p>
           <p>
-            <template v-if="role" v-for="role in o.roles.discard">
-              <wbr /><a class="label" :class="role.win">{role.label}<Sup value={role.count} /></a>
-            </template>
+            {#each o.discards as role (role._id)}
+              <wbr /><span class="label {role.win || 'btns'}"
+                >{role.label}<Sup value={role.count} /></span
+              >
+            {/each}
           </p>
         </div>
       </div>
@@ -226,8 +241,19 @@ function rating_img(rating: string) {
   </Focus>
 {/each}
 
-<Report handle="footer" key="limitup">
-  <scrollmine v-if="page_next_idx" on:input={() => 1} :as="page_next_idx">次頁</scrollmine>
+<Report handle="footer">
+  <scrollmine v-if="page_next_idx" on:input={() => 1} as="page_next_idx">次頁</scrollmine>
 </Report>
 
 <Poll {...oldlogs()} />
+
+<style lang="scss">
+.cards {
+  display: flex;
+  flex: row;
+}
+
+img.mark {
+  height: 2.5ex;
+}
+</style>

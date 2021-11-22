@@ -6,6 +6,8 @@ import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/set_roles.json'
 
 export type ROLE_ID = keyof typeof json
+export type MOB = typeof MOBS[number]
+
 export type Role =
   | disabledRole
   | HideRole
@@ -64,8 +66,8 @@ type LiveRole = {
   help: presentation
 }
 
-type MobRole = {
-  _id: ROLE_ID
+export type MobRole = {
+  _id: MOB
   group: 'MOB'
   win: 'MOB' | 'HUMAN'
   able_ids: ABLE_ID
@@ -160,6 +162,7 @@ type BindRole = {
   help: presentation
 }
 
+export const MOBS = ['alive', 'gamemaster', 'grave', 'juror', 'visiter'] as const
 export const Roles = MapReduce({
   format: () => {
     return {
@@ -173,10 +176,4 @@ export const Roles = MapReduce({
   order: (o, { sort }) => {}
 })
 
-const list: Role[] = []
-for (const _id in json) {
-  const o = json[_id]
-  o._id = _id
-  list.push(o)
-}
-Roles.add(list)
+Roles.deploy(json)

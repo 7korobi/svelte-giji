@@ -1,3 +1,5 @@
+import type { DIC } from './dic'
+import type { SortCmd } from './fast-sort'
 import { writable } from 'svelte/store'
 import { __BROWSER__ } from '$lib/browser/device'
 import * as dic from './dic'
@@ -53,11 +55,11 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
 }: MapReduceProps<F, OrderArgs>) {
   const hash = {} as { [id: string]: F['list'][number] }
   const data = format()
-  const find = (id: F['list'][number]['_id']) => hash[id.toString()]
+  const find = (id: F['list'][number]['_id']) => hash[id]
   const { subscribe, set } = writable<F>(format(), __BROWSER__ ? start : undefined)
   let sArgs = [] as OrderArgs
 
-  return { add, del, find, sort, format, data, subscribe }
+  return { deploy, add, del, find, reduce: doReduce, sort, format, data, subscribe }
 
   function sort(...sa: OrderArgs) {
     if (order) order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
@@ -71,6 +73,30 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
       data.list.push(doc)
       reduce(data, doc)
     }
+  }
+
+  function deploy(json: any) {
+    const list: F['list'][number][] = []
+    for (const _id in json) {
+      const o = json[_id]
+      o._id = _id
+      list.push(o)
+    }
+    add(list)
+  }
+
+  function doReduce<EMIT>(
+    ids: F['list'][number]['_id'][],
+    emit: (o: EMIT) => void
+  ): SortCmd<F['list'][number] & EMIT> {
+    const hash: DIC<F['list'][number] & EMIT> = {}
+    for (const id of ids) {
+      const key: any = id
+      const item = find(id)
+      if (!item) continue
+      emit((hash[key] ||= { ...item }))
+    }
+    return dic.sort(hash)
   }
 
   function add(docs: F['list'][number][]) {

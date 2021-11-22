@@ -22,3 +22,4 @@ export let stack
 <Post handle="WSAY">
   <p class="text">{stack}</p>
 </Post>
+<slot />
