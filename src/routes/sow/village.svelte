@@ -168,7 +168,7 @@ function entrySearch() {
 
 {#each $oldlogs_stories.list as o (o._id)}
   <Focus id={o._id} bind:value={$page}>
-    <Report handle="MAKER">
+    <Report handle="TITLE">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>
         <a href="/sow/show?book_id={o._id}&full">{o.name}</a>
@@ -203,17 +203,18 @@ function entrySearch() {
         </table>
         <div class="card" style="width: 66%">
           <p>
+            {#if o.game}
+              {o.game.label}
+            {/if}
             {#if o.mob_role}
               <wbr /><span class="label {o.mob_role.win || 'btns'}">{o.mob_role.label}</span>
-            {/if}
-            {#if o.game}
-              <wbr /><span class="label btns">{o.game.label}</span>
             {/if}
             {#each o.options as opt (opt.label)}
               <wbr /><span class="label btns">{opt.label}</span>
             {/each}
           </p>
           <p>
+            {o.role_table.label}
             {#each o.configs as role (role._id)}
               <wbr /><span class="label {role.win || 'btns'}"
                 >{role.label}<Sup value={role.count} /></span
@@ -222,6 +223,7 @@ function entrySearch() {
           </p>
           <hr />
           <p>
+            事件
             {#each o.events as role (role._id)}
               <wbr /><span class="label {role.win || 'btns'}"
                 >{role.label}<Sup value={role.count} /></span
@@ -229,6 +231,7 @@ function entrySearch() {
             {/each}
           </p>
           <p>
+            破棄
             {#each o.discards as role (role._id)}
               <wbr /><span class="label {role.win || 'btns'}"
                 >{role.label}<Sup value={role.count} /></span

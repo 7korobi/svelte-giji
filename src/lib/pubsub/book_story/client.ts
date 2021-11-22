@@ -76,8 +76,14 @@ export const stories = model({
     doc.say_limit = SayLimits.find(doc.type.say)
 
     doc.events = Roles.reduce(doc.card.event, emit).desc(by_count)
-    doc.configs = Roles.reduce(doc.card.config, emit).desc(by_count)
     doc.discards = Roles.reduce(doc.card.discard, emit).desc(by_count)
+
+    let config_role_ids = doc.card.config
+    if (doc.role_table._id !== 'custom') {
+      const table_role_ids = doc.role_table.role_ids_list[doc.vpl[0]] || []
+      config_role_ids = [...config_role_ids.filter((o) => 'mob' === o), ...table_role_ids]
+    }
+    doc.configs = Roles.reduce(config_role_ids, emit).desc(by_count)
 
     const option_ids = doc.options as any
     doc.options = option_ids.map(Options.find).filter(by_this)

@@ -200,7 +200,7 @@ packages:
       '@firebase/component': 0.5.9
       '@firebase/util': 1.4.2
       node-fetch: 2.6.5
-      selenium-webdriver: 4.0.0
+      selenium-webdriver: 4.1.0
       tslib: 2.3.1
     transitivePeerDependencies:
       - '@firebase/app'
@@ -2804,8 +2804,8 @@ packages:
       glob: 7.2.0
     dev: false
 
-  /rollup/2.60.0:
-    resolution: {integrity: sha512-cHdv9GWd58v58rdseC8e8XIaPUo8a9cgZpnCMMDGZFDZKEODOiPPEQFXLriWr/TjXzhPPmG5bkAztPsOARIcGQ==}
+  /rollup/2.60.1:
+    resolution: {integrity: sha512-akwfnpjY0rXEDSn1UTVfKXJhPsEBu+imi1gqBA1ZkHGydUnkV/fWCC90P7rDaLEW8KTwBcS1G3N4893Ndz+jwg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -2862,8 +2862,8 @@ packages:
     resolution: {integrity: sha1-8aAymzCLIh+uN7mXTz1XjQypmeM=}
     dev: true
 
-  /selenium-webdriver/4.0.0:
-    resolution: {integrity: sha512-tOlu6FnTjPq2FKpd153pl8o2cB7H40Rvl/ogiD2sapMv4IDjQqpIxbd+swDJe9UDLdszeh5CDis6lgy4e9UG1w==}
+  /selenium-webdriver/4.0.0-rc-1:
+    resolution: {integrity: sha512-bcrwFPRax8fifRP60p7xkWDGSJJoMkPAzufMlk5K2NyLPht/YZzR2WcIk1+3gR8VOCLlst1P2PI+MXACaFzpIw==}
     engines: {node: '>= 10.15.0'}
     dependencies:
       jszip: 3.7.1
@@ -2875,12 +2875,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /selenium-webdriver/4.0.0-rc-1:
-    resolution: {integrity: sha512-bcrwFPRax8fifRP60p7xkWDGSJJoMkPAzufMlk5K2NyLPht/YZzR2WcIk1+3gR8VOCLlst1P2PI+MXACaFzpIw==}
+  /selenium-webdriver/4.1.0:
+    resolution: {integrity: sha512-kUDH4N8WruYprTzvug4Pl73Th+WKb5YiLz8z/anOpHyUNUdM3UzrdTOxmSNaf9AczzBeY+qXihzku8D1lMaKOg==}
     engines: {node: '>= 10.15.0'}
     dependencies:
       jszip: 3.7.1
-      rimraf: 3.0.2
       tmp: 0.2.1
       ws: 8.2.3
     transitivePeerDependencies:
@@ -3317,7 +3316,7 @@ packages:
       joycon: 3.0.1
       postcss-load-config: 3.1.0
       resolve-from: 5.0.0
-      rollup: 2.60.0
+      rollup: 2.60.1
       sucrase: 3.20.3
       tree-kill: 1.2.2
       typescript: 4.5.2
@@ -3440,7 +3439,7 @@ packages:
       esbuild: 0.13.15
       postcss: 8.3.11
       resolve: 1.20.0
-      rollup: 2.60.0
+      rollup: 2.60.1
       sass: 1.43.4
     optionalDependencies:
       fsevents: 2.3.2
