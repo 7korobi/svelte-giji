@@ -6,8 +6,8 @@ export const message_for_face = model({
   format: () => ({
     list: [] as MessageForFace[]
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {}
+  reduce(data, doc) {},
+  order(data, { sort }) {}
 })
 
 export const potof_for_face = model({
@@ -24,6 +24,6 @@ export const potof_for_face_sow_auth_max = model({
   format: () => ({
     list: [] as PotofForFaceSowAuthMax[]
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {}
+  reduce(data, doc) {},
+  order(data, { sort }) {}
 })

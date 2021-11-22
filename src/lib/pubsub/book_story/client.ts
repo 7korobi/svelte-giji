@@ -1,58 +1,65 @@
-import type { ARY, DIC } from '$lib/map-reduce'
-import type { Story } from '../map-reduce'
+import type { DIC } from '$lib/map-reduce'
+import type { STORY_ID, Story, EVENT_ID } from '../map-reduce'
 import { dic } from '$lib/map-reduce'
 import { model } from '$lib/db/socket.io-client'
 import format from 'date-fns/format/index.js'
 import locale from 'date-fns/locale/ja/index.js'
+import { Folders } from '../map-reduce'
+import { events } from '../model-client'
+
+type CountBy = DIC<{ count: number }>
+type Counts = { _id: string; count: number }[]
 
 export const stories = model({
-  qid: (ids) => ids.toString,
+  qid: (ids: STORY_ID[]) => ids.toString(),
   format: () => ({
     list: [] as Story[],
     oldlog: {} as DIC<Story[]>,
     base: {
-      in_month: {} as DIC<{ count: number }>,
-      yeary: {} as DIC<{ count: number }>,
-      monthry: {} as DIC<{ count: number }>,
-      folder_id: {} as DIC<{ count: number }>,
-      upd_range: {} as DIC<{ count: number }>,
-      upd_at: {} as DIC<{ count: number }>,
-      sow_auth_id: {} as DIC<{ count: number }>,
-      rating: {} as DIC<{ count: number }>,
-      size: {} as DIC<{ count: number }>,
-      say: {} as DIC<{ count: number }>,
-      game: {} as DIC<{ count: number }>,
-      mob: {} as DIC<{ count: number }>,
-      option: {} as DIC<{ count: number }>,
-      event: {} as DIC<{ count: number }>,
-      discard: {} as DIC<{ count: number }>,
-      config: {} as DIC<{ count: number }>
+      in_month: {} as CountBy,
+      yeary: {} as CountBy,
+      monthry: {} as CountBy,
+      folder_id: {} as CountBy,
+      upd_range: {} as CountBy,
+      upd_at: {} as CountBy,
+      sow_auth_id: {} as CountBy,
+      rating: {} as CountBy,
+      size: {} as CountBy,
+      say: {} as CountBy,
+      game: {} as CountBy,
+      mob: {} as CountBy,
+      option: {} as CountBy,
+      event: {} as CountBy,
+      discard: {} as CountBy,
+      config: {} as CountBy
     },
     group: {
-      in_month: [] as { _id: string; count: number }[],
-      yeary: [] as { _id: string; count: number }[],
-      monthry: [] as { _id: string; count: number }[],
-      folder_id: [] as { _id: string; count: number }[],
-      upd_range: [] as { _id: string; count: number }[],
-      upd_at: [] as { _id: string; count: number }[],
-      sow_auth_id: [] as { _id: string; count: number }[],
-      rating: [] as { _id: string; count: number }[],
-      size: [] as { _id: string; count: number }[],
-      say: [] as { _id: string; count: number }[],
-      game: [] as { _id: string; count: number }[],
-      mob: [] as { _id: string; count: number }[],
-      option: [] as { _id: string; count: number }[],
-      event: [] as { _id: string; count: number }[],
-      discard: [] as { _id: string; count: number }[],
-      config: [] as { _id: string; count: number }[]
+      in_month: [] as Counts,
+      yeary: [] as Counts,
+      monthry: [] as Counts,
+      folder_id: [] as Counts,
+      upd_range: [] as Counts,
+      upd_at: [] as Counts,
+      sow_auth_id: [] as Counts,
+      rating: [] as Counts,
+      size: [] as Counts,
+      say: [] as Counts,
+      game: [] as Counts,
+      mob: [] as Counts,
+      option: [] as Counts,
+      event: [] as Counts,
+      discard: [] as Counts,
+      config: [] as Counts
     }
   }),
   reduce: (data, doc) => {
+    doc.folder_id = (doc.folder as any).toLowerCase()
+    doc.folder = Folders.find(doc.folder_id)
+
     const updated_at = new Date(doc.timer.updateddt)
     const in_month = format(updated_at, 'MM月', { locale })
     const yeary = format(updated_at, 'yyyy年', { locale })
     const monthry = yeary + in_month
-    const folder_id = doc.folder.toLowerCase()
     const upd_range = `${doc.upd.interval * 24}h`
     const upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`
     const size = `x${doc.vpl[0]}`
@@ -63,12 +70,12 @@ export const stories = model({
 
     doc.write_at = updated_at.getTime()
 
-    dic(data.oldlog, doc.folder.toLowerCase(), []).push(doc)
+    dic(data.oldlog, doc.folder_id, []).push(doc)
     dic(data.oldlog, 'all', []).push(doc)
     emit(dic(data.base.in_month, in_month, {}))
     emit(dic(data.base.yeary, yeary, {}))
     emit(dic(data.base.monthry, monthry, {}))
-    emit(dic(data.base.folder_id, folder_id, {}))
+    emit(dic(data.base.folder_id, doc.folder_id, {}))
     emit(dic(data.base.folder_id, 'all', {}))
     emit(dic(data.base.upd_range, upd_range, {}))
     emit(dic(data.base.upd_at, upd_at, {}))
@@ -132,10 +139,12 @@ export const story_summary = model({
     list: [] as Story[],
     folder: {} as DIC<{ list: Story[] }>
   }),
-  reduce: (data, doc) => {
-    dic(data.folder, doc.folder.toLowerCase(), {}, 'list', []).push(doc)
+  reduce(data, doc) {
+    doc.folder_id = (doc.folder as any).toLowerCase()
+    doc.folder = Folders.find(doc.folder_id)
+    dic(data.folder, doc.folder_id, {}, 'list', []).push(doc)
   },
-  order: (data, { sort }) => {
+  order(data, { sort }) {
     sort(data.list).desc((o) => o.timer.nextcommitdt)
   }
 })

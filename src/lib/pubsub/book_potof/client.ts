@@ -7,8 +7,8 @@ export const potofs = model({
   format: () => ({
     list: [] as Potof[]
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }, is_asc: boolean, order: (o: Potof) => any) => {
+  reduce(data, doc) {},
+  order(data, { sort }, is_asc: boolean, order: (o: Potof) => any) {
     if (is_asc) {
       sort(data.list).asc(order)
     } else {

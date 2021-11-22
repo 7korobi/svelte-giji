@@ -10,22 +10,46 @@ export type BaseF<T> = {
   list: T[]
 }
 
-export type MapReduceProps<F extends { list: BaseT<any>[] }, OrderArgs extends any[]> = {
+export type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[]> = {
   format: () => F
-  order: (
-    o: F,
-    option: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
-    ...args: OrderArgs
-  ) => void
   reduce: (o: F, doc: F['list'][number]) => void
+  order: (o: F, utils: typeof OrderUtils, ...args: OrderArgs) => void
   start?: (set: (value: F) => void) => void | (() => void)
+}
+
+export const OrderUtils = {
+  sort: dic.sort,
+  group_sort: dic.group_sort
+}
+
+type LookupProps<F, OrderArgs extends any[]> = {
+  format: () => F
+  subscribe: (set: (value: F) => void, lookup: LookupProps<F, OrderArgs>) => void
+  order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void
+}
+
+export function lookup<F, OrderArgs extends any[]>(o: LookupProps<F, OrderArgs>) {
+  const data = o.format()
+  const { subscribe, set } = writable<F>(data, (set) => {
+    o.subscribe((data) => {
+      sort(...sArgs)
+      set(data)
+    }, o)
+  })
+
+  let sArgs = [] as OrderArgs
+  return { sort, format: o.format, data, subscribe }
+  function sort(...sa: OrderArgs) {
+    if (o.order) o.order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
+    set(data)
+  }
 }
 
 export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   format,
   reduce,
   order,
-  start = undefined
+  start
 }: MapReduceProps<F, OrderArgs>) {
   const hash = {} as { [id: string]: F['list'][number] }
   const data = format()
@@ -36,7 +60,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   return { add, del, find, sort, format, data, subscribe }
 
   function sort(...sa: OrderArgs) {
-    order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
+    if (order) order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
     set(data)
   }
 

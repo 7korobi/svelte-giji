@@ -15,7 +15,11 @@ type ModelLive<T extends Document, MatchArgs extends any[], MatchReturn> = {
   query($match: MatchReturn): Promise<T[]>
 
   isLive(...args: MatchArgs): Promise<boolean>
-  live($match: MatchReturn, set: (docs: T) => void, del: (id: T['_id']) => void): ChangeStream<T>
+  live(
+    $match: MatchReturn,
+    set: (docs: T[]) => void,
+    del: (ids: T['_id'][]) => void
+  ): ChangeStream<T>
 
   set(doc: T): Promise<ModifyResult<T>>
   del(ids: T['_id'][]): Promise<DeleteResult>
@@ -76,9 +80,10 @@ async function query(socket: Socket, name: string, ...args: any[]) {
 
   socket.emit(`SET:${api}`, QUERY[api].cache)
 
-  if (!MODEL[name].isLive) return
-  if (!(await MODEL[name].isLive(...args))) return
-  init(socket, name, api, ...args)
+  if (MODEL[name].isLive) {
+    const isLive = await MODEL[name].isLive(...args)
+    if (isLive) init(socket, name, api, ...args)
+  }
 }
 
 function init(socket: Socket, name: string, api: string, ...args: any[]) {
@@ -134,7 +139,8 @@ export async function del(name: string, ids: any[]) {
 }
 
 export function getApi(name: string, ...args: any[]) {
-  return STORE[name].qid(...args)
+  const { qid } = STORE[name]
+  return `${name}(${qid(...args)})`
 }
 
 export function model<T, MatchArgs extends any[], MatchReturn>(
@@ -143,7 +149,10 @@ export function model<T, MatchArgs extends any[], MatchReturn>(
   return o
 }
 
-export function modelAsMongoDB<T extends { _id: any }>(collection: string, $project?: DIC<0 | 1>) {
+export function modelAsMongoDB<T extends { _id: any }>(
+  collection: string,
+  $project?: DIC<0> | DIC<1>
+) {
   const table = () => db().collection<T>(collection)
 
   return {
@@ -155,8 +164,16 @@ export function modelAsMongoDB<T extends { _id: any }>(collection: string, $proj
       $match: any,
       set: ($set: T) => Promise<ModifyResult<T>>,
       del: (ids: T['_id'][]) => Promise<DeleteResult>
-    ) => watch(set, del, table, $project ? [{ $match }, { $project }] : [{ $match }]),
-    query: async ($match: any) => table().find($match).toArray()
+    ) => watch(set, del, table(), pipeline($match)),
+    query: async ($match: any) => table().aggregate(pipeline($match)).toArray()
+  }
+
+  function pipeline($match: any) {
+    if ($project) {
+      return [{ $match }, { $project }]
+    } else {
+      return [{ $match }]
+    }
   }
 }
 

@@ -18,10 +18,10 @@ export async function dbBoot(url: string) {
 export function watch<K, T>(
   set: (docs: T) => void,
   del: (ids: K) => void,
-  model: () => Collection<T>,
+  model: Collection<T>,
   pipeline: Document[]
 ) {
-  return model()
+  return model
     .watch<T>(pipeline, { fullDocument: 'updateLookup' })
     .on('change', ({ operationType, documentKey, fullDocument }) => {
       switch (operationType) {

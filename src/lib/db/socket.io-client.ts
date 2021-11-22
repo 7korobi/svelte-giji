@@ -1,7 +1,6 @@
 import type { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import type { Readable } from 'svelte/store'
-import type { BaseF, BaseT, MapReduceProps } from '$lib/map-reduce'
-import type * as dic from '$lib/map-reduce/dic'
+import type { BaseF, BaseT, MapReduceProps, OrderUtils } from '$lib/map-reduce'
 
 import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
@@ -14,10 +13,15 @@ type QueryProps<MatchArgs extends any[]> = {
   qid: (...args: MatchArgs) => string
 }
 
+type StoreQuery<F extends BaseF<BaseT<any>>, OrderArgs extends any[]> = Readable<F> & {
+  find(id: F['list'][number]['_id']): F['list'][number]
+  sort(...args: OrderArgs): void
+}
+
 type StoreEntry<
   F extends BaseF<BaseT<any>>,
-  MatchArgs extends any[],
-  OrderArgs extends any[]
+  OrderArgs extends any[],
+  MatchArgs extends any[]
 > = QueryProps<MatchArgs> & MapReduceProps<F, OrderArgs>
 export type BaseStoreEntry = StoreEntry<BaseF<BaseT<any>>, any[], any[]>
 
@@ -33,17 +37,13 @@ export function model<
   OrderArgs extends any[],
   MatchArgs extends any[]
 >(
-  props: StoreEntry<F, MatchArgs, OrderArgs>
+  props: StoreEntry<F, OrderArgs, MatchArgs>
 ): {
   name?: string
   qid: (...args: MatchArgs) => string
   format: () => F
   reduce: (o: F, doc: F['list'][number]) => void
-  order: (
-    o: F,
-    { sort, group_sort }: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
-    ...args: OrderArgs
-  ) => void
+  order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void
 }
 
 export function model<F extends BaseF<BaseT<any>>, OrderArgs extends any[]>(
@@ -51,21 +51,11 @@ export function model<F extends BaseF<BaseT<any>>, OrderArgs extends any[]>(
 ): {
   format: () => F
   reduce: (o: F, doc: F['list'][number]) => void
-  order: (
-    o: F,
-    { sort, group_sort }: { sort: typeof dic.sort; group_sort: typeof dic.group_sort },
-    ...args: OrderArgs
-  ) => void
+  order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void
 }
 
 export function model(props: any) {
-  if (!props.qid) return props
-
-  const o = { ...props, qid }
-  return o
-  function qid(...args: any[]) {
-    return `${o.name}(${props.qid(...args)})`
-  }
+  return props
 }
 
 export default function client(uri: string, stores: typeof STORE) {
@@ -82,32 +72,33 @@ export default function client(uri: string, stores: typeof STORE) {
   PubSub.open()
 }
 
-export function socket<
-  IdType,
-  T extends BaseT<IdType>,
-  F extends BaseF<T>,
-  MatchArgs extends any[],
-  OrderArgs extends any[]
->({
+type StoresValues<T> = T extends Readable<infer U>
+  ? U
+  : {
+      [K in keyof T]: T[K] extends Readable<infer U> ? U : never
+    }
+
+type Look<F extends BaseF<any>> = {
+  lookup?: (
+    data: F,
+    looked: <S extends Readable<any>[], T>(stores: S, cb: (values: StoresValues<S>) => void) => void
+  ) => void
+}
+
+export function socket<F extends BaseF<any>, MatchArgs extends any[], OrderArgs extends any[]>({
   name,
   qid,
   format,
   order,
   reduce
-}: StoreEntry<F, MatchArgs, OrderArgs>): {
-  query(
-    ...args: MatchArgs
-  ): Readable<F> & {
-    find(id: T['_id']): T
-    sort(...args: OrderArgs): void
-  }
-
-  set?(docs: T[]): void
-  del?(ids: IdType[]): void
+}: StoreEntry<F, OrderArgs, MatchArgs>): {
+  query(...args: MatchArgs): StoreQuery<F, OrderArgs>
+  set?(docs: F['list'][number][]): void
+  del?(ids: F['list'][number]['_id'][]): void
 } {
   return {
     query(...qa: MatchArgs) {
-      const api = qid(...qa)
+      const api = `${name}(${qid(...qa)})`
       if (PubSubCache[api]) return PubSubCache[api]
 
       const { subscribe, find, sort, add, del } = MapReduce<F, OrderArgs>({
@@ -134,8 +125,12 @@ export function socket<
 
       return (PubSubCache[api] = { subscribe, find, sort })
 
-      function SET_ERROR(docs: T[]) {}
-      function DEL_ERROR(ids: IdType[]) {}
+      function SET_ERROR(docs: F['list'][number][]) {
+        console.log(`SET ERROR ${name}`, docs)
+      }
+      function DEL_ERROR(ids: F['list'][number]['_id'][]) {
+        console.log(`DEL ERROR ${name}`, ids)
+      }
     },
 
     set(docs) {

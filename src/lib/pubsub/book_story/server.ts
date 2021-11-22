@@ -1,9 +1,9 @@
 import type { Story } from '../map-reduce'
-import { modelAsMongoDB } from '$lib/db/socket.io-server'
+import { model, modelAsMongoDB } from '$lib/db/socket.io-server'
 
-export const stories = modelAsMongoDB<Story>('stories', { comment: 0, password: 0 })
+export const stories = modelAsMongoDB<Story>('stories', { comment: 0, password: 0, sow_auth_id: 0 })
 
-export const story_summary = {
+export const story_summary = model({
   ...stories,
   $match: (is_old: boolean) => ({
     is_epilogue: is_old,
@@ -11,4 +11,4 @@ export const story_summary = {
   }),
 
   isLive: async () => true
-}
+})

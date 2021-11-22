@@ -7,10 +7,10 @@ export const randoms = model({
     list: [] as Random[],
     sum: 0
   }),
-  reduce: (data, doc) => {
+  reduce(data, doc) {
     if (doc.number) {
       data.sum += doc.number
     }
   },
-  order: (data, { sort }) => {}
+  order(data, { sort }) {}
 })

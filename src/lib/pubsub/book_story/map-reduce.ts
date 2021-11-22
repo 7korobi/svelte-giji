@@ -1,13 +1,17 @@
-import type { MoodType, EventType, RoleType } from '../_type/enum'
+import type { MoodType, RoleType } from '../_type/enum'
 import type { AccountID } from '../_type/id'
 import type { presentation } from '../_type/string'
-import type { FOLDER_IDX, SAYCNT, VOTETYPE, GAME } from '../map-reduce'
+import type { FOLDER_IDX, SAYCNT, VOTETYPE, GAME, Folder, Event } from '../map-reduce'
 
 export type Story = {
   _id: STORY_ID
-  folder: Uppercase<FOLDER_IDX>
   vid: STORY_IDX
+
+  folder_id: Lowercase<FOLDER_IDX>
   sow_auth_id: AccountID
+
+  folder?: Folder
+  prologue?: Event
 
   is_epilogue: boolean
   is_finish: boolean

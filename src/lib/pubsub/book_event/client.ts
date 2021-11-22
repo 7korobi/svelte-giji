@@ -6,8 +6,8 @@ export const events = model({
   format: () => ({
     list: [] as Event[]
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort }) => {
+  reduce(data, doc) {},
+  order(data, { sort }) {
     sort(data.list).asc([(o) => o.story_id, (o) => o.turn])
   }
 })

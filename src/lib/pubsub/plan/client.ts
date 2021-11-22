@@ -7,10 +7,10 @@ export const new_plans = model({
     list: [] as Plan[],
     count: 0
   }),
-  reduce: (data, doc) => {
+  reduce(data, doc) {
     data.count++
   },
-  order: (data, { sort }) => {
+  order(data, { sort }) {
     sort(data.list).desc((o) => o.write_at)
   }
 })
