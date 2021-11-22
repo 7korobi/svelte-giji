@@ -150,14 +150,16 @@ function setDocMode(bToSource) {
   on:cut={cut}
   on:copy={copy}
   on:paste|preventDefault={paste}
-  on:input={(e) => console.log(e)} />
+  on:input={(e) => console.log(e)}
+/>
 <!-- svelte-ignore a11y-no-onchange -->
 <div id="toolBar1">
   <select
     on:change={() => {
       formatDoc('formatblock', this[this.selectedIndex].value)
       this.selectedIndex = 0
-    }}>
+    }}
+  >
     <option selected>- formatting -</option>
     <option value="h1">Title 1 &lt;h1&gt;</option>
     <option value="h2">Title 2 &lt;h2&gt;</option>
@@ -172,7 +174,8 @@ function setDocMode(bToSource) {
     on:change={() => {
       formatDoc('fontname', this[this.selectedIndex].value)
       this.selectedIndex = 0
-    }}>
+    }}
+  >
     <option class="heading" selected>- font -</option>
     <option>Arial</option>
     <option>Arial Black</option>
@@ -183,7 +186,8 @@ function setDocMode(bToSource) {
     on:change={() => {
       formatDoc('fontsize', this[this.selectedIndex].value)
       this.selectedIndex = 0
-    }}>
+    }}
+  >
     <option class="heading" selected>- size -</option>
     <option value="1">Very small</option>
     <option value="2">A bit small</option>
@@ -197,7 +201,8 @@ function setDocMode(bToSource) {
     on:change={() => {
       formatDoc('forecolor', this[this.selectedIndex].value)
       this.selectedIndex = 0
-    }}>
+    }}
+  >
     <option class="heading" selected>- color -</option>
     <option value="red">Red</option>
     <option value="blue">Blue</option>
@@ -208,7 +213,8 @@ function setDocMode(bToSource) {
     on:change={() => {
       formatDoc('backcolor', this[this.selectedIndex].value)
       this.selectedIndex = 0
-    }}>
+    }}
+  >
     <option class="heading" selected>- background -</option>
     <option value="red">Red</option>
     <option value="green">Green</option>
@@ -222,85 +228,99 @@ function setDocMode(bToSource) {
     title="Undo"
     on:click={() => {
       formatDoc('undo')
-    }}><Icon.Undo /></button>
+    }}><Icon.Undo /></button
+  >
   <button
     class="intLink"
     title="Redo"
     on:click={() => {
       formatDoc('redo')
-    }}><Icon.Redo /></button>
+    }}><Icon.Redo /></button
+  >
   <button
     class="intLink"
     title="Remove formatting"
     on:click={() => {
       formatDoc('removeFormat')
-    }}><Icon.RemoveFormat /></button>
+    }}><Icon.RemoveFormat /></button
+  >
   <button
     class="intLink"
     title="Bold"
     on:click={() => {
       formatDoc('bold')
-    }}><Icon.Bold /></button>
+    }}><Icon.Bold /></button
+  >
   <button
     class="intLink"
     title="Italic"
     on:click={() => {
       formatDoc('emphasis')
-    }}><Icon.Emphasis /></button>
+    }}><Icon.Emphasis /></button
+  >
   <button
     class="intLink"
     title="Underline"
     on:click={() => {
       formatDoc('underline')
-    }}><Icon.Underline /></button>
+    }}><Icon.Underline /></button
+  >
   <button
     class="intLink"
     title="Left align"
     on:click={() => {
       formatDoc('justifyleft')
-    }}><Icon.AlignLeft /></button>
+    }}><Icon.AlignLeft /></button
+  >
   <button
     class="intLink"
     title="Center align"
     on:click={() => {
       formatDoc('justifycenter')
-    }}><Icon.AlignCenter /></button>
+    }}><Icon.AlignCenter /></button
+  >
   <button
     class="intLink"
     title="Right align"
     on:click={() => {
       formatDoc('justifyright')
-    }}><Icon.AlignRight /></button>
+    }}><Icon.AlignRight /></button
+  >
   <button
     class="intLink"
     title="Numbered list"
     on:click={() => {
       formatDoc('insertorderedlist')
-    }}><Icon.TocOn /></button>
+    }}><Icon.TocOn /></button
+  >
   <button
     class="intLink"
     title="Dotted list"
     on:click={() => {
       formatDoc('insertunorderedlist')
-    }}><Icon.TocOff /></button>
+    }}><Icon.TocOff /></button
+  >
   <button
     class="intLink"
     title="Quote"
     on:click={() => {
       formatDoc('formatblock', 'blockquote')
-    }}><Icon.Tropical /></button>
+    }}><Icon.Tropical /></button
+  >
   <button
     class="intLink"
     title="Delete indentation"
     on:click={() => {
       formatDoc('outdent')
-    }}><Icon.Outdent /></button>
+    }}><Icon.Outdent /></button
+  >
   <button
     class="intLink"
     title="Add indentation"
     on:click={() => {
       formatDoc('indent')
-    }}><Icon.Indent /></button>
+    }}><Icon.Indent /></button
+  >
   <button
     class="intLink"
     title="Hyperlink"
@@ -309,25 +329,29 @@ function setDocMode(bToSource) {
       if (sLnk && sLnk != '' && sLnk != 'http://') {
         formatDoc('createlink', sLnk)
       }
-    }}><Icon.LinkOn /></button>
+    }}><Icon.LinkOn /></button
+  >
   <button
     class="intLink"
     title="Cut"
     on:click={() => {
       formatDoc('cut')
-    }}><Icon.Cut /></button>
+    }}><Icon.Cut /></button
+  >
   <button
     class="intLink"
     title="Copy"
     on:click={() => {
       formatDoc('copy')
-    }}><Icon.Copy /></button>
+    }}><Icon.Copy /></button
+  >
   <button
     class="intLink"
     title="Paste"
     on:click={() => {
       formatDoc('paste')
-    }}><Icon.Paste /></button>
+    }}><Icon.Paste /></button
+  >
 </div>
 <div>{showHTML ? html : ''}</div>
 

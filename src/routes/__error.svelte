@@ -16,7 +16,9 @@ export let title
 export let stack
 </script>
 
-<Report handle="WSAY"><h1>{title}</h1></Report>
+<Report handle="WSAY">
+  <h1 class="text center">{title}</h1>
+</Report>
 <Post handle="WSAY">
-  {stack}
+  <p class="text">{stack}</p>
 </Post>

@@ -26,7 +26,8 @@ function submenu() {
   <Btn as="rating" bind:value onToggle={submenu}>こだわり<Sup value={g.rating.length} /></Btn>
 </span><span>
   <Btn as="timer.updateddt" bind:value onToggle={submenu}
-    >年月日<Sup value={g.monthry.length} /></Btn>
+    >年月日<Sup value={g.monthry.length} /></Btn
+  >
   <Btn as="upd_range" bind:value onToggle={submenu}>更新間隔<Sup value={g.upd_range.length} /></Btn>
   <Btn as="upd_at" bind:value onToggle={submenu}>更新時刻<Sup value={g.upd_at.length} /></Btn>
 </span><span>
@@ -35,12 +36,13 @@ function submenu() {
   <Btn as="game.label" bind:value onToggle={submenu}>ゲーム<Sup value={g.game.length} /></Btn>
 </span><span>
   <Btn as="sow_auth_id" bind:value onToggle={submenu}
-    >村建て人<Sup value={g.sow_auth_id.length} /></Btn>
+    >村建て人<Sup value={g.sow_auth_id.length} /></Btn
+  >
 </span><span>
   <Btn as="card.option" bind:value onToggle={submenu}>村設定<Sup value={g.option.length} /></Btn>
   <Btn as="card.config" bind:value onToggle={submenu}>参加役職<Sup value={g.config.length} /></Btn>
 </span><span>
   <Btn as="card.event" bind:value onToggle={submenu}>破棄事件<Sup value={g.event.length} /></Btn>
-  <Btn as="card.discard" bind:value onToggle={submenu}
-    >破棄役職<Sup value={g.discard.length} /></Btn>
+  <Btn as="card.discard" bind:value onToggle={submenu}>破棄役職<Sup value={g.discard.length} /></Btn
+  >
 </span>

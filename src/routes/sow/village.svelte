@@ -69,7 +69,8 @@ function rating_img(rating: string) {
           y={g.yeary}
           data={b.monthry}
           bind:value={monthry}
-          find={(xid, yid) => `${yid}${xid}`} />
+          find={(xid, yid) => `${yid}${xid}`}
+        />
       </p>
     {/if}
 
@@ -93,7 +94,8 @@ function rating_img(rating: string) {
       <p>
         {#each g.sow_auth_id as o (o._id)}
           <Btn bind:value={sow_auth_id} as={[o._id]}
-            >{o._id.replace(/\&\#2e/gi, '.')}<Sup value={o.count} /></Btn>
+            >{o._id.replace(/\&\#2e/gi, '.')}<Sup value={o.count} /></Btn
+          >
         {/each}
       </p>
     {/if}
@@ -175,8 +177,8 @@ function rating_img(rating: string) {
         <table class="btns card" style="width: 33%">
           <tbody>
             <tr>
-              <th
-                ><kbd style="width: 40px"><img class="mark" src={rating_img(o.rating)} /></kbd></th>
+              <th><kbd style="width: 40px"><img class="mark" src={rating_img(o.rating)} /></kbd></th
+              >
               <td>{o._id}</td>
             </tr>
             <tr>

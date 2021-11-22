@@ -5,7 +5,8 @@
       管理<q class="btn">sol・la</q><a
         href="mailto:7korobi@gmail.com"
         title="mailto:7korobi@gmail.com"
-        class="btn">ななころび</a>
+        class="btn">ななころび</a
+      >
     </blockquote>
   </div>
   <div class="copyright">

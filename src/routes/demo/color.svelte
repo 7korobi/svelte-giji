@@ -237,7 +237,8 @@ function byF(str: string) {
         {#if rubys[idx]}
           <ruby
             >{text}
-            <rt>{rubys[idx]}</rt></ruby>
+            <rt>{rubys[idx]}</rt></ruby
+          >
         {:else}{text}{/if}
       {/each}
     </p>
@@ -253,7 +254,8 @@ function byF(str: string) {
       <Chat show="post" handle={color}>
         <button on:click={handleClick}
           >Clicked
-          <span style={`btnColor: ${btnColor}`}>{count}{rest}</span></button>
+          <span style={`btnColor: ${btnColor}`}>{count}{rest}</span></button
+        >
 
         <!-- https://github.com/eugenkiss/7guis/wiki#temperature-converter -->
         <input value={c} on:input={(e) => byC(e.currentTarget.value)} type="number" />
@@ -263,7 +265,8 @@ function byF(str: string) {
         input {
           width: 5em;
         }
-        </style></Chat>
+        </style></Chat
+      >
     </Scroll>
   </Scroll>
 {/each}
@@ -304,7 +307,8 @@ function byF(str: string) {
           {#if rubys[idx]}
             <ruby
               >{text}
-              <rt>{rubys[idx]}</rt></ruby>
+              <rt>{rubys[idx]}</rt></ruby
+            >
           {:else}{text}{/if}
         {/each}
       </p>

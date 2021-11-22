@@ -62,7 +62,7 @@
     "date-fns": "^2.26.0",
     "debug": "^4.3.2",
     "dexie": "^3.2.0",
-    "esbuild": "^0.13.14",
+    "esbuild": "^0.13.15",
     "esbuild-plugin-d.ts": "^1.0.6",
     "esbuild-svelte": "^0.5.7",
     "fast-sort": "^3.1.1",

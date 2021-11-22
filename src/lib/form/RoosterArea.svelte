@@ -94,11 +94,13 @@ function init(div) {
   <button on:click={() => R.toggleBullet(editor)}
     ><ul>
       <li>◯</li>
-    </ul></button>
+    </ul></button
+  >
   <button on:click={() => R.toggleNumbering(editor)}
     ><ol>
       <li>◯</li>
-    </ol></button>
+    </ol></button
+  >
   &nbsp;
   {#if inputs.canUndo}<button on:click={() => editor.undo()}>⏪</button>{/if}
   {#if inputs.canRedo}<button on:click={() => editor.redo()}>⏩</button>{/if}

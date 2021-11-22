@@ -43,7 +43,8 @@ let welcomeBottomHeight = 0
   <div
     class="welcome"
     bind:offsetHeight={welcomeTopHeight}
-    style={`background-position: left 50% top ${offsetTop}px;`}>
+    style={`background-position: left 50% top ${offsetTop}px;`}
+  >
     <Export />
     <h1 class="title-bar"><a href={$url.top}>人狼議事</a></h1>
     <div class="btns form">
@@ -76,7 +77,8 @@ let welcomeBottomHeight = 0
               </p>
               <p
                 data-tooltip="不十分な画面幅にあわせ、折返し表示をしています"
-                class="limit1-ng tooltip-left">
+                class="limit1-ng tooltip-left"
+              >
                 折返中
               </p>
             </div>
@@ -87,7 +89,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.Expand}
               bind:value={$side}
               class="item-half tooltip-left"
-              data-tooltip="詳細情報を拡げる操作の ON / OFF">
+              data-tooltip="詳細情報を拡げる操作の ON / OFF"
+            >
               <Icon.Expand />
             </Btn>
             <Btn
@@ -95,7 +98,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.SwipeOn}
               bind:value={$side}
               class="item-half tooltip-left"
-              data-tooltip="ページ一覧を一列にする / 折り返す">
+              data-tooltip="ページ一覧を一列にする / 折り返す"
+            >
               <Icon.SwipeOn />
             </Btn>
           </div>
@@ -107,7 +111,8 @@ let welcomeBottomHeight = 0
             <button
               data-tooltip="一番上までスクロール"
               class="item tooltip-left"
-              on:click={() => window.scrollTo({ top: 0 })}>
+              on:click={() => window.scrollTo({ top: 0 })}
+            >
               <Icon.GoTop />
             </button>
             <button data-tooltip="マークする" class="item tooltip-left">
@@ -118,7 +123,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.TimelineClock}
               bind:value={$side}
               data-tooltip="今見ている投稿に関する情報"
-              class="item tooltip-left">
+              class="item tooltip-left"
+            >
               <Icon.TimelineClock />
             </Btn>
             <Btn
@@ -126,7 +132,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.Tree}
               bind:value={$side}
               data-tooltip="今見ている投稿と繋がる投稿"
-              class="item tooltip-left">
+              class="item tooltip-left"
+            >
               <Icon.Tree />
             </Btn>
             <Btn
@@ -134,7 +141,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.TocOn}
               bind:value={$side}
               data-tooltip="他の日付へ移動、検索など"
-              class="item tooltip-left">
+              class="item tooltip-left"
+            >
               <Icon.TocOn />
             </Btn>
             <Btn
@@ -142,7 +150,8 @@ let welcomeBottomHeight = 0
               as={site.SideBits.posi.UsersOn}
               bind:value={$side}
               data-tooltip="キャラクターの一覧、ステータス等を確認"
-              class="item tooltip-left">
+              class="item tooltip-left"
+            >
               <Icon.UsersOn />
             </Btn>
           </div>
@@ -164,15 +173,18 @@ let welcomeBottomHeight = 0
                       <a class="btn">回数</a>
                       <a class="btn" title="字数 ÷ 回数">平均</a>
                       <a class="btn">字数</a>
-                      <a class="btn" title="字数 ÷ 範囲">密度</a></th>
+                      <a class="btn" title="字数 ÷ 範囲">密度</a></th
+                    >
                     <th>
                       <a class="btn">最初</a>
                       <a class="btn" title="最後 － 最初">範囲</a>
-                      <a class="btn">最後</a></th>
+                      <a class="btn">最後</a></th
+                    >
                     <th> <a class="btn">勝敗</a></th>
                     <th colspan="2">
                       <a class="btn">陣営</a>
-                      <a class="btn">役割</a></th>
+                      <a class="btn">役割</a></th
+                    >
                     <th><a class="btn">希望</a></th>
                     <th><a class="btn">補足</a></th>
                     <th class="last" />
@@ -296,7 +308,8 @@ let welcomeBottomHeight = 0
   <div
     class="welcome"
     bind:offsetHeight={welcomeBottomHeight}
-    style={`background-position: left 50% bottom ${offsetBottom}px;`}>
+    style={`background-position: left 50% bottom ${offsetBottom}px;`}
+  >
     <div class="outframe filmline" style={`background-position: ${-offsetFilm}px 0;`}>
       <div class="contentframe">
         <span class="filmstart" />

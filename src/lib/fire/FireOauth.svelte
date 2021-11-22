@@ -17,13 +17,11 @@ import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
 import { app, user, error } from './store'
 
 const auth = __BROWSER__ ? getAuth($app) : undefined
-$: console.log($user)
+$: if ($user) console.log($user)
+$: if ($error) console.log($error)
 
 if (__BROWSER__) {
   onAuthStateChanged(auth, user.set, error.set)
-} else {
-  user.set(undefined)
-  error.set(undefined)
 }
 
 function icon({ providerData: [{ providerId }] }: User) {
@@ -49,11 +47,12 @@ function icon({ providerData: [{ providerId }] }: User) {
   <svelte:component this={icon($user)} />
   <span class="tap">{$user.displayName}</span>
 {:else}
-  <button on:click={() => signInWithRedirect(auth, new FacebookAuthProvider())}
-    ><Facebook /></button>
+  <button on:click={() => signInWithRedirect(auth, new FacebookAuthProvider())}><Facebook /></button
+  >
   <button on:click={() => signInWithRedirect(auth, new TwitterAuthProvider())}><Twitter /></button>
   <button on:click={() => signInWithRedirect(auth, new OAuthProvider('microsoft.com'))}
-    ><Windows /></button>
+    ><Windows /></button
+  >
   <button on:click={() => signInWithRedirect(auth, new GoogleAuthProvider())}><Google /></button>
   <button on:click={() => signInWithRedirect(auth, new GithubAuthProvider())}><Github /></button>
 {/if}

@@ -26,7 +26,8 @@ const chr_set_id = uri.hash<ChrSet['_id']>('ririnra')
         <p class="center">
           {#each chr_sets as o, j}
             <Btn class="btn" as={o._id} bind:value={$chr_set_id}
-              >{o.label}<sup>{o.npcs.length}</sup></Btn>
+              >{o.label}<sup>{o.npcs.length}</sup></Btn
+            >
           {/each}
         </p>
       </fieldset>
@@ -38,7 +39,8 @@ const chr_set_id = uri.hash<ChrSet['_id']>('ririnra')
       id="search"
       size="30"
       list="search_log"
-      class="search" /><datalist id="search_log" />
+      class="search"
+    /><datalist id="search_log" />
   </p>
   <p class="form">
     {ChrSets.find($chr_set_id).npcs[0].label}で選択できる、最初の犠牲者を表示しています。

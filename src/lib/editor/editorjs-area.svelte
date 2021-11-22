@@ -12,4 +12,5 @@ $: if ($data) {
   use:editor={{
     placeholder: '心を込めて！',
     hideToolbar: false
-  }} />
+  }}
+/>

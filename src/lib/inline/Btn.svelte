@@ -11,6 +11,7 @@ export let type: TYPE = 'as'
 <button
   class={[className(type, as, value), $$props.class].join(' ')}
   data-tooltip={$$props['data-tooltip']}
-  on:click={() => (value = tap(type, as, value))}>
+  on:click={() => (value = tap(type, as, value))}
+>
   <slot />
 </button>

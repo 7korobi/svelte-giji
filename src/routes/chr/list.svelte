@@ -34,7 +34,8 @@ const tag_id = uri.hash<Tag['_id']>('giji')
             {#each tags.list as o, k}
               {#if o.faces?.length}
                 <Btn class="btn" as={o._id} bind:value={$tag_id}
-                  >{o.label}<sup>{o.faces.length}</sup></Btn>
+                  >{o.label}<sup>{o.faces.length}</sup></Btn
+                >
               {/if}
             {/each}
           </p>
@@ -48,7 +49,8 @@ const tag_id = uri.hash<Tag['_id']>('giji')
       id="search"
       size="30"
       list="search_log"
-      class="search" /><datalist id="search_log" /><!---->
+      class="search"
+    /><datalist id="search_log" /><!---->
   </p>
   <sub style="width: 100%;">{Tags.find($tag_id)?.long}</sub>
 </Report>
@@ -69,7 +71,8 @@ const tag_id = uri.hash<Tag['_id']>('giji')
         in:scale={$tag_id === 'all'
           ? { delay: 0, duration: 0, opacity: 0, start: 1 }
           : { delay: 0, duration: 600, opacity: 0, start: 0, easing: backOut }}
-        animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
+        animate:flip={{ delay: 0, duration: 600, easing: backOut }}
+      >
         <Portrate face_id={o.face_id}>
           <p>{o.job}</p>
           <p>{o.face.name}</p>

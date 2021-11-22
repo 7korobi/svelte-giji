@@ -554,7 +554,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
   on:mousemove={do_move}
   on:mouseleave={do_finish}
   on:touchend={(e) => do_up(parseTouch(e))}
-  on:touchmove={(e) => do_move(parseTouch(e))}>
+  on:touchmove={(e) => do_move(parseTouch(e))}
+>
   <svg style="font-size: {0.75 * zoom}rem;" viewBox="{root.x} {root.y} {root.width} {root.height}">
     <marker
       class="edgePath"
@@ -565,7 +566,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
       markerHeight="20"
       refX="5"
       refY="5"
-      orient="auto">
+      orient="auto"
+    >
       <circle cx="5" cy="5" r="4" />
     </marker>
     <marker
@@ -577,7 +579,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
       markerHeight="20"
       refX="3"
       refY="5"
-      orient="auto">
+      orient="auto"
+    >
       <path class="fill" d="M10,0 L0,5 L10,10 z" />
     </marker>
     <marker
@@ -589,7 +592,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
       markerHeight="20"
       refX="7"
       refY="5"
-      orient="auto">
+      orient="auto"
+    >
       <path class="fill" d="M0,0 L10,5 L0,10 z" />
     </marker>
     <marker
@@ -601,7 +605,8 @@ function parseTouch(e: TouchEvent): MouseEvent {
       markerHeight="20"
       refX="5"
       refY="5"
-      orient="0">
+      orient="0"
+    >
       <path class="path" d="M0,0 L10,10 M0,10 L10,0 z" />
     </marker>
     <g>
@@ -612,13 +617,15 @@ function parseTouch(e: TouchEvent): MouseEvent {
         <rect
           {...o}
           on:touchstart={(e) => do_start(parseTouch(e), o.key)}
-          on:mousedown={(e) => do_start(e, o.key)} />
+          on:mousedown={(e) => do_start(e, o.key)}
+        />
       {/each}
       {#each images as o (o.key)}
         <image
           {...o}
           on:touchstart={(e) => do_start(parseTouch(e), o.key)}
-          on:mousedown={(e) => do_start(e, o.key)} />
+          on:mousedown={(e) => do_start(e, o.key)}
+        />
       {/each}
     </g>
     <g class="edgePath">

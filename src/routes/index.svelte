@@ -43,7 +43,8 @@ random_test
         >手作りの温かいご飯</a
       >を食べてってもらうのさ。<br /><br />
       炊き出しはおかわりも自由だよ。まあちょっと座って、一食おあがりよ。
-    </p></Talk>
+    </p></Talk
+  >
 </Focus>
 
 <Focus id="info" bind:value={$page}>
@@ -147,7 +148,8 @@ random_test
       居眠りを思わせる安らいだ表情で、白鼠が小さく丸まり、<a href="https://twitter.com/jinrogiji"
         ><ruby>凍り付いている<rt>freeze</rt></ruby></a
       >…。
-    </p></Talk>
+    </p></Talk
+  >
 </Focus>
 
 <Focus id="fcm-head" bind:value={$page}>
@@ -167,7 +169,7 @@ random_test
   </Report>
 </Focus>
 
-{#each $story_reduce.progress?.list || [] as [o, folder] (o._id)}
+{#each $story_reduce.progress?.list || [] as o (o._id)}
   <Focus id={o._id} bind:value={$page}>
     <Post handle="SSAY">
       <p class="name">{o.name}</p>
@@ -176,7 +178,7 @@ random_test
         <button id={o._id}>
           <BellDisable /><BellStop /><BellRinging />
         </button>
-        <a href={folder.top_url}>{folder.nation}{o.vid}</a> は、進行中だ。
+        <a href={o.folder.top_url}>{o.folder.nation}{o.vid}</a> は、進行中だ。
       </p>
       <p class="date">
         {#if o.is_full_commit}
@@ -189,7 +191,7 @@ random_test
   </Focus>
 {/each}
 
-{#each $story_reduce.prologue?.list || [] as [o, folder] (o._id)}
+{#each $story_reduce.prologue?.list || [] as o (o._id)}
   <Focus id={o._id} bind:value={$page}>
     <Post handle="LSAY">
       <p class="name">{o.name}</p>
@@ -198,7 +200,7 @@ random_test
         <button id={o._id}>
           <BellDisable /><BellStop /><BellRinging />
         </button>
-        <a href={folder.top_url}>{folder.nation}{o.vid}</a> は、開始が楽しみだ。
+        <a href={o.folder.top_url}>{o.folder.nation}{o.vid}</a> は、開始が楽しみだ。
       </p>
       <p class="date">
         廃村期限 <Time at={o.timer.scraplimitdt} />
