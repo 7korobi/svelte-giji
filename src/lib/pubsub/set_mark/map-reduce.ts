@@ -1,6 +1,6 @@
+import type { presentation } from '../_type/string'
 import { MapReduce } from '$lib/map-reduce'
 import json from '$lib/game/json/set_mark.json'
-import type { presentation } from '../_type/string'
 
 export type MARK_ID = keyof typeof json
 export type Mark = {

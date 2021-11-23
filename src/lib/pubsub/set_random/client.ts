@@ -1,8 +1,8 @@
-import type { Random } from '../map-reduce'
+import type { RANDOM_TYPE, Random } from '../map-reduce'
 import { model } from '$lib/db/socket.io-client'
 
 export const randoms = model({
-  qid: (types: string[]) => types.toString(),
+  qid: (types: RANDOM_TYPE[]) => types.toString(),
   format: () => ({
     list: [] as Random[],
     sum: 0

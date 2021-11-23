@@ -2,12 +2,13 @@ import type { ARY, DIC } from '$lib/map-reduce'
 import type { presentation } from '../_type/string'
 import type { CHR_SET_IDX, Face } from '../map-reduce'
 import { MapReduce, dic } from '$lib/map-reduce'
-import { Faces } from '../map-reduce'
 
 import json from '$lib/game/json/chr_tag.json'
 
+export type TAG_ID = keyof typeof json
+
 export type Tag = {
-  _id: string
+  _id: TAG_ID
   tag_id: string
   chr_set_id: CHR_SET_IDX
   order: number
@@ -38,8 +39,4 @@ export const Tags = MapReduce({
   }
 })
 
-for (const _id in json) {
-  const o = json[_id]
-  o._id = _id
-  Tags.add([o])
-}
+Tags.deploy(json)

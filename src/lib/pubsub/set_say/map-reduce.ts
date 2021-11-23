@@ -2,8 +2,9 @@ import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/set_says.json'
 import type { presentation } from '../_type/string'
 
+export type SAY_LIMIT = keyof typeof json
 export type SayLimit = {
-  _id: string
+  _id: SAY_LIMIT
   label: presentation
   say_act?: number
   say: number

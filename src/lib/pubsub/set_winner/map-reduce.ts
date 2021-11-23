@@ -4,9 +4,9 @@ import type { presentation } from '../_type/string'
 
 export type WINNER_ID = keyof typeof json
 export type Winner = {
-  _id: string
+  _id: WINNER_ID
   label: presentation
-  help: string
+  help: presentation
 }
 
 export const Winners = MapReduce({

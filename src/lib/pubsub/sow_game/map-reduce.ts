@@ -4,7 +4,7 @@ import type { presentation } from '../_type/string'
 
 export type GAME_ID = keyof typeof json
 export type Game = {
-  _id: string
+  _id: GAME_ID
   label: presentation
   path: string
 }

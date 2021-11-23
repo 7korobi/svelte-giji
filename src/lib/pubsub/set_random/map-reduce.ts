@@ -4,6 +4,8 @@ import type { presentation } from '../_type/string'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/random.json'
 
+export type RANDOM_TYPE = 'eto' | 'trump' | keyof typeof json
+
 export type ShuffleFormat = {
   list: Random[]
   count: number
@@ -12,7 +14,7 @@ export type ShuffleFormat = {
 
 export type Random = {
   _id: string | number
-  types: string[]
+  types: RANDOM_TYPE[]
 
   order: number
   ratio: number
@@ -31,7 +33,6 @@ export type Random = {
   roman?: typeof ROMANS[number]
 }
 
-export type RANDOM_TYPES = typeof RANDOM_TYPES[number]
 export type SUITES = typeof SUITES[number]
 export type RANKS = typeof RANKS[number]
 export type ROMANS = typeof ROMANS[number]
@@ -44,7 +45,6 @@ export const RANDOM_TYPES = [
   'tarot',
   'zodiac',
   'planet',
-  'weather',
   'chess',
   'coin',
   'weather'
@@ -85,7 +85,9 @@ export const Randoms = MapReduce({
   reduce: (data, doc) => {
     emit(data)
     for (const type of doc.types) {
-      emit(dic(data.type, type, {}))
+      const o = dic(data.type, type, {})
+      emit(o)
+      o.list.push(doc)
     }
 
     function emit(o: ShuffleFormat) {
@@ -94,7 +96,6 @@ export const Randoms = MapReduce({
         o.count = 0
         o.all = 0
       }
-      o.list.push(doc)
       o.count += 1
       o.all += doc.ratio
     }
@@ -124,7 +125,7 @@ for (const type in json) {
 
 ;(function () {
   const ratio = 1
-  const types = ['eto']
+  const types: RANDOM_TYPE[] = ['eto']
   const now_year = new Date().getFullYear()
   for (let idx = 0; idx < 60; ++idx) {
     const eto10 = '甲乙丙丁戊己庚辛壬癸'[idx % 10]

@@ -1,12 +1,12 @@
+import type { presentation } from '../_type/string'
 import { MapReduce } from '$lib/map-reduce'
 import json from '$lib/game/json/set_option.json'
-import type { presentation } from '../_type/string'
 
 export type OPTION_ID = keyof typeof json
 export type Option = {
   _id: OPTION_ID
   label: presentation
-  help: string
+  help: presentation
 }
 
 export const Options = MapReduce({

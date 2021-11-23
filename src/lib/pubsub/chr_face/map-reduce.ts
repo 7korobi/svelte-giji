@@ -1,19 +1,8 @@
 import type { ARY, DIC } from '$lib/map-reduce'
-import type { presentation } from '../type/string'
+import type { presentation } from '../_type/string'
 import type { ChrJob, Tag } from '../map-reduce'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/chr_face.json'
-
-const katakanas = (() => {
-  const result: string[] = []
-  let start = 'ア'.charCodeAt(0)
-  let end = 'ン'.charCodeAt(0)
-  let idx = start
-  for (; idx <= end; idx++) {
-    result.push(String.fromCharCode(idx))
-  }
-  return result
-})()
 
 export type FacesFormat = {
   list: Face[]
@@ -34,6 +23,17 @@ export type Face = {
   name: presentation
   comment: presentation
 }
+
+const katakanas = (() => {
+  const result: string[] = []
+  let start = 'ア'.charCodeAt(0)
+  let end = 'ン'.charCodeAt(0)
+  let idx = start
+  for (; idx <= end; idx++) {
+    result.push(String.fromCharCode(idx))
+  }
+  return result
+})()
 
 export const Faces = MapReduce({
   format: () => ({

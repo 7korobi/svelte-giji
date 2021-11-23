@@ -3,45 +3,27 @@ import type { ABLE_ID, WIN } from '../map-reduce'
 import type { presentation } from '../_type/string'
 
 import { MapReduce, dic } from '$lib/map-reduce'
-import json from '$lib/game/json/set_roles.json'
+import set_role_gifts from '$lib/game/json/set_role_gifts.json'
+import set_role_lives from '$lib/game/json/set_role_lives.json'
+import set_role_mobs from '$lib/game/json/set_role_mobs.json'
+import set_role_specials from '$lib/game/json/set_role_specials.json'
+import set_role_traps from '$lib/game/json/set_role_traps.json'
+import set_role_turns from '$lib/game/json/set_role_turns.json'
+import set_roles from '$lib/game/json/set_roles.json'
 
-export type ROLE_ID = keyof typeof json
-export type MOB = typeof MOBS[number]
+export type GIFT_ID = keyof typeof set_role_gifts
+export type LIVE_ID = keyof typeof set_role_lives
+export type MOB_ID = keyof typeof set_role_mobs
+export type SPECIAL_ID = keyof typeof set_role_specials
+export type TRAP_ID = keyof typeof set_role_traps
+export type TURN_ID = keyof typeof set_role_turns
+export type ROLE_ID = keyof typeof set_roles
 
-export type Role =
-  | disabledRole
-  | HideRole
-  | EventRole
-  | TurnRole
-  | LiveRole
-  | MobRole
-  | MakerRole
-  | GiftRole
-  | TitleRole
+export type Role = GiftRole | LiveRole | MobRole | SpecialRole | TrapRole | TurnRole | TitleRole
 
-type disabledRole = {
-  _id: ROLE_ID
-  group: undefined
-  win: WIN
-  able_ids: ABLE_ID
-  able?: presentation
-  cmd?: 'role'
-  label: presentation
-  help: presentation
-}
-
-type HideRole = {
-  _id: ROLE_ID
-  group: null
-  win: null
-  able_ids: ABLE_ID
-  label: presentation
-  help: presentation
-}
-
-type EventRole = {
-  _id: ROLE_ID
-  group: 'EVENT'
+type TrapRole = {
+  _id: TRAP_ID
+  group: 'TRAP'
   win: null
   able_ids: ABLE_ID
   label: presentation
@@ -49,7 +31,7 @@ type EventRole = {
 }
 
 type TurnRole = {
-  _id: ROLE_ID
+  _id: TURN_ID
   group: 'TURN'
   win: null
   able_ids: ABLE_ID
@@ -58,8 +40,8 @@ type TurnRole = {
 }
 
 type LiveRole = {
-  _id: ROLE_ID
-  group: 'LIVE'
+  _id: LIVE_ID
+  group: 'LIVE' | null
   win: null
   able_ids: ABLE_ID
   label: presentation
@@ -67,7 +49,7 @@ type LiveRole = {
 }
 
 export type MobRole = {
-  _id: MOB
+  _id: MOB_ID
   group: 'MOB'
   win: 'MOB' | 'HUMAN'
   able_ids: ABLE_ID
@@ -75,8 +57,8 @@ export type MobRole = {
   help: presentation
 }
 
-type MakerRole = {
-  _id: ROLE_ID
+type SpecialRole = {
+  _id: SPECIAL_ID
   group: 'SPECIAL'
   win: null
   able_ids: ABLE_ID
@@ -85,7 +67,7 @@ type MakerRole = {
 }
 
 type GiftRole = {
-  _id: ROLE_ID
+  _id: GIFT_ID
   group: 'GIFT'
   win: WIN | null
   able_ids: ABLE_ID
@@ -95,7 +77,7 @@ type GiftRole = {
   help: presentation
 }
 
-type TitleRole = HumanRole | EvilRole | WolfRole | PixiRole | OtherRole | BindRole
+type TitleRole = HumanRole | EvilRole | WolfRole | PixiRole | OtherRole | BindRole | disabledRole
 type HumanRole = {
   _id: ROLE_ID
   group: 'HUMAN'
@@ -162,7 +144,17 @@ type BindRole = {
   help: presentation
 }
 
-export const MOBS = ['alive', 'gamemaster', 'grave', 'juror', 'visiter'] as const
+type disabledRole = {
+  _id: ROLE_ID
+  group: undefined
+  win: WIN
+  able_ids: ABLE_ID
+  able?: presentation
+  cmd?: 'role'
+  label: presentation
+  help: presentation
+}
+
 export const Roles = MapReduce({
   format: () => {
     return {
@@ -176,4 +168,10 @@ export const Roles = MapReduce({
   order: (o, { sort }) => {}
 })
 
-Roles.deploy(json)
+Roles.deploy(set_role_gifts)
+Roles.deploy(set_role_lives)
+Roles.deploy(set_role_mobs)
+Roles.deploy(set_role_specials)
+Roles.deploy(set_role_traps)
+Roles.deploy(set_role_turns)
+Roles.deploy(set_roles)
