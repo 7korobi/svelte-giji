@@ -159,7 +159,7 @@ function entrySearch() {
     {#if order === 'game.label'}
       <p>
         {#each g.game as o (o._id)}
-          <Btn bind:value={game} as={[o._id]}>{o._id}<Sup value={o.count} /></Btn>
+          <Btn bind:value={game} as={[o._id]}>{o.label}<Sup value={o.count} /></Btn>
         {/each}
       </p>
     {/if}
@@ -171,7 +171,7 @@ function entrySearch() {
     <Report handle="TITLE">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>
-        <a href="/sow/show?book_id={o._id}&full">{o.name}</a>
+        <a href="/sow/show?book_id={o._id}&full">{@html o.name}</a>
       </p>
       <div class="cards">
         <table class="btns card" style="width: 33%">

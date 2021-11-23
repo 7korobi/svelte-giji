@@ -10,7 +10,7 @@ import type {
   SayLimit,
   ROLE_ID,
   MobRole,
-  MOB,
+  MOB_ID,
   Mark,
   Game,
   RoleTable,
@@ -41,7 +41,7 @@ export type Story = {
 
   type: {
     say: SAYCNT
-    mob: MOB
+    mob: MOB_ID
     game: GAME
     vote: VOTETYPE
     roletable: ROLETABLE
