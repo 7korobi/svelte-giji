@@ -1,6 +1,6 @@
 <script lang="ts">
 import { __BROWSER__ } from '../browser/device'
-import { site } from '../store'
+import site from '../site'
 
 import Btn from './Btn.svelte'
 
@@ -47,10 +47,18 @@ $: switch ($theme) {
   <Btn as="goth-S" bind:value={$font}>S</Btn>
 </span>
 <span>
+  <Btn as="night" bind:value={$theme}>闇夜</Btn>
+  <Btn as="star" bind:value={$theme}>蒼穹</Btn>
+  <Btn as="moon" bind:value={$theme}>月夜</Btn>
+</span>
+<span>
   <Btn as="cinema" bind:value={$theme}>煉瓦</Btn>
   <Btn as="snow" bind:value={$theme}>雪景</Btn>
-  <Btn as="star" bind:value={$theme}>蒼穹</Btn>
-  <Btn as="night" bind:value={$theme}>闇夜</Btn>
-  <Btn as="moon" bind:value={$theme}>月夜</Btn>
   <Btn as="wa" bind:value={$theme}>和の国</Btn>
 </span>
+
+<style lang="scss">
+span {
+  white-space: nowrap;
+}
+</style>

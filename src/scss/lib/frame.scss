@@ -28,8 +28,8 @@
       content: '';
       position: absolute;
       border-style: solid;
-      border-top-color: transparent;
       background-color: transparent;
+      border-color: transparent var(--shadow) var(--shadow) var(--shadow);
     }
 
     &::before {

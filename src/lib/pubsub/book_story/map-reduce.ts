@@ -35,7 +35,7 @@ export type Story = {
   role_table: RoleTable
   marks: Mark[]
   options: Option[]
-  events: (Role & { count: number })[]
+  traps: (Role & { count: number })[]
   configs: (Role & { count: number })[]
   discards: (Role & { count: number })[]
 

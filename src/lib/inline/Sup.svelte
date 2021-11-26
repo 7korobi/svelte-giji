@@ -1,7 +1,8 @@
 <script lang="ts">
-export let value: number | string
+export let value: number
+export let min = 0
 </script>
 
-{#if 'number' !== typeof value || 1 < value}
+{#if min < value}
   <sup>{value}</sup>
 {/if}

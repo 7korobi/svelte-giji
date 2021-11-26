@@ -1,6 +1,7 @@
 btn-title-bar-LONE: 2
 grad-title-bar-LONE: 3
 shade-title-bar-LONE: 2
+shadow-title-bar-LONE: 2
 btn-on-title-bar-LONE: 4
 btn-off-title-bar-LONE: 2
 edge-title-bar-LONE: 70
@@ -11,6 +12,7 @@ pen-title-LONE: 78
 btn-title-LONE: 3
 grad-title-LONE: 12
 shade-title-LONE: 3
+shadow-title-LONE: 3
 btn-on-title-LONE: 5
 btn-off-title-LONE: 3
 edge-title-LONE: 100
@@ -19,6 +21,7 @@ line-title-LONE: 66
 btn-ash-LONE: 3
 grad-ash-LONE: 9
 shade-ash-LONE: 2
+shadow-ash-LONE: 2
 btn-on-ash-LONE: 4
 btn-off-ash-LONE: 2
 edge-ash-LONE: 86
@@ -28,6 +31,7 @@ line-ash-LONE: 105
 btn-prog-LONE: 3
 grad-prog-LONE: 7
 shade-prog-LONE: 3
+shadow-prog-LONE: 3
 btn-on-prog-LONE: 4
 btn-off-prog-LONE: 2
 edge-prog-LONE: 89
@@ -38,6 +42,7 @@ pen-stat-LONE: 102
 btn-stat-LONE: 2
 grad-stat-LONE: 5
 shade-stat-LONE: 2
+shadow-stat-LONE: 2
 btn-on-stat-LONE: 3
 btn-off-stat-LONE: 2
 edge-stat-LONE: 35
@@ -47,6 +52,7 @@ pen-shout-D-LONE: 66
 btn-shout-D-LONE: 3
 grad-shout-D-LONE: 7
 shade-shout-D-LONE: 3
+shadow-shout-D-LONE: 3
 btn-on-shout-D-LONE: 4
 btn-off-shout-D-LONE: 2
 edge-shout-D-LONE: 102
@@ -55,6 +61,7 @@ line-shout-D-LONE: 58
 btn-tweet-D-LONE: 11
 grad-tweet-D-LONE: 18
 shade-tweet-D-LONE: 9
+shadow-tweet-D-LONE: 9
 btn-on-tweet-D-LONE: 17
 btn-off-tweet-D-LONE: 2
 edge-tweet-D-LONE: 39
@@ -64,6 +71,7 @@ line-tweet-D-LONE: 40
 btn-think-D-LONE: 14
 grad-think-D-LONE: 6
 shade-think-D-LONE: 8
+shadow-think-D-LONE: 9
 btn-on-think-D-LONE: 21
 btn-off-think-D-LONE: 2
 edge-think-D-LONE: 36
@@ -73,6 +81,7 @@ line-think-D-LONE: 37
 btn-std-D-LONE: 12
 grad-std-D-LONE: 7
 shade-std-D-LONE: 9
+shadow-std-D-LONE: 9
 btn-on-std-D-LONE: 18
 btn-off-std-D-LONE: 2
 edge-std-D-LONE: 37
@@ -82,6 +91,7 @@ line-std-D-LONE: 38
 btn-aim-D-LONE: 13
 grad-aim-D-LONE: 7
 shade-aim-D-LONE: 10
+shadow-aim-D-LONE: 10
 btn-on-aim-D-LONE: 20
 btn-off-aim-D-LONE: 2
 edge-aim-D-LONE: 35
@@ -92,6 +102,7 @@ pen-shout-N-LONE: 65
 btn-shout-N-LONE: 2
 grad-shout-N-LONE: 5
 shade-shout-N-LONE: 2
+shadow-shout-N-LONE: 2
 btn-on-shout-N-LONE: 4
 btn-off-shout-N-LONE: 2
 edge-shout-N-LONE: 32
@@ -101,6 +112,7 @@ pen-tweet-N-LONE: 63
 btn-tweet-N-LONE: 2
 grad-tweet-N-LONE: 6
 shade-tweet-N-LONE: 2
+shadow-tweet-N-LONE: 2
 btn-on-tweet-N-LONE: 3
 btn-off-tweet-N-LONE: 2
 edge-tweet-N-LONE: 27
@@ -110,6 +122,7 @@ pen-think-N-LONE: 58
 btn-think-N-LONE: 3
 grad-think-N-LONE: 8
 shade-think-N-LONE: 2
+shadow-think-N-LONE: 2
 btn-on-think-N-LONE: 4
 btn-off-think-N-LONE: 2
 edge-think-N-LONE: 31
@@ -119,6 +132,7 @@ pen-std-N-LONE: 64
 btn-std-N-LONE: 2
 grad-std-N-LONE: 6
 shade-std-N-LONE: 2
+shadow-std-N-LONE: 2
 btn-on-std-N-LONE: 4
 btn-off-std-N-LONE: 2
 edge-std-N-LONE: 31
@@ -128,6 +142,7 @@ pen-aim-N-LONE: 64
 btn-aim-N-LONE: 2
 grad-aim-N-LONE: 7
 shade-aim-N-LONE: 2
+shadow-aim-N-LONE: 2
 btn-on-aim-N-LONE: 4
 btn-off-aim-N-LONE: 2
 edge-aim-N-LONE: 31
@@ -136,6 +151,7 @@ line-aim-N-LONE: 43
 btn-title-bar-LOVE: 2
 grad-title-bar-LOVE: 17
 shade-title-bar-LOVE: 2
+shadow-title-bar-LOVE: 2
 btn-on-title-bar-LOVE: 3
 btn-off-title-bar-LOVE: 1
 edge-title-bar-LOVE: 65
@@ -146,6 +162,7 @@ pen-title-LOVE: 78
 btn-title-LOVE: 3
 grad-title-LOVE: 20
 shade-title-LOVE: 3
+shadow-title-LOVE: 3
 btn-on-title-LOVE: 5
 btn-off-title-LOVE: 3
 edge-title-LOVE: 101
@@ -154,6 +171,7 @@ line-title-LOVE: 68
 btn-ash-LOVE: 3
 grad-ash-LOVE: 18
 shade-ash-LOVE: 2
+shadow-ash-LOVE: 2
 btn-on-ash-LOVE: 4
 btn-off-ash-LOVE: 2
 edge-ash-LOVE: 85
@@ -163,6 +181,7 @@ line-ash-LOVE: 105
 btn-prog-LOVE: 3
 grad-prog-LOVE: 13
 shade-prog-LOVE: 2
+shadow-prog-LOVE: 2
 btn-on-prog-LOVE: 4
 btn-off-prog-LOVE: 2
 edge-prog-LOVE: 90
@@ -173,6 +192,7 @@ pen-stat-LOVE: 95
 btn-stat-LOVE: 2
 grad-stat-LOVE: 15
 shade-stat-LOVE: 2
+shadow-stat-LOVE: 2
 btn-on-stat-LOVE: 4
 btn-off-stat-LOVE: 2
 edge-stat-LOVE: 40
@@ -182,6 +202,7 @@ pen-shout-D-LOVE: 65
 btn-shout-D-LOVE: 3
 grad-shout-D-LOVE: 16
 shade-shout-D-LOVE: 3
+shadow-shout-D-LOVE: 3
 btn-on-shout-D-LOVE: 5
 btn-off-shout-D-LOVE: 2
 edge-shout-D-LOVE: 108
@@ -190,6 +211,7 @@ line-shout-D-LOVE: 61
 btn-tweet-D-LOVE: 9
 grad-tweet-D-LOVE: 3
 shade-tweet-D-LOVE: 7
+shadow-tweet-D-LOVE: 10
 btn-on-tweet-D-LOVE: 16
 btn-off-tweet-D-LOVE: 2
 edge-tweet-D-LOVE: 38
@@ -199,6 +221,7 @@ line-tweet-D-LOVE: 33
 btn-think-D-LOVE: 14
 grad-think-D-LOVE: 4
 shade-think-D-LOVE: 8
+shadow-think-D-LOVE: 9
 btn-on-think-D-LOVE: 21
 btn-off-think-D-LOVE: 2
 edge-think-D-LOVE: 34
@@ -208,6 +231,7 @@ line-think-D-LOVE: 28
 btn-std-D-LOVE: 11
 grad-std-D-LOVE: 4
 shade-std-D-LOVE: 8
+shadow-std-D-LOVE: 10
 btn-on-std-D-LOVE: 18
 btn-off-std-D-LOVE: 2
 edge-std-D-LOVE: 35
@@ -217,6 +241,7 @@ line-std-D-LOVE: 30
 btn-aim-D-LOVE: 13
 grad-aim-D-LOVE: 5
 shade-aim-D-LOVE: 10
+shadow-aim-D-LOVE: 10
 btn-on-aim-D-LOVE: 20
 btn-off-aim-D-LOVE: 2
 edge-aim-D-LOVE: 34
@@ -227,6 +252,7 @@ pen-shout-N-LOVE: 61
 btn-shout-N-LOVE: 2
 grad-shout-N-LOVE: 16
 shade-shout-N-LOVE: 2
+shadow-shout-N-LOVE: 2
 btn-on-shout-N-LOVE: 4
 btn-off-shout-N-LOVE: 2
 edge-shout-N-LOVE: 32
@@ -236,6 +262,7 @@ pen-tweet-N-LOVE: 59
 btn-tweet-N-LOVE: 2
 grad-tweet-N-LOVE: 15
 shade-tweet-N-LOVE: 2
+shadow-tweet-N-LOVE: 2
 btn-on-tweet-N-LOVE: 4
 btn-off-tweet-N-LOVE: 2
 edge-tweet-N-LOVE: 36
@@ -245,6 +272,7 @@ pen-think-N-LOVE: 57
 btn-think-N-LOVE: 3
 grad-think-N-LOVE: 18
 shade-think-N-LOVE: 2
+shadow-think-N-LOVE: 2
 btn-on-think-N-LOVE: 5
 btn-off-think-N-LOVE: 2
 edge-think-N-LOVE: 32
@@ -254,6 +282,7 @@ pen-std-N-LOVE: 62
 btn-std-N-LOVE: 3
 grad-std-N-LOVE: 17
 shade-std-N-LOVE: 2
+shadow-std-N-LOVE: 2
 btn-on-std-N-LOVE: 4
 btn-off-std-N-LOVE: 2
 edge-std-N-LOVE: 33
@@ -263,6 +292,7 @@ pen-aim-N-LOVE: 63
 btn-aim-N-LOVE: 3
 grad-aim-N-LOVE: 19
 shade-aim-N-LOVE: 2
+shadow-aim-N-LOVE: 2
 btn-on-aim-N-LOVE: 4
 btn-off-aim-N-LOVE: 2
 edge-aim-N-LOVE: 31
@@ -271,6 +301,7 @@ line-aim-N-LOVE: 47
 btn-title-bar-VGRAVE: 3
 grad-title-bar-VGRAVE: 0
 shade-title-bar-VGRAVE: 3
+shadow-title-bar-VGRAVE: 3
 btn-on-title-bar-VGRAVE: 5
 btn-off-title-bar-VGRAVE: 0
 edge-title-bar-VGRAVE: 62
@@ -281,6 +312,7 @@ pen-title-VGRAVE: 77
 btn-title-VGRAVE: 3
 grad-title-VGRAVE: 7
 shade-title-VGRAVE: 3
+shadow-title-VGRAVE: 3
 btn-on-title-VGRAVE: 4
 btn-off-title-VGRAVE: 2
 edge-title-VGRAVE: 95
@@ -289,6 +321,7 @@ line-title-VGRAVE: 62
 btn-ash-VGRAVE: 3
 grad-ash-VGRAVE: 5
 shade-ash-VGRAVE: 2
+shadow-ash-VGRAVE: 2
 btn-on-ash-VGRAVE: 5
 btn-off-ash-VGRAVE: 2
 edge-ash-VGRAVE: 89
@@ -298,6 +331,7 @@ line-ash-VGRAVE: 112
 btn-prog-VGRAVE: 3
 grad-prog-VGRAVE: 4
 shade-prog-VGRAVE: 3
+shadow-prog-VGRAVE: 3
 btn-on-prog-VGRAVE: 5
 btn-off-prog-VGRAVE: 3
 edge-prog-VGRAVE: 86
@@ -308,6 +342,7 @@ pen-stat-VGRAVE: 105
 btn-stat-VGRAVE: 3
 grad-stat-VGRAVE: 1
 shade-stat-VGRAVE: 3
+shadow-stat-VGRAVE: 3
 btn-on-stat-VGRAVE: 4
 btn-off-stat-VGRAVE: 3
 edge-stat-VGRAVE: 34
@@ -317,6 +352,7 @@ pen-shout-D-VGRAVE: 68
 btn-shout-D-VGRAVE: 3
 grad-shout-D-VGRAVE: 2
 shade-shout-D-VGRAVE: 3
+shadow-shout-D-VGRAVE: 3
 btn-on-shout-D-VGRAVE: 4
 btn-off-shout-D-VGRAVE: 3
 edge-shout-D-VGRAVE: 96
@@ -325,6 +361,7 @@ line-shout-D-VGRAVE: 57
 btn-tweet-D-VGRAVE: 13
 grad-tweet-D-VGRAVE: 21
 shade-tweet-D-VGRAVE: 9
+shadow-tweet-D-VGRAVE: 9
 btn-on-tweet-D-VGRAVE: 18
 btn-off-tweet-D-VGRAVE: 1
 edge-tweet-D-VGRAVE: 33
@@ -334,6 +371,7 @@ line-tweet-D-VGRAVE: 44
 btn-think-D-VGRAVE: 16
 grad-think-D-VGRAVE: 17
 shade-think-D-VGRAVE: 9
+shadow-think-D-VGRAVE: 9
 btn-on-think-D-VGRAVE: 22
 btn-off-think-D-VGRAVE: 2
 edge-think-D-VGRAVE: 30
@@ -343,6 +381,7 @@ line-think-D-VGRAVE: 40
 btn-std-D-VGRAVE: 13
 grad-std-D-VGRAVE: 16
 shade-std-D-VGRAVE: 10
+shadow-std-D-VGRAVE: 9
 btn-on-std-D-VGRAVE: 19
 btn-off-std-D-VGRAVE: 1
 edge-std-D-VGRAVE: 34
@@ -352,6 +391,7 @@ line-std-D-VGRAVE: 43
 btn-aim-D-VGRAVE: 13
 grad-aim-D-VGRAVE: 12
 shade-aim-D-VGRAVE: 10
+shadow-aim-D-VGRAVE: 10
 btn-on-aim-D-VGRAVE: 20
 btn-off-aim-D-VGRAVE: 2
 edge-aim-D-VGRAVE: 35
@@ -362,6 +402,7 @@ pen-shout-N-VGRAVE: 68
 btn-shout-N-VGRAVE: 3
 grad-shout-N-VGRAVE: 2
 shade-shout-N-VGRAVE: 3
+shadow-shout-N-VGRAVE: 3
 btn-on-shout-N-VGRAVE: 4
 btn-off-shout-N-VGRAVE: 3
 edge-shout-N-VGRAVE: 30
@@ -371,6 +412,7 @@ pen-tweet-N-VGRAVE: 66
 btn-tweet-N-VGRAVE: 3
 grad-tweet-N-VGRAVE: 0
 shade-tweet-N-VGRAVE: 3
+shadow-tweet-N-VGRAVE: 3
 btn-on-tweet-N-VGRAVE: 4
 btn-off-tweet-N-VGRAVE: 3
 edge-tweet-N-VGRAVE: 28
@@ -380,6 +422,7 @@ pen-think-N-VGRAVE: 59
 btn-think-N-VGRAVE: 2
 grad-think-N-VGRAVE: 4
 shade-think-N-VGRAVE: 2
+shadow-think-N-VGRAVE: 2
 btn-on-think-N-VGRAVE: 4
 btn-off-think-N-VGRAVE: 2
 edge-think-N-VGRAVE: 29
@@ -389,6 +432,7 @@ pen-std-N-VGRAVE: 67
 btn-std-N-VGRAVE: 3
 grad-std-N-VGRAVE: 3
 shade-std-N-VGRAVE: 3
+shadow-std-N-VGRAVE: 3
 btn-on-std-N-VGRAVE: 4
 btn-off-std-N-VGRAVE: 3
 edge-std-N-VGRAVE: 30
@@ -398,6 +442,7 @@ pen-aim-N-VGRAVE: 66
 btn-aim-N-VGRAVE: 2
 grad-aim-N-VGRAVE: 4
 shade-aim-N-VGRAVE: 2
+shadow-aim-N-VGRAVE: 2
 btn-on-aim-N-VGRAVE: 4
 btn-off-aim-N-VGRAVE: 2
 edge-aim-N-VGRAVE: 30
@@ -406,6 +451,7 @@ line-aim-N-VGRAVE: 43
 btn-title-bar-GRAVE: 5
 grad-title-bar-GRAVE: 0
 shade-title-bar-GRAVE: 5
+shadow-title-bar-GRAVE: 5
 btn-on-title-bar-GRAVE: 8
 btn-off-title-bar-GRAVE: 0
 edge-title-bar-GRAVE: 72
@@ -416,6 +462,7 @@ pen-title-GRAVE: 74
 btn-title-GRAVE: 2
 grad-title-GRAVE: 6
 shade-title-GRAVE: 2
+shadow-title-GRAVE: 2
 btn-on-title-GRAVE: 3
 btn-off-title-GRAVE: 2
 edge-title-GRAVE: 90
@@ -424,6 +471,7 @@ line-title-GRAVE: 52
 btn-ash-GRAVE: 2
 grad-ash-GRAVE: 3
 shade-ash-GRAVE: 2
+shadow-ash-GRAVE: 2
 btn-on-ash-GRAVE: 3
 btn-off-ash-GRAVE: 2
 edge-ash-GRAVE: 96
@@ -433,6 +481,7 @@ line-ash-GRAVE: 76
 btn-prog-GRAVE: 2
 grad-prog-GRAVE: 2
 shade-prog-GRAVE: 2
+shadow-prog-GRAVE: 2
 btn-on-prog-GRAVE: 3
 btn-off-prog-GRAVE: 2
 edge-prog-GRAVE: 80
@@ -443,6 +492,7 @@ pen-stat-GRAVE: 111
 btn-stat-GRAVE: 2
 grad-stat-GRAVE: 3
 shade-stat-GRAVE: 2
+shadow-stat-GRAVE: 2
 btn-on-stat-GRAVE: 3
 btn-off-stat-GRAVE: 2
 edge-stat-GRAVE: 23
@@ -452,6 +502,7 @@ pen-shout-D-GRAVE: 69
 btn-shout-D-GRAVE: 2
 grad-shout-D-GRAVE: 4
 shade-shout-D-GRAVE: 2
+shadow-shout-D-GRAVE: 2
 btn-on-shout-D-GRAVE: 3
 btn-off-shout-D-GRAVE: 2
 edge-shout-D-GRAVE: 67
@@ -460,6 +511,7 @@ line-shout-D-GRAVE: 38
 btn-tweet-D-GRAVE: 12
 grad-tweet-D-GRAVE: 6
 shade-tweet-D-GRAVE: 15
+shadow-tweet-D-GRAVE: 9
 btn-on-tweet-D-GRAVE: 23
 btn-off-tweet-D-GRAVE: 1
 edge-tweet-D-GRAVE: 43
@@ -469,6 +521,7 @@ line-tweet-D-GRAVE: 47
 btn-think-D-GRAVE: 9
 grad-think-D-GRAVE: 9
 shade-think-D-GRAVE: 11
+shadow-think-D-GRAVE: 9
 btn-on-think-D-GRAVE: 15
 btn-off-think-D-GRAVE: 2
 edge-think-D-GRAVE: 43
@@ -478,6 +531,7 @@ line-think-D-GRAVE: 46
 btn-std-D-GRAVE: 12
 grad-std-D-GRAVE: 13
 shade-std-D-GRAVE: 13
+shadow-std-D-GRAVE: 10
 btn-on-std-D-GRAVE: 23
 btn-off-std-D-GRAVE: 2
 edge-std-D-GRAVE: 45
@@ -487,6 +541,7 @@ line-std-D-GRAVE: 50
 btn-aim-D-GRAVE: 11
 grad-aim-D-GRAVE: 17
 shade-aim-D-GRAVE: 12
+shadow-aim-D-GRAVE: 10
 btn-on-aim-D-GRAVE: 21
 btn-off-aim-D-GRAVE: 2
 edge-aim-D-GRAVE: 44
@@ -497,6 +552,7 @@ pen-shout-N-GRAVE: 72
 btn-shout-N-GRAVE: 2
 grad-shout-N-GRAVE: 3
 shade-shout-N-GRAVE: 2
+shadow-shout-N-GRAVE: 2
 btn-on-shout-N-GRAVE: 3
 btn-off-shout-N-GRAVE: 2
 edge-shout-N-GRAVE: 23
@@ -506,6 +562,7 @@ pen-tweet-N-GRAVE: 69
 btn-tweet-N-GRAVE: 2
 grad-tweet-N-GRAVE: 4
 shade-tweet-N-GRAVE: 2
+shadow-tweet-N-GRAVE: 2
 btn-on-tweet-N-GRAVE: 3
 btn-off-tweet-N-GRAVE: 0
 edge-tweet-N-GRAVE: 18
@@ -515,6 +572,7 @@ pen-think-N-GRAVE: 58
 btn-think-N-GRAVE: 2
 grad-think-N-GRAVE: 4
 shade-think-N-GRAVE: 2
+shadow-think-N-GRAVE: 2
 btn-on-think-N-GRAVE: 3
 btn-off-think-N-GRAVE: 2
 edge-think-N-GRAVE: 26
@@ -524,6 +582,7 @@ pen-std-N-GRAVE: 69
 btn-std-N-GRAVE: 2
 grad-std-N-GRAVE: 4
 shade-std-N-GRAVE: 2
+shadow-std-N-GRAVE: 2
 btn-on-std-N-GRAVE: 3
 btn-off-std-N-GRAVE: 2
 edge-std-N-GRAVE: 24
@@ -533,6 +592,7 @@ pen-aim-N-GRAVE: 68
 btn-aim-N-GRAVE: 2
 grad-aim-N-GRAVE: 4
 shade-aim-N-GRAVE: 2
+shadow-aim-N-GRAVE: 2
 btn-on-aim-N-GRAVE: 3
 btn-off-aim-N-GRAVE: 2
 edge-aim-N-GRAVE: 26
@@ -541,6 +601,7 @@ line-aim-N-GRAVE: 21
 btn-title-bar-FOAM: 1
 grad-title-bar-FOAM: 3
 shade-title-bar-FOAM: 2
+shadow-title-bar-FOAM: 2
 btn-on-title-bar-FOAM: 2
 btn-off-title-bar-FOAM: 1
 edge-title-bar-FOAM: 36
@@ -551,6 +612,7 @@ pen-title-FOAM: 71
 btn-title-FOAM: 2
 grad-title-FOAM: 5
 shade-title-FOAM: 2
+shadow-title-FOAM: 2
 btn-on-title-FOAM: 3
 btn-off-title-FOAM: 2
 edge-title-FOAM: 90
@@ -559,6 +621,7 @@ line-title-FOAM: 51
 btn-ash-FOAM: 2
 grad-ash-FOAM: 4
 shade-ash-FOAM: 2
+shadow-ash-FOAM: 2
 btn-on-ash-FOAM: 3
 btn-off-ash-FOAM: 2
 edge-ash-FOAM: 93
@@ -568,6 +631,7 @@ line-ash-FOAM: 43
 btn-prog-FOAM: 2
 grad-prog-FOAM: 5
 shade-prog-FOAM: 2
+shadow-prog-FOAM: 2
 btn-on-prog-FOAM: 3
 btn-off-prog-FOAM: 2
 edge-prog-FOAM: 71
@@ -578,6 +642,7 @@ pen-stat-FOAM: 106
 btn-stat-FOAM: 1
 grad-stat-FOAM: 3
 shade-stat-FOAM: 2
+shadow-stat-FOAM: 2
 btn-on-stat-FOAM: 2
 btn-off-stat-FOAM: 1
 edge-stat-FOAM: 24
@@ -587,6 +652,7 @@ pen-shout-D-FOAM: 65
 btn-shout-D-FOAM: 1
 grad-shout-D-FOAM: 4
 shade-shout-D-FOAM: 2
+shadow-shout-D-FOAM: 2
 btn-on-shout-D-FOAM: 2
 btn-off-shout-D-FOAM: 1
 edge-shout-D-FOAM: 83
@@ -595,6 +661,7 @@ line-shout-D-FOAM: 35
 btn-tweet-D-FOAM: 3
 grad-tweet-D-FOAM: 14
 shade-tweet-D-FOAM: 7
+shadow-tweet-D-FOAM: 7
 btn-on-tweet-D-FOAM: 5
 btn-off-tweet-D-FOAM: 1
 edge-tweet-D-FOAM: 29
@@ -604,6 +671,7 @@ line-tweet-D-FOAM: 28
 btn-think-D-FOAM: 4
 grad-think-D-FOAM: 25
 shade-think-D-FOAM: 10
+shadow-think-D-FOAM: 8
 btn-on-think-D-FOAM: 8
 btn-off-think-D-FOAM: 2
 edge-think-D-FOAM: 40
@@ -613,6 +681,7 @@ line-think-D-FOAM: 40
 btn-std-D-FOAM: 6
 grad-std-D-FOAM: 10
 shade-std-D-FOAM: 14
+shadow-std-D-FOAM: 9
 btn-on-std-D-FOAM: 11
 btn-off-std-D-FOAM: 3
 edge-std-D-FOAM: 38
@@ -622,6 +691,7 @@ line-std-D-FOAM: 38
 btn-aim-D-FOAM: 7
 grad-aim-D-FOAM: 16
 shade-aim-D-FOAM: 11
+shadow-aim-D-FOAM: 10
 btn-on-aim-D-FOAM: 15
 btn-off-aim-D-FOAM: 3
 edge-aim-D-FOAM: 44
@@ -632,6 +702,7 @@ pen-shout-N-FOAM: 70
 btn-shout-N-FOAM: 2
 grad-shout-N-FOAM: 4
 shade-shout-N-FOAM: 2
+shadow-shout-N-FOAM: 2
 btn-on-shout-N-FOAM: 2
 btn-off-shout-N-FOAM: 1
 edge-shout-N-FOAM: 24
@@ -641,6 +712,7 @@ pen-tweet-N-FOAM: 64
 btn-tweet-N-FOAM: 1
 grad-tweet-N-FOAM: 4
 shade-tweet-N-FOAM: 1
+shadow-tweet-N-FOAM: 1
 btn-on-tweet-N-FOAM: 2
 btn-off-tweet-N-FOAM: 1
 edge-tweet-N-FOAM: 19
@@ -650,6 +722,7 @@ pen-think-N-FOAM: 56
 btn-think-N-FOAM: 2
 grad-think-N-FOAM: 4
 shade-think-N-FOAM: 2
+shadow-think-N-FOAM: 2
 btn-on-think-N-FOAM: 3
 btn-off-think-N-FOAM: 1
 edge-think-N-FOAM: 26
@@ -659,6 +732,7 @@ pen-std-N-FOAM: 67
 btn-std-N-FOAM: 2
 grad-std-N-FOAM: 4
 shade-std-N-FOAM: 2
+shadow-std-N-FOAM: 2
 btn-on-std-N-FOAM: 2
 btn-off-std-N-FOAM: 1
 edge-std-N-FOAM: 24
@@ -668,6 +742,7 @@ pen-aim-N-FOAM: 66
 btn-aim-N-FOAM: 2
 grad-aim-N-FOAM: 4
 shade-aim-N-FOAM: 2
+shadow-aim-N-FOAM: 2
 btn-on-aim-N-FOAM: 3
 btn-off-aim-N-FOAM: 1
 edge-aim-N-FOAM: 27
@@ -676,6 +751,7 @@ line-aim-N-FOAM: 19
 btn-title-bar-ELSE: 1
 grad-title-bar-ELSE: 3
 shade-title-bar-ELSE: 2
+shadow-title-bar-ELSE: 2
 btn-on-title-bar-ELSE: 2
 btn-off-title-bar-ELSE: 1
 edge-title-bar-ELSE: 37
@@ -686,6 +762,7 @@ pen-title-ELSE: 72
 btn-title-ELSE: 3
 grad-title-ELSE: 7
 shade-title-ELSE: 3
+shadow-title-ELSE: 3
 btn-on-title-ELSE: 4
 btn-off-title-ELSE: 2
 edge-title-ELSE: 93
@@ -694,6 +771,7 @@ line-title-ELSE: 53
 btn-ash-ELSE: 2
 grad-ash-ELSE: 4
 shade-ash-ELSE: 2
+shadow-ash-ELSE: 2
 btn-on-ash-ELSE: 3
 btn-off-ash-ELSE: 2
 edge-ash-ELSE: 93
@@ -703,6 +781,7 @@ line-ash-ELSE: 43
 btn-prog-ELSE: 2
 grad-prog-ELSE: 4
 shade-prog-ELSE: 2
+shadow-prog-ELSE: 2
 btn-on-prog-ELSE: 3
 btn-off-prog-ELSE: 2
 edge-prog-ELSE: 72
@@ -713,6 +792,7 @@ pen-stat-ELSE: 54
 btn-stat-ELSE: 1
 grad-stat-ELSE: 3
 shade-stat-ELSE: 2
+shadow-stat-ELSE: 2
 btn-on-stat-ELSE: 2
 btn-off-stat-ELSE: 1
 edge-stat-ELSE: 22
@@ -722,6 +802,7 @@ pen-shout-D-ELSE: 42
 btn-shout-D-ELSE: 2
 grad-shout-D-ELSE: 3
 shade-shout-D-ELSE: 2
+shadow-shout-D-ELSE: 2
 btn-on-shout-D-ELSE: 2
 btn-off-shout-D-ELSE: 1
 edge-shout-D-ELSE: 66
@@ -730,6 +811,7 @@ line-shout-D-ELSE: 34
 btn-tweet-D-ELSE: 3
 grad-tweet-D-ELSE: 15
 shade-tweet-D-ELSE: 7
+shadow-tweet-D-ELSE: 7
 btn-on-tweet-D-ELSE: 5
 btn-off-tweet-D-ELSE: 2
 edge-tweet-D-ELSE: 30
@@ -739,6 +821,7 @@ line-tweet-D-ELSE: 30
 btn-think-D-ELSE: 4
 grad-think-D-ELSE: 26
 shade-think-D-ELSE: 10
+shadow-think-D-ELSE: 8
 btn-on-think-D-ELSE: 8
 btn-off-think-D-ELSE: 3
 edge-think-D-ELSE: 41
@@ -748,6 +831,7 @@ line-think-D-ELSE: 41
 btn-std-D-ELSE: 6
 grad-std-D-ELSE: 10
 shade-std-D-ELSE: 13
+shadow-std-D-ELSE: 10
 btn-on-std-D-ELSE: 12
 btn-off-std-D-ELSE: 3
 edge-std-D-ELSE: 40
@@ -757,6 +841,7 @@ line-std-D-ELSE: 40
 btn-aim-D-ELSE: 7
 grad-aim-D-ELSE: 16
 shade-aim-D-ELSE: 11
+shadow-aim-D-ELSE: 10
 btn-on-aim-D-ELSE: 15
 btn-off-aim-D-ELSE: 3
 edge-aim-D-ELSE: 44
@@ -767,6 +852,7 @@ pen-shout-N-ELSE: 61
 btn-shout-N-ELSE: 2
 grad-shout-N-ELSE: 3
 shade-shout-N-ELSE: 2
+shadow-shout-N-ELSE: 2
 btn-on-shout-N-ELSE: 2
 btn-off-shout-N-ELSE: 1
 edge-shout-N-ELSE: 23
@@ -776,6 +862,7 @@ pen-tweet-N-ELSE: 32
 btn-tweet-N-ELSE: 1
 grad-tweet-N-ELSE: 3
 shade-tweet-N-ELSE: 2
+shadow-tweet-N-ELSE: 2
 btn-on-tweet-N-ELSE: 2
 btn-off-tweet-N-ELSE: 1
 edge-tweet-N-ELSE: 17
@@ -785,6 +872,7 @@ pen-think-N-ELSE: 51
 btn-think-N-ELSE: 2
 grad-think-N-ELSE: 4
 shade-think-N-ELSE: 2
+shadow-think-N-ELSE: 2
 btn-on-think-N-ELSE: 3
 btn-off-think-N-ELSE: 2
 edge-think-N-ELSE: 26
@@ -794,6 +882,7 @@ pen-std-N-ELSE: 57
 btn-std-N-ELSE: 2
 grad-std-N-ELSE: 3
 shade-std-N-ELSE: 2
+shadow-std-N-ELSE: 2
 btn-on-std-N-ELSE: 3
 btn-off-std-N-ELSE: 2
 edge-std-N-ELSE: 24
@@ -803,6 +892,7 @@ pen-aim-N-ELSE: 63
 btn-aim-N-ELSE: 2
 grad-aim-N-ELSE: 3
 shade-aim-N-ELSE: 2
+shadow-aim-N-ELSE: 2
 btn-on-aim-N-ELSE: 3
 btn-off-aim-N-ELSE: 2
 edge-aim-N-ELSE: 27
@@ -811,6 +901,7 @@ line-aim-N-ELSE: 20
 btn-title-bar-MUPET: 2
 grad-title-bar-MUPET: 6
 shade-title-bar-MUPET: 2
+shadow-title-bar-MUPET: 2
 btn-on-title-bar-MUPET: 2
 btn-off-title-bar-MUPET: 1
 edge-title-bar-MUPET: 34
@@ -821,6 +912,7 @@ pen-title-MUPET: 70
 btn-title-MUPET: 2
 grad-title-MUPET: 10
 shade-title-MUPET: 3
+shadow-title-MUPET: 3
 btn-on-title-MUPET: 3
 btn-off-title-MUPET: 2
 edge-title-MUPET: 91
@@ -829,6 +921,7 @@ line-title-MUPET: 49
 btn-ash-MUPET: 2
 grad-ash-MUPET: 5
 shade-ash-MUPET: 2
+shadow-ash-MUPET: 2
 btn-on-ash-MUPET: 3
 btn-off-ash-MUPET: 2
 edge-ash-MUPET: 94
@@ -838,6 +931,7 @@ line-ash-MUPET: 42
 btn-prog-MUPET: 2
 grad-prog-MUPET: 6
 shade-prog-MUPET: 2
+shadow-prog-MUPET: 2
 btn-on-prog-MUPET: 3
 btn-off-prog-MUPET: 2
 edge-prog-MUPET: 68
@@ -848,6 +942,7 @@ pen-stat-MUPET: 51
 btn-stat-MUPET: 1
 grad-stat-MUPET: 12
 shade-stat-MUPET: 1
+shadow-stat-MUPET: 1
 btn-on-stat-MUPET: 2
 btn-off-stat-MUPET: 1
 edge-stat-MUPET: 21
@@ -857,6 +952,7 @@ pen-shout-D-MUPET: 40
 btn-shout-D-MUPET: 1
 grad-shout-D-MUPET: 10
 shade-shout-D-MUPET: 2
+shadow-shout-D-MUPET: 2
 btn-on-shout-D-MUPET: 2
 btn-off-shout-D-MUPET: 1
 edge-shout-D-MUPET: 65
@@ -865,6 +961,7 @@ line-shout-D-MUPET: 30
 btn-tweet-D-MUPET: 3
 grad-tweet-D-MUPET: 4
 shade-tweet-D-MUPET: 7
+shadow-tweet-D-MUPET: 6
 btn-on-tweet-D-MUPET: 6
 btn-off-tweet-D-MUPET: 1
 edge-tweet-D-MUPET: 28
@@ -874,6 +971,7 @@ line-tweet-D-MUPET: 25
 btn-think-D-MUPET: 4
 grad-think-D-MUPET: 20
 shade-think-D-MUPET: 11
+shadow-think-D-MUPET: 8
 btn-on-think-D-MUPET: 7
 btn-off-think-D-MUPET: 2
 edge-think-D-MUPET: 40
@@ -883,6 +981,7 @@ line-think-D-MUPET: 37
 btn-std-D-MUPET: 6
 grad-std-D-MUPET: 19
 shade-std-D-MUPET: 15
+shadow-std-D-MUPET: 9
 btn-on-std-D-MUPET: 11
 btn-off-std-D-MUPET: 3
 edge-std-D-MUPET: 37
@@ -892,6 +991,7 @@ line-std-D-MUPET: 33
 btn-aim-D-MUPET: 7
 grad-aim-D-MUPET: 29
 shade-aim-D-MUPET: 12
+shadow-aim-D-MUPET: 10
 btn-on-aim-D-MUPET: 14
 btn-off-aim-D-MUPET: 3
 edge-aim-D-MUPET: 45
@@ -902,6 +1002,7 @@ pen-shout-N-MUPET: 58
 btn-shout-N-MUPET: 1
 grad-shout-N-MUPET: 10
 shade-shout-N-MUPET: 1
+shadow-shout-N-MUPET: 1
 btn-on-shout-N-MUPET: 2
 btn-off-shout-N-MUPET: 1
 edge-shout-N-MUPET: 22
@@ -911,6 +1012,7 @@ pen-tweet-N-MUPET: 30
 btn-tweet-N-MUPET: 1
 grad-tweet-N-MUPET: 12
 shade-tweet-N-MUPET: 1
+shadow-tweet-N-MUPET: 1
 btn-on-tweet-N-MUPET: 2
 btn-off-tweet-N-MUPET: 1
 edge-tweet-N-MUPET: 17
@@ -920,6 +1022,7 @@ pen-think-N-MUPET: 49
 btn-think-N-MUPET: 2
 grad-think-N-MUPET: 9
 shade-think-N-MUPET: 2
+shadow-think-N-MUPET: 2
 btn-on-think-N-MUPET: 3
 btn-off-think-N-MUPET: 1
 edge-think-N-MUPET: 25
@@ -929,6 +1032,7 @@ pen-std-N-MUPET: 54
 btn-std-N-MUPET: 1
 grad-std-N-MUPET: 9
 shade-std-N-MUPET: 2
+shadow-std-N-MUPET: 2
 btn-on-std-N-MUPET: 2
 btn-off-std-N-MUPET: 1
 edge-std-N-MUPET: 23
@@ -938,6 +1042,7 @@ pen-aim-N-MUPET: 62
 btn-aim-N-MUPET: 2
 grad-aim-N-MUPET: 8
 shade-aim-N-MUPET: 2
+shadow-aim-N-MUPET: 2
 btn-on-aim-N-MUPET: 2
 btn-off-aim-N-MUPET: 1
 edge-aim-N-MUPET: 26
@@ -946,6 +1051,7 @@ line-aim-N-MUPET: 17
 btn-title-bar-BROAD: 1
 grad-title-bar-BROAD: 0
 shade-title-bar-BROAD: 1
+shadow-title-bar-BROAD: 1
 btn-on-title-bar-BROAD: 2
 btn-off-title-bar-BROAD: 0
 edge-title-bar-BROAD: 38
@@ -956,6 +1062,7 @@ pen-title-BROAD: 69
 btn-title-BROAD: 3
 grad-title-BROAD: 12
 shade-title-BROAD: 3
+shadow-title-BROAD: 3
 btn-on-title-BROAD: 4
 btn-off-title-BROAD: 2
 edge-title-BROAD: 94
@@ -964,6 +1071,7 @@ line-title-BROAD: 54
 btn-ash-BROAD: 2
 grad-ash-BROAD: 7
 shade-ash-BROAD: 2
+shadow-ash-BROAD: 2
 btn-on-ash-BROAD: 2
 btn-off-ash-BROAD: 1
 edge-ash-BROAD: 93
@@ -973,6 +1081,7 @@ line-ash-BROAD: 39
 btn-prog-BROAD: 2
 grad-prog-BROAD: 8
 shade-prog-BROAD: 2
+shadow-prog-BROAD: 2
 btn-on-prog-BROAD: 2
 btn-off-prog-BROAD: 1
 edge-prog-BROAD: 71
@@ -983,6 +1092,7 @@ pen-stat-BROAD: 42
 btn-stat-BROAD: 1
 grad-stat-BROAD: 12
 shade-stat-BROAD: 1
+shadow-stat-BROAD: 1
 btn-on-stat-BROAD: 2
 btn-off-stat-BROAD: 1
 edge-stat-BROAD: 26
@@ -992,6 +1102,7 @@ pen-shout-D-BROAD: 36
 btn-shout-D-BROAD: 2
 grad-shout-D-BROAD: 10
 shade-shout-D-BROAD: 2
+shadow-shout-D-BROAD: 2
 btn-on-shout-D-BROAD: 3
 btn-off-shout-D-BROAD: 1
 edge-shout-D-BROAD: 79
@@ -1000,6 +1111,7 @@ line-shout-D-BROAD: 37
 btn-tweet-D-BROAD: 2
 grad-tweet-D-BROAD: 0
 shade-tweet-D-BROAD: 3
+shadow-tweet-D-BROAD: 7
 btn-on-tweet-D-BROAD: 4
 btn-off-tweet-D-BROAD: 0
 edge-tweet-D-BROAD: 29
@@ -1009,6 +1121,7 @@ line-tweet-D-BROAD: 23
 btn-think-D-BROAD: 3
 grad-think-D-BROAD: 6
 shade-think-D-BROAD: 9
+shadow-think-D-BROAD: 9
 btn-on-think-D-BROAD: 6
 btn-off-think-D-BROAD: 3
 edge-think-D-BROAD: 40
@@ -1018,6 +1131,7 @@ line-think-D-BROAD: 33
 btn-std-D-BROAD: 4
 grad-std-D-BROAD: 2
 shade-std-D-BROAD: 10
+shadow-std-D-BROAD: 9
 btn-on-std-D-BROAD: 8
 btn-off-std-D-BROAD: 7
 edge-std-D-BROAD: 38
@@ -1027,6 +1141,7 @@ line-std-D-BROAD: 31
 btn-aim-D-BROAD: 6
 grad-aim-D-BROAD: 8
 shade-aim-D-BROAD: 11
+shadow-aim-D-BROAD: 10
 btn-on-aim-D-BROAD: 13
 btn-off-aim-D-BROAD: 3
 edge-aim-D-BROAD: 44
@@ -1037,6 +1152,7 @@ pen-shout-N-BROAD: 52
 btn-shout-N-BROAD: 1
 grad-shout-N-BROAD: 10
 shade-shout-N-BROAD: 2
+shadow-shout-N-BROAD: 2
 btn-on-shout-N-BROAD: 2
 btn-off-shout-N-BROAD: 1
 edge-shout-N-BROAD: 26
@@ -1046,6 +1162,7 @@ pen-tweet-N-BROAD: 26
 btn-tweet-N-BROAD: 1
 grad-tweet-N-BROAD: 12
 shade-tweet-N-BROAD: 1
+shadow-tweet-N-BROAD: 1
 btn-on-tweet-N-BROAD: 2
 btn-off-tweet-N-BROAD: 1
 edge-tweet-N-BROAD: 22
@@ -1055,6 +1172,7 @@ pen-think-N-BROAD: 46
 btn-think-N-BROAD: 2
 grad-think-N-BROAD: 11
 shade-think-N-BROAD: 2
+shadow-think-N-BROAD: 2
 btn-on-think-N-BROAD: 3
 btn-off-think-N-BROAD: 2
 edge-think-N-BROAD: 28
@@ -1064,6 +1182,7 @@ pen-std-N-BROAD: 49
 btn-std-N-BROAD: 2
 grad-std-N-BROAD: 10
 shade-std-N-BROAD: 2
+shadow-std-N-BROAD: 2
 btn-on-std-N-BROAD: 3
 btn-off-std-N-BROAD: 1
 edge-std-N-BROAD: 26
@@ -1073,6 +1192,7 @@ pen-aim-N-BROAD: 59
 btn-aim-N-BROAD: 2
 grad-aim-N-BROAD: 11
 shade-aim-N-BROAD: 2
+shadow-aim-N-BROAD: 2
 btn-on-aim-N-BROAD: 3
 btn-off-aim-N-BROAD: 1
 edge-aim-N-BROAD: 28
@@ -1081,6 +1201,7 @@ line-aim-N-BROAD: 22
 btn-title-bar-MOB: 1
 grad-title-bar-MOB: 11
 shade-title-bar-MOB: 1
+shadow-title-bar-MOB: 1
 btn-on-title-bar-MOB: 2
 btn-off-title-bar-MOB: 0
 edge-title-bar-MOB: 58
@@ -1091,6 +1212,7 @@ pen-title-MOB: 73
 btn-title-MOB: 3
 grad-title-MOB: 13
 shade-title-MOB: 3
+shadow-title-MOB: 3
 btn-on-title-MOB: 4
 btn-off-title-MOB: 3
 edge-title-MOB: 98
@@ -1099,6 +1221,7 @@ line-title-MOB: 61
 btn-ash-MOB: 2
 grad-ash-MOB: 11
 shade-ash-MOB: 2
+shadow-ash-MOB: 2
 btn-on-ash-MOB: 3
 btn-off-ash-MOB: 1
 edge-ash-MOB: 89
@@ -1108,6 +1231,7 @@ line-ash-MOB: 61
 btn-prog-MOB: 2
 grad-prog-MOB: 10
 shade-prog-MOB: 2
+shadow-prog-MOB: 2
 btn-on-prog-MOB: 3
 btn-off-prog-MOB: 1
 edge-prog-MOB: 80
@@ -1118,6 +1242,7 @@ pen-stat-MOB: 72
 btn-stat-MOB: 2
 grad-stat-MOB: 8
 shade-stat-MOB: 2
+shadow-stat-MOB: 2
 btn-on-stat-MOB: 3
 btn-off-stat-MOB: 1
 edge-stat-MOB: 33
@@ -1127,6 +1252,7 @@ pen-shout-D-MOB: 51
 btn-shout-D-MOB: 2
 grad-shout-D-MOB: 9
 shade-shout-D-MOB: 2
+shadow-shout-D-MOB: 2
 btn-on-shout-D-MOB: 3
 btn-off-shout-D-MOB: 2
 edge-shout-D-MOB: 97
@@ -1135,6 +1261,7 @@ line-shout-D-MOB: 49
 btn-tweet-D-MOB: 3
 grad-tweet-D-MOB: 0
 shade-tweet-D-MOB: 6
+shadow-tweet-D-MOB: 9
 btn-on-tweet-D-MOB: 8
 btn-off-tweet-D-MOB: 0
 edge-tweet-D-MOB: 34
@@ -1144,6 +1271,7 @@ line-tweet-D-MOB: 29
 btn-think-D-MOB: 6
 grad-think-D-MOB: 4
 shade-think-D-MOB: 9
+shadow-think-D-MOB: 9
 btn-on-think-D-MOB: 11
 btn-off-think-D-MOB: 3
 edge-think-D-MOB: 38
@@ -1153,6 +1281,7 @@ line-think-D-MOB: 33
 btn-std-D-MOB: 7
 grad-std-D-MOB: 4
 shade-std-D-MOB: 9
+shadow-std-D-MOB: 10
 btn-on-std-D-MOB: 15
 btn-off-std-D-MOB: 3
 edge-std-D-MOB: 39
@@ -1162,6 +1291,7 @@ line-std-D-MOB: 32
 btn-aim-D-MOB: 9
 grad-aim-D-MOB: 6
 shade-aim-D-MOB: 10
+shadow-aim-D-MOB: 10
 btn-on-aim-D-MOB: 18
 btn-off-aim-D-MOB: 3
 edge-aim-D-MOB: 40
@@ -1172,6 +1302,7 @@ pen-shout-N-MOB: 59
 btn-shout-N-MOB: 2
 grad-shout-N-MOB: 9
 shade-shout-N-MOB: 2
+shadow-shout-N-MOB: 2
 btn-on-shout-N-MOB: 3
 btn-off-shout-N-MOB: 1
 edge-shout-N-MOB: 30
@@ -1181,6 +1312,7 @@ pen-tweet-N-MOB: 37
 btn-tweet-N-MOB: 2
 grad-tweet-N-MOB: 9
 shade-tweet-N-MOB: 2
+shadow-tweet-N-MOB: 2
 btn-on-tweet-N-MOB: 3
 btn-off-tweet-N-MOB: 1
 edge-tweet-N-MOB: 27
@@ -1190,6 +1322,7 @@ pen-think-N-MOB: 52
 btn-think-N-MOB: 2
 grad-think-N-MOB: 11
 shade-think-N-MOB: 2
+shadow-think-N-MOB: 2
 btn-on-think-N-MOB: 3
 btn-off-think-N-MOB: 2
 edge-think-N-MOB: 30
@@ -1199,6 +1332,7 @@ pen-std-N-MOB: 58
 btn-std-N-MOB: 2
 grad-std-N-MOB: 9
 shade-std-N-MOB: 2
+shadow-std-N-MOB: 2
 btn-on-std-N-MOB: 3
 btn-off-std-N-MOB: 1
 edge-std-N-MOB: 30
@@ -1208,6 +1342,7 @@ pen-aim-N-MOB: 62
 btn-aim-N-MOB: 2
 grad-aim-N-MOB: 11
 shade-aim-N-MOB: 2
+shadow-aim-N-MOB: 2
 btn-on-aim-N-MOB: 3
 btn-off-aim-N-MOB: 1
 edge-aim-N-MOB: 30
@@ -1216,6 +1351,7 @@ line-aim-N-MOB: 32
 btn-title-bar-WOLF: 2
 grad-title-bar-WOLF: 5
 shade-title-bar-WOLF: 2
+shadow-title-bar-WOLF: 2
 btn-on-title-bar-WOLF: 4
 btn-off-title-bar-WOLF: 1
 edge-title-bar-WOLF: 69
@@ -1226,6 +1362,7 @@ pen-title-WOLF: 76
 btn-title-WOLF: 3
 grad-title-WOLF: 12
 shade-title-WOLF: 3
+shadow-title-WOLF: 3
 btn-on-title-WOLF: 5
 btn-off-title-WOLF: 3
 edge-title-WOLF: 99
@@ -1234,6 +1371,7 @@ line-title-WOLF: 66
 btn-ash-WOLF: 2
 grad-ash-WOLF: 11
 shade-ash-WOLF: 2
+shadow-ash-WOLF: 2
 btn-on-ash-WOLF: 4
 btn-off-ash-WOLF: 1
 edge-ash-WOLF: 86
@@ -1243,6 +1381,7 @@ line-ash-WOLF: 100
 btn-prog-WOLF: 2
 grad-prog-WOLF: 9
 shade-prog-WOLF: 2
+shadow-prog-WOLF: 2
 btn-on-prog-WOLF: 4
 btn-off-prog-WOLF: 2
 edge-prog-WOLF: 88
@@ -1253,6 +1392,7 @@ pen-stat-WOLF: 96
 btn-stat-WOLF: 2
 grad-stat-WOLF: 6
 shade-stat-WOLF: 2
+shadow-stat-WOLF: 2
 btn-on-stat-WOLF: 3
 btn-off-stat-WOLF: 2
 edge-stat-WOLF: 39
@@ -1262,6 +1402,7 @@ pen-shout-D-WOLF: 63
 btn-shout-D-WOLF: 3
 grad-shout-D-WOLF: 7
 shade-shout-D-WOLF: 3
+shadow-shout-D-WOLF: 3
 btn-on-shout-D-WOLF: 4
 btn-off-shout-D-WOLF: 2
 edge-shout-D-WOLF: 104
@@ -1270,6 +1411,7 @@ line-shout-D-WOLF: 60
 btn-tweet-D-WOLF: 8
 grad-tweet-D-WOLF: 14
 shade-tweet-D-WOLF: 7
+shadow-tweet-D-WOLF: 10
 btn-on-tweet-D-WOLF: 15
 btn-off-tweet-D-WOLF: 3
 edge-tweet-D-WOLF: 39
@@ -1279,6 +1421,7 @@ line-tweet-D-WOLF: 39
 btn-think-D-WOLF: 11
 grad-think-D-WOLF: 5
 shade-think-D-WOLF: 8
+shadow-think-D-WOLF: 9
 btn-on-think-D-WOLF: 19
 btn-off-think-D-WOLF: 2
 edge-think-D-WOLF: 36
@@ -1288,6 +1431,7 @@ line-think-D-WOLF: 35
 btn-std-D-WOLF: 10
 grad-std-D-WOLF: 5
 shade-std-D-WOLF: 8
+shadow-std-D-WOLF: 10
 btn-on-std-D-WOLF: 17
 btn-off-std-D-WOLF: 2
 edge-std-D-WOLF: 36
@@ -1297,6 +1441,7 @@ line-std-D-WOLF: 35
 btn-aim-D-WOLF: 12
 grad-aim-D-WOLF: 6
 shade-aim-D-WOLF: 10
+shadow-aim-D-WOLF: 10
 btn-on-aim-D-WOLF: 19
 btn-off-aim-D-WOLF: 2
 edge-aim-D-WOLF: 35
@@ -1307,6 +1452,7 @@ pen-shout-N-WOLF: 62
 btn-shout-N-WOLF: 3
 grad-shout-N-WOLF: 7
 shade-shout-N-WOLF: 2
+shadow-shout-N-WOLF: 2
 btn-on-shout-N-WOLF: 4
 btn-off-shout-N-WOLF: 2
 edge-shout-N-WOLF: 33
@@ -1316,6 +1462,7 @@ pen-tweet-N-WOLF: 59
 btn-tweet-N-WOLF: 2
 grad-tweet-N-WOLF: 7
 shade-tweet-N-WOLF: 2
+shadow-tweet-N-WOLF: 2
 btn-on-tweet-N-WOLF: 3
 btn-off-tweet-N-WOLF: 2
 edge-tweet-N-WOLF: 29
@@ -1325,6 +1472,7 @@ pen-think-N-WOLF: 56
 btn-think-N-WOLF: 3
 grad-think-N-WOLF: 9
 shade-think-N-WOLF: 2
+shadow-think-N-WOLF: 2
 btn-on-think-N-WOLF: 4
 btn-off-think-N-WOLF: 2
 edge-think-N-WOLF: 32
@@ -1334,6 +1482,7 @@ pen-std-N-WOLF: 62
 btn-std-N-WOLF: 3
 grad-std-N-WOLF: 7
 shade-std-N-WOLF: 3
+shadow-std-N-WOLF: 3
 btn-on-std-N-WOLF: 4
 btn-off-std-N-WOLF: 2
 edge-std-N-WOLF: 33
@@ -1343,6 +1492,7 @@ pen-aim-N-WOLF: 63
 btn-aim-N-WOLF: 3
 grad-aim-N-WOLF: 9
 shade-aim-N-WOLF: 2
+shadow-aim-N-WOLF: 2
 btn-on-aim-N-WOLF: 4
 btn-off-aim-N-WOLF: 2
 edge-aim-N-WOLF: 31

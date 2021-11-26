@@ -30,7 +30,7 @@ function xall(yid: string) {
 
 function yall(xid: string) {
   const ids = []
-  for (const yo of x) {
+  for (const yo of y) {
     const id = find(xid, yo._id)
     if (id) ids.push(id)
   }

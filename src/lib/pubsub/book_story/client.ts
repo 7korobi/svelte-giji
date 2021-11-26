@@ -33,7 +33,7 @@ export const stories = model({
       game: {} as DIC<{ count: number } & Game>,
       option: {} as DIC<{ count: number } & Option>,
       mob_role: {} as DIC<{ count: number } & MobRole>,
-      event: {} as DIC<{ count: number } & Role>,
+      trap: {} as DIC<{ count: number } & Role>,
       config: {} as DIC<{ count: number } & Role>,
       discard: {} as DIC<{ count: number } & Role>
     },
@@ -51,7 +51,7 @@ export const stories = model({
       game: [] as ({ count: number } & Game)[],
       option: [] as ({ count: number } & Option)[],
       mob_role: [] as ({ count: number } & MobRole)[],
-      event: [] as ({ count: number } & Role)[],
+      trap: [] as ({ count: number } & Role)[],
       config: [] as ({ count: number } & Role)[],
       discard: [] as ({ count: number } & Role)[]
     }
@@ -75,7 +75,7 @@ export const stories = model({
 
     doc.say_limit = SayLimits.find(doc.type.say)
 
-    doc.events = Roles.reduce(doc.card.event, emit).desc(by_count)
+    doc.traps = Roles.reduce(doc.card.event, emit).desc(by_count)
     doc.discards = Roles.reduce(doc.card.discard, emit).desc(by_count)
 
     let config_role_ids = doc.card.config
@@ -120,8 +120,8 @@ export const stories = model({
     }
 
     emit_count(data.base.mob_role, doc.mob_role)
-    for (const o of doc.events) {
-      emit_sum(data.base.event, o)
+    for (const o of doc.traps) {
+      emit_sum(data.base.trap, o)
     }
     for (const o of doc.configs) {
       emit_sum(data.base.config, o)
@@ -152,7 +152,7 @@ export const stories = model({
       o.count += item.count
     }
   },
-  order: (data, { sort }) => {
+  order: (data, { sort }, order: string, props: DIC<string[]>) => {
     sort(data.list).desc(by_write_at)
     for (const key in data.oldlog) {
       const list = data.oldlog[key]
@@ -172,7 +172,7 @@ export const stories = model({
     data.group.game = sort(data.base.game).desc(by_count)
     data.group.option = sort(data.base.option).desc(by_count)
     data.group.mob_role = sort(data.base.mob_role).desc(by_count)
-    data.group.event = sort(data.base.event).desc(by_count)
+    data.group.trap = sort(data.base.trap).desc(by_count)
     data.group.config = sort(data.base.config).desc(by_count)
     data.group.discard = sort(data.base.discard).desc(by_count)
   }

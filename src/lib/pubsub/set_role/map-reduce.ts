@@ -17,7 +17,14 @@ export type MOB_ID = keyof typeof set_role_mobs
 export type SPECIAL_ID = keyof typeof set_role_specials
 export type TRAP_ID = keyof typeof set_role_traps
 export type TURN_ID = keyof typeof set_role_turns
-export type ROLE_ID = keyof typeof set_roles
+export type ROLE_ID =
+  | SPECIAL_ID
+  | TURN_ID
+  | MOB_ID
+  | TRAP_ID
+  | LIVE_ID
+  | GIFT_ID
+  | keyof typeof set_roles
 
 export type Role = GiftRole | LiveRole | MobRole | SpecialRole | TrapRole | TurnRole | TitleRole
 

@@ -4,5 +4,5 @@ export let min = 0
 </script>
 
 {#if min < value}
-  <sub>{value}</sub>
+  <strong>x{value}</strong>
 {/if}

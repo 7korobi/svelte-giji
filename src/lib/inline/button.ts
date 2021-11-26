@@ -20,7 +20,7 @@ export function chkActive<T extends ANY>(type: TYPE, as: T | T[], value: T | T[]
     return value === as
   }
   if (as instanceof Array && value instanceof Array) {
-    return as.every((item) => value.indexOf(item))
+    return as.every((item) => value.includes(item))
   }
   if ('string' === typeof as && 'string' === typeof value) {
     return value.includes(as)
@@ -30,11 +30,13 @@ export function chkActive<T extends ANY>(type: TYPE, as: T | T[], value: T | T[]
   }
 }
 
-export function tap<T extends ANY>(type: TYPE, as: T[], value: T[], onToggle: () => void): T[]
-export function tap<T extends ANY>(type: TYPE, as: T, value: T, onToggle: () => void): T
-export function tap<T extends ANY>(type: TYPE, as: any, value: any, onToggle = () => {}) {
-  const is_active = chkActive(type, as, value)
-  if (!is_active) onToggle()
+export function tap<T extends ANY>(type: TYPE, as: T[], value: T[]): T[]
+export function tap<T extends ANY>(type: TYPE, as: T, value: T): T
+export function tap<T extends ANY>(type: TYPE, as: any, value: any) {
+  if ('toggle' === type) {
+    const is_active = chkActive(type, as, value)
+    return is_active ? tap('off', as, value) : tap('on', as, value)
+  }
 
   if (as instanceof Array && value instanceof Array) {
     switch (type) {
@@ -50,10 +52,9 @@ export function tap<T extends ANY>(type: TYPE, as: any, value: any, onToggle = (
           ...value.filter((item) => !as.includes(item)),
           ...as.filter((item) => !value.includes(item))
         ]
-      case 'toggle':
-        return is_active ? tap('off', as, value, onToggle) : tap('on', as, value, onToggle)
     }
   }
+
   if ('string' === typeof as && 'string' === typeof value) {
     switch (type) {
       case 'as':
@@ -65,8 +66,6 @@ export function tap<T extends ANY>(type: TYPE, as: any, value: any, onToggle = (
         return value.includes(as) ? value : `${value}${as}`
       case 'xor':
         throw new Error('not implement.')
-      case 'toggle':
-        return is_active ? tap('off', as, value, onToggle) : tap('on', as, value, onToggle)
     }
   }
   if ('number' === typeof as && 'number' === typeof value) {
@@ -80,8 +79,6 @@ export function tap<T extends ANY>(type: TYPE, as: any, value: any, onToggle = (
         return value | as
       case 'xor':
         return value ^ as
-      case 'toggle':
-        return Bits.toggle(value, as)
     }
   }
 }
