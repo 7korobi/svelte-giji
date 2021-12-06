@@ -1,5 +1,21 @@
 import type { DIC } from '$lib/map-reduce'
-import type { STORY_ID, Story, MobRole, Mark, Game, SayLimit, Role, Option } from '../map-reduce'
+import type {
+  STORY_ID,
+  Story,
+  MobRole,
+  Mark,
+  Game,
+  SayLimit,
+  Role,
+  Option,
+  FOLDER_IDX,
+  GAME_ID,
+  MARK_ID,
+  OPTION_ID,
+  ROLE_ID,
+  SAY_LIMIT_ID,
+  TRAP_ID
+} from '../map-reduce'
 import { dic } from '$lib/map-reduce'
 import { model } from '$lib/db/socket.io-client'
 import format from 'date-fns/format/index.js'
@@ -13,6 +29,26 @@ const by_id = <T>(o: { _id: T }) => o._id
 const by_this = (o: any) => o
 const by_count = (o: { count: number }) => o.count
 const by_write_at = (o: { write_at: Date | number }) => o.write_at
+
+export function default_stories_query() {
+  return {
+    order: 'vid',
+    search: '',
+    folder_id: [] as FOLDER_IDX[],
+    monthry: [] as string[],
+    upd_range: [] as string[],
+    upd_at: [] as string[],
+    sow_auth_id: [] as string[],
+    mark: [] as MARK_ID[],
+    size: [] as string[],
+    say_limit: [] as SAY_LIMIT_ID[],
+    game: [] as GAME_ID[],
+    option: [] as OPTION_ID[],
+    trap: [] as TRAP_ID[],
+    discard: [] as ROLE_ID[],
+    config: [] as ROLE_ID[]
+  }
+}
 
 export const stories = model({
   qid: (ids: STORY_ID[]) => ids.toString(),
@@ -43,7 +79,7 @@ export const stories = model({
       monthry: [] as Counts,
       folder_id: [] as Counts,
       upd_range: [] as Counts,
-      upd_at: [] as Counts,
+      upd_at: [] as { _id: string; count: number; at?: number }[],
       sow_auth_id: [] as Counts,
       mark: [] as ({ count: number } & Mark)[],
       size: [] as Counts,
@@ -152,7 +188,7 @@ export const stories = model({
       o.count += item.count
     }
   },
-  order: (data, { sort }, order: string, props: DIC<string[]>) => {
+  order: (data, { sort }, order: ReturnType<typeof default_stories_query>) => {
     sort(data.list).desc(by_write_at)
     for (const key in data.oldlog) {
       const list = data.oldlog[key]
@@ -162,12 +198,16 @@ export const stories = model({
     data.group.monthry = sort(data.base.monthry).asc(by_id)
     data.group.in_month = sort(data.base.in_month).asc(by_id)
     data.group.upd_at = sort(data.base.upd_at).asc(by_id)
+    for (const upd_at of data.group.upd_at) {
+      upd_at.at = Math.floor(Number(upd_at._id.slice(0, 2)) / 4)
+    }
+
+    data.group.size = sort(data.base.size).asc(({ _id }) => Number(_id.slice(1)))
 
     data.group.folder_id = sort(data.base.folder_id).desc(by_count)
     data.group.upd_range = sort(data.base.upd_range).desc(by_count)
     data.group.sow_auth_id = sort(data.base.sow_auth_id).desc(by_count)
     data.group.mark = sort(data.base.mark).desc(by_count)
-    data.group.size = sort(data.base.size).desc(by_count)
     data.group.say_limit = sort(data.base.say_limit).desc(by_count)
     data.group.game = sort(data.base.game).desc(by_count)
     data.group.option = sort(data.base.option).desc(by_count)

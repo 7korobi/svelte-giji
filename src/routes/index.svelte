@@ -4,14 +4,14 @@ import { BellDisable, BellStop, BellRinging } from '$lib/icon'
 import { Post, Talk, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
 import { Time } from '$lib/timer'
-import uri from '$lib/uri'
 import fire from '$lib/fire'
+import { Location } from '$lib/uri'
 import { new_plan, random_test } from '$lib/pubsub/extra/query'
 import { story_reduce } from '$lib/pubsub/book/query'
 import { Ables, Roles, SayLimits } from '$lib/pubsub/map-reduce'
 
 const { user } = fire
-const page = uri.hash()
+let page = ''
 
 $: console.log($Roles)
 $: console.log($Ables)
@@ -24,13 +24,15 @@ random_test
 <svelte:head>
   <title>人狼議事</title>
 </svelte:head>
+<Location bind:hash={page} />
+
 <Post handle="TSAY">
   <FireOauth />
   <p>ログイン中にできること。</p>
   <p>：過去ログビュアーでタップしたとき、栞を挟んで記録します。</p>
 </Post>
 
-<Focus id="lobby" bind:value={$page}>
+<Focus id="lobby" bind:value={page}>
   {#if $user}
     <Report handle="footer center">ロビー</Report>
   {/if}
@@ -48,7 +50,7 @@ random_test
   >
 </Focus>
 
-<Focus id="info" bind:value={$page}>
+<Focus id="info" bind:value={page}>
   <Report handle="footer center">みんなの情報</Report>
 
   <Post handle="SSAY">
@@ -62,7 +64,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="chr" bind:value={$page}>
+<Focus id="chr" bind:value={page}>
   <Post handle="SSAY">
     <p>
       <a href="/chr/list">キャラクター一覧</a>
@@ -72,7 +74,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="oldlog" bind:value={$page}>
+<Focus id="oldlog" bind:value={page}>
   <Post handle="GSAY">
     <p>進行中形式のままの過去ログ</p>
     <hr />
@@ -88,7 +90,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="waoon-record" bind:value={$page}>
+<Focus id="waoon-record" bind:value={page}>
   <Post handle="PSAY">
     <p>
       <a href="https://waoon.net/record/">人狼戦績まとめ</a>
@@ -97,7 +99,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="history" bind:value={$page}>
+<Focus id="history" bind:value={page}>
   <Report handle="footer center">おまけの情報</Report>
 
   <Post handle="SSAY">
@@ -118,7 +120,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="testsite" bind:value={$page}>
+<Focus id="testsite" bind:value={page}>
   <Post handle="VGSAY">
     <p>
       <a href="https://giji-db923.web.app">テストサイト</a>
@@ -127,7 +129,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="creation" bind:value={$page}>
+<Focus id="creation" bind:value={page}>
   <Post handle="VGSAY">
     &nbsp;
     <a href="https://naming-dic.com/about.html">ネーミング辞典</a>
@@ -141,7 +143,7 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="sleeping" bind:value={$page}>
+<Focus id="sleeping" bind:value={page}>
   <Talk face_id="sf04" handle="GSAY">
     <p class="name">お散歩隊長 アシモフ</p>
     <hr />
@@ -153,7 +155,7 @@ random_test
   >
 </Focus>
 
-<Focus id="fcm-head" bind:value={$page}>
+<Focus id="fcm-head" bind:value={page}>
   <Report handle="footer">
     <h3 class="text center ">企画村予定／開始待ちの村／進行中の村</h3>
     <hr />
@@ -171,7 +173,7 @@ random_test
 </Focus>
 
 {#each $story_reduce.progress?.list || [] as o (o._id)}
-  <Focus id={o._id} bind:value={$page}>
+  <Focus id={o._id} bind:value={page}>
     <Post handle="SSAY">
       <p class="name">{o.name}</p>
       <hr />
@@ -193,7 +195,7 @@ random_test
 {/each}
 
 {#each $story_reduce.prologue?.list || [] as o (o._id)}
-  <Focus id={o._id} bind:value={$page}>
+  <Focus id={o._id} bind:value={page}>
     <Post handle="LSAY">
       <p class="name">{o.name}</p>
       <hr />
@@ -211,7 +213,7 @@ random_test
 {/each}
 
 {#each $new_plan.list as o (o._id)}
-  <Focus id={o._id.toString()} bind:value={$page}>
+  <Focus id={o._id.toString()} bind:value={page}>
     <Post handle="TSAY">
       <p class="name">
         <a href={o.link}>{o.name}</a>
@@ -238,7 +240,7 @@ random_test
   </Focus>
 {/each}
 
-<Focus id="demo" bind:value={$page}>
+<Focus id="demo" bind:value={page}>
   <Post handle="SSAY">
     <h1 class="text mono center">Welcome to SvelteKit</h1>
     <p class="text">Visit <a href="/demo">DEMO</a></p>

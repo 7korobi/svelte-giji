@@ -14,16 +14,21 @@ const tracker = observe(['horizon'], {
       value = id
     } else {
       await tick()
-      if (id === value) value = ''
+      if (id === value) {
+        console.log(`focus change ${ops.focus} ${id} === ${value}`)
+        value = ''
+      }
     }
   }
 })
 
 function focusing(el: HTMLDivElement) {
-  if (id !== value) return
-  const inline = el.clientWidth < $viewSize[0] ? 'nearest' : 'nearest'
-  const block = el.clientHeight < $viewSize[1] ? 'nearest' : 'nearest'
-  el.scrollIntoView({ block, inline })
+  tick().then(() => {
+    if (id !== value) return
+    const inline = el.clientWidth < $viewSize[0] ? 'center' : 'nearest'
+    const block = el.clientHeight < $viewSize[1] ? 'center' : 'nearest'
+    el.scrollIntoView({ block, inline })
+  })
 }
 </script>
 

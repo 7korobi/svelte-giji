@@ -1,5 +1,5 @@
 <script lang="ts">
-import { navigating, page, session } from '$app/stores'
+import { session } from '$app/stores'
 
 import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
 import Btn from '$lib/inline/Btn.svelte'
@@ -28,8 +28,6 @@ if (__BROWSER__) {
  */
 const SAFEAREA_RATIO = 1.0
 
-$: console.log('navigating', $navigating)
-$: console.log('page', $page)
 $: console.log('session', $session)
 $: offsetTop = welcomeTopHeight < $viewOffset[0] ? 0 : Math.floor(-0.4 * $viewOffset[0])
 $: offsetFilm = Math.floor(-0.5 * $viewOffset[0])

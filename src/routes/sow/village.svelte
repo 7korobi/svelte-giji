@@ -1,27 +1,25 @@
 <script lang="ts">
-import { oldlogs, oldlogs_stories } from '$lib/pubsub/poll'
+import type { Story } from '$lib/pubsub/map-reduce'
 import { Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
 import OldlogFinder from '$lib/site/OldlogFinder.svelte'
-import Poll from '$lib/storage/Poll.svelte'
 import Strong from '$lib/inline/Strong.svelte'
 import site from '$lib/site'
-import uri from '$lib/uri'
-
-const page = uri.hash()
+import { default_stories_query } from '$lib/pubsub/model-client'
+import { page } from '$app/stores'
 
 const { url } = site
 
-let order = 'vid'
-
-$: g = $oldlogs_stories.group
-$: b = $oldlogs_stories.base
+let list: Story[] = []
+let search = ''
+let params = default_stories_query()
+let hash = ''
 </script>
 
-<OldlogFinder bind:order />
+<OldlogFinder bind:list refresh={$page} bind:hash bind:search bind:params />
 
-{#each $oldlogs_stories.list as o (o._id)}
-  <Focus id={o._id} bind:value={$page}>
+{#each list.slice(0, 10) as o (o._id)}
+  <Focus id={o._id} bind:value={hash}>
     <Report handle="TITLE">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>
@@ -42,11 +40,11 @@ $: b = $oldlogs_stories.base
             </tr>
             <tr>
               <th>更新</th>
-              <td>{o.upd_range}毎 {o.upd_at}</td>
+              <td>{o.upd_range}毎&thinsp;{o.upd_at}</td>
             </tr>
             <tr>
               <th>規模</th>
-              <td>{o.size}人 <wbr />{o.say_limit.label}</td>
+              <td>{o.say_limit.label}&thinsp;{o.size}人 </td>
             </tr>
             <tr>
               <td colspan="2">
@@ -101,8 +99,6 @@ $: b = $oldlogs_stories.base
 <Report handle="footer">
   <scrollmine v-if="page_next_idx" on:input={() => 1} as="page_next_idx">次頁</scrollmine>
 </Report>
-
-<Poll {...oldlogs()} />
 
 <style lang="scss">
 .cards {

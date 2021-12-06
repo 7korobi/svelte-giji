@@ -2,15 +2,16 @@
 import { Post, Talk, Report } from '$lib/chat'
 import { __BROWSER__ } from '$lib/browser/device'
 import '../_app.svelte'
-import uri from '$lib/uri'
+import { Location } from '$lib/uri'
 
-const chat = uri.hash()
+let chat = ''
 </script>
 
 <svelte:head>
   <title>人狼議事のルール</title>
 </svelte:head>
 
+<Location bind:hash={chat} />
 <Post handle="footer">
   <p class="text">
     <a href="/">TOP</a>

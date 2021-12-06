@@ -11,11 +11,12 @@ import { Tags } from '$lib/pubsub/map-reduce'
 import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
 import { __BROWSER__ } from '$lib/browser/device'
 
-import uri from '$lib/uri'
+import { Location } from '$lib/uri'
 
-const tag_id = uri.hash<Tag['_id']>('giji')
+let tag_id: Tag['_id'] = 'giji'
 </script>
 
+<Location bind:hash={tag_id} />
 <Post handle="footer">
   <p class="text">
     <a href="/">TOP</a>
@@ -33,7 +34,7 @@ const tag_id = uri.hash<Tag['_id']>('giji')
           <p class="center">
             {#each tags.list as o, k}
               {#if o.faces?.length}
-                <Btn class="btn" as={o._id} bind:value={$tag_id}
+                <Btn class="btn" as={o._id} bind:value={tag_id}
                   >{o.label}<sup>{o.faces.length}</sup></Btn
                 >
               {/if}
@@ -52,12 +53,12 @@ const tag_id = uri.hash<Tag['_id']>('giji')
       class="search"
     /><datalist id="search_log" /><!---->
   </p>
-  <sub style="width: 100%;">{Tags.find($tag_id)?.long}</sub>
+  <sub style="width: 100%;">{Tags.find(tag_id)?.long}</sub>
 </Report>
 
 <Portrates>
   {#if false}
-    {#each faces_by_tag[$tag_id].chr_jobs as o, idx (o.face_id)}
+    {#each faces_by_tag[tag_id].chr_jobs as o, idx (o.face_id)}
       <div>
         <Portrate face_id={o.face_id}>
           <p>{o.job}</p>
@@ -66,9 +67,9 @@ const tag_id = uri.hash<Tag['_id']>('giji')
       </div>
     {/each}
   {:else}
-    {#each faces_by_tag[$tag_id].chr_jobs as o, idx (o.face_id)}
+    {#each faces_by_tag[tag_id].chr_jobs as o, idx (o.face_id)}
       <div
-        in:scale={$tag_id === 'all'
+        in:scale={tag_id === 'all'
           ? { delay: 0, duration: 0, opacity: 0, start: 1 }
           : { delay: 0, duration: 600, opacity: 0, start: 0, easing: backOut }}
         animate:flip={{ delay: 0, duration: 600, easing: backOut }}

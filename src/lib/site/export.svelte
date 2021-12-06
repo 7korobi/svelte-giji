@@ -33,24 +33,24 @@ import { url, welcome_mode } from './store'
   {/if}
   {#if $welcome_mode === 'finish'}
     <div class="welcome-links form tap">
-      <p><a href="/sow/village?folder_id=LOBBY" class="">lobby</a></p>
-      <p><a href="/sow/village?folder_id=OFFPARTY" class="">offparty</a></p>
+      <p><a href="/sow/village?folder_id=lobby" class="">lobby</a></p>
+      <p><a href="/sow/village?folder_id=offparty" class="">offparty</a></p>
     </div>
     <div class="welcome-links form">
-      <p><a href="/sow/village?folder_id=WOLF" class="">wolf</a></p>
-      <p><a href="/sow/village?folder_id=ULTIMATE" class="">ultimate</a></p>
-      <p><a href="/sow/village?folder_id=ALLSTAR" class="">allstar</a></p>
-      <p><a href="/sow/village?folder_id=MORPHE" class="">morphe</a></p>
-      <p><a href="/sow/village?folder_id=CABALA" class="">cafe</a></p>
+      <p><a href="/sow/village?folder_id=wolf" class="">wolf</a></p>
+      <p><a href="/sow/village?folder_id=ultimate" class="">ultimate</a></p>
+      <p><a href="/sow/village?folder_id=allstar" class="">allstar</a></p>
+      <p><a href="/sow/village?folder_id=morphe" class="">morphe</a></p>
+      <p><a href="/sow/village?folder_id=cabala" class="">cafe</a></p>
     </div>
     <div class="welcome-links form">
-      <p><a href="/sow/village?folder_id=RP" class="">role-play</a></p>
-      <p><a href="/sow/village?folder_id=PRETENSE" class="">RP-advance</a></p>
-      <p><a href="/sow/village?folder_id=CRAZY" class="">crazy</a></p>
-      <p><a href="/sow/village?folder_id=PERJURY">perjury</a></p>
-      <p><a href="/sow/village?folder_id=XEBEC" class="">xebec</a></p>
-      <p><a href="/sow/village?folder_id=CIEL" class="">ciel</a></p>
-      <p><a href="/sow/village?folder_id=DAIS">dais</a></p>
+      <p><a href="/sow/village?folder_id=rp" class="">role-play</a></p>
+      <p><a href="/sow/village?folder_id=pretense" class="">RP-advance</a></p>
+      <p><a href="/sow/village?folder_id=crazy" class="">crazy</a></p>
+      <p><a href="/sow/village?folder_id=perjury">perjury</a></p>
+      <p><a href="/sow/village?folder_id=xebec" class="">xebec</a></p>
+      <p><a href="/sow/village?folder_id=ciel" class="">ciel</a></p>
+      <p><a href="/sow/village?folder_id=dais">dais</a></p>
     </div>
   {/if}
   <div class="welcome-btns col4">

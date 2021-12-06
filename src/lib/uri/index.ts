@@ -1,2 +1,3 @@
-import * as store from './store'
-export default store
+import Location from './location.svelte'
+
+export { Location }

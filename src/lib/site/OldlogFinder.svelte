@@ -1,178 +1,142 @@
 <script lang="ts">
-import type {
-  FOLDER_IDX,
-  GAME_ID,
-  MARK_ID,
-  OPTION_ID,
-  ROLE_ID,
-  SAY_LIMIT_ID,
-  TRAP_ID
-} from '$lib/pubsub/map-reduce'
-import { oldlogs_stories } from '$lib/pubsub/poll'
+import { oldlogs, oldlogs_stories } from '$lib/pubsub/poll'
 import { Erase } from '$lib/icon'
 import site from '$lib/site'
-import uri from '$lib/uri'
 import { Post, Report } from '$lib/chat'
+import Poll from '$lib/storage/Poll.svelte'
 import Sup from '../inline/Sup.svelte'
 import Btn from '../inline/Btn.svelte'
 import Grid from '../inline/Grid.svelte'
+import { Location } from '$lib/uri'
+import { default_stories_query } from '$lib/pubsub/model-client'
 
 const { url } = site
 
-export let order = ''
-let search = ''
+export let { list, base, group } = $oldlogs_stories
+export let refresh: any = undefined
+export let hash = ''
+export let params = default_stories_query()
 let drill = false
 
-let folder_id = [] as FOLDER_IDX[]
-let monthry = [] as string[]
-let upd_range = [] as string[]
-let upd_at = [] as string[]
-let sow_auth_id = [] as string[]
-let mark = [] as MARK_ID[]
-let size = [] as string[]
-let say_limit = [] as SAY_LIMIT_ID[]
-let game = [] as GAME_ID[]
-let option = [] as OPTION_ID[]
-let trap = [] as TRAP_ID[]
-let discard = [] as ROLE_ID[]
-let config = [] as ROLE_ID[]
-
-$: props = {
-  folder_id,
-  monthry,
-  upd_range,
-  upd_at,
-  sow_auth_id,
-  mark,
-  size,
-  say_limit,
-  game,
-  option,
-  trap,
-  discard,
-  config,
-  search
-}
-$: oldlogs_stories.sort(order, props as any)
-$: g = $oldlogs_stories.group
-$: b = $oldlogs_stories.base
-
-$: {
-  console.log(order, props)
-  drill = true
-}
+$: drill = params.order !== 'name'
+$: ({ list, base, group } = $oldlogs_stories)
 
 function entrySearch() {
-  order = 'name'
-  drill = false
+  params.order = 'name'
 }
 
 function reset() {
-  order = ''
-  folder_id = []
-  monthry = []
-  upd_range = []
-  upd_at = []
-  sow_auth_id = []
-  mark = []
-  size = []
-  say_limit = []
-  game = []
-  option = []
-  trap = []
-  discard = []
-  config = []
+  params = default_stories_query()
+}
+
+function changedStep<T extends { _id: string; at?: number }>(o: T, idx: number, list: T[]) {
+  const last = list[idx - 1]
+  if (last && last.at < o.at) {
+    return true
+  }
+  return false
 }
 </script>
 
-<Post handle="btns">
+<Location {refresh} bind:hash bind:searchParams={params} />
+<Poll {...oldlogs()} />
+
+<Post handle="btns form">
   <span>
     <button on:click={reset}><Erase /></button>
   </span><span>
-    <Btn as="vid" bind:value={order}>州<Sup value={folder_id.length} /></Btn>
-    <Btn as="marks" bind:value={order}>こだわり<Sup value={mark.length} /></Btn>
+    <Btn as="vid" bind:value={params.order}>州<Sup value={params.folder_id.length} /></Btn>
+    <Btn as="marks" bind:value={params.order}>こだわり<Sup value={params.mark.length} /></Btn>
   </span><span>
-    <Btn as="write_at" bind:value={order}>年月日<Sup value={monthry.length} /></Btn>
-    <Btn as="upd_range" bind:value={order}>更新間隔<Sup value={upd_range.length} /></Btn>
-    <Btn as="upd_at" bind:value={order}>更新時刻<Sup value={upd_at.length} /></Btn>
+    <Btn as="write_at" bind:value={params.order}>年月日<Sup value={params.monthry.length} /></Btn>
+    <Btn as="upd_range" bind:value={params.order}
+      >更新間隔<Sup value={params.upd_range.length} /></Btn
+    >
+    <Btn as="upd_at" bind:value={params.order}>更新時刻<Sup value={params.upd_at.length} /></Btn>
   </span><span>
-    <Btn as="size" bind:value={order}>人数<Sup value={size.length} /></Btn>
-    <Btn as="say_limit.label" bind:value={order}>発言ルール<Sup value={say_limit.length} /></Btn>
-    <Btn as="game.label" bind:value={order}>ゲーム<Sup value={game.length} /></Btn>
+    <Btn as="size" bind:value={params.order}>人数<Sup value={params.size.length} /></Btn>
+    <Btn as="say_limit.label" bind:value={params.order}
+      >発言ルール<Sup value={params.say_limit.length} /></Btn
+    >
+    <Btn as="game.label" bind:value={params.order}>ゲーム<Sup value={params.game.length} /></Btn>
   </span><span>
-    <Btn as="sow_auth_id" bind:value={order}>村建て人<Sup value={sow_auth_id.length} /></Btn>
+    <Btn as="sow_auth_id" bind:value={params.order}
+      >村建て人<Sup value={params.sow_auth_id.length} /></Btn
+    >
   </span><span>
-    <Btn as="options" bind:value={order}>村設定<Sup value={option.length} /></Btn>
-    <Btn as="configs" bind:value={order}>参加役職<Sup value={config.length} /></Btn>
+    <Btn as="options" bind:value={params.order}>村設定<Sup value={params.option.length} /></Btn>
+    <Btn as="configs" bind:value={params.order}>参加役職<Sup value={params.config.length} /></Btn>
   </span><span>
-    <Btn as="traps" bind:value={order}>破棄事件<Sup value={trap.length} /></Btn>
-    <Btn as="discards" bind:value={order}>破棄役職<Sup value={discard.length} /></Btn>
+    <Btn as="traps" bind:value={params.order}>破棄事件<Sup value={params.trap.length} /></Btn>
+    <Btn as="discards" bind:value={params.order}>破棄役職<Sup value={params.discard.length} /></Btn>
   </span>
 
-  <input type="text" bind:value={order} on:focus={entrySearch} />
+  <input type="text" bind:value={params.search} on:focus={entrySearch} />
   <p>
     <sub style="width: 100%">{$oldlogs_stories.list.length}村があてはまります。</sub>
   </p>
 </Post>
 
-<Report handle="btns">
+<Report handle="btns form">
   {#if drill}
-    {#if order === 'vid'}
+    {#if params.order === 'vid'}
       <p class="c">
-        {#each g.folder_id as o (o._id)}
-          <Btn type="toggle" bind:value={folder_id} as={[o._id]}
+        {#each group.folder_id as o (o._id)}
+          <Btn type="toggle" bind:value={params.folder_id} as={[o._id]}
             >{o._id}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'write_at'}
+    {#if params.order === 'write_at'}
       <p class="swipe">
         <Grid
-          x={g.in_month}
-          y={g.yeary}
-          data={b.monthry}
-          bind:value={monthry}
+          x={group.in_month}
+          y={group.yeary}
+          data={base.monthry}
+          bind:value={params.monthry}
           find={(xid, yid) => `${yid}${xid}`}
         />
       </p>
     {/if}
 
-    {#if order === 'upd_range'}
+    {#if params.order === 'upd_range'}
       <p class="c">
-        {#each g.upd_range as o (o._id)}
-          <Btn type="toggle" bind:value={upd_range} as={[o._id]}
+        {#each group.upd_range as o (o._id)}
+          <Btn type="toggle" bind:value={params.upd_range} as={[o._id]}
             >{o._id}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'upd_at'}
+    {#if params.order === 'upd_at'}
       <p class="c">
-        {#each g.upd_at as o (o._id)}
-          <Btn type="toggle" bind:value={upd_at} as={[o._id]}
-            >{o._id}<Sup min={1} value={o.count} /></Btn
-          >
+        {#each group.upd_at as o, idx (o._id)}
+          {#if changedStep(o, idx, group.upd_at)}<br />{/if}
+          <Btn type="toggle" bind:value={params.upd_at} as={[o._id]}>
+            <p class="c">{o._id}</p>
+            <p class="c fine"><strong>x{o.count}</strong></p>
+          </Btn>
         {/each}
       </p>
     {/if}
 
-    {#if order === 'sow_auth_id'}
+    {#if params.order === 'sow_auth_id'}
       <p class="c">
-        {#each g.sow_auth_id as o (o._id)}
-          <Btn type="toggle" bind:value={sow_auth_id} as={[o._id]}
+        {#each group.sow_auth_id as o (o._id)}
+          <Btn type="toggle" bind:value={params.sow_auth_id} as={[o._id]}
             >{o._id.replace(/\&\#2e/gi, '.')}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'marks'}
+    {#if params.order === 'marks'}
       <p class="c">
-        {#each g.mark as o (o._id)}
-          <Btn type="toggle" bind:value={mark} as={[o._id]}
+        {#each group.mark as o (o._id)}
+          <Btn type="toggle" bind:value={params.mark} as={[o._id]}
             ><img class="mark" alt="" src="{$url.icon}{o.file}" /><Sup
               min={1}
               value={o.count}
@@ -182,70 +146,70 @@ function reset() {
       </p>
     {/if}
 
-    {#if order === 'size'}
+    {#if params.order === 'size'}
       <p class="c">
-        {#each g.size as o (o._id)}
-          <Btn type="toggle" bind:value={size} as={[o._id]}
-            >{o._id}<Sup min={1} value={o.count} /></Btn
+        {#each group.size as o (o._id)}
+          <Btn type="toggle" bind:value={params.size} as={[o._id]}
+            >{o._id}<Sup min={0} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'options'}
+    {#if params.order === 'options'}
       <p class="c">
-        {#each g.option as o (o._id)}
-          <Btn type="toggle" bind:value={option} as={[o._id]}
+        {#each group.option as o (o._id)}
+          <Btn type="toggle" bind:value={params.option} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'traps'}
+    {#if params.order === 'traps'}
       <p class="c">
-        {#each g.trap as o (o._id)}
-          <Btn type="toggle" bind:value={trap} as={[o._id]}
+        {#each group.trap as o (o._id)}
+          <Btn type="toggle" bind:value={params.trap} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'configs'}
+    {#if params.order === 'configs'}
       <p class="c">
-        {#each g.config as o (o._id)}
-          <Btn type="toggle" bind:value={config} as={[o._id]}
+        {#each group.config as o (o._id)}
+          <Btn type="toggle" bind:value={params.config} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'discards'}
+    {#if params.order === 'discards'}
       <p class="c">
-        {#each g.discard as o (o._id)}
-          <Btn type="toggle" bind:value={discard} as={[o._id]}
+        {#each group.discard as o (o._id)}
+          <Btn type="toggle" bind:value={params.discard} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'say_limit.label'}
+    {#if params.order === 'say_limit.label'}
       <p class="c">
-        {#each g.say_limit as o (o._id)}
-          <Btn type="toggle" bind:value={say_limit} as={[o._id]}
+        {#each group.say_limit as o (o._id)}
+          <Btn type="toggle" bind:value={params.say_limit} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}
       </p>
     {/if}
 
-    {#if order === 'game.label'}
+    {#if params.order === 'game.label'}
       <p class="c">
-        {#each g.game as o (o._id)}
-          <Btn type="toggle" bind:value={game} as={[o._id]}
+        {#each group.game as o (o._id)}
+          <Btn type="toggle" bind:value={params.game} as={[o._id]}
             >{o.label}<Sup min={1} value={o.count} /></Btn
           >
         {/each}

@@ -61,7 +61,7 @@ export function model(props: any) {
 export default function client(uri: string, stores: typeof STORE) {
   STORE = stores
   for (const name in stores) {
-    stores[name].name = name
+    if (stores[name].name !== name) stores[name].name = name
   }
 
   if (!__BROWSER__) return
