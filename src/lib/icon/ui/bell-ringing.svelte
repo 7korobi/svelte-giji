@@ -1,6 +1,6 @@
 <!-- bell-ringing from @iconify-icons/ph:bell-ringing-bold -->
 <svg
-  class="icon"
+  class="icon ring"
   id="icon-bell-ringing"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"

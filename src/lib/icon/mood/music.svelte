@@ -1,5 +1,5 @@
 <svg
-  class="icon"
+  class="icon ring"
   id="icon-music"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"

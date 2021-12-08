@@ -1,5 +1,5 @@
 <svg
-  class="icon"
+  class="icon spin-r"
   id="icon-spinner"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"

@@ -26,37 +26,48 @@ import { Location } from '$lib/uri'
 import { default_story_query } from '$lib/pubsub/model-client'
 
 const { url } = site
-const pre_turns = ['top', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 export let refresh: any = undefined
-export let hash = ''
 export let params = default_story_query()
 
-$: idx_ary = params.idx.split('-')
-$: folder_id = subid(idx_ary, 1) as FOLDER_IDX
-$: story_id = subid(idx_ary, 2) as STORY_ID
-$: message_id = subid(idx_ary, 5) as MESSAGE_ID
+$: [[folder_id], [story_id], [event_id, back_event_id, next_event_id], [], [message_id]] = book_ids(
+  params.idx
+)
 
-$: event_id = subid(idx_ary, 3) as EVENT_ID
-$: back_event_idx = event_id ? slide(pre_turns, idx_ary[2], -1) : null
-$: next_event_idx = event_id ? slide(pre_turns, idx_ary[2], +1) : null
-$: back_event_id = back_event_idx
-  ? ([idx_ary[0], idx_ary[1], back_event_idx].join('-') as EVENT_ID)
-  : null
-$: next_event_id = next_event_idx
-  ? ([idx_ary[0], idx_ary[1], next_event_idx].join('-') as EVENT_ID)
-  : null
+function book_ids(id: string) {
+  const id_list = subids<[FOLDER_IDX[], STORY_ID[], EVENT_ID[], string[], MESSAGE_ID[]]>(id)
+
+  const [[, folder_idx], [, story_idx], [event_id, event_idx]] = id_list
+
+  const pre_turns = ['top', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  const back_event_idx = event_id ? slide(pre_turns, event_idx, -1) : null
+  const next_event_idx = event_id ? slide(pre_turns, event_idx, +1) : null
+  const back_event_id = back_event_idx
+    ? ([folder_idx, story_idx, back_event_idx].join('-') as EVENT_ID)
+    : null
+  const next_event_id = next_event_idx
+    ? ([folder_idx, story_idx, next_event_idx].join('-') as EVENT_ID)
+    : null
+
+  id_list[2] = [event_id, back_event_id, next_event_id]
+  return id_list
+}
+
+function subids<T>(id: string, separator = '-'): T {
+  const idxs = id.split(separator)
+  return (idxs.map((idx, at) => {
+    const size = at + 1
+    const sub = idxs.slice(0, size)
+    return sub.length === size ? [sub.join(separator), idx] : []
+  }) as any) as T
+}
 
 function slide(list: string[], idx: string, step: number): string {
   return list[list.indexOf(idx) + step]
 }
-function subid(list: string[], size: number): string {
-  const sub = list.slice(0, size)
-  return sub.length === size ? sub.join('-') : null
-}
 </script>
 
-<Location {refresh} bind:hash bind:searchParams={params} />
+<Location {refresh} bind:searchParams={params} />
 <Poll {...oldlog(story_id)} />
 
 <datalist id="search_log" />

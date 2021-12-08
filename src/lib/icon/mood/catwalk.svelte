@@ -24,7 +24,52 @@
       />
     </g>
   </defs>
-  <use xlink:href="#icon-catwalk-p" transform="translate(-150,-20) rotate(-10,0,0)" />
-  <use xlink:href="#icon-catwalk-p" transform="translate( 120, 70) rotate(  0,0,0)" />
-  <use xlink:href="#icon-catwalk-p" transform="translate( -50,190) rotate( 10,0,0)" />
+  <use
+    class="fill-1"
+    xlink:href="#icon-catwalk-p"
+    transform="translate(-150,-20) rotate(-10,0,0)"
+  />
+  <use
+    class="fill-2"
+    xlink:href="#icon-catwalk-p"
+    transform="translate( 120, 70) rotate(  0,0,0)"
+  />
+  <use
+    class="fill-3"
+    xlink:href="#icon-catwalk-p"
+    transform="translate( -50,190) rotate( 10,0,0)"
+  />
 </svg>
+
+<style lang="scss">
+.fill-1 {
+  animation-delay: 0ms;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: il-md-fill;
+  opacity: 0;
+}
+.fill-2 {
+  animation-delay: 1s;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: il-md-fill;
+  opacity: 0;
+}
+.fill-3 {
+  animation-delay: 2s;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: il-md-fill;
+  opacity: 0;
+}
+</style>

@@ -32,6 +32,8 @@ import SwipeDown from './ui/swipe-down.svelte'
 import ZoomOut from './ui/zoom-out.svelte'
 import ZoomIn from './ui/zoom-in.svelte'
 
+import Search from './ui/search.svelte'
+
 import TimelineAlert from './ui/timeline-alert.svelte'
 import TimelineHelp from './ui/timeline-help.svelte'
 import TimelineClock from './ui/timeline-clock.svelte'
@@ -124,6 +126,7 @@ export {
   SwipeDown,
   ZoomOut,
   ZoomIn,
+  Search,
   TimelineAlert,
   TimelineHelp,
   TimelineClock,

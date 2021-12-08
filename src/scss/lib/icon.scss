@@ -6,3 +6,172 @@ svg.logo {
   width: 1em;
   height: 1em;
 }
+
+.slide-r {
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0, 0, 0, 1);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: slide-r;
+}
+
+.spin-r {
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.6, -0.2, 0.6, 1.2);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: spin-r;
+}
+
+.spin-l {
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.6, -0.2, 0.6, 1.2);
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-name: spin-l;
+}
+
+.ring {
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.66, -1, 0.33, 2);
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-name: ring;
+}
+
+@keyframes slide-r {
+  0% {
+    transform: translate(-25%);
+  }
+  100% {
+    transform: translate(5%);
+  }
+}
+
+@keyframes spin-r {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes spin-l {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-720deg);
+  }
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes il-md-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-15 {
+  0% {
+    stroke-dashoffset: 15;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 15;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-25 {
+  0% {
+    stroke-dashoffset: 25;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 25;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-40 {
+  0% {
+    stroke-dashoffset: 40;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 40;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-70 {
+  0% {
+    stroke-dashoffset: 70;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 70;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-100 {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 100;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes il-md-length-150 {
+  0% {
+    stroke-dashoffset: 150;
+    opacity: 0;
+  }
+  1% {
+    stroke-dashoffset: 150;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}

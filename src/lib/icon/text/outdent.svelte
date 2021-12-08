@@ -1,4 +1,10 @@
-<svg class="icon" preserveAspectRatio="xMidYMid slice" overflow="visible" viewBox="-1 -3 31 31">
+<svg
+  class="icon"
+  id="icon-outdent"
+  preserveAspectRatio="xMidYMid slice"
+  overflow="visible"
+  viewBox="-1 -3 31 31"
+>
   <path
     fill="var(--pen)"
     d="M27.999 21.333H1.334a1.334 1.334 0 0 0-.002 2.666H27.999a1.334 1.334 0 0 0 .002-2.666z"

@@ -1,7 +1,7 @@
 <!-- bell-stop from @iconify-icons/ph:bell-bold -->
 <svg
   class="icon"
-  id="icon-bell-ringing"
+  id="icon-bell-stop"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"
   viewBox="0 0 256 256"
