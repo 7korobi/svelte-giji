@@ -1,10 +1,4 @@
-<svg
-  class="icon"
-  id="icon-redo"
-  preserveAspectRatio="xMidYMid slice"
-  overflow="visible"
-  viewBox="0 0 24 24"
->
+<svg class="icon" preserveAspectRatio="xMidYMid slice" overflow="visible" viewBox="0 0 24 24">
   <g
     fill="none"
     stroke="var(--pen)"

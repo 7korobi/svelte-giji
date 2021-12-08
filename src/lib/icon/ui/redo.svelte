@@ -1,6 +1,5 @@
 <svg
   class="icon"
-  id="icon-redo"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"
   viewBox="-50 -50 1125 1123"
