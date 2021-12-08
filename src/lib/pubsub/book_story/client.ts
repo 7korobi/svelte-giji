@@ -30,6 +30,14 @@ const by_this = (o: any) => o
 const by_count = (o: { count: number }) => o.count
 const by_write_at = (o: { write_at: Date | number }) => o.write_at
 
+export function default_story_query() {
+  return {
+    idx: '',
+    mode: 'full',
+    hide: []
+  }
+}
+
 export function default_stories_query() {
   return {
     order: 'vid',

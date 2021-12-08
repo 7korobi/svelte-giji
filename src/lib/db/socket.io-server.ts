@@ -186,7 +186,7 @@ export default function listen(
   STORE = stores as typeof STORE
 
   for (const name in stores) {
-    stores[name].name = name
+    stores[name].name ??= name
   }
 
   io = socketio
