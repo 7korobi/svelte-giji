@@ -22,21 +22,14 @@ for (const key of Object.keys(IconDic).sort()) {
 
 <Report handle="SSAY">
   <br />
-  <article class="text x3">
+  <p class="text x3">
     {#each ICONS as { key, Icon }, idx}
       <span class="plain">
         <Icon />
       </span>
     {/each}
-  </article>
+  </p>
   <br />
-  <article class="text x3">
-    {#each ICONS as { key, Icon }, idx}
-      <span class="spin">
-        <Icon />
-      </span>
-    {/each}
-  </article>
 </Report>
 
 <style lang="scss">

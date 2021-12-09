@@ -6,7 +6,7 @@
   viewBox="0 0 512 512"
 >
   <defs>
-    <g id="icon-catwalk-p" fill="var(--pen)">
+    <g id="icon-catwalk-p">
       <path
         d="M223.297,131.419c13.892-2.636,23.017-16.014,20.389-29.907c-2.628-13.876-16.015-23.009-29.906-20.381 c-13.876,2.644-23.009,16.023-20.381,29.907C196.026,124.921,209.422,134.046,223.297,131.419z"
       />
@@ -25,51 +25,33 @@
     </g>
   </defs>
   <use
-    class="fill-1"
+    class="blink-1"
     xlink:href="#icon-catwalk-p"
     transform="translate(-150,-20) rotate(-10,0,0)"
   />
   <use
-    class="fill-2"
+    class="blink-2"
     xlink:href="#icon-catwalk-p"
     transform="translate( 120, 70) rotate(  0,0,0)"
   />
   <use
-    class="fill-3"
+    class="blink-3"
     xlink:href="#icon-catwalk-p"
     transform="translate( -50,190) rotate( 10,0,0)"
   />
 </svg>
 
 <style lang="scss">
-.fill-1 {
-  animation-delay: 0ms;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-name: il-md-fill;
-  opacity: 0;
+.blink-1 {
+  animation: 3s infinite 0s cubic-bezier(0.7, 0.1, 0.3, 1.3) alternate forwards blink;
+  fill: var(--hide);
 }
-.fill-2 {
-  animation-delay: 1s;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-name: il-md-fill;
-  opacity: 0;
+.blink-2 {
+  animation: 3s infinite 2s cubic-bezier(0.7, 0.1, 0.3, 1.3) alternate forwards blink;
+  fill: var(--hide);
 }
-.fill-3 {
-  animation-delay: 2s;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(1, -0.3, 0, 1.3);
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-name: il-md-fill;
-  opacity: 0;
+.blink-3 {
+  animation: 3s infinite 4s cubic-bezier(0.7, 0.1, 0.3, 1.3) alternate forwards blink;
+  fill: var(--hide);
 }
 </style>
