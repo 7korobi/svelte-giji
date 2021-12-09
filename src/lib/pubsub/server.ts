@@ -6,7 +6,7 @@ import { argv } from 'process'
 
 import server from '$lib/db/socket.io-server'
 import { dbBoot } from '$lib/db'
-import site from '$lib/site'
+import json from '$lib/site/json/live-server.json'
 
 import * as stores from './model-client'
 import * as models from './model-server'
@@ -17,36 +17,38 @@ const bootstrap = { dev, prod }
 bootstrap[mode]()
 
 function dev() {
-  dbBoot(site.live.db.mongodb)
+  const conf = json.dev
+  dbBoot(conf.mongodb)
   const io = new Server({
     parser,
     serveClient: false,
     cors: {
-      origin: ['http://localhost:3000', 'https://giji-db923.web.app'],
+      origin: conf.io.origin,
       methods: ['GET', 'POST']
     }
   })
 
   server(io, models, stores)
-  io.listen(3001)
+  io.listen(conf.http.port)
 }
 
 function prod() {
-  const key = readFileSync(`../../giji/giji/config/https/dev-server-key.pem`)
-  const cert = readFileSync(`../../giji/giji/config/https/dev-server-cert.pem`)
+  const conf = json.prod
+  const key = readFileSync(conf.https.privkey)
+  const cert = readFileSync(conf.https.cert)
 
-  dbBoot(site.live.db.mongodb)
+  dbBoot(conf.mongodb)
 
   const listener = https.createServer({ key, cert })
   const io = new Server(listener, {
     parser,
     serveClient: false,
     cors: {
-      origin: ['https://admin.socket.io', 'https://giji.f5.si', 'https://giji-db923.web.app'],
+      origin: conf.io.origin,
       methods: ['GET', 'POST']
     }
   })
 
   server(io, models, stores)
-  listener.listen(3001)
+  listener.listen(conf.https.port)
 }

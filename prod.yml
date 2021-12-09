@@ -1,0 +1,7 @@
+apps:
+  - exec_mode: fork
+    instances: 1
+    name: giji-socket-io
+
+    script: .node_bin/server.js
+    node_args: '--experimental-json-modules --es-module-specifier-resolution=node .node_bin/server.js'
