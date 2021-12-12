@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Story } from '$lib/pubsub/map-reduce'
-import { Report } from '$lib/chat'
+import { Post, Report } from '$lib/chat'
 import { Focus } from '$lib/scroll'
 import OldlogFinder from '$lib/site/OldlogFinder.svelte'
 import Strong from '$lib/inline/Strong.svelte'
@@ -15,6 +15,16 @@ let search = ''
 let params = default_stories_query()
 let hash = ''
 </script>
+
+<svelte:head>
+  <title>終了した村の一覧</title>
+</svelte:head>
+
+<Post handle="footer">
+  <p class="text">
+    <a href="/">TOP</a>
+  </p>
+</Post>
 
 <OldlogFinder bind:list refresh={$page} bind:hash bind:search bind:params />
 
@@ -99,6 +109,12 @@ let hash = ''
 <Report handle="footer">
   <scrollmine v-if="page_next_idx" on:input={() => 1} as="page_next_idx">次頁</scrollmine>
 </Report>
+
+<Post handle="footer">
+  <p class="text">
+    <a href="/">TOP</a>
+  </p>
+</Post>
 
 <style lang="scss">
 .cards {

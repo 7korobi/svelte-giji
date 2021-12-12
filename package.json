@@ -52,13 +52,14 @@
     "npm-run-all": "^4.1.5",
     "prettier": "~2.2.1",
     "prettier-plugin-svelte": "^2.5.1",
-    "sass": "^1.44.0",
+    "sass": "^1.45.0",
     "svelte": "^3.44.2",
     "svelte-preprocess": "^4.9.8",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   },
   "dependencies": {
     "@socket.io/component-emitter": "^3.0.0",
+    "@types/uuid": "^8.3.3",
     "backo2": "^1.0.2",
     "date-fns": "^2.27.0",
     "debug": "^4.3.3",
@@ -66,10 +67,10 @@
     "engine.io-client": "^6.1.1",
     "engine.io-parser": "^5.0.2",
     "esbuild": "^0.13.15",
-    "esbuild-plugin-d.ts": "^1.0.6",
+    "esbuild-plugin-d.ts": "^1.1.0",
     "esbuild-svelte": "^0.5.7",
     "fast-sort": "^3.1.1",
-    "firebase": "^9.6.0",
+    "firebase": "^9.6.1",
     "glob": "^7.2.0",
     "js-yaml": "^4.1.0",
     "moment": "^2.29.1",
@@ -84,6 +85,7 @@
     "socket.io-parser": "^4.1.1",
     "tslib": "^2.3.1",
     "ua-parser-js": "^0.7.31",
+    "uuid": "^8.3.2",
     "ws": "^8.3.0",
     "xmlhttprequest-ssl": "^2.0.0",
     "yeast": "^0.1.2"

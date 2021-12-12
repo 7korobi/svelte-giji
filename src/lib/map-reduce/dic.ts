@@ -87,160 +87,45 @@ export function group_sort<T>(data: ARY<DIC<T>>, cb2: SORT<ARY<ARY<T>>>, cb1: SO
 export function group_sort<T>(data: ARY<ARY<T>>, cb2: SORT<ARY<ARY<T>>>, cb1: SORT<ARY<T>>): ARY<ARY<T>>
 export function group_sort<T>(data: DIC<T>, cb1: SORT_DICT<T>): ARY<T>
 export function group_sort<T>(data: ARY<T>, cb1: SORT<ARY<T>>): ARY<T>
-export function group_sort(data, cb, ...cbs) {
-  if (cbs.length) {
-    if (data instanceof Array) {
-      for (const o of data) {
-        ;(group_sort as any)(o, ...cbs)
-      }
-    } else {
-      const list = []
-      for (const idx in data) {
-        const item = (group_sort as any)(data[idx], ...cbs)
-        item._id = idx
-        list.push(item)
-      }
-      data = list
+export function group_sort(data: any, cb: any, ...cbs: any[]) {
+  if (!cbs.length) return cb(data)
+
+  if (data instanceof Array) {
+    for (const o of data) {
+      ;(group_sort as any)(o, ...cbs)
     }
+  } else {
+    const list = []
+    for (const idx in data) {
+      const item = (group_sort as any)(data[idx], ...cbs)
+      item._id = idx
+      list.push(item)
+    }
+    data = list
   }
   return cb(data)
 }
 
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<DIC<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<DIC<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<ARY<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<ARY<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<DIC<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<DIC<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<ARY<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<ARY<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<DIC<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<DIC<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<ARY<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<ARY<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<DIC<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<DIC<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<ARY<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<ARY<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<DIC<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<DIC<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<ARY<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<ARY<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<DIC<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<DIC<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<ARY<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<ARY<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<DIC<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<DIC<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<ARY<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<ARY<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<DIC<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<DIC<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<ARY<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<ARY<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: [] ): T
+type dic6<T, OUT> = [DIC<dic5<T, OUT>[0]>, string, ...dic5<T, OUT>] | [ARY<dic5<T, OUT>[0]>, number, ...dic5<T, OUT>]
+type dic5<T, OUT> = [DIC<dic4<T, OUT>[0]>, string, ...dic4<T, OUT>] | [ARY<dic4<T, OUT>[0]>, number, ...dic4<T, OUT>]
+type dic4<T, OUT> = [DIC<dic3<T, OUT>[0]>, string, ...dic3<T, OUT>] | [ARY<dic3<T, OUT>[0]>, number, ...dic3<T, OUT>]
+type dic3<T, OUT> = [DIC<dic2<T, OUT>[0]>, string, ...dic2<T, OUT>] | [ARY<dic2<T, OUT>[0]>, number, ...dic2<T, OUT>]
+type dic2<T, OUT> = [DIC<dic1<T, OUT>[0]>, string, ...dic1<T, OUT>] | [ARY<dic1<T, OUT>[0]>, number, ...dic1<T, OUT>]
+type dic1<T, OUT> = [DIC<T>, string, OUT] | [ARY<T>, number, OUT]
 
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<DIC<T>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<ARY<T>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<DIC<T>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<ARY<T>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<DIC<T>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<ARY<T>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<DIC<T>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<ARY<T>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<DIC<T>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<ARY<T>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<DIC<T>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<ARY<T>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<DIC<T>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<ARY<T>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<DIC<T>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<ARY<T>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [] ): T
-
-export function dic<T extends any[]>(o1: DIC<DIC<DIC<T>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [] ): T
-export function dic<T extends any[]>(o1: DIC<DIC<ARY<T>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<DIC<T>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<ARY<T>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<DIC<T>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<ARY<T>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<DIC<T>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<ARY<T>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [] ): T
-
-export function dic<T extends any[]>(o1: DIC<DIC<T>>, id1: string, o2: {}, id2: string, o3: [] ): T
-export function dic<T extends any[]>(o1: DIC<ARY<T>>, id1: string, o2: [], id2: number, o3: [] ): T
-export function dic<T extends any[]>(o1: ARY<DIC<T>>, id1: number, o2: {}, id2: string, o3: [] ): T
-export function dic<T extends any[]>(o1: ARY<ARY<T>>, id1: number, o2: [], id2: number, o3: [] ): T
-
-export function dic<T extends any[]>(o1: DIC<T>, id1: string, o2: [] ): T
-export function dic<T extends any[]>(o1: ARY<T>, id1: number, o2: [] ): T
-
-export function dic<T extends object>(o1: DIC<DIC<DIC<DIC<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<DIC<DIC<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<DIC<ARY<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<DIC<ARY<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<DIC<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<DIC<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<ARY<DIC<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<ARY<ARY<T>>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<DIC<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<DIC<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<ARY<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<ARY<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<DIC<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<DIC<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<ARY<DIC<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<ARY<ARY<T>>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<DIC<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<DIC<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<ARY<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<ARY<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<DIC<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<DIC<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<ARY<DIC<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<ARY<ARY<T>>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<DIC<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<DIC<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<ARY<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<ARY<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<DIC<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<DIC<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: [], id5: number, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<ARY<DIC<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {}, id5: string, o6: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<ARY<ARY<T>>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: [], id5: number, o6: {} ): T
-
-export function dic<T extends object>(o1: DIC<DIC<DIC<DIC<T>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<DIC<ARY<T>>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<DIC<T>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<ARY<T>>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<DIC<T>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<ARY<T>>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<DIC<T>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<ARY<T>>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<DIC<T>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<ARY<T>>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<DIC<T>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<ARY<T>>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<DIC<T>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<ARY<T>>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: [], id4: number, o5: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<DIC<T>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {}, id4: string, o5: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<ARY<T>>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: [], id4: number, o5: {} ): T
-
-export function dic<T extends object>(o1: DIC<DIC<DIC<T>>>, id1: string, o2: {}, id2: string, o3: {}, id3: string, o4: {} ): T
-export function dic<T extends object>(o1: DIC<DIC<ARY<T>>>, id1: string, o2: {}, id2: string, o3: [], id3: number, o4: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<DIC<T>>>, id1: string, o2: [], id2: number, o3: {}, id3: string, o4: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<ARY<T>>>, id1: string, o2: [], id2: number, o3: [], id3: number, o4: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<DIC<T>>>, id1: number, o2: {}, id2: string, o3: {}, id3: string, o4: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<ARY<T>>>, id1: number, o2: {}, id2: string, o3: [], id3: number, o4: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<DIC<T>>>, id1: number, o2: [], id2: number, o3: {}, id3: string, o4: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<ARY<T>>>, id1: number, o2: [], id2: number, o3: [], id3: number, o4: {} ): T
-
-export function dic<T extends object>(o1: DIC<DIC<T>>, id1: string, o2: {}, id2: string, o3: {} ): T
-export function dic<T extends object>(o1: DIC<ARY<T>>, id1: string, o2: [], id2: number, o3: {} ): T
-export function dic<T extends object>(o1: ARY<DIC<T>>, id1: number, o2: {}, id2: string, o3: {} ): T
-export function dic<T extends object>(o1: ARY<ARY<T>>, id1: number, o2: [], id2: number, o3: {} ): T
-
-export function dic<T extends object>(o1: DIC<T>, id1: string, o2: {} ): T
-export function dic<T extends object>(o1: ARY<T>, id1: number, o2: {} ): T
-
-export function dic<T>(o, ...levels: any): T {
+export function dic<T extends any[]>(...args: dic1<T, []>): T
+export function dic<T extends object>(...args: dic1<T, {}>): T
+export function dic<T extends any[]>(...args: dic2<T, []>): T
+export function dic<T extends object>(...args: dic2<T, {}>): T
+export function dic<T extends any[]>(...args: dic3<T, []>): T
+export function dic<T extends object>(...args: dic3<T, {}>): T
+export function dic<T extends any[]>(...args: dic4<T, []>): T
+export function dic<T extends object>(...args: dic4<T, {}>): T
+export function dic<T extends any[]>(...args: dic5<T, []>): T
+export function dic<T extends object>(...args: dic5<T, {}>): T
+export function dic<T extends any[]>(...args: dic6<T, []>): T
+export function dic<T extends object>(...args: dic6<T, {}>): T
+export function dic<T>(o: any, ...levels: any): T {
   for (let i = 0; i < levels.length; i += 2) {
     const id = levels[i] as string | number
     const format = levels[i + 1] as {} | []
@@ -249,3 +134,33 @@ export function dic<T>(o, ...levels: any): T {
   }
   return o
 }
+
+/*
+type Head<T extends readonly unknown[] | string> = T extends string
+  ? T extends `${infer F}${string}`
+    ? F
+    : T extends ''
+    ? ''
+    : string
+  : T extends readonly [infer U, ...infer _]
+  ? U
+  : T[0] | undefined
+
+type Tail<T extends string | readonly unknown[]> = T extends string
+  ? T extends `${string}${infer R}`
+    ? R
+    : T extends ''
+    ? ''
+    : string
+  : T extends readonly [unknown, ...infer R]
+  ? R
+  : T
+
+type Head<T extends readonly unknown[]> = T extends readonly [infer U, ...infer _]
+  ? U
+  : T[0] | undefined
+
+type Tail<T extends readonly unknown[]> = T extends readonly [unknown, ...infer R]
+  ? R
+  : T
+*/

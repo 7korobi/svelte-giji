@@ -53,9 +53,9 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   order,
   start
 }: MapReduceProps<F, OrderArgs>) {
-  const hash = {} as { [id: string]: F['list'][number] }
+  const map = new Map<F['list'][number]['_id'], F['list'][number]>()
   const data = format()
-  const find = (id: F['list'][number]['_id']) => hash[id]
+  const find = (id: F['list'][number]['_id']) => map.get(id)
   const { subscribe, set } = writable<F>(format(), __BROWSER__ ? start : undefined)
   let sArgs = [] as OrderArgs
 
@@ -89,28 +89,31 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
     ids: F['list'][number]['_id'][],
     emit: (o: EMIT) => void
   ): SortCmd<F['list'][number] & EMIT> {
-    const hash: DIC<F['list'][number] & EMIT> = {}
+    const map = new Map<F['list'][number]['_id'], F['list'][number]>()
     for (const id of ids) {
-      const key: any = id
       const item = find(id)
       if (!item) continue
-      emit((hash[key] ||= { ...item }))
+      map.set(id, { ...item })
     }
-    return dic.sort(hash)
+    const list = Array.from(map.values())
+    for (const item of list) {
+      emit(item)
+    }
+    return dic.sort(list)
   }
 
   function add(docs: F['list'][number][]) {
     let is_update = false
     for (const doc of docs) {
-      const id = doc._id.toString()
+      const id = doc._id
 
-      if (hash[id]) {
+      if (find(id)) {
         is_update = true
       } else {
         data.list.push(doc)
         reduce(data, doc)
       }
-      hash[id] = doc
+      map.set(id, doc)
     }
     if (is_update) full_calculate()
     sort(...sArgs)
@@ -119,10 +122,9 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
 
   function del(ids: F['list'][number]['_id'][]) {
     for (const id of ids) {
-      delete hash[id.toString()]
+      map.delete(id)
     }
     full_calculate()
-    // data.list = data.list.filter((o) => hash[o._id.toString()])
     set(data)
   }
 }

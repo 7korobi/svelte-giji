@@ -24,9 +24,11 @@ import Btn from '../inline/Btn.svelte'
 import Grid from '../inline/Grid.svelte'
 import { Location } from '$lib/uri'
 import { default_story_query } from '$lib/pubsub/model-client'
+import SearchText from '$lib/inline/SearchText.svelte'
 
 const { url } = site
 
+export let search: RegExp
 export let refresh: any = undefined
 export let params = default_story_query()
 
@@ -74,8 +76,7 @@ function slide(list: string[], idx: string, step: number): string {
 
 <Report handle="footer form">
   <p>
-    <label for="search"><Search /></label>
-    <input id="search" class="search" size="30" list="search_log" />
+    <SearchText bind:regexp={search} />
   </p>
   <p class="center">
     <span>

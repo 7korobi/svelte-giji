@@ -1,13 +1,15 @@
 <script lang="ts">
 import { ChrSet, ChrSets } from '$lib/pubsub/map-reduce'
-import { Faces } from '$lib/pubsub/map-reduce'
 import { Post, Report, Talk } from '$lib/chat'
 import { Location } from '$lib/uri'
+
 import Btn from '$lib/inline/Btn.svelte'
+import SearchText from '$lib/inline/SearchText.svelte'
 import { fade } from 'svelte/transition'
 import { chr_sets_by_label } from '$lib/pubsub/chr/query'
 
 let chr_set_id: ChrSet['_id'] = 'ririnra'
+let search: RegExp
 </script>
 
 <Location bind:hash={chr_set_id} />
@@ -36,12 +38,7 @@ let chr_set_id: ChrSet['_id'] = 'ririnra'
   </div>
   <hr />
   <p class="form">
-    <label for="search" class="mdi mdi-magnify" /><input
-      id="search"
-      size="30"
-      list="search_log"
-      class="search"
-    /><datalist id="search_log" />
+    <SearchText bind:regexp={search} />
   </p>
   <p class="form">
     {ChrSets.find(chr_set_id).npcs[0].label}で選択できる、最初の犠牲者を表示しています。

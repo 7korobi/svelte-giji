@@ -6,14 +6,22 @@ import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
 import { Post, Report, Portrates } from '$lib/chat'
+import { Location } from '$lib/uri'
 
 import { Tags } from '$lib/pubsub/map-reduce'
 import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
 import { __BROWSER__ } from '$lib/browser/device'
-
-import { Location } from '$lib/uri'
+import SearchText from '$lib/inline/SearchText.svelte'
 
 let tag_id: Tag['_id'] = 'giji'
+let search: RegExp
+$: all = faces_by_tag[tag_id].chr_jobs
+$: words = all.map((o) => `${o.job} ${o.face.name}`)
+$: chr_jobs = search ? all.filter((o) => search.test(`${o.job} ${o.face.name}`)) : all
+$: animate_scale =
+  150 < chr_jobs.length
+    ? { delay: 0, duration: 0, opacity: 0, start: 1 }
+    : { delay: 0, duration: 600, opacity: 0, start: 0, easing: backOut }
 </script>
 
 <Location bind:hash={tag_id} />
@@ -46,19 +54,14 @@ let tag_id: Tag['_id'] = 'giji'
   </div>
   <hr />
   <p class="form">
-    <label for="search" class="mdi mdi-magnify" /><input
-      id="search"
-      size="30"
-      list="search_log"
-      class="search"
-    /><datalist id="search_log" /><!---->
+    <SearchText bind:regexp={search} data={words} />
   </p>
   <sub style="width: 100%;">{Tags.find(tag_id)?.long}</sub>
 </Report>
 
 <Portrates>
   {#if false}
-    {#each faces_by_tag[tag_id].chr_jobs as o, idx (o.face_id)}
+    {#each chr_jobs as o, idx (o.face_id)}
       <div>
         <Portrate face_id={o.face_id}>
           <p>{o.job}</p>
@@ -67,13 +70,8 @@ let tag_id: Tag['_id'] = 'giji'
       </div>
     {/each}
   {:else}
-    {#each faces_by_tag[tag_id].chr_jobs as o, idx (o.face_id)}
-      <div
-        in:scale={tag_id === 'all'
-          ? { delay: 0, duration: 0, opacity: 0, start: 1 }
-          : { delay: 0, duration: 600, opacity: 0, start: 0, easing: backOut }}
-        animate:flip={{ delay: 0, duration: 600, easing: backOut }}
-      >
+    {#each chr_jobs as o, idx (o.face_id)}
+      <div in:scale={animate_scale} animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
         <Portrate face_id={o.face_id}>
           <p>{o.job}</p>
           <p>{o.face.name}</p>
