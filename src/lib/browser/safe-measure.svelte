@@ -1,8 +1,10 @@
 <script lang="ts">
-import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from '../common/config'
-
 import { state, isPortrait, isLandscape, safePoint, safeOffset, safeSize } from './store'
-import { isIOS, isRadius, __BROWSER__ } from './device'
+import { isIOS, isRadius, __BROWSER__ } from '$lib/browser-device'
+
+const MINIMUM_PIXEL_SIZE = 0.2
+const SAFE_WIDTH = 44
+const SAFE_HEIGHT = 21
 
 export let ratio: number
 export let isDefaultSafeArea: boolean
@@ -40,7 +42,7 @@ function compute($isPortrait: boolean, $isLandscape: boolean) {
 
 <div bind:this={el} />
 
-<style lang="scss">
+<style>
 div {
   pointer-events: none;
   user-select: none;

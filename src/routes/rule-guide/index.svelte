@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Post, Talk, Report, Banner } from '$lib/chat'
 import { Focus } from '$lib/scroll'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { nation, village, maker, player } from '$lib/game/json/rule.json'
 import '../_app.svelte'
 import { Location } from '$lib/uri'

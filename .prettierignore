@@ -6,6 +6,7 @@
 .serverless_build_output
 .static_build_output
 .node_build_output
+.node_bin
 
 build
 package

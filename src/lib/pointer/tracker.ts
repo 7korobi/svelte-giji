@@ -1,5 +1,17 @@
-import type { POINT, POINT_WITH_SCALE, SIZE } from '../common/config'
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
+
+type top = number
+type right = number
+type bottom = number
+type left = number
+
+type width = number
+type height = number
+type scale = number
+
+type SIZE = [width, height]
+type POINT = [left, top]
+type POINT_WITH_SCALE = [left, top, scale]
 
 enum Button {
   Left

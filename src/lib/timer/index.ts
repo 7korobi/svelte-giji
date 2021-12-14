@@ -1,7 +1,7 @@
 import Time from './time.svelte'
-import * as store from './store'
 
 export { Time }
+export * from './msec'
+export * from './tick'
 export * from './tempo'
 export * from './distance'
-export default store

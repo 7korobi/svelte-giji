@@ -12,7 +12,7 @@ import {
   User
 } from 'firebase/auth'
 
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
 import { app, user, error } from './store'
 

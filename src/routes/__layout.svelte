@@ -9,8 +9,8 @@ import Export from '$lib/site/export.svelte'
 import Footer from '$lib/site/footer.svelte'
 import site from '$lib/site'
 import fire from '$lib/fire'
-import browser, { Browser } from '$lib/browser'
-import { __BROWSER__ } from '$lib/browser/device'
+import browser, { Browser, Viewport } from '$lib/browser'
+import { __BROWSER__ } from '$lib/browser-device'
 
 import * as Icon from '$lib/icon'
 
@@ -27,6 +27,8 @@ if (__BROWSER__) {
  * 携帯端末のセーフエリアを回避する比率。0.0 〜 1.0
  */
 const SAFEAREA_RATIO = 1.0
+const min = 1.0
+const max = 1.0
 
 $: console.log('session', $session)
 $: offsetTop = welcomeTopHeight < $viewOffset[0] ? 0 : Math.floor(-0.4 * $viewOffset[0])
@@ -321,6 +323,20 @@ let welcomeBottomHeight = 0
 </div>
 
 <Browser ratio={SAFEAREA_RATIO} isDefaultSafeArea={true} />
+<Viewport {min} {max} />
+<svelte:head>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="196x196" href="/favicon-196.png" />
+
+  <meta name="msapplication-square70x70logo" content="/mstile-icon-128.png" />
+  <meta name="msapplication-square150x150logo" content="/mstile-icon-270.png" />
+  <meta name="msapplication-square310x310logo" content="/mstile-icon-558.png" />
+  <meta name="msapplication-wide310x150logo" content="/mstile-icon-558-270.png" />
+
+  <link rel="apple-touch-icon" href="/apple-icon-180.png" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</svelte:head>
 
 <style lang="scss">
 .welcome {

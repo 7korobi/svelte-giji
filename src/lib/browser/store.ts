@@ -1,6 +1,17 @@
 import { writable } from 'svelte/store'
-import type { OFFSET, POINT, SIZE } from '../common/config'
-import { __BROWSER__ } from './device'
+import { __BROWSER__ } from '$lib/browser-device'
+
+type top = number
+type right = number
+type bottom = number
+type left = number
+
+type width = number
+type height = number
+
+type SIZE = [width, height]
+type POINT = [left, top]
+type OFFSET = [top, right, bottom, left]
 
 const DPI = bootDPI()
 const divDPI = 1 / bootDPI()

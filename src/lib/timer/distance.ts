@@ -1,5 +1,5 @@
 import { readable } from 'svelte/store'
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { to_msec, DAY, HOUR, MINUTE, MONTH, SECOND, WEEK, YEAR } from './msec'
 import { Tempo, to_tempo_bare } from './tempo'
 

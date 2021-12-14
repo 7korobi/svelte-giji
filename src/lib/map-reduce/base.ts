@@ -1,7 +1,7 @@
 import type { DIC } from './dic'
 import type { SortCmd } from './fast-sort'
 import { writable } from 'svelte/store'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import * as dic from './dic'
 
 export type BaseT<IdType> = {

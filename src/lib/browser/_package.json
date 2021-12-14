@@ -1,0 +1,31 @@
+{
+  "name": "svelte-browser",
+  "version": "0.3.8",
+  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/browser",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@sveltejs/kit": "next",
+    "svelte": "^3.44.3",
+    "svelte-preprocess": "^4.10.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "svelte-giji-browser-device": "^0.2.3",
+    "tslib": "^2.3.1"
+  },
+  "exports": {
+    "./area-box": "./area-box.js",
+    "./browser": "./browser.js",
+    "./downloader": "./downloader.js",
+    "./measure": "./measure.js",
+    "./store": "./store.js",
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./main.svelte": "./main.svelte",
+    "./key-capture.svelte": "./key-capture.svelte",
+    "./page-transition.svelte": "./page-transition.svelte",
+    "./safe-measure.svelte": "./safe-measure.svelte",
+    "./viewport.svelte": "./viewport.svelte"
+  }
+}

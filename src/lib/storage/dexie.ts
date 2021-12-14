@@ -1,5 +1,5 @@
 import Dexie from 'dexie'
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 export type WebPollData<T> = {
   version: string

@@ -3,7 +3,7 @@ import type { CHR_SET_IDX } from '../map-reduce'
 
 import { MapReduce } from '$lib/map-reduce'
 import sow_json from '$lib/game/json/sow_folder.json'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 export type Folder = {
   _id: FOLDER_IDX

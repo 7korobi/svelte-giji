@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { POINT, POINT_WITH_SCALE, SIZE_WITH_SCALE } from '../common/config'
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 import type { InputEvent } from './tracker'
 import { Operations } from './tracker'

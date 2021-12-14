@@ -239,7 +239,7 @@ import parser from "socket.io-msgpack-parser";
 // src/lib/map-reduce/base.ts
 import { writable } from "svelte/store";
 
-// src/lib/browser/device.ts
+// src/lib/browser-device/index.ts
 import UAParser from "ua-parser-js";
 var __SPEC__ = typeof window === "undefined";
 var __BROWSER__ = !__SPEC__;
@@ -14115,7 +14115,7 @@ function default_story_query() {
 }
 function default_stories_query() {
   return {
-    order: "vid",
+    order: "write_at",
     search: "",
     folder_id: [],
     monthry: [],

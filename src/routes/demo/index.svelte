@@ -1,14 +1,14 @@
 <script lang="ts">
-import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer/msec'
+import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer'
 
 import { Zoom, Pen } from '$lib/pointer'
 import { Time } from '$lib/timer'
 import LongPress from '$lib/inline/LongPress.svelte'
-import Poll from '$lib/storage/Poll.svelte'
+import { Poll } from '$lib/storage'
 import { Report, Post, Talk } from '$lib/chat'
 import { HtmlArea } from '$lib/editor'
 import browser from '$lib/browser'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 import site from '$lib/site'
 import { face, faces } from '$lib/pubsub/poll'

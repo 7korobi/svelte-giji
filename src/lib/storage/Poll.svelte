@@ -6,7 +6,7 @@ import { webPoll } from './dexie'
 import { to_tempo, Tempo } from '$lib/timer'
 import { INTERVAL_MAX } from '$lib/timer'
 import browser from '$lib/browser'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 const { isActive } = browser
 

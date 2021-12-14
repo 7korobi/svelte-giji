@@ -2,13 +2,14 @@ import { writable } from 'svelte/store'
 import { Bits } from '$lib/inline/bits'
 import { writeLocal } from '$lib/storage'
 import live from '$lib/site/json/live.json'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 export const url = writable({
   portrate: 'https://giji.f5.si/images/portrate/',
   icon: 'https://giji.f5.si/images/icon/',
   css: '/css/',
   api: '/api/',
+  oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
   top: '/'
 })
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { tick } from 'svelte'
 import { style, url } from '../site/store'
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 import { Operations, instanceId } from './tracker'
 import type { Cluster, Icon, Line } from './store'

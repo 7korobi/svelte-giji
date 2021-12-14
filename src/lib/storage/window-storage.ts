@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
 

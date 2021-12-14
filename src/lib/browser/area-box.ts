@@ -14,7 +14,7 @@ import {
   viewSize,
   safeSize
 } from './store'
-import { isAndroid, isIOS, __BROWSER__ } from './device'
+import { isAndroid, isIOS, __BROWSER__ } from '$lib/browser-device'
 
 export default function areaBoxInit() {
   if (!__BROWSER__) return () => {}

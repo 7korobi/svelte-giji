@@ -1,0 +1,18 @@
+{
+  "name": "svelte-giji-browser-device",
+  "version": "0.2.3",
+  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/browser",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "tslib": "^2.3.1",
+    "ua-parser-js": "^0.7.31"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  }
+}

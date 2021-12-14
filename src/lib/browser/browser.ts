@@ -1,4 +1,4 @@
-import { __BROWSER__ } from './device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { state, isOnline, isWatching, isActive } from './store'
 
 export default function browserInit() {

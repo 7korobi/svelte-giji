@@ -1,10 +1,9 @@
-import PageTransition from './page-transition.svelte'
-import Browser from './index.svelte'
+import Browser from './main.svelte'
 import Viewport from './viewport.svelte'
-import Key from './key.svelte'
+import KeyCapture from './key-capture.svelte'
 
 import * as store from './store'
 
 export * from './measure'
-export { Browser, Key, Viewport, PageTransition }
+export { Browser, KeyCapture, Viewport }
 export default store

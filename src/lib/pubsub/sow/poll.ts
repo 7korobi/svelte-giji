@@ -4,10 +4,10 @@ import site from '$lib/site'
 import { stories, events, messages, potofs } from '../model-client'
 import { potof_for_faces } from '../map-reduce'
 
-let api_url = ''
+let oldlog_url = ''
 
-site.url.subscribe(({ api }) => {
-  api_url = api
+site.url.subscribe(({ oldlog }) => {
+  oldlog_url = oldlog
 })
 
 export const oldlogs_stories = MapReduce(stories)
@@ -23,7 +23,7 @@ export function oldlogs() {
     version: '1.0.0',
     timer: '12h',
     shift: '1h10m',
-    idx: `${api_url}story/oldlog`,
+    idx: `${oldlog_url}sow/index.json`,
     onFetch(o: { faces: PotofForFace[]; stories: Story[] }) {
       oldlogs_stories.add(o.stories)
       oldlogs_faces.add(o.faces)
@@ -36,7 +36,7 @@ export function oldlog(story_id: STORY_ID) {
   return {
     version: '1.0.0',
     timer: '1y',
-    idx: `${api_url}story/oldlog/${story_id}`,
+    idx: `${oldlog_url}sow/${story_id}.json`,
     onFetch(o: { stories: [Story]; events: Event[]; messages: Message[]; potofs: Potof[] }) {
       oldlog_stories.add(o.stories)
       oldlog_events.add(o.events)

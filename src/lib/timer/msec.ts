@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 export const SECOND = 1000
 export const MINUTE = 60000

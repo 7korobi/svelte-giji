@@ -1,13 +1,5 @@
 <script lang="ts">
-/*
-import { Radio } from '../menu'
-import * as store from '../menu/store'
-import { Intro } from '../menu'
-  */
-
 import type { POINT } from '../common/config'
-
-import type { InputEvent } from './tracker'
 import { Operations } from './tracker'
 
 type Operation = {

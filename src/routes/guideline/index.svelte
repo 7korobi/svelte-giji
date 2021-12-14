@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Post, Talk, Report } from '$lib/chat'
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import '../_app.svelte'
 import { Location } from '$lib/uri'
 

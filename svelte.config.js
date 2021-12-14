@@ -4,8 +4,6 @@ import { dtsPlugin } from 'esbuild-plugin-d.ts'
 import preprocess from 'svelte-preprocess'
 import { readFileSync } from 'fs'
 import path from 'path'
-import svelte from 'esbuild-svelte'
-import sveltePreprocess from 'svelte-preprocess'
 
 import AdapterStatic from '@sveltejs/adapter-static'
 const STATIC = AdapterStatic({
@@ -41,26 +39,10 @@ const SERVERLESS = AdapterServerless({
 
 const package_file = path.join(path.dirname(new URL(import.meta.url).pathname), '/package.json')
 const package_json = JSON.parse(readFileSync(package_file, 'utf8'))
-const dependencies = Object.keys({ ...package_json.dependencies, ...package_json.devDependencies })
-const packages = [
-  'block',
-  'browser',
-  'chat',
-  'common',
-  'db',
-  'fire',
-  'icon',
-  'map-reduce',
-  'pointer',
-  'pubsub',
-  'scroll',
-  'site',
-  'storage',
-  'timer',
-  'topic',
-  'uri'
-].map((name) => `${name}/$lib`)
-// const packages = ['browser','db','fire','icon','map-reduce', 'pointer', 'pubsub', 'scroll', 'site', 'storage', 'timer', 'topic', 'uri']
+const dependencies = Object.keys({
+  ...package_json.dependencies,
+  ...package_json.devDependencies
+}).filter((str) => !/^svelte-/.test(str))
 
 esbuild.build({
   entryPoints: ['./src/lib/pubsub/server.ts'],
@@ -94,43 +76,30 @@ const config = {
   }),
 
   kit: {
+    adapter: STATIC,
     target: 'body',
-    adapter: STATIC
+    vite: {
+      server: {
+        fs: {
+          allow: ['package']
+        }
+      }
+    },
+    package: {
+      exports(path) {
+        const is_hit = !/(README.md|pnpm-lock.yaml)$/g.test(path)
+        return is_hit
+      },
+      files(path) {
+        if (/\/node_modules\//.test(path)) return false
+        if (/\.log$/.test(path)) return false
+        const is_hit = /^(browser|browser-device|fire|map-reduce|pointer|scroll|storage|timer|uri)\//g.test(
+          path
+        )
+        return is_hit
+      }
+    }
   }
 }
 
 export default config
-
-pkg(`browser`)
-// pkg('chat')
-pkg(`db`)
-pkg(`fire`)
-pkg(`icon`)
-pkg(`map-reduce`)
-// pkg(`pointer`)
-pkg(`pubsub`, ['client.ts'])
-// pkg(`scroll`)
-// pkg(`site`)
-pkg(`storage`)
-pkg(`timer`)
-pkg(`topic`)
-pkg(`uri`)
-
-function pkg(name, targets = ['index.ts']) {
-  esbuild.build({
-    entryPoints: targets.map((file) => `./src/lib/${name}/${file}`),
-    outdir: `./package/${name}/`,
-    bundle: true,
-    format: 'esm',
-    target: 'node15',
-    external: [...dependencies, ...packages],
-    plugins: [
-      svelte({
-        typescript: true,
-        preprocess: sveltePreprocess(),
-        compilerOptions: {}
-      }),
-      dtsPlugin()
-    ]
-  })
-}

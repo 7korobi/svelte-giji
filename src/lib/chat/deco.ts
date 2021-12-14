@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import { regSites } from './store'
 
 export function deco(DIV: HTMLElement) {

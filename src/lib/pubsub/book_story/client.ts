@@ -40,7 +40,7 @@ export function default_story_query() {
 
 export function default_stories_query() {
   return {
-    order: 'vid',
+    order: 'write_at',
     search: '',
     folder_id: [] as FOLDER_IDX[],
     monthry: [] as string[],

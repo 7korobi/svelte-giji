@@ -1,5 +1,5 @@
 <script lang="ts">
-import { __BROWSER__ } from '$lib/browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import * as IconDic from '$lib/icon'
 import { Report, Post, Talk } from '$lib/chat'
 

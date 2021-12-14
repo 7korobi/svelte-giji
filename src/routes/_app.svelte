@@ -11,6 +11,7 @@ if (dev) {
     icon: 'https://giji.f5.si/images/icon/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
+    oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
     top: '/'
   })
 } else {
@@ -19,6 +20,7 @@ if (dev) {
     icon: 'https://giji.f5.si/images/icon/',
     css: 'https://giji.f5.si/css/',
     api: 'https://giji-api.duckdns.org/api/',
+    oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
     top: 'https://giji.f5.si/'
   })
 }

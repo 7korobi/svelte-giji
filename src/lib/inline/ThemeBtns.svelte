@@ -1,5 +1,5 @@
 <script lang="ts">
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 import site from '../site'
 
 import Btn from './Btn.svelte'

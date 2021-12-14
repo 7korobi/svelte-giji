@@ -18,7 +18,7 @@ import {
 import { Erase } from '$lib/icon'
 import site from '$lib/site'
 import { Post, Report } from '$lib/chat'
-import Poll from '$lib/storage/Poll.svelte'
+import { Poll } from '$lib/storage'
 import Sup from '../inline/Sup.svelte'
 import Btn from '../inline/Btn.svelte'
 import Grid from '../inline/Grid.svelte'

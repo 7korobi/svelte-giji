@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '../browser/device'
+import { __BROWSER__ } from '$lib/browser-device'
 
 export type RANGE = RANGE_STATE | 'focus' | 'horizon' | 'vertical'
 type RANGE_STATE = 'compress' | 'hidden' | 'peep' | 'show'
