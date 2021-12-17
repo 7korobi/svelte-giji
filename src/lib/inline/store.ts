@@ -1,3 +1,4 @@
-import { writable } from 'svelte/store'
-
-export const dmy = writable(true)
+let counter = 360
+export function instanceId() {
+  return (counter++).toString(36)
+}

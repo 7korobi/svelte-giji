@@ -13,11 +13,23 @@ for (const key of Object.keys(IconDic).sort()) {
 }
 </script>
 
-<Report handle="SSAY">
+<Report handle="footer">
   <h1>Welcome to SvelteKit</h1>
   <p><a sveltekit:prefetch href="/">ROOT</a></p>
   <p>Visit <a sveltekit:prefetch href="/demo">DEMO</a></p>
   <p>Visit <a sveltekit:prefetch href="/demo/color">COLOR</a></p>
+</Report>
+
+<Report handle="TSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
 </Report>
 
 <Report handle="SSAY">
@@ -32,9 +44,70 @@ for (const key of Object.keys(IconDic).sort()) {
   <br />
 </Report>
 
+<Report handle="VSSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
+</Report>
+
+<Report handle="GSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
+</Report>
+
+<Report handle="VGSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
+</Report>
+
+<Report handle="WSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
+</Report>
+
+<Report handle="XSAY">
+  <br />
+  <p class="text x3">
+    {#each ICONS as { key, Icon }, idx}
+      <span class="plain">
+        <Icon />
+      </span>
+    {/each}
+  </p>
+  <br />
+</Report>
+
 <style lang="scss">
 .x3 {
   font-size: 3rem;
+  line-height: 3.75rem;
 }
 
 article {

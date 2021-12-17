@@ -457,12 +457,13 @@ function MapReduce({
   order,
   start: start2
 }) {
+  const children = new Map();
   const map = new Map();
   const data = format2();
   const find = (id) => map.get(id);
   const { subscribe, set: set2 } = writable(format2(), __BROWSER__ ? start2 : void 0);
   let sArgs = [];
-  return { deploy, add, del: del2, find, reduce: doReduce, sort: sort3, format: format2, data, subscribe };
+  return { deploy, add, del: del2, find, reduce: doReduce, filter, sort: sort3, format: format2, data, subscribe };
   function sort3(...sa) {
     if (order)
       order(data, { sort: sort2, group_sort }, ...sArgs = sa);
@@ -484,6 +485,12 @@ function MapReduce({
       list.push(o);
     }
     add(list);
+  }
+  function filter(validator) {
+    const child = MapReduce({ format: format2, reduce, order });
+    const { add: add2, del: del3, filter: filter2, sort: sort4, data: data2, subscribe: subscribe2 } = child;
+    children.set(validator, { add: add2, del: del3 });
+    return { reduce: child.reduce, filter: filter2, sort: sort4, data: data2, subscribe: subscribe2, validator };
   }
   function doReduce(ids, emit) {
     const map2 = new Map();
@@ -515,13 +522,22 @@ function MapReduce({
       full_calculate();
     sort3(...sArgs);
     set2(data);
+    for (const [check, { add: add2 }] of children.entries()) {
+      add2(docs.filter(check));
+    }
   }
   function del2(ids) {
+    let is_update = false;
     for (const id of ids) {
-      map.delete(id);
+      if (map.delete(id))
+        is_update = true;
     }
-    full_calculate();
+    if (is_update)
+      full_calculate();
     set2(data);
+    for (const { del: del3 } of children.values()) {
+      del3(ids);
+    }
   }
 }
 
@@ -14115,8 +14131,8 @@ function default_story_query() {
 }
 function default_stories_query() {
   return {
-    order: "write_at",
     search: "",
+    order: "write_at",
     folder_id: [],
     monthry: [],
     upd_range: [],

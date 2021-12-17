@@ -1,5 +1,6 @@
 <svg
   class="icon"
+  id="icon-bold"
   preserveAspectRatio="xMidYMid slice"
   overflow="visible"
   viewBox="-100 -100 1400 1400"

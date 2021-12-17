@@ -35,17 +35,6 @@ export let {
 doRefresh()
 
 $: if (refresh) doRefresh()
-$: console.log('searchParams', searchParams)
-$: console.log({ hash })
-$: console.log({ protocol })
-$: console.log({ host })
-$: console.log({ port })
-$: console.log({ hostname })
-$: console.log({ pathname })
-$: console.log({ href })
-$: console.log({ origin })
-$: console.log({ username })
-$: console.log({ password })
 $: replace_url({ searchParams, hash, protocol, host, port, hostname, pathname })
 
 function location_url() {
@@ -55,16 +44,16 @@ function location_url() {
 
   const data: URLValue = {
     searchParams: toSearchParams(url.searchParams, init.searchParams),
-    hash: url.hash.slice(1) || init.hash,
+    hash: url.hash.slice(1) || init.hash || '',
     protocol: url.protocol.slice(0, -1),
     host: url.host,
     port: Number(url.port) || init.port,
     hostname: url.hostname,
     pathname: url.pathname,
     href: url.href,
-    origin: url.origin,
-    username: $$props.username,
-    password: $$props.password
+    origin: url.origin
+    //    username: $$props.username,
+    //    password: $$props.password
   }
   return data
 }
@@ -76,7 +65,11 @@ function replace_url({ searchParams, ...req }: URLValue) {
   setSearchParams(searchParams, ret.searchParams)
   if (window.location.href === ret.href) return
   console.log('+', ret.href)
-  history.replaceState({}, '', ret)
+  if (window.location.origin === ret.origin) {
+    history.replaceState({}, '', ret)
+  } else {
+    location.replace(ret)
+  }
 }
 
 function setSearchParams(
@@ -123,9 +116,9 @@ function doRefresh() {
     port,
     hostname,
     origin,
-    pathname,
-    username,
-    password
+    pathname
+    //    username,
+    //    password,
   } = location_url())
 }
 </script>

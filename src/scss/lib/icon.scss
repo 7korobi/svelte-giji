@@ -12,27 +12,27 @@ svg.logo {
 }
 
 .slide-ud {
-  animation: 1s infinite 0s cubic-bezier(0.7, 0, 0, 0.3) alternate forwards slide-y;
+  animation: 1s infinite 0s cubic-bezier(0.7, 0, 0.3, 1) alternate forwards slide-y;
 }
 
 .slide-lr {
-  animation: 1s infinite 0s cubic-bezier(0.7, 0, 0, 0.3) alternate forwards slide-x;
+  animation: 1s infinite 0s cubic-bezier(0.7, 0, 0.3, 1) alternate forwards slide-x;
 }
 
 .slide-u {
-  animation: 1s infinite 0s cubic-bezier(0, 0, 0, 1) reverse forwards slide-y;
+  animation: 2s infinite 0s cubic-bezier(0.8, 0, 0.7, 1.4) reverse forwards slide-y;
 }
 
 .slide-r {
-  animation: 1s infinite 0s cubic-bezier(0, 0, 0, 1) normal forwards slide-x;
+  animation: 2s infinite 0s cubic-bezier(0.3, -0.4, 0.2, 1) normal forwards slide-x;
 }
 
 .slide-d {
-  animation: 1s infinite 0s cubic-bezier(0, 0, 0, 1) normal forwards slide-y;
+  animation: 2s infinite 0s cubic-bezier(0.3, -0.4, 0.2, 1) normal forwards slide-y;
 }
 
 .slide-l {
-  animation: 1s infinite 0s cubic-bezier(0, 0, 0, 1) reverse forwards slide-x;
+  animation: 2s infinite 0s cubic-bezier(0.8, 0, 0.7, 1.4) reverse forwards slide-x;
 }
 
 .spin-r {
@@ -44,7 +44,7 @@ svg.logo {
 }
 
 .ring {
-  animation: 1s infinite 0s cubic-bezier(0.7, -1, 0.3, 2) alternate forwards ring;
+  animation: 2s infinite 0s cubic-bezier(0.2, -1, 0.8, 2) alternate forwards ring;
 }
 
 .twincle {

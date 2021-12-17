@@ -42,10 +42,6 @@ type OperationDiff = {
 
 export type InputEvent = TouchEvent | PointerEvent | MouseEvent
 
-let counter = 1
-export function instanceId() {
-  return counter++
-}
 export class Operation {
   id: number
   point: POINT

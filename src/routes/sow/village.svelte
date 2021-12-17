@@ -11,7 +11,7 @@ import { page } from '$app/stores'
 const { url } = site
 
 let list: Story[] = []
-let search = ''
+let regexp = /^/g
 let params = default_stories_query()
 let hash = ''
 </script>
@@ -26,14 +26,14 @@ let hash = ''
   </p>
 </Post>
 
-<OldlogFinder bind:list refresh={$page} bind:hash bind:search bind:params />
+<OldlogFinder bind:list refresh={$page} bind:hash bind:regexp bind:params />
 
 {#each list.slice(0, 10) as o (o._id)}
   <Focus id={o._id} bind:value={hash}>
     <Report handle="TITLE">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>
-        <a href="/sow/show?book_id={o._id}&full">{@html o.name}</a>
+        <a href="/sow/show?idx={o._id}-top&mode=full">{@html o.name}</a>
       </p>
       <div class="cards">
         <table class="btns card" style="width: 33%">

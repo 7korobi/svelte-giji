@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Search } from '$lib/icon'
-import { uid } from './common'
+import { instanceId } from './store'
 
 const escape_target = new RegExp(
   `(${Array.from('$?*^+.|(){}[]')
@@ -8,14 +8,15 @@ const escape_target = new RegExp(
     .join('|')})`,
   'g'
 )
-const form_id = uid()
-const log_id = uid()
+const form_id = instanceId()
+const log_id = instanceId()
 
 export let value: string = ''
 export let data: string[] = []
 export let regexp: RegExp = null
 export let delay = 1000
 export let bind_value = value
+export let onFocus = () => {}
 
 $: calc(value)
 $: bind_value = value
@@ -57,7 +58,7 @@ function escape(chr: string) {
 
 <label for={form_id}>
   <Search />
-  <input id={form_id} bind:value={bind_value} size="30" list={log_id} />
+  <input id={form_id} bind:value={bind_value} size="30" list={log_id} on:focus={onFocus} />
   &nbsp;
 </label>
 <datalist id={log_id}>
@@ -72,6 +73,7 @@ label {
   align-items: center;
 }
 input {
+  margin: 1px 2px;
   flex-grow: 1;
 }
 </style>

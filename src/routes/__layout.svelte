@@ -28,7 +28,7 @@ if (__BROWSER__) {
  */
 const SAFEAREA_RATIO = 1.0
 const min = 1.0
-const max = 1.0
+const max = 2.0
 
 $: console.log('session', $session)
 $: offsetTop = welcomeTopHeight < $viewOffset[0] ? 0 : Math.floor(-0.4 * $viewOffset[0])

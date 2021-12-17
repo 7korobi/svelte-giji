@@ -3,11 +3,17 @@ import { dev } from '$app/env'
 import { Folders } from '$lib/pubsub/map-reduce'
 import chat from '$lib/chat'
 import site from '$lib/site'
+import pointer from '$lib/pointer'
 
 if (dev) {
+  const portrate = 'https://giji.f5.si/images/portrate/'
+
   chat.sameSites.set(Array.from(Folders.data.sameSites))
+  pointer.url.set({
+    portrate
+  })
   site.url.set({
-    portrate: 'https://giji.f5.si/images/portrate/',
+    portrate,
     icon: 'https://giji.f5.si/images/icon/',
     css: '/css/',
     api: 'https://giji-api.duckdns.org/api/',
@@ -15,8 +21,13 @@ if (dev) {
     top: '/'
   })
 } else {
+  const portrate = 'https://giji.f5.si/images/portrate/'
+
+  pointer.url.set({
+    portrate
+  })
   site.url.set({
-    portrate: 'https://giji.f5.si/images/portrate/',
+    portrate,
     icon: 'https://giji.f5.si/images/icon/',
     css: 'https://giji.f5.si/css/',
     api: 'https://giji-api.duckdns.org/api/',
@@ -25,7 +36,7 @@ if (dev) {
   })
 }
 
-site.style.set({
+pointer.style.set({
   icon: {
     width: 90,
     height: 130

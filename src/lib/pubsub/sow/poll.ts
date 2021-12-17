@@ -27,7 +27,7 @@ export function oldlogs() {
     onFetch(o: { faces: PotofForFace[]; stories: Story[] }) {
       oldlogs_stories.add(o.stories)
       oldlogs_faces.add(o.faces)
-      console.log(o, oldlogs_stories.data, oldlogs_faces.data)
+      console.log(o)
     }
   }
 }

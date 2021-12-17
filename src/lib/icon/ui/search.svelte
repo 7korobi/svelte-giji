@@ -6,7 +6,7 @@
   viewBox="0 0 24 24"
 >
   <g fill="none">
-    <circle cx="15" cy="9" r="6" fill="var(--pen)" fill-opacity=".3" />
+    <circle cx="15" cy="9" r="6" fill="var(--btnOn)" />
     <path
       d="M3 21L10.5 13.5L10.757 13.243a6 6 0 1 1 8.485-8.486a6 6 0 0 1-8.485 8.486z"
       stroke="var(--pen)"

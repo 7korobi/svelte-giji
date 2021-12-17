@@ -1,10 +1,11 @@
 <script lang="ts">
+import type { Cluster, Icon, Line } from './store'
+
 import { tick } from 'svelte'
-import { style, url } from '../site/store'
+import { style, url, instanceId } from './store'
 import { __BROWSER__ } from '$lib/browser-device'
 
-import { Operations, instanceId } from './tracker'
-import type { Cluster, Icon, Line } from './store'
+import { Operations } from './tracker'
 
 type Rect = Box & {
   key: string
