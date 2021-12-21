@@ -11,7 +11,7 @@ import browser from '$lib/browser'
 import { __BROWSER__ } from '$lib/browser-device'
 
 import site from '$lib/site'
-import { face, faces } from '$lib/pubsub/poll'
+import { faces } from '$lib/pubsub/poll'
 
 import '../_app.svelte'
 
@@ -162,7 +162,6 @@ let scale
 </Post>
 
 <Poll {...faces()} />
-<Poll {...face('c01')} />
 
 <style lang="scss">
 @use "../../lib/common/_color" as *;

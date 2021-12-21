@@ -90,7 +90,14 @@ random_test
   </Post>
 </Focus>
 
-<Focus id="waoon-record" bind:value={page}>
+<Focus id="summary" bind:value={page}>
+  <Post handle="PSAY">
+    <p>
+      <a href="summary/chr/list">キャラクター活躍記録</a>
+    </p>
+    <p class="text">どこかの村で活躍したことのあるキャラクターはこちら。</p>
+  </Post>
+
   <Post handle="PSAY">
     <p>
       <a href="https://waoon.net/record/">人狼戦績まとめ</a>
@@ -123,7 +130,7 @@ random_test
 <Focus id="testsite" bind:value={page}>
   <Post handle="VGSAY">
     <p>
-      <a href="https://giji-db923.web.app">テストサイト</a>
+      <a href="https://gijilog.web.app">テストサイト</a>
     </p>
     <p class="text">つくりかけの人狼議事総合トップが置いてあります。</p>
   </Post>

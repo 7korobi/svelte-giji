@@ -2,12 +2,7 @@
 import { Search } from '$lib/icon'
 import { instanceId } from './store'
 
-const escape_target = new RegExp(
-  `(${Array.from('$?*^+.|(){}[]')
-    .map((c) => `\\${c}`)
-    .join('|')})`,
-  'g'
-)
+const escape_target = new RegExp(`(${[...'$?*^+.|(){}[]'].map((c) => `\\${c}`).join('|')})`, 'g')
 const form_id = instanceId()
 const log_id = instanceId()
 

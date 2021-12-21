@@ -43,5 +43,5 @@ export const style = writable({
 })
 
 export const url = writable({
-  portrate: 'https://giji.f5.si/images/portrate/'
+  portrate: '/images/portrate/'
 })

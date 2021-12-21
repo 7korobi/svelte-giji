@@ -40,8 +40,8 @@ export function default_story_query() {
 
 export function default_stories_query() {
   return {
-    order: 'write_at',
     search: '',
+    order: 'write_at',
     folder_id: [] as FOLDER_IDX[],
     monthry: [] as string[],
     upd_range: [] as string[],
@@ -105,29 +105,34 @@ export const stories = model({
     const in_month = format(updated_at, 'MM月', { locale })
     const yeary = format(updated_at, 'yyyy年', { locale })
     const monthry = yeary + in_month
+    doc.monthry = monthry
 
     if ((doc.folder as any)?.toLowerCase) {
       doc.folder_id = (doc.folder as any).toLowerCase()
       doc.folder = Folders.find(doc.folder_id)
     }
 
-    doc.game = Games.find(doc.type.game)
+    doc.game_id = doc.type.game
+    doc.game = Games.find(doc.game_id)
 
     doc.role_table = RoleTables.find(doc.type.roletable)
 
     doc.mob_role = Roles.find(doc.type.mob) as MobRole
 
-    doc.say_limit = SayLimits.find(doc.type.say)
+    doc.say_limit_id = doc.type.say
+    doc.say_limit = SayLimits.find(doc.say_limit_id)
 
-    doc.traps = Roles.reduce(doc.card.event, emit).desc(by_count)
-    doc.discards = Roles.reduce(doc.card.discard, emit).desc(by_count)
+    doc.trap_ids = doc.card.event
+    doc.discard_ids = doc.card.discard
+    doc.traps = Roles.reduce(doc.trap_ids, emit).desc(by_count)
+    doc.discards = Roles.reduce(doc.discard_ids, emit).desc(by_count)
 
-    let config_role_ids = doc.card.config
+    doc.config_ids = doc.card.config
     if (doc.role_table._id !== 'custom') {
       const table_role_ids = doc.role_table.role_ids_list[doc.vpl[0]] || []
-      config_role_ids = [...config_role_ids.filter((o) => 'mob' === o), ...table_role_ids]
+      doc.config_ids = [...doc.config_ids.filter((o) => 'mob' === o), ...table_role_ids]
     }
-    doc.configs = Roles.reduce(config_role_ids, emit).desc(by_count)
+    doc.configs = Roles.reduce(doc.config_ids, emit).desc(by_count)
 
     const option_ids = doc.options as any
     doc.options = option_ids.map(Options.find).filter(by_this)
@@ -144,12 +149,10 @@ export const stories = model({
     doc.write_at = updated_at.getTime()
 
     dic(data.oldlog, doc.folder_id, []).push(doc)
-    dic(data.oldlog, 'all', []).push(doc)
     emit(dic(data.base.in_month, in_month, {}))
     emit(dic(data.base.yeary, yeary, {}))
     emit(dic(data.base.monthry, monthry, {}))
     emit(dic(data.base.folder_id, doc.folder_id, {}))
-    emit(dic(data.base.folder_id, 'all', {}))
     emit(dic(data.base.upd_range, doc.upd_range, {}))
     emit(dic(data.base.upd_at, doc.upd_at, {}))
     emit(dic(data.base.size, doc.size, {}))

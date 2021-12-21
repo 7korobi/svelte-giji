@@ -17,7 +17,10 @@ import type {
   OPTION_ID,
   Option,
   MARK_ID,
-  Role
+  Role,
+  TRAP_ID,
+  SAY_LIMIT_ID,
+  GAME_ID
 } from '../map-reduce'
 
 export type Story = {
@@ -26,6 +29,13 @@ export type Story = {
 
   folder_id: Lowercase<FOLDER_IDX>
   sow_auth_id: AccountID
+  say_limit_id: SAY_LIMIT_ID
+  game_id: GAME_ID
+  trap_ids: TRAP_ID[]
+  config_ids: ROLE_ID[]
+  discard_ids: ROLE_ID[]
+
+  monthry: string
 
   folder?: Folder
   prologue?: Event
@@ -63,7 +73,7 @@ export type Story = {
     minute: number
   }
   card: {
-    event: ROLE_ID[]
+    event: TRAP_ID[]
     discard: ROLE_ID[]
     config: ROLE_ID[]
   }

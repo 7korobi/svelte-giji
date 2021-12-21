@@ -170,7 +170,7 @@ export class Operations<T extends HTMLElement> {
 
     function _touchStart(event: TouchEvent) {
       const { offset } = tracker.updateByRect()
-      for (const touch of Array.from(event.changedTouches)) {
+      for (const touch of [...event.changedTouches]) {
         _triggerPointerStart(new Operation(touch, offset), event)
       }
       window.addEventListener('touchmove', _move)
@@ -178,7 +178,7 @@ export class Operations<T extends HTMLElement> {
 
     function getOperations(event: PointerEvent | MouseEvent | TouchEvent, offset: POINT) {
       if ('changedTouches' in event) {
-        return Array.from(event.changedTouches).map((e) => new Operation(e, offset))
+        return [...event.changedTouches].map((e) => new Operation(e, offset))
       }
       if ('getCoalescedEvents' in event) {
         event.getCoalescedEvents().map((e) => new Operation(e, offset))
@@ -237,7 +237,7 @@ export class Operations<T extends HTMLElement> {
 
     function _touchEnd(event: TouchEvent) {
       const { offset, size } = tracker.updateByRect()
-      for (const touch of Array.from(event.changedTouches)) {
+      for (const touch of [...event.changedTouches]) {
         _triggerPointerEnd(new Operation(touch, offset), event)
       }
       window.removeEventListener('touchmove', _move)

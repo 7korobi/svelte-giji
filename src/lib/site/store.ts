@@ -5,10 +5,9 @@ import live from './json/live.json'
 import { __BROWSER__ } from '$lib/browser-device'
 
 export const url = writable({
-  portrate: 'https://giji.f5.si/images/portrate/',
-  icon: 'https://giji.f5.si/images/icon/',
+  portrate: '/images/portrate/',
+  icon: '/images/icon/',
   css: '/css/',
-  api: '/api/',
   oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
   top: '/'
 })

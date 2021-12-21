@@ -343,7 +343,7 @@ let welcomeBottomHeight = 0
   -o-object-fit: cover;
   object-fit: cover;
   background-size: cover;
-  background-image: url('https://giji-db923.web.app/images/bg/fhd-giji.png');
+  background-image: url('https://gijilog.web.app/images/bg/fhd-giji.png');
 }
 
 .title-bar {

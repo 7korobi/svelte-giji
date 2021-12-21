@@ -6,33 +6,32 @@ import site from '$lib/site'
 import pointer from '$lib/pointer'
 
 if (dev) {
-  const portrate = 'https://giji.f5.si/images/portrate/'
+  const portrate = 'https://gijilog.web.app/images/portrate/'
 
-  chat.sameSites.set(Array.from(Folders.data.sameSites))
+  chat.sameSites.set([...Folders.data.sameSites])
   pointer.url.set({
     portrate
   })
   site.url.set({
     portrate,
-    icon: 'https://giji.f5.si/images/icon/',
+    icon: 'https://gijilog.web.app/images/icon/',
     css: '/css/',
-    api: 'https://giji-api.duckdns.org/api/',
     oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
     top: '/'
   })
 } else {
-  const portrate = 'https://giji.f5.si/images/portrate/'
+  const portrate = 'https://gijilog.web.app/images/portrate/'
 
+  chat.sameSites.set([...Folders.data.sameSites])
   pointer.url.set({
     portrate
   })
   site.url.set({
     portrate,
-    icon: 'https://giji.f5.si/images/icon/',
-    css: 'https://giji.f5.si/css/',
-    api: 'https://giji-api.duckdns.org/api/',
+    icon: 'https://gijilog.web.app/images/icon/',
+    css: 'https://gijilog.web.app/css/',
     oldlog: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/',
-    top: 'https://giji.f5.si/'
+    top: 'https://gijilog.web.app/'
   })
 }
 
