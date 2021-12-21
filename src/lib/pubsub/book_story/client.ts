@@ -30,6 +30,28 @@ const by_this = (o: any) => o
 const by_count = (o: { count: number }) => o.count
 const by_write_at = (o: { write_at: Date | number }) => o.write_at
 
+function digit(n: number, size = 2) {
+  return n.toString().padStart(size, '0')
+}
+
+function emit(o: { count: number }) {
+  o.count ||= 0
+  o.count++
+}
+function emit_count<T extends { _id: string }>(dic: DIC<T & { count: number }>, item: T) {
+  if (!item) return
+  const o = (dic[item._id] ||= { ...item, count: 0 })
+  o.count++
+}
+function emit_sum<T extends { _id: string; count: number }>(
+  dic: DIC<T & { count: number }>,
+  item: T
+) {
+  if (!item) return
+  const o = (dic[item._id] ||= { ...item, count: 0 })
+  o.count += item.count
+}
+
 export function default_story_query() {
   return {
     idx: '',
@@ -100,12 +122,11 @@ export const stories = model({
       discard: [] as ({ count: number } & Role)[]
     }
   }),
-  reduce: (data, doc) => {
+  initialize: (doc) => {
     const updated_at = new Date(doc.timer.updateddt)
-    const in_month = format(updated_at, 'MM月', { locale })
-    const yeary = format(updated_at, 'yyyy年', { locale })
-    const monthry = yeary + in_month
-    doc.monthry = monthry
+    doc.in_month = format(updated_at, 'MM月', { locale })
+    doc.yeary = format(updated_at, 'yyyy年', { locale })
+    doc.monthry = doc.yeary + doc.in_month
 
     if ((doc.folder as any)?.toLowerCase) {
       doc.folder_id = (doc.folder as any).toLowerCase()
@@ -147,11 +168,12 @@ export const stories = model({
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`
     doc.size = `x${doc.vpl[0]}`
     doc.write_at = updated_at.getTime()
-
+  },
+  reduce: (data, doc) => {
     dic(data.oldlog, doc.folder_id, []).push(doc)
-    emit(dic(data.base.in_month, in_month, {}))
-    emit(dic(data.base.yeary, yeary, {}))
-    emit(dic(data.base.monthry, monthry, {}))
+    emit(dic(data.base.in_month, doc.in_month, {}))
+    emit(dic(data.base.yeary, doc.yeary, {}))
+    emit(dic(data.base.monthry, doc.monthry, {}))
     emit(dic(data.base.folder_id, doc.folder_id, {}))
     emit(dic(data.base.upd_range, doc.upd_range, {}))
     emit(dic(data.base.upd_at, doc.upd_at, {}))
@@ -175,28 +197,6 @@ export const stories = model({
     }
     for (const o of doc.discards) {
       emit_sum(data.base.discard, o)
-    }
-
-    function digit(n: number, size = 2) {
-      return n.toString().padStart(size, '0')
-    }
-
-    function emit(o: { count: number }) {
-      o.count ||= 0
-      o.count++
-    }
-    function emit_count<T extends { _id: string }>(dic: DIC<T & { count: number }>, item: T) {
-      if (!item) return
-      const o = (dic[item._id] ||= { ...item, count: 0 })
-      o.count++
-    }
-    function emit_sum<T extends { _id: string; count: number }>(
-      dic: DIC<T & { count: number }>,
-      item: T
-    ) {
-      if (!item) return
-      const o = (dic[item._id] ||= { ...item, count: 0 })
-      o.count += item.count
     }
   },
   order: (data, { sort }, order: ReturnType<typeof default_stories_query>) => {

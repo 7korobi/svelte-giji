@@ -6,6 +6,7 @@ export const messages = model({
   format: () => ({
     list: [] as Message[]
   }),
+  initialize(doc) {},
   reduce(data, doc) {},
   order(data, { sort }) {
     sort(data.list).asc((o) => o.date)

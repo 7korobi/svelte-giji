@@ -35,7 +35,9 @@ export type Story = {
   config_ids: ROLE_ID[]
   discard_ids: ROLE_ID[]
 
-  monthry: string
+  in_month: presentation
+  yeary: presentation
+  monthry: presentation
 
   folder?: Folder
   prologue?: Event

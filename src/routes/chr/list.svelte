@@ -60,25 +60,13 @@ $: animate_scale =
 </Report>
 
 <Portrates>
-  {#if false}
-    {#each chr_jobs as o, idx (o.face_id)}
-      <div>
-        <Portrate face_id={o.face_id}>
-          <p>{o.job}</p>
-          <p>{o.face.name}</p>
-        </Portrate>
-      </div>
-    {/each}
-  {:else}
-    {#each chr_jobs as o, idx (o.face_id)}
-      <div in:scale={animate_scale} animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
-        <Portrate face_id={o.face_id}>
-          <p>{o.job}</p>
-          <p>{o.face.name}</p>
-        </Portrate>
-      </div>
-    {/each}
-  {/if}
+  {#each chr_jobs as o, idx (o.face_id)}
+    <div in:scale={animate_scale} animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
+      <Portrate face_id={o.face_id}>
+        <p>{o.job}<br />{o.face.name}</p>
+      </Portrate>
+    </div>
+  {/each}
 </Portrates>
 
 <Post handle="footer">

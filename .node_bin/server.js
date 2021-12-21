@@ -191,7 +191,7 @@ var dev = {
     port: 3001
   },
   io: {
-    origin: ["http://localhost:3000", "https://giji-db923.web.app"]
+    origin: ["http://localhost:3000", "https://gijilog.web.app", "https://giji-db923.web.app"]
   }
 };
 var prod = {
@@ -206,6 +206,8 @@ var prod = {
       "http://localhost:3000",
       "https://admin.socket.io",
       "https://giji.f5.si",
+      "https://gijilog.web.app",
+      "https://giji-eve.web.app",
       "https://giji-db923.web.app"
     ]
   }
@@ -222,9 +224,14 @@ __export(model_client_exports, {
   default_story_query: () => default_story_query,
   events: () => events,
   message_for_face: () => message_for_face,
+  message_for_face_by_face: () => message_for_face_by_face,
+  message_for_face_mestype: () => message_for_face_mestype,
+  message_for_face_sow_auth: () => message_for_face_sow_auth,
   messages: () => messages,
   new_plans: () => new_plans,
   potof_for_face: () => potof_for_face,
+  potof_for_face_live: () => potof_for_face_live,
+  potof_for_face_role: () => potof_for_face_role,
   potof_for_face_sow_auth_max: () => potof_for_face_sow_auth_max,
   potofs: () => potofs,
   randoms: () => randoms,
@@ -451,8 +458,11 @@ function dic(o, ...levels) {
 }
 
 // src/lib/map-reduce/base.ts
+function nop(...args) {
+}
 function MapReduce({
   format: format2,
+  initialize = nop,
   reduce,
   order,
   start: start2
@@ -463,7 +473,7 @@ function MapReduce({
   const find = (id) => map.get(id);
   const { subscribe, set: set2 } = writable(format2(), __BROWSER__ ? start2 : void 0);
   let sArgs = [];
-  return { deploy, add, del: del2, find, reduce: doReduce, filter, sort: sort3, format: format2, data, subscribe };
+  return { deploy, clear, add, del: del2, find, reduce: doReduce, filter, sort: sort3, format: format2, data, subscribe };
   function sort3(...sa) {
     if (order)
       order(data, { sort: sort2, group_sort }, ...sArgs = sa);
@@ -471,28 +481,38 @@ function MapReduce({
   }
   function full_calculate() {
     const { list } = data;
-    Object.assign(data, format2());
+    clear();
     for (const doc of list) {
       data.list.push(doc);
       reduce(data, doc);
     }
   }
-  function deploy(json) {
+  function deploy(json, init2 = initialize) {
     const list = [];
     for (const _id in json) {
       const o = json[_id];
       o._id = _id;
       list.push(o);
     }
-    add(list);
+    add(list, init2);
   }
-  function filter(validator) {
-    const child = MapReduce({ format: format2, reduce, order });
-    const { add: add2, del: del3, filter: filter2, sort: sort4, data: data2, subscribe: subscribe2 } = child;
-    children.set(validator, { add: add2, del: del3 });
-    return { reduce: child.reduce, filter: filter2, sort: sort4, data: data2, subscribe: subscribe2, validator };
+  function filter(validator, key = validator.toString()) {
+    return query2;
+    function query2(...filter_args) {
+      const child = MapReduce({ format: format2, reduce, order });
+      children.set(key, { validator, filter_args, add: child.add, del: child.del });
+      child.add(data.list.filter((o) => validator(o, ...filter_args)));
+      return {
+        reduce: child.reduce,
+        filter: child.filter,
+        sort: child.sort,
+        data: child.data,
+        subscribe: child.subscribe,
+        validator
+      };
+    }
   }
-  function doReduce(ids, emit) {
+  function doReduce(ids, emit2) {
     const map2 = new Map();
     for (const id of ids) {
       const item = find(id);
@@ -500,13 +520,16 @@ function MapReduce({
         continue;
       map2.set(id, __spreadValues({}, item));
     }
-    const list = Array.from(map2.values());
+    const list = [...map2.values()];
     for (const item of list) {
-      emit(item);
+      emit2(item);
     }
     return sort2(list);
   }
-  function add(docs) {
+  function clear() {
+    Object.assign(data, format2());
+  }
+  function add(docs, init2 = initialize) {
     let is_update = false;
     for (const doc of docs) {
       const id = doc._id;
@@ -514,6 +537,7 @@ function MapReduce({
         is_update = true;
       } else {
         data.list.push(doc);
+        init2 && init2(doc);
         reduce(data, doc);
       }
       map.set(id, doc);
@@ -522,8 +546,8 @@ function MapReduce({
       full_calculate();
     sort3(...sArgs);
     set2(data);
-    for (const [check, { add: add2 }] of children.entries()) {
-      add2(docs.filter(check));
+    for (const { validator, filter_args, add: add2 } of children.values()) {
+      add2(docs.filter((o) => validator(o, ...filter_args)));
     }
   }
   function del2(ids) {
@@ -565,6 +589,8 @@ var messages = model2({
   format: () => ({
     list: []
   }),
+  initialize(doc) {
+  },
   reduce(data, doc) {
   },
   order(data, { sort: sort3 }) {
@@ -5611,9 +5637,9 @@ var Faces = MapReduce({
     const head = name[0];
     doc.tag_ids.unshift("all");
     for (const tag_id of doc.tag_ids) {
-      emit(dic(data.tag, tag_id, {}));
+      emit2(dic(data.tag, tag_id, {}));
     }
-    function emit(o) {
+    function emit2(o) {
       if (!o.list) {
         o.list = [];
         o.name_head_dic = {};
@@ -11026,13 +11052,13 @@ var Randoms = MapReduce({
     type: {}
   }),
   reduce: (data, doc) => {
-    emit(data);
+    emit2(data);
     for (const type of doc.types) {
       const o = dic(data.type, type, {});
-      emit(o);
+      emit2(o);
       o.list.push(doc);
     }
-    function emit(o) {
+    function emit2(o) {
       if (!o.list) {
         o.list = [];
         o.count = 0;
@@ -11548,13 +11574,6 @@ var aurawolf = {
   label: "\u6C17\u72FC",
   win: "WOLF",
   able_ids: ["aura", "wolf", "hunt", "friend", "spy_aura", "vote", "entrust", "WSAY"],
-  help: ""
-};
-var null2 = {
-  label: "",
-  win: null,
-  group: null,
-  able_ids: [],
   help: ""
 };
 var bind = {
@@ -12097,7 +12116,6 @@ var bitch2 = {
 var set_roles_default = {
   dyingpossess,
   aurawolf,
-  null: null2,
   bind,
   hide,
   tangle: tangle2,
@@ -14122,6 +14140,25 @@ var by_id = (o) => o._id;
 var by_this = (o) => o;
 var by_count = (o) => o.count;
 var by_write_at = (o) => o.write_at;
+function digit(n, size = 2) {
+  return n.toString().padStart(size, "0");
+}
+function emit(o) {
+  o.count ||= 0;
+  o.count++;
+}
+function emit_count(dic4, item) {
+  if (!item)
+    return;
+  const o = dic4[item._id] ||= __spreadProps(__spreadValues({}, item), { count: 0 });
+  o.count++;
+}
+function emit_sum(dic4, item) {
+  if (!item)
+    return;
+  const o = dic4[item._id] ||= __spreadProps(__spreadValues({}, item), { count: 0 });
+  o.count += item.count;
+}
 function default_story_query() {
   return {
     idx: "",
@@ -14190,28 +14227,32 @@ var stories = model2({
       discard: []
     }
   }),
-  reduce: (data, doc) => {
+  initialize: (doc) => {
     var _a2;
     const updated_at = new Date(doc.timer.updateddt);
-    const in_month = format(updated_at, "MM\u6708", { locale });
-    const yeary = format(updated_at, "yyyy\u5E74", { locale });
-    const monthry = yeary + in_month;
+    doc.in_month = format(updated_at, "MM\u6708", { locale });
+    doc.yeary = format(updated_at, "yyyy\u5E74", { locale });
+    doc.monthry = doc.yeary + doc.in_month;
     if ((_a2 = doc.folder) == null ? void 0 : _a2.toLowerCase) {
       doc.folder_id = doc.folder.toLowerCase();
       doc.folder = Folders.find(doc.folder_id);
     }
-    doc.game = Games.find(doc.type.game);
+    doc.game_id = doc.type.game;
+    doc.game = Games.find(doc.game_id);
     doc.role_table = RoleTables.find(doc.type.roletable);
     doc.mob_role = Roles.find(doc.type.mob);
-    doc.say_limit = SayLimits.find(doc.type.say);
-    doc.traps = Roles.reduce(doc.card.event, emit).desc(by_count);
-    doc.discards = Roles.reduce(doc.card.discard, emit).desc(by_count);
-    let config_role_ids = doc.card.config;
+    doc.say_limit_id = doc.type.say;
+    doc.say_limit = SayLimits.find(doc.say_limit_id);
+    doc.trap_ids = doc.card.event;
+    doc.discard_ids = doc.card.discard;
+    doc.traps = Roles.reduce(doc.trap_ids, emit).desc(by_count);
+    doc.discards = Roles.reduce(doc.discard_ids, emit).desc(by_count);
+    doc.config_ids = doc.card.config;
     if (doc.role_table._id !== "custom") {
       const table_role_ids = doc.role_table.role_ids_list[doc.vpl[0]] || [];
-      config_role_ids = [...config_role_ids.filter((o) => o === "mob"), ...table_role_ids];
+      doc.config_ids = [...doc.config_ids.filter((o) => o === "mob"), ...table_role_ids];
     }
-    doc.configs = Roles.reduce(config_role_ids, emit).desc(by_count);
+    doc.configs = Roles.reduce(doc.config_ids, emit).desc(by_count);
     const option_ids = doc.options;
     doc.options = option_ids.map(Options.find).filter(by_this);
     doc.option_ids = doc.options.map(by_id);
@@ -14225,13 +14266,13 @@ var stories = model2({
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`;
     doc.size = `x${doc.vpl[0]}`;
     doc.write_at = updated_at.getTime();
+  },
+  reduce: (data, doc) => {
     dic(data.oldlog, doc.folder_id, []).push(doc);
-    dic(data.oldlog, "all", []).push(doc);
-    emit(dic(data.base.in_month, in_month, {}));
-    emit(dic(data.base.yeary, yeary, {}));
-    emit(dic(data.base.monthry, monthry, {}));
+    emit(dic(data.base.in_month, doc.in_month, {}));
+    emit(dic(data.base.yeary, doc.yeary, {}));
+    emit(dic(data.base.monthry, doc.monthry, {}));
     emit(dic(data.base.folder_id, doc.folder_id, {}));
-    emit(dic(data.base.folder_id, "all", {}));
     emit(dic(data.base.upd_range, doc.upd_range, {}));
     emit(dic(data.base.upd_at, doc.upd_at, {}));
     emit(dic(data.base.size, doc.size, {}));
@@ -14253,25 +14294,6 @@ var stories = model2({
     }
     for (const o of doc.discards) {
       emit_sum(data.base.discard, o);
-    }
-    function digit(n, size = 2) {
-      return n.toString().padStart(size, "0");
-    }
-    function emit(o) {
-      o.count ||= 0;
-      o.count++;
-    }
-    function emit_count(dic4, item) {
-      if (!item)
-        return;
-      const o = dic4[item._id] ||= __spreadProps(__spreadValues({}, item), { count: 0 });
-      o.count++;
-    }
-    function emit_sum(dic4, item) {
-      if (!item)
-        return;
-      const o = dic4[item._id] ||= __spreadProps(__spreadValues({}, item), { count: 0 });
-      o.count += item.count;
     }
   },
   order: (data, { sort: sort3 }, order) => {
@@ -14318,18 +14340,30 @@ var story_summary = model2({
 });
 
 // src/lib/pubsub/chr_face/client.ts
-var message_for_face = model2({
-  qid: (o) => o.face_id,
+var potof_for_face = model2({
+  qid: (o) => [o.face_id].toString(),
+  format: () => ({
+    list: [],
+    by_face: {}
+  }),
+  reduce: (data, doc) => {
+    dic(data.by_face, doc._id.face_id, doc);
+  },
+  order: (data, { sort: sort3 }) => {
+  }
+});
+var potof_for_face_role = model2({
+  qid: (o) => [o.face_id, o.role_id].toString(),
   format: () => ({
     list: []
   }),
-  reduce(data, doc) {
+  reduce: (data, doc) => {
   },
-  order(data, { sort: sort3 }) {
+  order: (data, { sort: sort3 }) => {
   }
 });
-var potof_for_face = model2({
-  qid: (o) => o.face_id,
+var potof_for_face_live = model2({
+  qid: (o) => [o.face_id, o.live].toString(),
   format: () => ({
     list: []
   }),
@@ -14340,6 +14374,50 @@ var potof_for_face = model2({
 });
 var potof_for_face_sow_auth_max = model2({
   qid: (o) => [o.face_id, o.sow_auth_id].toString(),
+  format: () => ({
+    list: [],
+    by_face: {}
+  }),
+  reduce: (data, doc) => {
+    dic(data.by_face, doc._id.face_id, doc);
+  },
+  order: (data, { sort: sort3 }) => {
+  }
+});
+var message_for_face = model2({
+  qid: (o) => [o.face_id].toString(),
+  format: () => ({
+    list: [],
+    by_face: {}
+  }),
+  reduce(data, doc) {
+    dic(data.by_face, doc._id.face_id, doc);
+  },
+  order(data, { sort: sort3 }) {
+  }
+});
+var message_for_face_mestype = model2({
+  qid: (o) => [o.face_id, o.mestype].toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }) {
+  }
+});
+var message_for_face_sow_auth = model2({
+  qid: (o) => [o.face_id, o.sow_auth_id].toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }) {
+  }
+});
+var message_for_face_by_face = model2({
+  qid: (o) => [o.face_id].toString(),
   format: () => ({
     list: []
   }),
@@ -14385,14 +14463,14 @@ var model_server_exports = {};
 __export(model_server_exports, {
   events: () => events2,
   message_for_face: () => message_for_face2,
-  message_for_face_mestype: () => message_for_face_mestype,
-  message_for_face_sow_auth: () => message_for_face_sow_auth,
+  message_for_face_mestype: () => message_for_face_mestype2,
+  message_for_face_sow_auth: () => message_for_face_sow_auth2,
   message_oldlog: () => message_oldlog,
   messages: () => messages2,
   new_plans: () => new_plans2,
   potof_for_face: () => potof_for_face2,
-  potof_for_face_live: () => potof_for_face_live,
-  potof_for_face_role: () => potof_for_face_role,
+  potof_for_face_live: () => potof_for_face_live2,
+  potof_for_face_role: () => potof_for_face_role2,
   potof_for_face_sow_auth_max: () => potof_for_face_sow_auth_max2,
   potof_oldlog: () => potof_oldlog,
   potofs: () => potofs2,
@@ -14432,13 +14510,29 @@ var story_summary2 = model(__spreadProps(__spreadValues({}, stories2), {
 }));
 
 // src/lib/pubsub/chr_face/server.ts
-var message_for_face2 = modelAsMongoDB("message_for_face");
-var message_for_face_mestype = modelAsMongoDB("message_for_face");
-var message_for_face_sow_auth = modelAsMongoDB("message_for_face");
-var potof_for_face2 = modelAsMongoDB("potof_for_face");
-var potof_for_face_role = modelAsMongoDB("potof_for_face_role");
-var potof_for_face_live = modelAsMongoDB("potof_for_face_live");
-var potof_for_face_sow_auth_max2 = modelAsMongoDB("potof_for_face_sow_auth_max");
+function modelAsAggregate(collection) {
+  const { isLive, live: live2, query: query2 } = modelAsMongoDB(collection);
+  return {
+    isLive,
+    live: live2,
+    query: query2,
+    $match(o) {
+      const ret = {};
+      for (const key in o) {
+        if (o[key].length)
+          ret[`_id.${key}`] = { $in: o[key] };
+      }
+      return ret;
+    }
+  };
+}
+var potof_for_face2 = modelAsAggregate("potof_for_face");
+var potof_for_face_role2 = modelAsAggregate("potof_for_face_role");
+var potof_for_face_live2 = modelAsAggregate("potof_for_face_live");
+var potof_for_face_sow_auth_max2 = modelAsAggregate("potof_for_face_sow_auth_max");
+var message_for_face2 = modelAsAggregate("message_for_face");
+var message_for_face_mestype2 = modelAsAggregate("message_for_face");
+var message_for_face_sow_auth2 = modelAsAggregate("message_for_face");
 
 // src/lib/pubsub/plan/server.ts
 var range = 1e3 * 3600 * 24 * 50;

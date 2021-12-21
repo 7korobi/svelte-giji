@@ -83,6 +83,7 @@ export type PotofForFaceSowAuthMax = {
   date_min: Date
   date_max: Date
   story_ids: STORY_ID[]
+  count: number
 }
 export type PotofForFaceRole = {
   _id: {

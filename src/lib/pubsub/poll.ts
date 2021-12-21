@@ -1,2 +1,2 @@
-export * from './aggregate/poll'
+export * from './chr_face/poll'
 export * from './sow/poll'
