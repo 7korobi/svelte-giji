@@ -1,20 +1,22 @@
 import type { presentation } from '../_type/string'
-import type { FOLDER_IDX, STORY_IDX, STORY_ID } from '../map-reduce'
+import type { BOOK_FOLDER_IDX, BOOK_STORY_IDX, BOOK_STORY_ID, BookStory } from '../map-reduce'
 
-export type Event = {
-  _id: EVENT_ID
-  story_id: STORY_ID
-  turn: EVENT_IDX
+export type BookEvent = {
+  _id: BOOK_EVENT_ID
+  story_id: BOOK_STORY_ID
+  story: BookStory
+  turn: number
   winner: WIN
-  created_at: Date
-  updated_at: Date
+  write_at: Date
+  created_at?: Date
+  updated_at?: Date
   event?: null
   epilogue?: 0 | -1
   grudge?: 0 | -1
   riot?: 0 | -1
   scapegoat?: 0 | -1
-  eclipse?: EVENT_IDX[]
-  seance?: EVENT_IDX[]
+  eclipse?: BOOK_EVENT_IDX[]
+  seance?: BOOK_EVENT_IDX[]
   say?: {
     modifiedsay: Date
     modifiedwsay?: Date
@@ -26,8 +28,8 @@ export type Event = {
   name?: presentation
 }
 
-export type EVENT_IDX = number
-export type EVENT_ID = `${FOLDER_IDX}-${STORY_IDX}-${EVENT_IDX}`
+export type BOOK_EVENT_IDX = `${number}` | 'top'
+export type BOOK_EVENT_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}`
 export type WIN = typeof WINS[number]
 
 export const WINS = [

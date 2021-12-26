@@ -1,36 +1,69 @@
 import type { AccountID, FaceID } from '../_type/id'
 import type { presentation } from '../_type/string'
-import type { STORY_IDX, STORY_ID, EVENT_IDX, EVENT_ID, FOLDER_IDX } from '../map-reduce'
+import type {
+  BOOK_STORY_IDX,
+  BOOK_STORY_ID,
+  BOOK_EVENT_IDX,
+  BOOK_EVENT_ID,
+  BOOK_FOLDER_IDX,
+  BookEvent,
+  BookStory,
+  BookPotof,
+  BOOK_POTOF_ID,
+  CHR_SET_IDX,
+  Face
+} from '../map-reduce'
 
-export type Message = {
-  _id: MESSAGE_ID
-  story_id: STORY_ID
-  event_id: EVENT_ID
-  mestype: MesType
-  subid: SubType
-  logid: MESSAGE_IDX
-  csid?: string
+export type BookMessage = {
+  _id: BOOK_MESSAGE_ID
+  story_id: BOOK_STORY_ID
+  event_id: BOOK_EVENT_ID
   sow_auth_id: AccountID
-  date: Date
-  size: number
-  face_id: FaceID
+  potof_id?: BOOK_POTOF_ID
+  face_id?: FaceID
+  mention_ids: BOOK_MESSAGE_ID[]
+
+  story: BookStory
+  event: BookEvent
+  potof?: BookPotof
+  face?: Face
+
+  write_at: Date
+  date?: string
+
+  show: CHAT
+
+  handle: HANDLE
+  mestype?: MesType
+
+  group: GroupType
+  subid?: SubType
+  logid?: `${BOOK_PHASE_IDX}-${BOOK_MESSAGE_IDX}`
+  csid?: CHR_SET_IDX
+  size?: number
+
+  deco: 'text' | 'text head' | 'text mono' | 'text logo'
   style?: StyleType
-  name: presentation
+  name?: presentation
   to?: presentation
   log: presentation
 }
 
-export type MESSAGE_TYPE_IDX = `${LogType}${SubType}`
-export type MESSAGE_IDX = `${LogType}${SubType}${number}`
-export type MESSAGE_ID = `${FOLDER_IDX}-${STORY_IDX}-${EVENT_IDX}-${MESSAGE_IDX}`
+export type BOOK_PHASE_IDX = `${LogType}${SubType}` | 'MM' | 'AIM'
+export type BOOK_PHASE_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}-${LogType}${SubType}`
+export type BOOK_MESSAGE_IDX = `${number | 'CAST' | 'vrule' | 'welcome' | 'title'}`
+export type BOOK_MESSAGE_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}-${BOOK_PHASE_IDX}-${BOOK_MESSAGE_IDX}`
 
-export type HANDLE = typeof HANDLES[number]
-export type StyleType = typeof StyleTypes[number]
-export type MesType = typeof MesTypes[number]
-export type LogType = typeof LogTypes[number]
-export type SubType = typeof SubTypes[number]
+export type CHAT = typeof CHAT[number]
+export type HANDLE = typeof HANDLE[number]
+export type StyleType = typeof StyleType[number]
+export type MesType = typeof MesType[number]
+export type LogType = typeof LogType[number]
+export type SubType = typeof SubType[number]
 
-export const HANDLES = [
+export const CHAT = ['report', 'talk', 'post']
+
+export const HANDLE = [
   'TITLE',
   'MAKER',
   'ADMIN',
@@ -54,20 +87,25 @@ export const HANDLES = [
   'public'
 ] as const
 
-export const StyleTypes = ['text', 'head', 'mono'] as const
-export const MesTypes = [
+export const StyleType = ['text', 'head', 'mono'] as const
+export const MesType = [
   'CAST',
   'ADMIN',
   'MAKER',
   'INFOSP',
   'INFONOM',
+  'INFOWOLF',
   'AIM',
   'TSAY',
   'WSAY',
   'GSAY',
+  'VSAY',
+  'BSAY',
+  'SPSAY',
   'SAY',
   'DELETED'
 ] as const
 
-export const LogTypes = ['c', 'a', 'm', 'i', 'I', 'T', 'W', 'S', 'D'] as const
-export const SubTypes = ['A', 'I', 'M', 'S'] as const
+export const LogType = ['c', 'a', 'm', 'i', 'I', 'T', 'W', 'S', 'D'] as const
+export const SubType = ['A', 'I', 'M', 'S', 'B'] as const
+export const GroupType = ['A', 'I', 'M', 'S'] as const

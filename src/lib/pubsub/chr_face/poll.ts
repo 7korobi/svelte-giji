@@ -1,11 +1,11 @@
 import type { PotofForFace, MessageForFaceSowAuth, MessageForFace } from '../map-reduce'
 import { message_for_face, potof_for_face, potof_for_face_sow_auth_max } from '../model-client'
 import { MapReduce } from '$lib/map-reduce'
-import site from '$lib/site'
+import { url } from '$lib/site/store'
 
 let oldlog_url = ''
 
-site.url.subscribe(({ oldlog }) => {
+url.subscribe(({ oldlog }) => {
   oldlog_url = oldlog
 })
 

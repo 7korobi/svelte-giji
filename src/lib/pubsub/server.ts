@@ -6,8 +6,8 @@ import { argv } from 'process'
 
 import server from '$lib/db/socket.io-server'
 import { dbBoot } from '$lib/db'
-import json from '$lib/site/json/live-server.json'
 
+import json from '../site/json/live-server.json'
 import * as stores from './model-client'
 import * as models from './model-server'
 

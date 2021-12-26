@@ -1,12 +1,12 @@
 import type { AccountID } from '../_type/id'
 import type { presentation } from '../_type/string'
 import type {
-  FOLDER_IDX,
+  BOOK_FOLDER_IDX,
   SAYCNT,
   VOTETYPE,
   GAME,
-  Folder,
-  Event,
+  BookFolder,
+  BookEvent,
   SayLimit,
   ROLE_ID,
   MobRole,
@@ -23,11 +23,11 @@ import type {
   GAME_ID
 } from '../map-reduce'
 
-export type Story = {
-  _id: STORY_ID
-  vid: STORY_IDX
+export type BookStory = {
+  _id: BOOK_STORY_ID
+  vid: BOOK_STORY_IDX
 
-  folder_id: Lowercase<FOLDER_IDX>
+  folder_id: Lowercase<BOOK_FOLDER_IDX>
   sow_auth_id: AccountID
   say_limit_id: SAY_LIMIT_ID
   game_id: GAME_ID
@@ -39,8 +39,8 @@ export type Story = {
   yeary: presentation
   monthry: presentation
 
-  folder?: Folder
-  prologue?: Event
+  folder?: BookFolder
+  prologue?: BookEvent
   say_limit: SayLimit
   mob_role: MobRole
   game: Game
@@ -63,7 +63,7 @@ export type Story = {
   is_finish: boolean
   is_full_commit: boolean
 
-  write_at: number
+  write_at: Date
 
   vpl: [number, number]
   rating: MARK_ID
@@ -95,8 +95,8 @@ export type Story = {
   comment?: presentation
 }
 
-export type STORY_IDX = number
-export type STORY_ID = `${FOLDER_IDX}-${STORY_IDX}`
+export type BOOK_STORY_IDX = `${number}`
+export type BOOK_STORY_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}`
 
 export type ROLETABLE = typeof ROLETABLES[number]
 

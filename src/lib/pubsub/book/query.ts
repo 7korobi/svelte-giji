@@ -1,5 +1,5 @@
 import type { DIC } from '$lib/map-reduce'
-import type { EVENT_ID, Story } from '../map-reduce'
+import type { BOOK_EVENT_ID, BookStory } from '../map-reduce'
 import { socket } from '$lib/db/socket.io-client'
 import { lookup } from '$lib/map-reduce'
 import { dic } from '$lib/map-reduce'
@@ -7,14 +7,14 @@ import { Folders } from '../map-reduce'
 import { events, story_summary } from '../model-client'
 import '../client'
 
-const prologue_id = (o: Story) => `${o._id}-0` as EVENT_ID
+const prologue_id = (o: BookStory) => `${o._id}-0` as BOOK_EVENT_ID
 
 export const story_summary_all = socket(story_summary).query(false)
 
 export const story_reduce = lookup({
   format: () => ({
-    prologue: { list: [] } as DIC<number> & { list: Story[] },
-    progress: { list: [] } as DIC<number> & { list: Story[] }
+    prologue: { list: [] } as DIC<number> & { list: BookStory[] },
+    progress: { list: [] } as DIC<number> & { list: BookStory[] }
   }),
   order(data, { sort }) {},
   subscribe(set, { format }) {
@@ -30,7 +30,7 @@ export const story_reduce = lookup({
           doc.prologue = _events.find(prologue_id(doc))
           const idx = doc.prologue ? 'progress' : 'prologue'
 
-          dic(data[idx] as { list: Story[] }, 'list', []).push(doc)
+          dic(data[idx] as { list: BookStory[] }, 'list', []).push(doc)
           data[idx][doc.folder_id] ||= 0
           data[idx][doc.folder_id]++
         }

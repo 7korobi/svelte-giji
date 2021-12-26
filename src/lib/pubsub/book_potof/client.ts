@@ -1,14 +1,14 @@
 import type { ObjectId } from 'mongodb'
-import type { Potof } from '../map-reduce'
+import type { BookPotof } from '../map-reduce'
 import { model } from '$lib/db/socket.io-client'
 
 export const potofs = model({
   qid: (ids: ObjectId[]) => ids.toString(),
   format: () => ({
-    list: [] as Potof[]
+    list: [] as BookPotof[]
   }),
   reduce(data, doc) {},
-  order(data, { sort }, is_asc: boolean, order: (o: Potof) => any) {
+  order(data, { sort }, is_asc: boolean, order: (o: BookPotof) => any) {
     if (is_asc) {
       sort(data.list).asc(order)
     } else {

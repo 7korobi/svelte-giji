@@ -5,9 +5,9 @@ import { MapReduce } from '$lib/map-reduce'
 import sow_json from '$lib/game/json/sow_folder.json'
 import { __BROWSER__ } from '$lib/browser-device'
 
-export type Folder = {
-  _id: FOLDER_IDX
-  folder: FOLDER
+export type BookFolder = {
+  _id: BOOK_FOLDER_IDX
+  folder: BOOK_FOLDER
   nation: presentation
   vid_code: string
 
@@ -86,14 +86,14 @@ export type Folder = {
 
 export type BOOLS = 0 | 1
 
-export type FOLDER_IDX = Lowercase<FOLDER>
-export type FOLDER = typeof FOLDER_IDX[number]
+export type BOOK_FOLDER_IDX = Lowercase<BOOK_FOLDER>
+export type BOOK_FOLDER = typeof BOOK_FOLDER_IDX[number]
 export type VOTETYPE = typeof VOTETYPES[number]
 export type TRSID = typeof TRSIDS[number]
 export type SAYCNT = typeof SAYCNTS[number]
 export type GAME = typeof GAMES[number]
 
-export const FOLDER_IDX = [
+export const BOOK_FOLDER_IDX = [
   'TEST',
   'LOBBY',
   'OFFPARTY',
@@ -152,7 +152,7 @@ export const GAMES = [
 
 export const Folders = MapReduce({
   format: () => ({
-    list: [] as Folder[],
+    list: [] as BookFolder[],
     sameSites: __BROWSER__ ? new Set([location.origin]) : new Set<string>()
   }),
   reduce: (data, doc) => {

@@ -1,7 +1,11 @@
-import type { Story } from '../map-reduce'
+import type { BookStory } from '../map-reduce'
 import { model, modelAsMongoDB } from '$lib/db/socket.io-server'
 
-export const stories = modelAsMongoDB<Story>('stories', { comment: 0, password: 0, sow_auth_id: 0 })
+export const stories = modelAsMongoDB<BookStory>('stories', {
+  comment: 0,
+  password: 0,
+  sow_auth_id: 0
+})
 
 export const story_summary = model({
   ...stories,

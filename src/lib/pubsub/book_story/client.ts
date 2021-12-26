@@ -1,14 +1,14 @@
 import type { DIC } from '$lib/map-reduce'
 import type {
-  STORY_ID,
-  Story,
+  BOOK_STORY_ID,
+  BookStory,
   MobRole,
   Mark,
   Game,
   SayLimit,
   Role,
   Option,
-  FOLDER_IDX,
+  BOOK_FOLDER_IDX,
   GAME_ID,
   MARK_ID,
   OPTION_ID,
@@ -64,7 +64,7 @@ export function default_stories_query() {
   return {
     search: '',
     order: 'write_at',
-    folder_id: [] as FOLDER_IDX[],
+    folder_id: [] as BOOK_FOLDER_IDX[],
     monthry: [] as string[],
     upd_range: [] as string[],
     upd_at: [] as string[],
@@ -81,10 +81,10 @@ export function default_stories_query() {
 }
 
 export const stories = model({
-  qid: (ids: STORY_ID[]) => ids.toString(),
+  qid: (ids: BOOK_STORY_ID[]) => ids.toString(),
   format: () => ({
-    list: [] as Story[],
-    oldlog: {} as DIC<Story[]>,
+    list: [] as BookStory[],
+    oldlog: {} as DIC<BookStory[]>,
     base: {
       in_month: {} as CountBy,
       yeary: {} as CountBy,
@@ -123,9 +123,9 @@ export const stories = model({
     }
   }),
   initialize: (doc) => {
-    const updated_at = new Date(doc.timer.updateddt)
-    doc.in_month = format(updated_at, 'MM月', { locale })
-    doc.yeary = format(updated_at, 'yyyy年', { locale })
+    const write_at = new Date(doc.timer.updateddt)
+    doc.in_month = format(write_at, 'MM月', { locale })
+    doc.yeary = format(write_at, 'yyyy年', { locale })
     doc.monthry = doc.yeary + doc.in_month
 
     if ((doc.folder as any)?.toLowerCase) {
@@ -167,7 +167,7 @@ export const stories = model({
     doc.upd_range = `${doc.upd.interval * 24}h`
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`
     doc.size = `x${doc.vpl[0]}`
-    doc.write_at = updated_at.getTime()
+    doc.write_at = write_at
   },
   reduce: (data, doc) => {
     dic(data.oldlog, doc.folder_id, []).push(doc)
@@ -232,8 +232,8 @@ export const stories = model({
 export const story_summary = model({
   qid: (is_old: boolean) => is_old.toString(),
   format: () => ({
-    list: [] as Story[],
-    folder: {} as DIC<{ list: Story[] }>
+    list: [] as BookStory[],
+    folder: {} as DIC<{ list: BookStory[] }>
   }),
   reduce(data, doc) {
     doc.folder_id = (doc.folder as any).toLowerCase()
