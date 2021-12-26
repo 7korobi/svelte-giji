@@ -220,6 +220,7 @@ var live_server_default = {
 // src/lib/pubsub/model-client.ts
 var model_client_exports = {};
 __export(model_client_exports, {
+  cards: () => cards,
   default_stories_query: () => default_stories_query,
   default_story_query: () => default_story_query,
   events: () => events,
@@ -235,13 +236,10 @@ __export(model_client_exports, {
   potof_for_face_sow_auth_max: () => potof_for_face_sow_auth_max,
   potofs: () => potofs,
   randoms: () => randoms,
+  stats: () => stats,
   stories: () => stories,
   story_summary: () => story_summary
 });
-
-// src/lib/db/socket.io-client.ts
-import { io as io2 } from "socket.io-client";
-import parser from "socket.io-msgpack-parser";
 
 // src/lib/map-reduce/base.ts
 import { writable } from "svelte/store";
@@ -528,6 +526,7 @@ function MapReduce({
   }
   function clear() {
     Object.assign(data, format2());
+    set2(data);
   }
   function add(docs, init2 = initialize) {
     let is_update = false;
@@ -566,54 +565,11 @@ function MapReduce({
 }
 
 // src/lib/db/socket.io-client.ts
+import { io as io2 } from "socket.io-client";
+import parser from "socket.io-msgpack-parser";
 function model2(props) {
   return props;
 }
-
-// src/lib/pubsub/book_event/client.ts
-var events = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce(data, doc) {
-  },
-  order(data, { sort: sort3 }) {
-    sort3(data.list).asc([(o) => o.story_id, (o) => o.turn]);
-  }
-});
-
-// src/lib/pubsub/book_message/client.ts
-var messages = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  initialize(doc) {
-  },
-  reduce(data, doc) {
-  },
-  order(data, { sort: sort3 }) {
-    sort3(data.list).asc((o) => o.date);
-  }
-});
-
-// src/lib/pubsub/book_potof/client.ts
-var potofs = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce(data, doc) {
-  },
-  order(data, { sort: sort3 }, is_asc, order) {
-    if (is_asc) {
-      sort3(data.list).asc(order);
-    } else {
-      sort3(data.list).desc(order);
-    }
-  }
-});
 
 // src/lib/pubsub/book_story/client.ts
 import format from "date-fns/format/index.js";
@@ -14229,9 +14185,9 @@ var stories = model2({
   }),
   initialize: (doc) => {
     var _a2;
-    const updated_at = new Date(doc.timer.updateddt);
-    doc.in_month = format(updated_at, "MM\u6708", { locale });
-    doc.yeary = format(updated_at, "yyyy\u5E74", { locale });
+    const write_at = new Date(doc.timer.updateddt);
+    doc.in_month = format(write_at, "MM\u6708", { locale });
+    doc.yeary = format(write_at, "yyyy\u5E74", { locale });
     doc.monthry = doc.yeary + doc.in_month;
     if ((_a2 = doc.folder) == null ? void 0 : _a2.toLowerCase) {
       doc.folder_id = doc.folder.toLowerCase();
@@ -14265,7 +14221,7 @@ var stories = model2({
     doc.upd_range = `${doc.upd.interval * 24}h`;
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`;
     doc.size = `x${doc.vpl[0]}`;
-    doc.write_at = updated_at.getTime();
+    doc.write_at = write_at;
   },
   reduce: (data, doc) => {
     dic(data.oldlog, doc.folder_id, []).push(doc);
@@ -14336,6 +14292,84 @@ var story_summary = model2({
   },
   order(data, { sort: sort3 }) {
     sort3(data.list).desc((o) => o.timer.nextcommitdt);
+  }
+});
+
+// src/lib/pubsub/book_event/client.ts
+var events = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+    doc.write_at = new Date(doc.updated_at);
+  },
+  order(data, { sort: sort3 }) {
+    sort3(data.list).asc([(o) => o.story_id, (o) => o.turn]);
+  }
+});
+
+// src/lib/pubsub/book_message/client.ts
+var messages = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: [],
+    event: {}
+  }),
+  initialize(doc) {
+  },
+  reduce(data, doc) {
+    dic(data.event, doc.event_id, []).push(doc);
+  },
+  order(data, { sort: sort3 }) {
+    sort3(data.list).asc((o) => o.write_at);
+    for (const event_id in data.event) {
+      sort3(data.event[event_id]).asc((o) => o.write_at);
+    }
+  }
+});
+
+// src/lib/pubsub/book_potof/client.ts
+var potofs = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }, is_asc, order) {
+    if (is_asc) {
+      sort3(data.list).asc(order);
+    } else {
+      sort3(data.list).desc(order);
+    }
+  }
+});
+
+// src/lib/pubsub/book_card/client.ts
+var cards = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+    doc.role = Roles.find(doc.role_id);
+  },
+  order(data, { sort: sort3 }) {
+    sort3(data.list).asc((o) => o._id);
+  }
+});
+
+// src/lib/pubsub/book_stat/client.ts
+var stats = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }) {
+    sort3(data.list).asc((o) => o._id);
   }
 });
 
@@ -14461,6 +14495,8 @@ var randoms = model2({
 // src/lib/pubsub/model-server.ts
 var model_server_exports = {};
 __export(model_server_exports, {
+  card_oldlog: () => card_oldlog,
+  cards: () => cards2,
   events: () => events2,
   message_for_face: () => message_for_face2,
   message_for_face_mestype: () => message_for_face_mestype2,
@@ -14476,9 +14512,25 @@ __export(model_server_exports, {
   potofs: () => potofs2,
   randoms: () => randoms2,
   sow_village_plans: () => sow_village_plans,
+  stat_oldlog: () => stat_oldlog,
+  stats: () => stats2,
   stories: () => stories2,
   story_summary: () => story_summary2
 });
+
+// src/lib/pubsub/book_story/server.ts
+var stories2 = modelAsMongoDB("stories", {
+  comment: 0,
+  password: 0,
+  sow_auth_id: 0
+});
+var story_summary2 = model(__spreadProps(__spreadValues({}, stories2), {
+  $match: (is_old) => ({
+    is_epilogue: is_old,
+    is_finish: is_old
+  }),
+  isLive: async () => true
+}));
 
 // src/lib/pubsub/book_event/server.ts
 var events2 = modelAsMongoDB("events");
@@ -14499,15 +14551,21 @@ var potof_oldlog = __spreadProps(__spreadValues({}, potofs2), {
   })
 });
 
-// src/lib/pubsub/book_story/server.ts
-var stories2 = modelAsMongoDB("stories", { comment: 0, password: 0, sow_auth_id: 0 });
-var story_summary2 = model(__spreadProps(__spreadValues({}, stories2), {
-  $match: (is_old) => ({
-    is_epilogue: is_old,
-    is_finish: is_old
-  }),
-  isLive: async () => true
-}));
+// src/lib/pubsub/book_card/server.ts
+var cards2 = modelAsMongoDB("cards");
+var card_oldlog = __spreadProps(__spreadValues({}, cards2), {
+  $match: (story_id) => ({
+    story_id
+  })
+});
+
+// src/lib/pubsub/book_stat/server.ts
+var stats2 = modelAsMongoDB("stats");
+var stat_oldlog = __spreadProps(__spreadValues({}, stats2), {
+  $match: (story_id) => ({
+    story_id
+  })
+});
 
 // src/lib/pubsub/chr_face/server.ts
 function modelAsAggregate(collection) {
