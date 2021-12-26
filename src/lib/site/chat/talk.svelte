@@ -1,5 +1,5 @@
 <script lang="ts">
-import Portrate from '../block/Portrate.svelte'
+import { Portrate } from '../block'
 import { deco } from './deco'
 
 export let handle: string = 'VSSAY'

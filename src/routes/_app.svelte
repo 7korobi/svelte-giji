@@ -1,18 +1,17 @@
 <script lang="ts" context="module">
 import { dev } from '$app/env'
 import { Folders } from '$lib/pubsub/map-reduce'
-import chat from '$lib/chat'
-import site from '$lib/site'
 import pointer from '$lib/pointer'
+import { sameSites, url } from '$lib/site/store'
 
 if (dev) {
   const portrate = 'https://gijilog.web.app/images/portrate/'
 
-  chat.sameSites.set([...Folders.data.sameSites])
   pointer.url.set({
     portrate
   })
-  site.url.set({
+  sameSites.set([...Folders.data.sameSites])
+  url.set({
     portrate,
     icon: 'https://gijilog.web.app/images/icon/',
     css: '/css/',
@@ -22,11 +21,11 @@ if (dev) {
 } else {
   const portrate = 'https://gijilog.web.app/images/portrate/'
 
-  chat.sameSites.set([...Folders.data.sameSites])
   pointer.url.set({
     portrate
   })
-  site.url.set({
+  sameSites.set([...Folders.data.sameSites])
+  url.set({
     portrate,
     icon: 'https://gijilog.web.app/images/icon/',
     css: 'https://gijilog.web.app/css/',

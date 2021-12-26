@@ -3,19 +3,17 @@ import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer'
 
 import { Zoom, Pen } from '$lib/pointer'
 import { Time } from '$lib/timer'
-import LongPress from '$lib/inline/LongPress.svelte'
-import { Poll } from '$lib/storage'
-import { Report, Post, Talk } from '$lib/chat'
+import Poll from '$lib/storage/poll.svelte'
 import { HtmlArea } from '$lib/editor'
 import browser from '$lib/browser'
 import { __BROWSER__ } from '$lib/browser-device'
 
-import site from '$lib/site'
 import { faces } from '$lib/pubsub/poll'
+import { LongPress } from '$lib/design'
+import { Report, Post, Talk } from '$lib/site/chat'
+import { url } from '$lib/site/store'
 
 import '../_app.svelte'
-
-const { url } = site
 
 const { viewSize, viewOffset, zoomSize, zoomOffset, zoomScale, safeSize, safeOffset } = browser
 const bootAt = Date.now()

@@ -1,17 +1,17 @@
 <script lang="ts">
 import type { Tag } from '$lib/pubsub/map-reduce'
-import Portrate from '$lib/block/Portrate.svelte'
-import Btn from '$lib/inline/Btn.svelte'
 import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
-import { Post, Report, Portrates } from '$lib/chat'
 import { Location } from '$lib/uri'
 
 import { Tags } from '$lib/pubsub/map-reduce'
 import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
 import { __BROWSER__ } from '$lib/browser-device'
-import SearchText from '$lib/inline/SearchText.svelte'
+
+import { Btn, SearchText } from '$lib/design'
+import { Post, Report, Portrates } from '$lib/site/chat'
+import Portrate from '$lib/site/block/portrate.svelte'
 
 let tag_id: Tag['_id'] = 'giji'
 let search: RegExp

@@ -1,5 +1,3 @@
-import { Bits } from './bits'
-
 type ANY = string | number
 
 export type TYPE = 'as' | 'set' | 'off' | 'on' | 'xor' | 'toggle'

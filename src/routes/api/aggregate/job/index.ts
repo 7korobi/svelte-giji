@@ -1,13 +1,14 @@
+import type { DIC } from '$lib/map-reduce'
+
 import fs from 'fs'
 import sh from 'child_process'
 import { sort } from '$lib/map-reduce/fast-sort'
 
 import { db } from '$lib/db'
-import site from '$lib/site'
-import type { DIC } from '$lib/map-reduce'
+import { url } from '$lib/site/store'
 
 let $url: DIC<string>
-site.url.subscribe((o) => {
+url.subscribe((o) => {
   $url = o
 })
 

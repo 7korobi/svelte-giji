@@ -1,5 +1,5 @@
 import { __BROWSER__ } from '$lib/browser-device'
-import { regSites } from './store'
+import { regSites } from '../store'
 
 export function deco(DIV: HTMLElement) {
   DIV.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((A) => {

@@ -1,7 +1,7 @@
 <script lang="ts">
-import talk from './Talk.svelte'
-import post from './Post.svelte'
-import report from './Report.svelte'
+import talk from './talk.svelte'
+import post from './post.svelte'
+import report from './report.svelte'
 const sveltes = { talk, post, report }
 
 export let show: keyof typeof sveltes

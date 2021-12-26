@@ -141,6 +141,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
 
   function clear() {
     Object.assign(data, format())
+    set(data)
   }
 
   function add(docs: F['list'], init = initialize) {

@@ -1,8 +1,9 @@
 <script lang="ts">
 import type { DIC } from '$lib/map-reduce'
 import { Erase } from '$lib/icon'
-import Btn from './Btn.svelte'
-import Sub from './Sub.svelte'
+
+import Sub from './sub.svelte'
+import Btn from './btn.svelte'
 
 export let value: string[] = []
 export let x: { _id: string; count: number }[] = []

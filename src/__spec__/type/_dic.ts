@@ -1,4 +1,4 @@
-import { Bits } from '$lib/inline/bits'
+import { Bits } from '$lib/site'
 
 export type VILLAGE_MODES = typeof VILLAGE_MODES[number]
 export type MONTHS = typeof MONTHS[number]

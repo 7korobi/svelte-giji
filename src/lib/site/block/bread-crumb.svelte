@@ -1,5 +1,7 @@
 <script lang="ts">
-import { topics } from './store'
+import * as site from '../store'
+
+const { topics } = site
 </script>
 
 <p>

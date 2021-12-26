@@ -1,12 +1,11 @@
 <script lang="ts">
 import { ChrSet, ChrSets } from '$lib/pubsub/map-reduce'
-import { Post, Report, Talk } from '$lib/chat'
 import { Location } from '$lib/uri'
 
-import Btn from '$lib/inline/Btn.svelte'
-import SearchText from '$lib/inline/SearchText.svelte'
 import { fade } from 'svelte/transition'
 import { chr_sets_by_label } from '$lib/pubsub/chr/query'
+import { Btn, SearchText } from '$lib/design'
+import { Post, Report, Talk } from '$lib/site/chat'
 
 let chr_set_id: ChrSet['_id'] = 'ririnra'
 let search: RegExp

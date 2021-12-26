@@ -2,10 +2,11 @@
 import type { Cluster, Icon, Line } from './store'
 
 import { tick } from 'svelte'
-import { style, url, instanceId } from './store'
+import { style, url } from './store'
 import { __BROWSER__ } from '$lib/browser-device'
 
 import { Operations } from './tracker'
+import { instanceId } from '$lib/design'
 
 type Rect = Box & {
   key: string

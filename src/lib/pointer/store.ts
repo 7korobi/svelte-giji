@@ -25,11 +25,6 @@ export type Cluster = {
   vs: string[]
 }
 
-let counter = 360
-export function instanceId() {
-  return (counter++).toString(36)
-}
-
 export const style = writable({
   icon: {
     width: 90,

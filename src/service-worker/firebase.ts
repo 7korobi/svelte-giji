@@ -1,7 +1,7 @@
 import { onBackgroundMessage, getMessaging, isSupported } from 'firebase/messaging/sw'
 import { initializeApp, FirebaseOptions } from 'firebase/app'
 import { build, files, timestamp } from '$service-worker'
-import live from '$lib/site/json/live.json'
+import { live } from '$lib/site'
 
 console.log({ build, files, timestamp })
 

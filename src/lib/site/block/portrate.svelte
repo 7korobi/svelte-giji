@@ -1,5 +1,5 @@
 <script lang="ts">
-import site from '$lib/site'
+import * as site from '../store'
 
 const { url } = site
 

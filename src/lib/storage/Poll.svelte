@@ -23,18 +23,17 @@ export let next_at = -Infinity
 // for requesting.
 export let api_call = async () => {
   const req = await fetch(idx)
-  pack = await req.json()
-  return { version, idx, pack } as WebPollData<any>
+  return { version, idx, pack: await req.json() } as WebPollData<any>
 }
 
 let timerId = 0 as any
 
 $: tempo = to_tempo(timer, shift)
-$: restart($isActive)
+$: restart($isActive, { version, idx, timer })
 $: if (pack) onFetch(pack)
 
-function restart(is_active: boolean) {
-  if (is_active) {
+function restart(is_active: boolean, o: { idx: string; version: string; timer: string }) {
+  if (is_active && o.idx) {
     tick()
   } else {
     clearTimeout(timerId)
@@ -58,6 +57,7 @@ async function tick() {
       logger(tempo)
     } else {
       // IndexedDB metadata not use if memory has past data,
+      console.log(idx)
       const data = await webPoll.data.get(idx)
       if (data && data.version === version) {
         get_by_cache(tempo, data)
@@ -84,11 +84,11 @@ function get_by_cache(tempo: Tempo, cache: WebPollData<any>) {
 }
 
 async function get_by_api(tempo: Tempo, api: WebPollData<any>) {
-  pack = api.pack
-
   api.next_at = tempo.next_at
   api.next_time = new Date(tempo.next_at).toLocaleString()
   await webPoll.data.put(api)
+  pack = api.pack
+
   logger(tempo, '(api)')
 }
 </script>

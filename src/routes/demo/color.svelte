@@ -1,12 +1,10 @@
 <script lang="ts">
 import type { Line, Icon, Cluster } from '$lib/pointer'
-import { Bits } from '$lib/inline/bits'
-
-import { Chat, Banner, Report } from '$lib/chat'
 import { Scroll } from '$lib/scroll'
 import { Diagram } from '$lib/pointer'
 
-import Btn from '$lib/inline/Btn.svelte'
+import { Btn, Bits } from '$lib/design'
+import { Chat, Banner, Report } from '$lib/site/chat'
 
 // import EditorArea from '$lib/form/EditorArea.svelte'
 

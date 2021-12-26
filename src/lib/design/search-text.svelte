@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Search } from '$lib/icon'
-import { instanceId } from './store'
+import { instanceId } from './util'
 
 const escape_target = new RegExp(`(${[...'$?*^+.|(){}[]'].map((c) => `\\${c}`).join('|')})`, 'g')
 const form_id = instanceId()

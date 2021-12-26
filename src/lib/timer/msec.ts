@@ -13,7 +13,7 @@ export const tempo_zero = -new Date(0).getDay() * DAY + timezone
 
 export function to_msec(timer: string): number {
   let timeout = 0
-  timer.replace(
+  timer?.replace(
     /(\d+)([ヵ]?([smhdwy秒分時日週月年])[間]?(半$)?)|0/g,
     (full, num_str: string, fullunit, unit: string, appendix: string) => {
       let num = Number(num_str)

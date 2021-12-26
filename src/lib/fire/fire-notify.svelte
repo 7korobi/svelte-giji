@@ -1,4 +1,4 @@
 <script lang="ts">
 import { app } from './store'
-import * as site from '$lib/site/store'
+import site from '$lib/site'
 </script>

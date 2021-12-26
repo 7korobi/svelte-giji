@@ -1,16 +1,14 @@
 <script lang="ts">
-import type { Story } from '$lib/pubsub/map-reduce'
-import { Post, Report } from '$lib/chat'
+import type { BookStory } from '$lib/pubsub/map-reduce'
 import { Focus } from '$lib/scroll'
-import OldlogFinder from '$lib/site/OldlogFinder.svelte'
-import Strong from '$lib/inline/Strong.svelte'
-import site from '$lib/site'
 import { default_stories_query } from '$lib/pubsub/model-client'
 import { page } from '$app/stores'
+import { url } from '$lib/site/store'
+import { Post, Report } from '$lib/site/chat'
+import { Strong } from '$lib/design'
+import OldlogFinder from '$lib/site/chats/oldlog-finder.svelte'
 
-const { url } = site
-
-let list: Story[] = []
+let list: BookStory[] = []
 let regexp = /^/g
 let params = default_stories_query()
 let hash = ''

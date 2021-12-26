@@ -10,7 +10,7 @@ export function load({ error, status }) {
 </script>
 
 <script>
-import { Report, Post } from '$lib/chat'
+import { Report, Post } from '$lib/site/chat'
 
 export let title
 export let stack

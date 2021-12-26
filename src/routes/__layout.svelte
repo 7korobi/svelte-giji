@@ -1,26 +1,26 @@
 <script lang="ts">
 import { session } from '$app/stores'
 
-import ThemeBtns from '$lib/inline/ThemeBtns.svelte'
-import Btn from '$lib/inline/Btn.svelte'
-
-import { Report } from '$lib/chat'
-import Export from '$lib/site/export.svelte'
-import Footer from '$lib/site/footer.svelte'
-import site from '$lib/site'
 import fire from '$lib/fire'
 import browser, { Browser, Viewport } from '$lib/browser'
 import { __BROWSER__ } from '$lib/browser-device'
 
 import * as Icon from '$lib/icon'
 
+import { live } from '$lib/site'
+import { Report } from '$lib/site/chat'
+import { Btn } from '$lib/design'
+import Export from '$lib/site/article/export.svelte'
+import Footer from '$lib/site/article/footer.svelte'
+import ThemeBtns from '$lib/site/block/theme-btns.svelte'
+import { url, side, SideBits } from '$lib/site/store'
+
 import './_app.svelte'
 
-const { url, side } = site
 const { viewOffset } = browser
 
 if (__BROWSER__) {
-  fire.init(site.live.firebase)
+  fire.init(live.firebase)
 }
 
 /**
@@ -47,9 +47,7 @@ let welcomeBottomHeight = 0
   >
     <Export />
     <h1 class="title-bar"><a href={$url.top}>人狼議事</a></h1>
-    <div class="btns form">
-      <ThemeBtns />
-    </div>
+    <ThemeBtns />
     <div class="outframe filmline" style={`background-position: ${offsetFilm}px 0;`}>
       <div class="contentframe">
         <span class="filmend" />
@@ -86,7 +84,7 @@ let welcomeBottomHeight = 0
           <div class="icons form">
             <Btn
               type="toggle"
-              as={site.SideBits.posi.Expand}
+              as={SideBits.posi.Expand}
               bind:value={$side}
               class="item-half tooltip-left"
               data-tooltip="詳細情報を拡げる操作の ON / OFF"
@@ -95,7 +93,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.posi.SwipeOn}
+              as={SideBits.posi.SwipeOn}
               bind:value={$side}
               class="item-half tooltip-left"
               data-tooltip="ページ一覧を一列にする / 折り返す"
@@ -120,7 +118,7 @@ let welcomeBottomHeight = 0
             </button>
             <Btn
               type="toggle"
-              as={site.SideBits.posi.TimelineClock}
+              as={SideBits.posi.TimelineClock}
               bind:value={$side}
               data-tooltip="今見ている投稿に関する情報"
               class="item tooltip-left"
@@ -129,7 +127,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.posi.Tree}
+              as={SideBits.posi.Tree}
               bind:value={$side}
               data-tooltip="今見ている投稿と繋がる投稿"
               class="item tooltip-left"
@@ -138,7 +136,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.posi.TocOn}
+              as={SideBits.posi.TocOn}
               bind:value={$side}
               data-tooltip="他の日付へ移動、検索など"
               class="item tooltip-left"
@@ -147,7 +145,7 @@ let welcomeBottomHeight = 0
             </Btn>
             <Btn
               type="toggle"
-              as={site.SideBits.posi.UsersOn}
+              as={SideBits.posi.UsersOn}
               bind:value={$side}
               data-tooltip="キャラクターの一覧、ステータス等を確認"
               class="item tooltip-left"
@@ -157,7 +155,7 @@ let welcomeBottomHeight = 0
           </div>
         </div>
       </div>
-      {#if $side & site.SideBits.posi.UsersOn}
+      {#if $side & SideBits.posi.UsersOn}
         <div class="summaryframe impose">
           <div class="inframe header">
             <div class="swipe">
@@ -315,9 +313,7 @@ let welcomeBottomHeight = 0
         <span class="filmstart" />
       </div>
     </div>
-    <div class="btns form">
-      <ThemeBtns />
-    </div>
+    <ThemeBtns />
     <Footer />
   </div>
 </div>

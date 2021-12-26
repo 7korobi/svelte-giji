@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Operations } from '../pointer/tracker'
-import { Standby } from '../icon'
+import { Operations } from '$lib/pointer/tracker'
+import { Standby } from '$lib/icon'
 
 import type { TYPE } from './button'
 import { className, tap } from './button'
@@ -67,7 +67,7 @@ button {
   &.disabled {
     span {
       transition-duration: var(--speed);
-      transform: rotateZ(100deg);
+      transform: rotateZ(95deg);
     }
   }
   &.press {

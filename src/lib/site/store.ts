@@ -1,8 +1,21 @@
-import { writable } from 'svelte/store'
-import { Bits } from '$lib/inline/bits'
+import { derived, writable } from 'svelte/store'
+
+import { writeHistory } from '$lib/storage'
 import { writeLocal } from '$lib/storage'
-import live from './json/live.json'
 import { __BROWSER__ } from '$lib/browser-device'
+import { Bits } from '$lib/design'
+
+type Topic = {
+  page: {
+    path: string
+  }
+  label: string
+  title: string
+}
+
+const initialState = {
+  topics: [] as Topic[]
+}
 
 export const url = writable({
   portrate: '/images/portrate/',
@@ -24,4 +37,11 @@ export const SideBits = new Bits(
   ['Expand', 'SwipeOn', 'TimelineClock', 'Tree', 'TocOn', 'UsersOn'],
   {}
 )
-export { live }
+
+export const topics = writeHistory(initialState.topics, (o) => o.page.path)
+
+export const sameSites = writable(__BROWSER__ ? [location.origin] : [])
+export const regSites = derived([sameSites], ([$sameSites], set: (reg: RegExp) => void) => {
+  const reg = new RegExp(`^${$sameSites.join('|^')}`)
+  set(reg)
+})
