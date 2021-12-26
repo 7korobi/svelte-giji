@@ -64,14 +64,14 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
 
 <Report handle="header">
   <div class="center form">
-    {#each tag_by_group as tagss, i}
+    {#each tag_by_group as tagss}
       <fieldset>
         {#if tagss._id !== 'undefined'}
           <legend>{tagss._id}</legend>
         {/if}
-        {#each tagss as tags, j}
+        {#each tagss as tags}
           <p class="center">
-            {#each tags.list as o, k}
+            {#each tags.list as o}
               {#if o.faces?.length}
                 <Btn class="btn" as={o._id} bind:value={tag_id}
                   >{o.label}<sup>{o.faces.length}</sup></Btn
@@ -99,7 +99,7 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
   </p>
 </Report>
 <Portrates>
-  {#each chr_jobs as o, idx (o.face_id)}
+  {#each chr_jobs as o (o.face_id)}
     <div in:scale={animate_scale} animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
       <Portrate face_id={o.face_id}>
         {#if show_summary(o.face_id, summaries)}

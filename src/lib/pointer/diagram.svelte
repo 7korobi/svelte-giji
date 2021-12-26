@@ -6,7 +6,7 @@ import { style, url } from './store'
 import { __BROWSER__ } from '$lib/browser-device'
 
 import { Operations } from './tracker'
-import { instanceId } from '$lib/design'
+import { instanceId } from '$lib/design/util'
 
 type Rect = Box & {
   key: string

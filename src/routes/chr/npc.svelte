@@ -26,7 +26,7 @@ let search: RegExp
           <legend>エキスパンション・セット</legend>
         {/if}
         <p class="center">
-          {#each chr_sets as o, j}
+          {#each chr_sets as o}
             <Btn class="btn" as={o._id} bind:value={chr_set_id}
               >{o.label}<sup>{o.npcs.length}</sup></Btn
             >
@@ -44,7 +44,7 @@ let search: RegExp
   </p>
 </Report>
 
-{#each ChrSets.find(chr_set_id).npcs as npc, i (npc._id)}
+{#each ChrSets.find(chr_set_id).npcs as npc (npc._id)}
   <div in:fade={{ delay: 0, duration: 600 }}>
     <Report handle="public">{npc.label}</Report>
     {#each npc.intro as intro, j (j)}

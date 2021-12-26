@@ -1,7 +1,8 @@
 <script lang="ts">
 import { __BROWSER__ } from '$lib/browser-device'
 import * as site from '../store'
-import { Btn } from '$lib/design'
+import {} from '$lib/design'
+import Btn from '$lib/design/btn.svelte'
 
 const { zoom, font, theme, day } = site
 

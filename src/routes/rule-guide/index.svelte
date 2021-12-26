@@ -3,7 +3,7 @@ import { Focus } from '$lib/scroll'
 import { __BROWSER__ } from '$lib/browser-device'
 import { nation, village, maker, player } from '$lib/game/json/rule.json'
 import { Location } from '$lib/uri'
-import { Post, Talk, Report, Banner } from '$lib/site/chat'
+import { Post, Talk, Report } from '$lib/site/chat'
 import '../_app.svelte'
 
 let chat = ''

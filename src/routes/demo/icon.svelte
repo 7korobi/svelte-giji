@@ -1,7 +1,7 @@
 <script lang="ts">
 import { __BROWSER__ } from '$lib/browser-device'
 import * as IconDic from '$lib/icon'
-import { Report, Post, Talk } from '$lib/site/chat'
+import { Report } from '$lib/site/chat'
 
 import '../_app.svelte'
 
@@ -23,7 +23,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="TSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -35,7 +35,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="SSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -47,7 +47,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="VSSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -59,7 +59,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="GSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -71,7 +71,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="VGSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -83,7 +83,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="WSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>
@@ -95,7 +95,7 @@ for (const key of Object.keys(IconDic).sort()) {
 <Report handle="XSAY">
   <br />
   <p class="text x3">
-    {#each ICONS as { key, Icon }, idx}
+    {#each ICONS as { Icon }}
       <span class="plain">
         <Icon />
       </span>

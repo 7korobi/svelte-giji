@@ -11,18 +11,17 @@ import { __BROWSER__ } from '$lib/browser-device'
 import { faces } from '$lib/pubsub/poll'
 import { LongPress } from '$lib/design'
 import { Report, Post, Talk } from '$lib/site/chat'
-import { url } from '$lib/site/store'
 
 import '../_app.svelte'
 
-const { viewSize, viewOffset, zoomSize, zoomOffset, zoomScale, safeSize, safeOffset } = browser
+const { viewSize, viewOffset, zoomSize, zoomOffset, zoomScale, safeOffset } = browser
 const bootAt = Date.now()
 
 let hello = 'home'
 
-let x
-let y
-let scale
+let x: number
+let y: number
+let scale: number
 </script>
 
 <Report handle="SSAY">
