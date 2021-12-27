@@ -3,7 +3,7 @@ import { session } from '$app/stores'
 
 import fire from '$lib/fire'
 import browser, { Browser, Viewport } from '$lib/browser'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 import * as Icon from '$lib/icon'
 
@@ -339,7 +339,7 @@ let welcomeBottomHeight = 0
   -o-object-fit: cover;
   object-fit: cover;
   background-size: cover;
-  background-image: url('https://gijilog.web.app/images/bg/fhd-giji.png');
+  background-image: url('//gijilog.web.app/images/bg/fhd-giji.png');
 }
 
 .title-bar {

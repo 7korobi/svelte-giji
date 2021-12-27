@@ -6,7 +6,7 @@ import { io, Socket } from 'socket.io-client'
 import parser from 'socket.io-msgpack-parser'
 
 import { MapReduce } from '$lib/map-reduce'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 type QueryProps<MatchArgs extends any[]> = {
   name?: string

@@ -3,7 +3,7 @@ import type { Cluster, Icon, Line } from './store'
 
 import { tick } from 'svelte'
 import { style, url } from './store'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 import { Operations } from './tracker'
 import { instanceId } from '$lib/design/util'

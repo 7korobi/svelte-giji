@@ -1,5 +1,5 @@
 import * as store from './store'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 export function KeypadSize({ style }: HTMLElement) {
   if (!__BROWSER__) return

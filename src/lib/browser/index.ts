@@ -4,6 +4,7 @@ import KeyCapture from './key-capture.svelte'
 
 import * as store from './store'
 
+export * from './device'
 export * from './measure'
 export { Browser, KeyCapture, Viewport }
 export default store

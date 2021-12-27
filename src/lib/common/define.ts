@@ -16,3 +16,6 @@ export type OFFSET = [top, right, bottom, left]
 export const MINIMUM_PIXEL_SIZE = 0.2
 export const SAFE_WIDTH = 44
 export const SAFE_HEIGHT = 21
+
+export const __SPEC__ = 'undefined' === typeof window
+export const __BROWSER__ = !__SPEC__

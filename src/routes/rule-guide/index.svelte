@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Focus } from '$lib/scroll'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 import { nation, village, maker, player } from '$lib/game/json/rule.json'
 import { Location } from '$lib/uri'
 import { Post, Talk, Report } from '$lib/site/chat'

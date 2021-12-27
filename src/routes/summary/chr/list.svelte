@@ -9,7 +9,7 @@ import { Location } from '$lib/uri'
 
 import { Tags } from '$lib/pubsub/map-reduce'
 import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 import {
   message_for_face_all,

@@ -2,7 +2,7 @@
 import type { FOLDER_IDX } from '$lib/pubsub/map-reduce'
 import { Folders } from '$lib/pubsub/map-reduce'
 import { story_reduce } from '$lib/pubsub/book/query'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 export let folder_idx: FOLDER_IDX
 

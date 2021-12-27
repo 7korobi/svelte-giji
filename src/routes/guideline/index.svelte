@@ -1,5 +1,5 @@
 <script lang="ts">
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 import { Location } from '$lib/uri'
 import { Post, Talk, Report } from '$lib/site/chat'
 

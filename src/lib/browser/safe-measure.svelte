@@ -1,10 +1,7 @@
 <script lang="ts">
-import { state, isPortrait, isLandscape, safePoint, safeOffset, safeSize } from './store'
-import { isIOS, isRadius, __BROWSER__ } from '$lib/browser-device'
-
-const MINIMUM_PIXEL_SIZE = 0.2
-const SAFE_WIDTH = 44
-const SAFE_HEIGHT = 21
+import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH, __BROWSER__ } from '$lib/common'
+import { isIOS, isRadius } from '$lib/browser'
+import { state, isPortrait, isLandscape, safePoint, safeOffset } from './store'
 
 export let ratio: number
 export let isDefaultSafeArea: boolean

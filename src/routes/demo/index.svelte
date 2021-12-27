@@ -6,7 +6,7 @@ import { Time } from '$lib/timer'
 import Poll from '$lib/storage/poll.svelte'
 import { HtmlArea } from '$lib/editor'
 import browser from '$lib/browser'
-import { __BROWSER__ } from '$lib/browser-device'
+import { __BROWSER__ } from '$lib/common'
 
 import { faces } from '$lib/pubsub/poll'
 import { LongPress } from '$lib/design'
@@ -161,7 +161,7 @@ let scale: number
 <Poll {...faces()} />
 
 <style lang="scss">
-@use "../../lib/common/_color" as *;
+@use "../../lib/common/color" as *;
 
 h1 {
   --test-hsla: #{hsla(100deg, 60%, 50%, 1)};

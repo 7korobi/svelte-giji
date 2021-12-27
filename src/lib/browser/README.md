@@ -3,7 +3,16 @@
 ```html
 <script lang="ts">
   import store, { KeyCapture, Browser, Viewport } from 'svelte-browser'
+  import { isPC, isTablet, isMobile, isBlink, isMacSafari, isIOSlegacy, isLegacy } from 'svelte-browser'
   const { isActive, isOnline, isWatching, isKeypad, isPortrait, isLandscape, isZoom, keys, zoomScale, zoomPoint, viewPoint, safePoint, keypadSize, zoomSize, viewSize, safeSize } = store
+
+  if (isTablet) ... // device type Tablet
+  if (isMobile) ... // device type Mobile
+  if (isPC) ... // not Tablet / Mobile / Android / IOS
+  if (isBlink) ... // blink browser
+  if (isMacSafari) ... // webkit browser && Mac OS
+  if (isIOSlegacy) ... // IOS && legacy
+  if (isLegacy) ... // not support VisualViewport / ResizeObaserver / IntersectionObserver
 
   $: if ($isActive) ... // isOnline && isWatching
   $: if ($isOnline) ... // detect online

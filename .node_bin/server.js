@@ -244,73 +244,9 @@ __export(model_client_exports, {
 // src/lib/map-reduce/base.ts
 import { writable } from "svelte/store";
 
-// src/lib/browser-device/index.ts
-import UAParser from "ua-parser-js";
+// src/lib/common/define.ts
 var __SPEC__ = typeof window === "undefined";
 var __BROWSER__ = !__SPEC__;
-var { device, browser, engine, os } = UAParser();
-var isLegacy = false;
-var isRadius = false;
-var isIOS = false;
-var isAndroid = false;
-var isPC = false;
-var isTablet = false;
-var isMobile = false;
-var isBlink = false;
-var isWebkit = false;
-var isMacSafari = false;
-var isIOSlegacy = false;
-if (__BROWSER__) {
-  isLegacy = !window.VisualViewport || !window.ResizeObserver || !window.IntersectionObserver;
-}
-switch (device.type) {
-  case "tablet":
-    isTablet = true;
-    break;
-  case "mobile":
-    isMobile = true;
-    break;
-  default:
-    isPC = true;
-}
-switch (browser.name) {
-  case "Mobile Safari":
-    isIOS = true;
-    break;
-  case "Safari":
-    isMacSafari = true;
-    break;
-}
-switch (engine.name) {
-  case "WebKit":
-  case "Webkit":
-    isWebkit = true;
-    break;
-  case "Blink":
-    isBlink = true;
-    break;
-}
-switch (os.name) {
-  case "Android":
-    isAndroid = true;
-    break;
-  case "iOS":
-    isIOS = true;
-    break;
-  case "Mac OS":
-    isMacSafari = isWebkit;
-    isPC = true;
-    break;
-}
-if (isAndroid || isIOS) {
-  isPC = false;
-}
-if (isIOS && isLegacy) {
-  isIOSlegacy = true;
-}
-if (isMobile) {
-  isRadius = true;
-}
 
 // src/lib/map-reduce/fast-sort.ts
 var castComparer = (comparer) => (a, b, order) => comparer(a, b, order) * order;

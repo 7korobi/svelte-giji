@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "svelte": "^3.44.3",
-    "svelte-giji-browser-device": "^0.2.3",
+    "svelte-giji-util": "^0.2.3",
     "tslib": "^2.3.1"
   },
   "exports": {

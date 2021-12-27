@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { POINT } from '../common/config'
+import type { POINT } from '../common'
 import { Operations } from './tracker'
 
 type Operation = {

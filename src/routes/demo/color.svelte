@@ -4,7 +4,7 @@ import { Scroll } from '$lib/scroll'
 import { Diagram } from '$lib/pointer'
 
 import { Btn } from '$lib/design'
-import { Bits } from '$lib/design/bits'
+import { Bits } from '$lib/common'
 import { Chat, Banner, Report } from '$lib/site/chat'
 
 // import EditorArea from '$lib/form/EditorArea.svelte'
