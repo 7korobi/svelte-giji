@@ -14053,6 +14053,7 @@ function emit_sum(dic4, item) {
 }
 function default_story_query() {
   return {
+    search: "",
     idx: "",
     mode: "full",
     hide: []

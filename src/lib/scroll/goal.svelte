@@ -5,17 +5,18 @@ export let onPeep = () => {
   console.warn('not implement onPeep')
 }
 
-let isGoal = false
+let isPeep = false
+let timer
 
 const tracker = observe(['peep', 'hidden'], {
   change(ops) {
-    if (!isGoal && ops.state === 'peep') {
-      isGoal = true
+    if (ops.state === 'peep') {
+      timer = setInterval(onPeep, 200)
+    } else {
+      clearInterval(timer)
     }
   }
 })
-
-onPeep
 </script>
 
 <div use:tracker.listener>

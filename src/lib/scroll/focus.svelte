@@ -3,8 +3,9 @@ import { tick } from 'svelte'
 import browser from '$lib/browser'
 import { observe } from './observer'
 
-export let id = ''
-export let value = ''
+export let base = ''
+export let id = base
+export let value = base
 
 const { viewSize } = browser
 
@@ -16,7 +17,7 @@ const tracker = observe(['horizon'], {
       await tick()
       if (id === value) {
         console.log(`focus change ${ops.focus} ${id} === ${value}`)
-        value = ''
+        value = base
       }
     }
   }

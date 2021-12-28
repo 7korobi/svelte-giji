@@ -114,14 +114,14 @@ $bgs: ( BG: 1.0 , BG75: 0.75, BG50: 0.50 )
     +zoom($zoom)
 
     &.goth-S
-      +font(9px,  12px, $zoom)
+      +font( 8px, 11.7px, $zoom)
     &.goth-M
       +font(12px, 16px, $zoom)
     &.goth-L
       +font(16px, 22px, $zoom)
 
     &.press
-      +font( 9px, 12px, $zoom)
+      +font( 8px, 11.7px, $zoom)
     &.novel
       +font(12px, 16px, $zoom)
     &.large
@@ -421,7 +421,6 @@ th,
 td,
 .note,
 .btn,
-.banner div,
 .copyright p
   border-radius: 0.3em
 
@@ -434,7 +433,8 @@ td,
     padding: 0.1em 0
 
 .banner
-  top: 1.8em
+  border-radius: 0.3em 0 0 0.3em
+  top: 0
 
 // multi-column
 .contentframe
@@ -463,6 +463,9 @@ td,
     .column,
     .col3
       columns: 3 11em
+
+  .report hr
+    margin: 0 -0.5ex
 
 .fullframe
   .col_wide

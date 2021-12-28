@@ -8,6 +8,7 @@ declare type Counts = {
     count: number;
 }[];
 export declare function default_story_query(): {
+    search: string;
     idx: string;
     mode: string;
     hide: any[];

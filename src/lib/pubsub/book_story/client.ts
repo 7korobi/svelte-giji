@@ -54,6 +54,7 @@ function emit_sum<T extends { _id: string; count: number }>(
 
 export function default_story_query() {
   return {
+    search: '',
     idx: '',
     mode: 'full',
     hide: []

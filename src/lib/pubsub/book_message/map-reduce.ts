@@ -42,7 +42,7 @@ export type BookMessage = {
   csid?: CHR_SET_IDX
   size?: number
 
-  deco: 'text' | 'text head' | 'text mono' | 'text logo'
+  deco: '' | 'head' | 'mono' | 'logo'
   style?: StyleType
   name?: presentation
   to?: presentation
@@ -60,6 +60,7 @@ export type StyleType = typeof StyleType[number]
 export type MesType = typeof MesType[number]
 export type LogType = typeof LogType[number]
 export type SubType = typeof SubType[number]
+export type GroupType = typeof GroupType[number]
 
 export const CHAT = ['report', 'talk', 'post']
 

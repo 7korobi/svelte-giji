@@ -334,7 +334,7 @@ function byF(str: string) {
   </Banner>
   <Scroll name=".3">
     <Scroll name=".3.1">
-      <Chat show="talk" handle={color} face_id="t10" head="abc" to="def" deco="head mono">
+      <Chat show="talk" handle={color} face_id="t10" name="abc" to="def" deco="head mono">
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
@@ -343,7 +343,7 @@ function byF(str: string) {
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
       </Chat>
-      <Chat show="talk" handle={color} face_id="t10" head="abc">
+      <Chat show="talk" handle={color} face_id="t10" name="abc">
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
         <p class="c">こんにちは、Svelte世界！　Hello SVELTE world!</p>
         <h6 class="c">こんにちは、Svelte世界！　Hello SVELTE world!</h6>

@@ -102,8 +102,8 @@ strong,
 
   $center: 28 * $base + $film
 
-  $limit1: math.div( $center, 0.9)
-  $limit2: $center + 2 * ( $gap + $minR )
+  $limit1: math.div( $center, 0.96)
+  $limit2: $center + 2 * ( $gap ) + $minR
   $limit3: $center + 2 * ( $gap + $minL )
 
 
@@ -122,9 +122,6 @@ strong,
     .stable
       width: $minL
 
-  .banner
-    margin-left:  $center + 15px
-    width: $minR - 6px
 
   .toastframe
     width: $minR
@@ -149,6 +146,9 @@ strong,
 
   @media screen and (min-width: $limit2)
     &
+      .banner
+        margin-left: $center
+        width: $minR
       .contentframe
         margin: 0 $minR 0 auto
       .fullframe
@@ -160,13 +160,14 @@ strong,
 
   @media screen and (max-width: $limit2)
     &
+      .banner
+        margin-left: $center
+        width: calc( 100vw - $center )
       .contentframe
-        margin: 0 auto
+        margin: 0 auto 0 0
       .fullframe
         width: 100vw
         margin-left: calc( $center / 2 - 50vw )
-      .banner
-        display: none
       .limit2-ok
         display: none
 
@@ -182,12 +183,15 @@ strong,
 
   @media screen and (max-width: $limit1)
     &
+      .banner
+        margin-left: calc( 96vw )
+        width: calc( 4vw )
       .writeframe,
       .outframe
         .contentframe
-          width: 90vw
+          width: 96vw
         .fullframe
           width: 100vw
-          margin-left: -5vw
+          margin-left: -2vw
       .limit1-ok
         display: none

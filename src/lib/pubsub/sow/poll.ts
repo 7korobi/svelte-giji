@@ -144,7 +144,6 @@ export function oldlog(story_id: BOOK_STORY_ID) {
       messages: BookMessage[]
       potofs: BookPotof[]
     }) {
-      console.log('onFetch', o)
       oldlog_stories.clear()
       oldlog_events.clear()
       oldlog_messages.clear()
@@ -210,9 +209,11 @@ export function oldlog(story_id: BOOK_STORY_ID) {
         o.story_id = story_id
         o.story = story
         o.name ||= `${o.turn}日目`
+        o.write_at = new Date(o.updated_at)
       })
       oldlog_events.add(o.events)
 
+      o.messages = o.messages.filter((o) => o.mestype !== 'DELETED')
       o.messages.forEach((o) => {
         let phase_idx = o.logid.slice(0, 2) as BOOK_PHASE_IDX
         if ((phase_idx as string) === '-S') phase_idx = 'iI'
@@ -231,16 +232,18 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             o.show = phase_idx === 'II' ? 'post' : 'talk'
             break
           case 'I':
-            // delete o.face_id
             o.group = 'I'
             o.show = o.log?.match(/。|、/g)?.length > 3 ? 'report' : 'post'
+            delete o.name
+            // delete o.face_id
             break
           case 'A':
           case 'B':
-            // delete o.face_id
             o.group = 'A'
             o.show = 'post'
             o.log = `${o.name}は、${o.log}`
+            delete o.name
+            // delete o.face_id
             break
           default:
             console.log(o.subid)
@@ -248,11 +251,12 @@ export function oldlog(story_id: BOOK_STORY_ID) {
         }
 
         switch (o.mestype) {
-          case 'DELETED':
-            return
           case 'MAKER':
+            o.handle = 'MAKER'
+            if (o.show === 'talk') o.show = 'report'
+            break
           case 'ADMIN':
-            // delete o.face_id
+            o.handle = 'ADMIN'
             if (o.show === 'talk') o.show = 'report'
             break
           case 'INFONOM':
@@ -330,18 +334,22 @@ export function oldlog(story_id: BOOK_STORY_ID) {
         }
 
         if (['maker', 'admin', 'c06'].includes(o.face_id)) o.face_id = undefined
-        o.name = o.name.replace(/&#x([0-9A-F]+);/g, (str, code) =>
-          String.fromCharCode(parseInt(code, 16))
-        )
+        if (o.name) {
+          o.name = o.name.replace(/&#x([0-9A-F]+);/g, (str, code) =>
+            String.fromCharCode(parseInt(code, 16))
+          )
+        }
         o.story_id = story_id
         o.story = story
         o.event = oldlog_events.find(o.event_id)
         o.face = Faces.find(o.face_id)
-        o.deco = `text ${o.style}` as typeof o.deco
+        o.deco = (o.style || '') as typeof o.deco
         delete o.style
       })
       oldlog_messages.add(o.messages)
 
+      const event_head = o.events[0]
+      const event_foot = o.events.slice(-1)[0]
       oldlog_events.add([
         {
           _id: `${story_id}-top`,
@@ -349,12 +357,12 @@ export function oldlog(story_id: BOOK_STORY_ID) {
           story_id,
           story,
           turn: -1,
-          winner: oldlog_events.data.list.slice(-1)[0].winner,
-          write_at: new Date(oldlog_events.data.list[0].write_at.getDate() - 1)
+          winner: event_foot.winner,
+          write_at: new Date(event_head.write_at.getDate() - 1)
         }
       ])
 
-      const message_head = oldlog_messages.data.list[0]
+      const message_head = o.messages[0]
       const [welcome, v_rules] = story.comment.split(/■村のルール<br>/)
       const event_id = `${story_id}-top` as BOOK_EVENT_ID
       const event = oldlog_events.find(event_id)
@@ -369,8 +377,8 @@ export function oldlog(story_id: BOOK_STORY_ID) {
           write_at: new Date(message_head.write_at.getDate() - 4),
           mention_ids: [],
           handle: 'TITLE',
-          show: 'report',
-          deco: 'text logo',
+          show: 'logo',
+          deco: '',
           group: 'A',
           sow_auth_id: story.sow_auth_id,
           log: ''
@@ -389,7 +397,7 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             mention_ids: [],
             handle: 'TITLE',
             show: 'report',
-            deco: 'text head',
+            deco: 'head',
             group: 'A',
             sow_auth_id: story.sow_auth_id,
             log: welcome
@@ -408,7 +416,7 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             mention_ids: [],
             handle: 'TITLE',
             show: 'report',
-            deco: 'text',
+            deco: '',
             group: 'A',
             sow_auth_id: story.sow_auth_id,
             log: `<h3>村のルール</h3>${v_rules}`
@@ -416,9 +424,10 @@ export function oldlog(story_id: BOOK_STORY_ID) {
         ])
       }
 
-      const message_foot = oldlog_messages.data.list.slice(-1)[0]
+      const message_foot = o.messages.slice(-1)[0]
 
       oldlog_stories.add(o.stories)
+      console.log('onFetch', o)
     }
   }
 }

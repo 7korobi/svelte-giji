@@ -1,8 +1,16 @@
+import type { FaceID } from '../_type/id'
+import type { CHR_SET_IDX, CSID } from '../map-reduce'
 import { ChrJobs, ChrNpcs, ChrSets, Faces, Tags } from '../map-reduce'
 
 export const tag_by_group = Tags.data.group
 export const faces_by_tag = Faces.data.tag
 export const chr_sets_by_label = ChrSets.data.by_label
+
+export function findChr(csid: CSID, face_id: FaceID) {
+  const chr_set_id = csid.split('_')[0] as CHR_SET_IDX
+  const face = Faces.find(face_id)
+  const chr_job = ChrJobs.find(`${chr_set_id}_${face_id}`)
+}
 
 for (const doc of Tags.data.list) {
   doc.faces = Faces.data.tag[doc._id]?.list

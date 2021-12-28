@@ -81,6 +81,10 @@ let welcomeBottomHeight = 0
               </p>
             </div>
           </Report>
+        </div>
+      </div>
+      <div class="sideframe">
+        <div class="inframe">
           <div class="icons form">
             <Btn
               type="toggle"
@@ -100,12 +104,8 @@ let welcomeBottomHeight = 0
             >
               <Icon.SwipeOn />
             </Btn>
-          </div>
-        </div>
-      </div>
-      <div class="sideframe">
-        <div class="inframe">
-          <div class="icons form">
+            <br />
+            <br />
             <button
               data-tooltip="一番上までスクロール"
               class="item tooltip-left"
@@ -155,8 +155,11 @@ let welcomeBottomHeight = 0
           </div>
         </div>
       </div>
-      {#if $side & SideBits.posi.UsersOn}
-        <div class="summaryframe impose">
+      <div class="summaryframe impose">
+        {#if $$slots.TimelineClock && $side & SideBits.posi.TimelineClock}
+          <slot name="TimelineClock" />
+        {/if}
+        {#if $side & SideBits.posi.UsersOn}
           <div class="inframe header">
             <div class="swipe">
               <table>
@@ -297,8 +300,8 @@ let welcomeBottomHeight = 0
               </table>
             </div>
           </div>
-        </div>
-      {/if}
+        {/if}
+      </div>
       <div class="center-left" />
       <div class="center-right" />
     </div>
@@ -361,34 +364,39 @@ let welcomeBottomHeight = 0
   }
 }
 
-.icons {
-  width: 14px;
-  margin: 0 3px 10px auto;
+.sideframe .icons {
+  margin: 0 0 10px auto;
+  background: transparent;
 
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: end;
   align-content: space-around;
   justify-content: space-around;
+}
+:global(.sideframe .icons .item-half),
+:global(.sideframe .icons .item) {
+  box-sizing: content-box;
+  flex-basis: auto;
+  text-align: center;
+  margin: 2px 0;
+  font-size: 18px;
+  border-radius: 8px 0 0 8px;
+  width: 12px;
+}
+:global(.sideframe .icons :hover),
+:global(.sideframe .icons :active),
+:global(.sideframe .icons .active) {
+  border-radius: 24px 0 0 24px;
+  width: 18px;
+}
 
-  :global(.item-half),
-  :global(.item) {
-    box-sizing: content-box;
-    flex-basis: auto;
-    text-align: center;
-    border-radius: 5px;
-    margin: 2px 0;
-    font-size: 20px;
-    width: 20px;
-  }
-
-  :global(.item-half) {
-    height: 30px;
-  }
-  :global(.item) {
-    height: 60px;
-  }
+:global(.item-half) {
+  height: 30px;
+}
+:global(.item) {
+  height: 60px;
 }
 
 .writeframe,
@@ -428,7 +436,7 @@ let welcomeBottomHeight = 0
 }
 
 .toastframe {
-  right: 0;
+  left: 0;
   top: 0;
 }
 

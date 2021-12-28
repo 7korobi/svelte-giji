@@ -50,14 +50,14 @@
     +portrate($zoom * 1.0)
 
     .post > .chat
-      padding-right: $zoom * 12px
+      padding-right: $zoom * 10px
 
+  .toastframe,
   .summaryframe
     .talk > .chat,
     .report > .chat
       margin: 0 $zoom * 18px 0 0
 
-  .toastframe,
   .sideframe
     .talk > .chat,
     .report > .chat
@@ -91,13 +91,11 @@
       margin: 0 0 0 $zoom * 107px
       // box-shadow: inset -30px 0px 45px -38px #222
       // 罫線にshadowが乗らない。
-      .name, .date
-        margin-right: $zoom * 7px
 
     .report > .chat
       width: calc( 100% + $zoom * 20px )
       margin: 0 $zoom * -10px 0 $zoom * -10px
-      padding: 1px $zoom * 8px 1px $zoom * 10px
+      padding: 1px $zoom * 21px 1px $zoom * 21px
 
       &::before, &::after
         top: calc( $zoom * -4px - 0.25em )
@@ -110,10 +108,6 @@
       &::after
         border-width: $zoom * 5px 0 0 $zoom * 10px
         right: 0
-
-      .name,
-      .date
-        margin-right: $zoom * 13px
 
     .talk > .portrate
       margin:  0 0 0 $zoom * 16px

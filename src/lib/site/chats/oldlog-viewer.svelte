@@ -3,7 +3,8 @@ import type {
   BOOK_FOLDER_IDX,
   BOOK_STORY_ID,
   BOOK_EVENT_ID,
-  BOOK_MESSAGE_ID
+  BOOK_MESSAGE_ID,
+  BookMessage
 } from '$lib/pubsub/map-reduce'
 import {
   oldlog,
@@ -29,9 +30,17 @@ import { Talk, Post, Report } from '../chat'
 
 const { url } = site
 
-export let search: RegExp
+export let messages: BookMessage[]
+export let regexp: RegExp
 export let refresh: any = undefined
 export let params = default_story_query()
+
+$: [folder_id, story_id, event_id, phase_id, message_id] = subids<
+  [BOOK_FOLDER_IDX, BOOK_STORY_ID, BOOK_EVENT_ID, string, BOOK_MESSAGE_ID]
+>(params.idx)
+$: event_ids = $oldlog_events.list.map((o) => o._id)
+$: back_event_id = slide(event_ids, event_id, -1)
+$: next_event_id = slide(event_ids, event_id, +1)
 
 $: memo_messages = memo_oldlog_messages()
 $: full_messages = full_oldlog_messages()
@@ -40,19 +49,26 @@ $: solo_messages = solo_oldlog_messages()
 $: extra_messages = extra_oldlog_messages()
 $: rest_messages = rest_oldlog_messages()
 
-$: id_list = subids<[BOOK_FOLDER_IDX, BOOK_STORY_ID, BOOK_EVENT_ID, string, BOOK_MESSAGE_ID]>(
-  params.idx
-)
-$: folder_id = id_list[0]
-$: story_id = id_list[1]
-$: event_id = id_list[2]
-$: message_id = id_list[4]
-
-$: event_ids = $oldlog_events.list.map((o) => o._id)
-$: back_event_id = slide(event_ids, event_id, -1)
-$: next_event_id = slide(event_ids, event_id, +1)
-
-$: console.log({ story_id, event_id, message_id, back_event_id, next_event_id })
+$: switch (params.mode) {
+  case 'memo':
+    messages = $memo_messages.event[event_id]
+    break
+  case 'full':
+    messages = $full_messages.event[event_id]
+    break
+  case 'normal':
+    messages = $normal_messages.event[event_id]
+    break
+  case 'solo':
+    messages = $solo_messages.event[event_id]
+    break
+  case 'extra':
+    messages = $extra_messages.event[event_id]
+    break
+  case 'rest':
+    messages = $rest_messages.event[event_id]
+    break
+}
 
 function subids<T extends any[]>(id: string, separator = '-'): T {
   if (!id) return [] as T
@@ -67,16 +83,21 @@ function subids<T extends any[]>(id: string, separator = '-'): T {
 function slide<T>(list: T[], idx: T, step: number): T {
   return list[list.indexOf(idx) + step]
 }
+
+function label(event_id: BOOK_EVENT_ID) {
+  const event = oldlog_events.find(event_id)
+  if (!event) return ''
+
+  return `${event.name}へ`
+}
 </script>
 
 <Location {refresh} bind:searchParams={params} />
 <Poll {...oldlog(story_id)} />
 
-<datalist id="search_log" />
-
 <Report handle="footer form">
   <p class="center">
-    <SearchText bind:regexp={search} />
+    <SearchText bind:value={params.search} bind:regexp />
   </p>
   <p class="center">
     <span>
@@ -103,17 +124,11 @@ function slide<T>(list: T[], idx: T, step: number): T {
     </span>
   </p>
   <p class="center">
-    <Btn
-      as={back_event_id}
-      bind:value={params.idx}
-      disabled={!oldlog_events.find(back_event_id)?.name}
-      >{oldlog_events.find(back_event_id)?.name + 'へ'}戻る</Btn
+    <Btn as={back_event_id} bind:value={params.idx} disabled={!label(back_event_id)}
+      >{label(back_event_id)}戻る</Btn
     >
-    <Btn
-      as={next_event_id}
-      bind:value={params.idx}
-      disabled={!oldlog_events.find(next_event_id)?.name}
-      >{oldlog_events.find(next_event_id)?.name + 'へ'}進む</Btn
+    <Btn as={next_event_id} bind:value={params.idx} disabled={!label(next_event_id)}
+      >{label(next_event_id)}進む</Btn
     >
   </p>
 </Report>
