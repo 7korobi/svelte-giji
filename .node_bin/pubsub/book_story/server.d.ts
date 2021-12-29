@@ -1,14 +1,14 @@
 import type { BookStory } from '../map-reduce';
 export declare const stories: {
-    $match: (ids: (`test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `rp-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => {
+    $match: (ids: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => {
         _id: {
-            $in: (`test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `rp-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[];
+            $in: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[];
         };
     };
     set: ($set: BookStory) => Promise<import("mongodb").ModifyResult<BookStory>>;
-    del: (ids: (`test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `rp-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => Promise<import("mongodb").DeleteResult>;
+    del: (ids: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => Promise<import("mongodb").DeleteResult>;
     isLive: () => Promise<boolean>;
-    live: ($match: any, set: ($set: BookStory) => Promise<import("mongodb").ModifyResult<BookStory>>, del: (ids: (`test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `rp-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => Promise<import("mongodb").DeleteResult>) => import("mongodb").ChangeStream<BookStory>;
+    live: ($match: any, set: ($set: BookStory) => Promise<import("mongodb").ModifyResult<BookStory>>, del: (ids: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => Promise<import("mongodb").DeleteResult>) => import("mongodb").ChangeStream<BookStory>;
     query: ($match: any) => Promise<import("mongodb").Document[]>;
 };
 export declare const story_summary: {

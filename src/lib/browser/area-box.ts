@@ -1,3 +1,6 @@
+import { listen } from 'svelte/internal'
+import { __BROWSER__ } from '$lib/common'
+import { isAndroid, isIOS } from '$lib/browser'
 import {
   state,
   isZoom,
@@ -14,8 +17,6 @@ import {
   viewSize,
   safeSize
 } from './store'
-import { __BROWSER__ } from '$lib/common'
-import { isAndroid, isIOS } from '$lib/browser'
 
 export default function areaBoxInit() {
   if (!__BROWSER__) return () => {}
@@ -23,18 +24,19 @@ export default function areaBoxInit() {
   const bodyObserve = new ResizeObserver(onScroll)
   bodyObserve.observe(document.body)
 
-  window.addEventListener('scroll', onScrollNotZoom, { passive: true })
-  window.visualViewport.addEventListener('scroll', onScrollInZoom)
-  window.visualViewport.addEventListener('resize', onResize)
+  const byes = [
+    listen(window, 'scroll', onScrollNotZoom, { passive: true }),
+    listen(window.visualViewport, 'scroll', onScrollInZoom),
+    listen(window.visualViewport, 'resize', onResize)
+  ]
+
   onResize()
 
   return () => {
     bodyObserve.unobserve(document.body)
     bodyObserve.disconnect()
 
-    window.removeEventListener('scroll', onScrollNotZoom, { passive: true } as any)
-    window.visualViewport.removeEventListener('scroll', onScrollInZoom)
-    window.visualViewport.removeEventListener('resize', onResize)
+    byes.forEach((fn) => fn())
   }
 }
 

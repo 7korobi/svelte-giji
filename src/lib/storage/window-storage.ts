@@ -1,6 +1,7 @@
+import type { Writable } from 'svelte/store'
 import { __BROWSER__ } from '$lib/common'
 import { writable } from 'svelte/store'
-import type { Writable } from 'svelte/store'
+import { listen } from 'svelte/internal'
 
 type Cache = { [key: string]: [Writable<any>, Convert<any>] }
 type Convert<T> = {
@@ -26,7 +27,7 @@ function initConverter<T>(init: T): Convert<T> {
 }
 
 if (__BROWSER__) {
-  window.addEventListener('storage', ({ storageArea, key, newValue, oldValue, url }) => {
+  listen(window, 'storage', ({ storageArea, key, newValue, oldValue, url }: StorageEvent) => {
     let cache: Cache = undefined
     if (window.localStorage === storageArea) cache = local_cache
     if (window.sessionStorage === storageArea) cache = session_cache

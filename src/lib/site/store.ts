@@ -2,7 +2,7 @@ import { derived, writable } from 'svelte/store'
 
 import { writeHistory } from '$lib/storage'
 import { writeLocal } from '$lib/storage'
-import { __BROWSER__ } from '$lib/common'
+import { portal, __BROWSER__ } from '$lib/common'
 import { Bits } from '$lib/common'
 
 type Topic = {
@@ -45,3 +45,7 @@ export const regSites = derived([sameSites], ([$sameSites], set: (reg: RegExp) =
   const reg = new RegExp(`^${$sameSites.join('|^')}`)
   set(reg)
 })
+
+export const toastframe = portal()
+export const sideframe = portal()
+export const summaryframe = portal()

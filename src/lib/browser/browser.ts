@@ -1,18 +1,19 @@
+import { listen } from 'svelte/internal'
 import { __BROWSER__ } from '$lib/common'
 import { state, isOnline, isWatching, isActive } from './store'
 
 export default function browserInit() {
   if (!__BROWSER__) return () => {}
-  window.addEventListener('offline', setOnLine)
-  window.addEventListener('online', setOnLine)
-  window.addEventListener('visibilitychange', setVisibilityState)
+  const byes = [
+    listen(window, 'offline', setOnLine),
+    listen(window, 'online', setOnLine),
+    listen(window, 'visibilitychange', setVisibilityState)
+  ]
   setOnLine()
   setVisibilityState()
 
   return () => {
-    window.removeEventListener('offline', setOnLine)
-    window.removeEventListener('online', setOnLine)
-    window.removeEventListener('visibilitychange', setVisibilityState)
+    byes.forEach((fn) => fn())
   }
 }
 

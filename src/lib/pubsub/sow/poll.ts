@@ -78,30 +78,47 @@ export const oldlogs_faces = MapReduce(potof_for_faces)
 export const oldlog_stories = MapReduce(stories)
 export const oldlog_events = MapReduce(events)
 export const oldlog_messages = MapReduce(messages)
-export const memo_oldlog_messages = oldlog_messages.filter((o) => 'M' === o.group)
-export const full_oldlog_messages = oldlog_messages.filter((o) => 'SAI'.includes(o.group))
+export const memo_oldlog_messages = oldlog_messages.filter(
+  (o, regexp: RegExp) => 'M' === o.group && (!regexp || regexp.test(o.log))
+)
+export const full_oldlog_messages = oldlog_messages.filter(
+  (o, regexp: RegExp) => 'SAI'.includes(o.group) && (!regexp || regexp.test(o.log))
+)
 export const normal_oldlog_messages = oldlog_messages.filter(
-  (o) =>
-    'SAI'.includes(o.group) &&
-    ['SSAY', 'VSSAY', 'TITLE', 'MAKER', 'ADMIN', 'public'].includes(o.handle)
+  (o, regexp: RegExp) =>
+    'SAI'.includes(o.group) && normal_handles.includes(o.handle) && (!regexp || regexp.test(o.log))
 )
 export const solo_oldlog_messages = oldlog_messages.filter(
-  (o) => 'SAI'.includes(o.group) && ['TSAY', 'private'].includes(o.handle)
+  (o, regexp: RegExp) =>
+    'SAI'.includes(o.group) && solo_handles.includes(o.handle) && (!regexp || regexp.test(o.log))
 )
 export const rest_oldlog_messages = oldlog_messages.filter(
-  (o) => 'SAI'.includes(o.group) && ['GSAY', 'VGSAY'].includes(o.handle)
+  (o, regexp: RegExp) =>
+    'SAI'.includes(o.group) && rest_handles.includes(o.handle) && (!regexp || regexp.test(o.log))
 )
 export const extra_oldlog_messages = oldlog_messages.filter(
-  (o) =>
-    'SAI'.includes(o.group) &&
-    !['SSAY', 'VSSAY', 'GSAY', 'VGSAY', 'TSAY', 'TITLE', 'MAKER', 'ADMIN', 'public'].includes(
-      o.handle
-    )
+  (o, regexp: RegExp) =>
+    'SAI'.includes(o.group) && !extra_handles.includes(o.handle) && (!regexp || regexp.test(o.log))
 )
 
 export const oldlog_potofs = MapReduce(potofs)
 export const oldlog_cards = MapReduce(cards)
 export const oldlog_stats = MapReduce(stats)
+
+const normal_handles = ['SSAY', 'VSSAY', 'TITLE', 'MAKER', 'ADMIN', 'public']
+const solo_handles = ['TSAY', 'private']
+const rest_handles = ['GSAY', 'VGSAY']
+const extra_handles = [
+  'SSAY',
+  'VSSAY',
+  'GSAY',
+  'VGSAY',
+  'TSAY',
+  'TITLE',
+  'MAKER',
+  'ADMIN',
+  'public'
+]
 
 function is_intersect<T>(...args: T[][]) {
   if (args.length < 2) return true

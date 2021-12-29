@@ -14,7 +14,7 @@ export let story: BookStory
     </p>
     <hr />
     <br />
-    <h1 class="c">{story.name}</h1>
+    <h1 class="c">{@html story.name}</h1>
     <br />
     <hr class="stripe" />
   </div>

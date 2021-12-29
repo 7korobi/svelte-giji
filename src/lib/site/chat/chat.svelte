@@ -46,7 +46,7 @@ export let story: BookStory
   </p>
   {#if _id}
     <p class="date">
-      <Mention id={_id} />
+      <Mention id={_id} let:mention>{mention}</Mention>
     </p>
   {/if}
 </svelte:component>

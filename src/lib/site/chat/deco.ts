@@ -1,3 +1,4 @@
+import { listen } from 'svelte/internal'
 import { __BROWSER__ } from '$lib/common'
 import { regSites } from '../store'
 
@@ -7,7 +8,7 @@ export function deco(DIV: HTMLElement) {
     regSites.subscribe(($regSites) => {
       if ($regSites.test(A.href)) return
       A.target = '_blank'
-      A.addEventListener('click', (e) => {
+      listen(A, 'click', (e) => {
         if (!window.confirm(`外部サイトです。開きますか？\n${A.href}`)) {
           e.preventDefault()
         }

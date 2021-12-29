@@ -91,11 +91,11 @@ export declare const Folders: {
     deploy: (json: any, init?: (doc: BookFolder) => void) => void;
     clear: () => void;
     add: (docs: BookFolder[], init?: (doc: BookFolder) => void) => void;
-    del: (ids: ("test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[]) => void;
-    find: (id: "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais") => BookFolder;
-    reduce: <EMIT>(ids: ("test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<BookFolder & EMIT>;
+    del: (ids: ("rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[]) => void;
+    find: (id: "rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais") => BookFolder;
+    reduce: <EMIT>(ids: ("rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<BookFolder & EMIT>;
     filter: <A extends any[]>(validator: (o: BookFolder, ...args: A) => boolean, key?: string) => (...filter_args: A) => {
-        reduce: <EMIT>(ids: ("test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<BookFolder & EMIT>;
+        reduce: <EMIT>(ids: ("rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<BookFolder & EMIT>;
         filter: any;
         sort: () => void;
         data: {

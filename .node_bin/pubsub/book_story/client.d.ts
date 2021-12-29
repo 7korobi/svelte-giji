@@ -16,7 +16,7 @@ export declare function default_story_query(): {
 export declare function default_stories_query(): {
     search: string;
     order: string;
-    folder_id: ("test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[];
+    folder_id: ("rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[];
     monthry: string[];
     upd_range: string[];
     upd_at: string[];
@@ -32,7 +32,7 @@ export declare function default_stories_query(): {
 };
 export declare const stories: {
     name?: string;
-    qid: (ids: (`test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `rp-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => string;
+    qid: (ids: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => string;
     format: () => {
         list: BookStory[];
         oldlog: DIC<BookStory[]>;
@@ -266,7 +266,7 @@ export declare const stories: {
     }, order: {
         search: string;
         order: string;
-        folder_id: ("test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "rp" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[];
+        folder_id: ("rp" | "test" | "lobby" | "offparty" | "wolf" | "allstar" | "ultimate" | "cabala" | "morphe" | "soybean" | "pretense" | "perjury" | "xebec" | "crazy" | "ciel" | "dais")[];
         monthry: string[];
         upd_range: string[];
         upd_at: string[];

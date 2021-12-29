@@ -248,6 +248,9 @@ import { writable } from "svelte/store";
 var __SPEC__ = typeof window === "undefined";
 var __BROWSER__ = !__SPEC__;
 
+// src/lib/common/portal.ts
+import { tick } from "svelte";
+
 // src/lib/map-reduce/fast-sort.ts
 var castComparer = (comparer) => (a, b, order) => comparer(a, b, order) * order;
 var throwInvalidConfigErrorIfTrue = function(condition, context) {

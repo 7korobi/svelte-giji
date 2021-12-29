@@ -3,6 +3,7 @@ import { onDestroy } from 'svelte'
 import { __BROWSER__ } from '$lib/common'
 import * as Icon from '$lib/icon'
 import Undo from '$lib/icon/ui/undo.svelte'
+import { listen } from 'svelte/internal'
 
 export let disable = false
 export let showHTML = true
@@ -16,11 +17,7 @@ function editor(node: HTMLElement) {
 
   document.execCommand('defaultParagraphSeparator', false, 'p')
   document.execCommand('styleWithCSS', false, false as any)
-  document.addEventListener('selectionchange', selectionChange)
-
-  onDestroy(() => {
-    document.removeEventListener('selectionchange', selectionChange)
-  })
+  onDestroy(listen(document, 'selectionchange', selectionChange))
 }
 
 function parseHtml(el: HTMLElement) {

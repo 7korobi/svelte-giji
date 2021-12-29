@@ -1,4 +1,5 @@
 import { __BROWSER__ } from '$lib/common'
+import { listen } from 'svelte/internal'
 
 type top = number
 type right = number
@@ -110,33 +111,23 @@ export class Operations<T extends HTMLElement> {
     if (!this.originEl) {
       this.originEl = node
     }
-
-    node.addEventListener('wheel', _wheel)
+    const byes: (() => void)[] = []
+    byes.push(listen(node, 'wheel', _wheel))
     if (self.PointerEvent) {
-      node.addEventListener('pointerdown', _pointerStart)
-      node.addEventListener('pointerup', _pointerEnd)
-      node.addEventListener('pointercancel', _pointerEnd)
+      byes.push(listen(node, 'pointerdown', _pointerStart))
+      byes.push(listen(node, 'pointerup', _pointerEnd))
+      byes.push(listen(node, 'pointercancel', _pointerEnd))
     } else {
-      node.addEventListener('mousedown', _pointerStart)
-      node.addEventListener('mouseup', _pointerEnd)
-      node.addEventListener('touchstart', _touchStart)
-      node.addEventListener('touchend', _touchEnd)
-      node.addEventListener('touchcancel', _touchEnd)
+      byes.push(listen(node, 'mousedown', _pointerStart))
+      byes.push(listen(node, 'mouseup', _pointerEnd))
+      byes.push(listen(node, 'touchstart', _touchStart))
+      byes.push(listen(node, 'touchend', _touchEnd))
+      byes.push(listen(node, 'touchcancel', _touchEnd))
     }
 
     return {
       destroy() {
-        node.removeEventListener('wheel', _wheel)
-        node.removeEventListener('pointerdown', _pointerStart)
-        node.removeEventListener('mousedown', _pointerStart)
-        node.removeEventListener('mouseup', _pointerEnd)
-        node.removeEventListener('touchstart', _touchStart)
-        node.removeEventListener('touchend', _touchEnd)
-        node.removeEventListener('touchcancel', _touchEnd)
-        node.removeEventListener('pointerup', _pointerEnd)
-        node.removeEventListener('pointercancel', _pointerEnd)
-
-        node.removeEventListener(rawUpdates ? 'pointerrawupdate' : 'pointermove', _move)
+        byes.map((fn) => fn())
         window.removeEventListener('touchmove', _move)
         window.removeEventListener('mousemove', _move)
       }
@@ -161,10 +152,10 @@ export class Operations<T extends HTMLElement> {
           event.target && 'setPointerCapture' in event.target ? event.target : node
 
         capturingElement.setPointerCapture(event.pointerId)
-        node.addEventListener(rawUpdates ? 'pointerrawupdate' : 'pointermove', _move)
+        byes.push(listen(node, rawUpdates ? 'pointerrawupdate' : 'pointermove', _move))
       } else {
         // MouseEvent
-        window.addEventListener('mousemove', _move)
+        byes.push(listen(window, 'mousemove', _move))
       }
     }
 
@@ -173,7 +164,7 @@ export class Operations<T extends HTMLElement> {
       for (const touch of [...event.changedTouches]) {
         _triggerPointerStart(new Operation(touch, offset), event)
       }
-      window.addEventListener('touchmove', _move)
+      byes.push(listen(window, 'touchmove', _move))
     }
 
     function getOperations(event: PointerEvent | MouseEvent | TouchEvent, offset: POINT) {

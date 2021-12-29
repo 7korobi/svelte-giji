@@ -44,11 +44,11 @@ export declare const ChrSets: {
     deploy: (json: any, init?: (doc: ChrSet) => void) => void;
     clear: () => void;
     add: (docs: ChrSet[], init?: (doc: ChrSet) => void) => void;
-    del: (ids: ("all" | "ririnra" | "mad" | "time" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[]) => void;
-    find: (id: "all" | "ririnra" | "mad" | "time" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf") => ChrSet;
-    reduce: <EMIT>(ids: ("all" | "ririnra" | "mad" | "time" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrSet & EMIT>;
+    del: (ids: ("all" | "time" | "ririnra" | "mad" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[]) => void;
+    find: (id: "all" | "time" | "ririnra" | "mad" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf") => ChrSet;
+    reduce: <EMIT>(ids: ("all" | "time" | "ririnra" | "mad" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrSet & EMIT>;
     filter: <A extends any[]>(validator: (o: ChrSet, ...args: A) => boolean, key?: string) => (...filter_args: A) => {
-        reduce: <EMIT>(ids: ("all" | "ririnra" | "mad" | "time" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrSet & EMIT>;
+        reduce: <EMIT>(ids: ("all" | "time" | "ririnra" | "mad" | "ger" | "fable" | "animal" | "school" | "changed" | "wa" | "sf")[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrSet & EMIT>;
         filter: any;
         sort: () => void;
         data: {
@@ -85,11 +85,11 @@ export declare const ChrNpcs: {
     deploy: (json: any, init?: (doc: ChrNpc) => void) => void;
     clear: () => void;
     add: (docs: ChrNpc[], init?: (doc: ChrNpc) => void) => void;
-    del: (ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[]) => void;
-    find: (id: `all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`) => ChrNpc;
-    reduce: <EMIT>(ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrNpc & EMIT>;
+    del: (ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[]) => void;
+    find: (id: `all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`) => ChrNpc;
+    reduce: <EMIT>(ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrNpc & EMIT>;
     filter: <A extends any[]>(validator: (o: ChrNpc, ...args: A) => boolean, key?: string) => (...filter_args: A) => {
-        reduce: <EMIT>(ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrNpc & EMIT>;
+        reduce: <EMIT>(ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrNpc & EMIT>;
         filter: any;
         sort: () => void;
         data: {
@@ -140,11 +140,11 @@ export declare const ChrJobs: {
     deploy: (json: any, init?: (doc: ChrJob) => void) => void;
     clear: () => void;
     add: (docs: ChrJob[], init?: (doc: ChrJob) => void) => void;
-    del: (ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[]) => void;
-    find: (id: `all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`) => ChrJob;
-    reduce: <EMIT>(ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrJob & EMIT>;
+    del: (ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[]) => void;
+    find: (id: `all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`) => ChrJob;
+    reduce: <EMIT>(ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrJob & EMIT>;
     filter: <A extends any[]>(validator: (o: ChrJob, ...args: A) => boolean, key?: string) => (...filter_args: A) => {
-        reduce: <EMIT>(ids: (`all_${string}` | `ririnra_${string}` | `mad_${string}` | `time_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrJob & EMIT>;
+        reduce: <EMIT>(ids: (`all_${string}` | `time_${string}` | `ririnra_${string}` | `mad_${string}` | `ger_${string}` | `fable_${string}` | `animal_${string}` | `school_${string}` | `changed_${string}` | `wa_${string}` | `sf_${string}`)[], emit: (o: EMIT) => void) => import("../../map-reduce/fast-sort").SortCmd<ChrJob & EMIT>;
         filter: any;
         sort: () => void;
         data: {

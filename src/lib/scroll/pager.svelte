@@ -7,9 +7,10 @@ export let chunk = 5
 export let list = []
 
 export let focus = ''
-export let last_page = Infinity
-export let next_page = 1
+export let page = 0
 
+let last_page = Infinity
+let next_page = 1
 let pages = []
 
 const min_page = 1
@@ -17,9 +18,9 @@ $: max_page = 1 + Math.floor(list.length / chunk)
 $: if (list.length) {
   const focus_idx = list.findIndex((o) => o._id === focus)
   if (focus && -1 < focus_idx) {
-    const now_page = 1 + Math.floor(focus_idx / chunk)
-    last_page = Math.min(max_page, now_page - 1)
-    next_page = Math.max(min_page, now_page + 1)
+    page = 1 + Math.floor(focus_idx / chunk)
+    last_page = Math.min(max_page, page - 1)
+    next_page = Math.max(min_page, page + 1)
   } else {
     last_page = Math.min(max_page, last_page, next_page)
     next_page = Math.max(min_page, last_page, next_page)

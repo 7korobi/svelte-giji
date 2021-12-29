@@ -25,11 +25,13 @@ import { Location } from '$lib/uri'
 import { default_story_query } from '$lib/pubsub/model-client'
 import { Sup, Btn, SearchText } from '$lib/design'
 
-import * as site from '../store'
 import { Talk, Post, Report } from '../chat'
+import { url, side, SideBits, summaryframe } from '$lib/site/store'
+import Mention from '$lib/site/inline/mention.svelte'
+import { Time } from '$lib/timer'
+import { portals } from '$lib/common'
 
-const { url } = site
-
+export let page: number
 export let messages: BookMessage[]
 export let regexp: RegExp
 export let refresh: any = undefined
@@ -42,12 +44,14 @@ $: event_ids = $oldlog_events.list.map((o) => o._id)
 $: back_event_id = slide(event_ids, event_id, -1)
 $: next_event_id = slide(event_ids, event_id, +1)
 
-$: memo_messages = memo_oldlog_messages()
-$: full_messages = full_oldlog_messages()
-$: normal_messages = normal_oldlog_messages()
-$: solo_messages = solo_oldlog_messages()
-$: extra_messages = extra_oldlog_messages()
-$: rest_messages = rest_oldlog_messages()
+$: event = $oldlog_events && oldlog_events.find(event_id)
+$: message = $oldlog_messages && oldlog_messages.find(message_id)
+$: memo_messages = memo_oldlog_messages(regexp)
+$: full_messages = full_oldlog_messages(regexp)
+$: normal_messages = normal_oldlog_messages(regexp)
+$: solo_messages = solo_oldlog_messages(regexp)
+$: extra_messages = extra_oldlog_messages(regexp)
+$: rest_messages = rest_oldlog_messages(regexp)
 
 $: switch (params.mode) {
   case 'memo':
@@ -68,6 +72,13 @@ $: switch (params.mode) {
   case 'rest':
     messages = $rest_messages.event[event_id]
     break
+}
+
+function clip(e: MouseEvent) {
+  const range = document.createRange()
+  range.selectNode(e.target as Node)
+  window.getSelection().addRange(range)
+  document.execCommand('copy')
 }
 
 function subids<T extends any[]>(id: string, separator = '-'): T {
@@ -132,6 +143,178 @@ function label(event_id: BOOK_EVENT_ID) {
     >
   </p>
 </Report>
+
+<div use:summaryframe.mount>
+  {#if message && event && $side & SideBits.posi.TimelineClock}
+    <div class="inframe mentions">
+      <div class="stable SSAY">
+        <hr />
+        <strong class="fine text"
+          ><!---->
+          <p class="left">by {message.potof?.sow_auth_id || '???'}</p>
+          <p class="left" style="white-space: nowrap;">
+            <button title="クリップボードへコピー" on:click={clip} cite={message._id}>
+              <Mention id={message._id} let:mention
+                >(<b>&gt;&gt;</b>{mention} {message.face?.name || ''})</Mention
+              >
+            </button>
+          </p>
+          <p class="right">
+            <span class="pull-left">{event.name} p{page}</span><Time at={message.write_at} />
+          </p>
+          <p class="right">
+            <span>会話</span><span title="クリップボードへコピー"
+              ><abbr class="btn">0:29</abbr></span
+            >
+          </p></strong
+        >
+      </div>
+    </div>
+  {/if}
+
+  {#if $side & SideBits.posi.UsersOn}
+    <div class="inframe header">
+      <div class="swipe">
+        <table>
+          <tfoot class="TITLE form tb-btn">
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <tr>
+              <th colspan="3"><sup>(スクロールします)</sup></th>
+              <th><a class="active">日程</a></th>
+              <th><a class="btn">状態</a></th>
+              <th><a class="btn">促</a></th>
+              <th colspan="2">
+                <a class="btn">回数</a>
+                <a class="btn" title="字数 ÷ 回数">平均</a>
+                <a class="btn">字数</a>
+                <a class="btn" title="字数 ÷ 範囲">密度</a></th
+              >
+              <th>
+                <a class="btn">最初</a>
+                <a class="btn" title="最後 － 最初">範囲</a>
+                <a class="btn">最後</a></th
+              >
+              <th> <a class="btn">勝敗</a></th>
+              <th colspan="2">
+                <a class="btn">陣営</a>
+                <a class="btn">役割</a></th
+              >
+              <th><a class="btn">希望</a></th>
+              <th><a class="btn">補足</a></th>
+              <th class="last" />
+            </tr>
+          </tfoot>
+          <tbody class="potofs fine tlist">
+            <tr>
+              <td class="c mdi" />
+              <th class="r leave">肉屋</th>
+              <th class="l leave">ニール</th>
+              <td class="r leave" />
+              <td class="c leave">―</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r leave">食いしん坊</th>
+              <th class="l leave">マリアンヌ</th>
+              <td class="r leave" />
+              <td class="c leave">―</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r victim">厭世家</th>
+              <th class="l victim">サイモン</th>
+              <td class="r victim"> 2日</td>
+              <td class="c victim">襲撃</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r executed">聖歌隊員</th>
+              <th class="l executed">レティーシャ</th>
+              <td class="r executed"> 3日</td>
+              <td class="c executed">処刑</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r victim">靴磨き</th>
+              <th class="l victim">トニー</th>
+              <td class="r victim"> 3日</td>
+              <td class="c victim">襲撃</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r victim">奏者</th>
+              <th class="l victim">ビリー</th>
+              <td class="r victim"> 4日</td>
+              <td class="c victim">襲撃</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r executed">店番</th>
+              <th class="l executed">ソフィア</th>
+              <td class="r executed"> 4日</td>
+              <td class="c executed">処刑</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r executed">漂白工</th>
+              <th class="l executed">ピッパ</th>
+              <td class="r executed"> 5日</td>
+              <td class="c executed">処刑</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r victim">牧人</th>
+              <th class="l victim">リンダ</th>
+              <td class="r victim"> 5日</td>
+              <td class="c victim">襲撃</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r victim">流浪者</th>
+              <th class="l victim">ペラジー</th>
+              <td class="r victim"> 6日</td>
+              <td class="c victim">襲撃</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r executed">若者</th>
+              <th class="l executed">テッド</th>
+              <td class="r executed"> 6日</td>
+              <td class="c executed">処刑</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r live">子守り</th>
+              <th class="l live">パティ</th>
+              <td class="r live" />
+              <td class="c live">生存者</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+            <tr>
+              <td class="c mdi" />
+              <th class="r live">小娘</th>
+              <th class="l live">ゾーイ</th>
+              <td class="r live" />
+              <td class="c live">生存者</td>
+              <td class="l"><del>...</del></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {/if}
+</div>
 
 <style lang="scss">
 </style>

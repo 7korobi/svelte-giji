@@ -1,5 +1,6 @@
 import { onBackgroundMessage, getMessaging, isSupported } from 'firebase/messaging/sw'
 import { initializeApp, FirebaseOptions } from 'firebase/app'
+import { listen } from 'svelte/internal'
 import { build, files, timestamp } from '$service-worker'
 import { live } from '$lib/site'
 
@@ -10,7 +11,7 @@ console.log({ build, files, timestamp })
 // https://firebase.google.com/docs/web/setup#config-object
 const fireApp = initializeApp(live.firebase)
 
-self.addEventListener('activate', (event: any) => {
+listen(self, 'activate', (event: any) => {
   event.waitUntil((self as any).clients.claim())
 })
 

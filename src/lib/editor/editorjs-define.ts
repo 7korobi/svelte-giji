@@ -3,6 +3,7 @@ import type {
   BlockToolConstructorOptions,
   InlineToolConstructorOptions
 } from '@editorjs/editorjs/types/tools'
+import { listen } from 'svelte/internal'
 
 type Align = '' | 'center' | 'right'
 
@@ -100,15 +101,15 @@ class Block {
         title: 'Right alignment'
       })
     ]
-    btns[0].addEventListener('click', () => {
+    const bye1 = listen(btns[0], 'click', () => {
       this.data.align = ''
       refresh()
     })
-    btns[1].addEventListener('click', () => {
+    const bye2 = listen(btns[1], 'click', () => {
       this.data.align = 'center'
       refresh()
     })
-    btns[2].addEventListener('click', () => {
+    const bye3 = listen(btns[2], 'click', () => {
       this.data.align = 'right'
       refresh()
     })

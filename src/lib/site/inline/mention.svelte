@@ -40,5 +40,5 @@ $: if (null === mark) {
 </script>
 
 {#if is_show}
-  <q cite="">{mention}</q>
+  <q cite=""><slot {mention} /></q>
 {/if}
