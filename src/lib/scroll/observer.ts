@@ -1,8 +1,15 @@
 import { __BROWSER__ } from '$lib/common'
 
-export type RANGE = RANGE_STATE | 'focus' | 'horizon' | 'vertical'
+export type RANGE = RANGE_STATE | 'focus' | 'horizon' | 'vertical' | 'box'
 type RANGE_STATE = 'compress' | 'hidden' | 'peep' | 'show'
-type RANGE_FOCUS = 'focus' | 'top' | 'right' | 'bottom' | 'left'
+
+export const bit = {
+  focus: 0b10000,
+  top: 0b01000,
+  right: 0b00100,
+  bottom: 0b00010,
+  left: 0b00001
+}
 
 type OperationsElement = HTMLDivElement & { tracker: Operations }
 
@@ -23,11 +30,12 @@ const SHOW = 'show'
 const FOCUS = 'focus'
 const HORIZON = 'horizon'
 const VERTICAL = 'vertical'
+const BOX = 'box'
 
 const noop = () => {}
 
 class Operations {
-  focus?: RANGE_FOCUS
+  focus?: number
   state?: RANGE_STATE
   el: OperationsElement
   options: OperationsOptions
@@ -64,13 +72,13 @@ function cbFocus(entries: IntersectionObserverEntry[]) {
     const tracker = (target as any).tracker as Operations
     const { change } = tracker.options
 
-    let sides = []
-    if (isIntersecting) sides.push('focus')
-    if (rootBounds.top > boundingClientRect.bottom) sides.push('top')
-    if (rootBounds.right < boundingClientRect.left) sides.push('right')
-    if (rootBounds.bottom < boundingClientRect.top) sides.push('bottom')
-    if (rootBounds.left > boundingClientRect.right) sides.push('left')
-    tracker.focus = sides.join('-') as RANGE_FOCUS
+    let sides = 0
+    if (isIntersecting) sides |= bit.focus
+    if (rootBounds.top > boundingClientRect.top) sides |= bit.top
+    if (rootBounds.right < boundingClientRect.right) sides |= bit.right
+    if (rootBounds.bottom < boundingClientRect.bottom) sides |= bit.bottom
+    if (rootBounds.left > boundingClientRect.left) sides |= bit.left
+    tracker.focus = sides
     change(tracker)
   })
 }
@@ -107,6 +115,11 @@ function observeFactory() {
     threshold: 0
   })
 
+  const boxObserver = new IntersectionObserver(cbFocus, {
+    rootMargin: '0%',
+    threshold: Array.from({ length: 100 }, (_, k) => k / 100)
+  })
+
   return observer
   function observer(range: RANGE[], options: OperationsOptions) {
     return new Operations(options, function (this, el) {
@@ -120,6 +133,7 @@ function observeFactory() {
       if (range.includes(FOCUS)) coreObserver.observe(el)
       if (range.includes(HORIZON)) horizonObserver.observe(el)
       if (range.includes(VERTICAL)) verticalObserver.observe(el)
+      if (range.includes(BOX)) boxObserver.observe(el)
 
       return { destroy }
       function destroy() {
@@ -127,6 +141,9 @@ function observeFactory() {
         peepObserver.unobserve(el)
         showObserver.unobserve(el)
         coreObserver.unobserve(el)
+        horizonObserver.unobserve(el)
+        verticalObserver.unobserve(el)
+        boxObserver.unobserve(el)
       }
     })
   }

@@ -71,6 +71,6 @@ export declare type BookStory = {
     comment?: presentation;
 };
 export declare type BOOK_STORY_IDX = `${number}`;
-export declare type BOOK_STORY_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}`;
+export declare type BOOK_STORY_ID = `${string}-${BOOK_STORY_IDX}`;
 export declare type ROLETABLE = typeof ROLETABLES[number];
 export declare const ROLETABLES: readonly ["custom", "default", "hamster", "lover", "mistery", "random", "test1st", "test2nd", "ultimate", "wbbs_c", "wbbs_f", "wbbs_g"];

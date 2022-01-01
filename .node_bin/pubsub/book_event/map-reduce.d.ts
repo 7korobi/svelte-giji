@@ -1,14 +1,14 @@
 import type { presentation } from '../_type/string';
-import type { BOOK_FOLDER_IDX, BOOK_STORY_IDX, BOOK_STORY_ID, BookStory } from '../map-reduce';
+import type { BOOK_STORY_IDX, BOOK_STORY_ID, BookStory } from '../map-reduce';
 export declare type BookEvent = {
     _id: BOOK_EVENT_ID;
     story_id: BOOK_STORY_ID;
     story: BookStory;
-    turn: number;
     winner: WIN;
     write_at: Date;
     created_at?: Date;
     updated_at?: Date;
+    turn: number;
     event?: null;
     epilogue?: 0 | -1;
     grudge?: 0 | -1;
@@ -27,6 +27,6 @@ export declare type BookEvent = {
     name?: presentation;
 };
 export declare type BOOK_EVENT_IDX = `${number}` | 'top';
-export declare type BOOK_EVENT_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}`;
+export declare type BOOK_EVENT_ID = `${string}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}`;
 export declare type WIN = typeof WINS[number];
 export declare const WINS: readonly ["NONE", "HUMAN", "EVIL", "WOLF", "PIXI", "HATER", "LOVER", "LONEWOLF", "GURU", "DISH", "MOB"];

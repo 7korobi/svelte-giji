@@ -1,19 +1,34 @@
 <script lang="ts">
+import { tick } from 'svelte'
 import Banner from '$lib/site/chat/banner.svelte'
-import Focus from './focus.svelte'
-import Goal from './goal.svelte'
 
+import Focus from './focus.svelte'
+import { bit, observe, RANGE } from './observer'
+
+export let range = ['horizon'] as RANGE[]
 export let chunk = 5
 export let list = []
 
 export let focus = ''
-export let page = 0
+export let page = 1
 
+let global_focus = 0
 let last_page = Infinity
 let next_page = 1
 let pages = []
 
+const tracker = observe(['box'], {
+  async change(ops) {
+    global_focus = ops.focus
+  }
+})
+
 const min_page = 1
+$: console.log({
+  top: bit.top & global_focus,
+  bottom: bit.bottom & global_focus,
+  focus: bit.focus & global_focus
+})
 $: max_page = 1 + Math.floor(list.length / chunk)
 $: if (list.length) {
   const focus_idx = list.findIndex((o) => o._id === focus)
@@ -22,23 +37,37 @@ $: if (list.length) {
     last_page = Math.min(max_page, page - 1)
     next_page = Math.max(min_page, page + 1)
   } else {
-    last_page = Math.min(max_page, last_page, next_page)
-    next_page = Math.max(min_page, last_page, next_page)
+    const is_top = (global_focus & bit.top) === bit.top
+    const is_bottom = (global_focus & bit.bottom) === bit.bottom
+    if (is_top) {
+      page = max_page
+      last_page = Math.max(min_page, max_page - 1)
+      next_page = max_page
+    }
+    if (is_bottom) {
+      page = min_page
+      last_page = min_page
+      next_page = Math.min(max_page, min_page + 1)
+    }
+    if (!is_top && !is_bottom) {
+      last_page = Math.min(max_page, last_page, next_page)
+      next_page = Math.max(min_page, last_page, next_page)
+    }
   }
   const length = Math.max(1, 1 + next_page - last_page)
   pages = Array.from({ length }, (_, k) => k + last_page)
 }
 </script>
 
-{#each pages as page (page)}
-  <Banner>{`p${page}`}</Banner>
-  {#each list.slice((page - 1) * chunk, page * chunk) as o (o?._id)}
-    {#if o}
-      <Focus id={o._id} base={o.event_id} bind:value={focus}>
-        <slot item={o} />
-      </Focus>
-    {/if}
+<div use:tracker.listener>
+  {#each pages as page (page)}
+    <Banner>{`p${page}`}</Banner>
+    {#each list.slice((page - 1) * chunk, page * chunk) as o (o?._id)}
+      {#if o}
+        <Focus {range} id={o._id} base={o.event_id} bind:value={focus}>
+          <slot item={o} />
+        </Focus>
+      {/if}
+    {/each}
   {/each}
-{/each}
-
-<Banner><Goal onPeep={() => (next_page = Math.min(next_page + 1, max_page))}>次頁…</Goal></Banner>
+</div>

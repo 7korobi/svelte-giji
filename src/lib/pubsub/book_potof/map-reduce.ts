@@ -6,11 +6,13 @@ import type {
   BOOK_EVENT_ID,
   BOOK_EVENT_IDX,
   BookCard,
+  BookCardSelect,
+  BookCardLive,
+  BookCardRole,
   BookStat,
   ROLE_ID,
   CHR_SET_IDX
 } from '../map-reduce'
-import type { SayLimit } from '../set_say/map-reduce'
 
 export type BookPotof = {
   _id: ObjectId | BOOK_POTOF_ID
@@ -25,27 +27,44 @@ export type BookPotof = {
   clearance: number
   zapcount: number
 
-  cards: BookCard[]
+  cards: [BookCardSelect, BookCardLive, ...BookCardRole[]]
+
   select?: ROLE_ID
+
+  live?: LiveType
+  deathday?: number
+
   role?: ROLE_ID[]
   rolestate?: number
 
   stats: BookStat[]
-  commit?: boolean
-  live?: LiveType
-  deathday?: number
-
-  overhear: BOOK_EVENT_IDX[]
+  stat_give: BookStat
   point: {
     actaddpt: number
     saidcount: number
     saidpoint: number
   }
+
+  stat_said: BookStat
+  say: {
+    gsay: number
+    say: number
+    say_act: number
+    tsay?: number
+    spsay?: number
+    wsay?: number
+    xsay?: number
+  }
+
+  stat_commit: BookStat
+  commit?: boolean
+
+  overhear: BOOK_EVENT_IDX[]
   timer: {
     entrieddt: Date
     limitentrydt: Date
   }
-  say: SayLimit
+
   jobname?: presentation
   history?: presentation
 }

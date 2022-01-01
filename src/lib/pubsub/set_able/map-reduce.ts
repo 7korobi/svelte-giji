@@ -36,6 +36,7 @@ export type Able = {
   text?: ('talk' | 'memo' | 'act')[]
   sw?: presentation
   pass?: presentation
+  target?: presentation
   btn?: presentation
   change?: presentation
   help: presentation

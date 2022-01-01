@@ -32,7 +32,7 @@ type TrapRole = {
   _id: TRAP_ID
   group: 'TRAP'
   win: null
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   label: presentation
   help: presentation
 }
@@ -41,7 +41,7 @@ type TurnRole = {
   _id: TURN_ID
   group: 'TURN'
   win: null
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   label: presentation
   help: presentation
 }
@@ -50,7 +50,7 @@ type LiveRole = {
   _id: LIVE_ID
   group: 'LIVE' | null
   win: null
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   label: presentation
   help: presentation
 }
@@ -59,7 +59,7 @@ export type MobRole = {
   _id: MOB_ID
   group: 'MOB'
   win: 'MOB' | 'HUMAN'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   label: presentation
   help: presentation
 }
@@ -68,7 +68,7 @@ type SpecialRole = {
   _id: SPECIAL_ID
   group: 'SPECIAL'
   win: null
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   label: presentation
   help: presentation
 }
@@ -77,7 +77,7 @@ type GiftRole = {
   _id: GIFT_ID
   group: 'GIFT'
   win: WIN | null
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd?: 'role'
   label: presentation
@@ -89,7 +89,7 @@ type HumanRole = {
   _id: ROLE_ID
   group: 'HUMAN'
   win: 'HUMAN'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -100,7 +100,7 @@ type EvilRole = {
   _id: ROLE_ID
   group: 'EVIL'
   win: 'EVIL'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -111,7 +111,7 @@ type WolfRole = {
   _id: ROLE_ID
   group: 'WOLF'
   win: 'WOLF' | 'LONEWOLF'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -122,7 +122,7 @@ type PixiRole = {
   _id: ROLE_ID
   group: 'PIXI'
   win: 'PIXI'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -133,7 +133,7 @@ type OtherRole = {
   _id: ROLE_ID
   group: 'OTHER'
   win: 'HATER' | 'LOVER' | 'GURU' | 'DISH'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -144,7 +144,7 @@ type BindRole = {
   _id: ROLE_ID
   group: 'BIND'
   win: 'HATER' | 'LOVER'
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd: 'role'
   label: presentation
@@ -155,7 +155,7 @@ type disabledRole = {
   _id: ROLE_ID
   group: undefined
   win: WIN
-  able_ids: ABLE_ID
+  able_ids: ABLE_ID[]
   able?: presentation
   cmd?: 'role'
   label: presentation

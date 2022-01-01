@@ -1,16 +1,29 @@
 import json from '$lib/game/json/set_says.json';
 import type { presentation } from '../_type/string';
 export declare type SAY_LIMIT_ID = keyof typeof json;
+export declare type PhaseLimits = {
+    SSAY: number;
+    GSAY: number;
+    TSAY: number;
+    VSSAY: number;
+    VGSAY: number;
+    PSAY: number;
+    WSAY: number;
+    XSAY: number;
+};
 export declare type SayLimit = {
     _id: SAY_LIMIT_ID;
     label: presentation;
-    say_act?: number;
-    say: number;
-    tsay: number;
-    spsay?: number;
-    wsay?: number;
-    xsay?: number;
-    gsay?: number;
+    help: presentation;
+    recovery?: '24h';
+    unit: '回' | 'pt';
+    count?: PhaseLimits;
+    all?: PhaseLimits;
+    max: {
+        size: number;
+        word: number;
+        line: number;
+    };
 };
 export declare const SayLimits: {
     deploy: (json: any, init?: (doc: SayLimit) => void) => void;

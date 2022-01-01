@@ -5,11 +5,13 @@ export type BookEvent = {
   _id: BOOK_EVENT_ID
   story_id: BOOK_STORY_ID
   story: BookStory
-  turn: number
   winner: WIN
+
   write_at: Date
   created_at?: Date
   updated_at?: Date
+
+  turn: number
   event?: null
   epilogue?: 0 | -1
   grudge?: 0 | -1
@@ -29,7 +31,7 @@ export type BookEvent = {
 }
 
 export type BOOK_EVENT_IDX = `${number}` | 'top'
-export type BOOK_EVENT_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}`
+export type BOOK_EVENT_ID = `${string}-${BOOK_STORY_IDX}-${BOOK_EVENT_IDX}`
 export type WIN = typeof WINS[number]
 
 export const WINS = [

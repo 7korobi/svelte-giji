@@ -2584,6 +2584,48 @@ for (const _id in sow_folder_default) {
   Folders.add([o]);
 }
 
+// src/lib/pubsub/book_message/map-reduce.ts
+var phase_data = {
+  DEL: [true, " ", "private", "-", "-"],
+  AIM: [true, "-", "AIM", "\u5185\u7DD2", "\u5185\u7DD2\u8A71"],
+  mS: [true, "#", "MAKER", "\u6751\u5EFA", "\u6751\u5EFA\u3066\u767A\u8A00"],
+  mA: [true, " ", "MAKER", "\u6751\u5EFA", "\u6751\u5EFA\u3066ACT"],
+  aS: [true, "%", "ADMIN", "\u7BA1\u7406", "\u7BA1\u7406\u767A\u8A00"],
+  aA: [true, " ", "ADMIN", "\u7BA1\u7406", "\u7BA1\u7406ACT"],
+  cI: [true, " ", "TITLE", "\u51FA\u6F14", "\u51FA\u6F14\u4E00\u89A7"],
+  iI: [true, " ", "private", "\u6D3B\u52D5", "\u79D8\u533F\u6D3B\u52D5"],
+  II: [true, " ", "public", "\u6D3B\u52D5", "\u516C\u958B\u6D3B\u52D5"],
+  SS: [true, "", "SSAY", "\u4F1A\u8A71", "\u901A\u5E38\u306E\u767A\u8A00"],
+  SA: [true, " ", "SSAY", "\u4F1A\u8A71", "\u901A\u5E38ACT"],
+  VS: [true, "@", "VSSAY", "\u898B\u7269", "\u898B\u7269\u4EBA\u767A\u8A00"],
+  VA: [true, " ", "VSSAY", "\u898B\u7269", "\u898B\u7269\u4EBA\u306EACT"],
+  TS: [true, "-", "TSAY", "\u72EC\u8A00", "\u72EC\u308A\u8A00"],
+  TA: [true, " ", "TSAY", "\u681E", "\u681E"],
+  GS: [true, "+", "GSAY", "\u5893\u4E0B", "\u5893\u4E0B\u306E\u767A\u8A00"],
+  GA: [true, " ", "GSAY", "\u5893\u4E0B", "\u5893\u4E0B\u306EACT"],
+  PS: [true, "=", "PSAY", "\u5171\u9CF4", "\u5171\u9CF4\u306E\u4F1A\u8A71"],
+  PA: [true, " ", "PSAY", "\u5171\u9CF4", "\u5171\u9CF4\u306EACT"],
+  WS: [true, "*", "WSAY", "\u4EBA\u72FC", "\u4EBA\u72FC\u306E\u3055\u3055\u3084\u304D"],
+  WA: [true, " ", "WSAY", "\u4EBA\u72FC", "\u4EBA\u72FC\u306EACT"],
+  XS: [true, "!", "XSAY", "\u5FF5\u6CE2", "\u5FF5\u8A71\uFF08\u5FF5\u6CE2\u306E\u6C11\uFF09"],
+  XA: [true, " ", "XSAY", "\u5FF5\u6CE2", "\u5FF5act\uFF08\u5FF5\u6CE2\u306E\u6C11\uFF09"],
+  BS: [true, "!", "XSAY", "\u5FF5\u6CE2", "\u5FF5\u8A71\uFF08\u8759\u8760\u4EBA\u9593\uFF09"],
+  BA: [true, " ", "XSAY", "\u5FF5\u6CE2", "\u5FF5act\uFF08\u8759\u8760\u4EBA\u9593\uFF09"]
+};
+var Phases = MapReduce({
+  format: () => ({
+    list: []
+  }),
+  reduce: (data, doc) => {
+  },
+  order: (doc, { sort: sort3 }) => {
+  }
+});
+for (const key in phase_data) {
+  const [is_show, mark, handle, label, text] = phase_data[key];
+  Phases.add([{ _id: key, is_show, mark, handle, label, text }]);
+}
+
 // src/lib/game/json/chr_face.json
 var chr_face_default = [
   {
@@ -9095,7 +9137,6 @@ Tags.deploy(chr_tag_default);
 var editvilform = {
   group: "GM",
   at: "around",
-  cmd: "editvilform",
   btn: "\u6751\u3092\u7DE8\u96C6\u3059\u308B",
   change: "\u6751\u306E\u7DE8\u96C6\u30D5\u30A9\u30FC\u30E0\u3092\u78BA\u8A8D\u3001\u4FEE\u6B63\u3057\u307E\u3059\u3002",
   help: ""
@@ -9103,7 +9144,6 @@ var editvilform = {
 var muster = {
   group: "GM",
   at: "prologue",
-  cmd: "muster",
   btn: "\u70B9\u547C\uFF01",
   change: "\u5168\u54E1\u3092\u672A\u767A\u8A00\u72B6\u614B\u306B\u3057\u307E\u3059\u3002\u672A\u767A\u8A00\u8005\u306F\uFF11\u65E5\u305D\u306E\u307E\u307E\u767A\u8A00\u304C\u306A\u3044\u3068\u3001\u81EA\u52D5\u9000\u51FA\u3057\u307E\u3059\u3002",
   help: ""
@@ -9111,7 +9151,6 @@ var muster = {
 var update = {
   group: "GM",
   at: "all",
-  cmd: "update",
   btn: "\u66F4\u65B0\uFF01",
   change: "\u305F\u3060\u3061\u306B\u66F4\u65B0\u3057\u3001\u6B21\u306E\u65E5\u3092\u8FCE\u3048\u307E\u3059\u3002\u304A\u899A\u609F\u306F\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F",
   help: ""
@@ -9119,23 +9158,18 @@ var update = {
 var scrapvil = {
   group: "GM",
   at: "all",
-  cmd: "scrapvil",
   btn: "\u5EC3\u6751\uFF01",
   change: "\u305F\u3060\u3061\u306B\u6751\u3092\u5EC3\u6751\u306B\u3057\u307E\u3059\u3002\u5EC3\u6751\u306B\u306A\u3063\u305F\u6751\u306F\u30A8\u30D4\u30ED\u30FC\u30B0\u306B\u306A\u308A\u307E\u3059\u3002\u304A\u899A\u609F\u306F\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F",
   help: ""
 };
 var exit2 = {
-  group: "POTOF",
   at: "prologue",
-  cmd: "exit",
   btn: "\u9000\u51FA\u2026",
   change: "\u6751\u3092\u7ACB\u3061\u53BB\u308A\u307E\u3059\u3002",
   help: ""
 };
 var commit = {
-  group: "POTOF",
   at: "progress",
-  cmd: "commit",
   sw: "\u6642\u9593\u3092\u9032\u3081\u308B",
   pass: "\uFF08\u6642\u9593\u3092\u9032\u3081\u306A\u3044\uFF09",
   change: "\u6642\u9593\u3092\u9032\u3081\u308B\u304B\u3069\u3046\u304B\u3001\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
@@ -9162,24 +9196,32 @@ var cling = {
   change: "\u3042\u306A\u305F\u304C\u6BBA\u5BB3\u3055\u308C\u305F\u3068\u3057\u305F\u3089\u3001\u72AF\u4EBA\u3092\u9053\u9023\u308C\u306B\u3059\u308B\u304B\u3069\u3046\u304B\u3001\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   help: "\u85AC\u3092\u670D\u7528\u3057\u305F\u591C\u3001\u3082\u3057\u51E6\u5211\u4EE5\u5916\u306E\u8981\u56E0\u3067\u547D\u3092\u843D\u3068\u3057\u305F\u5834\u5408\u3001\u305D\u306E\u72AF\u4EBA\u3092\u9053\u9023\u308C\u306B\u3057\u307E\u3059\u3002\u4EBA\u72FC\u306E\u8972\u6483\u306E\u5834\u5408\u3001\u8972\u6483\u5B9F\u884C\u8005\u304C\u5BFE\u8C61\u3068\u306A\u308A\u307E\u3059\u3002"
 };
-var guru = {
+var incite = {
+  at: "all",
   for: "live",
+  target: "\u8A71\u306E\u7D9A\u304D\u3092\u4FC3\u3059",
+  pass: "\u2015\u2015\u2015",
+  change: "\u305F\u3060\u3061\u306B\u767A\u8A00\u6B8B\u91CF\u3092\u56DE\u5FA9\u3055\u305B\u305F\u3044\u76F8\u624B\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+  help: "\u8A71\u306E\u7D9A\u304D\u3092\u4FC3\u3057\u3001\u3082\u3046\u5C11\u3057\u3060\u3051\u767A\u8A00\u3057\u3066\u3082\u3089\u3046\u4F59\u529B\u3092\u4E0E\u3048\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002"
+};
+var guru = {
   at: "progress",
+  for: "live",
   targets: "\u8A98\u3046",
   pass: "\uFF08\u30D1\u30B9\uFF09",
   change: "\u8A98\u3044\u8FBC\u3080\u72A0\u7272\u8005\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   help: "\u6BCE\u6669\u3075\u305F\u308A\u305A\u3064\u3001\u597D\u304D\u306A\u4EBA\u7269\u3092\u3072\u305D\u304B\u306B\u8A98\u3044\u8FBC\u3080\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\u81EA\u5206\u81EA\u8EAB\u3092\u8A98\u3046\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093\u3002\n\u8A98\u3044\u8FBC\u307E\u308C\u305F\u5F53\u4EBA\u305F\u3061\u306F\u591C\u306A\u591C\u306A\u8E0A\u308A\u660E\u304B\u3057\u3001\u305D\u306E\u3053\u3068\u3092\u899A\u3048\u3066\u3044\u307E\u3059\u3002\u3057\u304B\u3057\u3001\u5F7C\u3089\u306E\u80FD\u529B\u3084\u6240\u5C5E\u9663\u55B6\u306A\u3069\u306B\u5909\u5316\u306F\u3042\u308A\u307E\u305B\u3093\u3002"
 };
 var bitch = {
-  for: "live",
   at: "start",
+  for: "live",
   targets: "\u904A\u3076",
   change: "\u7D46\u3092\u7D50\u3076\u76F8\u624B\u3068\u3001\u5F04\u3076\u904A\u3073\u76F8\u624B\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   help: "\u4E00\u65E5\u76EE\u3001\u4E00\u4EBA\u76EE\u306B\u9078\u629E\u3057\u305F\u4EBA\u7269\u3092\u672C\u547D\u306E\u604B\u4EBA\u3068\u3057\u3066\u201C\u904B\u547D\u306E\u7D46\u201D\u3092\u7D50\u3073\u3064\u3051\u3001\u4E8C\u4EBA\u76EE\u306F\u7D46\u3092\u7D50\u3076\u3075\u308A\u3092\u3057\u3066\u624B\u7389\u306B\u3068\u308A\u307E\u3059\u3002\n\u201C\u904B\u547D\u306E\u7D46\u201D\u3092\u7D50\u3093\u3060\u4E8C\u4EBA\u306F\u3001\u7247\u65B9\u304C\u6B7B\u4EA1\u3059\u308B\u3068\u5F8C\u3092\u8FFD\u3063\u3066\u6B7B\u4EA1\u3057\u307E\u3059\u3002\u3082\u3046\u4E00\u4EBA\u306F\u3069\u3046\u3067\u3082\u3088\u3044\u306E\u3067\u3059\u304C\u3001\u305D\u3046\u601D\u308F\u305B\u306A\u3044\u3053\u307E\u3081\u306A\u30B1\u30A2\u304C\u5927\u5207\u3067\u3059\u3002"
 };
 var bonds = {
-  for: "live",
   at: "start",
+  for: "live",
   targets: "\u7D50\u3076",
   change: "\u7D46\u3067\u7D50\u3076\u4E8C\u4EBA\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   help: "\u4E00\u65E5\u76EE\u3001\u597D\u304D\u306A\u4E8C\u4EBA\u306B\u201C\u904B\u547D\u306E\u7D46\u201D\u3092\u7D50\u3073\u3064\u3051\u308B\u4E8B\u304C\u3067\u304D\u307E\u3059\u3002\u201C\u904B\u547D\u306E\u7D46\u201D\u3092\u7D50\u3093\u3060\u4E8C\u4EBA\u306F\u3001\u7247\u65B9\u304C\u6B7B\u4EA1\u3059\u308B\u3068\u5F8C\u3092\u8FFD\u3063\u3066\u6B7B\u4EA1\u3057\u307E\u3059\u3002"
@@ -9282,7 +9324,6 @@ var hike = {
   help: "\u7279\u6B8A\u306A\u80FD\u529B\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u81EA\u899A\u3057\u3066\u3044\u307E\u305B\u3093\u3002\u591C\u306F\u7A4D\u6975\u7684\u306B\u5916\u51FA\u3057\u3066\u3001\u69D8\u5B50\u3092\u3055\u3050\u308A\u307E\u3057\u3087\u3046\u3002"
 };
 var vote = {
-  group: "POTOF",
   for: "live",
   at: "main",
   cmd: "vote",
@@ -9291,16 +9332,7 @@ var vote = {
   change: "\u51E6\u5211\u3059\u308B\u76F8\u624B\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   help: "\u5168\u54E1\u3067\u591A\u6570\u6C7A\u3092\u3057\u3001\u4E00\u4EBA\u3060\u3051\u51E6\u5211\u3057\u307E\u3059\u3002"
 };
-var vote_role = {
-  for: "live",
-  at: "main",
-  target: "\u6295\u7968",
-  pass: "\uFF08\u30D1\u30B9\uFF09",
-  change: "\u51E6\u5211\u3059\u308B\u76F8\u624B\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-  help: ""
-};
 var entrust = {
-  group: "POTOF",
   for: "live",
   at: "main",
   cmd: "vote",
@@ -9495,37 +9527,37 @@ var hide_for_gift = {
 };
 var disable_vote = {
   group: "STATUS",
-  disable: ["vote"],
+  disable_able: ["vote"],
   label: "<s>\u6295\u7968</s>",
   help: ""
 };
 var disable_special = {
   group: "STATUS",
-  disable: ["gift", "role"],
+  disable_card: ["gift", "role"],
   label: "<s>\u5168\u80FD\u529B</s>",
   help: "\u3042\u306A\u305F\u306F\u3082\u3046\u7279\u6B8A\u80FD\u529B\u3092\u4F7F\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002"
 };
 var disable_gift = {
   group: "STATUS",
-  disable: ["gift"],
+  disable_card: ["gift"],
   label: "<s>\u6069\u6075</s>",
   help: "\u3042\u306A\u305F\u306F\u3082\u3046\u6069\u6075\u80FD\u529B\u3092\u4F7F\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002"
 };
 var disable_role = {
   group: "STATUS",
-  disable: ["role"],
+  disable_card: ["role"],
   label: "<s>\u80FD\u529B</s>",
   help: "\u3042\u306A\u305F\u306F\u3082\u3046\u5F79\u8077\u80FD\u529B\u3092\u4F7F\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002"
 };
 var disable_poison = {
   group: "STATUS",
-  disable: ["poison"],
+  disable_able: ["poison"],
   label: "<s>\u6BD2\u85AC</s>",
   help: "\u3042\u306A\u305F\u306F\u3082\u3046\u6BD2\u85AC\u3092\u4F7F\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002"
 };
 var disable_analeptic = {
   group: "STATUS",
-  disable: ["analeptic"],
+  disable_able: ["analeptic"],
   label: "<s>\u8607\u751F\u85AC</s>",
   help: "\u3042\u306A\u305F\u306F\u3082\u3046\u8607\u751F\u85AC\u3092\u4F7F\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002"
 };
@@ -9593,7 +9625,6 @@ var XSAY = {
   help: "\u3042\u306A\u305F\u306F\u3001\u5FF5\u6CE2\u661F\u3067\u3057\u304B\u805E\u3053\u3048\u306A\u3044\u4F1A\u8A71\u304C\u53EF\u80FD\u3067\u3059\u3002"
 };
 var GSAY = {
-  group: "POTOF",
   cmd: "write",
   text: ["talk", "memo", "act"],
   label: "\u4F1A\u8A71",
@@ -9606,7 +9637,6 @@ var MSAY = {
   help: "\u3042\u306A\u305F\u306F<b>_NPC_</b>\u306E\u53E3\u3092\u501F\u308A\u3001\u597D\u304D\u306A\u8A00\u8449\u3092\u4F1D\u3048\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002"
 };
 var AIM = {
-  group: "POTOF",
   for: "near",
   cmd: "write",
   text: ["talk", "memo"],
@@ -9614,28 +9644,24 @@ var AIM = {
   help: null
 };
 var TSAY = {
-  group: "POTOF",
   cmd: "write",
   text: ["talk", "memo"],
   label: "\u72EC\u308A\u8A00",
   help: null
 };
 var SSAY = {
-  group: "POTOF",
   cmd: "write",
   text: ["talk", "memo", "act"],
   label: "\u4F1A\u8A71",
   help: null
 };
 var VSAY = {
-  group: "POTOF",
   cmd: "write",
   text: ["talk", "memo", "act"],
   label: "\u4F1A\u8A71",
   help: null
 };
 var VGSAY = {
-  group: "POTOF",
   cmd: "write",
   text: ["talk", "memo", "act"],
   label: "\u4F1A\u8A71",
@@ -9651,6 +9677,7 @@ var set_ables_default = {
   night,
   dish,
   cling,
+  incite,
   guru,
   bitch,
   bonds,
@@ -9667,7 +9694,6 @@ var set_ables_default = {
   scapegoat,
   hike,
   vote,
-  vote_role,
   entrust,
   jammer,
   snatch,
@@ -11090,7 +11116,7 @@ var decide = {
   win: null,
   group: "GIFT",
   able: "\u6295\u7968",
-  able_ids: ["vote_role"],
+  able_ids: ["vote"],
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Gift)GIFTID_DECIDE" TARGET="_blank">\u6C7A\u5B9A\u8005</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u306F\u8FFD\u52A0\u7968\u3092\u6295\u3058\u308B\u6A29\u5229\u3092\u6301\u3061\u3064\u3065\u3051\u307E\u3059\u3002\u884C\u4F7F\u3059\u308B\u3053\u3068\u3067\u3001\u5065\u5728\u3092\u793A\u3059\u3053\u3068\u3082\u3067\u304D\u308B\u3067\u3057\u3087\u3046\u3002'
 };
 var seeronce = {
@@ -11113,7 +11139,7 @@ var lover = {
   win: null,
   group: "GIFT",
   able: "\u5165\u9580",
-  able_ids: ["aura", "bond", "vote", "entrust"],
+  able_ids: ["aura", "bond"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_LOVER" TARGET="_blank">\u5F1F\u5B50</A>\u3067\u3059\u3002 \u597D\u304D\u306A\u4EBA\u7269\u3092\u5E2B\u5320\u3068\u3057\u3066\u9078\u3073\u3001\u5F1F\u5B50\u5165\u308A\u3057\u307E\u3059\u3002\u6B21\u306E\u671D\u3001\u3042\u306A\u305F\u306F\u982D\u89D2\u3092\u3042\u3089\u308F\u3057\u3001\u7D46\u306E\u5E2B\u5320\u3068\u540C\u3058\u5F79\u8077\u306B\u306A\u3063\u3066\u3044\u307E\u3059\u3002'
 };
@@ -11121,7 +11147,7 @@ var robber = {
   label: "\u76D7\u8CCA",
   win: null,
   group: "GIFT",
-  able_ids: ["aura", "rob", "vote", "entrust"],
+  able_ids: ["aura", "rob"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_ROBBER" TARGET="_blank">\u76D7\u8CCA</A>\u3067\u3059\u3002'
 };
@@ -11151,7 +11177,7 @@ var live = {
   label: "\u751F\u5B58\u8005",
   win: null,
   group: "LIVE",
-  able_ids: ["SSAY", "TSAY", "AIM", "commit"],
+  able_ids: ["SSAY", "TSAY", "AIM", "vote", "entrust", "incite", "commit", "exit"],
   help: ""
 };
 var executed = {
@@ -11248,14 +11274,22 @@ var juror = {
   label: "\u966A\u5BE9",
   win: "HUMAN",
   group: "MOB",
-  able_ids: ["VSAY", "TSAY", "vote", "entrust"],
+  able_ids: ["VSAY", "TSAY", "vote", "entrust", "incite"],
   help: "\u9032\u884C\u4E2D\u4F1A\u8A71\u306F\u966A\u5BE9\u540C\u58EB\u306E\u307F\u3002\u966A\u5BE9\uFF08\uFF06\u6C7A\u5B9A\u8005\uFF09\u3060\u3051\u304C\u6295\u7968\u3059\u308B\u3002"
 };
 var gamemaster = {
   label: "\u9ED2\u5E55",
   win: "MOB",
   group: "MOB",
-  able_ids: ["gm_droop", "gm_live", "gm_disable_vote", "gm_enable_vote", "VSAY", "TSAY"],
+  able_ids: [
+    "gm_droop",
+    "gm_live",
+    "gm_disable_vote",
+    "gm_enable_vote",
+    "VSAY",
+    "TSAY",
+    "incite"
+  ],
   help: "\u9032\u884C\u4E2D\u4F1A\u8A71\u306F\u5730\u4E0A\u3001\u5893\u4E0B\u3001\u4E21\u65B9\u3068\u3002\u5834\u3092\u652F\u914D\u3059\u308B\u7279\u6A29\u3092\u3082\u3064\u3002"
 };
 var set_role_mobs_default = {
@@ -11462,13 +11496,13 @@ var set_role_turns_default = {
 var dyingpossess = {
   label: "\u8870\u9000\u72C2\u4EBA",
   win: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "human", "evil"],
   help: ""
 };
 var aurawolf = {
   label: "\u6C17\u72FC",
   win: "WOLF",
-  able_ids: ["aura", "wolf", "hunt", "friend", "spy_aura", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "hunt", "friend", "spy_aura", "WSAY"],
   help: ""
 };
 var bind = {
@@ -11482,13 +11516,13 @@ var hide = {
   label: "\uFF1F\uFF1F\uFF1F",
   win: null,
   group: null,
-  able_ids: ["hike", "vote", "entrust"],
+  able_ids: ["hike"],
   help: "\u3042\u306A\u305F\u306F\u6B63\u4F53\u4E0D\u660E\u3067\u3059\u3002"
 };
 var tangle2 = {
   label: "\u6028\u5FF5",
   win: null,
-  able_ids: ["aura", "revenge", "tangle", "vote", "entrust"],
+  able_ids: ["aura", "revenge", "tangle"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_TANGLE" TARGET="_blank">\u6028\u5FF5</A>\u3067\u3059\u3002'
 };
@@ -11496,7 +11530,7 @@ var villager = {
   label: "\u6751\u4EBA",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["human", "vote", "entrust"],
+  able_ids: ["human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_VILLAGER" TARGET="_blank">\u6751\u4EBA</A>\u3067\u3059\u3002 \u7279\u6B8A\u306A\u80FD\u529B\u306F\u3082\u3063\u3066\u3044\u307E\u305B\u3093\u3002'
 };
@@ -11504,7 +11538,7 @@ var stigma2 = {
   label: "\u8056\u75D5\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "stigma", "human", "vote", "entrust"],
+  able_ids: ["aura", "stigma", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_STIGMA" TARGET="_blank">\u8056\u75D5\u8005</A>\u3067\u3059\u3002'
 };
@@ -11512,7 +11546,7 @@ var fm2 = {
   label: "\u7D50\u793E\u54E1",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "fm", "human", "vote", "entrust"],
+  able_ids: ["aura", "fm", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_FM" TARGET="_blank">\u7D50\u793E\u54E1</A>\u3067\u3059\u3002 \u72EC\u81EA\u306E\u4EBA\u8108\u3092\u6301\u3064\u79D8\u5BC6\u7D50\u793E\u306E\u4E00\u54E1\u3067\u3059\u3002'
 };
@@ -11520,7 +11554,7 @@ var sympathy = {
   label: "\u5171\u9CF4\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "fm", "human", "vote", "entrust", "PSAY"],
+  able_ids: ["aura", "fm", "human", "PSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SYMPATHY" TARGET="_blank">\u5171\u9CF4\u8005</A>\u3067\u3059\u3002'
 };
@@ -11528,7 +11562,7 @@ var seer = {
   label: "\u5360\u3044\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "see", "spy_wolf", "human", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_wolf", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SEER" TARGET="_blank">\u5360\u3044\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11536,7 +11570,7 @@ var seerwin = {
   label: "\u4FE1\u4EF0\u5360\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "see", "spy_win", "human", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_win", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SEERWIN" TARGET="_blank">\u4FE1\u4EF0\u5360\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11544,7 +11578,7 @@ var aura2 = {
   label: "\u6C17\u5360\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "see", "spy_aura", "human", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_aura", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_AURA" TARGET="_blank">\u6C17\uFF08\u30AA\u30FC\u30E9\uFF09\u5360\u3044\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11552,7 +11586,7 @@ var oura = {
   label: "\u6C17\u5360\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "see", "spy_aura", "human", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_aura", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_AURA" TARGET="_blank">\u6C17\uFF08\u30AA\u30FC\u30E9\uFF09\u5360\u3044\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11560,7 +11594,7 @@ var seerrole = {
   label: "\u8CE2\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "see", "spy_role", "human", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_role", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SEERROLE" TARGET="_blank">\u8CE2\u8005</A>\u3067\u3059\u3002'
 };
@@ -11568,7 +11602,7 @@ var guard2 = {
   label: "\u5B88\u8B77\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "guard", "human", "vote", "entrust"],
+  able_ids: ["aura", "guard", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_GUARD" TARGET="_blank">\u5B88\u8B77\u8005</A>\u3067\u3059\u3002'
 };
@@ -11576,7 +11610,7 @@ var medium2 = {
   label: "\u970A\u80FD\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "medium", "spy_wolf", "human", "vote", "entrust"],
+  able_ids: ["aura", "medium", "spy_wolf", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_MEDIUM" TARGET="_blank">\u970A\u80FD\u8005</A>\u3067\u3059\u3002'
 };
@@ -11584,7 +11618,7 @@ var mediumwin = {
   label: "\u4FE1\u4EF0\u970A\u80FD\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "medium", "spy_win", "human", "vote", "entrust"],
+  able_ids: ["aura", "medium", "spy_win", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_MEDIUMWIN" TARGET="_blank">\u4FE1\u4EF0\u970A\u80FD\u8005</A>\u3067\u3059\u3002'
 };
@@ -11592,7 +11626,7 @@ var mediumrole = {
   label: "\u5C0E\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "medium", "spy_role", "human", "vote", "entrust"],
+  able_ids: ["aura", "medium", "spy_role", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_MEDIUMROLE" TARGET="_blank">\u5C0E\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11600,7 +11634,7 @@ var necromancer = {
   label: "\u964D\u970A\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "chkGSAY", "medium", "spy_wolf", "human", "vote", "entrust"],
+  able_ids: ["aura", "chkGSAY", "medium", "spy_wolf", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_NECROMANCER" TARGET="_blank">\u964D\u970A\u8005</A>\u3067\u3059\u3002'
 };
@@ -11608,7 +11642,8 @@ var follow = {
   label: "\u8FFD\u5F93\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "human", "entrust"],
+  able_ids: ["aura", "human"],
+  disable_ids: ["vote"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_FOLLOW" TARGET="_blank">\u8FFD\u5F93\u8005</A>\u3067\u3059\u3002 \u3060\u308C\u304B\u3092\u4FE1\u3058\u3001\u59D4\u306D\u307E\u3057\u3087\u3046\u3002'
 };
@@ -11616,7 +11651,7 @@ var fan = {
   label: "\u717D\u52D5\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "revenge", "riot", "human", "vote", "entrust"],
+  able_ids: ["aura", "revenge", "riot", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_FAN" TARGET="_blank">\u717D\u52D5\u8005</A>\u3067\u3059\u3002'
 };
@@ -11624,7 +11659,7 @@ var hunter = {
   label: "\u8CDE\u91D1\u7A3C",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "revenge", "sneak", "human", "vote", "entrust"],
+  able_ids: ["aura", "revenge", "sneak", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_HUNTER" TARGET="_blank">\u8CDE\u91D1\u7A3C</A>\u3067\u3059\u3002 \u6BCE\u591C\u3001\u4E00\u4EBA\u3092\u4ED8\u3051\u72D9\u3044\u307E\u3059\u3002'
 };
@@ -11632,7 +11667,7 @@ var weredog = {
   label: "\u4EBA\u72AC",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "tafness", "human", "vote", "entrust"],
+  able_ids: ["aura", "tafness", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WEREDOG" TARGET="_blank">\u4EBA\u72AC</A>\u3067\u3059\u3002'
 };
@@ -11640,7 +11675,7 @@ var prince = {
   label: "\u738B\u5B50\u69D8",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "august", "human", "vote", "entrust"],
+  able_ids: ["aura", "august", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_PRINCE" TARGET="_blank">\u738B\u5B50\u69D8</A>\u3067\u3059\u3002'
 };
@@ -11648,7 +11683,7 @@ var rightwolf = {
   label: "\u72FC\u8840\u65CF",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "blind", "wolf", "human", "vote", "entrust"],
+  able_ids: ["aura", "blind", "wolf", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_VILLAGER" TARGET="_blank">\u6751\u4EBA</A>\u3067\u3059\u3002 \u7279\u6B8A\u306A\u80FD\u529B\u306F\u3082\u3063\u3066\u3044\u307E\u305B\u3093\u3002\n\u72FC\u8840\u65CF\u306E\u3042\u306A\u305F\u306F\u3001\u5360\u3044\u5E2B\u3001\u970A\u80FD\u8005\u306B\u4EBA\u72FC\u3068\u5224\u5B9A\u3055\u308C\u307E\u3059\u3002\u3067\u3059\u304C\u3001\u3042\u306A\u305F\u306F\u6751\u4EBA\u3067\u3001\u52DD\u5229\u6761\u4EF6\u3082\u5909\u308F\u308A\u307E\u305B\u3093\u3002 \u52DD\u5229\u3092\u76EE\u6307\u3057\u3066\u9811\u5F35\u308A\u307E\u3057\u3087\u3046\u3002\u5360\u308F\u308C\u308B\u3068\u3001\u6B63\u4F53\u3092\u81EA\u899A\u3057\u8868\u793A\u304C\u5897\u3048\u307E\u3059\u3002'
 };
@@ -11657,7 +11692,7 @@ var doctor = {
   win: "HUMAN",
   group: "HUMAN",
   able: "\u8A3A\u5BDF",
-  able_ids: ["aura", "cure", "human", "vote", "entrust"],
+  able_ids: ["aura", "cure", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_DOCTOR" TARGET="_blank">\u533B\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11665,7 +11700,7 @@ var curse2 = {
   label: "\u546A\u4EBA",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "curse", "human", "vote", "entrust"],
+  able_ids: ["aura", "curse", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_CURSE" TARGET="_blank">\u546A\u4EBA</A>\u3067\u3059\u3002'
 };
@@ -11673,7 +11708,7 @@ var dying = {
   label: "\u9810\u8A00\u8005",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "droop", "human", "vote", "entrust"],
+  able_ids: ["aura", "droop", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_DYING" TARGET="_blank">\u9810\u8A00\u8005</A>\u3067\u3059\u3002'
 };
@@ -11681,7 +11716,7 @@ var invalid = {
   label: "\u75C5\u4EBA",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "revenge", "seal", "human", "vote", "entrust"],
+  able_ids: ["aura", "revenge", "seal", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_INVALID" TARGET="_blank">\u75C5\u4EBA</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u304C\u547D\u3092\u843D\u3068\u3057\u305F\u3068\u304D\u3001\u72AF\u4EBA\u306F\u75C5\u6C17\u306B\u611F\u67D3\u3057\u307E\u3059\u3002'
 };
@@ -11689,7 +11724,7 @@ var alchemist = {
   label: "\u932C\u91D1\u8853\u5E2B",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "once", "revenge", "cling", "human", "vote", "entrust"],
+  able_ids: ["aura", "once", "revenge", "cling", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_ALCHEMIST" TARGET="_blank">\u932C\u91D1\u8853\u5E2B</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u306F\u4E00\u5EA6\u3060\u3051\u3001\u85AC\u3092\u98F2\u3080\u3053\u3068\u304C\u51FA\u6765\u307E\u3059\u3002'
 };
@@ -11697,7 +11732,7 @@ var witch = {
   label: "\u9B54\u5973",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "analeptic", "poison", "human", "vote", "entrust"],
+  able_ids: ["aura", "analeptic", "poison", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WITCH" TARGET="_blank">\u9B54\u5973</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u306F\u4E8C\u65E5\u76EE\u306B\u3001\u6BD2\u85AC\u3068\u8607\u751F\u85AC\u3092\u3072\u3068\u3064\u305A\u3064\u5B8C\u6210\u3055\u305B\u307E\u3059\u3002'
 };
@@ -11705,7 +11740,7 @@ var girl = {
   label: "\u5C11\u5973",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "night", "human", "vote", "entrust"],
+  able_ids: ["aura", "night", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_GIRL" TARGET="_blank">\u5C11\u5973</A>\u3067\u3059\u3002'
 };
@@ -11714,7 +11749,7 @@ var scapegoat2 = {
   win: "HUMAN",
   group: "HUMAN",
   able: "\u7591\u3046",
-  able_ids: ["aura", "scapegoat", "human", "vote", "entrust"],
+  able_ids: ["aura", "scapegoat", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SCAPEGOAT" TARGET="_blank">\u751F\u8D04</A>\u3067\u3059\u3002'
 };
@@ -11722,7 +11757,7 @@ var elder = {
   label: "\u9577\u8001",
   win: "HUMAN",
   group: "HUMAN",
-  able_ids: ["aura", "revenge", "seal", "twolife", "human", "vote", "entrust"],
+  able_ids: ["aura", "revenge", "seal", "twolife", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_ELDER" TARGET="_blank">\u9577\u8001</A>\u3067\u3059\u3002 \u3082\u3057\u3082\u547D\u3092\u843D\u3068\u3057\u305F\u3089\u3001\u3042\u306A\u305F\u306E\u6068\u307F\u306F\u72AF\u4EBA\u3092\u8972\u3044\u307E\u3059\u3002'
 };
@@ -11731,7 +11766,7 @@ var jammer2 = {
   win: "EVIL",
   group: "EVIL",
   able: "\u96A0\u3059",
-  able_ids: ["aura", "jammer", "human", "evil", "vote", "entrust", "XSAY"],
+  able_ids: ["aura", "jammer", "human", "evil", "XSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_JAMMER" TARGET="_blank">\u90AA\u9B54\u4E4B\u6C11</A>\u3067\u3059\u3002'
 };
@@ -11739,7 +11774,7 @@ var snatch2 = {
   label: "\u5BBF\u501F\u4E4B\u6C11",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "snatch", "human", "evil", "vote", "entrust", "XSAY"],
+  able_ids: ["aura", "snatch", "human", "evil", "XSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SNATCH" TARGET="_blank">\u5BBF\u501F\u4E4B\u6C11</A>\u3067\u3059\u3002'
 };
@@ -11747,7 +11782,7 @@ var bat = {
   label: "\u5FF5\u6CE2\u4E4B\u6C11",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust", "XSAY"],
+  able_ids: ["aura", "human", "evil", "XSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_BAT" TARGET="_blank">\u5FF5\u6CE2\u4E4B\u6C11</A>\u3067\u3059\u3002'
 };
@@ -11755,7 +11790,7 @@ var possess = {
   label: "\u72C2\u4EBA",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_POSSESS" TARGET="_blank">\u72C2\u4EBA</A>\u3067\u3059\u3002'
 };
@@ -11763,7 +11798,7 @@ var fanatic2 = {
   label: "\u72C2\u4FE1\u8005",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "fanatic", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "fanatic", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_FANATIC" TARGET="_blank">\u72C2\u4FE1\u8005</A>\u3067\u3059\u3002'
 };
@@ -11771,7 +11806,7 @@ var muppeting = {
   label: "\u4EBA\u5F62\u4F7F\u3044",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust", "MSAY"],
+  able_ids: ["aura", "human", "evil", "MSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_MUPPETER" TARGET="_blank">\u4EBA\u5F62\u4F7F\u3044</A>\u3067\u3059\u3002'
 };
@@ -11779,7 +11814,7 @@ var wisper = {
   label: "\u56C1\u304D\u72C2\u4EBA",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "human", "evil", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WISPER" TARGET="_blank">\u56C1\u304D\u72C2\u4EBA</A>\u3067\u3059\u3002 \u5C11\u4EBA\u6570\u306B\u306A\u308B\u3068\u52DD\u6557\u304C\u78BA\u5B9A\u3059\u308B\u72B6\u6CC1\u3082\u3042\u308A\u307E\u3059\u3001\u3067\u3059\u304C\u3053\u306E\u5834\u5408\u3082\u81EA\u52D5\u3067\u7D42\u4E86\u3059\u308B\u3053\u3068\u306F\u3042\u308A\u307E\u305B\u3093\u3002'
 };
@@ -11787,7 +11822,7 @@ var cpossess = {
   label: "\u56C1\u304D\u72C2\u4EBA",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "human", "evil", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "human", "evil", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WISPER" TARGET="_blank">\u56C1\u304D\u72C2\u4EBA</A>\u3067\u3059\u3002 \u5C11\u4EBA\u6570\u306B\u306A\u308B\u3068\u52DD\u6557\u304C\u78BA\u5B9A\u3059\u308B\u72B6\u6CC1\u3082\u3042\u308A\u307E\u3059\u3001\u3067\u3059\u304C\u3053\u306E\u5834\u5408\u3082\u81EA\u52D5\u3067\u7D42\u4E86\u3059\u308B\u3053\u3068\u306F\u3042\u308A\u307E\u305B\u3093\u3002'
 };
@@ -11795,7 +11830,7 @@ var semiwolf = {
   label: "\u534A\u72FC",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "wolfify", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "wolfify", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SEMIWOLF" TARGET="_blank">\u534A\u72FC</A>\u3067\u3059\u3002'
 };
@@ -11803,7 +11838,7 @@ var oracle = {
   label: "\u9B54\u795E\u5B98",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "medium", "spy_role", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "medium", "spy_role", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_ORACLE" TARGET="_blank">\u9B54\u795E\u5B98</A>\u3067\u3059\u3002'
 };
@@ -11811,7 +11846,7 @@ var sorcerer = {
   label: "\u9B54\u8853\u5E2B",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "see", "spy_role", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "see", "spy_role", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SORCERER" TARGET="_blank">\u9B54\u8853\u5E2B</A>\u3067\u3059\u3002'
 };
@@ -11819,7 +11854,7 @@ var walpurgis = {
   label: "\u9B54\u6CD5\u5C11\u5E74",
   win: "EVIL",
   group: "EVIL",
-  able_ids: ["aura", "grave", "analeptic", "poison", "human", "evil", "vote", "entrust"],
+  able_ids: ["aura", "grave", "analeptic", "poison", "human", "evil"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WALPURGIS" TARGET="_blank">\u9B54\u6CD5\u5C11\u5E74</A>\u3067\u3059\u3002 \u3084\u304C\u3066\u547D\u3092\u843D\u3068\u3059\u3068\u9B54\u5973\u306B\u306A\u308B\u3068\u5BBF\u547D\u4ED8\u3051\u3089\u308C\u3066\u3044\u307E\u3059\u3002'
 };
@@ -11827,7 +11862,7 @@ var headless = {
   label: "\u9996\u7121\u9A0E\u58EB",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "hunt", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "hunt", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_HEADLESS" TARGET="_blank">\u9996\u306E\u306A\u3044\u9A0E\u58EB</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u306F\u4EBA\u72FC\u4EF2\u9593\u3092\u65AC\u308A\u6368\u3066\u308B\u3053\u3068\u3082\u53AD\u3044\u307E\u305B\u3093\u3002'
 };
@@ -11835,7 +11870,7 @@ var wolf2 = {
   label: "\u4EBA\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "hunt", "friend", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "hunt", "friend", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WOLF" TARGET="_blank">\u4EBA\u72FC</A>\u3067\u3059\u3002'
 };
@@ -11843,7 +11878,7 @@ var intwolf = {
   label: "\u667A\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "hunt", "friend", "spy_role", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "hunt", "friend", "spy_role", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_INTWOLF" TARGET="_blank">\u667A\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002'
 };
@@ -11851,7 +11886,7 @@ var cwolf = {
   label: "\u546A\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "curse", "hunt", "friend", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "curse", "hunt", "friend", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_CURSEWOLF" TARGET="_blank">\u546A\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002'
 };
@@ -11859,7 +11894,7 @@ var cursewolf = {
   label: "\u546A\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "curse", "hunt", "friend", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "curse", "hunt", "friend", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_CURSEWOLF" TARGET="_blank">\u546A\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002'
 };
@@ -11868,7 +11903,7 @@ var whitewolf = {
   win: "WOLF",
   group: "WOLF",
   able: "\u8972\u3046",
-  able_ids: ["hunt", "friend", "vote", "entrust", "WSAY"],
+  able_ids: ["hunt", "friend", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_WHITEWOLF" TARGET="_blank">\u767D\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002 \u3042\u306A\u305F\u3092\u5360\u3063\u305F\u5360\u3044\u5E2B\u306F\u3001\u3042\u306A\u305F\u3092\u4EBA\u9593\u3068\u307F\u306A\u3057\u307E\u3059\u3002\u3042\u306A\u305F\u306F\u80FD\u529B\u8005\u7279\u6709\u306E\u30AA\u30FC\u30E9\u3092\u767A\u3057\u307E\u305B\u3093\u3002'
 };
@@ -11876,7 +11911,7 @@ var childwolf = {
   label: "\u4ED4\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "revenge", "grudge", "hunt", "friend", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "revenge", "grudge", "hunt", "friend", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_CHILDWOLF" TARGET="_blank">\u4ED4\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002'
 };
@@ -11884,7 +11919,7 @@ var dyingwolf = {
   label: "\u8870\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "droop", "hunt", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "wolf", "droop", "hunt", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_DYINGWOLF" TARGET="_blank">\u8870\u72FC</A>\u3067\u3059\u3002\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3064\u4EBA\u72FC\u3067\u3059\u3002'
 };
@@ -11892,7 +11927,7 @@ var silentwolf = {
   label: "\u9ED9\u72FC",
   win: "WOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "hunt", "vote", "entrust"],
+  able_ids: ["aura", "wolf", "hunt"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_SILENTWOLF" TARGET="_blank">\u9ED9\u72FC</A>\u3067\u3059\u3002 \u4EBA\u72FC\u306E\u8972\u6483\u5BFE\u8C61\u3068\u306A\u308B\u3053\u3068\u306F\u3042\u308A\u307E\u305B\u3093\u304C\u3001\u4EBA\u72FC\uFF08\u3068\u56C1\u304D\u72C2\u4EBA\u3001\u64EC\u72FC\u5996\u7CBE\uFF09\u540C\u58EB\u306B\u3057\u304B\u805E\u3053\u3048\u306A\u3044\u4F1A\u8A71\u306F\u3001\u3042\u306A\u305F\u306B\u306F\u805E\u3053\u3048\u307E\u305B\u3093\u3002'
 };
@@ -11900,7 +11935,7 @@ var hamster = {
   label: "\u6817\u9F20\u5996\u7CBE",
   win: "PIXI",
   group: "PIXI",
-  able_ids: ["aura", "pixi", "armor", "vote", "entrust"],
+  able_ids: ["aura", "pixi", "armor"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_PIXI" TARGET="_blank">\u6817\u9F20\u5996\u7CBE</A>\u3067\u3059\u3002'
 };
@@ -11908,7 +11943,7 @@ var werebat = {
   label: "\u8759\u8760\u5996\u7CBE",
   win: "PIXI",
   group: "PIXI",
-  able_ids: ["aura", "pixi", "armor", "vote", "entrust"],
+  able_ids: ["aura", "pixi", "armor"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_BAT" TARGET="_blank">\u8759\u8760\u5996\u7CBE</A>\u3067\u3059\u3002 \u3042\u306A\u305F\u306F\u4ED6\u306E\u5996\u7CBE\u304C\u8AB0\u3067\u3042\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u3057\u3001\u65B0\u305F\u306B\u751F\u307E\u308C\u305F\u5996\u7CBE\u3092\u77E5\u308B\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002\u305F\u3060\u3057\u3001\u59FF\u3092\u63DB\u3048\u3066\u3057\u307E\u3063\u305F\u5BBF\u501F\u5996\u7CBE\u306E\u884C\u65B9\u306F\u308F\u304B\u308A\u307E\u305B\u3093\u3002 \u307E\u305F\u3001\u8759\u8760\u5996\u7CBE\u540C\u58EB\u306B\u3057\u304B\u805E\u3053\u3048\u306A\u3044\u4F1A\u8A71\u304C\u53EF\u80FD\u3067\u3059\u3002'
 };
@@ -11916,7 +11951,7 @@ var mimicry = {
   label: "\u64EC\u72FC\u5996\u7CBE",
   win: "PIXI",
   group: "PIXI",
-  able_ids: ["aura", "pixi", "armor", "vote", "entrust", "WSAY"],
+  able_ids: ["aura", "pixi", "armor", "WSAY"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_MIMICRY" TARGET="_blank">\u64EC\u72FC\u5996\u7CBE</A>\u3067\u3059\u3002'
 };
@@ -11924,7 +11959,7 @@ var dyingpixi = {
   label: "\u98A8\u82B1\u5996\u7CBE",
   win: "PIXI",
   group: "PIXI",
-  able_ids: ["aura", "pixi", "armor", "droop", "vote", "entrust"],
+  able_ids: ["aura", "pixi", "armor", "droop"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_DYINGPIXI" TARGET="_blank">\u98A8\u82B1\u5996\u7CBE</A>\u3067\u3059\u3002'
 };
@@ -11932,7 +11967,7 @@ var trickster = {
   label: "\u60AA\u622F\u5996\u7CBE",
   win: "PIXI",
   group: "PIXI",
-  able_ids: ["aura", "pixi", "armor", "bonds", "vote", "entrust"],
+  able_ids: ["aura", "pixi", "armor", "bonds"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_TRICKSTER" TARGET="_blank">\u60AA\u622F\u5996\u7CBE</A>\u3067\u3059\u3002 \u7D50\u3070\u308C\u305F\u4EBA\u305F\u3061\u306B\u3068\u3063\u3066\u306F\u3001\u5358\u306A\u308B\u306F\u305F\u8FF7\u60D1\u306A\u60AA\u622F\u306B\u3059\u304E\u307E\u305B\u3093\u3002'
 };
@@ -11940,7 +11975,7 @@ var hatedevil = {
   label: "\u90AA\u6C17\u60AA\u9B54",
   win: "HATER",
   group: "OTHER",
-  able_ids: ["aura", "bonds", "hate", "human", "vote", "entrust"],
+  able_ids: ["aura", "bonds", "hate", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_HATEDEVIL" TARGET="_blank">\u90AA\u6C17\u60AA\u9B54</A>\u3067\u3059\u3002 \u7D50\u3073\u3064\u3051\u305F\u4E8C\u4EBA\u306E\u3046\u3061\u3001\u3069\u3061\u3089\u304B\u7247\u65B9\u3060\u3051\u304C\u751F\u304D\u5EF6\u3073\u308C\u3070\u3001\u3042\u306A\u305F\u306E\u52DD\u5229\u3068\u306A\u308A\u307E\u3059\u3002\u3042\u306A\u305F\u306B\u305D\u306E\u7D46\u304C\u7D50\u3070\u308C\u3066\u3044\u306A\u3044\u9650\u308A\u3001\u3042\u306A\u305F\u81EA\u8EAB\u306E\u6B7B\u306F\u52DD\u6557\u306B\u306F\u76F4\u63A5\u95A2\u4FC2\u3057\u307E\u305B\u3093\u3002'
 };
@@ -11948,7 +11983,7 @@ var hate2 = {
   label: "\u5BBF\u6575",
   win: "HATER",
   group: "BIND",
-  able_ids: ["aura", "bonds", "hate", "human", "vote", "entrust"],
+  able_ids: ["aura", "bonds", "hate", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306B\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_HATEDEVIL" TARGET="_blank">\u5BBF\u6575</A>\u304C\u3044\u307E\u3059\u3002'
 };
@@ -11956,7 +11991,7 @@ var love3 = {
   label: "\u604B\u4EBA",
   win: "LOVER",
   group: "BIND",
-  able_ids: ["aura", "bonds", "love", "human", "vote", "entrust"],
+  able_ids: ["aura", "bonds", "love", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306B\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_LOVEANGEL" TARGET="_blank">\u604B\u4EBA</A>\u304C\u3044\u307E\u3059\u3002'
 };
@@ -11964,7 +11999,7 @@ var loveangel = {
   label: "\u604B\u611B\u5929\u4F7F",
   win: "LOVER",
   group: "OTHER",
-  able_ids: ["aura", "bonds", "love", "human", "vote", "entrust"],
+  able_ids: ["aura", "bonds", "love", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_LOVEANGEL" TARGET="_blank">\u604B\u611B\u5929\u4F7F</A>\u3067\u3059\u3002 \u7D50\u3073\u3064\u3051\u305F\u4E8C\u4EBA\u304C\u751F\u304D\u5EF6\u3073\u308C\u3070\u3001\u3042\u306A\u305F\u306E\u52DD\u5229\u3068\u306A\u308A\u307E\u3059\u3002\u3042\u306A\u305F\u306B\u305D\u306E\u7D46\u304C\u7D50\u3070\u308C\u3066\u3044\u306A\u3044\u9650\u308A\u3001\u3042\u306A\u305F\u81EA\u8EAB\u306E\u6B7B\u306F\u52DD\u6557\u306B\u306F\u76F4\u63A5\u95A2\u4FC2\u3057\u307E\u305B\u3093\u3002'
 };
@@ -11972,7 +12007,7 @@ var passion = {
   label: "\u7247\u601D\u3044",
   win: "LOVER",
   group: "OTHER",
-  able_ids: ["aura", "bond", "love", "human", "vote", "entrust"],
+  able_ids: ["aura", "bond", "love", "human"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_PASSION" TARGET="_blank">\u7247\u60F3\u3044</A>\u3067\u3059\u3002 \u9078\u3093\u3060\u4EBA\u304C\u751F\u304D\u5EF6\u3073\u3001\u3042\u306A\u305F\u304C\u751F\u304D\u5EF6\u3073\u308C\u3070\u3001\u3042\u306A\u305F\u306E\u52DD\u5229\u3068\u306A\u308A\u307E\u3059\u3002'
 };
@@ -11980,7 +12015,7 @@ var lonewolf = {
   label: "\u4E00\u5339\u72FC",
   win: "LONEWOLF",
   group: "WOLF",
-  able_ids: ["aura", "wolf", "armor", "kill", "vote", "entrust"],
+  able_ids: ["aura", "wolf", "armor", "kill"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_LONEWOLF" TARGET="_blank">\u4E00\u5339\u72FC</A>\u3067\u3059\u3002 \u8972\u6483\u5148\u306F\u3042\u306A\u305F\u4EE5\u5916\u3067\u3042\u308C\u3070\u8AB0\u3067\u3082\u304B\u307E\u3044\u307E\u305B\u3093\u3002'
 };
@@ -11988,7 +12023,7 @@ var guru2 = {
   label: "\u7B1B\u5439\u304D",
   win: "GURU",
   group: "OTHER",
-  able_ids: ["aura", "human", "guru", "vote", "entrust"],
+  able_ids: ["aura", "human", "guru"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_GURU" TARGET="_blank">\u7B1B\u5439\u304D</A>\u3067\u3059\u3002'
 };
@@ -11996,7 +12031,7 @@ var dish2 = {
   label: "\u9C57\u9B5A\u4EBA",
   win: "DISH",
   group: "OTHER",
-  able_ids: ["aura", "human", "dish", "vote", "entrust"],
+  able_ids: ["aura", "human", "dish"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_DISH" TARGET="_blank">\u9C57\u9B5A\u4EBA</A>\u3067\u3059\u3002\u65B0\u9BAE\u306A\u3075\u3043\u30FC\u3063\u3057\u3085\u3002\u3067\u3059\u3002'
 };
@@ -12004,7 +12039,7 @@ var bitch2 = {
   label: "\u904A\u3073\u4EBA",
   win: "LOVER",
   group: "OTHER",
-  able_ids: ["aura", "human", "bitch", "vote", "entrust"],
+  able_ids: ["aura", "human", "bitch"],
   cmd: "role",
   help: '\u3042\u306A\u305F\u306F<A href="http://dais.kokage.cc/guide/?(Role)ROLEID_BITCH" TARGET="_blank">\u904A\u3073\u4EBA</A>\u3067\u3059\u3002 \u672C\u547D\u3068\u3042\u306A\u305F\u304C\u751F\u304D\u5EF6\u3073\u308C\u3070\u3001\u3042\u306A\u305F\u306E\u52DD\u5229\u3067\u3059\u3002'
 };
@@ -12281,12 +12316,19 @@ var SayLimits = MapReduce({
       list: []
     };
   },
+  initialize: (doc) => {
+    if (doc.count)
+      doc.unit = "\u56DE";
+    if (doc.all)
+      doc.unit = "pt";
+  },
   reduce: (o, doc) => {
   },
   order: (o, { sort: sort3 }) => {
   }
 });
 SayLimits.deploy(set_says_default);
+console.log(SayLimits.data);
 
 // src/lib/game/json/set_winner.json
 var HUMAN = {
@@ -14149,15 +14191,31 @@ var stories = model2({
       doc.config_ids = [...doc.config_ids.filter((o) => o === "mob"), ...table_role_ids];
     }
     doc.configs = Roles.reduce(doc.config_ids, emit).desc(by_count);
-    const option_ids = doc.options;
-    doc.options = option_ids.map(Options.find).filter(by_this);
-    doc.option_ids = doc.options.map(by_id);
-    if (["R15", "r15", "r18"].includes(doc.rating))
-      doc.rating = "alert";
-    if (["gro"].includes(doc.rating))
-      doc.rating = "violence";
-    doc.marks = [Marks.find(doc.rating)].filter(by_this);
-    doc.mark_ids = doc.marks.map(by_id);
+    doc.option_ids = doc.options;
+    doc.options = doc.option_ids.map(Options.find).filter(by_this);
+    doc.mark_ids = (() => {
+      switch (doc.rating) {
+        case null:
+        case "0":
+        case "default":
+          return [];
+        case "gro":
+          return ["violence"];
+        case "sexyviolence":
+          return ["sexy", "violence"];
+        case "sexylove":
+          return ["sexy", "love"];
+        case "child":
+        case "fireplace":
+          return ["catwalk"];
+        case "R15":
+        case "r15":
+        case "r18":
+          return ["alert"];
+        default:
+          return [doc.rating];
+      }
+    })();
     doc.upd_range = `${doc.upd.interval * 24}h`;
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`;
     doc.size = `x${doc.vpl[0]}`;
@@ -14173,8 +14231,8 @@ var stories = model2({
     emit(dic(data.base.upd_at, doc.upd_at, {}));
     emit(dic(data.base.size, doc.size, {}));
     emit(dic(data.base.sow_auth_id, doc.sow_auth_id, {}));
-    for (const mark of doc.marks) {
-      emit_count(data.base.mark, mark);
+    for (const mark_id of doc.mark_ids) {
+      dic(data.base.mark, mark_id, { count: 0 }).count++;
     }
     emit_count(data.base.say_limit, doc.say_limit);
     emit_count(data.base.game, doc.game);
@@ -14254,12 +14312,64 @@ var messages = model2({
   qid: (ids) => ids.toString(),
   format: () => ({
     list: [],
-    event: {}
+    event: {},
+    index: {},
+    last: {},
+    say: { count: 0, all: 0 },
+    potof: {},
+    side: {},
+    mention: {},
+    mention_to: {}
   }),
   initialize(doc) {
+    const id_ary = doc._id.split("-");
+    doc.phase = Phases.find(id_ary[3]);
   },
   reduce(data, doc) {
+    var _a2;
+    const id_ary = doc._id.split("-");
+    const [, , , phase_idx, message_idx] = id_ary;
+    const all_phase_id = `${id_ary[0]}-${id_ary[1]}-top-${id_ary[3]}`;
+    const phase_id = `${id_ary[0]}-${id_ary[1]}-${id_ary[2]}-${id_ary[3]}`;
     dic(data.event, doc.event_id, []).push(doc);
+    max(dic(data.index, phase_idx, {}), parseInt(message_idx));
+    max(dic(data.last, doc.group, {}), doc.write_at);
+    if ((_a2 = doc.log) == null ? void 0 : _a2.length) {
+      emit2(data.say);
+    }
+    if (phase_idx.match(/[SGV]S?$/)) {
+      emit2(dic(data.potof, all_phase_id, {}, doc.potof_id, { count: 0, all: 0 }));
+      emit2(dic(data.potof, phase_id, {}, doc.potof_id, { count: 0, all: 0 }));
+    }
+    if (phase_idx.match(/.M?$/)) {
+      max(dic(data.side, phase_id, {}, doc.potof_id, {}), doc.write_at);
+    }
+    for (const mention_id of doc.mention_ids) {
+      dic(data.mention, mention_id, { count: 0 }).count++;
+      dic(data.mention_to, mention_id, {}, doc._id, { count: 0 }).count++;
+    }
+    function emit2(o) {
+      max(o, doc.write_at);
+      min(o, doc.write_at);
+      o.count++;
+      o.all += doc.log.length;
+    }
+    function max(dic4, idx) {
+      if (idx !== idx)
+        return;
+      if (!(idx <= dic4.max)) {
+        dic4.max = idx;
+        dic4.max_is = doc;
+      }
+    }
+    function min(dic4, idx) {
+      if (idx !== idx)
+        return;
+      if (!(dic4.min <= idx)) {
+        dic4.min = idx;
+        dic4.min_is = doc;
+      }
+    }
   },
   order(data, { sort: sort3 }) {
     sort3(data.list).asc((o) => o.write_at);
@@ -14292,8 +14402,27 @@ var cards = model2({
   format: () => ({
     list: []
   }),
-  reduce(data, doc) {
+  initialize(doc) {
+    var _a2, _b2;
     doc.role = Roles.find(doc.role_id);
+    doc.ables = doc.role.able_ids.map(Ables.find);
+    for (const able of doc.ables) {
+      const act = dic(doc.act, able._id, {});
+      if (able.target)
+        act.target = null;
+      if (able.btn)
+        act.done = false;
+      if (able.sw && able.pass)
+        act.done = false;
+      if (able.text) {
+        if ((_a2 = doc.story.say_limit) == null ? void 0 : _a2.count)
+          act.unit = "count";
+        if ((_b2 = doc.story.say_limit) == null ? void 0 : _b2.all)
+          act.unit = "all";
+      }
+    }
+  },
+  reduce(data, doc) {
   },
   order(data, { sort: sort3 }) {
     sort3(data.list).asc((o) => o._id);

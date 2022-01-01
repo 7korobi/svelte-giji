@@ -15,7 +15,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]>;
 } | {
     $match(types: RANDOM_TYPE[]): RANDOM_TYPE[];
@@ -33,7 +33,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]>;
     isLive(types: RANDOM_TYPE[]): Promise<boolean>;
     live($match: RANDOM_TYPE[], set: (docs: {
@@ -50,7 +50,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]) => void, del: (ids: (string | number)[]) => void): import("mongodb").ChangeStream<{
         _id: string | number;
         types: RANDOM_TYPE[];
@@ -65,7 +65,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }>;
     set(doc: {
         _id: string | number;
@@ -81,7 +81,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }): Promise<import("mongodb").ModifyResult<{
         _id: string | number;
         types: RANDOM_TYPE[];
@@ -96,7 +96,7 @@ export declare const randoms: {
         number?: number;
         rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
-        roman?: "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX" | "X" | "XI" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
+        roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }>>;
     del(ids: (string | number)[]): Promise<import("mongodb").DeleteResult>;
 };

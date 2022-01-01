@@ -38,6 +38,7 @@ function clicker(el: HTMLElement, isExpand: boolean) {
   use:clicker={expand}
   class:disabled
   class={['btn', className(type, as, value), $$props.class].join(' ')}
+  title={$$props['title']}
   data-tooltip={$$props['data-tooltip']}
 >
   <slot />

@@ -94,7 +94,7 @@ export const stories = model({
       upd_range: {} as CountBy,
       upd_at: {} as CountBy,
       sow_auth_id: {} as CountBy,
-      mark: {} as DIC<{ count: number } & Mark>,
+      mark: {} as DIC<{ count: number }>,
       size: {} as CountBy,
       say_limit: {} as DIC<{ count: number } & SayLimit>,
       game: {} as DIC<{ count: number } & Game>,
@@ -156,14 +156,32 @@ export const stories = model({
     }
     doc.configs = Roles.reduce(doc.config_ids, emit).desc(by_count)
 
-    const option_ids = doc.options as any
-    doc.options = option_ids.map(Options.find).filter(by_this)
-    doc.option_ids = doc.options.map(by_id)
+    doc.option_ids = doc.options as any
+    doc.options = doc.option_ids.map(Options.find).filter(by_this)
 
-    if (['R15', 'r15', 'r18'].includes(doc.rating)) doc.rating = 'alert' as any
-    if (['gro'].includes(doc.rating)) doc.rating = 'violence'
-    doc.marks = [Marks.find(doc.rating)].filter(by_this)
-    doc.mark_ids = doc.marks.map(by_id)
+    doc.mark_ids = (() => {
+      switch (doc.rating as any) {
+        case null:
+        case '0':
+        case 'default':
+          return []
+        case 'gro':
+          return ['violence']
+        case 'sexyviolence':
+          return ['sexy', 'violence']
+        case 'sexylove':
+          return ['sexy', 'love']
+        case 'child':
+        case 'fireplace':
+          return ['catwalk']
+        case 'R15':
+        case 'r15':
+        case 'r18':
+          return ['alert']
+        default:
+          return [doc.rating]
+      }
+    })()
 
     doc.upd_range = `${doc.upd.interval * 24}h`
     doc.upd_at = `${digit(doc.upd.hour)}:${digit(doc.upd.minute)}`
@@ -180,8 +198,8 @@ export const stories = model({
     emit(dic(data.base.upd_at, doc.upd_at, {}))
     emit(dic(data.base.size, doc.size, {}))
     emit(dic(data.base.sow_auth_id, doc.sow_auth_id, {}))
-    for (const mark of doc.marks) {
-      emit_count(data.base.mark, mark)
+    for (const mark_id of doc.mark_ids) {
+      dic(data.base.mark, mark_id, { count: 0 }).count++
     }
     emit_count(data.base.say_limit, doc.say_limit)
     emit_count(data.base.game, doc.game)

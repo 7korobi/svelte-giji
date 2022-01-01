@@ -32,7 +32,7 @@ export declare function default_stories_query(): {
 };
 export declare const stories: {
     name?: string;
-    qid: (ids: (`rp-${number}` | `test-${number}` | `lobby-${number}` | `offparty-${number}` | `wolf-${number}` | `allstar-${number}` | `ultimate-${number}` | `cabala-${number}` | `morphe-${number}` | `soybean-${number}` | `pretense-${number}` | `perjury-${number}` | `xebec-${number}` | `crazy-${number}` | `ciel-${number}` | `dais-${number}`)[]) => string;
+    qid: (ids: `${string}-${number}`[]) => string;
     format: () => {
         list: BookStory[];
         oldlog: DIC<BookStory[]>;
@@ -46,7 +46,7 @@ export declare const stories: {
             sow_auth_id: CountBy;
             mark: DIC<{
                 count: number;
-            } & Mark>;
+            }>;
             size: CountBy;
             say_limit: DIC<{
                 count: number;
@@ -122,7 +122,7 @@ export declare const stories: {
             sow_auth_id: CountBy;
             mark: DIC<{
                 count: number;
-            } & Mark>;
+            }>;
             size: CountBy;
             say_limit: DIC<{
                 count: number;
@@ -198,7 +198,7 @@ export declare const stories: {
             sow_auth_id: CountBy;
             mark: DIC<{
                 count: number;
-            } & Mark>;
+            }>;
             size: CountBy;
             say_limit: DIC<{
                 count: number;

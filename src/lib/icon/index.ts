@@ -102,6 +102,7 @@ import Github from './logo/github.svelte'
 //   <path fill="#626262"/>
 
 export {
+  mark,
   Expand,
   Collapse,
   Standby,

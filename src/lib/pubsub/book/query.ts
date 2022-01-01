@@ -1,8 +1,20 @@
 import type { DIC } from '$lib/map-reduce'
-import type { BOOK_EVENT_ID, BookStory } from '../map-reduce'
+import type {
+  BookStory,
+  BOOK_FOLDER_IDX,
+  BOOK_STORY_ID,
+  BOOK_STORY_IDX,
+  BOOK_EVENT_ID,
+  BOOK_EVENT_IDX,
+  BOOK_PHASE_ID,
+  BOOK_PHASE_IDX,
+  BOOK_MESSAGE_ID,
+  BOOK_MESSAGE_IDX
+} from '../map-reduce'
 import { socket } from '$lib/db/socket.io-client'
 import { lookup } from '$lib/map-reduce'
 import { dic } from '$lib/map-reduce'
+import { subids } from '../util'
 import { Folders } from '../map-reduce'
 import { events, story_summary } from '../model-client'
 import '../client'
@@ -39,3 +51,12 @@ export const story_reduce = lookup({
     })
   }
 })
+
+export function book_ids(idx: string) {
+  return subids<
+    [
+      [BOOK_FOLDER_IDX, BOOK_STORY_ID, BOOK_EVENT_ID, BOOK_PHASE_ID, BOOK_MESSAGE_ID],
+      [BOOK_FOLDER_IDX, BOOK_STORY_IDX, BOOK_EVENT_IDX, BOOK_PHASE_IDX, BOOK_MESSAGE_IDX]
+    ]
+  >(idx)
+}

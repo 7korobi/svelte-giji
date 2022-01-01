@@ -1,11 +1,12 @@
-import type { BOOK_POTOF_ID, BOOK_EVENT_ID, BookStory, BOOK_STORY_ID } from '../map-reduce';
+import type { BOOK_POTOF_ID, BOOK_EVENT_ID, BookStory, BOOK_STORY_ID, BookPotof } from '../map-reduce';
 export declare type BookStat = {
     story_id: BOOK_STORY_ID;
     story: BookStory;
+    potof: BookPotof;
 } & ({
     _id: BOOK_EVENT_ID;
 } | {
-    _id: `${BOOK_POTOF_ID}-give`;
+    _id: `${BOOK_POTOF_ID}-act`;
     give: number;
 } | {
     _id: `${BOOK_POTOF_ID}-commit`;

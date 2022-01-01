@@ -1,6 +1,4 @@
 <script lang="ts">
-import type { BOOK_MESSAGE_ID } from '$lib/pubsub/map-reduce'
-import { portals } from '$lib/common'
 import { page } from '$app/stores'
 import { default_story_query } from '$lib/pubsub/model-client'
 import { Pager } from '$lib/scroll'
@@ -32,17 +30,17 @@ $: console.log('oldlog_stats', $oldlog_stats)
   <title>終了した村</title>
 </svelte:head>
 
-<OldlogViewer refresh={$page} page={now_page} bind:regexp bind:params bind:messages />
-
-<Pager
-  chunk={20}
-  list={messages || []}
-  bind:page={now_page}
-  bind:focus={params.idx}
-  let:item={{ _id, show, handle, face_id, deco, log, to, name, story }}
->
-  <Chat {...{ _id, show, handle, face_id, deco, log, to, name, story }} />
-</Pager>
+<OldlogViewer refresh={$page} page={now_page} bind:regexp bind:params bind:messages>
+  <Pager
+    chunk={20}
+    list={messages || []}
+    bind:page={now_page}
+    bind:focus={params.idx}
+    let:item={{ _id, show, handle, face_id, deco, log, to, name, story, phase }}
+  >
+    <Chat {...{ _id, show, handle, face_id, deco, log, to, name, story, phase }} />
+  </Pager>
+</OldlogViewer>
 
 <div use:toastframe.mount />
 <div use:sideframe.mount />

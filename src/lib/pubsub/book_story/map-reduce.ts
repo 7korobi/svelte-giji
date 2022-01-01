@@ -96,7 +96,7 @@ export type BookStory = {
 }
 
 export type BOOK_STORY_IDX = `${number}`
-export type BOOK_STORY_ID = `${BOOK_FOLDER_IDX}-${BOOK_STORY_IDX}`
+export type BOOK_STORY_ID = `${string}-${BOOK_STORY_IDX}`
 
 export type ROLETABLE = typeof ROLETABLES[number]
 

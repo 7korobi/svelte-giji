@@ -315,14 +315,14 @@ function byF(str: string) {
   </Scroll>
 {/each}
 
-{#each logColors as color}
+{#each logColors as color, idx}
   <Banner>
     <h3>{color}</h3>
   </Banner>
   <Scroll name=".2">
     <Scroll name=".2.1">
       <Chat show="report" handle={color}>
-        <Diagram {icons} {lines} {clusters} edit={true} />
+        <Diagram {icons} {lines} {clusters} edit={!!(idx % 2)} />
       </Chat>
     </Scroll>
   </Scroll>

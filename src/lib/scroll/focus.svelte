@@ -1,17 +1,19 @@
 <script lang="ts">
+import type { RANGE } from './observer'
 import { tick } from 'svelte'
 import browser from '$lib/browser'
-import { observe } from './observer'
+import { bit, observe } from './observer'
 
 export let base = ''
 export let id = base
 export let value = base
+export let range = ['horizon'] as RANGE[]
 
 const { viewSize } = browser
 
-const tracker = observe(['horizon'], {
+const tracker = observe(range, {
   async change(ops) {
-    if (ops.focus === 'focus') {
+    if ((ops.focus & bit.focus) === bit.focus) {
       value = id
     } else {
       await tick()

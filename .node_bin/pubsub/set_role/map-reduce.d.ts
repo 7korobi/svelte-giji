@@ -20,7 +20,7 @@ declare type TrapRole = {
     _id: TRAP_ID;
     group: 'TRAP';
     win: null;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     label: presentation;
     help: presentation;
 };
@@ -28,7 +28,7 @@ declare type TurnRole = {
     _id: TURN_ID;
     group: 'TURN';
     win: null;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     label: presentation;
     help: presentation;
 };
@@ -36,7 +36,7 @@ declare type LiveRole = {
     _id: LIVE_ID;
     group: 'LIVE' | null;
     win: null;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     label: presentation;
     help: presentation;
 };
@@ -44,7 +44,7 @@ export declare type MobRole = {
     _id: MOB_ID;
     group: 'MOB';
     win: 'MOB' | 'HUMAN';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     label: presentation;
     help: presentation;
 };
@@ -52,7 +52,7 @@ declare type SpecialRole = {
     _id: SPECIAL_ID;
     group: 'SPECIAL';
     win: null;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     label: presentation;
     help: presentation;
 };
@@ -60,7 +60,7 @@ declare type GiftRole = {
     _id: GIFT_ID;
     group: 'GIFT';
     win: WIN | null;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd?: 'role';
     label: presentation;
@@ -71,7 +71,7 @@ declare type HumanRole = {
     _id: ROLE_ID;
     group: 'HUMAN';
     win: 'HUMAN';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -81,7 +81,7 @@ declare type EvilRole = {
     _id: ROLE_ID;
     group: 'EVIL';
     win: 'EVIL';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -91,7 +91,7 @@ declare type WolfRole = {
     _id: ROLE_ID;
     group: 'WOLF';
     win: 'WOLF' | 'LONEWOLF';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -101,7 +101,7 @@ declare type PixiRole = {
     _id: ROLE_ID;
     group: 'PIXI';
     win: 'PIXI';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -111,7 +111,7 @@ declare type OtherRole = {
     _id: ROLE_ID;
     group: 'OTHER';
     win: 'HATER' | 'LOVER' | 'GURU' | 'DISH';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -121,7 +121,7 @@ declare type BindRole = {
     _id: ROLE_ID;
     group: 'BIND';
     win: 'HATER' | 'LOVER';
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd: 'role';
     label: presentation;
@@ -131,7 +131,7 @@ declare type disabledRole = {
     _id: ROLE_ID;
     group: undefined;
     win: WIN;
-    able_ids: ABLE_ID;
+    able_ids: ABLE_ID[];
     able?: presentation;
     cmd?: 'role';
     label: presentation;

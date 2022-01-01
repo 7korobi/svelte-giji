@@ -11,11 +11,6 @@ export { Portrate, ThemeBtns, SearchText, BreadCrumb }
 //import Export from './article/export.svelte'
 //import Footer from './article/footer.svelte'
 //export { Export, Footer }
-
-
-import OldlogViewer from './chats/oldlog-viewer.svelte'
-import OldlogFinder from './chats/oldlog-finder.svelte'
-export { OldlogViewer, OldlogFinder }
 */
 
 // export * from './chat'

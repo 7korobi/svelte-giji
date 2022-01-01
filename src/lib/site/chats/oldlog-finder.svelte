@@ -13,6 +13,8 @@ import { default_stories_query } from '$lib/pubsub/model-client'
 import * as site from '../store'
 import { Btn, Sup, Grid, SearchText } from '$lib/design'
 import { Post, Report } from '../chat'
+import Sub from '$lib/design/sub.svelte'
+import Mark from '$lib/site/inline/mark.svelte'
 
 const { url } = site
 
@@ -121,7 +123,7 @@ function changedStep<T extends { _id: string; at?: number }>(o: T, idx: number, 
     {#if params.order === 'upd_at'}
       <p class="c">
         {#each $finder_stories.group.upd_at as o, idx (o._id)}
-          {#if changedStep(o, idx, group.upd_at)}<br />{/if}
+          {#if changedStep(o, idx, $reduce_stories.group.upd_at)}<br />{/if}
           <Btn type="toggle" bind:value={params.upd_at} as={[o._id]}>
             <p class="c">{o._id}</p>
             <p class="c fine"><strong>x{o.count}</strong></p>
@@ -143,12 +145,10 @@ function changedStep<T extends { _id: string; at?: number }>(o: T, idx: number, 
     {#if params.order === 'marks'}
       <p class="c">
         {#each $finder_stories.group.mark as o (o._id)}
-          <Btn type="toggle" bind:value={params.mark} as={[o._id]}
-            ><img class="mark" alt="" src="{$url.icon}{o.file}" /><Sup
-              min={1}
-              value={o.count}
-            /></Btn
-          >
+          <Btn type="toggle" bind:value={params.mark} as={[o._id]}>
+            <Sub min={0} value={o.count} /><br />
+            <Mark ids={[o._id]} />
+          </Btn>
         {/each}
       </p>
     {/if}
@@ -224,6 +224,13 @@ function changedStep<T extends { _id: string; at?: number }>(o: T, idx: number, 
     {/if}
   {/if}
 </Report>
+<slot />
+
+<Post handle="btns form">
+  <p>
+    <sub style="width: 100%">{$reduce_stories.list.length}村があてはまります。</sub>
+  </p>
+</Post>
 
 <style lang="scss">
 img.mark {

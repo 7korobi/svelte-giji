@@ -8,13 +8,16 @@ import type {
   BOOK_POTOF_ID,
   CHR_SET_IDX,
   BOOK_PHASE_IDX,
-  BOOK_MESSAGE_IDX,
-  CHAT,
   BOOK_MESSAGE_ID,
   BOOK_EVENT_IDX,
   BOOK_EVENT_ID,
-  HANDLE
+  HANDLE,
+  BOOK_PHASE_IDX_BARE,
+  BookCardSelect,
+  BookCardLive,
+  BookCardRole
 } from '../map-reduce'
+import { Phases } from '../map-reduce'
 import { MapReduce } from '$lib/map-reduce'
 import { url } from '$lib/site/store'
 import { Faces, Roles, ChrJobs } from '../map-reduce'
@@ -174,12 +177,14 @@ export function oldlog(story_id: BOOK_STORY_ID) {
       o.potofs.forEach((o, potof_idx) => {
         const potof_id: BOOK_POTOF_ID = `${story_id}-${potof_idx}`
         o._id = potof_id
-
-        oldlog_stats.add([{ _id: o.event_id, story_id, story }])
+        o.cards = [] as any
 
         if (Roles.find(o.select)) {
-          oldlog_cards.add([{ _id: `${potof_id}-request`, story_id, story, role_id: o.select }])
+          oldlog_cards.add([
+            { _id: `${potof_id}-select`, story_id, story, potof: o, role_id: o.select, act: {} }
+          ])
           delete o.select
+          o.cards[0] = oldlog_cards.find(`${potof_id}-select`) as BookCardSelect
         }
 
         if (o.role) {
@@ -187,31 +192,54 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             const date = 0 <= o.deathday ? o.deathday : undefined
             if (o.role[0] && o.live !== 'mob') {
               oldlog_cards.add([
-                { _id: `${potof_id}-live`, story_id, story, role_id: o.live, date }
+                {
+                  _id: `${potof_id}-live`,
+                  story_id,
+                  story,
+                  potof: o,
+                  role_id: o.live,
+                  date,
+                  act: {}
+                }
               ])
             } else {
               oldlog_cards.add([
-                { _id: `${potof_id}-live`, story_id, story, role_id: 'leave', date: 0 }
+                {
+                  _id: `${potof_id}-live`,
+                  story_id,
+                  story,
+                  potof: o,
+                  role_id: 'leave',
+                  date: 0,
+                  act: {}
+                }
               ])
             }
             delete o.live
             delete o.deathday
+            o.cards[1] = oldlog_cards.find(`${potof_id}-live`) as BookCardLive
           }
 
           if (Roles.find(o.role[0])) {
-            oldlog_cards.add([{ _id: `${potof_id}-role`, story_id, story, role_id: o.role[0] }])
+            oldlog_cards.add([
+              { _id: `${potof_id}-role`, story_id, story, potof: o, role_id: o.role[0], act: {} }
+            ])
+            o.cards[2] = oldlog_cards.find(`${potof_id}-role`) as BookCardRole
           }
           if (Roles.find(o.role[1])) {
-            oldlog_cards.add([{ _id: `${potof_id}-gift`, story_id, story, role_id: o.role[1] }])
+            oldlog_cards.add([
+              { _id: `${potof_id}-gift`, story_id, story, potof: o, role_id: o.role[1], act: {} }
+            ])
+            o.cards[3] = oldlog_cards.find(`${potof_id}-gift`) as BookCardRole
           }
           delete o.role
         }
-
-        oldlog_stats.add([{ _id: `${potof_id}-give`, story_id, story, give: o.point.actaddpt }])
+        if (o.cards[1].act.incite) o.cards[1].act.incite.remain = o.point.actaddpt
         delete o.point.actaddpt
+        delete o.say
 
         if (o.live === 'live') {
-          oldlog_stats.add([{ _id: `${potof_id}-commit`, story_id, story, sw: !!o.commit }])
+          o.cards[1].act.commit.done = o.commit
           delete o.commit
         }
 
@@ -234,10 +262,9 @@ export function oldlog(story_id: BOOK_STORY_ID) {
       o.messages.forEach((o) => {
         let phase_idx = o.logid.slice(0, 2) as BOOK_PHASE_IDX
         if ((phase_idx as string) === '-S') phase_idx = 'iI'
-        const message_idx = `${Number(o.logid.slice(2))}` as BOOK_MESSAGE_IDX
+        const message_idx = `${Number(o.logid.slice(2))}` as `${number}`
 
         o.event_id ||= o._id.split('-').slice(0, 3).join('-') as BOOK_EVENT_ID
-        o._id = `${o.event_id}-${phase_idx}-${message_idx}`
 
         switch (o.subid) {
           case 'M':
@@ -311,36 +338,9 @@ export function oldlog(story_id: BOOK_STORY_ID) {
           o.potof = potof_by[`${o.sow_auth_id}`]
           o.potof_id = o.potof?._id as BOOK_POTOF_ID
         }
-        delete o.sow_auth_id
 
-        if (o.log === '*CAST*') {
-          o._id = `${o.event_id}-mS-CAST`
-          o.handle = 'TITLE'
-          o.show = 'report'
-        }
-
-        o.mention_ids = []
         if (o.log) {
-          o.log = o.log.replace(
-            /<mw\ +(..)(\d+),(\d+),(.+?)>/g,
-            (
-              str: string,
-              _phase_idx: BOOK_PHASE_IDX,
-              $1: string,
-              _event_idx: BOOK_EVENT_IDX,
-              _code: string
-            ) => {
-              const _idx = Number($1)
-              const _mention_id = [story_id, _event_idx, _phase_idx, _idx].join(
-                '-'
-              ) as BOOK_MESSAGE_ID
-              if (_phase_idx === 'MM') {
-                _phase_idx = `${phase_idx[0]}M` as BOOK_PHASE_IDX
-              }
-              o.mention_ids.push(_mention_id)
-              return `<q class="cite-bottom" cite="${_mention_id}"><b>&gt;&gt;</b>${_code}</q>`
-            }
-          )
+          logscan(o)
         } else {
           o.log = 'メモをはがした。'
           o.show = 'post'
@@ -348,6 +348,12 @@ export function oldlog(story_id: BOOK_STORY_ID) {
         if (o.to) {
           phase_idx = 'AIM'
           o.handle = 'AIM'
+        }
+        o._id = `${o.event_id}-${phase_idx}-${message_idx}`
+        if (o.log === '*CAST*') {
+          o._id = `${o.event_id}-mS-cast`
+          o.handle = 'TITLE'
+          o.show = 'cast'
         }
 
         if (['maker', 'admin', 'c06'].includes(o.face_id)) o.face_id = undefined
@@ -375,7 +381,7 @@ export function oldlog(story_id: BOOK_STORY_ID) {
           story,
           turn: -1,
           winner: event_foot.winner,
-          write_at: new Date(event_head.write_at.getDate() - 1)
+          write_at: new Date(event_head.write_at.getTime() - 1)
         }
       ])
 
@@ -383,15 +389,17 @@ export function oldlog(story_id: BOOK_STORY_ID) {
       const [welcome, v_rules] = story.comment.split(/■村のルール<br>/)
       const event_id = `${story_id}-top` as BOOK_EVENT_ID
       const event = oldlog_events.find(event_id)
+      const phase = Phases.find('mS')
 
       oldlog_messages.add([
-        {
+        logscan({
           _id: `${story_id}-top-mS-title` as BOOK_MESSAGE_ID,
           story_id,
           story,
           event_id,
           event,
-          write_at: new Date(message_head.write_at.getDate() - 4),
+          phase,
+          write_at: new Date(message_head.write_at.getTime() - 4),
           mention_ids: [],
           handle: 'TITLE',
           show: 'logo',
@@ -399,18 +407,19 @@ export function oldlog(story_id: BOOK_STORY_ID) {
           group: 'A',
           sow_auth_id: story.sow_auth_id,
           log: ''
-        }
+        })
       ])
 
       if (welcome) {
         oldlog_messages.add([
-          {
+          logscan({
             _id: `${story_id}-top-mS-welcome` as BOOK_MESSAGE_ID,
             story_id,
             story,
             event_id,
             event,
-            write_at: new Date(message_head.write_at.getDate() - 3),
+            phase,
+            write_at: new Date(message_head.write_at.getTime() - 3),
             mention_ids: [],
             handle: 'TITLE',
             show: 'report',
@@ -418,18 +427,19 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             group: 'A',
             sow_auth_id: story.sow_auth_id,
             log: welcome
-          }
+          })
         ])
       }
       if (v_rules) {
         oldlog_messages.add([
-          {
+          logscan({
             _id: `${story_id}-top-mS-vrule` as BOOK_MESSAGE_ID,
             story_id,
             story,
             event_id,
             event,
-            write_at: new Date(message_head.write_at.getDate() - 2),
+            phase,
+            write_at: new Date(message_head.write_at.getTime() - 2),
             mention_ids: [],
             handle: 'TITLE',
             show: 'report',
@@ -437,7 +447,7 @@ export function oldlog(story_id: BOOK_STORY_ID) {
             group: 'A',
             sow_auth_id: story.sow_auth_id,
             log: `<h3>村のルール</h3>${v_rules}`
-          }
+          })
         ])
       }
 
@@ -447,4 +457,31 @@ export function oldlog(story_id: BOOK_STORY_ID) {
       console.log('onFetch', o)
     }
   }
+}
+
+function logscan(o: BookMessage) {
+  const ida = o._id.split('-')
+  const story_id = `${ida[0]}-${ida[1]}`
+  const phase_idx = ida[3]
+
+  o.mention_ids = []
+  o.log = o.log.replace(
+    /<mw\ +(..)(\d+),(\d+),(.+?)>/g,
+    (
+      str: string,
+      _phase_idx: BOOK_PHASE_IDX_BARE,
+      $1: string,
+      _event_idx: BOOK_EVENT_IDX,
+      _code: string
+    ) => {
+      const _idx = Number($1)
+      const _mention_id = [story_id, _event_idx, _phase_idx, _idx].join('-') as BOOK_MESSAGE_ID
+      if (_phase_idx === 'MM') {
+        _phase_idx = `${phase_idx[0]}M` as BOOK_PHASE_IDX
+      }
+      o.mention_ids.push(_mention_id)
+      return `<q class="cite-bottom" cite="${_mention_id}"><b>&gt;&gt;</b>${_code}</q>`
+    }
+  )
+  return o
 }

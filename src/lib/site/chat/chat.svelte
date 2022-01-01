@@ -3,10 +3,11 @@ import talk from './talk.svelte'
 import post from './post.svelte'
 import report from './report.svelte'
 import logo from './logo.svelte'
+import cast from './cast.svelte'
 
 import Mention from '../inline/mention.svelte'
-import type { BookStory } from '$lib/pubsub/map-reduce'
-const sveltes = { talk, post, report, logo }
+import type { BookPhase, BookStory } from '$lib/pubsub/map-reduce'
+const sveltes = { talk, post, report, logo, cast }
 
 export let show: keyof typeof sveltes
 export let handle: string = 'VSSAY'
@@ -17,10 +18,10 @@ export let deco: 'mono' | 'head' | 'mono head' | 'head mono' | '' = ''
 
 export let to: string = ''
 export let name: string = ''
-export let label: string = ''
 
 export let _id: string
 export let story: BookStory
+export let phase: BookPhase
 </script>
 
 <svelte:component this={sveltes[show]} {handle} {face_id} {story}>
@@ -31,7 +32,7 @@ export let story: BookStory
       </p>
     {:else}
       <p class="name">
-        {#if label}<span class="pull-right">{label}</span>{/if}
+        {#if phase}<sup class="fine pull-right">{phase.label}</sup>{/if}
         {name}
       </p>
     {/if}

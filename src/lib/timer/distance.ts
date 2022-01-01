@@ -117,15 +117,18 @@ export function tickDistance(
         timerID = null
         tempo.label = format(timestamp)
         set(tempo)
+        return
       }
       if (since < -timelimit) {
         timerID = setTimeout(tick, timeout)
         tempo.label = format(timestamp)
         set(tempo)
+        return
       }
       tempo.label = template.replace('%s', String(Math.abs(now_idx)))
       timerID = setTimeout(tick, timeout)
       set(tempo)
+      return
     }
   })
 }

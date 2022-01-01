@@ -1,11 +1,6 @@
 <script lang="ts">
-import type {
-  BOOK_FOLDER_IDX,
-  BOOK_STORY_ID,
-  BOOK_EVENT_ID,
-  BOOK_MESSAGE_ID,
-  BookMessage
-} from '$lib/pubsub/map-reduce'
+import type { BOOK_EVENT_ID, BookMessage } from '$lib/pubsub/map-reduce'
+import { Phases } from '$lib/pubsub/map-reduce'
 import {
   oldlog,
   oldlog_events,
@@ -16,35 +11,35 @@ import {
   solo_oldlog_messages,
   extra_oldlog_messages,
   rest_oldlog_messages,
-  oldlog_potofs,
-  oldlog_cards,
-  oldlog_stats
+  oldlog_potofs
 } from '$lib/pubsub/poll'
-import Poll from '$lib/storage/poll.svelte'
+import { __BROWSER__ } from '$lib/common'
 import { Location } from '$lib/uri'
-import { default_story_query } from '$lib/pubsub/model-client'
 import { Sup, Btn, SearchText } from '$lib/design'
 
+import Poll from '$lib/storage/poll.svelte'
 import { Talk, Post, Report } from '../chat'
-import { url, side, SideBits, summaryframe } from '$lib/site/store'
-import Mention from '$lib/site/inline/mention.svelte'
-import { Time } from '$lib/timer'
-import { portals } from '$lib/common'
+
+import { default_story_query } from '$lib/pubsub/model-client'
+import { book_ids } from '$lib/pubsub/book/query'
+
+import { side, SideBits, summaryframe } from '$lib/site/store'
+import MessageAppendix from '$lib/site/summary-frame/message-appendix.svelte'
+import PotofTable from '$lib/site/summary-frame/potof-table.svelte'
 
 export let page: number
 export let messages: BookMessage[]
 export let regexp: RegExp
 export let refresh: any = undefined
 export let params = default_story_query()
+export let onReset = () => window.scrollTo(0, 0)
 
-$: [folder_id, story_id, event_id, phase_id, message_id] = subids<
-  [BOOK_FOLDER_IDX, BOOK_STORY_ID, BOOK_EVENT_ID, string, BOOK_MESSAGE_ID]
->(params.idx)
+$: [[, story_id, event_id, , message_id], [, , , phase_idx]] = book_ids(params.idx)
 $: event_ids = $oldlog_events.list.map((o) => o._id)
-$: back_event_id = slide(event_ids, event_id, -1)
-$: next_event_id = slide(event_ids, event_id, +1)
+$: event_at = event_ids.indexOf(event_id)
 
 $: event = $oldlog_events && oldlog_events.find(event_id)
+$: phase = Phases.find(phase_idx)
 $: message = $oldlog_messages && oldlog_messages.find(message_id)
 $: memo_messages = memo_oldlog_messages(regexp)
 $: full_messages = full_oldlog_messages(regexp)
@@ -52,6 +47,13 @@ $: normal_messages = normal_oldlog_messages(regexp)
 $: solo_messages = solo_oldlog_messages(regexp)
 $: extra_messages = extra_oldlog_messages(regexp)
 $: rest_messages = rest_oldlog_messages(regexp)
+
+$: console.log('memo_oldlog_messages', regexp, $memo_messages)
+$: console.log('full_oldlog_messages', regexp, $full_messages)
+$: console.log('normal_oldlog_messages', regexp, $normal_messages)
+$: console.log('solo_oldlog_messages', regexp, $solo_messages)
+$: console.log('extra_oldlog_messages', regexp, $extra_messages)
+$: console.log('rest_oldlog_messages', regexp, $rest_messages)
 
 $: switch (params.mode) {
   case 'memo':
@@ -73,28 +75,7 @@ $: switch (params.mode) {
     messages = $rest_messages.event[event_id]
     break
 }
-
-function clip(e: MouseEvent) {
-  const range = document.createRange()
-  range.selectNode(e.target as Node)
-  window.getSelection().addRange(range)
-  document.execCommand('copy')
-}
-
-function subids<T extends any[]>(id: string, separator = '-'): T {
-  if (!id) return [] as T
-  const idxs = id.split(separator)
-  return (idxs.map((idx, at) => {
-    const size = at + 1
-    const sub = idxs.slice(0, size)
-    return sub.length === size ? sub.join(separator) : null
-  }) as any) as T
-}
-
-function slide<T>(list: T[], idx: T, step: number): T {
-  return list[list.indexOf(idx) + step]
-}
-
+$: story_id && event_id && __BROWSER__ && onReset()
 function label(event_id: BOOK_EVENT_ID) {
   const event = oldlog_events.find(event_id)
   if (!event) return ''
@@ -135,185 +116,40 @@ function label(event_id: BOOK_EVENT_ID) {
     </span>
   </p>
   <p class="center">
-    <Btn as={back_event_id} bind:value={params.idx} disabled={!label(back_event_id)}
-      >{label(back_event_id)}戻る</Btn
+    <Btn
+      as={event_ids[event_at - 1]}
+      bind:value={params.idx}
+      disabled={!label(event_ids[event_at - 1])}>{label(event_ids[event_at - 1])}戻る</Btn
     >
-    <Btn as={next_event_id} bind:value={params.idx} disabled={!label(next_event_id)}
-      >{label(next_event_id)}進む</Btn
+    <Btn
+      as={event_ids[event_at + 1]}
+      bind:value={params.idx}
+      disabled={!label(event_ids[event_at + 1])}>{label(event_ids[event_at + 1])}進む</Btn
+    >
+  </p>
+</Report>
+
+<slot />
+
+<Report handle="footer form">
+  <p class="center">
+    <Btn
+      as={event_ids[event_at - 1]}
+      bind:value={params.idx}
+      disabled={!label(event_ids[event_at - 1])}>{label(event_ids[event_at - 1])}戻る</Btn
+    >
+    <Btn
+      as={event_ids[event_at + 1]}
+      bind:value={params.idx}
+      disabled={!label(event_ids[event_at + 1])}>{label(event_ids[event_at + 1])}進む</Btn
     >
   </p>
 </Report>
 
 <div use:summaryframe.mount>
-  {#if message && event && $side & SideBits.posi.TimelineClock}
-    <div class="inframe mentions">
-      <div class="stable SSAY">
-        <hr />
-        <strong class="fine text"
-          ><!---->
-          <p class="left">by {message.potof?.sow_auth_id || '???'}</p>
-          <p class="left" style="white-space: nowrap;">
-            <button title="クリップボードへコピー" on:click={clip} cite={message._id}>
-              <Mention id={message._id} let:mention
-                >(<b>&gt;&gt;</b>{mention} {message.face?.name || ''})</Mention
-              >
-            </button>
-          </p>
-          <p class="right">
-            <span class="pull-left">{event.name} p{page}</span><Time at={message.write_at} />
-          </p>
-          <p class="right">
-            <span>会話</span><span title="クリップボードへコピー"
-              ><abbr class="btn">0:29</abbr></span
-            >
-          </p></strong
-        >
-      </div>
-    </div>
-  {/if}
+  <MessageAppendix {message} {phase} {event} {page} />
 
-  {#if $side & SideBits.posi.UsersOn}
-    <div class="inframe header">
-      <div class="swipe">
-        <table>
-          <tfoot class="TITLE form tb-btn">
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <tr>
-              <th colspan="3"><sup>(スクロールします)</sup></th>
-              <th><a class="active">日程</a></th>
-              <th><a class="btn">状態</a></th>
-              <th><a class="btn">促</a></th>
-              <th colspan="2">
-                <a class="btn">回数</a>
-                <a class="btn" title="字数 ÷ 回数">平均</a>
-                <a class="btn">字数</a>
-                <a class="btn" title="字数 ÷ 範囲">密度</a></th
-              >
-              <th>
-                <a class="btn">最初</a>
-                <a class="btn" title="最後 － 最初">範囲</a>
-                <a class="btn">最後</a></th
-              >
-              <th> <a class="btn">勝敗</a></th>
-              <th colspan="2">
-                <a class="btn">陣営</a>
-                <a class="btn">役割</a></th
-              >
-              <th><a class="btn">希望</a></th>
-              <th><a class="btn">補足</a></th>
-              <th class="last" />
-            </tr>
-          </tfoot>
-          <tbody class="potofs fine tlist">
-            <tr>
-              <td class="c mdi" />
-              <th class="r leave">肉屋</th>
-              <th class="l leave">ニール</th>
-              <td class="r leave" />
-              <td class="c leave">―</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r leave">食いしん坊</th>
-              <th class="l leave">マリアンヌ</th>
-              <td class="r leave" />
-              <td class="c leave">―</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r victim">厭世家</th>
-              <th class="l victim">サイモン</th>
-              <td class="r victim"> 2日</td>
-              <td class="c victim">襲撃</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r executed">聖歌隊員</th>
-              <th class="l executed">レティーシャ</th>
-              <td class="r executed"> 3日</td>
-              <td class="c executed">処刑</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r victim">靴磨き</th>
-              <th class="l victim">トニー</th>
-              <td class="r victim"> 3日</td>
-              <td class="c victim">襲撃</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r victim">奏者</th>
-              <th class="l victim">ビリー</th>
-              <td class="r victim"> 4日</td>
-              <td class="c victim">襲撃</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r executed">店番</th>
-              <th class="l executed">ソフィア</th>
-              <td class="r executed"> 4日</td>
-              <td class="c executed">処刑</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r executed">漂白工</th>
-              <th class="l executed">ピッパ</th>
-              <td class="r executed"> 5日</td>
-              <td class="c executed">処刑</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r victim">牧人</th>
-              <th class="l victim">リンダ</th>
-              <td class="r victim"> 5日</td>
-              <td class="c victim">襲撃</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r victim">流浪者</th>
-              <th class="l victim">ペラジー</th>
-              <td class="r victim"> 6日</td>
-              <td class="c victim">襲撃</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r executed">若者</th>
-              <th class="l executed">テッド</th>
-              <td class="r executed"> 6日</td>
-              <td class="c executed">処刑</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r live">子守り</th>
-              <th class="l live">パティ</th>
-              <td class="r live" />
-              <td class="c live">生存者</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-            <tr>
-              <td class="c mdi" />
-              <th class="r live">小娘</th>
-              <th class="l live">ゾーイ</th>
-              <td class="r live" />
-              <td class="c live">生存者</td>
-              <td class="l"><del>...</del></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  {/if}
+  <PotofTable potofs={$oldlog_potofs.list} />
 </div>
 
 <style lang="scss">

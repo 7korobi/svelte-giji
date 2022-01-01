@@ -84,7 +84,6 @@ const border = {
   '=': 'wide'
 } as const
 
-const zoomer = zoomerFactory()
 const resizer = resizerFactory()
 
 export let pin: string = undefined
@@ -445,7 +444,7 @@ function do_finish(e: MouseEvent) {
       pin = key
     } else {
       const o = icons.find(({ v }) => v === key)
-      if (o) {
+      if (o && edit) {
         const rect = dicRect[key]
         moveXY(o, dx + 0.5 * rect.width, dy + 0.5 * rect.height)
         icons = icons
@@ -466,29 +465,6 @@ function parseMove({ pageX, pageY }: { pageX: number; pageY: number }): [string,
   const dx = zoom * (pageX - px)
   const dy = zoom * (pageY - py)
   return [key, dx, dy]
-}
-
-function zoomerFactory() {
-  if (!__BROWSER__) return () => {}
-  const observer = new ResizeObserver((e) => {
-    e.forEach(({ target, contentRect }) => {
-      ;(target as any).__resize(contentRect)
-    })
-  })
-
-  return (el: HTMLElement) => {
-    Object.assign(el, {
-      __resize({ width }) {
-        rootWidth = width
-      }
-    })
-    observer.observe(el)
-    return { destroy }
-
-    function destroy() {
-      observer.unobserve(el)
-    }
-  }
 }
 
 function resizerFactory() {
@@ -551,7 +527,7 @@ function parseTouch(e: TouchEvent): MouseEvent {
 
 <article
   class="fine"
-  use:zoomer
+  bind:offsetWidth={rootWidth}
   on:mouseup={do_up}
   on:mousemove={do_move}
   on:mouseleave={do_finish}
