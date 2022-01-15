@@ -151,14 +151,14 @@ function model(o) {
   return o;
 }
 function modelAsMongoDB(collection, $project) {
-  const table = () => db().collection(collection);
+  const table2 = () => db().collection(collection);
   return {
     $match: (ids) => ({ _id: { $in: ids } }),
-    set: ($set) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
-    del: (ids) => table().deleteMany({ _id: { $in: ids } }),
+    set: ($set) => table2().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
+    del: (ids) => table2().deleteMany({ _id: { $in: ids } }),
     isLive: async () => true,
-    live: ($match, set2, del2) => watch(set2, del2, table(), pipeline($match)),
-    query: async ($match) => table().aggregate(pipeline($match)).toArray()
+    live: ($match, set2, del2) => watch(set2, del2, table2(), pipeline($match)),
+    query: async ($match) => table2().aggregate(pipeline($match)).toArray()
   };
   function pipeline($match) {
     if ($project) {
@@ -188,10 +188,10 @@ function listen(socketio, models, stores) {
 var dev = {
   mongodb: "mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji",
   http: {
-    port: 3001
+    port: 4002
   },
   io: {
-    origin: ["http://localhost:3000", "https://gijilog.web.app", "https://giji-db923.web.app"]
+    origin: ["http://localhost:4000", "https://gijilog.web.app", "https://giji-db923.web.app"]
   }
 };
 var prod = {
@@ -5544,17 +5544,418 @@ var chr_face_default = [
   }
 ];
 
-// src/lib/pubsub/chr_face/map-reduce.ts
-var katakanas = (() => {
-  const result = [];
-  let start2 = "\u30A2".charCodeAt(0);
-  let end = "\u30F3".charCodeAt(0);
-  let idx = start2;
-  for (; idx <= end; idx++) {
-    result.push(String.fromCharCode(idx));
+// src/lib/unicode/util.ts
+var hiraganaPattern = "\u3041-\u3096\u309D\u30FE\u309F";
+var katakanaPattern = "\u30A1-\u30FA\u30FD\u30FE\u30FF";
+var allKanaPattern = hiraganaPattern + katakanaPattern;
+var kanjiPattern = "\u2E80-\u2FDF\u3005\u3007\u303B\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\u{20000}-\u{2FFFF}";
+var DevanagariPattern = "\u0900\uFF5E\u097F";
+var hiragana = new RegExp(`[${hiraganaPattern}]`, "ug");
+var katakana = new RegExp(`[${katakanaPattern}]`, "ug");
+var allKana = new RegExp(`[${allKanaPattern}]`, "ug");
+var kanji = new RegExp(`[${kanjiPattern}]`, "ug");
+var Devanagari = new RegExp(`[${DevanagariPattern}]`, "ug");
+var hiraganas = new RegExp(`[${hiraganaPattern}]+`, "ug");
+var katakanas = new RegExp(`[${katakanaPattern}]+`, "ug");
+var allKanas = new RegExp(`[${allKanaPattern}]+`, "ug");
+var kanjis = new RegExp(`[${kanjiPattern}]+`, "ug");
+var Devanagaris = new RegExp(`[${DevanagariPattern}]+`, "ug");
+
+// src/lib/unicode/number.ts
+var VERBOSE = false;
+var \u6F22\u5B57 = numTable({
+  stringify(byScale, _byBig, str, tail) {
+    str = (() => {
+      switch (byScale) {
+        case 20:
+          return "\u5EFF";
+        case 30:
+          return "\u4E17";
+        case 40:
+          return "\u534C";
+        default:
+          return str;
+      }
+    })();
+    return `${str}${tail}`;
+  },
+  zero: "\u4F59",
+  unit: ["\u6253 \u5BFE \u756A \u8DB3 \u53CC \u5272", [12, 2, 2, 2, 2, 0.1]]
+}, "\u3007 \u4E00 \u4E8C \u4E09 \u56DB \u4E94 \u516D \u4E03 \u516B \u4E5D", "\u6E05\u6D44 \u865A\u7A7A \u516D\u5FB3 \u5239\u90A3 \u5F3E\u6307 \u77AC\u606F \u9808\u81FE \u9021\u5DE1 \u6A21\u7CCA \u6F20 \u6E3A \u57C3 \u5875 \u6C99 \u7E4A \u5FAE \u5FFD \u7CF8 \u6BDB \u5398 \u5206 \u4E00 \u5341 \u767E \u5343", "\u4E07 \u5104 \u5146 \u4EAC \u5793 \u{25771} \u7A63 \u6E9D \u6F97 \u6B63 \u8F09 \u6975 \u6052\u6CB3\u6C99 \u963F\u50E7\u7947 \u90A3\u7531\u4ED6 \u4E0D\u53EF\u601D\u8B70 \u7121\u91CF\u5927\u6570");
+var \u5927\u5B57 = numTable({
+  unit: ["\u6253 \u5BFE \u756A \u8DB3 \u53CC \u5272", [12, 2, 2, 2, 2, 0.1]]
+}, "\u96F6 \u58F1 \u5F10 \u53C2 \u8086 \u4F0D \u9678 \u6F06 \u634C \u7396", "\u6E05\u6D44 \u865A\u7A7A \u516D\u5FB3 \u5239\u90A3 \u5F3E\u6307 \u77AC\u606F \u9808\u81FE \u9021\u5DE1 \u6A21\u7CCA \u6F20 \u6E3A \u57C3 \u5875 \u6C99 \u7E4A \u5FAE \u5FFD \u7CF8 \u6BDB \u5398 \u5206 \u58F1 \u62FE \u4F70 \u9621", "\u842C \u5104 \u5146 \u4EAC \u5793 \u{25771} \u7A63 \u6E9D \u6F97 \u6B63 \u8F09 \u6975 \u6052\u6CB3\u6C99 \u963F\u50E7\u7947 \u90A3\u7531\u4ED6 \u4E0D\u53EF\u601D\u8B70 \u7121\u91CF\u5927\u6570");
+var \u3088\u307F = numTable({
+  stringify(byScale, _byBig, str, tail) {
+    if (tail === "\u3053") {
+      switch (byScale) {
+        case 1:
+          return "\u3044\u3063\u3053";
+      }
+    }
+    switch (byScale) {
+      case 300:
+        return `\u3055\u3093\u3073\u3083\u304F${tail}`;
+      case 600:
+        return `\u308D\u3063\u3074\u3083\u304F${tail}`;
+      case 800:
+        return `\u306F\u3063\u3074\u3083\u304F${tail}`;
+      case 3e3:
+        return `\u3055\u3093\u305C\u3093${tail}`;
+      case 8e3:
+        return `\u306F\u3063\u305B\u3093${tail}`;
+      default:
+        return `${str}${tail}`;
+    }
+  },
+  unit: ["\u3060\u30FC\u3059 \u3064\u3044 \u3064\u304C\u3044 \u305D\u304F \u305D\u3046 \u308F\u308A", [12, 2, 2, 2, 2, 0.1]]
+}, "\u308C\u3044 \u3044\u3061 \u306B \u3055\u3093 \u3088\u3093 \u3054 \u308D\u304F \u306A\u306A \u306F\u3061 \u304D\u3085\u3046", "\u305B\u3044\u3058\u3087\u3046 \u3053\u304F\u3046 \u308A\u3063\u3068\u304F \u305B\u3064\u306A \u3060\u3093\u3057 \u3057\u3085\u3093\u305D\u304F \u3057\u3085\u3086 \u3057\u3085\u3093\u3058\u3085\u3093 \u3082\u3053 \u3070\u304F \u3073\u3087\u3046 \u3042\u3044 \u3058\u3093 \u3057\u3083 \u305B\u3093 \u3073 \u3053\u3064 \u3057 \u3082\u3046 \u308A\u3093 \u3076 \u3044\u3061 \u3058\u3085\u3046 \u3072\u3083\u304F \u305B\u3093", "\u307E\u3093 \u304A\u304F \u3061\u3087\u3046 \u3051\u3044 \u304C\u3044 \u3058\u3087 \u3058\u3087\u3046 \u3053\u3046 \u304B\u3093 \u305B\u3044 \u3055\u3044 \u3054\u304F \u3054\u3046\u304C\u3057\u3083 \u3042\u305D\u3046\u304E \u306A\u3086\u305F \u3075\u304B\u3057\u304E \u3080\u308A\u3087\u3046\u305F\u3044\u3059\u3046");
+var \u3053\u3066\u3093 = numTable({
+  stringify(byScale, byBig, str, tail) {
+    if (!str)
+      return "";
+    if (byScale < 1)
+      return str;
+    if (100 < byScale)
+      return str;
+    if (tail === "\u304B") {
+      switch (byScale) {
+        case 1:
+          return "\u3064\u3044\u305F\u3061";
+        case 2:
+          return "\u3075\u3064\u304B";
+        case 3:
+          return "\u307F\u3063\u304B";
+        case 4:
+          return "\u3088\u3063\u304B";
+        case 6:
+          return "\u3080\u3044\u304B";
+        case 7:
+          return "\u306A\u306E\u304B";
+        case 8:
+          return "\u3088\u3046\u304B";
+      }
+    }
+    switch (byBig) {
+      case 99:
+        return "\u3064\u304F\u3082";
+    }
+    switch (byScale) {
+      case 10:
+        switch (tail) {
+          case "\u3064":
+            return "\u3068\u3092";
+          case "\u305F\u308A":
+            return "\u3068\u305F\u308A";
+          default:
+            return `\u3068\u3092${tail}`;
+        }
+      case 20:
+        switch (tail) {
+          case "\u3064":
+            return "\u306F\u305F\u3061";
+          case "\u304B":
+            return "\u306F\u3064\u304B";
+          default:
+            return `\u306F\u305F${tail}`;
+        }
+      case 30:
+      case 40:
+      case 50:
+      case 60:
+      case 70:
+      case 80:
+      case 90:
+        if (tail === "\u3064")
+          tail = "\u3062";
+        return `${str}${tail}`;
+      case 100:
+        return "\u3082\u3082";
+    }
+    return `${str}${tail}`;
+  },
+  join: "\u307E\u308A",
+  unit: ["\u3060\u30FC\u3059 \u3064\u3044 \u3064\u304C\u3044 \u305D\u304F \u305D\u3046 \u308F\u308A", [12, 2, 2, 2, 2, 0.1]]
+}, "\u308C\u3044 \u3072\u3068 \u3075\u305F \u307F \u3088 \u3044\u3064 \u3080 \u306A\u306A \u3084 \u3053\u3053\u306E", "\u305B\u3044\u3058\u3087\u3046 \u3053\u304F\u3046 \u308A\u3063\u3068\u304F \u305B\u3064\u306A \u3060\u3093\u3057 \u3057\u3085\u3093\u305D\u304F \u3057\u3085\u3086 \u3057\u3085\u3093\u3058\u3085\u3093 \u3082\u3053 \u3070\u304F \u3073\u3087\u3046 \u3042\u3044 \u3058\u3093 \u3057\u3083 \u305B\u3093 \u3073 \u3053\u3064 \u3057 \u3082\u3046 \u308A\u3093 \u3076 \u3072\u3068 \u305D \u307B \u3061", "\u3088\u308D\u3065 \u304A\u304F \u3061\u3087\u3046 \u3051\u3044 \u304C\u3044 \u3058\u3087 \u3058\u3087\u3046 \u3053\u3046 \u304B\u3093 \u305B\u3044 \u3055\u3044 \u3054\u304F \u3054\u3046\u304C\u3057\u3083 \u3042\u305D\u3046\u304E \u306A\u3086\u305F \u3075\u304B\u3057\u304E \u3080\u308A\u3087\u3046\u305F\u3044\u3059\u3046");
+var \u090F\u0915 = numTable({
+  stringify(byScale, byBig, str, tail) {
+    return `${str}${tail}`;
+  },
+  big: [1.5, 1],
+  unit: ["", []]
+}, "\u0938\u093F\u092B\u093C\u0930 \u090F\u0915 \u0926\u094B \u0924\u0940\u0928 \u091A\u093E\u0930 \u092A\u093E\u0901\u091A \u091B\u0939 \u0938\u093E\u0924 \u0906\u0920 \u0928\u094C \u0926\u0938 \u0917\u094D\u092F\u093E\u0930\u0939 \u092C\u093E\u0930\u0939 \u0924\u0947\u0930\u0939 \u091A\u094C\u0926\u0939 \u092A\u0902\u0926\u094D\u0930\u0939 \u0938\u094B\u0932\u0939 \u0938\u0924\u094D\u0930\u0939 \u0905\u0920\u093E\u0930\u0939 \u0909\u0928\u094D\u0928\u0940\u0938 \u092C\u0940\u0938 \u0907\u0915\u094D\u0915\u0940\u0938 \u092C\u093E\u0908\u0938 \u0924\u0947\u0908\u0938 \u091A\u094C\u092C\u0940\u0938 \u092A\u091A\u094D\u091A\u0940\u0938 \u091B\u092C\u094D\u092C\u0940\u0938 \u0938\u0924\u094D\u0924\u093E\u0908\u0938 \u0905\u091F\u094D\u0920\u093E\u0908\u0938 \u0909\u0928\u0924\u0940\u0938 \u0924\u0940\u0938 \u0907\u0915\u0924\u0940\u0938 \u092C\u0924\u094D\u0924\u0940\u0938 \u0924\u0948\u0902\u0924\u0940\u0938 \u091A\u094C\u0902\u0924\u0940\u0938 \u092A\u0948\u0902\u0924\u0940\u0938 \u091B\u0924\u094D\u0924\u0940\u0938 \u0938\u0948\u0902\u0924\u0940\u0938 \u0905\u0921\u093C\u0924\u0940\u0938 \u0909\u0928\u0924\u093E\u0932\u0940\u0938 \u091A\u093E\u0932\u0940\u0938 \u0907\u0915\u0924\u093E\u0932\u0940\u0938 \u092C\u092F\u093E\u0932\u0940\u0938 \u0924\u0948\u0902\u0924\u093E\u0932\u0940\u0938 \u091A\u0935\u093E\u0932\u0940\u0938 \u092A\u0948\u0902\u0924\u093E\u0932\u0940\u0938 \u091B\u093F\u092F\u093E\u0932\u0940\u0938 \u0938\u0948\u0902\u0924\u093E\u0932\u0940\u0938 \u0905\u0921\u093C\u0924\u093E\u0932\u0940\u0938 \u0909\u0928\u091A\u093E\u0938 \u092A\u091A\u093E\u0938 \u0907\u0915\u094D\u092F\u093E\u0935\u0928 \u092C\u093E\u0935\u0928 \u0924\u093F\u0930\u092A\u0928 \u091A\u094C\u0935\u0928 \u092A\u091A\u092A\u0928 \u091B\u092A\u094D\u092A\u0928 \u0938\u0924\u094D\u0924\u093E\u0935\u0928 \u0905\u091F\u094D\u0920\u093E\u0935\u0928 \u0909\u0928\u0938\u0920 \u0938\u093E\u0920 \u0907\u0915\u0938\u0920 \u092C\u093E\u0938\u0920 \u0924\u093F\u0930\u0938\u0920 \u091A\u094C\u0902\u0938\u0920 \u092A\u0948\u0902\u0938\u0920 \u091B\u093F\u092F\u093E\u0938\u0920 \u0938\u0921\u093C\u0938\u0920 \u0905\u0921\u093C\u0938\u0920 \u0909\u0928\u0939\u0924\u094D\u0924\u0930 \u0938\u0924\u094D\u0924\u0930 \u0907\u0915\u0939\u0924\u094D\u0924\u0930 \u092C\u0939\u0924\u094D\u0924\u0930 \u0924\u093F\u0930\u0939\u0924\u094D\u0924\u0930 \u091A\u094C\u0939\u0924\u094D\u0924\u0930 \u092A\u091A\u0939\u0924\u094D\u0924\u0930 \u091B\u093F\u0939\u0924\u094D\u0924\u0930 \u0938\u0924\u0939\u0924\u094D\u0924\u0930 \u0905\u0920\u0939\u0924\u094D\u0924\u0930 \u0909\u0928\u093E\u0938\u0940 \u0905\u0938\u094D\u0938\u0940 \u0907\u0915\u094D\u092F\u093E\u0938\u0940 \u092C\u092F\u093E\u0938\u0940 \u0924\u093F\u0930\u093E\u0938\u0940 \u091A\u094C\u0930\u093E\u0938\u0940 \u092A\u091A\u093E\u0938\u0940 \u091B\u093F\u092F\u093E\u0938\u0940 \u0938\u0924\u093E\u0938\u0940 \u0905\u0920\u093E\u0938\u0940 \u0928\u0935\u093E\u0938\u0940 \u0928\u092C\u094D\u092C\u0947 \u0907\u0915\u094D\u092F\u093E\u0928\u0935\u0947 \u092C\u093E\u0928\u0935\u0947 \u0924\u093F\u0930\u093E\u0928\u0935\u0947 \u091A\u094C\u0930\u093E\u0928\u0935\u0947 \u092A\u091A\u093E\u0928\u0935\u0947 \u091B\u093F\u092F\u093E\u0928\u0935\u0947 \u0938\u0924\u094D\u0924\u093E\u0928\u0935\u0947 \u0905\u091F\u094D\u0920\u093E\u0928\u0935\u0947 \u0928\u093F\u0928\u094D\u092F\u093E\u0928\u0935\u0947", "\u090F\u0915 \u0938\u094C", "\u0938\u0939\u0938\u094D\u0924\u094D\u0930 \u0932\u093E\u0916 \u0915\u0930\u094B\u0921\u093C \u0905\u0930\u092C \u0916\u0930\u092C \u0928\u0940\u0932 \u092A\u0926\u094D\u092E \u0936\u0902\u0916 \u092E\u0939\u093E\u0936\u0902\u0916");
+var \u30D2\u30F3\u30C7\u30A3\u30FCtest = numTable({
+  stringify(byScale, byBig, str, tail) {
+    return `${str}${tail}`;
+  },
+  big: [1.5, 1]
+}, [...Array(100)].map((_, i) => i).join(" "), "1 (e2)", "(e3) (e5) (e7) (e9) (e11) (e13) (e15) (e17) (e19)");
+var _0__59 = [...Array(60)].map((_, i) => i).join(" ");
+var angle = numTable({}, _0__59, "\u2057 \u2034 \u2033 \u2032 \xB0 1   ", "");
+function numTable(option, itemStr, scaleStr, bigStr) {
+  option.unit ??= ["", []];
+  const toString = option.stringify ?? ((_byScale, _byBig, str, tail) => `${str}${tail}`);
+  const [units, items, scales, bigs] = [option.unit[0], itemStr, scaleStr, bigStr].map((str) => str.split(" "));
+  const unitSizes = option.unit[1];
+  const oneIdx = scales.indexOf(items[1]);
+  const subBigs = scales.slice(oneIdx);
+  option.big ??= [subBigs.length, subBigs.length];
+  const [bigHeadLog, bigSizeLog] = option.big;
+  const bigBaseLog = bigHeadLog - bigSizeLog;
+  const scaleBaseSize = items.length;
+  const bigHead = scaleBaseSize ** bigHeadLog;
+  const bigSize = scaleBaseSize ** bigSizeLog;
+  scales[oneIdx] = subBigs[0] = "";
+  const parseRegExp = makeParser();
+  const parseSubRegExp = makeParserSub();
+  return { stringify, parse };
+  function toRegExp(byScale, byBig, items2) {
   }
-  return result;
-})();
+  function makeNumeralCapture() {
+    const numerals = [...new Set([...items, ...scales, ...bigs, ""])].sort().slice(1);
+    return `(?:${numerals.join("|")})`;
+  }
+  function makeParser() {
+    const scanner = [];
+    scanner.push(`)?(?!${scales.slice(0, oneIdx).join("|")})`);
+    build(scanner, subBigs);
+    scanner.push(`(?:`);
+    bigs.forEach((big) => {
+      scanner.push(`${big})?`);
+      build(scanner, subBigs);
+      scanner.push(`(?:`);
+    });
+    scanner.reverse();
+    return new RegExp(scanner.join(""), "ug");
+  }
+  function makeParserSub() {
+    const scanner = [];
+    build(scanner, scales.slice(0, oneIdx), true);
+    scanner.reverse();
+    return new RegExp(scanner.join(""), "ug");
+  }
+  function build(scanner, scales2, isStrict = false) {
+    scales2.forEach((scale, idx) => {
+      const mode2 = isStrict || !scale ? "" : "?";
+      const values = items.slice(1);
+      scanner.push(`(?:(${values.join("|")})${mode2}(${scale}))?`);
+    });
+  }
+  function parse(str) {
+    const result = [];
+    for (const match of str.matchAll(parseSubRegExp)) {
+      capture(match, -1);
+    }
+    for (const match of str.matchAll(parseRegExp)) {
+      const size = match.length / 2;
+      capture(match, size - 1.5);
+    }
+    return result;
+    function capture(match, zero) {
+      const target = match.shift();
+      if (!target)
+        return;
+      let value = 0;
+      const size = match.length / 2;
+      for (let idx = 0; idx < size; idx++) {
+        const item = match[2 * idx];
+        const scale = match[2 * idx + 1];
+        const base = 10 ** (zero - idx);
+        let num = item ? items.indexOf(item) : scale ? 1 : 0;
+        if (num) {
+          if (VERBOSE)
+            console.log(item, scale, num * base);
+          value += num * base;
+        }
+      }
+      result.push([value, target]);
+    }
+  }
+  function calcScaleGap(scaleAt) {
+    let scaleGap = bigHeadLog - scaleAt;
+    if (scaleGap <= 0 || 1 < scaleGap)
+      scaleGap = 1;
+    return scaleGap;
+  }
+  function stringify(num, appendix) {
+    let scaleAt = 0;
+    let scale = 1;
+    while (num * scale !== Math.floor(num * scale)) {
+      scaleAt--;
+      scale *= scaleBaseSize;
+    }
+    while (num * scale % scaleBaseSize === 0) {
+      const scaleGap = calcScaleGap(scaleAt);
+      const scaleSize = scaleBaseSize ** scaleGap;
+      scaleAt += scaleGap;
+      scale /= scaleSize;
+    }
+    return calc(Math.floor(num * scale), scaleAt, appendix, 0 <= scaleAt);
+  }
+  function calc(num, scaleAt, appendix, isTail = scaleAt === 0) {
+    let { join = "" } = option;
+    let leftStr;
+    const scaleGap = calcScaleGap(scaleAt);
+    const scaleSize = scaleBaseSize ** scaleGap;
+    const next_num = Math.floor(num / scaleSize);
+    if (next_num) {
+      leftStr = calc(next_num, scaleAt + scaleGap, appendix);
+    } else {
+      join = "";
+      leftStr = "";
+    }
+    const mScale = num % scaleSize;
+    const mBig = num % bigSize;
+    let itemStr2 = items[mScale];
+    const scaleIdx = -1 < scaleAt ? (scaleAt - bigBaseLog) % bigSizeLog + bigBaseLog : scaleAt;
+    const bigIdx = 1 <= scaleIdx || !mBig ? -1 : (scaleAt - bigHeadLog) / bigSizeLog;
+    const bigStr2 = bigs[bigIdx] || "";
+    let scaleStr2 = scales[oneIdx + scaleIdx] ?? "";
+    switch (mScale) {
+      case 0:
+        if (leftStr)
+          itemStr2 = "";
+        join = "";
+        scaleStr2 = "";
+        break;
+      case 1:
+        if (0 < scaleIdx)
+          itemStr2 = "";
+        break;
+    }
+    const toStringed = toString(scaleBaseSize ** scaleIdx * mScale, mBig, `${itemStr2}${scaleStr2}`, isTail ? `${bigStr2}${appendix}` : `${bigStr2}`);
+    if (VERBOSE)
+      console.log({ scaleAt, idx: [scaleIdx, bigIdx], str: [itemStr2, scaleStr2, bigStr2] });
+    return `${leftStr}${join}${toStringed}`;
+  }
+}
+
+// src/lib/unicode/index.ts
+console.log({ angle, \u3053\u3066\u3093, \u3088\u307F, \u5927\u5B57, \u6F22\u5B57 });
+var replaceChrEscape = (c) => `\\${c}`;
+var replaceChrChk = new RegExp([...`\\[](){}-+.*|`].map(replaceChrEscape).join("|"));
+function replaceChrFactory(table2, key, postfix = "") {
+  const item = key.map((c) => c.replace(replaceChrChk, (cc) => replaceChrEscape(cc)));
+  const regexp = new RegExp(`(${item.join("|")})${postfix}`, "g");
+  return (str) => str.replace(regexp, (_, chr) => table2[chr] ?? chr);
+}
+function charRange(headStr, tailStr) {
+  const head = headStr.charCodeAt(0);
+  const tail = tailStr.charCodeAt(0) + 1;
+  const ret = [];
+  for (let idx = head; idx < tail; idx++) {
+    ret.push(String.fromCharCode(idx));
+  }
+  return ret.join("");
+}
+function sortAt(cb, ...lists) {
+  const { length } = lists[0];
+  for (const list of lists) {
+    if (length !== list.length) {
+      console.error(list);
+      throw new Error(`invalid ${length} === ${list.length}`);
+    }
+  }
+  let idxs = [...Array(length)].map((_, i) => i);
+  const values = [...Array(length)].map((_, i) => cb(i));
+  idxs.sort((a, b) => values[b] - values[a]);
+  const ret = [];
+  for (const list of lists) {
+    const tgt = [...Array(length)].map((_, idx) => list[idxs[idx]]);
+    ret.push(tgt);
+  }
+  return ret;
+}
+function table(srcStr, tgtStr) {
+  const srcList = srcStr.split(/ +/);
+  const tgtList = tgtStr.split(/ +/);
+  const srcChrs = [...srcList.pop()];
+  const tgtChrs = [...tgtList.pop()];
+  const srcBy = [...srcList, ...srcChrs];
+  const [src, tgt] = sortAt((idx) => srcBy[idx].length, srcBy, [...tgtList, ...tgtChrs]);
+  const length = src.length;
+  const ret = {};
+  for (let idx = 0; idx < length; idx++) {
+    ret[src[idx]] = tgt[idx];
+  }
+  return [ret, src, tgt];
+}
+var hiraganaHead = charRange("\u3042", "\u3093");
+var katakanaHead = charRange("\u30A2", "\u30F3");
+var hira2kataRegExp = /([\u3041-\u3096\u309d\u30fe\u309f])/gu;
+var [semiVoiceTable, semiVoiceSrc, semiVoiceTgt] = table("\u306F\u3072\u3075\u3078\u307B\u30CF\u30D2\u30D5\u30D8\u30DB", "\u3071\u3074\u3077\u307A\u307D\u30D1\u30D4\u30D7\u30DA\u30DD");
+var semiVoiceDic = replaceChrFactory(semiVoiceTable, semiVoiceSrc, `[\\u309a]`);
+var [fullVoiceTable, fullVoiceSrc, fullVoiceTgt] = table("\u304B\u304D\u304F\u3051\u3053\u3055\u3057\u3059\u305B\u305D\u305F\u3061\u3064\u3066\u3068\u306F\u3072\u3075\u3078\u307B\u3046\u309D\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8\u30CF\u30D2\u30D5\u30D8\u30DB\u30A6\u30EF\u30F0\u30F1\u30F2\u30FD", "\u304C\u304E\u3050\u3052\u3054\u3056\u3058\u305A\u305C\u305E\u3060\u3062\u3065\u3067\u3069\u3070\u3073\u3076\u3079\u307C\u3094\u309E\u30AC\u30AE\u30B0\u30B2\u30B4\u30B6\u30B8\u30BA\u30BC\u30BE\u30C0\u30C2\u30C5\u30C7\u30C9\u30D0\u30D3\u30D6\u30D9\u30DC\u30F4\u30F7\u30F8\u30F9\u30FA\u30FE");
+var fullVoiceDic = replaceChrFactory(fullVoiceTable, fullVoiceSrc, `[\\u3099]`);
+var [devoiceTable, devoiceSrc, devoiceTgt] = table([...fullVoiceTgt, ...semiVoiceTgt].join(""), [...fullVoiceSrc, ...semiVoiceSrc].join(""));
+var devoiceDic = replaceChrFactory(devoiceTable, devoiceSrc);
+var [smallTable, smallSrc, smallTgt] = table("\u3042\u3044\u3046\u3048\u304A\u3064\u3084\u3086\u3088\u308F\u304B\u3051\u30A2\u30A4\u30A6\u30A8\u30AA\u30C4\u30E4\u30E6\u30E8\u30EF\u30AB\u30B1\u30AF\u30B7\u30B9\u30C8\u30CC\u30CF\u30D2\u30D5\u30D8\u30DB\u30E0\u30E9\u30EA\u30EB\u30EC\u30ED", "\u3041\u3043\u3045\u3047\u3049\u3063\u3083\u3085\u3087\u308E\u3095\u3096\u30A1\u30A3\u30A5\u30A7\u30A9\u30C3\u30E3\u30E5\u30E7\u30EE\u30F5\u30F6\u31F0\u31F1\u31F2\u31F3\u31F4\u31F5\u31F6\u31F7\u31F8\u31F9\u31FA\u31FB\u31FC\u31FD\u31FE\u31FF");
+var [subTable, subSrc, subTgt] = table("0123456789+-=()aehijklmnoprstuvx<>\u2282\u2283\u2286\u2287", "\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089\u208A\u208B\u208C\u208D\u208E\u2090\u2091\u2095\u1D62\u2C7C\u2096\u2097\u2098\u2099\u2092\u209A\u1D63\u209B\u209C\u1D64\u1D65\u2093\u02F1\u02F2\uA700\uA706\uA701\uA707");
+var [midTable, midSrc, midTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWYZ", "\u1D00\u0299\u1D04\u1D05\u1D07\uA730\u0262\u029C\u026A\u1D0A\u1D0B\u029F\u1D0D\u0274\u1D0F\u1D18\uA7AF\u0280\uA731\u1D1B\u1D1C\u1D20\u1D21\u028F\u1D22");
+var [supTable, supSrc, supTgt] = table("0123456789+-=()ABDEGHIJKLMNOPRTUVWabcdefghijklmnoprstuvwxyz!<>\u2282\u2283\u2286\u2287", "\u2070\xB9\xB2\xB3\u2074\u2075\u2076\u2077\u2078\u2079\u207A\u207B\u207C\u207D\u207E\u1D2C\u1D2E\u1D30\u1D31\u1D33\u1D34\u1D35\u1D36\u1D37\u1D38\u1D39\u1D3A\u1D3C\u1D3E\u1D3F\u1D40\u1D41\u2C7D\u1D42\u1D43\u1D47\u1D9C\u1D48\u1D49\u1DA0\u1D4D\u02B0\u2071\u02B2\u1D4F\u02E1\u1D50\u207F\u1D52\u1D56\u02B3\u02E2\u1D57\u1D58\u1D5B\u02B7\u02E3\u02B8\u1DBB\uA71D\u02C2\u02C3\uA702\uA704\uA703\uA705");
+var [runeTable, runeSrc, runeTgt] = table("ac ae cp th ng kk ea eo eh is sh st oo oh oe on os oe eth \u30FB:+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "\u16F7\u16F8\u16E2\u16A6\u16DD\u16E4\u16E0\u16C7\u16F6\u16F5\u16F2\u16E5\u16AC\u16AD\u16AF\u16B0\u16F4\u16DF\u16A7\u16EB\u16EC\u16ED\u16AB\u16D2\u16B3\u16DE\u16D6\u16A0\u16B8\u16BB\u16C1\u16C4\u16E3\u16DA\u16D7\u16BE\u16A9\u16C8\u16B4\u16B1\u16CB\u16CF\u16A2\u16A1\u16A5\u16EA\u16A4\u16CE\u16AA\u16C9\u16CD\u16D1\u16C2\u16D3\u16B5\u16BA\u16BD\u16C3\u16B2\u16DB\u16D8\u16BF\u16AE\u16D5\u16E9\u16C5\u16CA\u16D0\u16F3\u16E6\u16B9\u16E1\u16A3\u16DC");
+var [bbbTable, bbbSrc, bbbTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "\u{1D538}\u{1D539}\u2102\u{1D53B}\u{1D53C}\u{1D53D}\u{1D53E}\u210D\u{1D540}\u{1D541}\u{1D542}\u{1D543}\u{1D544}\u2115\u{1D546}\u2119\u211A\u211D\u{1D54A}\u{1D54B}\u{1D54C}\u{1D54D}\u{1D54E}\u{1D54F}\u{1D550}\u2124\u{1D552}\u{1D553}\u{1D554}\u{1D555}\u{1D556}\u{1D557}\u{1D558}\u{1D559}\u{1D55A}\u{1D55B}\u{1D55C}\u{1D55D}\u{1D55E}\u{1D55F}\u{1D560}\u{1D561}\u{1D562}\u{1D563}\u{1D564}\u{1D565}\u{1D566}\u{1D567}\u{1D568}\u{1D569}\u{1D56A}\u{1D56B}\u{1D7D8}\u{1D7D9}\u{1D7DA}\u{1D7DB}\u{1D7DC}\u{1D7DD}\u{1D7DE}\u{1D7DF}\u{1D7E0}\u{1D7E1}");
+var [cursiveTable, cursiveSrc, cursiveTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "\u{1D49C}\u212C\u{1D49E}\u{1D49F}\u2130\u2131\u{1D4A2}\u210B\u2110\u{1D4A5}\u{1D4A6}\u2112\u2133\u{1D4A9}\u{1D4AA}\u{1D4AB}\u{1D4AC}\u211B\u{1D4AE}\u{1D4AF}\u{1D4B0}\u{1D4B1}\u{1D4B2}\u{1D4B3}\u{1D4B4}\u{1D4B5}\u{1D4B6}\u{1D4B7}\u{1D4B8}\u{1D4B9}\u212F\u{1D4BB}\u210A\u{1D4BD}\u{1D4BE}\u{1D4BF}\u{1D4C0}\u{1D4C1}\u{1D4C2}\u{1D4C3}\u2134\u{1D4C5}\u{1D4C6}\u{1D4C7}\u{1D4C8}\u{1D4C9}\u{1D4CA}\u{1D4CB}\u{1D4CC}\u{1D4CD}\u{1D4CE}\u{1D4CF}");
+var [cursiveBoldTable, cursiveBoldSrc, cursiveBoldTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "\u{1D4D0}\u{1D4D1}\u{1D4D2}\u{1D4D3}\u{1D4D4}\u{1D4D5}\u{1D4D6}\u{1D4D7}\u{1D4D8}\u{1D4D9}\u{1D4DA}\u{1D4DB}\u{1D4DC}\u{1D4DD}\u{1D4DE}\u{1D4DF}\u{1D4E0}\u{1D4E1}\u{1D4E2}\u{1D4E3}\u{1D4E4}\u{1D4E5}\u{1D4E6}\u{1D4E7}\u{1D4E8}\u{1D4E9}\u{1D4EA}\u{1D4EB}\u{1D4EC}\u{1D4ED}\u{1D4EE}\u{1D4EF}\u{1D4F0}\u{1D4F1}\u{1D4F2}\u{1D4F3}\u{1D4F4}\u{1D4F5}\u{1D4F6}\u{1D4F7}\u{1D4F8}\u{1D4F9}\u{1D4FA}\u{1D4FB}\u{1D4FC}\u{1D4FD}\u{1D4FE}\u{1D4FF}\u{1D500}\u{1D501}\u{1D502}\u{1D503}");
+var [frakturTable, frakturSrc, frakturTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "\u{1D504}\u{1D505}\u212D\u{1D507}\u{1D508}\u{1D509}\u{1D50A}\u210C\u2111\u{1D50D}\u{1D50E}\u{1D50F}\u{1D510}\u{1D511}\u{1D512}\u{1D513}\u{1D514}\u211C\u{1D516}\u{1D517}\u{1D518}\u{1D519}\u{1D51A}\u{1D51B}\u{1D51C}\u2128\u{1D51E}\u{1D51F}\u{1D520}\u{1D521}\u{1D522}\u{1D523}\u{1D524}\u{1D525}\u{1D526}\u{1D527}\u{1D528}\u{1D529}\u{1D52A}\u{1D52B}\u{1D52C}\u{1D52D}\u{1D52E}\u{1D52F}\u{1D530}\u{1D531}\u{1D532}\u{1D533}\u{1D534}\u{1D535}\u{1D536}\u{1D537}");
+var [regionTable, regionSrc, regionTgt] = table("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "\u{1F1E6}\u{1F1E7}\u{1F1E8}\u{1F1E9}\u{1F1EA}\u{1F1EB}\u{1F1EC}\u{1F1ED}\u{1F1EE}\u{1F1EF}\u{1F1F0}\u{1F1F1}\u{1F1F2}\u{1F1F3}\u{1F1F4}\u{1F1F5}\u{1F1F6}\u{1F1F7}\u{1F1F8}\u{1F1F9}\u{1F1FA}\u{1F1FB}\u{1F1FC}\u{1F1FD}\u{1F1FE}\u{1F1FF}");
+var [circleBlackTable, circleBlackSrc, circleBlackTgt] = table("10 11 12 13 14 15 16 17 18 19 20 ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", "\u277F\u24EB\u24EC\u24ED\u24EE\u24EF\u24F0\u24F1\u24F2\u24F3\u24F4\u{1F150}\u{1F151}\u{1F152}\u{1F153}\u{1F154}\u{1F155}\u{1F156}\u{1F157}\u{1F158}\u{1F159}\u{1F15A}\u{1F15B}\u{1F15C}\u{1F15D}\u{1F15E}\u{1F15F}\u{1F160}\u{1F161}\u{1F162}\u{1F163}\u{1F164}\u{1F165}\u{1F166}\u{1F167}\u{1F168}\u{1F169}\u24FF\u2776\u2777\u2778\u2779\u277A\u277B\u277C\u277D\u277E");
+var [circledTable, circledSrc, circledTgt] = table("10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 \u4E00\u4E8C\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341\u6708\u706B\u6C34\u6728\u91D1\u571F\u65E5\u682A\u6709\u793E\u540D\u7279\u8CA1\u795D\u52B4\u79D8\u7537\u5973\u9069\u512A\u5370\u6CE8\u9805\u4F11\u5199\u6B63\u4E0A\u4E2D\u4E0B\u5DE6\u53F3\u533B\u5B97\u5B66\u76E3\u4F01\u8CC7\u5354\u591C\u5F97\u53EF\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8\u30CA\u30CB\u30CC\u30CD\u30CE\u30CF\u30D2\u30D5\u30D8\u30DB\u30DE\u30DF\u30E0\u30E1\u30E2\u30E4\u30E6\u30E8\u30E9\u30EA\u30EB\u30EC\u30ED\u30EF\u30F0\u30F1\u30F2+-*/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "\u2469\u246A\u246B\u246C\u246D\u246E\u246F\u2470\u2471\u2472\u2473\u3251\u3252\u3253\u3254\u3255\u3256\u3257\u3258\u3259\u325A\u325B\u325C\u325D\u325E\u325F\u32B1\u32B2\u32B3\u32B4\u32B5\u32B6\u32B7\u32B8\u32B9\u32BA\u32BB\u32BC\u32BD\u32BE\u32BF\u3280\u3281\u3282\u3283\u3284\u3285\u3286\u3287\u3288\u3289\u328A\u328B\u328C\u328D\u328E\u328F\u3290\u3291\u3292\u3293\u3294\u3295\u3296\u3297\u3298\u3299\u329A\u329B\u329C\u329D\u329E\u329F\u32A0\u32A1\u32A2\u32A3\u32A4\u32A5\u32A6\u32A7\u32A8\u32A9\u32AA\u32AB\u32AC\u32AD\u32AE\u32AF\u32B0\u{1F250}\u{1F251}\u32D0\u32D1\u32D2\u32D3\u32D4\u32D5\u32D6\u32D7\u32D8\u32D9\u32DA\u32DB\u32DC\u32DD\u32DE\u32DF\u32E0\u32E1\u32E2\u32E3\u32E4\u32E5\u32E6\u32E7\u32E8\u32E9\u32EA\u32EB\u32EC\u32ED\u32EE\u32EF\u32F0\u32F1\u32F2\u32F3\u32F4\u32F5\u32F6\u32F7\u32F8\u32F9\u32FA\u32FB\u32FC\u32FD\u32FE\u2295\u2296\u2297\u2298\u24B6\u24B7\u24B8\u24B9\u24BA\u24BB\u24BC\u24BD\u24BE\u24BF\u24C0\u24C1\u24C2\u24C3\u24C4\u24C5\u24C6\u24C7\u24C8\u24C9\u24CA\u24CB\u24CC\u24CD\u24CE\u24CF\u24D0\u24D1\u24D2\u24D3\u24D4\u24D5\u24D6\u24D7\u24D8\u24D9\u24DA\u24DB\u24DC\u24DD\u24DE\u24DF\u24E0\u24E1\u24E2\u24E3\u24E4\u24E5\u24E6\u24E7\u24E8\u24E9\u24EA\u2460\u2461\u2462\u2463\u2464\u2465\u2466\u2467\u2468");
+var [squareTable, squareSrc, squareTgt] = table("\u30A2\u30D1\u30FC\u30C8 \u30A2\u30EB\u30D5\u30A1 \u30A2\u30F3\u30DA\u30A2 \u30A2\u30FC\u30EB \u30A4\u30CB\u30F3\u30B0 \u30A4\u30F3\u30C1 \u30A6\u30A9\u30F3 \u30A8\u30B9\u30AF\u30FC\u30C9 \u30A8\u30FC\u30AB\u30FC \u30AA\u30F3\u30B9 \u30AA\u30FC\u30E0 \u30AB\u30A4\u30EA \u30AB\u30E9\u30C3\u30C8 \u30AB\u30ED\u30EA\u30FC \u30AC\u30ED\u30F3 \u30AC\u30F3\u30DE \u30AE\u30AC \u30AE\u30CB\u30FC \u30AD\u30E5\u30EA\u30FC \u30AE\u30EB\u30C0\u30FC \u30AD\u30ED \u30AD\u30ED\u30B0\u30E9\u30E0 \u30AD\u30ED\u30E1\u30FC\u30C8\u30EB \u30AD\u30ED\u30EF\u30C3\u30C8 \u30B0\u30E9\u30E0 \u30B0\u30E9\u30E0\u30C8\u30F3 \u30AF\u30EB\u30BC\u30A4\u30ED \u30AF\u30ED\u30FC\u30CD \u30B1\u30FC\u30B9 \u30B3\u30EB\u30CA \u30B3\u30FC\u30DD \u30B5\u30A4\u30AF\u30EB \u30B5\u30F3\u30C1\u30FC\u30E0 \u30B7\u30EA\u30F3\u30B0 \u30BB\u30F3\u30C1 \u30BB\u30F3\u30C8 \u30C0\u30FC\u30B9 \u30C7\u30B7 \u30C9\u30EB \u30C8\u30F3 \u30CA\u30CE \u30CE\u30C3\u30C8 \u30CF\u30A4\u30C4 \u30D1\u30FC\u30BB\u30F3\u30C8 \u30D1\u30FC\u30C4 \u30D0\u30FC\u30EC\u30EB \u30D4\u30A2\u30B9\u30C8\u30EB \u30D4\u30AF\u30EB \u30D4\u30B3 \u30D3\u30EB \u30D5\u30A1\u30E9\u30C3\u30C9 \u30D5\u30A3\u30FC\u30C8 \u30D6\u30C3\u30B7\u30A7\u30EB \u30D5\u30E9\u30F3 \u30D8\u30AF\u30BF\u30FC\u30EB \u30DA\u30BD \u30DA\u30CB\u30D2 \u30D8\u30EB\u30C4 \u30DA\u30F3\u30B9 \u30DA\u30FC\u30B8 \u30D9\u30FC\u30BF \u30DD\u30A4\u30F3\u30C8 \u30DC\u30EB\u30C8 \u30DB\u30F3 \u30DD\u30F3\u30C9 \u30DB\u30FC\u30EB \u30DB\u30FC\u30F3 \u30DE\u30A4\u30AF\u30ED \u30DE\u30A4\u30EB \u30DE\u30C3\u30CF \u30DE\u30EB\u30AF \u30DE\u30F3\u30B7\u30E7\u30F3 \u30DF\u30AF\u30ED\u30F3 \u30DF\u30EA \u30DF\u30EA\u30D0\u30FC\u30EB \u30E1\u30AC \u30E1\u30AC\u30C8\u30F3 \u30E1\u30FC\u30C8\u30EB \u30E4\u30FC\u30C9 \u30E4\u30FC\u30EB \u30E6\u30A2\u30F3 \u30EA\u30C3\u30C8\u30EB \u30EA\u30E9 \u30EB\u30D4\u30FC \u30EB\u30FC\u30D6\u30EB \u30EC\u30E0 \u30EC\u30F3\u30C8\u30B2\u30F3 \u30EF\u30C3\u30C8 dm2 \u5E73\u6210 \u662D\u548C \u5927\u6B63 \u660E\u6CBB \u682A\u5F0F\u4F1A\u793E pA nA uA mA kA KB MB GB cal kcal pF nF uF ug mg kg Hz kHz MHz GHz THz ul ml dl kl fm nm um mm cm km mm2 cm2 m2 km2 mm3 cm3 m3 km3 m/s m/s2 Pa kPa MPa GPa rad rad/s rad/s2 ps ns us ms pV nV uV mV kV MV pW nW uW mW kW MW k\u03A9 M\u03A9 am Bq cc cd C/kg Co dB Gy ha HP in KK KM kt lm ln log lx mb mil mol pH pm PPM PR sr Sv Wb ", "\u3300 \u3301\u3302\u3303\u3304\u3305\u3306\u3307\u3308\u3309\u330A\u330B\u330C\u330D\u330E\u330F\u3310\u3311\u3312\u3313\u3314\u3315\u3316\u3317\u3318\u3319\u331A\u331B\u331C\u331D\u331E\u331F\u3320\u3321\u3322\u3323\u3324\u3325\u3326\u3327\u3328\u3329\u332A\u332B\u332C\u332D\u332E\u332F\u3330\u3331\u3332\u3333\u3334\u3335\u3336\u3337\u3338\u3339\u333A\u333B\u333C\u333D\u333E\u333F\u3340\u3341\u3342\u3343\u3344\u3345\u3346\u3347\u3348\u3349\u334A\u334B\u334C\u334D\u334E\u334F\u3350\u3351\u3352\u3353\u3354\u3355\u3356\u3357\u3378\u337B\u337C\u337D\u337E\u337F\u3380\u3381\u3382\u3383\u3384\u3385\u3386\u3387\u3388\u3389\u338A\u338B\u338C\u338D\u338E\u338F\u3390\u3391\u3392\u3393\u3394\u3395\u3396\u3397\u3398\u3399\u339A\u339B\u339C\u339D\u339E\u339F\u33A0\u33A1\u33A2\u33A3\u33A4\u33A5\u33A6\u33A7\u33A8\u33A9\u33AA\u33AB\u33AC\u33AD\u33AE\u33AF\u33B0\u33B1\u33B2\u33B3\u33B4\u33B5\u33B6\u33B7\u33B8\u33B9\u33BA\u33BB\u33BC\u33BD\u33BE\u33BF\u33C0\u33C1\u33C2\u33C3\u33C4\u33C5\u33C6\u33C7\u33C8\u33C9\u33CA\u33CB\u33CC\u33CD\u33CE\u33CF\u33D0\u33D1\u33D2\u33D3\u33D4\u33D5\u33D6\u33D7\u33D8\u33D9\u33DA\u33DB\u33DC\u33DD");
+var [squaredTable, squaredSrc, squaredTgt] = table("\u30B3\u30B3 2ndScr 120P 60P 22.2 FREE COOL 5.1 7.1 HDR HI-RES LOSSRESS SHV UHD VOD PPV NEW SOS HC HV MV SD SS WC CL ID NG OK UP VS 3D 2K 4K 8K \u30B5\u30C7\u591A\u89E3\u5929\u4EA4\u6620\u7121\u6599\u524D\u5F8C\u518D\u65B0\u521D\u7D42\u751F\u8CA9\u58F0\u5439\u6F14\u6295\u6355\u4E00\u4E8C\u4E09\u904A\u5DE6\u4E2D\u53F3\u6307\u8D70\u6253\u7981\u7A7A\u5408\u6E80\u6709\u6708\u7533\u5272\u55B6\u914D\u624B\u5B57\u53CCABCDEFGHIJKLMNOPQRSTUVWXYZ", "\u{1F201}\u{1F19C}\u{1F1A4}\u{1F1A3}\u{1F1A2}\u{1F193}\u{1F192}\u{1F1A0}\u{1F1A1}\u{1F1A7}\u{1F1A8}\u{1F1A9}\u{1F1AA}\u{1F1AB}\u{1F1AC}\u{1F14E}\u{1F195}\u{1F198}\u{1F1A6}\u{1F14A}\u{1F14B}\u{1F14C}\u{1F14D}\u{1F14F}\u{1F191}\u{1F194}\u{1F196}\u{1F197}\u{1F199}\u{1F19A}\u{1F19B}\u{1F19D}\u{1F19E}\u{1F19F}\u{1F202}\u{1F213}\u{1F215}\u{1F216}\u{1F217}\u{1F218}\u{1F219}\u{1F21A}\u{1F21B}\u{1F21C}\u{1F21D}\u{1F21E}\u{1F21F}\u{1F220}\u{1F221}\u{1F222}\u{1F223}\u{1F224}\u{1F225}\u{1F226}\u{1F227}\u{1F228}\u{1F229}\u{1F214}\u{1F22A}\u{1F22B}\u{1F22C}\u{1F22D}\u{1F22E}\u{1F22F}\u{1F230}\u{1F231}\u{1F232}\u{1F233}\u{1F234}\u{1F235}\u{1F236}\u{1F237}\u{1F238}\u{1F239}\u{1F23A}\u{1F23B}\u{1F210}\u{1F211}\u{1F212}\u{1F130}\u{1F131}\u{1F132}\u{1F133}\u{1F134}\u{1F135}\u{1F136}\u{1F137}\u{1F138}\u{1F139}\u{1F13A}\u{1F13B}\u{1F13C}\u{1F13D}\u{1F13E}\u{1F13F}\u{1F140}\u{1F141}\u{1F142}\u{1F143}\u{1F144}\u{1F145}\u{1F146}\u{1F147}\u{1F148}\u{1F149}");
+var [squareBlackTable, squareBlackSrc, squareBlackTgt] = table("xP IC PA SA AB WC *ABCDEFGHIJKLMNOPQRSTUVWXYZ", "\u{1F18A}\u{1F18B}\u{1F18C}\u{1F18D}\u{1F18E}\u{1F18F}\u274E\u{1F170}\u{1F171}\u{1F172}\u{1F173}\u{1F174}\u{1F175}\u{1F176}\u{1F177}\u{1F178}\u{1F179}\u{1F17A}\u{1F17B}\u{1F17C}\u{1F17D}\u{1F17E}\u{1F17F}\u{1F180}\u{1F181}\u{1F182}\u{1F183}\u{1F184}\u{1F185}\u{1F186}\u{1F187}\u{1F188}\u{1F189}");
+var [asciiTable, asciiSrc, asciiTgt] = table([
+  ...runeTgt,
+  ...bbbTgt,
+  ...cursiveTgt,
+  ...cursiveBoldTgt,
+  ...frakturTgt,
+  ...regionTgt,
+  ...squareTgt,
+  ...squaredTgt,
+  ...squareBlackTgt,
+  ...circledTgt,
+  ...circleBlackTgt,
+  ...supTgt,
+  ...midTgt,
+  ...subTgt
+].join(" "), [
+  ...runeSrc,
+  ...bbbSrc,
+  ...cursiveSrc,
+  ...cursiveBoldSrc,
+  ...frakturSrc,
+  ...regionSrc,
+  ...squareSrc,
+  ...squaredSrc,
+  ...squareBlackSrc,
+  ...circledSrc,
+  ...circleBlackSrc,
+  ...supSrc,
+  ...midSrc,
+  ...subSrc
+].join(" "));
+var small = replaceChrFactory(smallTable, smallSrc);
+var sub = replaceChrFactory(subTable, subSrc);
+var smallcap = replaceChrFactory(midTable, midSrc);
+var sup = replaceChrFactory(supTable, supSrc);
+var rune = replaceChrFactory(runeTable, runeSrc);
+var bbb = replaceChrFactory(bbbTable, bbbSrc);
+var cursive = replaceChrFactory(cursiveTable, cursiveSrc);
+var cursiveBold = replaceChrFactory(cursiveBoldTable, cursiveBoldSrc);
+var fraktur = replaceChrFactory(frakturTable, frakturSrc);
+var region = replaceChrFactory(regionTable, regionSrc);
+var square = replaceChrFactory(squareTable, squareSrc);
+var squared = replaceChrFactory(squaredTable, squaredSrc);
+var squareBlack = replaceChrFactory(squareBlackTable, squareBlackSrc);
+var circled = replaceChrFactory(circledTable, circledSrc);
+var circleBlack = replaceChrFactory(circleBlackTable, circleBlackSrc);
+var ascii = replaceChrFactory(asciiTable, asciiSrc);
+function hira2kata(str) {
+  return str.replace(hira2kataRegExp, (hira) => String.fromCharCode(hira.charCodeAt(0) + 96));
+}
+
+// src/lib/pubsub/chr_face/map-reduce.ts
 var Faces = MapReduce({
   format: () => ({
     list: [],
@@ -5570,7 +5971,7 @@ var Faces = MapReduce({
       name = doc.name.slice(2);
     if (doc.name.startsWith("Dr."))
       name = doc.name.slice(3);
-    name = name.replace(/[\u3041-\u3096]/g, (hira) => String.fromCharCode(hira.charCodeAt(0) + 96));
+    name = hira2kata(name);
     const head = name[0];
     doc.tag_ids.unshift("all");
     for (const tag_id of doc.tag_ids) {
@@ -5586,7 +5987,7 @@ var Faces = MapReduce({
     }
   },
   order: (data, { sort: sort3 }) => {
-    for (const kana of katakanas) {
+    for (const kana of katakanaHead) {
       if (data.tag.all.name_head_dic[kana]) {
         data.cover.push(kana);
       } else {

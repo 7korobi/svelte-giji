@@ -1,0 +1,148 @@
+### number
+
+console.log(
+ヒンディー test.stringify(123, 'वाँ'),
+ヒンディー test.stringify(12345, 'वाँ'),
+ヒンディー test.stringify(1234567, 'वाँ'),
+ヒンディー test.stringify(123456789, 'वाँ'),
+ヒンディー test.stringify(12345678901, 'वाँ'),
+ヒンディー test.stringify(1234567890000, 'वाँ')
+)
+
+console.log(
+एक.stringify(123, 'वाँ'),
+एक.stringify(12345, 'वाँ'),
+एक.stringify(1234567, 'वाँ'),
+एक.stringify(123456789, 'वाँ'),
+एक.stringify(12345678901, 'वाँ'),
+एक.stringify(1234567890000, 'वाँ')
+)
+
+console.log(
+漢字.parse('二十三億四百五十六'),
+漢字.parse('九千兆六百万'),
+漢字.parse('千百十'),
+漢字.stringify(0.1234567, '個'),
+漢字.stringify(12345678901, '個'),
+漢字.stringify(1234567890000, '個')
+)
+console.log(
+大字.parse('弐分参厘肆毛伍糸陸忽漆微'),
+大字.parse('佰弐拾参億肆阡伍佰陸拾漆萬捌阡玖佰壱個'),
+大字.parse('壱兆弐阡参佰肆拾伍億陸阡漆佰捌拾玖萬個'),
+大字.stringify(1.234567, '個'),
+大字.stringify(12345678901, '個'),
+大字.stringify(1234567890000, '個')
+)
+console.log(
+よみ.stringify(1.234567, 'こ'),
+よみ.stringify(12345678901, 'こ'),
+よみ.stringify(1234567890000, 'こ')
+)
+console.log(
+こてん.stringify(1.234567, 'か'),
+こてん.stringify(12345678901, 'か'),
+こてん.stringify(1234567890000, 'か')
+)
+console.log(
+こてん.stringify(1.234567, 'つ'),
+こてん.stringify(12345678901, 'つ'),
+こてん.stringify(1234567890000, 'つ')
+)
+console.log(
+angle.stringify(0.01, ''),
+angle.stringify(0.03, ''),
+angle.stringify(0.05, ''),
+angle.stringify(0.6, ''),
+angle.stringify(0.8, ''),
+angle.stringify(1.0, '')
+)
+
+### RUNIC
+
+ᛷ RUNIC LETTER ac FRANKS CASKET AC
+ᛸ RUNIC LETTER ae FRANKS CASKET AESC
+ᛢ RUNIC LETTER cp CWEORTH
+ᚦ RUNIC LETTER th THURISAZ THURS THORN →00FE(þ)
+ᛝ RUNIC LETTER ng
+ᛤ RUNIC LETTER kk CEALC
+ᛠ RUNIC LETTER ea EAR
+ᛇ RUNIC LETTER eo IWAZ EOH
+ᛶ RUNIC LETTER eh FRANKS CASKET EH
+ᛵ RUNIC LETTER is FRANKS CASKET IS
+ᛲ RUNIC LETTER sh SH
+ᛥ RUNIC LETTER st STAN
+ᚬ RUNIC LETTER oo LONG-BRANCH-OSS O
+ᚭ RUNIC LETTER oh SHORT-TWIG-OSS O
+ᚯ RUNIC LETTER oe OE
+ᚰ RUNIC LETTER on ON
+ᛴ RUNIC LETTER os FRANKS CASKET OS
+ᛟ RUNIC LETTER oe OTHALAN ETHEL O
+ᚧ RUNIC LETTER eth ETH
+
+᛫ RUNIC ・SINGLE PUNCTUATION
+᛬ RUNIC : MULTIPLE PUNCTUATION
+᛭ RUNIC + CROSS PUNCTUATION
+
+ᚫ RUNIC LETTER AESC
+ᛒ RUNIC LETTER BERKANAN BEORC BJARKAN B
+ᚳ RUNIC LETTER CEN
+ᛞ RUNIC LETTER DAGAZ DAEG D
+ᛖ RUNIC LETTER EHWAZ EH E
+ᚠ RUNIC LETTER FEHU FEOH FE F
+ᚸ RUNIC LETTER GAR
+ᚻ RUNIC LETTER HAEGL H
+ᛁ RUNIC LETTER ISAZ IS ISS I
+ᛄ RUNIC LETTER GER
+ᛣ RUNIC LETTER CALC
+ᛚ RUNIC LETTER LAUKAZ LAGU LOGR L
+ᛗ RUNIC LETTER MANNAZ MAN M
+ᚾ RUNIC LETTER NAUDIZ NYD NAUD N
+ᚩ RUNIC LETTER OS O
+ᛈ RUNIC LETTER PERTHO PEORTH P
+ᚴ RUNIC LETTER Q KAUN K
+ᚱ RUNIC LETTER RAIDO RAD REID R
+ᛋ RUNIC LETTER SIGEL LONG-BRANCH-SOL S
+ᛏ RUNIC LETTER TIWAZ TIR TYR T
+ᚢ RUNIC LETTER URUZ UR U
+ᚡ RUNIC LETTER V
+ᚥ RUNIC LETTER W
+ᛪ RUNIC LETTER X
+ᚤ RUNIC LETTER Y
+ᛎ RUNIC LETTER Z
+
+ᚪ RUNIC LETTER a AC A
+ᛉ RUNIC LETTER b ALGIZ EOLHX
+ᛍ RUNIC LETTER c C
+ᛑ RUNIC LETTER d D
+ᛂ RUNIC LETTER e E
+ᛓ RUNIC LETTER f SHORT-TWIG-BJARKAN B
+ᚵ RUNIC LETTER g G
+ᚺ RUNIC LETTER h HAGLAZ H
+ᚽ RUNIC LETTER i SHORT-TWIG-HAGALL H
+ᛃ RUNIC LETTER j JERAN J
+ᚲ RUNIC LETTER k KAUNA
+ᛛ RUNIC LETTER l DOTTED-L
+ᛘ RUNIC LETTER m LONG-BRANCH-MADR M
+ᚿ RUNIC LETTER n SHORT-TWIG-NAUD N
+ᚮ RUNIC LETTER o O
+ᛕ RUNIC LETTER p OPEN-P
+ᛩ RUNIC LETTER q
+ᛅ RUNIC LETTER r LONG-BRANCH-AR AE
+ᛊ RUNIC LETTER s SOWILO S
+ᛐ RUNIC LETTER t SHORT-TWIG-TYR T
+ᛳ RUNIC LETTER u OO
+ᛦ RUNIC LETTER v LONG-BRANCH-YR
+ᚹ RUNIC LETTER w PIN WUNJO WYNN W →01BF(ƿ)
+ᛡ RUNIC LETTER x IOR
+ᚣ RUNIC LETTER y YR
+ᛜ RUNIC LETTER z INGWAZ
+
+ᛆ RUNIC LETTER SHORT-TWIG-AR A
+ᛌ RUNIC LETTER SHORT-TWIG-SOL S
+ᛧ RUNIC LETTER SHORT-TWIG-YR
+ᛨ RUNIC LETTER ICELANDIC-YR
+
+ᛮ RUNIC ARLAUG SYMBOL
+ᛯ RUNIC TVIMADUR SYMBOL
+ᛰ RUNIC BELGTHOR SYMBOL

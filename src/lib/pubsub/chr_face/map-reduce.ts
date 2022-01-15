@@ -3,6 +3,7 @@ import type { presentation } from '../_type/string'
 import type { ChrJob, Tag } from '../map-reduce'
 import { MapReduce, dic } from '$lib/map-reduce'
 import json from '$lib/game/json/chr_face.json'
+import { hira2kata, katakanaHead } from '$lib/unicode'
 
 export type FacesFormat = {
   list: Face[]
@@ -24,17 +25,6 @@ export type Face = {
   comment: presentation
 }
 
-const katakanas = (() => {
-  const result: string[] = []
-  let start = 'ア'.charCodeAt(0)
-  let end = 'ン'.charCodeAt(0)
-  let idx = start
-  for (; idx <= end; idx++) {
-    result.push(String.fromCharCode(idx))
-  }
-  return result
-})()
-
 export const Faces = MapReduce({
   format: () => ({
     list: [] as Face[],
@@ -47,9 +37,7 @@ export const Faces = MapReduce({
     if (doc.name.startsWith('†')) name = doc.name.slice(1)
     if (doc.name.startsWith('D.')) name = doc.name.slice(2)
     if (doc.name.startsWith('Dr.')) name = doc.name.slice(3)
-    name = name.replace(/[\u3041-\u3096]/g, (hira) =>
-      String.fromCharCode(hira.charCodeAt(0) + 0x60)
-    )
+    name = hira2kata(name)
     const head = name[0]
     doc.tag_ids.unshift('all')
 
@@ -67,7 +55,7 @@ export const Faces = MapReduce({
     }
   },
   order: (data, { sort }) => {
-    for (const kana of katakanas) {
+    for (const kana of katakanaHead) {
       if (data.tag.all.name_head_dic[kana]) {
         data.cover.push(kana)
       } else {

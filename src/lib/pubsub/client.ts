@@ -3,4 +3,4 @@ import client from '$lib/db/socket.io-client'
 import * as stores from './model-client'
 import { live } from '$lib/site'
 
-client(dev ? 'http://localhost:3001' : live.io, stores)
+client(dev ? 'http://:4002' : live.io, stores)

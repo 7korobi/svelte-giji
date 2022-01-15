@@ -13,7 +13,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]>;
@@ -31,7 +31,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]>;
@@ -48,7 +48,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }[]) => void, del: (ids: (string | number)[]) => void): import("mongodb").ChangeStream<{
@@ -63,7 +63,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }>;
@@ -79,7 +79,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }): Promise<import("mongodb").ModifyResult<{
@@ -94,7 +94,7 @@ export declare const randoms: {
         choice: string;
         year?: number;
         number?: number;
-        rank?: "" | "A" | "3" | "4" | "5" | "6" | "2" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+        rank?: "" | "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
         suite?: "" | "♢" | "♡" | "♣" | "♠";
         roman?: "II" | "I" | "V" | "X" | "VI" | "XI" | "III" | "IV" | "VII" | "VIII" | "IX" | "XII" | "XIII" | "XIV" | "XV" | "XVI" | "XVII" | "XVIII" | "XIX" | "XX" | "XXI";
     }>>;
