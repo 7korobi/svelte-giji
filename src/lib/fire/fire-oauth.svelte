@@ -1,28 +1,36 @@
-<script type="ts">
+<script lang="ts" context="module">
+import type { User } from 'firebase/auth'
 import {
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-  signInWithRedirect,
-  GoogleAuthProvider,
   FacebookAuthProvider,
-  TwitterAuthProvider,
-  OAuthProvider,
   GithubAuthProvider,
-  User
+  GoogleAuthProvider,
+  OAuthProvider,
+  signInWithRedirect,
+  TwitterAuthProvider,
+  getAuth,
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth'
 
-import { __BROWSER__ } from '$lib/common'
-import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
 import { app, user, error } from './store'
+app.subscribe(initOAuth)
 
-const auth = __BROWSER__ ? getAuth($app) : undefined
-$: if ($user) console.log($user)
-$: if ($error) console.log($error)
-
-if (__BROWSER__) {
+let auth
+function initOAuth($app) {
+  if (!$app) return
+  if (!__BROWSER__) return
+  console.log($app)
+  auth = getAuth($app)
   onAuthStateChanged(auth, user.set, error.set)
 }
+</script>
+
+<script lang="ts">
+import { __BROWSER__ } from '$lib/common'
+import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
+
+$: if ($user) console.log($user)
+$: if ($error) console.log($error)
 
 function icon({ providerData: [{ providerId }] }: User) {
   switch (providerId) {

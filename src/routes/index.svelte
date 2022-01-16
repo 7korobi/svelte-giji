@@ -1,6 +1,5 @@
 <script lang="ts">
-import { FireOauth } from '$lib/fire'
-import { BellDisable, BellStop, BellRinging } from '$lib/icon'
+import { FireNotify, FireOauth } from '$lib/fire'
 import { Focus } from '$lib/scroll'
 import { Time } from '$lib/timer'
 import fire from '$lib/fire'
@@ -167,7 +166,7 @@ random_test
     <h3 class="text center ">企画村予定／開始待ちの村／進行中の村</h3>
     <hr />
     <p>
-      <a href="">新しい村について通知を受ける。</a>
+      <FireNotify topic="news">新しい村について通知を受ける。</FireNotify>
     </p>
     <p>※ 下の通知ボタンでは、こういった通知を受けます。</p>
     <ul>
@@ -185,9 +184,7 @@ random_test
       <p class="name">{o.name}</p>
       <hr />
       <p class="text">
-        <button id={o._id}>
-          <BellDisable /><BellStop /><BellRinging />
-        </button>
+        <FireNotify topic={o._id} />
         <a href={o.folder.top_url}>{o.folder.nation}{o.vid}</a> は、進行中だ。
       </p>
       <p class="date">
@@ -207,9 +204,7 @@ random_test
       <p class="name">{o.name}</p>
       <hr />
       <p class="text">
-        <button id={o._id}>
-          <BellDisable /><BellStop /><BellRinging />
-        </button>
+        <FireNotify topic={o._id} />
         <a href={o.folder.top_url}>{o.folder.nation}{o.vid}</a> は、開始が楽しみだ。
       </p>
       <p class="date">
