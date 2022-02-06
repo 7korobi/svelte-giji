@@ -31,7 +31,6 @@ import {
 } from "https";
 import { Server } from "socket.io";
 import parser2 from "socket.io-msgpack-parser";
-import { argv } from "process";
 
 // src/lib/db/mongodb.ts
 import { MongoClient } from "mongodb";
@@ -5794,9 +5793,9 @@ function numTable(option, itemStr, scaleStr, bigStr) {
   }
   function build(scanner, scales2, isStrict = false) {
     scales2.forEach((scale, idx) => {
-      const mode2 = isStrict || !scale ? "" : "?";
+      const mode = isStrict || !scale ? "" : "?";
       const values = items.slice(1);
-      scanner.push(`(?:(${values.join("|")})${mode2}(${scale}))?`);
+      scanner.push(`(?:(${values.join("|")})${mode}(${scale}))?`);
     });
   }
   function parse(str) {
@@ -15164,9 +15163,15 @@ function full_label(o, side = random_in(0, 1)) {
 }
 
 // src/lib/pubsub/server.ts
-var mode = argv.pop();
 var bootstrap = { dev: dev2, prod: prod2 };
-bootstrap[mode]();
+var OPTIONS = [
+  process.env.pm_id,
+  process.env.NODE_ENV,
+  process.env.autorestart,
+  process.env.exec_mode
+];
+console.log(OPTIONS);
+bootstrap[process.env.NODE_ENV ?? "dev"]();
 function dev2() {
   const conf = live_server_default.dev;
   dbBoot(conf.mongodb);

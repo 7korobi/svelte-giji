@@ -2,7 +2,6 @@ import { readFileSync } from 'fs'
 import * as https from 'https'
 import { Server } from 'socket.io'
 import parser from 'socket.io-msgpack-parser'
-import { argv } from 'process'
 
 import server from '$lib/db/socket.io-server'
 import { dbBoot } from '$lib/db'
