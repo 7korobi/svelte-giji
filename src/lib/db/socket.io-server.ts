@@ -4,6 +4,7 @@ import type { DIC } from '$lib/map-reduce'
 import type { BaseStoreEntry } from './socket.io-client'
 
 import { db, watch } from './mongodb'
+import { fcm } from './fcm-server'
 
 type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
   $match(...args: MatchArgs): MatchReturn
@@ -195,6 +196,7 @@ export default function listen(
   io.on('connection', (socket) => {
     socket.on('query', query.bind(null, socket))
     socket.on('leave', leave.bind(null, socket))
+    socket.on('fcm', fcm.bind(null, socket))
   })
   console.log(io.eventNames(), io.path())
 }

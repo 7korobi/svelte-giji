@@ -85,6 +85,16 @@ type Look<F extends BaseF<any>> = {
   ) => void
 }
 
+export async function fcm(token: string, appends: string[], deletes: string[]) {
+  return new Promise<boolean>((ok, ng)=> {
+    if (appends.length || deletes.length) {
+      PubSub.emit('fcm', token, appends, deletes, ok)
+    } else {
+      ok(false)
+    }
+  })
+}
+
 export function socket<F extends BaseF<any>, MatchArgs extends any[], OrderArgs extends any[]>({
   name,
   qid,

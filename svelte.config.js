@@ -77,7 +77,6 @@ const config = {
 
   kit: {
     adapter: STATIC,
-    target: 'body',
     vite: {
       server: {
         fs: {

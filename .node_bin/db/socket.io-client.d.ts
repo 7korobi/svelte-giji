@@ -26,6 +26,7 @@ export declare function model<F extends BaseF<BaseT<any>>, OrderArgs extends any
     order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void;
 };
 export default function client(uri: string, stores: typeof STORE): void;
+export declare function fcm(token: string, topics: string[], topicsServer: string[]): Promise<boolean>;
 export declare function socket<F extends BaseF<any>, MatchArgs extends any[], OrderArgs extends any[]>({ name, qid, format, order, reduce }: StoreEntry<F, OrderArgs, MatchArgs>): {
     query(...args: MatchArgs): StoreQuery<F, OrderArgs>;
     set?(docs: F['list'][number][]): void;

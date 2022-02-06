@@ -12,9 +12,9 @@ import { Post, Talk, Report } from '$lib/site/chat'
 const { user } = fire
 let page = ''
 
-$: console.log($Roles)
-$: console.log($Ables)
-$: console.log($SayLimits)
+// $: console.log($Roles)
+// $: console.log($Ables)
+// $: console.log($SayLimits)
 
 new_plan
 random_test

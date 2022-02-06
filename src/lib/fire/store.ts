@@ -4,7 +4,8 @@ import { initializeApp } from 'firebase/app'
 import { writable } from 'svelte/store'
 import { writeLocal } from '$lib/storage'
 
-export const topics = writeLocal<string[]>('fcmTopics', [])
+export const topicsAck = writeLocal<string[]>('fcmTopics', [])
+export const topics = writeLocal<string[]>('fcmTopicsReq', [])
 export const token = writable<string>()
 
 export const app = writable<FirebaseApp>()

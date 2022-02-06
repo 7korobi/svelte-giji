@@ -68,6 +68,96 @@ function exit() {
   console.warn("MongoDB safely close.");
 }
 
+// src/lib/db/fcm-server.ts
+import { cert, initializeApp } from "firebase-admin/app";
+import { getMessaging } from "firebase-admin/messaging";
+
+// src/lib/site/json/live-server.json
+var dev = {
+  mongodb: "mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji",
+  http: {
+    port: 4002
+  },
+  io: {
+    origin: ["http://localhost:4000", "https://gijilog.web.app", "https://giji-db923.web.app"]
+  }
+};
+var prod = {
+  mongodb: "mongodb://192.168.0.200:27017/giji?directConnection=true&replicaSet=giji",
+  https: {
+    port: 4002,
+    cert: "/etc/letsencrypt/live/giji-api.duckdns.org/cert.pem",
+    privkey: "/etc/letsencrypt/live/giji-api.duckdns.org/privkey.pem"
+  },
+  io: {
+    origin: [
+      "http://localhost:3000",
+      "https://admin.socket.io",
+      "https://giji.f5.si",
+      "https://gijilog.web.app",
+      "https://giji-eve.web.app",
+      "https://giji-db923.web.app"
+    ]
+  }
+};
+var gcp = {
+  client_id: "133620449014-ud9uk2deta2f8m4f8nj0uvci4jddpkop.apps.googleusercontent.com",
+  project_id: "giji-db923",
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_secret: "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",
+  redirect_uris: ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
+};
+var firebase = {
+  admin_cert: {
+    projectId: "giji-db923",
+    privateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCYNQAUeZLxj9WK\nFj0Aif77W/TGLlyhMrvhYaCHG0meTMiEBytBSX/0DYBI2AyBq4XwvZRiorQgESfP\nc3hS5GNOJQM/i6fHFH0GB53unhwTpost4ed97UHc+0e/jMJH9vSbkcoDRTQw7Nxb\nEpC1Zl1bmcetReUG+jqCFACnMKK9usUMpDrne/N0UQdMVfMCKXx0sHdImZ7zm2gU\niO/b3Uf4yANWHLLENl+K9DwB9Rmab+XTIRpgDziBLX4iPbjgMDWLtxqXFNVNT+eN\nzC8ecg3ae6PMMIiKgU1jJnno74cjz/eJ3WGJDWECir1dMUms5l1ULJfpgrp2KYyr\nEkQMSglZAgMBAAECggEAE1qt82yQJFpbV29De4WQoErNocO0cKUAYgTlgjiUkGYI\nG03EEM21UQXEeb7LPFPguL+Klk5FJEy6KLVwp+21uPKY6qQqBfUTfshKK1T8kf0b\n9o4ivw8D0IM9WNyfucHr0bpkmyzaGZyM2qHON9rX5TV1QBHCsTPxa6f6e0gCcaiT\nYHLa1BwJj28cv+fWpPqGDj9oepBucjp0Xe3IeMGZ+sbg+ZvJay9Qs3DOtre1kaMf\naouCXzSWm8RhSZkcyH4q16BSZ1ozXaNwVzGaMLZy0jZvh9pX5IX/k64ucrsdi9t0\nWOvVePe9LHEBx9NZ1syDUQEbzpvOU9ecAc2jOPnn/wKBgQDUC1AZi31p93vBoS1i\nUHkzFHGLKnN1dxRQCrOK8iJXDBb8xHoLeVJ0yFJ5PzknP59KWQIGoUcjZnR7mKmq\nQ789Zy+anYyqjQlF4AaXy2ZlHnB+UCLs6cI3fWpil/1hr05WpLXpyx6U3CL55Mp6\nWkwLSfj8nbB+NFosCj/FJW/JxwKBgQC3wkUdiS/GZ7Fe8zkyvpXpuQqRzbp9g7A5\nZzszh8d7lIvsnIRwrKHX2DozdDfAnALJKr6quXP2jvMo99FkWH3Ul2JQK4ZFY8U9\n/YVoEXxxvezF2KUvaFlXAGwEXXJcSkB3ZaXVz48p5mlK7r52aomqwcSAGlQuKu0S\nhuASqJST3wKBgQCm3FAoCfCjFrE4ahFAsHrvi0LedIVvBknhwsoOqQQE4+qi9ink\nJZCRfaII74uWKya6ZtiFRxyn6tP2/udkqPMw6qY3UYuEGoAVkHkfslvdbtqvS3hw\nXnMLH5I8C8bEvCM1Y2ATnlduZNzRMQ10wuHccFWS1LQyXBgpV9de2FrjuQKBgD71\naqTB+gJqSJUVlEVUkxxu77Yg3IJgeiJQwjHXlXs72+0He0D3hMPlK5uxd+CgEzxF\nTupDe/2/4IPq1G0i/Im4DFEXeHuRwWSJ1glf5Fk8D0GCBqaFhAaQ+HFOav4/2nKN\n+xGUeaKLdQvdXJhJzD0bAm45lxnyTyOH3oHGDJHVAoGAGAAPIgBV3gWVNPdjRjEJ\nb2q0hVQEqILfA7vc6pJOKFBA8FGz53/d15lwqXr2jHzEoc0ZmJ0P72CF/EY86yqq\nCULc3puaQ+siwqro2j7MrzIEJickQ0FpPxlVQX34F2z9/fbRwPZNrAYH5RI3VflR\nouy7yz1JUK8ZX3HI16iBf3c=\n-----END PRIVATE KEY-----",
+    clientEmail: "firebase-adminsdk-hmjgx@giji-db923.iam.gserviceaccount.com"
+  },
+  admin: {
+    type: "service_account",
+    project_id: "giji-db923",
+    private_key_id: "5c74ca162c0b304476c05cd393d0b440359abceb",
+    private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCYNQAUeZLxj9WK\nFj0Aif77W/TGLlyhMrvhYaCHG0meTMiEBytBSX/0DYBI2AyBq4XwvZRiorQgESfP\nc3hS5GNOJQM/i6fHFH0GB53unhwTpost4ed97UHc+0e/jMJH9vSbkcoDRTQw7Nxb\nEpC1Zl1bmcetReUG+jqCFACnMKK9usUMpDrne/N0UQdMVfMCKXx0sHdImZ7zm2gU\niO/b3Uf4yANWHLLENl+K9DwB9Rmab+XTIRpgDziBLX4iPbjgMDWLtxqXFNVNT+eN\nzC8ecg3ae6PMMIiKgU1jJnno74cjz/eJ3WGJDWECir1dMUms5l1ULJfpgrp2KYyr\nEkQMSglZAgMBAAECggEAE1qt82yQJFpbV29De4WQoErNocO0cKUAYgTlgjiUkGYI\nG03EEM21UQXEeb7LPFPguL+Klk5FJEy6KLVwp+21uPKY6qQqBfUTfshKK1T8kf0b\n9o4ivw8D0IM9WNyfucHr0bpkmyzaGZyM2qHON9rX5TV1QBHCsTPxa6f6e0gCcaiT\nYHLa1BwJj28cv+fWpPqGDj9oepBucjp0Xe3IeMGZ+sbg+ZvJay9Qs3DOtre1kaMf\naouCXzSWm8RhSZkcyH4q16BSZ1ozXaNwVzGaMLZy0jZvh9pX5IX/k64ucrsdi9t0\nWOvVePe9LHEBx9NZ1syDUQEbzpvOU9ecAc2jOPnn/wKBgQDUC1AZi31p93vBoS1i\nUHkzFHGLKnN1dxRQCrOK8iJXDBb8xHoLeVJ0yFJ5PzknP59KWQIGoUcjZnR7mKmq\nQ789Zy+anYyqjQlF4AaXy2ZlHnB+UCLs6cI3fWpil/1hr05WpLXpyx6U3CL55Mp6\nWkwLSfj8nbB+NFosCj/FJW/JxwKBgQC3wkUdiS/GZ7Fe8zkyvpXpuQqRzbp9g7A5\nZzszh8d7lIvsnIRwrKHX2DozdDfAnALJKr6quXP2jvMo99FkWH3Ul2JQK4ZFY8U9\n/YVoEXxxvezF2KUvaFlXAGwEXXJcSkB3ZaXVz48p5mlK7r52aomqwcSAGlQuKu0S\nhuASqJST3wKBgQCm3FAoCfCjFrE4ahFAsHrvi0LedIVvBknhwsoOqQQE4+qi9ink\nJZCRfaII74uWKya6ZtiFRxyn6tP2/udkqPMw6qY3UYuEGoAVkHkfslvdbtqvS3hw\nXnMLH5I8C8bEvCM1Y2ATnlduZNzRMQ10wuHccFWS1LQyXBgpV9de2FrjuQKBgD71\naqTB+gJqSJUVlEVUkxxu77Yg3IJgeiJQwjHXlXs72+0He0D3hMPlK5uxd+CgEzxF\nTupDe/2/4IPq1G0i/Im4DFEXeHuRwWSJ1glf5Fk8D0GCBqaFhAaQ+HFOav4/2nKN\n+xGUeaKLdQvdXJhJzD0bAm45lxnyTyOH3oHGDJHVAoGAGAAPIgBV3gWVNPdjRjEJ\nb2q0hVQEqILfA7vc6pJOKFBA8FGz53/d15lwqXr2jHzEoc0ZmJ0P72CF/EY86yqq\nCULc3puaQ+siwqro2j7MrzIEJickQ0FpPxlVQX34F2z9/fbRwPZNrAYH5RI3VflR\nouy7yz1JUK8ZX3HI16iBf3c=\n-----END PRIVATE KEY-----",
+    client_email: "firebase-adminsdk-hmjgx@giji-db923.iam.gserviceaccount.com",
+    client_id: 1006140686740949e5,
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://oauth2.googleapis.com/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-hmjgx%40giji-db923.iam.gserviceaccount.com"
+  }
+};
+var live_server_default = {
+  dev,
+  prod,
+  gcp,
+  firebase
+};
+
+// src/lib/db/fcm-server.ts
+var app = initializeApp({
+  credential: cert(live_server_default.firebase.admin_cert)
+});
+async function fcm(socket, token, appends, deletes, done) {
+  console.log("-- TODO: \u5FDC\u7B54\u3057\u306A\u304F\u306A\u308B\u3053\u3068\u304C\u591A\u767A ------------------------");
+  let result = true;
+  for (const topic of appends) {
+    const { successCount, failureCount, errors } = await getMessaging(app).subscribeToTopic(token, topic);
+    if (failureCount)
+      result = false;
+    console.log("append", topic, errors, token);
+  }
+  for (const topic of deletes) {
+    const { successCount, failureCount, errors } = await getMessaging(app).unsubscribeFromTopic(token, topic);
+    if (failureCount)
+      result = false;
+    console.log("delete", topic, errors, token);
+  }
+  console.log("done", result);
+  done(result);
+}
+
 // src/lib/db/socket.io-server.ts
 var MODEL = {};
 var STORE = {};
@@ -180,42 +270,10 @@ function listen(socketio, models, stores) {
   io.on("connection", (socket) => {
     socket.on("query", query.bind(null, socket));
     socket.on("leave", leave.bind(null, socket));
+    socket.on("fcm", fcm.bind(null, socket));
   });
   console.log(io.eventNames(), io.path());
 }
-
-// src/lib/site/json/live-server.json
-var dev = {
-  mongodb: "mongodb://giji-api.duckdns.org:27017/giji?directConnection=true&replicaSet=giji",
-  http: {
-    port: 4002
-  },
-  io: {
-    origin: ["http://localhost:4000", "https://gijilog.web.app", "https://giji-db923.web.app"]
-  }
-};
-var prod = {
-  mongodb: "mongodb://192.168.0.200:27017/giji?directConnection=true&replicaSet=giji",
-  https: {
-    port: 4002,
-    cert: "/etc/letsencrypt/live/giji-api.duckdns.org/cert.pem",
-    privkey: "/etc/letsencrypt/live/giji-api.duckdns.org/privkey.pem"
-  },
-  io: {
-    origin: [
-      "http://localhost:3000",
-      "https://admin.socket.io",
-      "https://giji.f5.si",
-      "https://gijilog.web.app",
-      "https://giji-eve.web.app",
-      "https://giji-db923.web.app"
-    ]
-  }
-};
-var live_server_default = {
-  dev,
-  prod
-};
 
 // src/lib/pubsub/model-client.ts
 var model_client_exports = {};
@@ -12729,7 +12787,6 @@ var SayLimits = MapReduce({
   }
 });
 SayLimits.deploy(set_says_default);
-console.log(SayLimits.data);
 
 // src/lib/game/json/set_winner.json
 var HUMAN = {
@@ -15127,9 +15184,9 @@ function dev2() {
 function prod2() {
   const conf = live_server_default.prod;
   const key = readFileSync(conf.https.privkey);
-  const cert = readFileSync(conf.https.cert);
+  const cert2 = readFileSync(conf.https.cert);
   dbBoot(conf.mongodb);
-  const listener = createServer({ key, cert });
+  const listener = createServer({ key, cert: cert2 });
   const io3 = new Server(listener, {
     parser: parser2,
     serveClient: false,

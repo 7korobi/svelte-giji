@@ -45,5 +45,3 @@ export const SayLimits = MapReduce({
 })
 
 SayLimits.deploy(json)
-
-console.log(SayLimits.data)
