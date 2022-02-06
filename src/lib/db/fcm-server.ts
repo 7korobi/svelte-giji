@@ -16,7 +16,6 @@ export async function fcm(
   deletes: string[],
   done: (topics: boolean) => void
 ) {
-  console.log('-- TODO: 応答しなくなることが多発 ------------------------')
   let result = true
 
   for (const topic of appends) {

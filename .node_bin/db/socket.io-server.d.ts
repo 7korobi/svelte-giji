@@ -1,7 +1,7 @@
 import type { Server } from 'socket.io';
 import type { ChangeStream, DeleteResult, Document, ModifyResult } from 'mongodb';
-import type { DIC } from '$lib/map-reduce';
 import type { BaseStoreEntry } from './socket.io-client';
+export { modelAsMongoDB } from './mongodb';
 declare type ModelQuery<T, MatchArgs extends any[], MatchReturn> = {
     $match(...args: MatchArgs): MatchReturn;
     query($match: MatchReturn): Promise<T[]>;
@@ -24,21 +24,6 @@ export declare function set(name: string, docs: Document[]): Promise<void>;
 export declare function del(name: string, ids: any[]): Promise<void>;
 export declare function getApi(name: string, ...args: any[]): string;
 export declare function model<T, MatchArgs extends any[], MatchReturn>(o: ModelEntry<T, MatchArgs, MatchReturn>): ModelEntry<T, MatchArgs, MatchReturn>;
-export declare function modelAsMongoDB<T extends {
-    _id: any;
-}>(collection: string, $project?: DIC<0> | DIC<1>): {
-    $match: (ids: T['_id'][]) => {
-        _id: {
-            $in: T["_id"][];
-        };
-    };
-    set: ($set: T) => Promise<ModifyResult<T>>;
-    del: (ids: T['_id'][]) => Promise<DeleteResult>;
-    isLive: () => Promise<boolean>;
-    live: ($match: any, set: ($set: T) => Promise<ModifyResult<T>>, del: (ids: T['_id'][]) => Promise<DeleteResult>) => ChangeStream<T>;
-    query: ($match: any) => Promise<Document[]>;
-};
 export default function listen(socketio: Server, models: {
     [api: string]: ModelEntry<Document, any[], any>;
 }, stores: typeof STORE): void;
-export {};

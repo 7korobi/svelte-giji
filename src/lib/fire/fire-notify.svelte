@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-import { derived } from 'svelte/store'
+import { derived, Readable } from 'svelte/store'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { live } from '$lib/site'
 import { app, token, topics, topicsAck } from './store'
@@ -26,58 +26,62 @@ async function initNotify($app) {
       // ...
     })
   } catch (e) {
-    console.warn('An error occurred while retrieving token. ', e)
+    console.warn(e)
   }
 }
-const notify = derived([token, topics, topicsAck], ([$token, $topics, $topicsAck], set) => {
-  if (!__BROWSER__) return
-  if (!$token) return
 
-  const appends = []
-  const deletes = []
-  for (const topic of $topics) {
-    if ($topicsAck.includes(topic)) return
-    appends.push(topic)
-  }
-  for (const topic of $topicsAck) {
-    if ($topics.includes(topic)) return
-    deletes.push(topic)
-  }
+const topicFixing = derived(
+  [token, topics, topicsAck],
+  ([$token, $topics, $topicsAck], set) => {
+    if (!__BROWSER__) return
+    if (!$token) return
 
-  set(undefined)
-  fcm($token, appends, deletes).then((result) => {
-    if (result) {
-      topicsAck.set($topics)
+    const appends = []
+    const deletes = []
+    for (const topic of $topics) {
+      if (!$topicsAck.includes(topic)) {
+        appends.push(topic)
+      }
     }
-    set(result)
-  })
-})
+    for (const topic of $topicsAck) {
+      if (!$topics.includes(topic)) {
+        deletes.push(topic)
+      }
+    }
+
+    set([...appends, ...deletes])
+    fcm($token, appends, deletes)
+      .then((result) => {
+        if (result) topicsAck.set($topics)
+      })
+      .finally(() => {
+        set([])
+      })
+  },
+  []
+)
 </script>
 
 <script lang="ts">
 import { Btn } from '$lib/design'
-import { BellDisable, BellRinging, BellStop } from '$lib/icon'
+import { BellDisable, BellRinging, BellStop, Spinner } from '$lib/icon'
 import { fcm } from '$lib/db/socket.io-client'
 
 export let topic: any
 
-$: console.log($notify, $topics, $topicsAck)
+function bell($topicFixing, $token: string, $topics: string[], topic: string) {
+  if ($topicFixing.includes(topic)) return Spinner
+  if (!$token) return BellDisable
 
-function bell($notify, $token: string, $topics: string[], topic: string) {
-  if (undefined === $notify) return BellDisable
-  if ($token) {
-    if ($topics.includes(topic)) {
-      return BellRinging
-    } else {
-      return BellStop
-    }
+  if ($topics.includes(topic)) {
+    return BellRinging
   } else {
-    return BellDisable
+    return BellStop
   }
 }
 </script>
 
 <Btn type="toggle" disabled={!$token} as={[topic]} bind:value={$topics}>
-  <svelte:component this={bell($notify, $token, $topics, topic)} />
+  <svelte:component this={bell($topicFixing, $token, $topics, topic)} />
   <slot />
 </Btn>

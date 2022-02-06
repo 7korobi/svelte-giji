@@ -1,4 +1,5 @@
-import type { Document } from 'mongodb'
+import type { DeleteResult, Document, ModifyResult } from 'mongodb'
+import type { DIC } from '$lib/map-reduce'
 import { Collection, MongoClient } from 'mongodb'
 
 let client: MongoClient
@@ -37,6 +38,34 @@ export function watch<K, T>(
           break
       }
     })
+}
+
+function pipeline($match: any, $project?: DIC<0> | DIC<1>) {
+  if ($project) {
+    return [{ $match }, { $project }]
+  } else {
+    return [{ $match }]
+  }
+}
+
+export function modelAsMongoDB<T extends { _id: any }>(
+  collection: string,
+  $project?: DIC<0> | DIC<1>
+) {
+  const table = () => db().collection<T>(collection)
+
+  return {
+    $match: (ids: T['_id'][]) => ({ _id: { $in: ids } }),
+    set: ($set: T) => table().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
+    del: (ids: T['_id'][]) => table().deleteMany({ _id: { $in: ids } }),
+    isLive: async () => true,
+    live: (
+      $match: any,
+      set: ($set: T) => Promise<ModifyResult<T>>,
+      del: (ids: T['_id'][]) => Promise<DeleteResult>
+    ) => watch(set, del, table(), pipeline($match, $project)),
+    query: async ($match: any) => table().aggregate(pipeline($match, $project)).toArray()
+  }
 }
 
 function exit() {

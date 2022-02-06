@@ -32,41 +32,6 @@ import {
 import { Server } from "socket.io";
 import parser2 from "socket.io-msgpack-parser";
 
-// src/lib/db/mongodb.ts
-import { MongoClient } from "mongodb";
-var client;
-function db() {
-  return client.db();
-}
-async function dbBoot(url) {
-  if (client)
-    exit();
-  client = new MongoClient(url, {});
-  await client.connect();
-  console.warn("MongoDB connected.");
-  process.on("beforeExit", exit);
-}
-function watch(set2, del2, model3, pipeline) {
-  return model3.watch(pipeline, { fullDocument: "updateLookup" }).on("change", ({ operationType, documentKey, fullDocument }) => {
-    switch (operationType) {
-      case "insert":
-      case "update":
-        set2(fullDocument);
-        break;
-      case "delete":
-        del2(documentKey);
-        break;
-      case "invalidate":
-        console.log(fullDocument);
-        break;
-    }
-  });
-}
-function exit() {
-  client.close();
-  console.warn("MongoDB safely close.");
-}
-
 // src/lib/db/fcm-server.ts
 import { cert, initializeApp } from "firebase-admin/app";
 import { getMessaging } from "firebase-admin/messaging";
@@ -78,7 +43,13 @@ var dev = {
     port: 4002
   },
   io: {
-    origin: ["http://localhost:4000", "https://gijilog.web.app", "https://giji-db923.web.app"]
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:4000",
+      "http://localhost:4001",
+      "https://gijilog.web.app",
+      "https://giji-db923.web.app"
+    ]
   }
 };
 var prod = {
@@ -90,7 +61,7 @@ var prod = {
   },
   io: {
     origin: [
-      "http://localhost:3000",
+      "http://localhost:4000",
       "https://admin.socket.io",
       "https://giji.f5.si",
       "https://gijilog.web.app",
@@ -139,7 +110,6 @@ var app = initializeApp({
   credential: cert(live_server_default.firebase.admin_cert)
 });
 async function fcm(socket, token, appends, deletes, done) {
-  console.log("-- TODO: \u5FDC\u7B54\u3057\u306A\u304F\u306A\u308B\u3053\u3068\u304C\u591A\u767A ------------------------");
   let result = true;
   for (const topic of appends) {
     const { successCount, failureCount, errors } = await getMessaging(app).subscribeToTopic(token, topic);
@@ -155,6 +125,59 @@ async function fcm(socket, token, appends, deletes, done) {
   }
   console.log("done", result);
   done(result);
+}
+
+// src/lib/db/mongodb.ts
+import { MongoClient } from "mongodb";
+var client;
+function db() {
+  return client.db();
+}
+async function dbBoot(url) {
+  if (client)
+    exit();
+  client = new MongoClient(url, {});
+  await client.connect();
+  console.warn("MongoDB connected.");
+  process.on("beforeExit", exit);
+}
+function watch(set2, del2, model3, pipeline2) {
+  return model3.watch(pipeline2, { fullDocument: "updateLookup" }).on("change", ({ operationType, documentKey, fullDocument }) => {
+    switch (operationType) {
+      case "insert":
+      case "update":
+        set2(fullDocument);
+        break;
+      case "delete":
+        del2(documentKey);
+        break;
+      case "invalidate":
+        console.log(fullDocument);
+        break;
+    }
+  });
+}
+function pipeline($match, $project) {
+  if ($project) {
+    return [{ $match }, { $project }];
+  } else {
+    return [{ $match }];
+  }
+}
+function modelAsMongoDB(collection, $project) {
+  const table2 = () => db().collection(collection);
+  return {
+    $match: (ids) => ({ _id: { $in: ids } }),
+    set: ($set) => table2().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
+    del: (ids) => table2().deleteMany({ _id: { $in: ids } }),
+    isLive: async () => true,
+    live: ($match, set2, del2) => watch(set2, del2, table2(), pipeline($match, $project)),
+    query: async ($match) => table2().aggregate(pipeline($match, $project)).toArray()
+  };
+}
+function exit() {
+  client.close();
+  console.warn("MongoDB safely close.");
 }
 
 // src/lib/db/socket.io-server.ts
@@ -238,24 +261,6 @@ function getApi(name, ...args) {
 }
 function model(o) {
   return o;
-}
-function modelAsMongoDB(collection, $project) {
-  const table2 = () => db().collection(collection);
-  return {
-    $match: (ids) => ({ _id: { $in: ids } }),
-    set: ($set) => table2().findOneAndUpdate({ _id: $set._id }, { $set }, { upsert: true }),
-    del: (ids) => table2().deleteMany({ _id: { $in: ids } }),
-    isLive: async () => true,
-    live: ($match, set2, del2) => watch(set2, del2, table2(), pipeline($match)),
-    query: async ($match) => table2().aggregate(pipeline($match)).toArray()
-  };
-  function pipeline($match) {
-    if ($project) {
-      return [{ $match }, { $project }];
-    } else {
-      return [{ $match }];
-    }
-  }
 }
 function listen(socketio, models, stores) {
   MODEL = models;
