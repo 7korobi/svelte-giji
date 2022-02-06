@@ -86,7 +86,7 @@ type Look<F extends BaseF<any>> = {
 }
 
 export async function fcm(token: string, appends: string[], deletes: string[]) {
-  return new Promise<boolean>((ok, ng)=> {
+  return new Promise<boolean>((ok, ng) => {
     if (appends.length || deletes.length) {
       PubSub.emit('fcm', token, appends, deletes, ok)
     } else {

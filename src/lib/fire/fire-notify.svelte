@@ -29,21 +29,21 @@ async function initNotify($app) {
     console.warn('An error occurred while retrieving token. ', e)
   }
 }
-const notify = derived([token, topics, topicsAck], ([$token, $topics, $topicsAck], set)=> {
+const notify = derived([token, topics, topicsAck], ([$token, $topics, $topicsAck], set) => {
   if (!__BROWSER__) return
   if (!$token) return
 
   const appends = []
   const deletes = []
   for (const topic of $topics) {
-    if ( $topicsAck.includes(topic) ) return
+    if ($topicsAck.includes(topic)) return
     appends.push(topic)
   }
   for (const topic of $topicsAck) {
-    if ( $topics.includes(topic) ) return
+    if ($topics.includes(topic)) return
     deletes.push(topic)
   }
-  
+
   set(undefined)
   fcm($token, appends, deletes).then((result) => {
     if (result) {
@@ -57,7 +57,7 @@ const notify = derived([token, topics, topicsAck], ([$token, $topics, $topicsAck
 <script lang="ts">
 import { Btn } from '$lib/design'
 import { BellDisable, BellRinging, BellStop } from '$lib/icon'
-import { fcm } from '$lib/db/socket.io-client';
+import { fcm } from '$lib/db/socket.io-client'
 
 export let topic: any
 

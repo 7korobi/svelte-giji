@@ -11,10 +11,17 @@ import json from '../site/json/live-server.json'
 import * as stores from './model-client'
 import * as models from './model-server'
 
-const mode = argv.pop()
 const bootstrap = { dev, prod }
 
-bootstrap[mode]()
+const OPTIONS = [
+  process.env.pm_id,
+  process.env.NODE_ENV,
+  process.env.autorestart,
+  process.env.exec_mode
+]
+
+console.log(OPTIONS)
+bootstrap[process.env.NODE_ENV ?? 'dev']()
 
 function dev() {
   const conf = json.dev

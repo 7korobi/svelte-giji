@@ -1,2 +1,2 @@
-export NODE_ENV=live
+export NODE_ENV=prod
 npx pm2 startOrGracefulReload ./prod.yml
