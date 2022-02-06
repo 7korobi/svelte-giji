@@ -128,10 +128,10 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
             <p>登場{$potof_for_face_all.by_face[o.face_id].story_ids.length}回</p>
           {/if}
           {#if 'date_max' === params.order}
-            <p><Time format="yy-mm-dd" at={$potof_for_face_all.by_face[o.face_id].date_max} /></p>
+            <p><Time format="yy-MM-dd" at={$potof_for_face_all.by_face[o.face_id].date_max} /></p>
           {/if}
           {#if 'date_min' === params.order}
-            <p><Time format="yy-mm-dd" at={$message_for_face_all.by_face[o.face_id].date_min} /></p>
+            <p><Time format="yy-MM-dd" at={$message_for_face_all.by_face[o.face_id].date_min} /></p>
           {/if}
           <a href="/summary/chr/show?face_id={o.face_id}">
             <p>{o.job}<br />{o.face.name}</p>
