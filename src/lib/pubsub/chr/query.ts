@@ -1,5 +1,5 @@
 import type { FaceID } from '../_type/id'
-import type { CHR_SET_IDX, CSID } from '../map-reduce'
+import type { CHR_SET_IDX, CSID, TAG_ID } from '../map-reduce'
 import { ChrJobs, ChrNpcs, ChrSets, Faces, Tags } from '../map-reduce'
 
 export const tag_by_group = Tags.data.group
@@ -17,13 +17,13 @@ for (const doc of Tags.data.list) {
 }
 
 for (const doc of Faces.data.list) {
-  const tags = doc.tag_ids.map((_id) => Tags.find(_id)).filter((o) => o)
+  const tags = doc.tag_ids.map((_id) => Tags.find(_id as TAG_ID)).filter((o) => o)
   doc.tags = tags
 }
 
 for (const tag_id in Faces.data.tag) {
   const o = Faces.data.tag[tag_id]
-  const tag = Tags.find(tag_id) || Tags.find('all')
+  const tag = Tags.find(tag_id as TAG_ID) || Tags.find('all')
   o.tag = tag
   o.chr_jobs = o.list.map((face) => ChrJobs.find(`${tag.chr_set_id}_${face._id}`))
 }

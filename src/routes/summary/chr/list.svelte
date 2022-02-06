@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { Tag } from '$lib/pubsub/map-reduce'
+import type { ChrJob, Tag } from '$lib/pubsub/map-reduce'
 import type { FaceID } from '$lib/pubsub/_type/id'
-import type { DIC } from '$lib/map-reduce'
+import { DIC, sort } from '$lib/map-reduce'
 import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
@@ -25,13 +25,32 @@ import { Btn, SearchText } from '$lib/design'
 import Portrates from '$lib/site/chat/portrates.svelte'
 import Portrate from '$lib/site/block/portrate.svelte'
 
-let order = 'order'
-let tag_id: Tag['_id'] = 'giji'
+const orderFunc = {
+  order: (a: ChrJob[]) => sort(a).asc((o) => o.face.order),
+  story_length: (a: ChrJob[]) =>
+    sort(a).desc((o) => $potof_for_face_all?.by_face[o.face_id]?.story_ids.length ?? 0),
+  fav_count: (a: ChrJob[]) =>
+    sort(a).desc((o) => $potof_for_face_sow_auth_max_all?.by_face[o.face_id]?.count ?? 0),
+  date_max: (a: ChrJob[]) => sort(a).desc((o) => $potof_for_face_all?.by_face[o.face_id]?.date_max),
+  date_min: (a: ChrJob[]) => sort(a).asc((o) => $message_for_face_all?.by_face[o.face_id]?.date_min)
+}
+
+let params: {
+  order: keyof typeof orderFunc
+  tag_id: Tag['_id']
+  search: string
+} = {
+  order: 'order',
+  tag_id: 'giji',
+  search: ''
+}
 let search: RegExp
 $: summaries = [$message_for_face_all, $potof_for_face_all, $potof_for_face_sow_auth_max_all]
-$: all = faces_by_tag[tag_id].chr_jobs
+$: all = faces_by_tag[params.tag_id].chr_jobs
 $: words = all.map((o) => `${o.job} ${o.face.name}`)
-$: chr_jobs = search ? all.filter((o) => search.test(`${o.job} ${o.face.name}`)) : all
+$: chr_jobs = orderFunc[params.order](
+  search ? all.filter((o) => search.test(`${o.job} ${o.face.name}`)) : all
+)
 $: animate_scale =
   150 < chr_jobs.length
     ? { delay: 0, duration: 0, opacity: 0, start: 1 }
@@ -45,7 +64,7 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
 }
 </script>
 
-<Location bind:hash={tag_id} />
+<Location bind:searchParams={params} />
 <Poll {...faces()} />
 
 <Post handle="footer">
@@ -73,7 +92,7 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
           <p class="center">
             {#each tags.list as o}
               {#if o.faces?.length}
-                <Btn class="btn" as={o._id} bind:value={tag_id}
+                <Btn class="btn" as={o._id} bind:value={params.tag_id}
                   >{o.label}<sup>{o.faces.length}</sup></Btn
                 >
               {/if}
@@ -85,17 +104,17 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
   </div>
   <hr />
   <p class="form">
-    <SearchText bind:regexp={search} data={words} />
+    <SearchText bind:value={params.search} bind:regexp={search} data={words} />
   </p>
-  <sub style="width: 100%;">{Tags.find(tag_id)?.long}</sub>
+  <sub style="width: 100%;">{Tags.find(params.tag_id)?.long}</sub>
 </Report>
 <Report handle="header">
   <p class="center">
-    <Btn as="order" bind:value={order}>基本</Btn>
-    <Btn as="story_length" bind:value={order}>登場回数</Btn>
-    <Btn as="fav_count" bind:value={order}>偏愛度</Btn>
-    <Btn as="date_max" bind:value={order}>新着度</Btn>
-    <Btn as="date_min" bind:value={order}>古参度</Btn>
+    <Btn as="order" bind:value={params.order}>基本</Btn>
+    <Btn as="story_length" bind:value={params.order}>登場回数</Btn>
+    <Btn as="fav_count" bind:value={params.order}>偏愛度</Btn>
+    <Btn as="date_max" bind:value={params.order}>新着度</Btn>
+    <Btn as="date_min" bind:value={params.order}>古参度</Btn>
   </p>
 </Report>
 <Portrates>
@@ -103,26 +122,26 @@ function show_summary(id: FaceID, targets: { by_face: DIC<any> }[]) {
     <div in:scale={animate_scale} animate:flip={{ delay: 0, duration: 600, easing: backOut }}>
       <Portrate face_id={o.face_id}>
         {#if show_summary(o.face_id, summaries)}
-          {#if 'fav_count' === order}
+          {#if 'fav_count' === params.order}
             <p>♥{$potof_for_face_sow_auth_max_all.by_face[o.face_id].count}回</p>
           {:else}
             <p>登場{$potof_for_face_all.by_face[o.face_id].story_ids.length}回</p>
           {/if}
-          {#if 'date_max' === order}
-            <p><Time at={$potof_for_face_all.by_face[o.face_id].date_max} /></p>
+          {#if 'date_max' === params.order}
+            <p><Time format="yy-mm-dd" at={$potof_for_face_all.by_face[o.face_id].date_max} /></p>
           {/if}
-          {#if 'date_min' === order}
-            <p><Time at={$message_for_face_all.by_face[o.face_id].date_min} /></p>
+          {#if 'date_min' === params.order}
+            <p><Time format="yy-mm-dd" at={$message_for_face_all.by_face[o.face_id].date_min} /></p>
           {/if}
           <a href="/summary/chr/show?face_id={o.face_id}">
             <p>{o.job}<br />{o.face.name}</p>
           </a>
           <p>♥{$potof_for_face_sow_auth_max_all.by_face[o.face_id]._id.sow_auth_id}</p>
         {:else}
-          {#if 'date_max' === order}
+          {#if 'date_max' === params.order}
             <p>&nbsp;</p>
           {/if}
-          {#if 'date_min' === order}
+          {#if 'date_min' === params.order}
             <p>&nbsp;</p>
           {/if}
           <p>&nbsp;</p>
