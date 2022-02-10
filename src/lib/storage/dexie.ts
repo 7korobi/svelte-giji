@@ -1,5 +1,5 @@
 import Dexie from 'dexie'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 export type WebPollData<T> = {
   version: string

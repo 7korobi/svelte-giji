@@ -1,7 +1,7 @@
 import type { Writable } from 'svelte/store'
-import { __BROWSER__ } from '$lib/common'
 import { writable } from 'svelte/store'
 import { listen } from 'svelte/internal'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 type Cache = { [key: string]: [Writable<any>, Convert<any>] }
 type Convert<T> = {
