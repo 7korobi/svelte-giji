@@ -1,0 +1,26 @@
+@use "sass:color";
+@use "sass:string";
+@use "sass:math";
+
+@function HSYA($HH, $SS, $YY, $AA: 1) {
+  $HH: $HH % 360;
+  $LL: Y2L($HH, $SS, $YY);
+  @return hsla($HH, $SS, $LL, $AA);
+}
+
+@function fixByContrast($fixS, $fixY, $contrast, $HD, $col, $label) {
+  $newCol: $col;
+  $head: stepByCache($label);
+  @for $step from $head to 650 {
+    $saturation: math.clamp(-100%, $step * $fixS, 100%);
+    $lightness: math.clamp(-100%, $step * $fixY, 100%);
+    $newCol: color.adjust($col, $hue: $HD, $saturation: $saturation, $lightness: $lightness);
+    $cRatio: contrastRatio($col, $newCol);
+    @if black == $newCol or white == $newCol or $contrast <= $cRatio {
+      $c: stepToCache($label, $step);
+      @return $newCol;
+    }
+  }
+  $c: stepToCache($label, 650);
+  @return $newCol;
+}

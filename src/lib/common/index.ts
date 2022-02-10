@@ -1,5 +1,5 @@
 export * from './bits'
 export * from './bits-n'
-export * from './define'
+export * from './const'
 export * from './mouse'
 export * from './portal'
