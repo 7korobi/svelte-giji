@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 export const SECOND = 1000
 export const MINUTE = 60000
