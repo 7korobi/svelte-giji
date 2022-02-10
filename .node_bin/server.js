@@ -289,12 +289,17 @@ __export(model_client_exports, {
   message_for_face: () => message_for_face,
   message_for_face_by_face: () => message_for_face_by_face,
   message_for_face_mestype: () => message_for_face_mestype,
+  message_for_face_mestype_by_face: () => message_for_face_mestype_by_face,
   message_for_face_sow_auth: () => message_for_face_sow_auth,
+  message_for_face_sow_auth_by_face: () => message_for_face_sow_auth_by_face,
   messages: () => messages,
   new_plans: () => new_plans,
   potof_for_face: () => potof_for_face,
+  potof_for_face_by_face: () => potof_for_face_by_face,
   potof_for_face_live: () => potof_for_face_live,
+  potof_for_face_live_by_face: () => potof_for_face_live_by_face,
   potof_for_face_role: () => potof_for_face_role,
+  potof_for_face_role_by_face: () => potof_for_face_role_by_face,
   potof_for_face_sow_auth_max: () => potof_for_face_sow_auth_max,
   potofs: () => potofs,
   randoms: () => randoms,
@@ -14982,13 +14987,65 @@ var message_for_face_sow_auth = model2({
   }
 });
 var message_for_face_by_face = model2({
-  qid: (o) => [o.face_id].toString(),
+  qid: (ids) => ids.toString(),
   format: () => ({
     list: []
   }),
   reduce(data, doc) {
   },
   order(data, { sort: sort3 }) {
+  }
+});
+var message_for_face_mestype_by_face = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }) {
+  }
+});
+var message_for_face_sow_auth_by_face = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce(data, doc) {
+  },
+  order(data, { sort: sort3 }) {
+  }
+});
+var potof_for_face_by_face = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: [],
+    by_face: {}
+  }),
+  reduce: (data, doc) => {
+    dic(data.by_face, doc._id.face_id, doc);
+  },
+  order: (data, { sort: sort3 }) => {
+  }
+});
+var potof_for_face_role_by_face = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce: (data, doc) => {
+  },
+  order: (data, { sort: sort3 }) => {
+  }
+});
+var potof_for_face_live_by_face = model2({
+  qid: (ids) => ids.toString(),
+  format: () => ({
+    list: []
+  }),
+  reduce: (data, doc) => {
+  },
+  order: (data, { sort: sort3 }) => {
   }
 });
 
@@ -15120,8 +15177,8 @@ var potof_for_face_role2 = modelAsAggregate("potof_for_face_role");
 var potof_for_face_live2 = modelAsAggregate("potof_for_face_live");
 var potof_for_face_sow_auth_max2 = modelAsAggregate("potof_for_face_sow_auth_max");
 var message_for_face2 = modelAsAggregate("message_for_face");
-var message_for_face_mestype2 = modelAsAggregate("message_for_face");
-var message_for_face_sow_auth2 = modelAsAggregate("message_for_face");
+var message_for_face_mestype2 = modelAsAggregate("message_for_face_mestype");
+var message_for_face_sow_auth2 = modelAsAggregate("message_for_face_sow_auth");
 
 // src/lib/pubsub/plan/server.ts
 var range = 1e3 * 3600 * 24 * 50;

@@ -28,11 +28,11 @@ import Portrate from '$lib/site/block/portrate.svelte'
 const orderFunc = {
   order: (a: ChrJob[]) => sort(a).asc((o) => o.face.order),
   story_length: (a: ChrJob[]) =>
-    sort(a).desc((o) => $potof_for_face_all?.by_face[o.face_id]?.story_ids.length ?? 0),
+    sort(a).desc((o) => $potof_for_face_all.by_face[o.face_id]?.story_ids.length ?? 0),
   fav_count: (a: ChrJob[]) =>
-    sort(a).desc((o) => $potof_for_face_sow_auth_max_all?.by_face[o.face_id]?.count ?? 0),
-  date_max: (a: ChrJob[]) => sort(a).desc((o) => $potof_for_face_all?.by_face[o.face_id]?.date_max),
-  date_min: (a: ChrJob[]) => sort(a).asc((o) => $message_for_face_all?.by_face[o.face_id]?.date_min)
+    sort(a).desc((o) => $potof_for_face_sow_auth_max_all.by_face[o.face_id]?.count ?? 0),
+  date_max: (a: ChrJob[]) => sort(a).desc((o) => $potof_for_face_all.by_face[o.face_id]?.date_max),
+  date_min: (a: ChrJob[]) => sort(a).asc((o) => $message_for_face_all.by_face[o.face_id]?.date_min)
 }
 
 let params: {

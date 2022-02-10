@@ -10,6 +10,7 @@ import type {
 import type { DIC } from '$lib/map-reduce'
 import { model } from '$lib/db/socket.io-client'
 import { dic } from '$lib/map-reduce'
+import type { FaceID } from '../_type/id'
 
 export const potof_for_face = model({
   qid: (o: Partial<PotofForFace['_id']>) => [o.face_id].toString(),
@@ -84,10 +85,58 @@ export const message_for_face_sow_auth = model({
 })
 
 export const message_for_face_by_face = model({
-  qid: (o: Partial<MessageForFace['_id']>) => [o.face_id].toString(),
+  qid: (ids: FaceID[]) => ids.toString(),
   format: () => ({
     list: [] as MessageForFace[]
   }),
   reduce(data, doc) {},
   order(data, { sort }) {}
+})
+
+export const message_for_face_mestype_by_face = model({
+  qid: (ids: FaceID[]) => ids.toString(),
+  format: () => ({
+    list: [] as MessageForFaceMestype[]
+  }),
+  reduce(data, doc) {},
+  order(data, { sort }) {}
+})
+
+export const message_for_face_sow_auth_by_face = model({
+  qid: (ids: FaceID[]) => ids.toString(),
+  format: () => ({
+    list: [] as MessageForFaceSowAuth[]
+  }),
+  reduce(data, doc) {},
+  order(data, { sort }) {}
+})
+
+export const potof_for_face_by_face = model({
+  qid: (ids: FaceID[]) => ids.toString(),
+  format: () => ({
+    list: [] as PotofForFace[],
+    by_face: {} as DIC<PotofForFace>
+  }),
+  reduce: (data, doc) => {
+    dic(data.by_face, doc._id.face_id, doc)
+  },
+  order: (data, { sort }) => {}
+})
+
+export const potof_for_face_role_by_face = model({
+  qid: (ids: FaceID[]) => ids.toString(),
+  format: () => ({
+    list: [] as PotofForFaceRole[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
+})
+
+export const potof_for_face_live_by_face = model({
+  qid: (ids: FaceID[]) => ids.toString(),
+  format: () => ({
+    list: [] as PotofForFaceLive[]
+  }),
+  reduce: (data, doc) => {},
+  order: (data, { sort }) => {}
 })

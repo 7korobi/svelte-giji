@@ -1,6 +1,7 @@
 import type {
   MessageForFace,
   MessageForFaceMestype,
+  MessageForFaceSowAuth,
   PotofForFace,
   PotofForFaceLive,
   PotofForFaceRole,
@@ -14,7 +15,7 @@ function modelAsAggregate<T extends { _id: any }>(collection: string) {
     isLive,
     live,
     query,
-    $match(o: T['_id']): { [idx in keyof T['_id']]: { $in: string[] } } {
+    $match(o: T['_id']): { [idx in `_id.${string}`]: { $in: string[] } } {
       const ret: T['_id'] = {}
       for (const key in o) {
         if (o[key].length) ret[`_id.${key}`] = { $in: o[key] }
@@ -32,5 +33,9 @@ export const potof_for_face_sow_auth_max = modelAsAggregate<PotofForFaceSowAuthM
 )
 
 export const message_for_face = modelAsAggregate<MessageForFace>('message_for_face')
-export const message_for_face_mestype = modelAsAggregate<MessageForFaceMestype>('message_for_face')
-export const message_for_face_sow_auth = modelAsAggregate<MessageForFace>('message_for_face')
+export const message_for_face_mestype = modelAsAggregate<MessageForFaceMestype>(
+  'message_for_face_mestype'
+)
+export const message_for_face_sow_auth = modelAsAggregate<MessageForFaceSowAuth>(
+  'message_for_face_sow_auth'
+)
