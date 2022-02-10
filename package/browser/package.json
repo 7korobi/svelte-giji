@@ -1,0 +1,42 @@
+{
+  "name": "svelte-browser",
+  "version": "0.3.9",
+  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/browser",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "svelte",
+    "component",
+    "viewport"
+  ],
+  "author": {
+    "name": "7korobi",
+    "email": "7korobi@gmail.com"
+  },
+  "devDependencies": {
+    "svelte-preprocess": "^4.10.3",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "svelte": "^3.46.4",
+    "tslib": "^2.3.1",
+    "ua-parser-js": "^0.7.31"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./index.js",
+    "./area-box": "./area-box.js",
+    "./browser": "./browser.js",
+    "./device": "./device.js",
+    "./downloader": "./downloader.js",
+    "./measure": "./measure.js",
+    "./observer": "./observer.js",
+    "./store": "./store.js",
+    "./main.svelte": "./main.svelte",
+    "./key-capture.svelte": "./key-capture.svelte",
+    "./page-transition.svelte": "./page-transition.svelte",
+    "./safe-measure.svelte": "./safe-measure.svelte",
+    "./viewport.svelte": "./viewport.svelte"
+  },
+  "svelte": "./index.js"
+}
