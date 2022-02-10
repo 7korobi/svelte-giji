@@ -1,5 +1,5 @@
 import UAParser from 'ua-parser-js';
-import { __BROWSER__ } from '../common';
+import { __BROWSER__ } from 'svelte-petit-utils';
 const { device, browser, engine, os } = UAParser();
 let isLegacy = false;
 let isRadius = false;

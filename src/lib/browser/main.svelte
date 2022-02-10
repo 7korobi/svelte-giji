@@ -3,7 +3,7 @@ import { onDestroy } from 'svelte'
 
 import SafeMeasure from './safe-measure.svelte'
 
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 import areaBoxInit from './area-box'
 import browserInit from './browser'
 

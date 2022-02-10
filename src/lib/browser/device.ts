@@ -1,5 +1,5 @@
 import UAParser from 'ua-parser-js'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 const { device, browser, engine, os } = ((UAParser as unknown) as () => UAParser.IResult)()
 

@@ -1,6 +1,6 @@
 <script >import { onDestroy } from 'svelte';
 import SafeMeasure from './safe-measure.svelte';
-import '$lib/common';
+import 'svelte-petit-utils';
 import areaBoxInit from './area-box';
 import browserInit from './browser';
 onDestroy(areaBoxInit());

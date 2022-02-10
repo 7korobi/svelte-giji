@@ -1,5 +1,4 @@
-<script >
-export let min;
+<script >export let min;
 export let max;
 $: content = [
     'viewport-fit=cover',

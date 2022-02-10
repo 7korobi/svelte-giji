@@ -1,5 +1,5 @@
 import * as store from './store';
-import { __BROWSER__ } from '../common';
+import { __BROWSER__ } from 'svelte-petit-utils';
 export function KeypadSize({ style }) {
     if (!__BROWSER__)
         return;

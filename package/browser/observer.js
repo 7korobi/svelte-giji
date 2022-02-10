@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '../common';
+import { __BROWSER__ } from 'svelte-petit-utils';
 const resized = new Map();
 const resizes = __BROWSER__ &&
     new ResizeObserver(([entry]) => {

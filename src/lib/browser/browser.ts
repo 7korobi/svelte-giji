@@ -1,5 +1,5 @@
 import { listen } from 'svelte/internal'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 import { state, isOnline, isWatching, isActive } from './store'
 
 export default function browserInit() {

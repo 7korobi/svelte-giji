@@ -1,6 +1,6 @@
 import { listen } from 'svelte/internal'
-import { __BROWSER__ } from '$lib/common'
-import { isAndroid, isIOS } from '$lib/browser'
+import { __BROWSER__ } from 'svelte-petit-utils'
+import { isAndroid, isIOS } from './device'
 import {
   state,
   isZoom,

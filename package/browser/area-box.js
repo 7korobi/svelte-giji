@@ -1,6 +1,6 @@
 import { listen } from 'svelte/internal';
-import { __BROWSER__ } from '../common';
-import { isAndroid, isIOS } from './';
+import { __BROWSER__ } from 'svelte-petit-utils';
+import { isAndroid, isIOS } from './device';
 import { state, isZoom, isKeypad, isPortrait, isLandscape, zoomScale, zoomPoint, viewPoint, zoomOffset, viewOffset, keypadSize, zoomSize, viewSize, safeSize } from './store';
 export default function areaBoxInit() {
     if (!__BROWSER__)

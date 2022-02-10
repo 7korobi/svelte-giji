@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { __BROWSER__ } from '../common';
+import { __BROWSER__ } from 'svelte-petit-utils';
 const DPI = bootDPI();
 const divDPI = 1 / bootDPI();
 const default_vp = { width: 1024, height: 1024, scale: 1 };

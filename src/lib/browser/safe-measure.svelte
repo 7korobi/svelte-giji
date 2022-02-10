@@ -1,6 +1,7 @@
 <script lang="ts">
-import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH, __BROWSER__ } from '$lib/common'
-import { isIOS, isRadius } from '$lib/browser'
+import { __BROWSER__ } from 'svelte-petit-utils'
+import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from './const'
+import { isIOS, isRadius } from './device'
 import { state, isPortrait, isLandscape, safePoint, safeOffset } from './store'
 
 export let ratio: number

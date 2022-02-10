@@ -1,0 +1,16 @@
+declare type top = number;
+declare type right = number;
+declare type bottom = number;
+declare type left = number;
+declare type width = number;
+declare type height = number;
+declare type scale = number;
+export declare type SIZE = [width, height];
+export declare type SIZE_WITH_SCALE = [width, height, scale];
+export declare type POINT = [left, top];
+export declare type POINT_WITH_SCALE = [left, top, scale];
+export declare type OFFSET = [top, right, bottom, left];
+export declare const MINIMUM_PIXEL_SIZE = 0.2;
+export declare const SAFE_WIDTH = 44;
+export declare const SAFE_HEIGHT = 21;
+export {};

@@ -1,5 +1,6 @@
-<script >import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from '../common';
-import { isIOS, isRadius } from './';
+<script >import 'svelte-petit-utils';
+import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from './const';
+import { isIOS, isRadius } from './device';
 import { state, isPortrait, isLandscape, safePoint, safeOffset } from './store';
 export let ratio;
 export let isDefaultSafeArea;
