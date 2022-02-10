@@ -1,14 +1,13 @@
 <script lang="ts">
-import { tick } from 'svelte'
-import Banner from '$lib/site/chat/banner.svelte'
-
 import Focus from './focus.svelte'
 import { bit, observe, RANGE } from './observer'
 
 export let range = ['horizon'] as RANGE[]
 export let chunk = 5
-export let list = []
+export let id = (o) => ''
+export let base = (o) => ''
 
+export let list = []
 export let focus = ''
 export let page = 1
 
@@ -61,10 +60,10 @@ $: if (list.length) {
 
 <div use:tracker.listener>
   {#each pages as page (page)}
-    <Banner>{`p${page}`}</Banner>
-    {#each list.slice((page - 1) * chunk, page * chunk) as o (o?._id)}
-      {#if o}
-        <Focus {range} id={o._id} base={o.event_id} bind:value={focus}>
+    <slot name="page" page={page} />
+    {#each list.slice((page - 1) * chunk, page * chunk) as o (id(o))}
+      {#if o }
+        <Focus {range} id={id(o)} base={base(o)} bind:value={focus}>
           <slot item={o} />
         </Focus>
       {/if}

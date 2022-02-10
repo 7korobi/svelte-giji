@@ -1,4 +1,4 @@
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 export type RANGE = RANGE_STATE | 'focus' | 'horizon' | 'vertical' | 'box'
 type RANGE_STATE = 'compress' | 'hidden' | 'peep' | 'show'

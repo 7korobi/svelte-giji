@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { RANGE } from './observer'
 import { tick } from 'svelte'
-import browser from '$lib/browser'
+import browser from 'svelte-browser'
 import { bit, observe } from './observer'
 
 export let base = ''
