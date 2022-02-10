@@ -53,14 +53,15 @@ specifiers:
   socket.io-msgpack-parser: ^3.0.1
   socket.io-parser: ^4.1.1
   svelte: ^3.46.4
-  svelte-browser: link:package/browser
+  svelte-bind-uri: ^0.1.0
+  svelte-browser: ^0.3.11
   svelte-fsm: ^1.1.2
   svelte-map-reduce-store: link:package/map-reduce
+  svelte-petit-utils: ^0.1.0
   svelte-preprocess: ^4.10.3
-  svelte-scroll-observe: link:package/scroll
-  svelte-storage: link:package/storage
-  svelte-timer: link:package/timer
-  svelte-uri: link:package/uri
+  svelte-scroll-observe: ^0.1.6
+  svelte-storage: ^0.1.5
+  svelte-tick-timer: ^0.1.0
   svelte2tsx: ^0.4.14
   tslib: ^2.3.1
   typescript: ^4.5.5
@@ -95,13 +96,14 @@ dependencies:
   socket.io-client: 4.4.1
   socket.io-msgpack-parser: 3.0.1
   socket.io-parser: 4.1.1
-  svelte-browser: link:package/browser
+  svelte-bind-uri: 0.1.0
+  svelte-browser: 0.3.11
   svelte-fsm: 1.1.2
   svelte-map-reduce-store: link:package/map-reduce
-  svelte-scroll-observe: link:package/scroll
-  svelte-storage: link:package/storage
-  svelte-timer: link:package/timer
-  svelte-uri: link:package/uri
+  svelte-petit-utils: 0.1.0
+  svelte-scroll-observe: 0.1.6
+  svelte-storage: 0.1.5
+  svelte-tick-timer: 0.1.0
   tslib: 2.3.1
   ua-parser-js: 0.7.31
   uuid: 8.3.2
@@ -733,7 +735,7 @@ packages:
       async-retry: 1.3.3
       compressible: 2.0.18
       configstore: 5.0.1
-      date-and-time: 2.1.0
+      date-and-time: 2.1.1
       duplexify: 4.1.2
       extend: 3.0.2
       gaxios: 4.3.2
@@ -1904,8 +1906,8 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /date-and-time/2.1.0:
-    resolution: {integrity: sha512-X/b2gM7e8zQ7siiE0DhRLeNMpuCkIqec5Jnx4GMk/HWB71a6e5Lz48mH9/GIS/hpLsBRFZfMF1gjXBkY0vq5oA==}
+  /date-and-time/2.1.1:
+    resolution: {integrity: sha512-70O+o1I79HiYkYiqbY6lTNtQurU2mbOh3hw3MXVXm1xS98nBklNCG6fH1S9OqLqYpEIm3o4OMnzNVys4+XykIA==}
     dev: false
     optional: true
 
@@ -1989,7 +1991,7 @@ packages:
       ast-types: 0.13.4
       escodegen: 1.14.3
       esprima: 4.0.1
-      vm2: 3.9.6
+      vm2: 3.9.7
     dev: false
 
   /delayed-stream/1.0.0:
@@ -4518,8 +4520,8 @@ packages:
       mkdirp: 0.5.5
     dev: true
 
-  /postcss-load-config/3.1.1:
-    resolution: {integrity: sha512-c/9XYboIbSEUZpiD1UQD0IKiUe8n9WHYV7YFe7X7J+ZwCsEKkUJSFWjS9hBU1RR9THR7jMXst8sxiqP0jjo2mg==}
+  /postcss-load-config/3.1.2:
+    resolution: {integrity: sha512-X1NVP1itP6VE5dDA4wR6NK1g9lNlkBx9A+tgDKb/8Mnx4HrvX6k+DcTXGelZvfp6p4zCBZjh4Gwyp4aptOUI9Q==}
     engines: {node: '>= 10'}
     peerDependencies:
       ts-node: '>=9.0.0'
@@ -5395,6 +5397,23 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  /svelte-bind-uri/0.1.0:
+    resolution: {integrity: sha512-PrUwoCATDk89IT3f9LhGt4TkDGvH99ksNvOW2ktIqJ1fqS6foIs3ecoGZ+vyP1EtY4RuxWQ5e3gftqb+2O4Ibg==}
+    dependencies:
+      svelte: 3.46.4
+      svelte-petit-utils: 0.1.0
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-browser/0.3.11:
+    resolution: {integrity: sha512-73MF0u72SEsJ5DFpqWU/dmYtkDBZqhRvUdZGQM8Gfr+g6lPbILW0KLdq5yjXhLyJhunTaPU0A9JdfoJ+yd2eGw==}
+    dependencies:
+      svelte: 3.46.4
+      svelte-petit-utils: 0.1.0
+      tslib: 2.3.1
+      ua-parser-js: 0.7.31
+    dev: false
+
   /svelte-fsm/1.1.2:
     resolution: {integrity: sha512-lGeuhELDkQC5WK4+MHJtdigXCqwsYMR1euyRTacDCwtbORzEy5ovivTY3Mnd5bM7H+huO3nKjNjdPvDLcLn3pQ==}
     engines: {node: '>=14.0.0', npm: '>=7.0.0'}
@@ -5407,6 +5426,13 @@ packages:
     dependencies:
       svelte: 3.46.4
     dev: true
+
+  /svelte-petit-utils/0.1.0:
+    resolution: {integrity: sha512-4VlJzmcBvQnCj7bFeNxhx2s4V+hrJ4usNrm4yVgdOu8R41Y7WFSjg1hFa6q5KrclUiZPoj7CNUD8/Kps9c7zJQ==}
+    dependencies:
+      svelte: 3.46.4
+      tslib: 2.3.1
+    dev: false
 
   /svelte-preprocess/4.10.3_a7532f736d33b7dddd4e54fd8e6fb1cf:
     resolution: {integrity: sha512-ttw17lJfb/dx2ZJT9sesaXT5l7mPQ9Apx1H496Kli3Hkk7orIRGpOw6rCPkRNzr6ueVPqb4vzodS5x7sBFhKHw==}
@@ -5460,10 +5486,47 @@ packages:
       typescript: 4.5.5
     dev: true
 
+  /svelte-scroll-observe/0.1.6:
+    resolution: {integrity: sha512-g0G+ygGaYrto1g04Kt7UcHzXorhN18PDiBGxotJpmtviEq3QxX6V4l6mZjx6lPK8pJucWMPqaMNYiqMhghBLgg==}
+    dependencies:
+      svelte: 3.46.4
+      svelte-browser: 0.3.11
+      svelte-petit-utils: 0.1.0
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-storage/0.1.5:
+    resolution: {integrity: sha512-/bgT+oFEv51zyrgbSw/SLerm6+m3GTiq8+9909+9Ql6tD1ZdrqPpDVyiccmSwP2DiuAL5LrXMOm55c9CrT8MkA==}
+    dependencies:
+      dexie: 3.2.0
+      svelte: 3.46.4
+      svelte-browser: 0.3.11
+      svelte-petit-utils: 0.1.0
+      svelte-timer: 0.1.7
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-tick-timer/0.1.0:
+    resolution: {integrity: sha512-8ccC0LAlvZc6clmzVWEhzAJ2sOKFbrSUS7tyyxYFuScYdfs3Uuii6WxM7+Lx16mZKKkKvqoJmkl4kOd++AJuHg==}
+    dependencies:
+      date-fns: 2.28.0
+      svelte: 3.46.4
+      svelte-petit-utils: 0.1.0
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-timer/0.1.7:
+    resolution: {integrity: sha512-7Ju7mBnfkBBqFx58GWU0oHKvuKekuiu+HcVF0cW5E4rCctojq0VKtpIHlQb+sPO8By1kth0tSULoQVgIc2BXZw==}
+    dependencies:
+      date-fns: 2.28.0
+      svelte: 3.46.4
+      svelte-petit-utils: 0.1.0
+      tslib: 2.3.1
+    dev: false
+
   /svelte/3.46.4:
     resolution: {integrity: sha512-qKJzw6DpA33CIa+C/rGp4AUdSfii0DOTCzj/2YpSKKayw5WGSS624Et9L1nU1k2OVRS9vaENQXp2CVZNU+xvIg==}
     engines: {node: '>= 8'}
-    dev: true
 
   /svelte2tsx/0.4.14_svelte@3.46.4+typescript@4.5.5:
     resolution: {integrity: sha512-udF0Z/DA98OfjPFBU1GBJRpYHEvsxA8ozwYVN08AOWMnQyxoSyWWlYspiq2m9xAjLo/pWnhec9z1d6jc9umqjA==}
@@ -5609,7 +5672,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.1
+      postcss-load-config: 3.1.2
       resolve-from: 5.0.0
       rollup: 2.67.2
       source-map: 0.7.3
@@ -5823,8 +5886,8 @@ packages:
       js-git: 0.7.8
     dev: false
 
-  /vm2/3.9.6:
-    resolution: {integrity: sha512-BF7euUjgO+ezsz2UKex9kO9M/PtDNOf+KEpiqNepZsgf1MT7JYfJEIvG8BoYhZMLAVjqevFJ0UmXNuETe8m5dQ==}
+  /vm2/3.9.7:
+    resolution: {integrity: sha512-g/GZ7V0Mlmch3eDVOATvAXr1GsJNg6kQ5PjvYy3HbJMCRn5slNbo/u73Uy7r5yUej1cRa3ZjtoVwcWSQuQ/fow==}
     engines: {node: '>=6.0'}
     hasBin: true
     dependencies:

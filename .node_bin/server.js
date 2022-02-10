@@ -311,11 +311,11 @@ __export(model_client_exports, {
 // src/lib/map-reduce/base.ts
 import { writable } from "svelte/store";
 
-// src/lib/common/define.ts
+// node_modules/.pnpm/svelte-petit-utils@0.1.0/node_modules/svelte-petit-utils/const.js
 var __SPEC__ = typeof window === "undefined";
 var __BROWSER__ = !__SPEC__;
 
-// src/lib/common/portal.ts
+// node_modules/.pnpm/svelte-petit-utils@0.1.0/node_modules/svelte-petit-utils/portal.js
 import { tick } from "svelte";
 
 // src/lib/map-reduce/fast-sort.ts

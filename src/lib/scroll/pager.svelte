@@ -60,9 +60,9 @@ $: if (list.length) {
 
 <div use:tracker.listener>
   {#each pages as page (page)}
-    <slot name="page" page={page} />
+    <slot name="page" {page} />
     {#each list.slice((page - 1) * chunk, page * chunk) as o (id(o))}
-      {#if o }
+      {#if o}
         <Focus {range} id={id(o)} base={base(o)} bind:value={focus}>
           <slot item={o} />
         </Focus>

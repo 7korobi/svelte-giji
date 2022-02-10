@@ -7,12 +7,8 @@
 /.static_build_output
 /.node_build_output
 
-src/**/pnpm-lock.yaml
-src/**/.pnpm-debug.log
-
 json
 build
-package
 
 .DS_Store
 node
