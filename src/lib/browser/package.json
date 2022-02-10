@@ -1,32 +1,43 @@
 {
   "name": "svelte-browser",
-  "version": "0.3.8",
+  "version": "0.3.11",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/browser",
   "license": "MIT",
   "type": "module",
+  "keywords": [
+    "svelte",
+    "component",
+    "viewport"
+  ],
+  "author": {
+    "name": "7korobi",
+    "email": "7korobi@gmail.com"
+  },
   "devDependencies": {
-    "@sveltejs/kit": "next",
-    "svelte": "^3.44.3",
-    "svelte-preprocess": "^4.10.0",
-    "typescript": "^4.5.4"
+    "svelte-preprocess": "^4.10.3",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "svelte-giji-util": "^0.2.3",
-    "ua-parser-js": "^0.7.31",
-    "tslib": "^2.3.1"
+    "svelte": "^3.46.4",
+    "svelte-petit-utils": "^0.1.0",
+    "tslib": "^2.3.1",
+    "ua-parser-js": "^0.7.31"
   },
   "exports": {
+    "./package.json": "./package.json",
+    ".": "./index.js",
     "./area-box": "./area-box.js",
     "./browser": "./browser.js",
+    "./device": "./device.js",
     "./downloader": "./downloader.js",
     "./measure": "./measure.js",
+    "./observer": "./observer.js",
     "./store": "./store.js",
-    ".": "./index.js",
-    "./package.json": "./package.json",
     "./main.svelte": "./main.svelte",
     "./key-capture.svelte": "./key-capture.svelte",
     "./page-transition.svelte": "./page-transition.svelte",
     "./safe-measure.svelte": "./safe-measure.svelte",
     "./viewport.svelte": "./viewport.svelte"
-  }
+  },
+  "svelte": "./index.js"
 }
