@@ -37,3 +37,18 @@
 <Viewport min="{1.0}" max="{3.0}" />
 <KeyCapture disabled="{false}"></KeyCapture>
 ```
+
+## dependency
+
+```javascript
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    vite: {
+      optimizeDeps: {
+        include: ['ua-parser-js']
+      }
+    }
+  }
+}
+```

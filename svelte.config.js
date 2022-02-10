@@ -78,6 +78,9 @@ const config = {
   kit: {
     adapter: STATIC,
     vite: {
+      optimizeDeps: {
+        include: ['ua-parser-js']
+      },
       server: {
         fs: {
           allow: ['package']
@@ -92,7 +95,7 @@ const config = {
       files(path) {
         if (/\/node_modules\//.test(path)) return false
         if (/\.log$/.test(path)) return false
-        const is_hit = /^(browser|browser-device|fire|map-reduce|pointer|scroll|storage|timer|uri)\//g.test(
+        const is_hit = /^(browser|browser-device|common|fire|map-reduce|pointer|scroll|storage|timer|uri)\//g.test(
           path
         )
         return is_hit

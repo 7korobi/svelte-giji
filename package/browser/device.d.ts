@@ -1,5 +1,5 @@
-import UAParser from 'ua-parser-js';
-declare const device: UAParser.IDevice, browser: UAParser.IBrowser, engine: UAParser.IEngine, os: UAParser.IOS;
+/// <reference types="ua-parser-js" />
+declare const device: import("ua-parser-js").IDevice, browser: import("ua-parser-js").IBrowser, engine: import("ua-parser-js").IEngine, os: import("ua-parser-js").IOS;
 declare let isLegacy: boolean;
 declare let isRadius: boolean;
 declare let isIOS: boolean;
