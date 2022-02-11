@@ -1,6 +1,6 @@
 {
   "name": "svelte-scroll-observe",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/scroll",
   "license": "MIT",
   "type": "module",
@@ -27,5 +27,6 @@
     "./goal.svelte": "./goal.svelte",
     "./observer": "./observer.js",
     "./scroll.svelte": "./scroll.svelte"
-  }
+  },
+  "svelte": "./index.js"
 }
