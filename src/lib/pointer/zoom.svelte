@@ -1,8 +1,8 @@
 <script lang="ts">
-import type { POINT, POINT_WITH_SCALE, SIZE_WITH_SCALE } from '../common'
-import { __BROWSER__ } from '$lib/common'
-
+import type { POINT, POINT_WITH_SCALE, SIZE_WITH_SCALE } from 'svelte-petit-utils'
 import type { InputEvent } from './tracker'
+
+import { __BROWSER__ } from 'svelte-petit-utils'
 import { Operations } from './tracker'
 
 const SVG = __BROWSER__ ? document.createElementNS('http://www.w3.org/2000/svg', 'svg') : null

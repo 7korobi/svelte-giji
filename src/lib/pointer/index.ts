@@ -5,4 +5,5 @@ import * as store from './store'
 
 export type { Line, Icon, Cluster } from './store'
 export { Zoom, Pen, Diagram }
+export * from './tracker'
 export default store

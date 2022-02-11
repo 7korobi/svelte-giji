@@ -308,7 +308,7 @@ __export(model_client_exports, {
   story_summary: () => story_summary
 });
 
-// src/lib/map-reduce/base.ts
+// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/base.js
 import { writable } from "svelte/store";
 
 // node_modules/.pnpm/svelte-petit-utils@0.1.0/node_modules/svelte-petit-utils/const.js
@@ -318,7 +318,7 @@ var __BROWSER__ = !__SPEC__;
 // node_modules/.pnpm/svelte-petit-utils@0.1.0/node_modules/svelte-petit-utils/portal.js
 import { tick } from "svelte";
 
-// src/lib/map-reduce/fast-sort.ts
+// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/fast-sort.js
 var castComparer = (comparer) => (a, b, order) => comparer(a, b, order) * order;
 var throwInvalidConfigErrorIfTrue = function(condition, context) {
   if (condition)
@@ -418,7 +418,7 @@ var inPlaceSort = createNewSortInstance({
   inPlaceSorting: true
 });
 
-// src/lib/map-reduce/dic.ts
+// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/dic.js
 function sort2(value) {
   if (!(value instanceof Array)) {
     const list = [];
@@ -461,16 +461,10 @@ function dic(o, ...levels) {
   return o;
 }
 
-// src/lib/map-reduce/base.ts
+// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/base.js
 function nop(...args) {
 }
-function MapReduce({
-  format: format2,
-  initialize = nop,
-  reduce,
-  order,
-  start: start2
-}) {
+function MapReduce({ format: format2, initialize = nop, reduce, order, start: start2 }) {
   const children = new Map();
   const map = new Map();
   const data = format2();

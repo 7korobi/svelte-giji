@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { POINT } from '../common'
+import type { POINT } from 'svelte-petit-utils'
 import { Operations } from './tracker'
 
 type Operation = {

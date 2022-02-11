@@ -1,13 +1,13 @@
 {
-  "name": "svelte-map-reduce-store",
-  "version": "0.1.5",
-  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/map-reduce",
+  "name": "svelte-pointer-tracker",
+  "version": "0.1.0",
+  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/pointer",
   "license": "MIT",
   "type": "module",
   "keywords": [
     "svelte",
     "component",
-    "map-reduce"
+    "pointer"
   ],
   "devDependencies": {
     "svelte-preprocess": "^4.10.3",
@@ -21,11 +21,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./index.js",
-    "./store": "./store.js",
-    "./tracker": "./tracker.js",
-    "./diagram.svelte": "./diagram.svelte",
-    "./pen.svelte": "./pen.svelte",
-    "./zoom.svelte": "./zoom.svelte"
+    "./base": "./base.js",
+    "./dic": "./dic.js",
+    "./fast-sort": "./fast-sort.js",
+    "./group-by": "./group-by.js"
   },
   "svelte": "./index.js"
 }
