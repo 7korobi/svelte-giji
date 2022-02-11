@@ -1,8 +1,8 @@
 ```html
 <script lang="ts">
-  import { writeLocal, writeSession, writeHistory, Poll } from 'svelte-storage'
+  import { writeLocal, writeSession, writeHistory, Poll } from 'svelte-storage';
 
-  const font = writeLocal('font', 'novel')
+  const font = writeLocal('font', 'novel');
 
   function face(face_id: string) {
     return {
@@ -11,13 +11,13 @@
       shift: '1h10m',
       idx: `https://localhost/face/${face_id}`,
       onFetch(o) {
-        console.log(o)
+        console.log(o);
       }
-    }
+    };
   }
 
   function setFont() {
-    $font = 'gothic'
+    $font = 'gothic';
   }
 </script>
 <Poll {...face('c01')} />

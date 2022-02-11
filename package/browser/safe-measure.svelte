@@ -1,4 +1,5 @@
-<script >import 'svelte-petit-utils';
+<script>
+import 'svelte-petit-utils';
 import { MINIMUM_PIXEL_SIZE, SAFE_HEIGHT, SAFE_WIDTH } from './const';
 import { isIOS, isRadius } from './device';
 import { state, isPortrait, isLandscape, safePoint, safeOffset } from './store';
@@ -7,27 +8,26 @@ export let isDefaultSafeArea;
 let el;
 $: compute($isPortrait, $isLandscape);
 function compute($isPortrait, $isLandscape) {
-    if (!el)
-        return;
-    const css = window.getComputedStyle(el);
-    let top = parseInt(css.marginTop);
-    let right = parseInt(css.marginRight);
-    let bottom = parseInt(css.marginBottom);
-    let left = parseInt(css.marginLeft);
-    const zeroSafety = MINIMUM_PIXEL_SIZE === Math.max(MINIMUM_PIXEL_SIZE, top, right, bottom, left);
-    if (isDefaultSafeArea) {
-        if (isRadius && !isIOS) {
-            if ($isLandscape && zeroSafety) {
-                left = right = SAFE_WIDTH;
-            }
-            if ($isPortrait && zeroSafety) {
-                bottom = SAFE_HEIGHT;
-            }
-        }
+  if (!el) return;
+  const css = window.getComputedStyle(el);
+  let top = parseInt(css.marginTop);
+  let right = parseInt(css.marginRight);
+  let bottom = parseInt(css.marginBottom);
+  let left = parseInt(css.marginLeft);
+  const zeroSafety = MINIMUM_PIXEL_SIZE === Math.max(MINIMUM_PIXEL_SIZE, top, right, bottom, left);
+  if (isDefaultSafeArea) {
+    if (isRadius && !isIOS) {
+      if ($isLandscape && zeroSafety) {
+        left = right = SAFE_WIDTH;
+      }
+      if ($isPortrait && zeroSafety) {
+        bottom = SAFE_HEIGHT;
+      }
     }
-    state.safe.measureOffset(top * ratio, right * ratio, bottom * ratio, left * ratio);
-    safeOffset.set(state.safe.offset);
-    safePoint.set(state.safe.point);
+  }
+  state.safe.measureOffset(top * ratio, right * ratio, bottom * ratio, left * ratio);
+  safeOffset.set(state.safe.offset);
+  safePoint.set(state.safe.point);
 }
 </script>
 

@@ -1,4 +1,4 @@
 let counter = 360;
 export function instanceId() {
-    return (counter++).toString(36);
+  return (counter++).toString(36);
 }

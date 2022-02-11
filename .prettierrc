@@ -8,5 +8,21 @@
   "svelteStrictMode": false,
   "svelteBracketNewLine": false,
   "svelteAllowShorthand": true,
-  "svelteIndentScriptAndStyle": false
+  "svelteIndentScriptAndStyle": false,
+  "overrides": [
+    {
+      "files": "package/**",
+      "options": {
+        "semi": true,
+        "printWidth": 140
+      }
+    },
+    {
+      "files": ".node_bin/**",
+      "options": {
+        "semi": true,
+        "printWidth": 140
+      }
+    }
+  ]
 }

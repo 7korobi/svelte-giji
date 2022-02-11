@@ -1,26 +1,26 @@
 ## Svelte Map Reduce Store
 
 ```typescript
-import { MapReduce } from 'svelte-map-reduce-store'
+import { MapReduce } from 'svelte-map-reduce-store';
 
 export type Folder = {
-  _id: 'hello' | 'test' | 'beta'
-  server?: string
+  _id: 'hello' | 'test' | 'beta';
+  server?: string;
   config?: {
     maxsize: {
-      MAXSIZE_ACTION: number
-      MAXSIZE_MEMOCNT: number
-      MAXSIZE_MEMOLINE: number
-    }
+      MAXSIZE_ACTION: number;
+      MAXSIZE_MEMOCNT: number;
+      MAXSIZE_MEMOLINE: number;
+    };
     path: {
-      DIR_LIB: './lib'
-      DIR_HTML: './html'
-      DIR_RS: './rs'
-      DIR_VIL: './data/vil'
-      DIR_USER: '../data/user'
-    }
-  }
-}
+      DIR_LIB: './lib';
+      DIR_HTML: './html';
+      DIR_RS: './rs';
+      DIR_VIL: './data/vil';
+      DIR_USER: '../data/user';
+    };
+  };
+};
 
 export const Folders = MapReduce({
   format: () => ({
@@ -28,17 +28,17 @@ export const Folders = MapReduce({
     sameSites: new Set([location.origin])
   }),
   reduce: (data, doc) => {
-    if (doc.server) data.sameSites.add(`http://${doc.server}`)
+    if (doc.server) data.sameSites.add(`http://${doc.server}`);
   },
   order: (data, { sort, group_sort }, mode: 'asc' | 'desc') => {
-    data.list = sort(data.list)[mode]((o) => o.server)
+    data.list = sort(data.list)[mode]((o) => o.server);
   }
-})
+});
 ```
 
 ```html
 <script lang="ts">
-  import { Folders } from './model'
+  import { Folders } from './model';
 
   Folders.add([
     {
@@ -49,7 +49,7 @@ export const Folders = MapReduce({
       _id: 'test',
       server: 'https://localhost/testpage'
     }
-  ])
+  ]);
 
   Folders.deploy({
     hello: {
@@ -58,17 +58,17 @@ export const Folders = MapReduce({
     test: {
       server: 'https://localhost/testpage'
     }
-  })
+  });
 
-  Folders.find('hello')
+  Folders.find('hello');
   Folders.reduce(['hello', 'test'], (o: { count: number }) => {
-    o.count ||= 0
-    o.count++
-  }).asc((o) => o.count)
+    o.count ||= 0;
+    o.count++;
+  }).asc((o) => o.count);
 
-  Folders.sort('desc')
-  Folders.sort('asc')
+  Folders.sort('desc');
+  Folders.sort('asc');
 
-  $: console.log($Folders.list)
+  $: console.log($Folders.list);
 </script>
 ```

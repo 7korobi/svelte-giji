@@ -1,4 +1,5 @@
-<script >import fns_format from 'date-fns/format/index.js';
+<script>
+import fns_format from 'date-fns/format/index.js';
 import ja from 'date-fns/locale/ja/index.js';
 import { tickDistance } from './distance';
 export let at = new Date();

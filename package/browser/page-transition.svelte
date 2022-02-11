@@ -1,4 +1,5 @@
-<script >import { blur } from 'svelte/transition';
+<script>
+import { blur } from 'svelte/transition';
 export let key = '';
 </script>
 

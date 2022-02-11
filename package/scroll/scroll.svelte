@@ -1,4 +1,5 @@
-<script >import { observe } from './observer';
+<script>
+import { observe } from './observer';
 const COMPRESS = 'compress';
 const HIDDEN = 'hidden';
 const PEEP = 'peep';
@@ -9,10 +10,10 @@ export let range = [COMPRESS, HIDDEN, PEEP, SHOW, FOCUS];
 export let focus = '';
 export let state = '';
 const tracker = observe(range, {
-    change(ops) {
-        focus = ops.focus;
-        state = ops.state;
-    }
+  change(ops) {
+    focus = ops.focus;
+    state = ops.state;
+  }
 });
 $: tracker;
 </script>

@@ -21,10 +21,11 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./index.js",
-    "./base": "./base.js",
-    "./dic": "./dic.js",
-    "./fast-sort": "./fast-sort.js",
-    "./group-by": "./group-by.js"
+    "./store": "./store.js",
+    "./tracker": "./tracker.js",
+    "./diagram.svelte": "./diagram.svelte",
+    "./pen.svelte": "./pen.svelte",
+    "./zoom.svelte": "./zoom.svelte"
   },
   "svelte": "./index.js"
 }

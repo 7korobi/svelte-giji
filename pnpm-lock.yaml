@@ -7,9 +7,9 @@ specifiers:
   '@sveltejs/adapter-begin': ^1.0.0-next.15
   '@sveltejs/adapter-cloudflare-workers': ^1.0.0-next.31
   '@sveltejs/adapter-netlify': ^1.0.0-next.45
-  '@sveltejs/adapter-node': ^1.0.0-next.67
-  '@sveltejs/adapter-static': ^1.0.0-next.27
-  '@sveltejs/adapter-vercel': ^1.0.0-next.41
+  '@sveltejs/adapter-node': ^1.0.0-next.68
+  '@sveltejs/adapter-static': ^1.0.0-next.28
+  '@sveltejs/adapter-vercel': ^1.0.0-next.43
   '@sveltejs/kit': next
   '@types/diff': ^5.0.2
   '@types/http-server': ^0.12.1
@@ -56,11 +56,12 @@ specifiers:
   svelte-bind-uri: ^0.1.0
   svelte-browser: ^0.3.11
   svelte-fsm: ^1.1.2
-  svelte-map-reduce-store: link:package/map-reduce
-  svelte-petit-utils: ^0.1.0
+  svelte-map-reduce-store: ^0.1.5
+  svelte-petit-utils: ^0.1.1
+  svelte-pointer-tracker: ^0.1.0
   svelte-preprocess: ^4.10.3
-  svelte-scroll-observe: ^0.1.6
-  svelte-storage: ^0.1.5
+  svelte-scroll-observe: ^0.1.7
+  svelte-storage: link:package/storage
   svelte-tick-timer: ^0.1.0
   svelte2tsx: ^0.4.14
   tslib: ^2.3.1
@@ -99,10 +100,11 @@ dependencies:
   svelte-bind-uri: 0.1.0
   svelte-browser: 0.3.11
   svelte-fsm: 1.1.2
-  svelte-map-reduce-store: link:package/map-reduce
-  svelte-petit-utils: 0.1.0
-  svelte-scroll-observe: 0.1.6
-  svelte-storage: 0.1.5
+  svelte-map-reduce-store: 0.1.5
+  svelte-petit-utils: 0.1.1
+  svelte-pointer-tracker: 0.1.0
+  svelte-scroll-observe: 0.1.7
+  svelte-storage: link:package/storage
   svelte-tick-timer: 0.1.0
   tslib: 2.3.1
   ua-parser-js: 0.7.31
@@ -117,10 +119,10 @@ devDependencies:
   '@sveltejs/adapter-begin': 1.0.0-next.15
   '@sveltejs/adapter-cloudflare-workers': 1.0.0-next.31
   '@sveltejs/adapter-netlify': 1.0.0-next.45
-  '@sveltejs/adapter-node': 1.0.0-next.67
-  '@sveltejs/adapter-static': 1.0.0-next.27
-  '@sveltejs/adapter-vercel': 1.0.0-next.41
-  '@sveltejs/kit': 1.0.0-next.263_sass@1.49.7+svelte@3.46.4
+  '@sveltejs/adapter-node': 1.0.0-next.68
+  '@sveltejs/adapter-static': 1.0.0-next.28
+  '@sveltejs/adapter-vercel': 1.0.0-next.43
+  '@sveltejs/kit': 1.0.0-next.265_sass@1.49.7+svelte@3.46.4
   '@types/diff': 5.0.2
   '@types/http-server': 0.12.1
   '@types/js-yaml': 4.0.5
@@ -445,7 +447,7 @@ packages:
       '@firebase/logger': 0.3.2
       '@firebase/util': 1.4.3
       '@firebase/webchannel-wrapper': 0.6.1
-      '@grpc/grpc-js': 1.5.4
+      '@grpc/grpc-js': 1.5.5
       '@grpc/proto-loader': 0.6.9
       node-fetch: 2.6.7
       tslib: 2.3.1
@@ -693,7 +695,7 @@ packages:
     dependencies:
       fast-deep-equal: 3.1.3
       functional-red-black-tree: 1.0.1
-      google-gax: 2.29.5
+      google-gax: 2.29.6
       protobufjs: 6.11.2
     transitivePeerDependencies:
       - encoding
@@ -755,8 +757,8 @@ packages:
     dev: false
     optional: true
 
-  /@grpc/grpc-js/1.5.4:
-    resolution: {integrity: sha512-+nJTOsqpFAXnfFrMZ7Too4XXZ/J9O+8jYvSoaunupoC7I7b9H4iex1BRsbTdOmiowfPGJrWit7jUPmbENSUSpw==}
+  /@grpc/grpc-js/1.5.5:
+    resolution: {integrity: sha512-FTd27ItHlsSG/7hp62xgI9YnqSwRbHRSVmDVR8DwOoC+6t8JhHRXe2JL0U8N9GLc0jS0HrtEbO/KP5+G0ebjLQ==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.6.9
@@ -988,26 +990,26 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/adapter-node/1.0.0-next.67:
-    resolution: {integrity: sha512-+LuLn91xARZsRANiQNIIDpMMncUTnP2pJc8tyL+FdpVvs5UtlvkYJpeCBPFqjjseRpIIbi8Slu89GCdrRXBDUg==}
+  /@sveltejs/adapter-node/1.0.0-next.68:
+    resolution: {integrity: sha512-MiEjtl15Aupm6bjirVlq0kkc9AL8qDXz/blsh4jYMsaiidmcEHeDgfZQFM5YiXy95DbxV30MAkhwCQiYK/J8Kw==}
     dependencies:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/adapter-static/1.0.0-next.27:
-    resolution: {integrity: sha512-dcN1p1D7ZY/a9SClfN14mgm9pyWbLxdwM9gzPMZG6xXOoqMtwI03aZOFgGGumHPdv+XcGRZM96vUSRoDm6vBJQ==}
+  /@sveltejs/adapter-static/1.0.0-next.28:
+    resolution: {integrity: sha512-c4xLyeSwnbGQxe4f1SLpHTbxZDm3TEr43scR3tOlVgQN+mnAL9aDdl3nTtdzWmrUDmDEmY4GriAwLyFLZuINLw==}
     dependencies:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.0-next.41:
-    resolution: {integrity: sha512-6tuyB15e15BgerqzU3EaDGQ6xJW4AiFPU2ggfyN/OqJgvMPLTFVC42irqyGr6h9pNyDie+mBDGIWJWLULA/J4Q==}
+  /@sveltejs/adapter-vercel/1.0.0-next.43:
+    resolution: {integrity: sha512-Es0xSWJJVHRUH7z4yvWjst03ZHcK115S7WjamN3acbxmR4ESSGFjuxQzODMnbeWFFipk1hQYv56ffvXYr5XaJA==}
     dependencies:
       esbuild: 0.14.21
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.263_sass@1.49.7+svelte@3.46.4:
-    resolution: {integrity: sha512-LzpJzDW1fhSC5EVdTXV3pn2HC+vNJRPLxWBX/uKNgxu4HHogxjZKPkBFp6ZDc6gENStG0sQFmoXD4fYYYWZE0A==}
+  /@sveltejs/kit/1.0.0-next.265_sass@1.49.7+svelte@3.46.4:
+    resolution: {integrity: sha512-7Y79kfJ3VRAqQ8w05wgI/im3jmR/Hy7/FN7rdKVYf5xuW6X4gwqM1qjWKIdQUTFWIgg3B/XIuCZZsfrGC064eA==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -3091,12 +3093,12 @@ packages:
     dev: false
     optional: true
 
-  /google-gax/2.29.5:
-    resolution: {integrity: sha512-wJI+rgqujcl4/0eO4sRIwXAJAD+G8dFRqvGxc2lUuZtdzOToc5NHYbrTvplWQVO6Lw1YNsk9u1pKN3HcXembJg==}
+  /google-gax/2.29.6:
+    resolution: {integrity: sha512-NsuGBpxOzvBS4rbaeicIpgZ1caU3vNcG04kJWb51rlcYJvzXwHgPof9w4UplR2WVqlFzLkDtEStQOKhS/QcLmA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      '@grpc/grpc-js': 1.5.4
+      '@grpc/grpc-js': 1.5.5
       '@grpc/proto-loader': 0.6.9
       '@types/long': 4.0.1
       abort-controller: 3.0.0
@@ -5401,7 +5403,7 @@ packages:
     resolution: {integrity: sha512-PrUwoCATDk89IT3f9LhGt4TkDGvH99ksNvOW2ktIqJ1fqS6foIs3ecoGZ+vyP1EtY4RuxWQ5e3gftqb+2O4Ibg==}
     dependencies:
       svelte: 3.46.4
-      svelte-petit-utils: 0.1.0
+      svelte-petit-utils: 0.1.1
       tslib: 2.3.1
     dev: false
 
@@ -5409,7 +5411,7 @@ packages:
     resolution: {integrity: sha512-73MF0u72SEsJ5DFpqWU/dmYtkDBZqhRvUdZGQM8Gfr+g6lPbILW0KLdq5yjXhLyJhunTaPU0A9JdfoJ+yd2eGw==}
     dependencies:
       svelte: 3.46.4
-      svelte-petit-utils: 0.1.0
+      svelte-petit-utils: 0.1.1
       tslib: 2.3.1
       ua-parser-js: 0.7.31
     dev: false
@@ -5427,10 +5429,26 @@ packages:
       svelte: 3.46.4
     dev: true
 
-  /svelte-petit-utils/0.1.0:
-    resolution: {integrity: sha512-4VlJzmcBvQnCj7bFeNxhx2s4V+hrJ4usNrm4yVgdOu8R41Y7WFSjg1hFa6q5KrclUiZPoj7CNUD8/Kps9c7zJQ==}
+  /svelte-map-reduce-store/0.1.5:
+    resolution: {integrity: sha512-N5FxAXdF0soCSWBDZmwCj3iKjFbiv+JoP7yIfPmrPVLZKt6WYmWb/obJAjZVDem1l1kfq9V/f0gxvMUpaYwI4Q==}
     dependencies:
       svelte: 3.46.4
+      svelte-petit-utils: 0.1.1
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-petit-utils/0.1.1:
+    resolution: {integrity: sha512-lWuU5aHTSYPczZEYkJY3rZCitT+JUy4F8vfKvSJmv2sd/fzriZIUtsX/VSKoYrJ3Q1UwOycBnym63XbGxSYdLQ==}
+    dependencies:
+      svelte: 3.46.4
+      tslib: 2.3.1
+    dev: false
+
+  /svelte-pointer-tracker/0.1.0:
+    resolution: {integrity: sha512-tRGRGVJ75LKca3Tpi5v+Rw/4e+ErbT1vgsp0fsA5hnVXdX+mVLea6BdDMOXtwraUrmNWOs8N/PMddWc5e5+WLw==}
+    dependencies:
+      svelte: 3.46.4
+      svelte-petit-utils: 0.1.1
       tslib: 2.3.1
     dev: false
 
@@ -5486,23 +5504,12 @@ packages:
       typescript: 4.5.5
     dev: true
 
-  /svelte-scroll-observe/0.1.6:
-    resolution: {integrity: sha512-g0G+ygGaYrto1g04Kt7UcHzXorhN18PDiBGxotJpmtviEq3QxX6V4l6mZjx6lPK8pJucWMPqaMNYiqMhghBLgg==}
+  /svelte-scroll-observe/0.1.7:
+    resolution: {integrity: sha512-zgdN2nJtJspt4GQKQ9l4uRSwE8Km2UfQ9eUf+9kk6BVVXIIbDC4xT3jFEJvNNEAWSqCqcPfFPfrTF5+tRlLj8Q==}
     dependencies:
       svelte: 3.46.4
       svelte-browser: 0.3.11
-      svelte-petit-utils: 0.1.0
-      tslib: 2.3.1
-    dev: false
-
-  /svelte-storage/0.1.5:
-    resolution: {integrity: sha512-/bgT+oFEv51zyrgbSw/SLerm6+m3GTiq8+9909+9Ql6tD1ZdrqPpDVyiccmSwP2DiuAL5LrXMOm55c9CrT8MkA==}
-    dependencies:
-      dexie: 3.2.0
-      svelte: 3.46.4
-      svelte-browser: 0.3.11
-      svelte-petit-utils: 0.1.0
-      svelte-timer: 0.1.7
+      svelte-petit-utils: 0.1.1
       tslib: 2.3.1
     dev: false
 
@@ -5511,16 +5518,7 @@ packages:
     dependencies:
       date-fns: 2.28.0
       svelte: 3.46.4
-      svelte-petit-utils: 0.1.0
-      tslib: 2.3.1
-    dev: false
-
-  /svelte-timer/0.1.7:
-    resolution: {integrity: sha512-7Ju7mBnfkBBqFx58GWU0oHKvuKekuiu+HcVF0cW5E4rCctojq0VKtpIHlQb+sPO8By1kth0tSULoQVgIc2BXZw==}
-    dependencies:
-      date-fns: 2.28.0
-      svelte: 3.46.4
-      svelte-petit-utils: 0.1.0
+      svelte-petit-utils: 0.1.1
       tslib: 2.3.1
     dev: false
 
