@@ -2,7 +2,7 @@
 import type { BookPotof } from '$lib/pubsub/map-reduce'
 import { Btn } from '$lib/design'
 import { side, SideBits } from '../store'
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 
 export let potofs = [] as BookPotof[]
 export let order = 'date'

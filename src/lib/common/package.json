@@ -1,6 +1,6 @@
 {
   "name": "svelte-petit-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/common",
   "license": "MIT",
   "type": "module",
@@ -29,6 +29,7 @@
     "./const": "./const.js",
     "./mouse": "./mouse.js",
     "./portal": "./portal.js",
+    "./util": "./util.js",
     "./color.scss": "./color.scss"
   },
   "svelte": "./index.js"

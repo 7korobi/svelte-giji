@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import type {
   BOOK_STORY_ID,
   BookStory,
@@ -16,7 +16,7 @@ import type {
   SAY_LIMIT_ID,
   TRAP_ID
 } from '../map-reduce'
-import { dic } from '$lib/map-reduce'
+import { dic } from 'svelte-map-reduce-store'
 import { model } from '$lib/db/socket.io-client'
 import format from 'date-fns/format/index.js'
 import locale from 'date-fns/locale/ja/index.js'

@@ -1,9 +1,9 @@
 <script lang="ts">
 import { FireNotify, FireOauth } from '$lib/fire'
-import { Focus } from '$lib/scroll'
-import { Time } from '$lib/timer'
+import { Focus } from 'svelte-scroll-observe'
+import { Time } from 'svelte-tick-timer'
 import fire from '$lib/fire'
-import { Location } from '$lib/uri'
+import { Location } from 'svelte-bind-uri'
 import { new_plan, random_test } from '$lib/pubsub/extra/query'
 import { story_reduce } from '$lib/pubsub/book/query'
 import { Ables, Roles, SayLimits } from '$lib/pubsub/map-reduce'
@@ -92,7 +92,7 @@ random_test
 <Focus id="summary" bind:value={page}>
   <Post handle="PSAY">
     <p>
-      <a href="summary/chr/list">キャラクター活躍記録</a>
+      <a href="/summary/chr/list">キャラクター活躍記録</a>
     </p>
     <p class="text">どこかの村で活躍したことのあるキャラクターはこちら。</p>
   </Post>

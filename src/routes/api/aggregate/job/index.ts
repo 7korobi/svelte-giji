@@ -1,8 +1,8 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 
 import fs from 'fs'
 import sh from 'child_process'
-import { sort } from '$lib/map-reduce/fast-sort'
+import { sort } from 'svelte-map-reduce-store/fast-sort'
 
 import { db } from '$lib/db'
 import { url } from '$lib/site/store'

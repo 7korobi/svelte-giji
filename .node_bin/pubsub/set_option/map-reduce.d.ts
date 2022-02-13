@@ -11,7 +11,8 @@ export declare const Options: {
   clear: () => void;
   add: (docs: Option[], init?: (doc: Option) => void) => void;
   del: (ids: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[]) => void;
-  find: (id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk') => Option;
+  find: (_id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk') => Option;
+  index: (_id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk') => unknown;
   reduce: <EMIT>(
     ids: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[],
     emit: (o: EMIT) => void

@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import type {
   BookStory,
   BOOK_FOLDER_IDX,
@@ -12,8 +12,8 @@ import type {
   BOOK_MESSAGE_IDX
 } from '../map-reduce'
 import { socket } from '$lib/db/socket.io-client'
-import { lookup } from '$lib/map-reduce'
-import { dic } from '$lib/map-reduce'
+import { lookup } from 'svelte-map-reduce-store'
+import { dic } from 'svelte-map-reduce-store'
 import { subids } from '../util'
 import { Folders } from '../map-reduce'
 import { events, story_summary } from '../model-client'

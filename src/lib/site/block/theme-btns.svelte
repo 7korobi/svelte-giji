@@ -1,5 +1,5 @@
 <script lang="ts">
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 import * as site from '../store'
 import {} from '$lib/design'
 import Btn from '$lib/design/btn.svelte'

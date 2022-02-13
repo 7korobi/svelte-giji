@@ -301,7 +301,13 @@ export function digit(str: string) {
   return str
 }
 
+export function currency(num: number, precision = 0) {
+  const size = 10 ** precision
+  const unit = 0.1 ** precision
+  return comma3(`${Math.ceil(num * size) * unit}`)
+}
+
 function comma3(num: string) {
-  if (!num) return
+  if (!num) return ''
   return num.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 }

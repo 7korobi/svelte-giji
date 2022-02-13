@@ -1,6 +1,6 @@
 {
   "name": "svelte-map-reduce-store",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/map-reduce",
   "license": "MIT",
   "type": "module",
@@ -21,11 +21,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./index.js",
-    "./store": "./store.js",
-    "./tracker": "./tracker.js",
-    "./diagram.svelte": "./diagram.svelte",
-    "./pen.svelte": "./pen.svelte",
-    "./zoom.svelte": "./zoom.svelte"
+    "./base": "./base.js",
+    "./dic": "./dic.js",
+    "./fast-sort": "./fast-sort.js",
+    "./group-by": "./group-by.js"
   },
   "svelte": "./index.js"
 }

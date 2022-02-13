@@ -22,7 +22,8 @@ export declare const Faces: {
   clear: () => void;
   add: (docs: Face[], init?: (doc: Face) => void) => void;
   del: (ids: string[]) => void;
-  find: (id: string) => Face;
+  find: (_id: string) => Face;
+  index: (_id: string) => unknown;
   reduce: <EMIT>(ids: string[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Face & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Face, ...args: A) => boolean,

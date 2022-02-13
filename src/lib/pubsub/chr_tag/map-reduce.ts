@@ -1,7 +1,7 @@
-import type { ARY, DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from 'svelte-map-reduce-store'
 import type { presentation } from '../_type/string'
 import type { CHR_SET_IDX, Face } from '../map-reduce'
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 
 import json from '$lib/game/json/chr_tag.json'
 
@@ -34,7 +34,10 @@ export const Tags = MapReduce({
       data.base,
       (d) => sort(d).asc((o) => o[0].list[0].order),
       (d) => sort(d).asc((o) => o.list[0].order),
-      (d) => ({ list: sort(d.list).asc((o) => o.order) })
+      (d) => {
+        d.list = sort(d.list).asc((o) => o.order)
+        return d
+      }
     )
   }
 })

@@ -1,10 +1,10 @@
 <script lang="ts">
-import type { Line, Icon, Cluster } from '$lib/pointer'
-import { Scroll } from '$lib/scroll'
-import { Diagram } from '$lib/pointer'
+import type { Line, Icon, Cluster } from 'svelte-pointer-tracker'
+import { Scroll } from 'svelte-scroll-observe'
+import { Diagram } from 'svelte-pointer-tracker'
 
 import { Btn } from '$lib/design'
-import { Bits } from '$lib/common'
+import { Bits } from 'svelte-petit-utils'
 import { Chat, Banner, Report } from '$lib/site/chat'
 
 // import EditorArea from '$lib/form/EditorArea.svelte'

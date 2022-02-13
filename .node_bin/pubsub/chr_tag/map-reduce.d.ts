@@ -41,7 +41,7 @@ export declare const Tags: {
     )[]
   ) => void;
   find: (
-    id:
+    _id:
       | 'all'
       | 'fable'
       | 'animal'
@@ -61,6 +61,27 @@ export declare const Tags: {
       | 'stratos'
       | 'shoji'
   ) => Tag;
+  index: (
+    _id:
+      | 'all'
+      | 'fable'
+      | 'animal'
+      | 'school'
+      | 'giji'
+      | 'G_a_k'
+      | 'G_s_t'
+      | 'G_n_h'
+      | 'G_m_w'
+      | 'travel'
+      | 'T_h_w'
+      | 'T_s_n'
+      | 'marchen'
+      | 'asia'
+      | 'T_a_k'
+      | 'myth'
+      | 'stratos'
+      | 'shoji'
+  ) => unknown;
   reduce: <EMIT>(
     ids: (
       | 'all'

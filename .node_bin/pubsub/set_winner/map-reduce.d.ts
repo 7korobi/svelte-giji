@@ -11,13 +11,16 @@ export declare const Winners: {
   clear: () => void;
   add: (docs: Winner[], init?: (doc: Winner) => void) => void;
   del: (
-    ids: ('WOLF' | 'MOB' | 'HUMAN' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[]
+    ids: ('MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[]
   ) => void;
   find: (
-    id: 'WOLF' | 'MOB' | 'HUMAN' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE'
+    _id: 'MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE'
   ) => Winner;
+  index: (
+    _id: 'MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE'
+  ) => unknown;
   reduce: <EMIT>(
-    ids: ('WOLF' | 'MOB' | 'HUMAN' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[],
+    ids: ('MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[],
     emit: (o: EMIT) => void
   ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Winner & EMIT>;
   filter: <A extends any[]>(
@@ -27,7 +30,7 @@ export declare const Winners: {
     ...filter_args: A
   ) => {
     reduce: <EMIT_1>(
-      ids: ('WOLF' | 'MOB' | 'HUMAN' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[],
+      ids: ('MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[],
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Winner & EMIT_1>;
     filter: any;

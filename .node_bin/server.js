@@ -251,8 +251,28 @@ function model(o) {
 function listen(socketio, models, stores) {
   MODEL = models;
   STORE = stores;
+  const types = {};
   for (const name in stores) {
     stores[name].name ??= name;
+    const store = STORE[name];
+    const model3 = MODEL[name];
+    const type = [];
+    if (model3 && store) {
+      if (model3.isLive && model3.live && store.qid) type.push('LIVE');
+      if ((model3.$match && model3.query && store.qid, store.format && store.reduce)) type.push('READ');
+      if (model3.set && model3.del && store.qid) type.push('WRITE');
+    } else {
+      if (!model3) type.push('NO-MODEL');
+      if (!store) type.push('NO-STORE');
+    }
+    const typeKey = type.toString();
+    types[typeKey] ??= [];
+    types[typeKey].push(name);
+  }
+  for (const typeKey of Object.keys(types).sort()) {
+    for (const name of types[typeKey]) {
+      console.log(`${typeKey} :: ${name}`);
+    }
   }
   io = socketio;
   io.on('set', set);
@@ -273,19 +293,13 @@ __export(model_client_exports, {
   default_story_query: () => default_story_query,
   events: () => events,
   message_for_face: () => message_for_face,
-  message_for_face_by_face: () => message_for_face_by_face,
   message_for_face_mestype: () => message_for_face_mestype,
-  message_for_face_mestype_by_face: () => message_for_face_mestype_by_face,
   message_for_face_sow_auth: () => message_for_face_sow_auth,
-  message_for_face_sow_auth_by_face: () => message_for_face_sow_auth_by_face,
   messages: () => messages,
   new_plans: () => new_plans,
   potof_for_face: () => potof_for_face,
-  potof_for_face_by_face: () => potof_for_face_by_face,
   potof_for_face_live: () => potof_for_face_live,
-  potof_for_face_live_by_face: () => potof_for_face_live_by_face,
   potof_for_face_role: () => potof_for_face_role,
-  potof_for_face_role_by_face: () => potof_for_face_role_by_face,
   potof_for_face_sow_auth_max: () => potof_for_face_sow_auth_max,
   potofs: () => potofs,
   randoms: () => randoms,
@@ -294,7 +308,7 @@ __export(model_client_exports, {
   story_summary: () => story_summary
 });
 
-// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/base.js
+// package/map-reduce/base.js
 import { writable } from 'svelte/store';
 
 // node_modules/.pnpm/svelte-petit-utils@0.1.1/node_modules/svelte-petit-utils/const.js
@@ -304,7 +318,7 @@ var __BROWSER__ = !__SPEC__;
 // node_modules/.pnpm/svelte-petit-utils@0.1.1/node_modules/svelte-petit-utils/portal.js
 import { tick } from 'svelte';
 
-// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/fast-sort.js
+// package/map-reduce/fast-sort.js
 var castComparer = (comparer) => (a, b, order) => comparer(a, b, order) * order;
 var throwInvalidConfigErrorIfTrue = function (condition, context) {
   if (condition) throw Error(`Invalid sort config: ${context}`);
@@ -406,7 +420,7 @@ var inPlaceSort = createNewSortInstance({
   inPlaceSorting: true
 });
 
-// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/dic.js
+// package/map-reduce/dic.js
 function sort2(value) {
   if (!(value instanceof Array)) {
     const list = [];
@@ -446,16 +460,29 @@ function dic(o, ...levels) {
   return o;
 }
 
-// node_modules/.pnpm/svelte-map-reduce-store@0.1.5/node_modules/svelte-map-reduce-store/base.js
+// package/map-reduce/base.js
 function nop(...args) {}
-function MapReduce({ format: format2, initialize = nop, reduce, order, start: start2 }) {
+function MapReduce({ format: format2, index = (_id) => _id, initialize = nop, reduce, order, start: start2 }) {
   const children = new Map();
   const map = new Map();
   const data = format2();
-  const find = (id) => map.get(id);
+  const find = (_id) => map.get(index(_id));
   const { subscribe, set: set2 } = writable(format2(), __BROWSER__ ? start2 : void 0);
   let sArgs = [];
-  return { deploy, clear, add, del: del2, find, reduce: doReduce, filter, sort: sort3, format: format2, data, subscribe };
+  return {
+    deploy,
+    clear,
+    add,
+    del: del2,
+    find,
+    index,
+    reduce: doReduce,
+    filter,
+    sort: sort3,
+    format: format2,
+    data,
+    subscribe
+  };
   function sort3(...sa) {
     if (order) order(data, { sort: sort2, group_sort }, ...(sArgs = sa));
     set2(data);
@@ -480,7 +507,7 @@ function MapReduce({ format: format2, initialize = nop, reduce, order, start: st
   function filter(validator, key = validator.toString()) {
     return query2;
     function query2(...filter_args) {
-      const child = MapReduce({ format: format2, reduce, order });
+      const child = MapReduce({ index, format: format2, reduce, order });
       children.set(key, { validator, filter_args, add: child.add, del: child.del });
       child.add(data.list.filter((o) => validator(o, ...filter_args)));
       return {
@@ -495,10 +522,10 @@ function MapReduce({ format: format2, initialize = nop, reduce, order, start: st
   }
   function doReduce(ids, emit2) {
     const map2 = new Map();
-    for (const id of ids) {
-      const item = find(id);
+    for (const _id of ids) {
+      const item = find(_id);
       if (!item) continue;
-      map2.set(id, __spreadValues({}, item));
+      map2.set(index(_id), __spreadValues({}, item));
     }
     const list = [...map2.values()];
     for (const item of list) {
@@ -513,15 +540,14 @@ function MapReduce({ format: format2, initialize = nop, reduce, order, start: st
   function add(docs, init2 = initialize) {
     let is_update = false;
     for (const doc of docs) {
-      const id = doc._id;
-      if (find(id)) {
+      if (find(doc._id)) {
         is_update = true;
       } else {
         data.list.push(doc);
         init2 && init2(doc);
         reduce(data, doc);
       }
-      map.set(id, doc);
+      map.set(index(doc._id), doc);
     }
     if (is_update) full_calculate();
     sort3(...sArgs);
@@ -532,8 +558,8 @@ function MapReduce({ format: format2, initialize = nop, reduce, order, start: st
   }
   function del2(ids) {
     let is_update = false;
-    for (const id of ids) {
-      if (map.delete(id)) is_update = true;
+    for (const _id of ids) {
+      if (map.delete(index(_id))) is_update = true;
     }
     if (is_update) full_calculate();
     set2(data);
@@ -2656,8 +2682,9 @@ for (const _id in sow_folder_default) {
 
 // src/lib/pubsub/book_message/map-reduce.ts
 var phase_data = {
-  DEL: [true, ' ', 'private', '-', '-'],
+  DEL: [true, ' ', 'DEL', '-', '-'],
   AIM: [true, '-', 'AIM', '\u5185\u7DD2', '\u5185\u7DD2\u8A71'],
+  '-S': [true, ' ', 'DEL', '-', '-'],
   mS: [true, '#', 'MAKER', '\u6751\u5EFA', '\u6751\u5EFA\u3066\u767A\u8A00'],
   mA: [true, ' ', 'MAKER', '\u6751\u5EFA', '\u6751\u5EFA\u3066ACT'],
   aS: [true, '%', 'ADMIN', '\u7BA1\u7406', '\u7BA1\u7406\u767A\u8A00'],
@@ -2665,18 +2692,25 @@ var phase_data = {
   cI: [true, ' ', 'TITLE', '\u51FA\u6F14', '\u51FA\u6F14\u4E00\u89A7'],
   iI: [true, ' ', 'private', '\u6D3B\u52D5', '\u79D8\u533F\u6D3B\u52D5'],
   II: [true, ' ', 'public', '\u6D3B\u52D5', '\u516C\u958B\u6D3B\u52D5'],
+  DS: [true, '', 'DEL', '\u524A\u9664', '\u524A\u9664\u767A\u8A00'],
   SS: [true, '', 'SSAY', '\u4F1A\u8A71', '\u901A\u5E38\u306E\u767A\u8A00'],
   SA: [true, ' ', 'SSAY', '\u4F1A\u8A71', '\u901A\u5E38ACT'],
+  SB: [true, ' ', 'SSAY', '\u4F1A\u8A71', '\u901A\u5E38\u306E\u681E'],
+  SM: [true, ' ', 'SSAY', '\u4F1A\u8A71', '\u901A\u5E38\u306E\u30E1\u30E2'],
   VS: [true, '@', 'VSSAY', '\u898B\u7269', '\u898B\u7269\u4EBA\u767A\u8A00'],
   VA: [true, ' ', 'VSSAY', '\u898B\u7269', '\u898B\u7269\u4EBA\u306EACT'],
+  VB: [true, ' ', 'VSSAY', '\u898B\u7269', '\u898B\u7269\u4EBA\u306E\u681E'],
+  VM: [true, ' ', 'VSSAY', '\u898B\u7269', '\u898B\u7269\u4EBA\u306E\u30E1\u30E2'],
   TS: [true, '-', 'TSAY', '\u72EC\u8A00', '\u72EC\u308A\u8A00'],
   TA: [true, ' ', 'TSAY', '\u681E', '\u681E'],
   GS: [true, '+', 'GSAY', '\u5893\u4E0B', '\u5893\u4E0B\u306E\u767A\u8A00'],
   GA: [true, ' ', 'GSAY', '\u5893\u4E0B', '\u5893\u4E0B\u306EACT'],
+  GM: [true, ' ', 'GSAY', '\u5893\u4E0B', '\u5893\u4E0B\u306E\u30E1\u30E2'],
   PS: [true, '=', 'PSAY', '\u5171\u9CF4', '\u5171\u9CF4\u306E\u4F1A\u8A71'],
   PA: [true, ' ', 'PSAY', '\u5171\u9CF4', '\u5171\u9CF4\u306EACT'],
   WS: [true, '*', 'WSAY', '\u4EBA\u72FC', '\u4EBA\u72FC\u306E\u3055\u3055\u3084\u304D'],
   WA: [true, ' ', 'WSAY', '\u4EBA\u72FC', '\u4EBA\u72FC\u306EACT'],
+  WM: [true, ' ', 'WSAY', '\u4EBA\u72FC', '\u4EBA\u72FC\u306E\u30E1\u30E2'],
   XS: [true, '!', 'XSAY', '\u5FF5\u6CE2', '\u5FF5\u8A71\uFF08\u5FF5\u6CE2\u306E\u6C11\uFF09'],
   XA: [true, ' ', 'XSAY', '\u5FF5\u6CE2', '\u5FF5act\uFF08\u5FF5\u6CE2\u306E\u6C11\uFF09'],
   BS: [true, '!', 'XSAY', '\u5FF5\u6CE2', '\u5FF5\u8A71\uFF08\u8759\u8760\u4EBA\u9593\uFF09'],
@@ -9819,7 +9853,10 @@ var Tags = MapReduce({
       data.base,
       (d) => sort3(d).asc((o) => o[0].list[0].order),
       (d) => sort3(d).asc((o) => o.list[0].order),
-      (d) => ({ list: sort3(d.list).asc((o) => o.order) })
+      (d) => {
+        d.list = sort3(d.list).asc((o) => o.order);
+        return d;
+      }
     );
   }
 });
@@ -14955,6 +14992,7 @@ var stats = model2({
 // src/lib/pubsub/chr_face/client.ts
 var potof_for_face = model2({
   qid: (o) => [o.face_id].toString(),
+  index: (o) => [o.face_id].toString(),
   format: () => ({
     list: [],
     by_face: {}
@@ -14966,22 +15004,37 @@ var potof_for_face = model2({
 });
 var potof_for_face_role = model2({
   qid: (o) => [o.face_id, o.role_id].toString(),
+  index: (o) => [o.face_id, o.role_id].toString(),
   format: () => ({
-    list: []
+    list: [],
+    sum: 0
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort: sort3 }) => {}
+  reduce: (data, doc) => {
+    data.sum += doc.story_ids.length;
+    doc.role = Roles.find(doc._id.role_id) ?? { label: `(${doc._id.role_id})` };
+  },
+  order: (data, { sort: sort3 }) => {
+    sort3(data.list).desc((o) => o.story_ids.length);
+  }
 });
 var potof_for_face_live = model2({
   qid: (o) => [o.face_id, o.live].toString(),
+  index: (o) => [o.face_id, o.live].toString(),
   format: () => ({
-    list: []
+    list: [],
+    sum: 0
   }),
-  reduce: (data, doc) => {},
-  order: (data, { sort: sort3 }) => {}
+  reduce: (data, doc) => {
+    data.sum += doc.story_ids.length;
+    doc.live = Roles.find(doc._id.live) ?? { label: `(${doc._id.live})` };
+  },
+  order: (data, { sort: sort3 }) => {
+    sort3(data.list).desc((o) => o.story_ids.length);
+  }
 });
 var potof_for_face_sow_auth_max = model2({
   qid: (o) => [o.face_id, o.sow_auth_id].toString(),
+  index: (o) => [o.face_id, o.sow_auth_id].toString(),
   format: () => ({
     list: [],
     by_face: {}
@@ -14993,81 +15046,65 @@ var potof_for_face_sow_auth_max = model2({
 });
 var message_for_face = model2({
   qid: (o) => [o.face_id].toString(),
+  index: (o) => [o.face_id].toString(),
   format: () => ({
     list: [],
-    by_face: {}
+    folder: [],
+    by_face: {},
+    by_folder: {}
   }),
   reduce(data, doc) {
     dic(data.by_face, doc._id.face_id, doc);
+    for (const story_id of doc.story_ids) {
+      const [folder, story_idx] = story_id.split('-');
+      dic(data.by_folder, folder, []).push(story_idx);
+    }
   },
-  order(data, { sort: sort3 }) {}
+  order(data, { sort: sort3, group_sort: group_sort2 }) {
+    data.folder = group_sort2(
+      data.by_folder,
+      (by_folder) => {
+        var _a2;
+        const folders = sort3(by_folder).desc((o) => o.length);
+        for (const folder of folders) {
+          folder.nation = (_a2 = Folders.find(folder._id)) == null ? void 0 : _a2.nation;
+        }
+        return folders;
+      },
+      (idxs) => sort3(idxs).asc((o) => Number(o))
+    );
+  }
 });
 var message_for_face_mestype = model2({
   qid: (o) => [o.face_id, o.mestype].toString(),
+  index: (o) => [o.face_id, o.mestype].toString(),
   format: () => ({
     list: []
   }),
-  reduce(data, doc) {},
-  order(data, { sort: sort3 }) {}
+  reduce(data, doc) {
+    doc.per = doc.story_ids.length;
+  },
+  order(data, { sort: sort3 }) {
+    sort3(data.list).desc((o) => o.all);
+  }
 });
 var message_for_face_sow_auth = model2({
   qid: (o) => [o.face_id, o.sow_auth_id].toString(),
+  index: (o) => [o.face_id, o.sow_auth_id].toString(),
   format: () => ({
     list: []
   }),
   reduce(data, doc) {},
-  order(data, { sort: sort3 }) {}
-});
-var message_for_face_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce(data, doc) {},
-  order(data, { sort: sort3 }) {}
-});
-var message_for_face_mestype_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce(data, doc) {},
-  order(data, { sort: sort3 }) {}
-});
-var message_for_face_sow_auth_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce(data, doc) {},
-  order(data, { sort: sort3 }) {}
-});
-var potof_for_face_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: [],
-    by_face: {}
-  }),
-  reduce: (data, doc) => {
-    dic(data.by_face, doc._id.face_id, doc);
-  },
-  order: (data, { sort: sort3 }) => {}
-});
-var potof_for_face_role_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce: (data, doc) => {},
-  order: (data, { sort: sort3 }) => {}
-});
-var potof_for_face_live_by_face = model2({
-  qid: (ids) => ids.toString(),
-  format: () => ({
-    list: []
-  }),
-  reduce: (data, doc) => {},
-  order: (data, { sort: sort3 }) => {}
+  order(data, { sort: sort3 }, order) {
+    const cb = {
+      story_ids_length: (list) => sort3(list).desc((o) => o.story_ids.length),
+      count: (list) => sort3(list).desc((o) => o.count),
+      all: (list) => sort3(list).desc((o) => o.all),
+      date_min: (list) => sort3(list).asc((o) => o.date_min),
+      date_max: (list) => sort3(list).desc((o) => o.date_max)
+    }[order];
+    cb(data.list);
+  }
 });
 
 // src/lib/pubsub/plan/client.ts
@@ -15187,7 +15224,7 @@ function modelAsAggregate(collection) {
     $match(o) {
       const ret = {};
       for (const key in o) {
-        if (o[key].length) ret[`_id.${key}`] = { $in: o[key] };
+        ret[`_id.${key}`] = { $in: o[key] };
       }
       return ret;
     }

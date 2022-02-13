@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import { Erase } from '$lib/icon'
 
 import Sub from './sub.svelte'

@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import type {
   BookMessage,
   BOOK_EVENT_IDX,
@@ -8,7 +8,7 @@ import type {
 } from '../map-reduce'
 import type { BOOK_MESSAGE_IDX, BOOK_PHASE_IDX } from './map-reduce'
 import { model } from '$lib/db/socket.io-client'
-import { dic } from '$lib/map-reduce'
+import { dic } from 'svelte-map-reduce-store'
 import { Phases } from './map-reduce'
 
 type EMIT = {

@@ -18,7 +18,7 @@ function modelAsAggregate<T extends { _id: any }>(collection: string) {
     $match(o: T['_id']): { [idx in `_id.${string}`]: { $in: string[] } } {
       const ret: T['_id'] = {}
       for (const key in o) {
-        if (o[key].length) ret[`_id.${key}`] = { $in: o[key] }
+        ret[`_id.${key}`] = { $in: o[key] }
       }
       return ret
     }

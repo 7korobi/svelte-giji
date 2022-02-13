@@ -3,7 +3,7 @@ import { derived, Readable } from 'svelte/store'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { live } from '$lib/site'
 import { app, token, topics, topicsAck } from './store'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 app.subscribe(initNotify)
 

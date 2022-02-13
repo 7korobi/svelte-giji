@@ -3,11 +3,11 @@ import type { Tag } from '$lib/pubsub/map-reduce'
 import { flip } from 'svelte/animate'
 import { scale } from 'svelte/transition'
 import { backOut } from 'svelte/easing'
-import { Location } from '$lib/uri'
+import { Location } from 'svelte-bind-uri'
 
 import { Tags } from '$lib/pubsub/map-reduce'
 import { faces_by_tag, tag_by_group } from '$lib/pubsub/chr/query'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 import { Btn, SearchText } from '$lib/design'
 import { Post, Report, Portrates } from '$lib/site/chat'

@@ -13,7 +13,7 @@ import type {
   CHR_SET_IDX,
   Face
 } from '../map-reduce'
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 
 export type BookMessage = {
   _id: BOOK_MESSAGE_ID
@@ -81,8 +81,9 @@ export type SubType = typeof SubType[number]
 export type GroupType = typeof GroupType[number]
 
 const phase_data = {
-  DEL: [true, ' ', 'private', '-', '-'],
+  DEL: [true, ' ', 'DEL', '-', '-'],
   AIM: [true, '-', 'AIM', '内緒', '内緒話'],
+  '-S': [true, ' ', 'DEL', '-', '-'],
   mS: [true, '#', 'MAKER', '村建', '村建て発言'],
   mA: [true, ' ', 'MAKER', '村建', '村建てACT'],
   aS: [true, '%', 'ADMIN', '管理', '管理発言'],
@@ -90,18 +91,25 @@ const phase_data = {
   cI: [true, ' ', 'TITLE', '出演', '出演一覧'],
   iI: [true, ' ', 'private', '活動', '秘匿活動'],
   II: [true, ' ', 'public', '活動', '公開活動'],
+  DS: [true, '', 'DEL', '削除', '削除発言'],
   SS: [true, '', 'SSAY', '会話', '通常の発言'],
   SA: [true, ' ', 'SSAY', '会話', '通常ACT'],
+  SB: [true, ' ', 'SSAY', '会話', '通常の栞'],
+  SM: [true, ' ', 'SSAY', '会話', '通常のメモ'],
   VS: [true, '@', 'VSSAY', '見物', '見物人発言'],
   VA: [true, ' ', 'VSSAY', '見物', '見物人のACT'],
+  VB: [true, ' ', 'VSSAY', '見物', '見物人の栞'],
+  VM: [true, ' ', 'VSSAY', '見物', '見物人のメモ'],
   TS: [true, '-', 'TSAY', '独言', '独り言'],
   TA: [true, ' ', 'TSAY', '栞', '栞'],
   GS: [true, '+', 'GSAY', '墓下', '墓下の発言'],
   GA: [true, ' ', 'GSAY', '墓下', '墓下のACT'],
+  GM: [true, ' ', 'GSAY', '墓下', '墓下のメモ'],
   PS: [true, '=', 'PSAY', '共鳴', '共鳴の会話'],
   PA: [true, ' ', 'PSAY', '共鳴', '共鳴のACT'],
   WS: [true, '*', 'WSAY', '人狼', '人狼のささやき'],
   WA: [true, ' ', 'WSAY', '人狼', '人狼のACT'],
+  WM: [true, ' ', 'WSAY', '人狼', '人狼のメモ'],
   XS: [true, '!', 'XSAY', '念波', '念話（念波の民）'],
   XA: [true, ' ', 'XSAY', '念波', '念act（念波の民）'],
   BS: [true, '!', 'XSAY', '念波', '念話（蝙蝠人間）'],

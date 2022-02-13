@@ -1,9 +1,9 @@
-import type { ARY, DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from 'svelte-map-reduce-store'
 import type { presentation } from '../_type/string'
 import type { FaceID } from '../_type/id'
 import type { Face } from '../map-reduce'
 
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 import { Faces } from '../map-reduce'
 
 import ririnra from '$lib/game/json/cs_ririnra.json'

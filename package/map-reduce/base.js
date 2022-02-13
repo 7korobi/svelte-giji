@@ -21,14 +21,27 @@ export function lookup(o) {
     set(data);
   }
 }
-export function MapReduce({ format, initialize = nop, reduce, order, start }) {
+export function MapReduce({ format, index = (_id) => _id, initialize = nop, reduce, order, start }) {
   const children = new Map();
   const map = new Map();
   const data = format();
-  const find = (id) => map.get(id);
+  const find = (_id) => map.get(index(_id));
   const { subscribe, set } = writable(format(), __BROWSER__ ? start : undefined);
   let sArgs = [];
-  return { deploy, clear, add, del, find, reduce: doReduce, filter, sort, format, data, subscribe };
+  return {
+    deploy,
+    clear,
+    add,
+    del,
+    find,
+    index,
+    reduce: doReduce,
+    filter,
+    sort,
+    format,
+    data,
+    subscribe
+  };
   function sort(...sa) {
     if (order) order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa));
     set(data);
@@ -53,7 +66,7 @@ export function MapReduce({ format, initialize = nop, reduce, order, start }) {
   function filter(validator, key = validator.toString()) {
     return query;
     function query(...filter_args) {
-      const child = MapReduce({ format, reduce, order });
+      const child = MapReduce({ index, format, reduce, order });
       children.set(key, { validator, filter_args, add: child.add, del: child.del });
       // child.clear()
       child.add(data.list.filter((o) => validator(o, ...filter_args)));
@@ -69,10 +82,10 @@ export function MapReduce({ format, initialize = nop, reduce, order, start }) {
   }
   function doReduce(ids, emit) {
     const map = new Map();
-    for (const id of ids) {
-      const item = find(id);
+    for (const _id of ids) {
+      const item = find(_id);
       if (!item) continue;
-      map.set(id, { ...item });
+      map.set(index(_id), { ...item });
     }
     const list = [...map.values()];
     for (const item of list) {
@@ -87,15 +100,14 @@ export function MapReduce({ format, initialize = nop, reduce, order, start }) {
   function add(docs, init = initialize) {
     let is_update = false;
     for (const doc of docs) {
-      const id = doc._id;
-      if (find(id)) {
+      if (find(doc._id)) {
         is_update = true;
       } else {
         data.list.push(doc);
         init && init(doc);
         reduce(data, doc);
       }
-      map.set(id, doc);
+      map.set(index(doc._id), doc);
     }
     if (is_update) full_calculate();
     sort(...sArgs);
@@ -106,8 +118,8 @@ export function MapReduce({ format, initialize = nop, reduce, order, start }) {
   }
   function del(ids) {
     let is_update = false;
-    for (const id of ids) {
-      if (map.delete(id)) is_update = true;
+    for (const _id of ids) {
+      if (map.delete(index(_id))) is_update = true;
     }
     if (is_update) full_calculate();
     set(data);

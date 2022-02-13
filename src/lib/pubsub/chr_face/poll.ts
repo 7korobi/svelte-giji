@@ -1,6 +1,6 @@
 import type { PotofForFace, MessageForFaceSowAuth, MessageForFace } from '../map-reduce'
 import { message_for_face, potof_for_face, potof_for_face_sow_auth_max } from '../model-client'
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 import { url } from '$lib/site/store'
 
 let oldlog_url = ''

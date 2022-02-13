@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { BookEvent, BookMessage, BookPhase } from '$lib/pubsub/map-reduce'
-import { clip } from '$lib/common'
-import { Time } from '$lib/timer'
+import { clip } from 'svelte-petit-utils'
+import { Time } from 'svelte-tick-timer'
 
 import Mention from '../inline/mention.svelte'
 import { side, SideBits } from '../store'

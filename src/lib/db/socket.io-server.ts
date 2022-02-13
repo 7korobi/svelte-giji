@@ -158,8 +158,31 @@ export default function listen(
   MODEL = models as typeof MODEL
   STORE = stores as typeof STORE
 
+  const types = {}
   for (const name in stores) {
     stores[name].name ??= name
+
+    const store = STORE[name]
+    const model = MODEL[name]
+    const type = []
+    if (model && store) {
+      if (model.isLive && model.live && store.qid) type.push('LIVE')
+      if ((model.$match && model.query && store.qid, store.format && store.reduce))
+        type.push('READ')
+      if (model.set && model.del && store.qid) type.push('WRITE')
+    } else {
+      if (!model) type.push('NO-MODEL')
+      if (!store) type.push('NO-STORE')
+    }
+
+    const typeKey = type.toString()
+    types[typeKey] ??= []
+    types[typeKey].push(name)
+  }
+  for (const typeKey of Object.keys(types).sort()) {
+    for (const name of types[typeKey]) {
+      console.log(`${typeKey} :: ${name}`)
+    }
   }
 
   io = socketio

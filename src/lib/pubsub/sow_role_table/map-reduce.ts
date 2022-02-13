@@ -1,6 +1,6 @@
 import type { presentation } from '../_type/string'
 import type { ROLE_ID } from '../map-reduce'
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/sow_roletables.json'
 
 export type ROLE_TABLE_ID = keyof typeof json

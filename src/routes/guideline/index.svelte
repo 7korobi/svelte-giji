@@ -1,6 +1,6 @@
 <script lang="ts">
-import { __BROWSER__ } from '$lib/common'
-import { Location } from '$lib/uri'
+import { __BROWSER__ } from 'svelte-petit-utils'
+import { Location } from 'svelte-bind-uri'
 import { Post, Talk, Report } from '$lib/site/chat'
 
 import '../_app.svelte'

@@ -142,7 +142,8 @@ export declare const Roles: {
   clear: () => void;
   add: (docs: Role[], init?: (doc: Role) => void) => void;
   del: (ids: ROLE_ID[]) => void;
-  find: (id: ROLE_ID) => Role;
+  find: (_id: ROLE_ID) => Role;
+  index: (_id: ROLE_ID) => unknown;
   reduce: <EMIT>(ids: ROLE_ID[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Role & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Role, ...args: A) => boolean,

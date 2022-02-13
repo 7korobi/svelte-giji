@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Operations } from '$lib/pointer/tracker'
+import { Operations } from 'svelte-pointer-tracker'
 import { Standby } from '$lib/icon'
 
 import type { TYPE } from './button'

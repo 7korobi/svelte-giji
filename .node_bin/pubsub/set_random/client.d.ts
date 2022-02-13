@@ -2,6 +2,7 @@ import type { RANDOM_TYPE, Random } from '../map-reduce';
 export declare const randoms: {
   name?: string;
   qid: (types: RANDOM_TYPE[]) => string;
+  index?: (_id: string | number) => string;
   format: () => {
     list: Random[];
     sum: number;

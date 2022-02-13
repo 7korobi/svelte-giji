@@ -35,14 +35,14 @@ export declare const potof_for_face_role: {
     del: (
       ids: {
         face_id: string;
-        role_id: RoleType;
+        role_id: import('../map-reduce').ROLE_ID;
       }[]
     ) => Promise<import('mongodb').DeleteResult>
   ) => import('mongodb').ChangeStream<PotofForFaceRole>;
   query: ($match: any) => Promise<import('mongodb').Document[]>;
   $match(o: {
     face_id: string;
-    role_id: RoleType;
+    role_id: import('../map-reduce').ROLE_ID;
   }): {
     [x: `_id.${string}`]: {
       $in: string[];
@@ -57,14 +57,14 @@ export declare const potof_for_face_live: {
     del: (
       ids: {
         face_id: string;
-        live: LiveType;
+        live: 'leave' | 'live' | 'executed' | 'victim' | 'cursed' | 'droop' | 'suicide' | 'feared' | 'suddendead';
       }[]
     ) => Promise<import('mongodb').DeleteResult>
   ) => import('mongodb').ChangeStream<PotofForFaceLive>;
   query: ($match: any) => Promise<import('mongodb').Document[]>;
   $match(o: {
     face_id: string;
-    live: LiveType;
+    live: 'leave' | 'live' | 'executed' | 'victim' | 'cursed' | 'droop' | 'suicide' | 'feared' | 'suddendead';
   }): {
     [x: `_id.${string}`]: {
       $in: string[];
@@ -121,14 +121,44 @@ export declare const message_for_face_mestype: {
     del: (
       ids: {
         face_id: string;
-        mestype: MESSAGE_TYPE_IDX;
+        mestype:
+          | 'CAST'
+          | 'ADMIN'
+          | 'MAKER'
+          | 'INFOSP'
+          | 'INFONOM'
+          | 'INFOWOLF'
+          | 'AIM'
+          | 'TSAY'
+          | 'WSAY'
+          | 'GSAY'
+          | 'VSAY'
+          | 'BSAY'
+          | 'SPSAY'
+          | 'SAY'
+          | 'DELETED';
       }[]
     ) => Promise<import('mongodb').DeleteResult>
   ) => import('mongodb').ChangeStream<MessageForFaceMestype>;
   query: ($match: any) => Promise<import('mongodb').Document[]>;
   $match(o: {
     face_id: string;
-    mestype: MESSAGE_TYPE_IDX;
+    mestype:
+      | 'CAST'
+      | 'ADMIN'
+      | 'MAKER'
+      | 'INFOSP'
+      | 'INFONOM'
+      | 'INFOWOLF'
+      | 'AIM'
+      | 'TSAY'
+      | 'WSAY'
+      | 'GSAY'
+      | 'VSAY'
+      | 'BSAY'
+      | 'SPSAY'
+      | 'SAY'
+      | 'DELETED';
   }): {
     [x: `_id.${string}`]: {
       $in: string[];

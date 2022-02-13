@@ -1,24 +1,16 @@
 <script lang="ts">
-import store from '$lib/browser'
+import store from 'svelte-browser'
 const { viewOffset } = store
 
 $: offsetFilm = Math.floor(-0.5 * $viewOffset[0])
 </script>
 
 <div class="fullframe">
-  <div class="outframe filmline" style={`background-position: ${-offsetFilm}px 0;`}>
-    <div class="contentframe">
-      <span class="filmstart" />
-    </div>
-  </div>
+  <div class="outframe filmline" style={`background-position: ${-offsetFilm}px 0;`} />
   <div class="portrates">
     <slot />
   </div>
-  <div class="outframe filmline" style={`background-position: ${offsetFilm}px 0;`}>
-    <div class="contentframe">
-      <span class="filmend" />
-    </div>
-  </div>
+  <div class="outframe filmline" style={`background-position: ${offsetFilm}px 0;`} />
 </div>
 
 <style lang="sass">

@@ -2,6 +2,7 @@ import type { BookEvent } from '../map-reduce';
 export declare const events: {
   name?: string;
   qid: (ids: (`${string}-${number}-${number}` | `${string}-${number}-top`)[]) => string;
+  index?: (_id: `${string}-${number}-${number}` | `${string}-${number}-top`) => string;
   format: () => {
     list: BookEvent[];
   };

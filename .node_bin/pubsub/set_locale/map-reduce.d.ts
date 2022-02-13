@@ -11,7 +11,8 @@ export declare const Locales: {
   clear: () => void;
   add: (docs: Locale[], init?: (doc: Locale) => void) => void;
   del: (ids: ('regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien')[]) => void;
-  find: (id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => Locale;
+  find: (_id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => Locale;
+  index: (_id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => unknown;
   reduce: <EMIT>(
     ids: ('regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien')[],
     emit: (o: EMIT) => void

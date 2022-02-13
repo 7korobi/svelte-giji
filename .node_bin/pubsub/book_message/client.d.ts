@@ -11,6 +11,7 @@ declare type EMIT = {
 export declare const messages: {
   name?: string;
   qid: (ids: `${string}-${number}`[]) => string;
+  index?: (_id: import('./map-reduce').BOOK_MESSAGE_ID) => string;
   format: () => {
     list: BookMessage[];
     event: DIC<BookMessage[]>;

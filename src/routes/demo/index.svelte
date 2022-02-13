@@ -1,12 +1,12 @@
 <script lang="ts">
-import { DAY, HOUR, MINUTE, WEEK } from '$lib/timer'
+import { DAY, HOUR, MINUTE, WEEK } from 'svelte-tick-timer'
 
-import { Zoom, Pen } from '$lib/pointer'
-import { Time } from '$lib/timer'
-import Poll from '$lib/storage/poll.svelte'
+import { Zoom, Pen } from 'svelte-pointer-tracker'
+import { Time } from 'svelte-tick-timer'
+import Poll from 'svelte-storage/poll.svelte'
 import { HtmlArea } from '$lib/editor'
-import browser from '$lib/browser'
-import { __BROWSER__ } from '$lib/common'
+import browser from 'svelte-browser'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 import { faces } from '$lib/pubsub/poll'
 import { LongPress } from '$lib/design'

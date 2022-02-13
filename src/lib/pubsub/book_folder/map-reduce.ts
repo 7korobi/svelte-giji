@@ -1,9 +1,9 @@
 import type { presentation, URL } from '../_type/string'
 import type { CHR_SET_IDX } from '../map-reduce'
 
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 import sow_json from '$lib/game/json/sow_folder.json'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 export type BookFolder = {
   _id: BOOK_FOLDER_IDX

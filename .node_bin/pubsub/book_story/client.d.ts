@@ -17,22 +17,22 @@ export declare function default_stories_query(): {
   search: string;
   order: string;
   folder_id: (
-    | 'test'
-    | 'lobby'
-    | 'offparty'
     | 'wolf'
-    | 'allstar'
     | 'ultimate'
     | 'cabala'
+    | 'allstar'
+    | 'pretense'
+    | 'rp'
     | 'morphe'
     | 'soybean'
-    | 'rp'
-    | 'pretense'
+    | 'ciel'
     | 'perjury'
     | 'xebec'
-    | 'crazy'
-    | 'ciel'
     | 'dais'
+    | 'crazy'
+    | 'lobby'
+    | 'offparty'
+    | 'test'
   )[];
   monthry: string[];
   upd_range: string[];
@@ -40,6 +40,7 @@ export declare function default_stories_query(): {
   sow_auth_id: string[];
   mark: (
     | 'love'
+    | 'cat'
     | 'age_A'
     | 'age_B'
     | 'age_C'
@@ -57,32 +58,31 @@ export declare function default_stories_query(): {
     | 'sexy'
     | 'violence'
     | 'biohazard'
-    | 'cat'
     | 'music'
     | 'appare'
   )[];
   size: string[];
   say_limit: (
-    | 'lobby'
-    | 'say5'
-    | 'wbbs'
-    | 'euro'
+    | 'tiny'
     | 'weak'
     | 'juna'
-    | 'infinity'
-    | 'sow'
     | 'say1'
     | 'say5x200'
     | 'say5x300'
     | 'saving'
-    | 'tiny'
+    | 'euro'
+    | 'wbbs'
+    | 'sow'
     | 'vulcan'
+    | 'infinity'
+    | 'lobby'
+    | 'say5'
     | 'weak_braid'
     | 'juna_braid'
     | 'vulcan_braid'
     | 'infinity_braid'
   )[];
-  game: ('TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER')[];
+  game: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[];
   option: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[];
   trap: (
     | 'blank'
@@ -108,6 +108,7 @@ export declare function default_stories_query(): {
 export declare const stories: {
   name?: string;
   qid: (ids: `${string}-${number}`[]) => string;
+  index?: (_id: `${string}-${number}`) => string;
   format: () => {
     list: BookStory[];
     oldlog: DIC<BookStory[]>;
@@ -393,22 +394,22 @@ export declare const stories: {
       search: string;
       order: string;
       folder_id: (
-        | 'test'
-        | 'lobby'
-        | 'offparty'
         | 'wolf'
-        | 'allstar'
         | 'ultimate'
         | 'cabala'
+        | 'allstar'
+        | 'pretense'
+        | 'rp'
         | 'morphe'
         | 'soybean'
-        | 'rp'
-        | 'pretense'
+        | 'ciel'
         | 'perjury'
         | 'xebec'
-        | 'crazy'
-        | 'ciel'
         | 'dais'
+        | 'crazy'
+        | 'lobby'
+        | 'offparty'
+        | 'test'
       )[];
       monthry: string[];
       upd_range: string[];
@@ -416,6 +417,7 @@ export declare const stories: {
       sow_auth_id: string[];
       mark: (
         | 'love'
+        | 'cat'
         | 'age_A'
         | 'age_B'
         | 'age_C'
@@ -433,32 +435,31 @@ export declare const stories: {
         | 'sexy'
         | 'violence'
         | 'biohazard'
-        | 'cat'
         | 'music'
         | 'appare'
       )[];
       size: string[];
       say_limit: (
-        | 'lobby'
-        | 'say5'
-        | 'wbbs'
-        | 'euro'
+        | 'tiny'
         | 'weak'
         | 'juna'
-        | 'infinity'
-        | 'sow'
         | 'say1'
         | 'say5x200'
         | 'say5x300'
         | 'saving'
-        | 'tiny'
+        | 'euro'
+        | 'wbbs'
+        | 'sow'
         | 'vulcan'
+        | 'infinity'
+        | 'lobby'
+        | 'say5'
         | 'weak_braid'
         | 'juna_braid'
         | 'vulcan_braid'
         | 'infinity_braid'
       )[];
-      game: ('TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER')[];
+      game: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[];
       option: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[];
       trap: (
         | 'blank'
@@ -486,6 +487,7 @@ export declare const stories: {
 export declare const story_summary: {
   name?: string;
   qid: (is_old: boolean) => string;
+  index?: (_id: `${string}-${number}`) => string;
   format: () => {
     list: BookStory[];
     folder: DIC<{

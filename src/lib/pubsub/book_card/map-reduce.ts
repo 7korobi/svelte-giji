@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import type {
   BOOK_POTOF_ID,
   ROLE_ID,

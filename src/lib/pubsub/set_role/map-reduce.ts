@@ -1,8 +1,8 @@
-import type { ARY, DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from 'svelte-map-reduce-store'
 import type { ABLE_ID, WIN } from '../map-reduce'
 import type { presentation } from '../_type/string'
 
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 import set_role_gifts from '$lib/game/json/set_role_gifts.json'
 import set_role_lives from '$lib/game/json/set_role_lives.json'
 import set_role_mobs from '$lib/game/json/set_role_mobs.json'

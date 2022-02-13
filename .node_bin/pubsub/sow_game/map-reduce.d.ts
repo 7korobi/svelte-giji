@@ -11,13 +11,16 @@ export declare const Games: {
   clear: () => void;
   add: (docs: Game[], init?: (doc: Game) => void) => void;
   del: (
-    ids: ('TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER')[]
+    ids: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[]
   ) => void;
   find: (
-    id: 'TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER'
+    _id: 'TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER'
   ) => Game;
+  index: (
+    _id: 'TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER'
+  ) => unknown;
   reduce: <EMIT>(
-    ids: ('TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER')[],
+    ids: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[],
     emit: (o: EMIT) => void
   ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Game & EMIT>;
   filter: <A extends any[]>(
@@ -27,7 +30,7 @@ export declare const Games: {
     ...filter_args: A
   ) => {
     reduce: <EMIT_1>(
-      ids: ('TABULA' | 'MILLERHOLLOW' | 'LIVE_TABULA' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'VOV' | 'SECRET' | 'GAMEMASTER')[],
+      ids: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[],
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Game & EMIT_1>;
     filter: any;

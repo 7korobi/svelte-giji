@@ -13,11 +13,11 @@ import {
   rest_oldlog_messages,
   oldlog_potofs
 } from '$lib/pubsub/poll'
-import { __BROWSER__ } from '$lib/common'
-import { Location } from '$lib/uri'
+import { __BROWSER__ } from 'svelte-petit-utils'
+import { Location } from 'svelte-bind-uri'
 import { Sup, Btn, SearchText } from '$lib/design'
 
-import Poll from '$lib/storage/poll.svelte'
+import Poll from 'svelte-storage/poll.svelte'
 import { Talk, Post, Report } from '../chat'
 
 import { default_story_query } from '$lib/pubsub/model-client'

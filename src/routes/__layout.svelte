@@ -2,8 +2,8 @@
 import { session } from '$app/stores'
 
 import fire from '$lib/fire'
-import browser, { Browser, Viewport } from '$lib/browser'
-import { portal, __BROWSER__ } from '$lib/common'
+import browser, { Browser, Viewport } from 'svelte-browser'
+import { portal, __BROWSER__ } from 'svelte-petit-utils'
 
 import * as Icon from '$lib/icon'
 

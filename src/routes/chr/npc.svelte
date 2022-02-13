@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ChrSet, ChrSets } from '$lib/pubsub/map-reduce'
-import { Location } from '$lib/uri'
+import { Location } from 'svelte-bind-uri'
 
 import { fade } from 'svelte/transition'
 import { chr_sets_by_label } from '$lib/pubsub/chr/query'

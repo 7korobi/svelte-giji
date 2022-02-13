@@ -1,8 +1,5 @@
-import type { STORY_ID } from '../book_story/map-reduce'
-import type { RoleType, LiveType } from '../_type/enum'
 import type { AccountID, FaceID } from '../_type/id'
-import type { presentation } from '../_type/string'
-import type { FOLDER_IDX, MESSAGE_TYPE_IDX, MesType } from '../map-reduce'
+import type { Role, MesType, LIVE_ID, ROLE_ID, BOOK_STORY_ID } from '../map-reduce'
 import { model } from '$lib/db/socket.io-client'
 
 export type MessageForFace = {
@@ -11,7 +8,7 @@ export type MessageForFace = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
   max: number
   all: number
   count: number
@@ -19,11 +16,12 @@ export type MessageForFace = {
 export type MessageForFaceMestype = {
   _id: {
     face_id: FaceID
-    mestype: MESSAGE_TYPE_IDX
+    mestype: MesType
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
+  per: number
   max: number
   all: number
   count: number
@@ -35,7 +33,7 @@ export type MessageForFaceSowAuth = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
   max: number
   all: number
   count: number
@@ -48,7 +46,7 @@ export type MessageForFaceLive = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
   max: number
   all: number
   count: number
@@ -61,7 +59,7 @@ export type MessageForFaceRole = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
   max: number
   all: number
   count: number
@@ -73,7 +71,7 @@ export type PotofForFace = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
 }
 export type PotofForFaceSowAuthMax = {
   _id: {
@@ -82,45 +80,28 @@ export type PotofForFaceSowAuthMax = {
   }
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
   count: number
 }
 export type PotofForFaceRole = {
   _id: {
     face_id: FaceID
-    role_id: RoleType
+    role_id: ROLE_ID
   }
+  role: Role
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
+  story_ids: BOOK_STORY_ID[]
 }
 export type PotofForFaceLive = {
   _id: {
     face_id: FaceID
-    live: LiveType
+    live: LIVE_ID
   }
+  live: Role
   date_min: Date
   date_max: Date
-  story_ids: STORY_ID[]
-}
-
-export type Aggregate = {
-  folders: FOLDER_IDX
-  roles: RoleType[]
-  lives: LiveType[]
-  sow_auths: presentation[]
-  mestypes: MesType[]
-  log: {
-    story_ids: STORY_ID[]
-    date_max: Date
-    date_min: Date
-  }
-  fav: {
-    _id: {
-      sow_auth_id?: presentation
-    }
-    count: number
-  }
+  story_ids: BOOK_STORY_ID[]
 }
 
 export const potof_for_faces = model({

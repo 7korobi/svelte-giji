@@ -1,4 +1,4 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import { tick } from 'svelte'
 
 export const portals: DIC<{ (el: HTMLElement): { destroy(): void } }> = {}

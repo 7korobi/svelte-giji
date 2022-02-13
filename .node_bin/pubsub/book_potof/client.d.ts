@@ -3,6 +3,7 @@ import type { BookPotof } from '../map-reduce';
 export declare const potofs: {
   name?: string;
   qid: (ids: ObjectId[]) => string;
+  index?: (_id: ObjectId | `${string}-${number}-${number}`) => string;
   format: () => {
     list: BookPotof[];
   };

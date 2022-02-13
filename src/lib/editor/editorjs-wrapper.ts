@@ -3,7 +3,7 @@ import type { EditorConfig, OutputData } from '@editorjs/editorjs'
 import { writable } from 'svelte/store'
 import type { Readable, Writable } from 'svelte/store'
 
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 
 export type SvelteEditorConfig = Omit<EditorConfig, 'holder' | 'holderId'>
 

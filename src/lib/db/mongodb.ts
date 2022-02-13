@@ -1,5 +1,5 @@
 import type { DeleteResult, Document, ModifyResult } from 'mongodb'
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import { Collection, MongoClient } from 'mongodb'
 
 let client: MongoClient

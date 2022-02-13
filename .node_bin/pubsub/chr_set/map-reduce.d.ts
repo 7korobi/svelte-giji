@@ -70,7 +70,8 @@ export declare const ChrSets: {
   clear: () => void;
   add: (docs: ChrSet[], init?: (doc: ChrSet) => void) => void;
   del: (ids: ('ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf')[]) => void;
-  find: (id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf') => ChrSet;
+  find: (_id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf') => ChrSet;
+  index: (_id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf') => unknown;
   reduce: <EMIT>(
     ids: ('ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf')[],
     emit: (o: EMIT) => void
@@ -139,7 +140,7 @@ export declare const ChrNpcs: {
     )[]
   ) => void;
   find: (
-    id:
+    _id:
       | `ririnra_${string}`
       | `all_${string}`
       | `mad_${string}`
@@ -152,6 +153,20 @@ export declare const ChrNpcs: {
       | `wa_${string}`
       | `sf_${string}`
   ) => ChrNpc;
+  index: (
+    _id:
+      | `ririnra_${string}`
+      | `all_${string}`
+      | `mad_${string}`
+      | `time_${string}`
+      | `ger_${string}`
+      | `fable_${string}`
+      | `animal_${string}`
+      | `school_${string}`
+      | `changed_${string}`
+      | `wa_${string}`
+      | `sf_${string}`
+  ) => unknown;
   reduce: <EMIT>(
     ids: (
       | `ririnra_${string}`
@@ -264,7 +279,7 @@ export declare const ChrJobs: {
     )[]
   ) => void;
   find: (
-    id:
+    _id:
       | `ririnra_${string}`
       | `all_${string}`
       | `mad_${string}`
@@ -277,6 +292,20 @@ export declare const ChrJobs: {
       | `wa_${string}`
       | `sf_${string}`
   ) => ChrJob;
+  index: (
+    _id:
+      | `ririnra_${string}`
+      | `all_${string}`
+      | `mad_${string}`
+      | `time_${string}`
+      | `ger_${string}`
+      | `fable_${string}`
+      | `animal_${string}`
+      | `school_${string}`
+      | `changed_${string}`
+      | `wa_${string}`
+      | `sf_${string}`
+  ) => unknown;
   reduce: <EMIT>(
     ids: (
       | `ririnra_${string}`

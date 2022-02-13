@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 import { dev } from '$app/env'
 import { Folders } from '$lib/pubsub/map-reduce'
-import pointer from '$lib/pointer'
+import pointer from 'svelte-pointer-tracker'
 import { sameSites, url } from '$lib/site/store'
 
 if (dev) {

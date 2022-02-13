@@ -6,8 +6,8 @@ import {
   reduce_oldlogs_stories
 } from '$lib/pubsub/poll'
 import { Erase } from '$lib/icon'
-import Poll from '$lib/storage/poll.svelte'
-import { Location } from '$lib/uri'
+import Poll from 'svelte-storage/poll.svelte'
+import { Location } from 'svelte-bind-uri'
 import { default_stories_query } from '$lib/pubsub/model-client'
 
 import * as site from '../store'

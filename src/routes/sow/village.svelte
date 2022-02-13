@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { BookStory } from '$lib/pubsub/map-reduce'
-import { Pager } from '$lib/scroll'
+import { Pager } from 'svelte-scroll-observe'
 import { default_stories_query } from '$lib/pubsub/model-client'
 import { page } from '$app/stores'
-import { Post, Report } from '$lib/site/chat'
+import { Banner, Post, Report } from '$lib/site/chat'
 import Mark from '$lib/site/inline/mark.svelte'
 import { Strong } from '$lib/design'
 import OldlogFinder from '$lib/site/chats/oldlog-finder.svelte'
@@ -26,7 +26,16 @@ let at_page: number
 </Post>
 
 <OldlogFinder refresh={$page} bind:hash bind:regexp bind:params bind:list>
-  <Pager chunk={10} bind:page={at_page} bind:focus={hash} bind:list let:item={o}>
+  <Pager
+    chunk={10}
+    bind:page={at_page}
+    bind:focus={hash}
+    bind:list
+    id={(item) => item._id}
+    base={(item) => item.event_id}
+    let:item={o}
+  >
+    <Banner slot="page" let:page>{`p${page}`}</Banner>
     <Report handle="TITLE">
       <p class="name">
         <sup class="pull-right">{o.sow_auth_id}</sup>

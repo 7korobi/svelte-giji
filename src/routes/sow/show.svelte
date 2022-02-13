@@ -1,7 +1,7 @@
 <script lang="ts">
 import { page } from '$app/stores'
 import { default_story_query } from '$lib/pubsub/model-client'
-import { Pager } from '$lib/scroll'
+import { Pager } from 'svelte-scroll-observe'
 import {
   oldlog_stories,
   oldlog_events,
@@ -10,7 +10,7 @@ import {
   oldlog_stats
 } from '$lib/pubsub/poll'
 
-import { Chat } from '$lib/site/chat'
+import { Banner, Chat } from '$lib/site/chat'
 import OldlogViewer from '$lib/site/chats/oldlog-viewer.svelte'
 import { sideframe, toastframe } from '$lib/site/store'
 
@@ -36,8 +36,12 @@ $: console.log('oldlog_stats', $oldlog_stats)
     list={messages || []}
     bind:page={now_page}
     bind:focus={params.idx}
-    let:item={{ _id, show, handle, face_id, deco, log, to, name, story, phase }}
+    id={(item) => item._id}
+    base={(item) => item.event_id}
+    let:item
   >
+    {@const { _id, show, handle, face_id, deco, log, to, name, story, phase } = item}
+    <Banner slot="page" let:page>{`p${page}`}</Banner>
     <Chat {...{ _id, show, handle, face_id, deco, log, to, name, story, phase }} />
   </Pager>
 </OldlogViewer>

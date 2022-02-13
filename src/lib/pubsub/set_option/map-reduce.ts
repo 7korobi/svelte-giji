@@ -1,5 +1,5 @@
 import type { presentation } from '../_type/string'
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/set_option.json'
 
 export type OPTION_ID = keyof typeof json

@@ -13,9 +13,10 @@ export declare const RoleTables: {
   add: (docs: RoleTable[], init?: (doc: RoleTable) => void) => void;
   del: (
     ids: (
-      | 'ultimate'
       | 'lover'
       | 'hamster'
+      | 'secret'
+      | 'ultimate'
       | 'custom'
       | 'default'
       | 'mistery'
@@ -25,14 +26,14 @@ export declare const RoleTables: {
       | 'wbbs_c'
       | 'wbbs_f'
       | 'wbbs_g'
-      | 'secret'
     )[]
   ) => void;
   find: (
-    id:
-      | 'ultimate'
+    _id:
       | 'lover'
       | 'hamster'
+      | 'secret'
+      | 'ultimate'
       | 'custom'
       | 'default'
       | 'mistery'
@@ -42,13 +43,29 @@ export declare const RoleTables: {
       | 'wbbs_c'
       | 'wbbs_f'
       | 'wbbs_g'
-      | 'secret'
   ) => RoleTable;
+  index: (
+    _id:
+      | 'lover'
+      | 'hamster'
+      | 'secret'
+      | 'ultimate'
+      | 'custom'
+      | 'default'
+      | 'mistery'
+      | 'random'
+      | 'test1st'
+      | 'test2nd'
+      | 'wbbs_c'
+      | 'wbbs_f'
+      | 'wbbs_g'
+  ) => unknown;
   reduce: <EMIT>(
     ids: (
-      | 'ultimate'
       | 'lover'
       | 'hamster'
+      | 'secret'
+      | 'ultimate'
       | 'custom'
       | 'default'
       | 'mistery'
@@ -58,7 +75,6 @@ export declare const RoleTables: {
       | 'wbbs_c'
       | 'wbbs_f'
       | 'wbbs_g'
-      | 'secret'
     )[],
     emit: (o: EMIT) => void
   ) => import('svelte-map-reduce-store/fast-sort').SortCmd<RoleTable & EMIT>;
@@ -70,9 +86,10 @@ export declare const RoleTables: {
   ) => {
     reduce: <EMIT_1>(
       ids: (
-        | 'ultimate'
         | 'lover'
         | 'hamster'
+        | 'secret'
+        | 'ultimate'
         | 'custom'
         | 'default'
         | 'mistery'
@@ -82,7 +99,6 @@ export declare const RoleTables: {
         | 'wbbs_c'
         | 'wbbs_f'
         | 'wbbs_g'
-        | 'secret'
       )[],
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<RoleTable & EMIT_1>;

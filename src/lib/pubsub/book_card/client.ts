@@ -1,7 +1,7 @@
 import type { BookCard, BOOK_CARD_ID } from '../map-reduce'
 import { Ables, Roles } from '../map-reduce'
 import { model } from '$lib/db/socket.io-client'
-import { dic } from '$lib/map-reduce'
+import { dic } from 'svelte-map-reduce-store'
 
 export const cards = model({
   qid: (ids: BOOK_CARD_ID[]) => ids.toString(),

@@ -1,9 +1,8 @@
 import { derived, writable } from 'svelte/store'
 
-import { writeHistory } from '$lib/storage'
-import { writeLocal } from '$lib/storage'
-import { portal, __BROWSER__ } from '$lib/common'
-import { Bits } from '$lib/common'
+import { writeHistory, writeLocal } from 'svelte-storage'
+import { portal, __BROWSER__ } from 'svelte-petit-utils'
+import { Bits } from 'svelte-petit-utils'
 
 type Topic = {
   page: {

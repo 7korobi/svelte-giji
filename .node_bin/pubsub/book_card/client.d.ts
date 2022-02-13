@@ -9,6 +9,13 @@ export declare const cards: {
       | `${string}-${number}-${number}-request`
     )[]
   ) => string;
+  index?: (
+    _id:
+      | `${string}-${number}-${number}-role`
+      | `${string}-${number}-${number}-gift`
+      | `${string}-${number}-${number}-select`
+      | `${string}-${number}-${number}-live`
+  ) => string;
   format: () => {
     list: BookCard[];
   };

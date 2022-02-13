@@ -68,8 +68,9 @@ export declare type LogType = typeof LogType[number];
 export declare type SubType = typeof SubType[number];
 export declare type GroupType = typeof GroupType[number];
 declare const phase_data: {
-  readonly DEL: readonly [true, ' ', 'private', '-', '-'];
+  readonly DEL: readonly [true, ' ', 'DEL', '-', '-'];
   readonly AIM: readonly [true, '-', 'AIM', '内緒', '内緒話'];
+  readonly '-S': readonly [true, ' ', 'DEL', '-', '-'];
   readonly mS: readonly [true, '#', 'MAKER', '村建', '村建て発言'];
   readonly mA: readonly [true, ' ', 'MAKER', '村建', '村建てACT'];
   readonly aS: readonly [true, '%', 'ADMIN', '管理', '管理発言'];
@@ -77,18 +78,25 @@ declare const phase_data: {
   readonly cI: readonly [true, ' ', 'TITLE', '出演', '出演一覧'];
   readonly iI: readonly [true, ' ', 'private', '活動', '秘匿活動'];
   readonly II: readonly [true, ' ', 'public', '活動', '公開活動'];
+  readonly DS: readonly [true, '', 'DEL', '削除', '削除発言'];
   readonly SS: readonly [true, '', 'SSAY', '会話', '通常の発言'];
   readonly SA: readonly [true, ' ', 'SSAY', '会話', '通常ACT'];
+  readonly SB: readonly [true, ' ', 'SSAY', '会話', '通常の栞'];
+  readonly SM: readonly [true, ' ', 'SSAY', '会話', '通常のメモ'];
   readonly VS: readonly [true, '@', 'VSSAY', '見物', '見物人発言'];
   readonly VA: readonly [true, ' ', 'VSSAY', '見物', '見物人のACT'];
+  readonly VB: readonly [true, ' ', 'VSSAY', '見物', '見物人の栞'];
+  readonly VM: readonly [true, ' ', 'VSSAY', '見物', '見物人のメモ'];
   readonly TS: readonly [true, '-', 'TSAY', '独言', '独り言'];
   readonly TA: readonly [true, ' ', 'TSAY', '栞', '栞'];
   readonly GS: readonly [true, '+', 'GSAY', '墓下', '墓下の発言'];
   readonly GA: readonly [true, ' ', 'GSAY', '墓下', '墓下のACT'];
+  readonly GM: readonly [true, ' ', 'GSAY', '墓下', '墓下のメモ'];
   readonly PS: readonly [true, '=', 'PSAY', '共鳴', '共鳴の会話'];
   readonly PA: readonly [true, ' ', 'PSAY', '共鳴', '共鳴のACT'];
   readonly WS: readonly [true, '*', 'WSAY', '人狼', '人狼のささやき'];
   readonly WA: readonly [true, ' ', 'WSAY', '人狼', '人狼のACT'];
+  readonly WM: readonly [true, ' ', 'WSAY', '人狼', '人狼のメモ'];
   readonly XS: readonly [true, '!', 'XSAY', '念波', '念話（念波の民）'];
   readonly XA: readonly [true, ' ', 'XSAY', '念波', '念act（念波の民）'];
   readonly BS: readonly [true, '!', 'XSAY', '念波', '念話（蝙蝠人間）'];
@@ -147,6 +155,7 @@ export declare const Phases: {
     ids: (
       | 'AIM'
       | 'DEL'
+      | '-S'
       | 'mS'
       | 'mA'
       | 'aS'
@@ -154,18 +163,25 @@ export declare const Phases: {
       | 'cI'
       | 'iI'
       | 'II'
+      | 'DS'
       | 'SS'
       | 'SA'
+      | 'SB'
+      | 'SM'
       | 'VS'
       | 'VA'
+      | 'VB'
+      | 'VM'
       | 'TS'
       | 'TA'
       | 'GS'
       | 'GA'
+      | 'GM'
       | 'PS'
       | 'PA'
       | 'WS'
       | 'WA'
+      | 'WM'
       | 'XS'
       | 'XA'
       | 'BS'
@@ -173,9 +189,10 @@ export declare const Phases: {
     )[]
   ) => void;
   find: (
-    id:
+    _id:
       | 'AIM'
       | 'DEL'
+      | '-S'
       | 'mS'
       | 'mA'
       | 'aS'
@@ -183,27 +200,35 @@ export declare const Phases: {
       | 'cI'
       | 'iI'
       | 'II'
+      | 'DS'
       | 'SS'
       | 'SA'
+      | 'SB'
+      | 'SM'
       | 'VS'
       | 'VA'
+      | 'VB'
+      | 'VM'
       | 'TS'
       | 'TA'
       | 'GS'
       | 'GA'
+      | 'GM'
       | 'PS'
       | 'PA'
       | 'WS'
       | 'WA'
+      | 'WM'
       | 'XS'
       | 'XA'
       | 'BS'
       | 'BA'
   ) => BookPhase;
-  reduce: <EMIT>(
-    ids: (
+  index: (
+    _id:
       | 'AIM'
       | 'DEL'
+      | '-S'
       | 'mS'
       | 'mA'
       | 'aS'
@@ -211,18 +236,61 @@ export declare const Phases: {
       | 'cI'
       | 'iI'
       | 'II'
+      | 'DS'
       | 'SS'
       | 'SA'
+      | 'SB'
+      | 'SM'
       | 'VS'
       | 'VA'
+      | 'VB'
+      | 'VM'
       | 'TS'
       | 'TA'
       | 'GS'
       | 'GA'
+      | 'GM'
       | 'PS'
       | 'PA'
       | 'WS'
       | 'WA'
+      | 'WM'
+      | 'XS'
+      | 'XA'
+      | 'BS'
+      | 'BA'
+  ) => unknown;
+  reduce: <EMIT>(
+    ids: (
+      | 'AIM'
+      | 'DEL'
+      | '-S'
+      | 'mS'
+      | 'mA'
+      | 'aS'
+      | 'aA'
+      | 'cI'
+      | 'iI'
+      | 'II'
+      | 'DS'
+      | 'SS'
+      | 'SA'
+      | 'SB'
+      | 'SM'
+      | 'VS'
+      | 'VA'
+      | 'VB'
+      | 'VM'
+      | 'TS'
+      | 'TA'
+      | 'GS'
+      | 'GA'
+      | 'GM'
+      | 'PS'
+      | 'PA'
+      | 'WS'
+      | 'WA'
+      | 'WM'
       | 'XS'
       | 'XA'
       | 'BS'
@@ -240,6 +308,7 @@ export declare const Phases: {
       ids: (
         | 'AIM'
         | 'DEL'
+        | '-S'
         | 'mS'
         | 'mA'
         | 'aS'
@@ -247,18 +316,25 @@ export declare const Phases: {
         | 'cI'
         | 'iI'
         | 'II'
+        | 'DS'
         | 'SS'
         | 'SA'
+        | 'SB'
+        | 'SM'
         | 'VS'
         | 'VA'
+        | 'VB'
+        | 'VM'
         | 'TS'
         | 'TA'
         | 'GS'
         | 'GA'
+        | 'GM'
         | 'PS'
         | 'PA'
         | 'WS'
         | 'WA'
+        | 'WM'
         | 'XS'
         | 'XA'
         | 'BS'

@@ -18,7 +18,7 @@ import type {
   BookCardRole
 } from '../map-reduce'
 import { Phases } from '../map-reduce'
-import { MapReduce } from '$lib/map-reduce'
+import { MapReduce } from 'svelte-map-reduce-store'
 import { url } from '$lib/site/store'
 import { Faces, Roles, ChrJobs } from '../map-reduce'
 import {

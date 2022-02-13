@@ -1,7 +1,7 @@
-import type { DIC } from '$lib/map-reduce'
+import type { DIC } from 'svelte-map-reduce-store'
 import type { presentation } from '../_type/string'
 
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/set_ables.json'
 
 export type ABLE_ID = keyof typeof json

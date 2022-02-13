@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Search } from '$lib/icon'
-import { instanceId } from './util'
+import { instanceId } from 'svelte-petit-utils'
 
 const escape_target = new RegExp(`(${[...'$?*^+.|(){}[]'].map((c) => `\\${c}`).join('|')})`, 'g')
 const form_id = instanceId()

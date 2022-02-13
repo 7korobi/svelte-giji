@@ -1,15 +1,12 @@
-import type { STORY_ID } from '../book_story/map-reduce';
-import type { RoleType, LiveType } from '../_type/enum';
 import type { AccountID, FaceID } from '../_type/id';
-import type { presentation } from '../_type/string';
-import type { FOLDER_IDX, MESSAGE_TYPE_IDX, MesType } from '../map-reduce';
+import type { Role, MesType, LIVE_ID, ROLE_ID, BOOK_STORY_ID } from '../map-reduce';
 export declare type MessageForFace = {
   _id: {
     face_id: FaceID;
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
   max: number;
   all: number;
   count: number;
@@ -17,11 +14,12 @@ export declare type MessageForFace = {
 export declare type MessageForFaceMestype = {
   _id: {
     face_id: FaceID;
-    mestype: MESSAGE_TYPE_IDX;
+    mestype: MesType;
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
+  per: number;
   max: number;
   all: number;
   count: number;
@@ -33,7 +31,7 @@ export declare type MessageForFaceSowAuth = {
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
   max: number;
   all: number;
   count: number;
@@ -45,7 +43,7 @@ export declare type MessageForFaceLive = {
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
   max: number;
   all: number;
   count: number;
@@ -57,7 +55,7 @@ export declare type MessageForFaceRole = {
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
   max: number;
   all: number;
   count: number;
@@ -68,7 +66,7 @@ export declare type PotofForFace = {
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
 };
 export declare type PotofForFaceSowAuthMax = {
   _id: {
@@ -77,46 +75,31 @@ export declare type PotofForFaceSowAuthMax = {
   };
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
   count: number;
 };
 export declare type PotofForFaceRole = {
   _id: {
     face_id: FaceID;
-    role_id: RoleType;
+    role_id: ROLE_ID;
   };
+  role: Role;
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
+  story_ids: BOOK_STORY_ID[];
 };
 export declare type PotofForFaceLive = {
   _id: {
     face_id: FaceID;
-    live: LiveType;
+    live: LIVE_ID;
   };
+  live: Role;
   date_min: Date;
   date_max: Date;
-  story_ids: STORY_ID[];
-};
-export declare type Aggregate = {
-  folders: FOLDER_IDX;
-  roles: RoleType[];
-  lives: LiveType[];
-  sow_auths: presentation[];
-  mestypes: MesType[];
-  log: {
-    story_ids: STORY_ID[];
-    date_max: Date;
-    date_min: Date;
-  };
-  fav: {
-    _id: {
-      sow_auth_id?: presentation;
-    };
-    count: number;
-  };
+  story_ids: BOOK_STORY_ID[];
 };
 export declare const potof_for_faces: {
+  index?: (_id: { face_id: FaceID }) => unknown;
   format: () => {
     list: PotofForFace[];
   };

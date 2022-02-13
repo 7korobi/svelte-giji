@@ -11,8 +11,9 @@ export type BaseF<T> = {
   list: T[]
 }
 
-export type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[]> = {
+export type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[], Index> = {
   format: () => F
+  index?: (_id: F['list'][number]['_id']) => Index
   initialize?: (doc: F['list'][number]) => void
   reduce: (o: F, doc: F['list'][number]) => void
   order: (o: F, utils: typeof OrderUtils, ...args: OrderArgs) => void
@@ -54,13 +55,14 @@ export function lookup<F, OrderArgs extends any[]>(o: LookupProps<F, OrderArgs>)
   }
 }
 
-export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
+export function MapReduce<F extends BaseF<any>, OrderArgs extends any[], Index>({
   format,
+  index = (_id: F['list'][number]['_id']) => _id,
   initialize = nop,
   reduce,
   order,
   start
-}: MapReduceProps<F, OrderArgs>) {
+}: MapReduceProps<F, OrderArgs, Index>) {
   const children = new Map<
     string,
     {
@@ -70,13 +72,26 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
       del(ids: F['list'][number]['_id'][]): void
     }
   >()
-  const map = new Map<F['list'][number]['_id'], F['list'][number]>()
+  const map = new Map<Index, F['list'][number]>()
   const data = format()
-  const find = (id: F['list'][number]['_id']) => map.get(id)
+  const find = (_id: F['list'][number]['_id']) => map.get(index(_id))
   const { subscribe, set } = writable<F>(format(), __BROWSER__ ? start : undefined)
   let sArgs = [] as OrderArgs
 
-  return { deploy, clear, add, del, find, reduce: doReduce, filter, sort, format, data, subscribe }
+  return {
+    deploy,
+    clear,
+    add,
+    del,
+    find,
+    index,
+    reduce: doReduce,
+    filter,
+    sort,
+    format,
+    data,
+    subscribe
+  }
 
   function sort(...sa: OrderArgs) {
     if (order) order(data, { sort: dic.sort, group_sort: dic.group_sort }, ...(sArgs = sa))
@@ -106,7 +121,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
     return query
 
     function query(...filter_args: A) {
-      const child = MapReduce({ format, reduce, order })
+      const child = MapReduce({ index, format, reduce, order })
 
       children.set(key, { validator, filter_args, add: child.add, del: child.del })
       // child.clear()
@@ -126,11 +141,11 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
     ids: F['list'][number]['_id'][],
     emit: (o: EMIT) => void
   ): SortCmd<F['list'][number] & EMIT> {
-    const map = new Map<F['list'][number]['_id'], F['list'][number]>()
-    for (const id of ids) {
-      const item = find(id)
+    const map = new Map<Index, F['list'][number]>()
+    for (const _id of ids) {
+      const item = find(_id)
       if (!item) continue
-      map.set(id, { ...item })
+      map.set(index(_id), { ...item })
     }
     const list = [...map.values()]
     for (const item of list) {
@@ -147,16 +162,14 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   function add(docs: F['list'], init = initialize) {
     let is_update = false
     for (const doc of docs) {
-      const id = doc._id
-
-      if (find(id)) {
+      if (find(doc._id)) {
         is_update = true
       } else {
         data.list.push(doc)
         init && init(doc)
         reduce(data, doc)
       }
-      map.set(id, doc)
+      map.set(index(doc._id), doc)
     }
     if (is_update) full_calculate()
     sort(...sArgs)
@@ -168,8 +181,8 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
 
   function del(ids: F['list'][number]['_id'][]) {
     let is_update = false
-    for (const id of ids) {
-      if (map.delete(id)) is_update = true
+    for (const _id of ids) {
+      if (map.delete(index(_id))) is_update = true
     }
     if (is_update) full_calculate()
     set(data)

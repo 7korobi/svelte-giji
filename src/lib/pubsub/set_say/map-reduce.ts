@@ -1,4 +1,4 @@
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/set_says.json'
 import type { presentation } from '../_type/string'
 

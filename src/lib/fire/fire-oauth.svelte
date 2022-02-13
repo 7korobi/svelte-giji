@@ -26,7 +26,7 @@ function initOAuth($app) {
 </script>
 
 <script lang="ts">
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 import { Facebook, Twitter, Windows, Google, Github, Logout } from '$lib/icon'
 
 $: if ($user) console.log($user)

@@ -17,9 +17,9 @@
   console.log( to_msec("5分間") )
   console.log( to_msec("2分半") )
 </script>
-<Time at="{$tickMinutely.next_at}" />
-<Time at="{$tickHourly.next_at}" />
-<Time at="{$tickDaily.next_at}" />
-<Time at="{$tickWeekly.next_at}" />
-<Time at="{$tickMonthly.next_at}" />
+<time at="{$tickMinutely.next_at}" />
+<time at="{$tickHourly.next_at}" />
+<time at="{$tickDaily.next_at}" />
+<time at="{$tickWeekly.next_at}" />
+<time at="{$tickMonthly.next_at}" />
 ```

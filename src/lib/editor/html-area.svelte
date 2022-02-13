@@ -1,6 +1,6 @@
 <script lang="ts">
 import { onDestroy } from 'svelte'
-import { __BROWSER__ } from '$lib/common'
+import { __BROWSER__ } from 'svelte-petit-utils'
 import * as Icon from '$lib/icon'
 import Undo from '$lib/icon/ui/undo.svelte'
 import { listen } from 'svelte/internal'

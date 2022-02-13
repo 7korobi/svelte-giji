@@ -2,7 +2,7 @@ import type { FirebaseApp, FirebaseOptions } from 'firebase/app'
 import type { User } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { writable } from 'svelte/store'
-import { writeLocal } from '$lib/storage'
+import { writeLocal } from 'svelte-storage'
 
 export const topicsAck = writeLocal<string[]>('fcmTopics', [])
 export const topics = writeLocal<string[]>('fcmTopicsReq', [])

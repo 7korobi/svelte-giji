@@ -13,6 +13,7 @@ export declare const Marks: {
   del: (
     ids: (
       | 'love'
+      | 'cat'
       | 'age_A'
       | 'age_B'
       | 'age_C'
@@ -30,14 +31,14 @@ export declare const Marks: {
       | 'sexy'
       | 'violence'
       | 'biohazard'
-      | 'cat'
       | 'music'
       | 'appare'
     )[]
   ) => void;
   find: (
-    id:
+    _id:
       | 'love'
+      | 'cat'
       | 'age_A'
       | 'age_B'
       | 'age_C'
@@ -55,13 +56,13 @@ export declare const Marks: {
       | 'sexy'
       | 'violence'
       | 'biohazard'
-      | 'cat'
       | 'music'
       | 'appare'
   ) => Mark;
-  reduce: <EMIT>(
-    ids: (
+  index: (
+    _id:
       | 'love'
+      | 'cat'
       | 'age_A'
       | 'age_B'
       | 'age_C'
@@ -79,7 +80,30 @@ export declare const Marks: {
       | 'sexy'
       | 'violence'
       | 'biohazard'
+      | 'music'
+      | 'appare'
+  ) => unknown;
+  reduce: <EMIT>(
+    ids: (
+      | 'love'
       | 'cat'
+      | 'age_A'
+      | 'age_B'
+      | 'age_C'
+      | 'age_D'
+      | 'age_Z'
+      | 'age_trial'
+      | 'age_education'
+      | 'age_reserve'
+      | 'crude'
+      | 'crime'
+      | 'drug'
+      | 'drunk'
+      | 'fear'
+      | 'gamble'
+      | 'sexy'
+      | 'violence'
+      | 'biohazard'
       | 'music'
       | 'appare'
     )[],
@@ -94,6 +118,7 @@ export declare const Marks: {
     reduce: <EMIT_1>(
       ids: (
         | 'love'
+        | 'cat'
         | 'age_A'
         | 'age_B'
         | 'age_C'
@@ -111,7 +136,6 @@ export declare const Marks: {
         | 'sexy'
         | 'violence'
         | 'biohazard'
-        | 'cat'
         | 'music'
         | 'appare'
       )[],

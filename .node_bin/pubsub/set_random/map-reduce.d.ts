@@ -57,7 +57,8 @@ export declare const Randoms: {
   clear: () => void;
   add: (docs: Random[], init?: (doc: Random) => void) => void;
   del: (ids: (string | number)[]) => void;
-  find: (id: string | number) => Random;
+  find: (_id: string | number) => Random;
+  index: (_id: string | number) => unknown;
   reduce: <EMIT>(ids: (string | number)[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Random & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Random, ...args: A) => boolean,

@@ -1,7 +1,7 @@
-import type { ARY, DIC } from '$lib/map-reduce'
+import type { ARY, DIC } from 'svelte-map-reduce-store'
 import type { presentation } from '../_type/string'
 import type { ChrJob, Tag } from '../map-reduce'
-import { MapReduce, dic } from '$lib/map-reduce'
+import { MapReduce, dic } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/chr_face.json'
 import { hira2kata, katakanaHead } from '$lib/unicode'
 
