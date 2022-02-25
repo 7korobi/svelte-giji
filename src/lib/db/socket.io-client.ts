@@ -21,15 +21,9 @@ type StoreQuery<F extends BaseF<BaseT<any>>, OrderArgs extends any[]> = Readable
 type StoreEntry<
   F extends BaseF<BaseT<any>>,
   OrderArgs extends any[],
-  MatchArgs extends any[],
-  Index
-> = QueryProps<MatchArgs> & MapReduceProps<F, OrderArgs, Index>
-export type BaseStoreEntry = StoreEntry<
-  BaseF<BaseT<any>>,
-  any[],
-  any[],
-  string | number | boolean | null
->
+  MatchArgs extends any[]
+> = QueryProps<MatchArgs> & MapReduceProps<F, OrderArgs>
+export type BaseStoreEntry = StoreEntry<BaseF<BaseT<any>>, any[], any[]>
 
 let STORE = {} as {
   [name: string]: BaseStoreEntry
@@ -41,23 +35,22 @@ const PubSubCache = {}
 export function model<
   F extends BaseF<BaseT<any>>,
   OrderArgs extends any[],
-  MatchArgs extends any[],
-  Index extends string
+  MatchArgs extends any[]
 >(
-  props: StoreEntry<F, OrderArgs, MatchArgs, Index>
+  props: StoreEntry<F, OrderArgs, MatchArgs>
 ): {
   name?: string
   qid: (...args: MatchArgs) => string
-  index?: (_id: F['list'][number]['_id']) => Index
+  index?: (_id: F['list'][number]['_id']) => string | number | boolean | null
   format: () => F
   reduce: (o: F, doc: F['list'][number]) => void
   order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void
 }
 
-export function model<F extends BaseF<BaseT<any>>, OrderArgs extends any[], Index>(
-  props: MapReduceProps<F, OrderArgs, Index>
+export function model<F extends BaseF<BaseT<any>>, OrderArgs extends any[]>(
+  props: MapReduceProps<F, OrderArgs>
 ): {
-  index?: (_id: F['list'][number]['_id']) => Index
+  index?: (_id: F['list'][number]['_id']) => string | number | boolean | null
   format: () => F
   reduce: (o: F, doc: F['list'][number]) => void
   order: (o: F, { sort, group_sort }: typeof OrderUtils, ...args: OrderArgs) => void
@@ -104,19 +97,14 @@ export async function fcm(token: string, appends: string[], deletes: string[]) {
   })
 }
 
-export function socket<
-  F extends BaseF<any>,
-  MatchArgs extends any[],
-  OrderArgs extends any[],
-  Index
->({
+export function socket<F extends BaseF<any>, MatchArgs extends any[], OrderArgs extends any[]>({
   name,
   qid,
   index = (_id) => _id,
   format,
   order,
   reduce
-}: StoreEntry<F, OrderArgs, MatchArgs, Index>): {
+}: StoreEntry<F, OrderArgs, MatchArgs>): {
   query(...args: MatchArgs): StoreQuery<F, OrderArgs>
   set?(docs: F['list'][number][]): void
   del?(ids: F['list'][number]['_id'][]): void
@@ -127,7 +115,7 @@ export function socket<
       console.log(api, PubSubCache[api])
       if (PubSubCache[api]) return PubSubCache[api]
 
-      const { subscribe, find, sort, add, del } = MapReduce<F, OrderArgs, Index>({
+      const { subscribe, find, sort, add, del } = MapReduce<F, OrderArgs>({
         index,
         format,
         order,

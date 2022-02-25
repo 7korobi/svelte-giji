@@ -11,9 +11,9 @@ export type BaseF<T> = {
   list: T[]
 }
 
-export type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[], Index> = {
+export type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[]> = {
   format: () => F
-  index?: (_id: F['list'][number]['_id']) => Index
+  index: (_id: F['list'][number]['_id']) => string | number | boolean | null
   initialize?: (doc: F['list'][number]) => void
   reduce: (o: F, doc: F['list'][number]) => void
   order: (o: F, utils: typeof OrderUtils, ...args: OrderArgs) => void
@@ -55,14 +55,14 @@ export function lookup<F, OrderArgs extends any[]>(o: LookupProps<F, OrderArgs>)
   }
 }
 
-export function MapReduce<F extends BaseF<any>, OrderArgs extends any[], Index>({
+export function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   format,
   index = (_id: F['list'][number]['_id']) => _id,
   initialize = nop,
   reduce,
   order,
   start
-}: MapReduceProps<F, OrderArgs, Index>) {
+}: MapReduceProps<F, OrderArgs>) {
   const children = new Map<
     string,
     {
@@ -72,7 +72,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[], Index>(
       del(ids: F['list'][number]['_id'][]): void
     }
   >()
-  const map = new Map<Index, F['list'][number]>()
+  const map = new Map<string | number | boolean | null, F['list'][number]>()
   const data = format()
   const find = (_id: F['list'][number]['_id']) => map.get(index(_id))
   const { subscribe, set } = writable<F>(format(), __BROWSER__ ? start : undefined)
@@ -141,7 +141,7 @@ export function MapReduce<F extends BaseF<any>, OrderArgs extends any[], Index>(
     ids: F['list'][number]['_id'][],
     emit: (o: EMIT) => void
   ): SortCmd<F['list'][number] & EMIT> {
-    const map = new Map<Index, F['list'][number]>()
+    const map = new Map<string | number | boolean | null, F['list'][number]>()
     for (const _id of ids) {
       const item = find(_id)
       if (!item) continue

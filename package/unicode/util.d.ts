@@ -1,0 +1,10 @@
+export declare const hiragana: RegExp;
+export declare const katakana: RegExp;
+export declare const allKana: RegExp;
+export declare const kanji: RegExp;
+export declare const Devanagari: RegExp;
+export declare const hiraganas: RegExp;
+export declare const katakanas: RegExp;
+export declare const allKanas: RegExp;
+export declare const kanjis: RegExp;
+export declare const Devanagaris: RegExp;

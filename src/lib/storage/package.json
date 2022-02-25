@@ -1,6 +1,6 @@
 {
   "name": "svelte-storage",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/storage",
   "license": "MIT",
   "type": "module",
@@ -10,14 +10,14 @@
     "storage"
   ],
   "devDependencies": {
-    "svelte-preprocess": "^4.10.3",
+    "svelte-preprocess": "^4.10.4",
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "dexie": "^3.2.0",
+    "dexie": "^3.2.1",
     "svelte": "^3.46.4",
     "svelte-browser": "^0.3.11",
-    "svelte-petit-utils": "^0.1.0",
+    "svelte-petit-utils": "^0.1.1",
     "svelte-timer": "^0.1.7",
     "tslib": "^2.3.1"
   },
@@ -26,7 +26,7 @@
     ".": "./index.js",
     "./dexie": "./dexie.js",
     "./history": "./history.js",
-    "./window-storage": "./window-storage.js",
-    "./poll.svelte": "./poll.svelte"
+    "./poll.svelte": "./poll.svelte",
+    "./window-storage": "./window-storage.js"
   }
 }

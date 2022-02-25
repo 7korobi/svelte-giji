@@ -1,6 +1,6 @@
 {
   "name": "svelte-scroll-observe",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/scroll",
   "license": "MIT",
   "type": "module",
@@ -11,13 +11,13 @@
     "observer"
   ],
   "devDependencies": {
-    "svelte-preprocess": "^4.10.3",
+    "svelte-preprocess": "^4.10.4",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "svelte": "^3.46.4",
     "svelte-browser": "^0.3.11",
-    "svelte-petit-utils": "^0.1.0",
+    "svelte-petit-utils": "^0.1.1",
     "tslib": "^2.3.1"
   },
   "exports": {

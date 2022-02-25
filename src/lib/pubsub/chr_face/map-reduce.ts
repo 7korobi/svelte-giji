@@ -3,7 +3,7 @@ import type { presentation } from '../_type/string'
 import type { ChrJob, Tag } from '../map-reduce'
 import { MapReduce, dic } from 'svelte-map-reduce-store'
 import json from '$lib/game/json/chr_face.json'
-import { hira2kata, katakanaHead } from '$lib/unicode'
+import { hira2kata, katakanaHead } from 'replace-characters'
 
 export type FacesFormat = {
   list: Face[]

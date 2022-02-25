@@ -1,0 +1,26 @@
+{
+  "name": "replace-characters",
+  "version": "0.1.0",
+  "homepage": "https://github.com/7korobi/svelte-giji/tree/master/src/lib/unicode",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "translate",
+    "unicode"
+  ],
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "tslib": "^2.3.1"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./index.js",
+    "./number-reader": "./number-reader.js",
+    "./number-replace": "./number-replace.js",
+    "./character-replace": "./character-replace.js",
+    "./util": "./util.js"
+  },
+  "svelte": "./index.js"
+}

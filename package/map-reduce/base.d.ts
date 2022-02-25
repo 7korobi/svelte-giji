@@ -6,9 +6,9 @@ export declare type BaseT<IdType> = {
 export declare type BaseF<T> = {
   list: T[];
 };
-export declare type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[], Index extends string> = {
+export declare type MapReduceProps<F extends BaseF<any>, OrderArgs extends any[]> = {
   format: () => F;
-  index?: (_id: F['list'][number]['_id']) => Index;
+  index: (_id: F['list'][number]['_id']) => string | number | boolean | null;
   initialize?: (doc: F['list'][number]) => void;
   reduce: (o: F, doc: F['list'][number]) => void;
   order: (o: F, utils: typeof OrderUtils, ...args: OrderArgs) => void;
@@ -36,20 +36,20 @@ export declare function lookup<F, OrderArgs extends any[]>(
     invalidate?: (value?: F) => void
   ) => import('svelte/store').Unsubscriber;
 };
-export declare function MapReduce<F extends BaseF<any>, OrderArgs extends any[], Index>({
+export declare function MapReduce<F extends BaseF<any>, OrderArgs extends any[]>({
   format,
   index,
   initialize,
   reduce,
   order,
   start
-}: MapReduceProps<F, OrderArgs, Index>): {
+}: MapReduceProps<F, OrderArgs>): {
   deploy: (json: any, init?: (doc: F['list'][number]) => void) => void;
   clear: () => void;
   add: (docs: F['list'], init?: (doc: F['list'][number]) => void) => void;
   del: (ids: F['list'][number]['_id'][]) => void;
   find: (_id: F['list'][number]['_id']) => F['list'][number];
-  index: (_id: F['list'][number]['_id']) => Index;
+  index: (_id: F['list'][number]['_id']) => string | number | boolean;
   reduce: <EMIT>(ids: F['list'][number]['_id'][], emit: (o: EMIT) => void) => SortCmd<F['list'][number] & EMIT>;
   filter: <A extends any[]>(
     validator: Validator<A, F>,

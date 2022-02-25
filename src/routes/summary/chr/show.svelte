@@ -3,11 +3,11 @@ import type { FaceID } from '$lib/pubsub/_type/id'
 
 import { Location } from 'svelte-bind-uri'
 import { Time } from 'svelte-tick-timer'
-import { Faces, Folders, Phases, Roles } from '$lib/pubsub/map-reduce'
+import { Faces, Phases } from '$lib/pubsub/map-reduce'
 import { by_face } from '$lib/pubsub/chr_face/query'
 import { Post, Report, Talk } from '$lib/site/chat'
 import { Btn, Strong } from '$lib/design'
-import { currency } from '$lib/unicode'
+import { currency } from 'replace-characters'
 
 const folder_handle = {
   offparty: 'FSAY',

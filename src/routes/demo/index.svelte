@@ -39,7 +39,7 @@ import {
   circleBlack,
   hex,
   digit
-} from '$lib/unicode'
+} from 'replace-characters'
 
 let value = `
 ココ2ndScr120P60P22.2FREECOOL5.17.1HDRHI-RESLOSSRESSSHVUHDVODPPVNEWSOSHCHVMVSDSSWCCLIDNGOKUPVS3D2K4K8Kサデ多解天交映無料前後再新初終生販声吹演投捕一二三遊左中右指走打禁空合満有月申割営配手字双ABCDEFGHIJKLMNOPQRSTUVWXYZ xP IC PA SA AB
