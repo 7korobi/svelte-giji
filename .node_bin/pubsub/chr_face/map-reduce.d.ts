@@ -23,7 +23,7 @@ export declare const Faces: {
   add: (docs: Face[], init?: (doc: Face) => void) => void;
   del: (ids: string[]) => void;
   find: (_id: string) => Face;
-  index: (_id: string) => unknown;
+  index: (_id: string) => string | number | boolean;
   reduce: <EMIT>(ids: string[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Face & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Face, ...args: A) => boolean,
@@ -33,7 +33,7 @@ export declare const Faces: {
   ) => {
     reduce: <EMIT_1>(ids: string[], emit: (o: EMIT_1) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Face & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Face[];
       remain: string[];
@@ -52,7 +52,7 @@ export declare const Faces: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Face, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Face[];
     remain: string[];

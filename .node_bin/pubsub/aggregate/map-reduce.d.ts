@@ -99,7 +99,9 @@ export declare type PotofForFaceLive = {
   story_ids: BOOK_STORY_ID[];
 };
 export declare const potof_for_faces: {
-  index?: (_id: { face_id: FaceID }) => unknown;
+  name?: string;
+  qid: (...args: any[]) => string;
+  index?: (_id: { face_id: FaceID }) => string | number | boolean;
   format: () => {
     list: PotofForFace[];
   };
@@ -119,6 +121,7 @@ export declare const potof_for_faces: {
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };

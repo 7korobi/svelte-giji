@@ -162,7 +162,7 @@ export declare const Folders: {
       | 'lobby'
       | 'offparty'
       | 'test'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'wolf'
@@ -212,7 +212,7 @@ export declare const Folders: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<BookFolder & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: BookFolder[];
       sameSites: Set<string>;
@@ -227,7 +227,7 @@ export declare const Folders: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: BookFolder, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: BookFolder[];
     sameSites: Set<string>;

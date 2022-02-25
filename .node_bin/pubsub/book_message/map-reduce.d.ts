@@ -259,7 +259,7 @@ export declare const Phases: {
       | 'XA'
       | 'BS'
       | 'BA'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'AIM'
@@ -343,7 +343,7 @@ export declare const Phases: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<BookPhase & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: BookPhase[];
     };
@@ -356,7 +356,7 @@ export declare const Phases: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: BookPhase, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: BookPhase[];
   };

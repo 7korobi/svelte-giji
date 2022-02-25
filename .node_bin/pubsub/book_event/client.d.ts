@@ -1,27 +1,21 @@
-import type { BookEvent } from '../map-reduce';
 export declare const events: {
   name?: string;
   qid: (ids: (`${string}-${number}-${number}` | `${string}-${number}-top`)[]) => string;
-  index?: (_id: `${string}-${number}-${number}` | `${string}-${number}-top`) => string;
-  format: () => {
-    list: BookEvent[];
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookEvent[];
-    },
-    doc: BookEvent
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookEvent[];
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };

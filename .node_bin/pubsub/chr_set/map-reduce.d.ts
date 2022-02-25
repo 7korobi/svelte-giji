@@ -71,7 +71,9 @@ export declare const ChrSets: {
   add: (docs: ChrSet[], init?: (doc: ChrSet) => void) => void;
   del: (ids: ('ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf')[]) => void;
   find: (_id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf') => ChrSet;
-  index: (_id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf') => unknown;
+  index: (
+    _id: 'ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf'
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: ('ririnra' | 'all' | 'mad' | 'time' | 'ger' | 'fable' | 'animal' | 'school' | 'changed' | 'wa' | 'sf')[],
     emit: (o: EMIT) => void
@@ -87,7 +89,7 @@ export declare const ChrSets: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<ChrSet & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: ChrSet[];
       by_label: ARY<ARY<ChrSet>>;
@@ -102,7 +104,7 @@ export declare const ChrSets: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: ChrSet, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: ChrSet[];
     by_label: ARY<ARY<ChrSet>>;
@@ -166,7 +168,7 @@ export declare const ChrNpcs: {
       | `changed_${string}`
       | `wa_${string}`
       | `sf_${string}`
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | `ririnra_${string}`
@@ -206,7 +208,7 @@ export declare const ChrNpcs: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<ChrNpc & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: ChrNpc[];
       chr_set: DIC<{
@@ -230,7 +232,7 @@ export declare const ChrNpcs: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: ChrNpc, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: ChrNpc[];
     chr_set: DIC<{
@@ -305,7 +307,7 @@ export declare const ChrJobs: {
       | `changed_${string}`
       | `wa_${string}`
       | `sf_${string}`
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | `ririnra_${string}`
@@ -345,7 +347,7 @@ export declare const ChrJobs: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<ChrJob & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: ChrJob[];
       face: DIC<ChrJob[]>;
@@ -360,7 +362,7 @@ export declare const ChrJobs: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: ChrJob, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: ChrJob[];
     face: DIC<ChrJob[]>;

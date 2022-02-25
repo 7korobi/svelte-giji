@@ -1,4 +1,3 @@
-import type { BookCard } from '../map-reduce';
 export declare const cards: {
   name?: string;
   qid: (
@@ -9,32 +8,21 @@ export declare const cards: {
       | `${string}-${number}-${number}-request`
     )[]
   ) => string;
-  index?: (
-    _id:
-      | `${string}-${number}-${number}-role`
-      | `${string}-${number}-${number}-gift`
-      | `${string}-${number}-${number}-select`
-      | `${string}-${number}-${number}-live`
-  ) => string;
-  format: () => {
-    list: BookCard[];
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookCard[];
-    },
-    doc: BookCard
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookCard[];
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };

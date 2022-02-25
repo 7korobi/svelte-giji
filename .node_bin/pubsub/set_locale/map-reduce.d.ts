@@ -12,7 +12,7 @@ export declare const Locales: {
   add: (docs: Locale[], init?: (doc: Locale) => void) => void;
   del: (ids: ('regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien')[]) => void;
   find: (_id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => Locale;
-  index: (_id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => unknown;
+  index: (_id: 'regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien') => string | number | boolean;
   reduce: <EMIT>(
     ids: ('regend' | 'heavy' | 'secret' | 'village' | 'complex' | 'orbit' | 'alien')[],
     emit: (o: EMIT) => void
@@ -28,7 +28,7 @@ export declare const Locales: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Locale & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Locale[];
     };
@@ -41,7 +41,7 @@ export declare const Locales: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Locale, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Locale[];
   };

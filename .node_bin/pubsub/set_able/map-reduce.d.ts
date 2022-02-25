@@ -422,7 +422,7 @@ export declare const Ables: {
       | 'disable_role'
       | 'disable_poison'
       | 'disable_analeptic'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'update'
@@ -626,7 +626,7 @@ export declare const Ables: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Able & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Able[];
       hide: Set<unknown>;
@@ -653,7 +653,7 @@ export declare const Ables: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Able, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Able[];
     hide: Set<unknown>;

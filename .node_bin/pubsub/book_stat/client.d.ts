@@ -1,33 +1,21 @@
-import type { BookStat } from '../map-reduce';
 export declare const stats: {
   name?: string;
   qid: (ids: `${string}-${number}-${number}-give`[]) => string;
-  index?: (
-    _id:
-      | `${string}-${number}-${number}`
-      | `${string}-${number}-top`
-      | `${string}-${number}-${number}-act`
-      | `${string}-${number}-${number}-commit`
-  ) => string;
-  format: () => {
-    list: BookStat[];
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookStat[];
-    },
-    doc: BookStat
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookStat[];
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };

@@ -19,7 +19,7 @@ export declare const potof_for_face: {
       face_id: string;
     }>
   ) => string;
-  index?: (_id: { face_id: string }) => string;
+  index?: (_id: { face_id: string }) => string | number | boolean;
   format: () => {
     list: PotofForFace[];
     by_face: DIC<PotofForFace>;
@@ -53,7 +53,7 @@ export declare const potof_for_face_role: {
       role_id: import('../map-reduce').ROLE_ID;
     }>
   ) => string;
-  index?: (_id: { face_id: string; role_id: import('../map-reduce').ROLE_ID }) => string;
+  index?: (_id: { face_id: string; role_id: import('../map-reduce').ROLE_ID }) => string | number | boolean;
   format: () => {
     list: PotofForFaceRole[];
     sum: number;
@@ -90,7 +90,7 @@ export declare const potof_for_face_live: {
   index?: (_id: {
     face_id: string;
     live: 'leave' | 'live' | 'executed' | 'victim' | 'cursed' | 'droop' | 'suicide' | 'feared' | 'suddendead';
-  }) => string;
+  }) => string | number | boolean;
   format: () => {
     list: PotofForFaceLive[];
     sum: number;
@@ -124,7 +124,7 @@ export declare const potof_for_face_sow_auth_max: {
       sow_auth_id: string;
     }>
   ) => string;
-  index?: (_id: { face_id: string; sow_auth_id: string }) => string;
+  index?: (_id: { face_id: string; sow_auth_id: string }) => string | number | boolean;
   format: () => {
     list: PotofForFaceSowAuthMax[];
     by_face: DIC<PotofForFaceSowAuthMax>;
@@ -157,7 +157,7 @@ export declare const message_for_face: {
       face_id: string;
     }>
   ) => string;
-  index?: (_id: { face_id: string }) => string;
+  index?: (_id: { face_id: string }) => string | number | boolean;
   format: () => {
     list: MessageForFace[];
     folder: (`${number}`[] & {
@@ -239,7 +239,7 @@ export declare const message_for_face_mestype: {
       | 'SPSAY'
       | 'SAY'
       | 'DELETED';
-  }) => string;
+  }) => string | number | boolean;
   format: () => {
     list: MessageForFaceMestype[];
   };
@@ -270,7 +270,7 @@ export declare const message_for_face_sow_auth: {
       sow_auth_id: string;
     }>
   ) => string;
-  index?: (_id: { face_id: string; sow_auth_id: string }) => string;
+  index?: (_id: { face_id: string; sow_auth_id: string }) => string | number | boolean;
   format: () => {
     list: MessageForFaceSowAuth[];
   };

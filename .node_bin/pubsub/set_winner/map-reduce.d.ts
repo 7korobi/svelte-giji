@@ -18,7 +18,7 @@ export declare const Winners: {
   ) => Winner;
   index: (
     _id: 'MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: ('MOB' | 'HUMAN' | 'WOLF' | 'PIXI' | 'EVIL' | 'HATER' | 'OTHER' | 'LOVER' | 'LONEWOLF' | 'GURU' | 'DISH' | 'NONE' | 'LEAVE')[],
     emit: (o: EMIT) => void
@@ -34,7 +34,7 @@ export declare const Winners: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Winner & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Winner[];
     };
@@ -47,7 +47,7 @@ export declare const Winners: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Winner, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Winner[];
   };

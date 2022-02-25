@@ -1,30 +1,22 @@
-import type { RANDOM_TYPE, Random } from '../map-reduce';
+import type { RANDOM_TYPE } from '../map-reduce';
 export declare const randoms: {
   name?: string;
   qid: (types: RANDOM_TYPE[]) => string;
-  index?: (_id: string | number) => string;
-  format: () => {
-    list: Random[];
-    sum: number;
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: Random[];
-      sum: number;
-    },
-    doc: Random
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: Random[];
-      sum: number;
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };

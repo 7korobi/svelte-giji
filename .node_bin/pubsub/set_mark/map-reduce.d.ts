@@ -82,7 +82,7 @@ export declare const Marks: {
       | 'biohazard'
       | 'music'
       | 'appare'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'love'
@@ -142,7 +142,7 @@ export declare const Marks: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Mark & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Mark[];
     };
@@ -155,7 +155,7 @@ export declare const Marks: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Mark, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Mark[];
   };

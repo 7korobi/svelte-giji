@@ -1,22 +1,15 @@
 import type { ObjectId } from 'mongodb';
-import type { BookPotof } from '../map-reduce';
 export declare const potofs: {
   name?: string;
   qid: (ids: ObjectId[]) => string;
-  index?: (_id: ObjectId | `${string}-${number}-${number}`) => string;
-  format: () => {
-    list: BookPotof[];
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookPotof[];
-    },
-    doc: BookPotof
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookPotof[];
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
@@ -24,7 +17,6 @@ export declare const potofs: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
     },
-    is_asc: boolean,
-    order: (o: BookPotof) => any
+    ...args: any[]
   ) => void;
 };

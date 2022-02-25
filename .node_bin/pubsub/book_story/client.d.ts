@@ -1,12 +1,4 @@
-import type { DIC } from 'svelte-map-reduce-store';
-import type { BookStory, MobRole, Mark, Game, SayLimit, Role, Option, ROLE_ID } from '../map-reduce';
-declare type CountBy = DIC<{
-  count: number;
-}>;
-declare type Counts = {
-  _id: string;
-  count: number;
-}[];
+import type { ROLE_ID } from '../map-reduce';
 export declare function default_story_query(): {
   search: string;
   idx: string;
@@ -108,281 +100,14 @@ export declare function default_stories_query(): {
 export declare const stories: {
   name?: string;
   qid: (ids: `${string}-${number}`[]) => string;
-  index?: (_id: `${string}-${number}`) => string;
-  format: () => {
-    list: BookStory[];
-    oldlog: DIC<BookStory[]>;
-    base: {
-      in_month: CountBy;
-      yeary: CountBy;
-      monthry: CountBy;
-      folder_id: CountBy;
-      upd_range: CountBy;
-      upd_at: CountBy;
-      sow_auth_id: CountBy;
-      mark: DIC<{
-        count: number;
-      }>;
-      size: CountBy;
-      say_limit: DIC<
-        {
-          count: number;
-        } & SayLimit
-      >;
-      game: DIC<
-        {
-          count: number;
-        } & Game
-      >;
-      option: DIC<
-        {
-          count: number;
-        } & Option
-      >;
-      mob_role: DIC<
-        {
-          count: number;
-        } & MobRole
-      >;
-      trap: DIC<
-        {
-          count: number;
-        } & Role
-      >;
-      config: DIC<
-        {
-          count: number;
-        } & Role
-      >;
-      discard: DIC<
-        {
-          count: number;
-        } & Role
-      >;
-    };
-    group: {
-      in_month: Counts;
-      yeary: Counts;
-      monthry: Counts;
-      folder_id: Counts;
-      upd_range: Counts;
-      upd_at: {
-        _id: string;
-        count: number;
-        at?: number;
-      }[];
-      sow_auth_id: Counts;
-      mark: ({
-        count: number;
-      } & Mark)[];
-      size: Counts;
-      say_limit: ({
-        count: number;
-      } & SayLimit)[];
-      game: ({
-        count: number;
-      } & Game)[];
-      option: ({
-        count: number;
-      } & Option)[];
-      mob_role: ({
-        count: number;
-      } & MobRole)[];
-      trap: ({
-        count: number;
-      } & Role)[];
-      config: ({
-        count: number;
-      } & Role)[];
-      discard: ({
-        count: number;
-      } & Role)[];
-    };
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookStory[];
-      oldlog: DIC<BookStory[]>;
-      base: {
-        in_month: CountBy;
-        yeary: CountBy;
-        monthry: CountBy;
-        folder_id: CountBy;
-        upd_range: CountBy;
-        upd_at: CountBy;
-        sow_auth_id: CountBy;
-        mark: DIC<{
-          count: number;
-        }>;
-        size: CountBy;
-        say_limit: DIC<
-          {
-            count: number;
-          } & SayLimit
-        >;
-        game: DIC<
-          {
-            count: number;
-          } & Game
-        >;
-        option: DIC<
-          {
-            count: number;
-          } & Option
-        >;
-        mob_role: DIC<
-          {
-            count: number;
-          } & MobRole
-        >;
-        trap: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-        config: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-        discard: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-      };
-      group: {
-        in_month: Counts;
-        yeary: Counts;
-        monthry: Counts;
-        folder_id: Counts;
-        upd_range: Counts;
-        upd_at: {
-          _id: string;
-          count: number;
-          at?: number;
-        }[];
-        sow_auth_id: Counts;
-        mark: ({
-          count: number;
-        } & Mark)[];
-        size: Counts;
-        say_limit: ({
-          count: number;
-        } & SayLimit)[];
-        game: ({
-          count: number;
-        } & Game)[];
-        option: ({
-          count: number;
-        } & Option)[];
-        mob_role: ({
-          count: number;
-        } & MobRole)[];
-        trap: ({
-          count: number;
-        } & Role)[];
-        config: ({
-          count: number;
-        } & Role)[];
-        discard: ({
-          count: number;
-        } & Role)[];
-      };
-    },
-    doc: BookStory
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookStory[];
-      oldlog: DIC<BookStory[]>;
-      base: {
-        in_month: CountBy;
-        yeary: CountBy;
-        monthry: CountBy;
-        folder_id: CountBy;
-        upd_range: CountBy;
-        upd_at: CountBy;
-        sow_auth_id: CountBy;
-        mark: DIC<{
-          count: number;
-        }>;
-        size: CountBy;
-        say_limit: DIC<
-          {
-            count: number;
-          } & SayLimit
-        >;
-        game: DIC<
-          {
-            count: number;
-          } & Game
-        >;
-        option: DIC<
-          {
-            count: number;
-          } & Option
-        >;
-        mob_role: DIC<
-          {
-            count: number;
-          } & MobRole
-        >;
-        trap: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-        config: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-        discard: DIC<
-          {
-            count: number;
-          } & Role
-        >;
-      };
-      group: {
-        in_month: Counts;
-        yeary: Counts;
-        monthry: Counts;
-        folder_id: Counts;
-        upd_range: Counts;
-        upd_at: {
-          _id: string;
-          count: number;
-          at?: number;
-        }[];
-        sow_auth_id: Counts;
-        mark: ({
-          count: number;
-        } & Mark)[];
-        size: Counts;
-        say_limit: ({
-          count: number;
-        } & SayLimit)[];
-        game: ({
-          count: number;
-        } & Game)[];
-        option: ({
-          count: number;
-        } & Option)[];
-        mob_role: ({
-          count: number;
-        } & MobRole)[];
-        trap: ({
-          count: number;
-        } & Role)[];
-        config: ({
-          count: number;
-        } & Role)[];
-        discard: ({
-          count: number;
-        } & Role)[];
-      };
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
@@ -390,133 +115,27 @@ export declare const stories: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
     },
-    order: {
-      search: string;
-      order: string;
-      folder_id: (
-        | 'wolf'
-        | 'ultimate'
-        | 'cabala'
-        | 'allstar'
-        | 'pretense'
-        | 'rp'
-        | 'morphe'
-        | 'soybean'
-        | 'ciel'
-        | 'perjury'
-        | 'xebec'
-        | 'dais'
-        | 'crazy'
-        | 'lobby'
-        | 'offparty'
-        | 'test'
-      )[];
-      monthry: string[];
-      upd_range: string[];
-      upd_at: string[];
-      sow_auth_id: string[];
-      mark: (
-        | 'love'
-        | 'cat'
-        | 'age_A'
-        | 'age_B'
-        | 'age_C'
-        | 'age_D'
-        | 'age_Z'
-        | 'age_trial'
-        | 'age_education'
-        | 'age_reserve'
-        | 'crude'
-        | 'crime'
-        | 'drug'
-        | 'drunk'
-        | 'fear'
-        | 'gamble'
-        | 'sexy'
-        | 'violence'
-        | 'biohazard'
-        | 'music'
-        | 'appare'
-      )[];
-      size: string[];
-      say_limit: (
-        | 'tiny'
-        | 'weak'
-        | 'juna'
-        | 'say1'
-        | 'say5x200'
-        | 'say5x300'
-        | 'saving'
-        | 'euro'
-        | 'wbbs'
-        | 'sow'
-        | 'vulcan'
-        | 'infinity'
-        | 'lobby'
-        | 'say5'
-        | 'weak_braid'
-        | 'juna_braid'
-        | 'vulcan_braid'
-        | 'infinity_braid'
-      )[];
-      game: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[];
-      option: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[];
-      trap: (
-        | 'blank'
-        | 'nothing'
-        | 'aprilfool'
-        | 'turnfink'
-        | 'turnfairy'
-        | 'eclipse'
-        | 'cointoss'
-        | 'force'
-        | 'miracle'
-        | 'prophecy'
-        | 'clamor'
-        | 'fire'
-        | 'nightmare'
-        | 'ghost'
-        | 'escape'
-        | 'seance'
-      )[];
-      discard: ROLE_ID[];
-      config: ROLE_ID[];
-    }
+    ...args: any[]
   ) => void;
 };
 export declare const story_summary: {
   name?: string;
   qid: (is_old: boolean) => string;
-  index?: (_id: `${string}-${number}`) => string;
-  format: () => {
-    list: BookStory[];
-    folder: DIC<{
-      list: BookStory[];
-    }>;
-  };
+  index?: (_id: any) => string | number | boolean;
+  format: () => import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>;
   reduce: (
-    o: {
-      list: BookStory[];
-      folder: DIC<{
-        list: BookStory[];
-      }>;
-    },
-    doc: BookStory
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
+    doc: import('svelte-map-reduce-store').BaseT<any>
   ) => void;
   order: (
-    o: {
-      list: BookStory[];
-      folder: DIC<{
-        list: BookStory[];
-      }>;
-    },
+    o: import('svelte-map-reduce-store').BaseF<import('svelte-map-reduce-store').BaseT<any>>,
     {
       sort,
       group_sort
     }: {
       sort: typeof import('svelte-map-reduce-store').sort;
       group_sort: typeof import('svelte-map-reduce-store').group_sort;
-    }
+    },
+    ...args: any[]
   ) => void;
 };
-export {};

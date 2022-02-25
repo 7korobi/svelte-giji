@@ -81,7 +81,7 @@ export declare const Tags: {
       | 'myth'
       | 'stratos'
       | 'shoji'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'all'
@@ -135,7 +135,7 @@ export declare const Tags: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Tag & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Tag[];
       base: DIC<
@@ -180,7 +180,7 @@ export declare const Tags: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Tag, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Tag[];
     base: DIC<

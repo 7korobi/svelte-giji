@@ -59,7 +59,7 @@ export declare const RoleTables: {
       | 'wbbs_c'
       | 'wbbs_f'
       | 'wbbs_g'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: (
       | 'lover'
@@ -103,7 +103,7 @@ export declare const RoleTables: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<RoleTable & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: RoleTable[];
     };
@@ -116,7 +116,7 @@ export declare const RoleTables: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: RoleTable, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: RoleTable[];
   };

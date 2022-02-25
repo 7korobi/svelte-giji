@@ -12,7 +12,9 @@ export declare const Options: {
   add: (docs: Option[], init?: (doc: Option) => void) => void;
   del: (ids: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[]) => void;
   find: (_id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk') => Option;
-  index: (_id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk') => unknown;
+  index: (
+    _id: 'entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk'
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: ('entrust' | 'select-role' | 'random-target' | 'seq-event' | 'show-id' | 'undead-talk' | 'aiming-talk')[],
     emit: (o: EMIT) => void
@@ -28,7 +30,7 @@ export declare const Options: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Option & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Option[];
     };
@@ -41,7 +43,7 @@ export declare const Options: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Option, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Option[];
   };

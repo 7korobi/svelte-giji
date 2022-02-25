@@ -18,7 +18,7 @@ export declare const Games: {
   ) => Game;
   index: (
     _id: 'TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER'
-  ) => unknown;
+  ) => string | number | boolean;
   reduce: <EMIT>(
     ids: ('TABULA' | 'LIVE_TABULA' | 'MILLERHOLLOW' | 'LIVE_MILLERHOLLOW' | 'TROUBLE' | 'MISTERY' | 'SECRET' | 'VOV' | 'GAMEMASTER')[],
     emit: (o: EMIT) => void
@@ -34,7 +34,7 @@ export declare const Games: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Game & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Game[];
     };
@@ -47,7 +47,7 @@ export declare const Games: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Game, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Game[];
   };

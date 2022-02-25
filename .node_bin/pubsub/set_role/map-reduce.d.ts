@@ -143,7 +143,7 @@ export declare const Roles: {
   add: (docs: Role[], init?: (doc: Role) => void) => void;
   del: (ids: ROLE_ID[]) => void;
   find: (_id: ROLE_ID) => Role;
-  index: (_id: ROLE_ID) => unknown;
+  index: (_id: ROLE_ID) => string | number | boolean;
   reduce: <EMIT>(ids: ROLE_ID[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Role & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Role, ...args: A) => boolean,
@@ -153,7 +153,7 @@ export declare const Roles: {
   ) => {
     reduce: <EMIT_1>(ids: ROLE_ID[], emit: (o: EMIT_1) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Role & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Role[];
       group: DIC<{
@@ -177,7 +177,7 @@ export declare const Roles: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Role, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Role[];
     group: DIC<{

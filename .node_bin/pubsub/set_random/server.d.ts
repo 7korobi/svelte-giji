@@ -17,7 +17,7 @@ export declare const randoms:
           choice: string;
           year?: number;
           number?: number;
-          rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+          rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
           suite?: '' | '♢' | '♡' | '♣' | '♠';
           roman?:
             | 'II'
@@ -61,7 +61,7 @@ export declare const randoms:
           choice: string;
           year?: number;
           number?: number;
-          rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+          rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
           suite?: '' | '♢' | '♡' | '♣' | '♠';
           roman?:
             | 'II'
@@ -103,7 +103,7 @@ export declare const randoms:
             choice: string;
             year?: number;
             number?: number;
-            rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+            rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
             suite?: '' | '♢' | '♡' | '♣' | '♠';
             roman?:
               | 'II'
@@ -142,7 +142,7 @@ export declare const randoms:
         choice: string;
         year?: number;
         number?: number;
-        rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+        rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
         suite?: '' | '♢' | '♡' | '♣' | '♠';
         roman?:
           | 'II'
@@ -179,7 +179,7 @@ export declare const randoms:
         choice: string;
         year?: number;
         number?: number;
-        rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+        rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
         suite?: '' | '♢' | '♡' | '♣' | '♠';
         roman?:
           | 'II'
@@ -216,7 +216,7 @@ export declare const randoms:
           choice: string;
           year?: number;
           number?: number;
-          rank?: '' | 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+          rank?: '' | 'A' | '3' | '4' | '5' | '6' | '2' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
           suite?: '' | '♢' | '♡' | '♣' | '♠';
           roman?:
             | 'II'

@@ -58,7 +58,7 @@ export declare const Randoms: {
   add: (docs: Random[], init?: (doc: Random) => void) => void;
   del: (ids: (string | number)[]) => void;
   find: (_id: string | number) => Random;
-  index: (_id: string | number) => unknown;
+  index: (_id: string | number) => string | number | boolean;
   reduce: <EMIT>(ids: (string | number)[], emit: (o: EMIT) => void) => import('svelte-map-reduce-store/fast-sort').SortCmd<Random & EMIT>;
   filter: <A extends any[]>(
     validator: (o: Random, ...args: A) => boolean,
@@ -71,7 +71,7 @@ export declare const Randoms: {
       emit: (o: EMIT_1) => void
     ) => import('svelte-map-reduce-store/fast-sort').SortCmd<Random & EMIT_1>;
     filter: any;
-    sort: () => void;
+    sort: (...sa: any[]) => void;
     data: {
       list: Random[];
       count: number;
@@ -90,7 +90,7 @@ export declare const Randoms: {
     ) => import('svelte/store').Unsubscriber;
     validator: (o: Random, ...args: A) => boolean;
   };
-  sort: () => void;
+  sort: (...sa: any[]) => void;
   format: () => {
     list: Random[];
     count: number;
