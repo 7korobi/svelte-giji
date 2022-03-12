@@ -1,14 +1,14 @@
-import fs from 'fs';
-import sass from 'sass';
-import YAML from 'js-yaml';
+import fs from "fs";
+import sass from "sass";
+import YAML from "js-yaml";
 const functions = {
-  'contrastRank($v1, $v2, $prefix)': contrastRank,
-  'contrastRatio($v1, $v2)': contrastRatio,
-  'Y2L($HH, $SS, $YY)': Y2L,
-  'stepByCache($label)': stepByCache,
-  'stepToCache($label, $step)': stepToCache
+  "contrastRank($v1, $v2, $prefix)": contrastRank,
+  "contrastRatio($v1, $v2)": contrastRatio,
+  "Y2L($HH, $SS, $YY)": Y2L,
+  "stepByCache($label)": stepByCache,
+  "stepToCache($label, $step)": stepToCache
 };
-const YAML_PATH = './.node_bin/scss/steps.yml';
+const YAML_PATH = "./.node_bin/scss/steps.yml";
 const steps = {};
 function save() {
   fs.writeFileSync(YAML_PATH, YAML.dump(steps));
@@ -16,21 +16,26 @@ function save() {
 const results = [];
 var functions_default = functions;
 function stepByCache($label) {
-  if (!($label instanceof sass.types.String)) throw '$label: Expected a string.';
+  if (!($label instanceof sass.types.String))
+    throw "$label: Expected a string.";
   const label = $label.getValue();
   return new sass.types.Number(steps[label] || 0);
 }
 function stepToCache($label, $step) {
-  if (!($label instanceof sass.types.String)) throw '$label: Expected a string.';
-  if (!($step instanceof sass.types.Number)) throw '$step: Expected a number.';
+  if (!($label instanceof sass.types.String))
+    throw "$label: Expected a string.";
+  if (!($step instanceof sass.types.Number))
+    throw "$step: Expected a number.";
   const label = $label.getValue();
   const step = $step.getValue();
   steps[label] = step;
   return $step;
 }
 function contrastRatio($v1, $v2) {
-  if (!($v1 instanceof sass.types.Color)) throw '$v1: Expected a color.';
-  if (!($v2 instanceof sass.types.Color)) throw '$v2: Expected a color.';
+  if (!($v1 instanceof sass.types.Color))
+    throw "$v1: Expected a color.";
+  if (!($v2 instanceof sass.types.Color))
+    throw "$v2: Expected a color.";
   const v1 = luminance($v1) + 0.05;
   const v2 = luminance($v2) + 0.05;
   return new sass.types.Number(v1 - v2 > 0 ? v1 / v2 : v2 / v1);
@@ -50,15 +55,18 @@ const Pr = 0.298912 - 0.06;
 const Pg = 0.586611 + 0.09;
 const Pb = 0.114478 + 0.03;
 function Y2L($HH, $SS, $YY) {
-  if (!($HH instanceof sass.types.Number)) throw '$HH: Expected a number.';
-  if (!($SS instanceof sass.types.Number)) throw '$SS: Expected a number.';
-  if (!($YY instanceof sass.types.Number)) throw '$YY: Expected a number.';
+  if (!($HH instanceof sass.types.Number))
+    throw "$HH: Expected a number.";
+  if (!($SS instanceof sass.types.Number))
+    throw "$SS: Expected a number.";
+  if (!($YY instanceof sass.types.Number))
+    throw "$YY: Expected a number.";
   const HH = $HH.getValue();
   const SS = $SS.getValue();
   const YY = $YY.getValue();
   const hueblock = Math.floor(HH / 60);
   let Yp = 0;
-  let a = (HH % 60) / 60;
+  let a = HH % 60 / 60;
   switch (hueblock) {
     case 0:
       Yp = Pr + Pg * a;
@@ -91,23 +99,36 @@ function Y2L($HH, $SS, $YY) {
   } else {
     L = Y / (1 - C);
   }
-  return new sass.types.Number(100 * L, '%');
+  return new sass.types.Number(100 * L, "%");
 }
 function contrastRank($v1, $v2, $prefix) {
-  if (!($v1 instanceof sass.types.Color)) throw '$v1: Expected a number.';
-  if (!($v2 instanceof sass.types.Color)) throw '$v2: Expected a number.';
-  if (!($prefix instanceof sass.types.String)) throw '$label: Expected a number.';
+  if (!($v1 instanceof sass.types.Color))
+    throw "$v1: Expected a number.";
+  if (!($v2 instanceof sass.types.Color))
+    throw "$v2: Expected a number.";
+  if (!($prefix instanceof sass.types.String))
+    throw "$label: Expected a number.";
   const $contrast = contrastRatio($v1, $v2);
   const contrast = $contrast.getValue();
   const contrastLabel = `  ${Math.round(100 * contrast)}`.slice(-5);
-  let rank = '---';
-  if (1.1 < contrast) rank = 'Z--';
-  if (2 < contrast) rank = 'B--';
-  if (3 < contrast) rank = 'A--';
-  if (4.5 < contrast) rank = 'AA-';
-  if (7 < contrast) rank = 'AAA';
-  if (10 < contrast) rank = 'SSS';
+  let rank = "---";
+  if (1.1 < contrast)
+    rank = "Z--";
+  if (2 < contrast)
+    rank = "B--";
+  if (3 < contrast)
+    rank = "A--";
+  if (4.5 < contrast)
+    rank = "AA-";
+  if (7 < contrast)
+    rank = "AAA";
+  if (10 < contrast)
+    rank = "SSS";
   console.log(`${$prefix.getValue()}${rank}${contrastLabel}`);
   return new sass.types.String(rank);
 }
-export { functions_default as default, results, save };
+export {
+  functions_default as default,
+  results,
+  save
+};

@@ -75,12 +75,13 @@ function dress_sow_strong2(tag: string, title: string, item: string, idx: number
   return `<kbd title="${title}">${item}</kbd>`
 }
 
-const reg_sow_writing = /(<br>\n?|^)(\s*)([\[［][^\]］]*[\]］])(<br>|$)/g
+const reg_sow_writing = /(<br>\n?|^)(\s*)([\[［][^\]］]*[\]］])([*]*)(<br>|$)/g
 function dress_sow_writing(
   human: string,
   pre: string,
   preSpc: string,
   outer: string,
+  postFix: string,
   post: string,
   idx: number,
   src: string
@@ -88,9 +89,10 @@ function dress_sow_writing(
   const head = outer[0]
   const tail = outer.slice(-1)
   const inner = outer.slice(1, -1)
-  console.log(pre, preSpc, head, inner, tail, post)
+  const postTag = `<span class="date pull-right">${postFix}</span>`
+  console.log(pre, preSpc, head, inner, tail, postFix, post)
   // return `${pre}<del>${head}</del><tt>${inner}</tt><del>${tail}</del>${post}`
-  return `${pre}<blockquote>${inner}</blockquote>`
+  return `${pre}<blockquote>${inner}${postTag}</blockquote>`
 }
 
 const reg_sow_hide = /(\/\*)([\s\S]*)(\*\/)|(^)([\s\S]*)(\*\/)|(\/\*)([\s\S]*)($)/g

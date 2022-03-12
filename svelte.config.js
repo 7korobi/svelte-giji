@@ -39,6 +39,7 @@ const SERVERLESS = AdapterServerless({
 
 const package_file = path.join(path.dirname(new URL(import.meta.url).pathname), '/package.json')
 const package_json = JSON.parse(readFileSync(package_file, 'utf8'))
+const { version } = package_json
 const dependencies = Object.keys({
   ...package_json.dependencies,
   ...package_json.devDependencies
@@ -77,6 +78,10 @@ const config = {
 
   kit: {
     adapter: STATIC,
+    version: {
+      name: version
+    },
+    trailingSlash: 'never',
     vite: {
       optimizeDeps: {
         include: ['ua-parser-js']
