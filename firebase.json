@@ -1,6 +1,8 @@
 {
   "hosting": {
     "site": "gijilog",
+    "cleanUrls": true,
+    "trailingSlash": false,
     "public": "./.static_build_output",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
@@ -14,12 +16,7 @@
         ]
       }
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "rewrites": []
   },
   "storage": {
     "rules": "firebase-storage.rules"

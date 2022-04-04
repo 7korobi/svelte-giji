@@ -9,7 +9,8 @@ import AdapterStatic from '@sveltejs/adapter-static'
 const STATIC = AdapterStatic({
   pages: '.static_build_output',
   assets: '.static_build_output',
-  fallback: null
+  fallback: null,
+  precompress: false
 })
 
 import AdapterNode from '@sveltejs/adapter-node'
@@ -82,6 +83,9 @@ const config = {
       name: version
     },
     trailingSlash: 'never',
+    prerender: {
+      default: true
+    },
     vite: {
       optimizeDeps: {
         include: ['ua-parser-js']
