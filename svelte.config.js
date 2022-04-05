@@ -19,6 +19,9 @@ const NODE = AdapterNode({
   precompress: true
 })
 
+import AdapterFirebase from 'svelte-adapter-firebase'
+const FIREBASE = AdapterFirebase()
+
 import AdapterNetlify from '@sveltejs/adapter-netlify'
 const NETLIFY = AdapterNetlify()
 
