@@ -102,7 +102,7 @@
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "socket.io-msgpack-parser": "^3.0.1",
-    "socket.io-parser": "^4.1.2",
+    "socket.io-parser": "^4.2.3",
     "svelte-bind-uri": "link:package/uri",
     "svelte-browser": "link:package/browser",
     "svelte-fsm": "^1.1.2",
